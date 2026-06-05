@@ -70,80 +70,14 @@ function HeroSection() {
         poster="/studio-hero.png"
       />
 
-      {/* 콘텐츠는 하단 오버레이 위에 배치 */}
+      {/* 버튼만 하단에 배치 */}
       <div className="hero-content">
-        {/* ONLINE 상태 */}
-        <motion.div
-          className="hero-status"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-        >
-          <span className="hero-status-dot" />
-          <span className="hero-status-text">ONLINE · 24H</span>
-        </motion.div>
-
-        {/* 로고 링 */}
-        <motion.div
-          className="hero-logo-ring"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.7, ease: 'easeOut' }}
-        >
-          <svg width="42" height="42" viewBox="0 0 44 44" fill="none">
-            <circle cx="22" cy="22" r="20" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" fill="none"/>
-            <path d="M6 26 Q22 14 38 26" stroke="white" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
-            <path d="M14 26 L14 20" stroke="rgba(180,220,255,0.9)" strokeWidth="1.4" strokeLinecap="round"/>
-            <path d="M30 26 L30 20" stroke="rgba(180,220,255,0.9)" strokeWidth="1.4" strokeLinecap="round"/>
-            <path d="M6 30 Q22 36 38 30" stroke="rgba(255,255,255,0.45)" strokeWidth="1.1" fill="none" strokeLinecap="round"/>
-            <path d="M6 33 Q22 38 38 33" stroke="rgba(255,255,255,0.25)" strokeWidth="0.9" fill="none" strokeLinecap="round"/>
-          </svg>
-        </motion.div>
-
-        {/* 브랜드 */}
-        <motion.h1
-          className="hero-brand"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-        >
-          {t.brandName}
-        </motion.h1>
-
-        <motion.p
-          className="hero-tagline-en"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-        >
-          {t.brandSub}
-        </motion.p>
-
-        <motion.p
-          className="hero-tagline-zh"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.65 }}
-        >
-          {t.heroTagline}
-        </motion.p>
-
-        <motion.p
-          className="hero-desc"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.75 }}
-        >
-          {t.heroDesc}
-        </motion.p>
-
-        {/* CTA 버튼 */}
         <motion.div
           className="hero-btns"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85 }}
-          style={{ width: '100%', maxWidth: 300 }}
+          transition={{ delay: 0.5 }}
+          style={{ width: '100%', maxWidth: 320 }}
         >
           <button className="btn-primary" onClick={() => scrollTo('categories')}>
             {t.heroCta1}
@@ -151,18 +85,6 @@ function HeroSection() {
           <button className="btn-secondary" onClick={() => scrollTo('concierge')}>
             {t.heroCta2}
           </button>
-        </motion.div>
-
-        {/* 스크롤 힌트 */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ delay: 1.2 }}
-          style={{ marginTop: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, animation: 'bounceDown 2s ease-in-out infinite' }}
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-            <path d="M12 5v14M5 12l7 7 7-7"/>
-          </svg>
         </motion.div>
       </div>
     </section>
