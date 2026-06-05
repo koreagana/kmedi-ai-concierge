@@ -130,20 +130,18 @@ function HeroSection() {
           width: 48,
           height: 48,
           borderRadius: '50%',
-          background: soundOn
-            ? 'rgba(0,119,182,0.80)'
-            : 'rgba(255,255,255,0.30)',
+          background: 'rgba(0,119,182,0.82)',
           border: soundOn
-            ? '2px solid rgba(100,200,255,0.8)'
-            : '2px solid rgba(255,255,255,0.85)',
+            ? '2px solid rgba(100,200,255,0.9)'
+            : '2px solid rgba(78,151,209,0.9)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
           backdropFilter: 'blur(14px)',
           boxShadow: soundOn
-            ? '0 0 20px rgba(0,150,255,0.5), 0 0 40px rgba(0,150,255,0.2)'
-            : '0 0 16px rgba(255,255,255,0.35), 0 0 32px rgba(255,255,255,0.15)',
+            ? '0 0 20px rgba(0,150,255,0.6), 0 0 40px rgba(0,150,255,0.25)'
+            : '0 0 16px rgba(0,119,182,0.5), 0 0 32px rgba(0,119,182,0.2)',
           transition: 'all 0.25s ease',
         }}
       >

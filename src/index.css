@@ -182,7 +182,7 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.7);
+  border: 1.5px solid rgba(0,180,255,0.8);
   animation: holoPulse 2s ease-out infinite;
   pointer-events: none;
 }
@@ -190,7 +190,7 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.4);
+  border: 1.5px solid rgba(0,180,255,0.5);
   animation: holoPulse 2s ease-out 0.7s infinite;
   pointer-events: none;
 }
