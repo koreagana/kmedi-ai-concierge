@@ -654,7 +654,7 @@ function FooterSection() {
 
       {/* Copyright */}
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
-        © 2025 Hangangaebom · kmedispring.com
+        © 2025 {lang === 'en' ? 'K-MediSpring' : '汉江春天 · Hangangaebom'} · kmedispring.com
       </p>
     </section>
   )
