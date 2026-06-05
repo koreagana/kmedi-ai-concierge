@@ -26,6 +26,17 @@ function HeroSection() {
 
   return (
     <section id="hero" className="hero-section">
+      {/* 영상 배경 — autoplay muted loop (모바일 포함) */}
+      <video
+        className="hero-video"
+        src="/studio.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/studio-hero.png"
+      />
+
       {/* 콘텐츠는 하단 오버레이 위에 배치 */}
       <div className="hero-content">
         {/* ONLINE 상태 */}
