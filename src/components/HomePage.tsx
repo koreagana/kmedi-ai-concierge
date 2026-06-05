@@ -511,10 +511,10 @@ function ContactSection() {
   }
 
   return (
-    <section id="contact" className="section-dark">
+    <section id="contact" className="section-white">
       <motion.div {...fadeUp}>
-        <p className="section-title-light">{t.contactTitle}</p>
-        <div className="section-accent-line-light" />
+        <p className="section-title">{t.contactTitle}</p>
+        <div className="section-accent-line" />
       </motion.div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -559,7 +559,7 @@ function ContactSection() {
         </motion.button>
       </div>
 
-      <p className="contact-email">{t.contactEmail}</p>
+      <p style={{ fontSize: 11, color: 'var(--text-muted)', textAlign: 'center', marginTop: 20, letterSpacing: '0.04em' }}>{t.contactEmail}</p>
 
       {/* ── Modal ── */}
       <AnimatePresence>
