@@ -26,6 +26,17 @@ function HeroSection() {
 
   return (
     <section id="hero" className="hero-section">
+      {/* ONLINE status — 레퍼런스 사이트 그린 도트 */}
+      <motion.div
+        className="hero-status"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1, duration: 0.5 }}
+      >
+        <span className="hero-status-dot" />
+        <span className="hero-status-text">ONLINE · 24H</span>
+      </motion.div>
+
       {/* Logo ring */}
       <motion.div
         className="hero-logo-ring"
@@ -33,7 +44,15 @@ function HeroSection() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <span style={{ fontSize: 36 }}>🏥</span>
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          {/* 한강 브릿지 심볼 — 한강애봄 로고 모티프 */}
+          <circle cx="22" cy="22" r="20" stroke="#0077b6" strokeWidth="1.5" fill="none"/>
+          <path d="M6 26 Q22 14 38 26" stroke="#0077b6" strokeWidth="1.8" fill="none" strokeLinecap="round"/>
+          <path d="M14 26 L14 20" stroke="#4e97d1" strokeWidth="1.4" strokeLinecap="round"/>
+          <path d="M30 26 L30 20" stroke="#4e97d1" strokeWidth="1.4" strokeLinecap="round"/>
+          <path d="M6 30 Q22 35 38 30" stroke="#0077b6" strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.5"/>
+          <path d="M6 33 Q22 37 38 33" stroke="#0077b6" strokeWidth="1.0" fill="none" strokeLinecap="round" opacity="0.3"/>
+        </svg>
       </motion.div>
 
       {/* Brand */}
@@ -220,7 +239,7 @@ function CategoryGridSection() {
   }
 
   return (
-    <section id="categories" className="section-surface2">
+    <section id="categories" className="section-light2">
       <motion.div {...fadeUp}>
         <p className="section-title">{t.categoryTitle}</p>
         <div className="section-accent-line" />
@@ -270,7 +289,7 @@ const CARD_Q5_KO = ['기업 위챗', '개인 위챗', 'WhatsApp', '문의 남기
 const CARD_Q5_EN = ['Enterprise WeChat', 'Personal WeChat', 'WhatsApp', 'Leave a message']
 
 function ConsultationCardSection() {
-  const { lang, setConsultCard, consultCard } = useApp()
+  const { lang, setConsultCard } = useApp()
   const t = translations[lang]
 
   const q1opts = lang === 'ko' ? CARD_Q1_KO : lang === 'en' ? CARD_Q1_EN : CARD_Q1_ZH
@@ -301,7 +320,7 @@ function ConsultationCardSection() {
   const canSubmit = interests.length > 0 && timing && duration && contactMethod
 
   return (
-    <section id="card" className="section-navy2">
+    <section id="card" className="section-dark2">
       <motion.div {...fadeUp}>
         <p className="section-title-light">{t.cardTitle}</p>
         <div className="section-accent-line-light" />
@@ -481,7 +500,7 @@ function ContactSection() {
   }
 
   return (
-    <section id="contact" className="section-navy">
+    <section id="contact" className="section-dark">
       <motion.div {...fadeUp}>
         <p className="section-title-light">{t.contactTitle}</p>
         <div className="section-accent-line-light" />
@@ -696,7 +715,7 @@ function AboutSection() {
   const t = translations[lang]
 
   return (
-    <section id="about" className="section-surface2">
+    <section id="about" className="section-light2">
       <motion.div {...fadeUp} style={{ textAlign: 'center' }}>
         <p className="section-title">{t.aboutTitle}</p>
         <div className="section-accent-line" />
@@ -714,7 +733,7 @@ function FooterSection() {
   const t = translations[lang]
 
   return (
-    <section className="section-navy" style={{ paddingBottom: 52 }}>
+    <section className="section-dark" style={{ paddingBottom: 52 }}>
       <div className="divider-light" style={{ marginBottom: 32 }} />
 
       {/* Brand mark */}

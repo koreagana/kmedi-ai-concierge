@@ -34,7 +34,7 @@ const CARD_Q5_EN = ['Enterprise WeChat', 'Personal WeChat', 'WhatsApp', 'Leave a
 type ContactModal = 'wechat-biz' | 'wechat-personal' | 'whatsapp' | 'form' | null
 
 export default function CategoryPage() {
-  const { lang, categoryId, goHome, setConsultCard, consultCard } = useApp()
+  const { lang, categoryId, goHome, setConsultCard } = useApp()
   const t = translations[lang]
   const cat = getCategoryById(categoryId ?? '')
 
@@ -149,7 +149,7 @@ export default function CategoryPage() {
       </div>
 
       {/* ── Consultation card ── */}
-      <div className="section-navy2" style={{ paddingTop: 32, paddingBottom: 32 }}>
+      <div className="section-dark2" style={{ paddingTop: 32, paddingBottom: 32 }}>
         <AnimatePresence mode="wait">
           {!showCardForm ? (
             <motion.div
@@ -297,7 +297,7 @@ export default function CategoryPage() {
       </div>
 
       {/* ── Contact buttons ── */}
-      <div className="section-navy" style={{ paddingTop: 32, paddingBottom: 40 }}>
+      <div className="section-dark" style={{ paddingTop: 32, paddingBottom: 40 }}>
         <p className="section-title-light" style={{ marginBottom: 6 }}>{t.contactTitle}</p>
         <div className="section-accent-line-light" />
 
