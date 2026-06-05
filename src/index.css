@@ -114,53 +114,49 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   HERO SECTION
+   HERO SECTION — 스튜디오 이미지 배경
    ══════════════════════════════════════════ */
 .hero-section {
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse 90% 55% at 50% 10%, rgba(0, 136, 238, 0.14) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0, 180, 216, 0.08) 0%, transparent 60%),
-    linear-gradient(180deg, #eef7ff 0%, #f8fbff 60%, #eef7ff 100%);
+  background: url('/studio-hero.png') center center / cover no-repeat;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 28px 64px;
+  align-items: stretch;
+  justify-content: flex-end;
+  padding: 0;
   position: relative;
   overflow: hidden;
 }
 
-/* subtle mesh grid overlay */
+/* 하단 그라데이션 — 텍스트 가독성 */
 .hero-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0,120,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,120,255,0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 32, 64, 0.08) 0%,
+    transparent 35%,
+    transparent 50%,
+    rgba(10, 32, 64, 0.55) 80%,
+    rgba(10, 32, 64, 0.75) 100%
+  );
   pointer-events: none;
+  z-index: 1;
 }
 
-/* floating glow orbs */
-.hero-section::after {
-  content: '';
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,136,238,0.10) 0%, transparent 70%);
-  pointer-events: none;
-  animation: heroGlow 6s ease-in-out infinite;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 0 20px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @keyframes heroGlow {
-  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-  50% { transform: translateX(-50%) scale(1.12); opacity: 1; }
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
 
 /* Status dot — 레퍼런스 사이트 그린 도트 */
@@ -168,13 +164,13 @@ body {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: var(--glass);
-  border: 1px solid rgba(0, 136, 238, 0.18);
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.4);
   border-radius: 20px;
   padding: 5px 14px 5px 10px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   backdrop-filter: blur(12px);
-  box-shadow: 0 2px 12px rgba(0,100,220,0.10);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 .hero-status-dot {
@@ -189,7 +185,7 @@ body {
 .hero-status-text {
   font-size: 10px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.9);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -201,20 +197,20 @@ body {
 
 /* Logo ring — 한강애봄 브릿지 로고 스타일 */
 .hero-logo-ring {
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
-  border: 1.5px solid rgba(0, 136, 238, 0.35);
+  border: 1.5px solid rgba(255,255,255,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   position: relative;
-  background: radial-gradient(circle, rgba(0,136,238,0.08) 0%, transparent 70%);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
   box-shadow:
-    0 0 0 8px rgba(0,136,238,0.04),
-    0 0 30px rgba(0,136,238,0.15),
-    inset 0 0 20px rgba(0,136,238,0.05);
+    0 0 0 8px rgba(255,255,255,0.06),
+    0 4px 24px rgba(0,0,0,0.2);
 }
 
 .hero-logo-ring::before {
@@ -240,39 +236,40 @@ body {
 }
 
 .hero-brand {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 800;
-  color: var(--brand-dark);          /* #1f4e79 — 로고 텍스트 색 */
-  letter-spacing: 0.05em;
+  color: #ffffff;
+  letter-spacing: 0.06em;
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
+  text-shadow: 0 2px 12px rgba(0,40,100,0.4);
 }
 
 .hero-tagline-en {
-  font-size: 10px;
-  color: var(--brand);               /* #0077b6 */
+  font-size: 9px;
+  color: rgba(180, 220, 255, 0.9);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 20px;
-  opacity: 0.85;
+  margin-bottom: 16px;
 }
 
 .hero-tagline-zh {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
-  color: var(--text-dark);           /* #1f4e79 */
+  color: rgba(255,255,255,0.95);
   text-align: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  text-shadow: 0 1px 8px rgba(0,40,100,0.4);
 }
 
 .hero-desc {
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 12px;
+  color: rgba(255,255,255,0.72);
   text-align: center;
   line-height: 1.85;
   max-width: 300px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .hero-btns {
@@ -305,15 +302,15 @@ body {
 }
 .btn-primary:active { transform: translateY(0); }
 
-/* Secondary CTA — white with brand border */
+/* Secondary CTA — glass over studio image */
 .btn-secondary {
-  background: rgba(255,255,255,0.9);
-  color: var(--brand);
+  background: rgba(255,255,255,0.18);
+  color: #ffffff;
   font-size: 13px;
   font-weight: 600;
   padding: 13px 24px;
   border-radius: 14px;
-  border: 1.5px solid var(--brand);
+  border: 1.5px solid rgba(255,255,255,0.55);
   cursor: pointer;
   letter-spacing: 0.04em;
   text-align: center;
@@ -321,9 +318,8 @@ body {
   backdrop-filter: blur(8px);
 }
 .btn-secondary:hover {
-  background: rgba(0,119,182,0.06);
-  border-color: var(--brand-dark);
-  color: var(--brand-dark);
+  background: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.8);
 }
 
 .hero-scroll-hint {
