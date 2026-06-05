@@ -288,7 +288,7 @@ export default function CategoryPage() {
                 )}
               </div>
 
-              <button className="btn-card-submit" onClick={() => setModal('wechat-biz')}>
+              <button className="btn-card-submit" onClick={() => window.open('https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0', '_blank')}>
                 {t.cardContactBtn}
               </button>
             </motion.div>
@@ -302,7 +302,7 @@ export default function CategoryPage() {
         <div className="section-accent-line-light" />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <button className="contact-btn contact-btn-wechat-biz" onClick={() => setModal('wechat-biz')}>
+          <button className="contact-btn contact-btn-wechat-biz" onClick={() => window.open('https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0', '_blank')}>
             <div className="contact-icon">💼</div>
             <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatBiz}</p>
           </button>
