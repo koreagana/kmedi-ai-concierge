@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
@@ -52,15 +52,28 @@ const fadeUp = {
 function HeroSection() {
   const { lang } = useApp()
   const t = translations[lang]
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [muted, setMuted] = useState(true)
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const toggleSound = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false
+      videoRef.current.volume = 1
+      setMuted(false)
+    }
+  }
+
+  const soundLabel = lang === 'zh' ? '点击开启声音' : lang === 'ko' ? '소리 켜기' : 'Tap for audio'
+
   return (
     <section id="hero" className="hero-section">
-      {/* 영상 배경 — autoplay muted loop (모바일 포함) */}
+      {/* 영상 배경 — 처음엔 무음, 버튼으로 소리 활성화 */}
       <video
+        ref={videoRef}
         className="hero-video"
         src="/studio.mp4"
         autoPlay
@@ -69,6 +82,47 @@ function HeroSection() {
         playsInline
         poster="/studio-hero.png"
       />
+
+      {/* 소리 켜기 버튼 — 우상단 고정 */}
+      <AnimatePresence>
+        {muted && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ delay: 1, duration: 0.4 }}
+            onClick={toggleSound}
+            style={{
+              position: 'absolute',
+              top: 16,
+              right: 16,
+              zIndex: 10,
+              background: 'rgba(255,255,255,0.18)',
+              border: '1px solid rgba(255,255,255,0.45)',
+              borderRadius: 20,
+              padding: '7px 14px 7px 10px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              cursor: 'pointer',
+              backdropFilter: 'blur(10px)',
+              color: 'white',
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: '0.04em',
+              fontFamily: 'inherit',
+            }}
+          >
+            {/* 음소거 아이콘 */}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <line x1="23" y1="9" x2="17" y2="15"/>
+              <line x1="17" y1="9" x2="23" y2="15"/>
+            </svg>
+            {soundLabel}
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* 버튼만 하단에 배치 */}
       <div className="hero-content">
