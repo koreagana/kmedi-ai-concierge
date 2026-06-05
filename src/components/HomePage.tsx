@@ -6,6 +6,40 @@ import { categories, type CategoryId } from '../data/categories'
 import type { ConsultCard } from '../contexts/AppContext'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
+
+function WechatIdBox({ id, lang }: { id: string; lang: string }) {
+  const [copied, setCopied] = useState(false)
+  const copy = () => {
+    navigator.clipboard.writeText(id).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+  return (
+    <div style={{ textAlign: 'center', marginBottom: 16 }}>
+      <p style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 10 }}>
+        {lang === 'zh' ? '微信号' : lang === 'ko' ? '위챗 ID' : 'WeChat ID'}
+      </p>
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+        background: 'var(--bg-surface)', border: '1px solid var(--border-blue)',
+        borderRadius: 12, padding: '12px 18px', marginBottom: 12,
+      }}>
+        <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--brand-dark)', letterSpacing: '0.06em' }}>{id}</span>
+        <button
+          onClick={copy}
+          style={{ background: copied ? 'var(--brand)' : 'var(--bg-light)', border: '1px solid var(--border-blue)', borderRadius: 8, padding: '4px 12px', fontSize: 11, color: copied ? 'white' : 'var(--brand)', cursor: 'pointer', transition: 'all 0.2s', fontFamily: 'inherit' }}
+        >
+          {copied ? (lang === 'zh' ? '已复制' : lang === 'ko' ? '복사됨' : 'Copied!') : (lang === 'zh' ? '复制' : lang === 'ko' ? '복사' : 'Copy')}
+        </button>
+      </div>
+      <p style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.7 }}>
+        {lang === 'zh' ? '打开微信 → 添加朋友 → 搜索以上微信号\n添加后请备注「韩国医疗咨询」' : lang === 'ko' ? '위챗 앱 → 친구 추가 → 위 ID 검색\n추가 후 「한국의료상담」으로 메모' : 'Open WeChat → Add Friends → Search the ID above'}
+      </p>
+    </div>
+  )
+}
+
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -143,7 +177,8 @@ function ConciergeSection() {
   const { lang } = useApp()
   const t = translations[lang]
 
-  const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+  const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
+  const [showWxModal, setShowWxModal] = useState(false)
 
   return (
     <section id="concierge" className="section-light">
@@ -153,14 +188,15 @@ function ConciergeSection() {
       </motion.div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-        {/* Female concierge */}
+        {/* 李静 — 기업위챗 직접 연결 */}
         <motion.div
           {...fadeUp}
           transition={{ delay: 0.1, duration: 0.5 }}
           className="concierge-card"
-          onClick={scrollToContact}
+          onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}
         >
           <div className="concierge-avatar concierge-avatar-f">
+            {/* 사진 준비되면 <img> 교체 */}
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c05080" strokeWidth="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           </div>
           <div>
@@ -168,19 +204,20 @@ function ConciergeSection() {
             <p className="concierge-title-text">{t.concierge1Title}</p>
           </div>
           <p className="concierge-specialty">{t.concierge1Specialty}</p>
-          <button className="concierge-btn" onClick={e => { e.stopPropagation(); scrollToContact() }}>
+          <button className="concierge-btn" onClick={e => { e.stopPropagation(); window.open(WECHAT_BIZ_URL, '_blank') }}>
             {t.concierge1Btn}
           </button>
         </motion.div>
 
-        {/* Male concierge */}
+        {/* 金贤宇 — 개인위챗 QR 모달 */}
         <motion.div
           {...fadeUp}
           transition={{ delay: 0.18, duration: 0.5 }}
           className="concierge-card"
-          onClick={scrollToContact}
+          onClick={() => setShowWxModal(true)}
         >
           <div className="concierge-avatar concierge-avatar-m">
+            {/* 사진 준비되면 <img> 교체 */}
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2a6ab0" strokeWidth="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
           </div>
           <div>
@@ -188,11 +225,41 @@ function ConciergeSection() {
             <p className="concierge-title-text">{t.concierge2Title}</p>
           </div>
           <p className="concierge-specialty">{t.concierge2Specialty}</p>
-          <button className="concierge-btn" onClick={e => { e.stopPropagation(); scrollToContact() }}>
+          <button className="concierge-btn" onClick={e => { e.stopPropagation(); setShowWxModal(true) }}>
             {t.concierge2Btn}
           </button>
         </motion.div>
       </div>
+
+      {/* 개인위챗 QR 모달 */}
+      <AnimatePresence>
+        {showWxModal && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowWxModal(false)}
+          >
+            <motion.div
+              className="modal-sheet"
+              initial={{ y: 60, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 60, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="modal-handle" />
+              <p className="modal-title">{t.concierge2Name} · {lang === 'zh' ? '个人微信' : lang === 'ko' ? '개인위챗' : 'Personal WeChat'}</p>
+              {/* QR 이미지 준비되면 → <img src="/wechat-personal-qr.png" style={{width:160,height:160,borderRadius:12}} /> 로 교체 */}
+              <WechatIdBox id="e-gana" lang={lang} />
+              <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => setShowWxModal(false)}>
+                {lang === 'zh' ? '关闭' : lang === 'ko' ? '닫기' : 'Close'}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
