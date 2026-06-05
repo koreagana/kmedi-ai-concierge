@@ -113,7 +113,7 @@ function HeroSection() {
         poster="/studio-hero.png"
       />
 
-      {/* 우측 중앙 스피커 토글 버튼 */}
+      {/* 우측 스피커 토글 버튼 — 위쪽에 배치, 홀로그램 링 */}
       <motion.button
         initial={{ opacity: 0, x: 10 }}
         animate={{ opacity: 1, x: 0 }}
@@ -124,34 +124,45 @@ function HeroSection() {
           : (lang === 'zh' ? '点击开启声音' : lang === 'ko' ? '소리 켜기' : 'Enable sound')}
         style={{
           position: 'absolute',
-          right: 16,
-          top: '50%',
-          transform: 'translateY(-50%)',
+          right: 18,
+          top: '36%',
           zIndex: 10,
-          width: 44,
-          height: 44,
+          width: 48,
+          height: 48,
           borderRadius: '50%',
-          background: soundOn ? 'rgba(0,119,182,0.75)' : 'rgba(255,255,255,0.18)',
-          border: soundOn ? '1.5px solid rgba(0,180,255,0.6)' : '1.5px solid rgba(255,255,255,0.45)',
+          background: soundOn
+            ? 'rgba(0,119,182,0.80)'
+            : 'rgba(255,255,255,0.30)',
+          border: soundOn
+            ? '2px solid rgba(100,200,255,0.8)'
+            : '2px solid rgba(255,255,255,0.85)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          backdropFilter: 'blur(12px)',
-          boxShadow: soundOn ? '0 0 16px rgba(0,150,255,0.4)' : 'none',
+          backdropFilter: 'blur(14px)',
+          boxShadow: soundOn
+            ? '0 0 20px rgba(0,150,255,0.5), 0 0 40px rgba(0,150,255,0.2)'
+            : '0 0 16px rgba(255,255,255,0.35), 0 0 32px rgba(255,255,255,0.15)',
           transition: 'all 0.25s ease',
         }}
       >
+        {/* 무음일 때만 펄스 링 표시 */}
+        {!soundOn && (
+          <>
+            <span className="sound-btn-ring" />
+            <span className="sound-btn-ring-2" />
+          </>
+        )}
+
         {soundOn ? (
-          /* 소리 켜진 아이콘 */
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
             <path d="M15.54 8.46a5 5 0 010 7.07"/>
             <path d="M19.07 4.93a10 10 0 010 14.14"/>
           </svg>
         ) : (
-          /* 음소거 아이콘 */
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
             <line x1="23" y1="9" x2="17" y2="15"/>
             <line x1="17" y1="9" x2="23" y2="15"/>
