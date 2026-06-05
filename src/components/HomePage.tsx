@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
@@ -53,25 +53,55 @@ function HeroSection() {
   const { lang } = useApp()
   const t = translations[lang]
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
+  const sectionRef = useRef<HTMLElement>(null)
+  const [soundOn, setSoundOn] = useState(false)
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // 히어로 벗어나면 일시정지, 돌아오면 재개
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const v = videoRef.current
+        if (!v) return
+        if (entry.isIntersecting) {
+          v.play().catch(() => {})
+        } else {
+          v.pause()
+          // 스크롤 벗어나면 항상 무음으로 초기화
+          v.muted = true
+          setSoundOn(false)
+        }
+      },
+      { threshold: 0.15 }
+    )
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
   const toggleSound = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = false
-      videoRef.current.volume = 1
-      setMuted(false)
+    const v = videoRef.current
+    if (!v) return
+    if (soundOn) {
+      // 무음으로
+      v.muted = true
+      setSoundOn(false)
+    } else {
+      // 소리 켜고 처음부터 재생 (인사 멘트)
+      v.muted = false
+      v.volume = 1
+      v.currentTime = 0
+      v.play().catch(() => {})
+      setSoundOn(true)
     }
   }
 
-  const soundLabel = lang === 'zh' ? '点击开启声音' : lang === 'ko' ? '소리 켜기' : 'Tap for audio'
-
   return (
-    <section id="hero" className="hero-section">
-      {/* 영상 배경 — 처음엔 무음, 버튼으로 소리 활성화 */}
+    <section ref={sectionRef} id="hero" className="hero-section">
       <video
         ref={videoRef}
         className="hero-video"
@@ -83,48 +113,53 @@ function HeroSection() {
         poster="/studio-hero.png"
       />
 
-      {/* 소리 켜기 버튼 — 우상단 고정 */}
-      <AnimatePresence>
-        {muted && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ delay: 1, duration: 0.4 }}
-            onClick={toggleSound}
-            style={{
-              position: 'absolute',
-              top: 16,
-              right: 16,
-              zIndex: 10,
-              background: 'rgba(255,255,255,0.18)',
-              border: '1px solid rgba(255,255,255,0.45)',
-              borderRadius: 20,
-              padding: '7px 14px 7px 10px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-              cursor: 'pointer',
-              backdropFilter: 'blur(10px)',
-              color: 'white',
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: '0.04em',
-              fontFamily: 'inherit',
-            }}
-          >
-            {/* 음소거 아이콘 */}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-              <line x1="23" y1="9" x2="17" y2="15"/>
-              <line x1="17" y1="9" x2="23" y2="15"/>
-            </svg>
-            {soundLabel}
-          </motion.button>
+      {/* 우측 중앙 스피커 토글 버튼 */}
+      <motion.button
+        initial={{ opacity: 0, x: 10 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1.2, duration: 0.4 }}
+        onClick={toggleSound}
+        title={soundOn
+          ? (lang === 'zh' ? '点击静音' : lang === 'ko' ? '소리 끄기' : 'Mute')
+          : (lang === 'zh' ? '点击开启声音' : lang === 'ko' ? '소리 켜기' : 'Enable sound')}
+        style={{
+          position: 'absolute',
+          right: 16,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          zIndex: 10,
+          width: 44,
+          height: 44,
+          borderRadius: '50%',
+          background: soundOn ? 'rgba(0,119,182,0.75)' : 'rgba(255,255,255,0.18)',
+          border: soundOn ? '1.5px solid rgba(0,180,255,0.6)' : '1.5px solid rgba(255,255,255,0.45)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+          backdropFilter: 'blur(12px)',
+          boxShadow: soundOn ? '0 0 16px rgba(0,150,255,0.4)' : 'none',
+          transition: 'all 0.25s ease',
+        }}
+      >
+        {soundOn ? (
+          /* 소리 켜진 아이콘 */
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M15.54 8.46a5 5 0 010 7.07"/>
+            <path d="M19.07 4.93a10 10 0 010 14.14"/>
+          </svg>
+        ) : (
+          /* 음소거 아이콘 */
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
         )}
-      </AnimatePresence>
+      </motion.button>
 
-      {/* 버튼만 하단에 배치 */}
+      {/* 하단 CTA 버튼 */}
       <div className="hero-content">
         <motion.div
           className="hero-btns"
