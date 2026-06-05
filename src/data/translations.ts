@@ -1,0 +1,281 @@
+export type LangCode = 'zh' | 'ko' | 'en'
+
+interface Translations {
+  // brand
+  brandName: string
+  brandSub: string
+  // hero
+  heroTagline: string
+  heroDesc: string
+  heroCta1: string
+  heroCta2: string
+  // concierge section
+  conciergeTitle: string
+  concierge1Name: string
+  concierge1Title: string
+  concierge1Specialty: string
+  concierge1Btn: string
+  concierge2Name: string
+  concierge2Title: string
+  concierge2Specialty: string
+  concierge2Btn: string
+  // concern section
+  concernTitle: string
+  concern1: string; concern1Sub: string
+  concern2: string; concern2Sub: string
+  concern3: string; concern3Sub: string
+  concern4: string; concern4Sub: string
+  concern5: string; concern5Sub: string
+  concern6: string; concern6Sub: string
+  // category section
+  categoryTitle: string
+  // consultation card
+  cardTitle: string
+  cardQ1: string
+  cardQ2: string
+  cardQ3: string
+  cardQ4: string
+  cardQ5: string
+  cardSubmit: string
+  cardGenerated: string
+  cardContactBtn: string
+  // contact section
+  contactTitle: string
+  contactWechatBiz: string
+  contactWechatPersonal: string
+  contactWhatsapp: string
+  contactForm: string
+  contactEmail: string
+  contactFormTitle: string
+  contactFormName: string
+  contactFormMsg: string
+  contactFormSend: string
+  contactQRHint: string
+  contactClose: string
+  // network section
+  networkTitle: string
+  networkSub: string
+  networkDesc: string
+  networkTier1: string
+  networkTier2: string
+  networkTier3: string
+  networkTier4: string
+  networkDisclaimer: string
+  // about
+  aboutTitle: string
+  aboutDesc: string
+  // footer
+  disclaimer: string
+  // nav
+  navConsult: string
+  langZh: string
+  langKo: string
+  langEn: string
+  // category page
+  backHome: string
+  aiScript: string
+  aiScriptExpand: string
+  aiScriptCollapse: string
+  makeCard: string
+}
+
+export const translations: Record<LangCode, Translations> = {
+  zh: {
+    brandName: '汉江春天',
+    brandSub: 'AI Concierge Medical Lounge',
+    heroTagline: '您的韩国医疗咨询入口',
+    heroDesc: '从抗衰、皮肤医美、整形到健康管理，为您整理需求，并连接合适的韩国医疗服务。',
+    heroCta1: '开始选择项目',
+    heroCta2: '添加顾问咨询',
+    conciergeTitle: '请选择您的 AI 医疗顾问',
+    concierge1Name: '李静',
+    concierge1Title: 'Beauty & Women Care Concierge',
+    concierge1Specialty: '皮肤医美 · 整形医美 · 女性护理 · 抗衰管理',
+    concierge1Btn: '和李静咨询',
+    concierge2Name: '金贤宇',
+    concierge2Title: 'Health & Medical Concierge',
+    concierge2Specialty: '大健康 · 男性健康 · 再生医学 · 医疗旅游',
+    concierge2Btn: '和金贤宇咨询',
+    concernTitle: '您这次最想解决什么？',
+    concern1: '想变年轻一点', concern1Sub: '抗衰老 · 皮肤提升 · 状态管理',
+    concern2: '想改善脸部轮廓', concern2Sub: '轮廓 · 提升 · 眼鼻面部咨询',
+    concern3: '想做一次系统检查', concern3Sub: '健康管理 · 功能医学 · 精密检查',
+    concern4: '想解决女性健康问题', concern4Sub: '女性护理 · 检查 · 治疗咨询',
+    concern5: '想改善男性健康状态', concern5Sub: '男性健康 · 体力 · 脱发 · 泌尿相关',
+    concern6: '想安排韩国医疗旅行', concern6Sub: '医院预约 · 翻译 · 车辆 · 行程安排',
+    categoryTitle: '请选择医疗项目',
+    cardTitle: '生成我的咨询卡',
+    cardQ1: '您最关心的项目是？',
+    cardQ2: '您计划什么时候来韩国？',
+    cardQ3: '您希望停留几天？',
+    cardQ4: '您最担心什么？',
+    cardQ5: '您希望用什么方式咨询？',
+    cardSubmit: '保存咨询卡，联系顾问',
+    cardGenerated: '您的咨询卡已生成',
+    cardContactBtn: '立即联系顾问',
+    contactTitle: '选择您的咨询方式',
+    contactWechatBiz: '企业微信咨询',
+    contactWechatPersonal: '个人微信咨询',
+    contactWhatsapp: 'WhatsApp 咨询',
+    contactForm: '留下咨询需求',
+    contactEmail: 'Email：egana@kmedispring.com',
+    contactFormTitle: '留言咨询',
+    contactFormName: '您的姓名或联系方式',
+    contactFormMsg: '请简单描述您的咨询需求…',
+    contactFormSend: '提交留言',
+    contactQRHint: '扫描二维码，添加咨询',
+    contactClose: '关闭',
+    networkTitle: 'Korea Medical Network',
+    networkSub: '韩国医疗资源对接网络',
+    networkDesc: '汉江春天根据客户需求，对接韩国不同级别的医疗机构与专业咨询资源。',
+    networkDisclaimer: '具体医疗机构与医生安排，将根据咨询内容、预约情况与医疗适应性进行个别确认。',
+    networkTier1: '三级医疗机构',
+    networkTier2: '二级医疗机构',
+    networkTier3: '专科医疗中心',
+    networkTier4: '健康检查中心',
+    aboutTitle: '关于汉江春天',
+    aboutDesc: '汉江春天（Hangangaebom / kmedispring.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
+    disclaimer: '温馨提示：本网站不提供医疗诊断、治疗建议或紧急医疗服务。所有医疗判断、检查结果解释与治疗方案，均以韩国正规医疗机构及专业医生面诊为准。汉江春天提供的是医疗咨询整理、预约协调、翻译沟通与医疗旅游相关协助服务。',
+    navConsult: '立即咨询',
+    langZh: '中文',
+    langKo: '한국어',
+    langEn: 'English',
+    backHome: '← 返回首页',
+    aiScript: 'AI 顾问说明',
+    aiScriptExpand: '展开全文',
+    aiScriptCollapse: '收起',
+    makeCard: '生成我的咨询卡',
+  },
+  ko: {
+    brandName: '한강애봄',
+    brandSub: 'AI 컨시어지 메디컬 라운지',
+    heroTagline: '한국 의료 상담의 입구',
+    heroDesc: '항노화, 피부미용, 성형부터 건강관리까지 — 니즈를 정리하고 적합한 한국 의료 서비스를 연결해 드립니다.',
+    heroCta1: '항목 선택하기',
+    heroCta2: '상담 추가하기',
+    conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
+    concierge1Name: '이정',
+    concierge1Title: 'Beauty & Women Care Concierge',
+    concierge1Specialty: '피부미용 · 성형미용 · 여성케어 · 항노화',
+    concierge1Btn: '이정과 상담',
+    concierge2Name: '김현우',
+    concierge2Title: 'Health & Medical Concierge',
+    concierge2Specialty: '대건강 · 남성건강 · 재생의학 · 의료관광',
+    concierge2Btn: '김현우와 상담',
+    concernTitle: '이번에 가장 해결하고 싶은 것은?',
+    concern1: '좀 더 젊어지고 싶다', concern1Sub: '항노화 · 피부 리프팅 · 컨디션 관리',
+    concern2: '얼굴 윤곽을 개선하고 싶다', concern2Sub: '윤곽 · 리프팅 · 눈코 얼굴 상담',
+    concern3: '체계적인 검진을 받고 싶다', concern3Sub: '건강관리 · 기능의학 · 정밀검진',
+    concern4: '여성 건강 문제를 해결하고 싶다', concern4Sub: '여성케어 · 검진 · 치료 상담',
+    concern5: '남성 건강 상태를 개선하고 싶다', concern5Sub: '남성건강 · 체력 · 탈모 · 비뇨기',
+    concern6: '한국 의료관광을 계획하고 싶다', concern6Sub: '병원 예약 · 통역 · 차량 · 일정',
+    categoryTitle: '의료 항목을 선택하세요',
+    cardTitle: '나의 상담 카드 만들기',
+    cardQ1: '가장 관심 있는 항목은?',
+    cardQ2: '한국 방문 시기는?',
+    cardQ3: '체류 기간은?',
+    cardQ4: '가장 걱정되는 것은?',
+    cardQ5: '상담 방법은?',
+    cardSubmit: '상담 카드 저장 및 컨시어지 연결',
+    cardGenerated: '상담 카드가 생성되었습니다',
+    cardContactBtn: '지금 컨시어지에게 연락',
+    contactTitle: '상담 방법을 선택하세요',
+    contactWechatBiz: '기업 위챗 상담',
+    contactWechatPersonal: '개인 위챗 상담',
+    contactWhatsapp: 'WhatsApp 상담',
+    contactForm: '문의 남기기',
+    contactEmail: 'Email：egana@kmedispring.com',
+    contactFormTitle: '문의 남기기',
+    contactFormName: '성함 또는 연락처',
+    contactFormMsg: '상담 내용을 간단히 입력해 주세요…',
+    contactFormSend: '문의 제출',
+    contactQRHint: 'QR 코드를 스캔하여 상담 추가',
+    contactClose: '닫기',
+    networkTitle: 'Korea Medical Network',
+    networkSub: '한국 의료 네트워크',
+    networkDesc: '한강애봄은 고객 니즈에 맞게 다양한 레벨의 한국 의료기관 및 전문 상담 리소스를 연결합니다.',
+    networkDisclaimer: '구체적인 의료기관 및 의사 배정은 상담 내용, 예약 상황, 의료 적합성에 따라 개별 확인됩니다.',
+    networkTier1: '3차 의료기관',
+    networkTier2: '2차 의료기관',
+    networkTier3: '전문 의료센터',
+    networkTier4: '건강검진센터',
+    aboutTitle: '한강애봄 소개',
+    aboutDesc: '한강애봄(kmedispring.com)은 해외 고객을 위한 한국 의료 상담 및 조율 서비스 플랫폼입니다.\n저희는 병원도 의사도 아닙니다.\n한국 의료 시스템과 개인 니즈 사이의 AI 지원 연락 브릿지 — 니즈 정리, 절차 안내, 예약 조율, 전체 여정의 중국어 지원을 제공합니다.',
+    disclaimer: '안내: 본 웹사이트는 의료 진단, 치료 조언 또는 응급 의료 서비스를 제공하지 않습니다. 모든 의료 판단, 검사 결과 해석 및 치료 방안은 한국 정규 의료기관 및 전문 의사의 직접 진찰을 기준으로 합니다.',
+    navConsult: '지금 상담',
+    langZh: '中文',
+    langKo: '한국어',
+    langEn: 'English',
+    backHome: '← 홈으로',
+    aiScript: 'AI 컨시어지 안내',
+    aiScriptExpand: '전문 보기',
+    aiScriptCollapse: '접기',
+    makeCard: '나의 상담 카드 만들기',
+  },
+  en: {
+    brandName: 'Hangangaebom',
+    brandSub: 'AI Concierge Medical Lounge',
+    heroTagline: 'Your Gateway to Korean Medical Consultation',
+    heroDesc: 'From anti-aging, skin aesthetics, and plastic surgery to health management — we organize your needs and connect you to the right Korean medical services.',
+    heroCta1: 'Choose a Service',
+    heroCta2: 'Talk to Concierge',
+    conciergeTitle: 'Choose Your AI Medical Concierge',
+    concierge1Name: 'Lee Jeong',
+    concierge1Title: 'Beauty & Women Care Concierge',
+    concierge1Specialty: 'Skin Aesthetics · Plastic Surgery · Women\'s Care · Anti-Aging',
+    concierge1Btn: 'Consult with Lee Jeong',
+    concierge2Name: 'Kim Hyunwoo',
+    concierge2Title: 'Health & Medical Concierge',
+    concierge2Specialty: 'Comprehensive Health · Men\'s Health · Regenerative · Medical Tourism',
+    concierge2Btn: 'Consult with Kim Hyunwoo',
+    concernTitle: 'What Would You Like to Address?',
+    concern1: 'I want to look younger', concern1Sub: 'Anti-Aging · Skin Lifting · Condition Mgmt',
+    concern2: 'I want to improve facial contour', concern2Sub: 'Contouring · Lifting · Eye & Nose',
+    concern3: 'I want a comprehensive checkup', concern3Sub: 'Health Mgmt · Functional Medicine',
+    concern4: "I want to address women's health", concern4Sub: "Women's Care · Exam · Treatment",
+    concern5: "I want to improve men's health", concern5Sub: "Vitality · Hair Loss · Urology",
+    concern6: 'I want to plan a medical trip to Korea', concern6Sub: 'Appointments · Interpreter · Itinerary',
+    categoryTitle: 'Select a Medical Category',
+    cardTitle: 'Generate My Consultation Card',
+    cardQ1: 'Which area interests you most?',
+    cardQ2: 'When do you plan to visit Korea?',
+    cardQ3: 'How long will you stay?',
+    cardQ4: 'What is your biggest concern?',
+    cardQ5: 'How would you like to consult?',
+    cardSubmit: 'Save Card & Contact Concierge',
+    cardGenerated: 'Your Consultation Card is Ready',
+    cardContactBtn: 'Contact Concierge Now',
+    contactTitle: 'Choose Your Consultation Method',
+    contactWechatBiz: 'Enterprise WeChat',
+    contactWechatPersonal: 'Personal WeChat',
+    contactWhatsapp: 'WhatsApp',
+    contactForm: 'Leave a Message',
+    contactEmail: 'Email: egana@kmedispring.com',
+    contactFormTitle: 'Leave a Message',
+    contactFormName: 'Your name or contact',
+    contactFormMsg: 'Briefly describe what you need…',
+    contactFormSend: 'Submit',
+    contactQRHint: 'Scan QR to add consultation',
+    contactClose: 'Close',
+    networkTitle: 'Korea Medical Network',
+    networkSub: 'Korean Medical Resource Network',
+    networkDesc: 'Hangangaebom connects clients to Korean medical institutions and professional consultation resources at various levels.',
+    networkDisclaimer: 'Specific institution and physician arrangements will be confirmed individually based on consultation content, availability, and medical suitability.',
+    networkTier1: 'Tertiary Medical Institutions',
+    networkTier2: 'Secondary Medical Institutions',
+    networkTier3: 'Specialty Medical Centers',
+    networkTier4: 'Health Checkup Centers',
+    aboutTitle: 'About Hangangaebom',
+    aboutDesc: 'Hangangaebom (kmedispring.com) is a Korean medical consultation and coordination platform for international clients.\nWe are not a hospital or a doctor.\nWe are your AI-assisted liaison bridge between the Korean medical system and your personal needs — organizing requirements, explaining procedures, coordinating appointments, and providing support throughout your journey.',
+    disclaimer: 'Notice: This website does not provide medical diagnosis, treatment advice, or emergency medical services. All medical judgments, test result interpretations, and treatment plans are subject to in-person examination by licensed Korean medical professionals. Hangangaebom provides medical consultation organizing, appointment coordination, translation assistance, and medical tourism-related support services.',
+    navConsult: 'Consult Now',
+    langZh: '中文',
+    langKo: '한국어',
+    langEn: 'English',
+    backHome: '← Back to Home',
+    aiScript: 'AI Concierge Explanation',
+    aiScriptExpand: 'Read Full Text',
+    aiScriptCollapse: 'Collapse',
+    makeCard: 'Generate My Consultation Card',
+  },
+}

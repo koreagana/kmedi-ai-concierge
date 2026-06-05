@@ -1,42 +1,59 @@
 import { createContext, useContext, useState } from 'react'
 import type { ReactNode } from 'react'
+import type { LangCode } from '../data/translations'
+import type { CategoryId } from '../data/categories'
 
-export type AppStage =
-  | 'entering'   // video plays, studio fades in
-  | 'greeting'   // avatars greet (voice)
-  | 'menu'       // hologram FUI menu active
-  | 'service'    // service detail panel
-  | 'hospital'   // hospital selection
-  | 'pricing'    // price display
-  | 'contact'    // WeChat / payment
+export type PageView = 'home' | 'category'
 
-export type Language = 'zh' | 'ko' | 'en' | 'ar'
+export interface ConsultCard {
+  interests: string[]
+  timing: string
+  duration: string
+  worries: string[]
+  contactMethod: string
+}
 
 interface AppState {
-  stage: AppStage
-  setStage: (s: AppStage) => void
-  language: Language
-  setLanguage: (l: Language) => void
-  selectedService: string | null
-  setSelectedService: (s: string | null) => void
-  selectedHospital: string | null
-  setSelectedHospital: (h: string | null) => void
+  lang: LangCode
+  setLang: (l: LangCode) => void
+  page: PageView
+  setPage: (p: PageView) => void
+  categoryId: CategoryId | null
+  setCategoryId: (id: CategoryId | null) => void
+  consultCard: ConsultCard | null
+  setConsultCard: (c: ConsultCard | null) => void
+  // helpers
+  goToCategory: (id: CategoryId) => void
+  goHome: () => void
 }
 
 const AppContext = createContext<AppState>({} as AppState)
 
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [stage, setStage] = useState<AppStage>('entering')
-  const [language, setLanguage] = useState<Language>('zh')
-  const [selectedService, setSelectedService] = useState<string | null>(null)
-  const [selectedHospital, setSelectedHospital] = useState<string | null>(null)
+  const [lang, setLang] = useState<LangCode>('zh')
+  const [page, setPage] = useState<PageView>('home')
+  const [categoryId, setCategoryId] = useState<CategoryId | null>(null)
+  const [consultCard, setConsultCard] = useState<ConsultCard | null>(null)
+
+  const goToCategory = (id: CategoryId) => {
+    setCategoryId(id)
+    setPage('category')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const goHome = () => {
+    setPage('home')
+    setCategoryId(null)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <AppContext.Provider value={{
-      stage, setStage,
-      language, setLanguage,
-      selectedService, setSelectedService,
-      selectedHospital, setSelectedHospital,
+      lang, setLang,
+      page, setPage,
+      categoryId, setCategoryId,
+      consultCard, setConsultCard,
+      goToCategory, goHome,
     }}>
       {children}
     </AppContext.Provider>
