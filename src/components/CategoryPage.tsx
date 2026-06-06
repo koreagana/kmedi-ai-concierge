@@ -5,6 +5,13 @@ import { translations } from '../data/translations'
 import { getCategoryById } from '../data/categories'
 import { getConcernById } from '../data/concerns'
 import ConsultationCard from './ConsultationCard'
+import {
+  CategoryGridSection,
+  ContactSection,
+  MedicalNetworkSection,
+  AboutSection,
+  FooterSection,
+} from './HomePage'
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -123,6 +130,13 @@ export default function CategoryPage() {
       ) : (
         <ConsultationCard />
       )}
+
+      {/* ── Common page footer sections ── */}
+      <CategoryGridSection />
+      <ContactSection />
+      <MedicalNetworkSection />
+      <AboutSection />
+      <FooterSection />
     </div>
   )
 }

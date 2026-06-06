@@ -387,7 +387,7 @@ function ConcernSection() {
 /* ═══════════════════════════════════════════════════════════════════
    4. CATEGORY GRID
    ═══════════════════════════════════════════════════════════════════ */
-function CategoryGridSection() {
+export function CategoryGridSection() {
   const { lang, goToCategory } = useApp()
   const t = translations[lang]
 
@@ -435,7 +435,7 @@ function CategoryGridSection() {
    ═══════════════════════════════════════════════════════════════════ */
 type ContactModal = 'wechat-biz' | 'wechat-personal' | 'whatsapp' | 'form' | null
 
-function ContactSection() {
+export function ContactSection() {
   const { lang } = useApp()
   const t = translations[lang]
   const [modal, setModal] = useState<ContactModal>(null)
@@ -613,7 +613,7 @@ function ContactSection() {
 /* ═══════════════════════════════════════════════════════════════════
    7. MEDICAL NETWORK
    ═══════════════════════════════════════════════════════════════════ */
-function MedicalNetworkSection() {
+export function MedicalNetworkSection() {
   const { lang } = useApp()
   const t = translations[lang]
 
@@ -759,7 +759,7 @@ function MedicalNetworkSection() {
 /* ═══════════════════════════════════════════════════════════════════
    8. ABOUT
    ═══════════════════════════════════════════════════════════════════ */
-function AboutSection() {
+export function AboutSection() {
   const { lang } = useApp()
   const t = translations[lang]
 
@@ -777,7 +777,7 @@ function AboutSection() {
 /* ═══════════════════════════════════════════════════════════════════
    9. FOOTER / DISCLAIMER
    ═══════════════════════════════════════════════════════════════════ */
-function FooterSection() {
+export function FooterSection() {
   const { lang } = useApp()
   const t = translations[lang]
 
