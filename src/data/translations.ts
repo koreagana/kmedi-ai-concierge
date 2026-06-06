@@ -77,6 +77,11 @@ interface Translations {
   aiScriptExpand: string
   aiScriptCollapse: string
   makeCard: string
+  // category info blocks
+  blockSuitableFor: string
+  blockCommonQuestions: string
+  blockBeforeVisit: string
+  blockAfterConsult: string
 }
 
 export const translations: Record<LangCode, Translations> = {
@@ -84,9 +89,9 @@ export const translations: Record<LangCode, Translations> = {
     brandName: '汉江春天',
     brandSub: 'AI Concierge Medical Lounge',
     heroTagline: '您的韩国医疗咨询入口',
-    heroDesc: '从抗衰、皮肤医美、整形到健康管理，为您整理需求，并连接合适的韩国医疗服务。',
+    heroDesc: '为您整理需求，并连接合适的韩国医疗咨询服务',
     heroCta1: '开始选择项目',
-    heroCta2: '添加顾问咨询',
+    heroCta2: '联系顾问咨询',
     conciergeTitle: '请选择您的 AI 医疗顾问',
     concierge1Name: '李静',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -145,12 +150,16 @@ export const translations: Record<LangCode, Translations> = {
     aiScriptExpand: '展开全文',
     aiScriptCollapse: '收起',
     makeCard: '生成我的咨询卡',
+    blockSuitableFor: '适合这样的人',
+    blockCommonQuestions: '常见咨询点',
+    blockBeforeVisit: '来韩前建议准备',
+    blockAfterConsult: '咨询后您会更清楚',
   },
   ko: {
     brandName: '한강애봄',
     brandSub: 'AI 컨시어지 메디컬 라운지',
     heroTagline: '한국 의료 상담의 입구',
-    heroDesc: '항노화, 피부미용, 성형부터 건강관리까지 — 니즈를 정리하고 적합한 한국 의료 서비스를 연결해 드립니다.',
+    heroDesc: '니즈를 정리하고 적합한 한국 의료 상담 서비스를 연결해 드립니다',
     heroCta1: '항목 선택하기',
     heroCta2: '상담 추가하기',
     conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
@@ -211,6 +220,10 @@ export const translations: Record<LangCode, Translations> = {
     aiScriptExpand: '전문 보기',
     aiScriptCollapse: '접기',
     makeCard: '나의 상담 카드 만들기',
+    blockSuitableFor: '이런 분께 추천',
+    blockCommonQuestions: '주요 상담 항목',
+    blockBeforeVisit: '방한 전 준비사항',
+    blockAfterConsult: '상담 후 더 명확해지는 것',
   },
   en: {
     brandName: 'K-MediSpring',
@@ -277,5 +290,9 @@ export const translations: Record<LangCode, Translations> = {
     aiScriptExpand: 'Read More',
     aiScriptCollapse: 'Show Less',
     makeCard: 'Build My Consultation Profile',
+    blockSuitableFor: 'Who This Is For',
+    blockCommonQuestions: 'Common Consultation Topics',
+    blockBeforeVisit: 'Prepare Before Your Visit',
+    blockAfterConsult: 'What You\'ll Know After',
   },
 }

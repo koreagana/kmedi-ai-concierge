@@ -125,7 +125,7 @@ function HeroSection() {
         style={{
           position: 'absolute',
           right: 18,
-          top: '36%',
+          top: '26%',
           zIndex: 10,
           width: 48,
           height: 48,
@@ -170,6 +170,33 @@ function HeroSection() {
 
       {/* 하단 CTA 버튼 */}
       <div className="hero-content">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+          style={{ width: '100%', maxWidth: 320, textAlign: 'center', marginBottom: 14 }}
+        >
+          <p style={{
+            fontSize: 15,
+            fontWeight: 700,
+            color: 'white',
+            letterSpacing: '0.02em',
+            textShadow: '0 1px 8px rgba(0,0,0,0.55)',
+            lineHeight: 1.5,
+            marginBottom: 4,
+          }}>
+            {t.heroTagline}
+          </p>
+          <p style={{
+            fontSize: 12,
+            color: 'rgba(255,255,255,0.82)',
+            textShadow: '0 1px 6px rgba(0,0,0,0.5)',
+            lineHeight: 1.6,
+          }}>
+            {t.heroDesc}
+          </p>
+        </motion.div>
+
         <motion.div
           className="hero-btns"
           initial={{ opacity: 0, y: 16 }}

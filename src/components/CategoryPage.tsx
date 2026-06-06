@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { getCategoryById } from '../data/categories'
+import { categoryBlocksMap } from '../data/categoryBlocks'
 import type { ConsultCard } from '../contexts/AppContext'
 
 const fadeUp = {
@@ -86,6 +87,48 @@ export default function CategoryPage() {
   const catName = lang === 'ko' ? cat.ko : lang === 'en' ? cat.en : cat.zh
   const catTag  = lang === 'ko' ? cat.tagKo : lang === 'en' ? cat.tagEn : cat.tagZh
 
+  const blocks = categoryBlocksMap[cat.id] ?? null
+
+  const blockItems = (arr: string[]) => (
+    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {arr.map((item, i) => (
+        <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, fontSize: 13, color: 'var(--text)', lineHeight: 1.6 }}>
+          <span style={{ color: 'var(--brand)', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>·</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  )
+
+  const blockIcons: Record<string, string> = {
+    suitableFor: '👤', commonQuestions: '💬', beforeVisit: '✈️', afterConsult: '✅',
+  }
+
+  const infoBlock = (
+    key: 'suitableFor' | 'commonQuestions' | 'beforeVisit' | 'afterConsult',
+    title: string,
+    items: string[],
+    delay = 0,
+    bg = 'var(--bg-surface)',
+  ) => (
+    <motion.div
+      {...fadeUp}
+      transition={{ delay, duration: 0.4 }}
+      style={{
+        background: bg,
+        border: '1px solid var(--border-blue)',
+        borderRadius: 14,
+        padding: '16px 16px 18px',
+      }}
+    >
+      <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--brand-dark)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6, letterSpacing: '0.03em' }}>
+        <span>{blockIcons[key]}</span>
+        {title}
+      </p>
+      {blockItems(items)}
+    </motion.div>
+  )
+
   return (
     <div>
       {/* ── Hero ── */}
@@ -147,6 +190,18 @@ export default function CategoryPage() {
           </button>
         </motion.div>
       </div>
+
+      {/* ── Info Blocks ── */}
+      {blocks && (
+        <div className="section-light2" style={{ paddingTop: 28, paddingBottom: 28 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {infoBlock('suitableFor',     t.blockSuitableFor,     blocks.suitableFor[lang],     0)}
+            {infoBlock('commonQuestions', t.blockCommonQuestions, blocks.commonQuestions[lang],  0.07)}
+            {infoBlock('beforeVisit',     t.blockBeforeVisit,     blocks.beforeVisit[lang],      0.14, 'var(--bg-light)')}
+            {infoBlock('afterConsult',    t.blockAfterConsult,    blocks.afterConsult[lang],     0.21, 'var(--bg-light)')}
+          </div>
+        </div>
+      )}
 
       {/* ── Consultation card ── */}
       <div className="section-dark2" style={{ paddingTop: 32, paddingBottom: 32 }}>
