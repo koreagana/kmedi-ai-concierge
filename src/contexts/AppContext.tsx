@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import type { LangCode } from '../data/translations'
 import type { CategoryId } from '../data/categories'
 
-export type PageView = 'home' | 'category'
+export type PageView = 'home' | 'category' | 'package'
 
 export interface ConsultCard {
   interests: string[]
@@ -26,6 +26,7 @@ interface AppState {
   setConsultCard: (c: ConsultCard | null) => void
   // helpers
   goToCategory: (id: CategoryId, concernId?: string | null) => void
+  goToPackage: () => void
   goHome: () => void
 }
 
@@ -45,6 +46,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const goToPackage = () => {
+    setPage('package')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   const goHome = () => {
     setPage('home')
     setCategoryId(null)
@@ -59,7 +65,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       categoryId, setCategoryId,
       concernId, setConcernId,
       consultCard, setConsultCard,
-      goToCategory, goHome,
+      goToCategory, goToPackage, goHome,
     }}>
       {children}
     </AppContext.Provider>

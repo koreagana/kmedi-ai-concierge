@@ -616,7 +616,7 @@ export function ContactSection() {
    7. MEDICAL NETWORK
    ═══════════════════════════════════════════════════════════════════ */
 export function MedicalNetworkSection() {
-  const { lang } = useApp()
+  const { lang, goToPackage } = useApp()
   const t = translations[lang]
 
   const cards = [
@@ -654,8 +654,9 @@ export function MedicalNetworkSection() {
       ),
       title: t.networkCard3Title,
       desc: t.networkCard3Desc,
-      badge: t.networkCard3Status,
-      badgeType: 'status' as const,
+      badge: null,
+      badgeType: 'link' as const,
+      onClick: goToPackage,
     },
     {
       icon: (
@@ -692,6 +693,7 @@ export function MedicalNetworkSection() {
             key={card.title}
             {...fadeUp}
             transition={{ delay: i * 0.07 }}
+            onClick={'onClick' in card ? card.onClick : undefined}
             style={{
               background: 'white',
               border: '1px solid rgba(0,119,182,0.14)',
@@ -701,6 +703,7 @@ export function MedicalNetworkSection() {
               display: 'flex',
               flexDirection: 'column',
               gap: 8,
+              cursor: 'onClick' in card ? 'pointer' : 'default',
             }}
           >
             <div style={{ flexShrink: 0 }}>{card.icon}</div>
@@ -736,19 +739,19 @@ export function MedicalNetworkSection() {
                 {card.badge}
               </span>
             )}
-            {card.badge && card.badgeType === 'status' && (
+            {card.badgeType === 'link' && (
               <span style={{
                 fontSize: 10,
-                color: '#7a9ab5',
-                background: 'rgba(0,119,182,0.04)',
-                border: '1px dashed rgba(0,119,182,0.25)',
+                color: 'var(--brand)',
+                background: 'rgba(0,119,182,0.07)',
+                border: '1px solid rgba(0,119,182,0.22)',
                 borderRadius: 6,
                 padding: '3px 9px',
                 letterSpacing: '0.04em',
                 display: 'inline-block',
                 alignSelf: 'flex-start',
               }}>
-                {card.badge}
+                查看详情 ›
               </span>
             )}
           </motion.div>

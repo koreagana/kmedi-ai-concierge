@@ -2,6 +2,7 @@ import { AppProvider, useApp } from './contexts/AppContext'
 import NavBar from './components/NavBar'
 import HomePage from './components/HomePage'
 import CategoryPage from './components/CategoryPage'
+import PackagePage from './components/PackagePage'
 import { AnimatePresence, motion } from 'framer-motion'
 
 function PageRouter() {
@@ -19,6 +20,16 @@ function PageRouter() {
             transition={{ duration: 0.3 }}
           >
             <HomePage />
+          </motion.div>
+        ) : page === 'package' ? (
+          <motion.div
+            key="package"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            <PackagePage />
           </motion.div>
         ) : (
           <motion.div
