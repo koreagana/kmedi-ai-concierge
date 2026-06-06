@@ -55,10 +55,39 @@ function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const [soundOn, setSoundOn] = useState(false)
+  const soundOnRef = useRef(false)
+  const playCountRef = useRef(0)
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  // 영상 종료 시: 소리 ON이면 최대 3회, 이후 무음 루프
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    const handleEnded = () => {
+      if (soundOnRef.current) {
+        playCountRef.current += 1
+        if (playCountRef.current < 3) {
+          v.currentTime = 0
+          v.play().catch(() => {})
+        } else {
+          v.muted = true
+          soundOnRef.current = false
+          setSoundOn(false)
+          playCountRef.current = 0
+          v.currentTime = 0
+          v.play().catch(() => {})
+        }
+      } else {
+        v.currentTime = 0
+        v.play().catch(() => {})
+      }
+    }
+    v.addEventListener('ended', handleEnded)
+    return () => v.removeEventListener('ended', handleEnded)
+  }, [])
 
   // 히어로 벗어나면 일시정지, 돌아오면 재개
   useEffect(() => {
@@ -72,9 +101,10 @@ function HeroSection() {
           v.play().catch(() => {})
         } else {
           v.pause()
-          // 스크롤 벗어나면 항상 무음으로 초기화
           v.muted = true
+          soundOnRef.current = false
           setSoundOn(false)
+          playCountRef.current = 0
         }
       },
       { threshold: 0.15 }
@@ -86,16 +116,18 @@ function HeroSection() {
   const toggleSound = () => {
     const v = videoRef.current
     if (!v) return
-    if (soundOn) {
-      // 무음으로
+    if (soundOnRef.current) {
       v.muted = true
+      soundOnRef.current = false
       setSoundOn(false)
+      playCountRef.current = 0
     } else {
-      // 소리 켜고 처음부터 재생 (인사 멘트)
+      playCountRef.current = 0
       v.muted = false
       v.volume = 1
       v.currentTime = 0
       v.play().catch(() => {})
+      soundOnRef.current = true
       setSoundOn(true)
     }
   }
@@ -108,7 +140,6 @@ function HeroSection() {
         src="/studio.mp4"
         autoPlay
         muted
-        loop
         playsInline
         poster="/studio-hero.png"
       />
