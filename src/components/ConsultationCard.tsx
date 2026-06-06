@@ -124,16 +124,30 @@ const RESPONSES: Record<string, string> = {
 请点击下方按钮，通过企业微信联系顾问。`,
 }
 
-/* ─── styles ─────────────────────────────────────────────── */
+/* ─── light-theme styles ─────────────────────────────────── */
+const brand = 'var(--brand, #0077b6)'
+const brandDark = 'var(--brand-dark, #003d6b)'
+const textColor = 'var(--text, #1a2940)'
+const mutedColor = '#7a9ab5'
+
 const S = {
   wrap: {
-    background: 'linear-gradient(180deg, #061225 0%, #0a1a35 100%)',
-    padding: '32px 20px 40px',
+    background: 'linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)',
+    padding: '28px 20px 40px',
+    borderTop: '3px solid var(--brand, #0077b6)',
+  } as React.CSSProperties,
+
+  title: {
+    fontSize: 15,
+    fontWeight: 700,
+    color: brandDark,
+    marginBottom: 20,
+    letterSpacing: '0.01em',
   } as React.CSSProperties,
 
   progressTrack: {
     height: 3,
-    background: 'rgba(255,255,255,0.1)',
+    background: 'rgba(0,119,182,0.12)',
     borderRadius: 2,
     marginBottom: 24,
     overflow: 'hidden',
@@ -141,44 +155,46 @@ const S = {
 
   stepLabel: {
     fontSize: 11,
-    color: 'rgba(255,255,255,0.35)',
+    color: mutedColor,
     letterSpacing: '0.1em',
     marginBottom: 10,
   } as React.CSSProperties,
 
   questionText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: 700,
-    color: 'white',
+    color: brandDark,
     lineHeight: 1.5,
-    marginBottom: 20,
+    marginBottom: 18,
   } as React.CSSProperties,
 
   chipsWrap: {
     display: 'flex',
     flexWrap: 'wrap' as const,
     gap: 9,
-    marginBottom: 24,
+    marginBottom: 22,
   },
 
   chip: (selected: boolean): React.CSSProperties => ({
-    padding: '9px 14px',
+    padding: '9px 15px',
     borderRadius: 20,
-    border: `1px solid ${selected ? 'rgba(0,170,255,0.8)' : 'rgba(255,255,255,0.16)'}`,
-    background: selected ? 'rgba(0,119,182,0.85)' : 'rgba(255,255,255,0.06)',
-    color: selected ? 'white' : 'rgba(255,255,255,0.7)',
+    border: `1px solid ${selected ? brand : 'rgba(0,119,182,0.22)'}`,
+    background: selected ? brand : 'white',
+    color: selected ? 'white' : textColor,
     fontSize: 13,
     cursor: 'pointer',
-    transition: 'all 0.18s ease',
+    transition: 'all 0.16s ease',
     fontFamily: 'inherit',
-    letterSpacing: '0.01em',
     lineHeight: 1.4,
+    boxShadow: selected
+      ? '0 2px 10px rgba(0,119,182,0.28)'
+      : '0 1px 4px rgba(0,0,0,0.06)',
   }),
 
   backBtn: {
     background: 'none',
     border: 'none',
-    color: 'rgba(255,255,255,0.35)',
+    color: mutedColor,
     fontSize: 13,
     cursor: 'pointer',
     padding: 0,
@@ -186,17 +202,19 @@ const S = {
   } as React.CSSProperties,
 
   resultBox: {
-    background: 'rgba(255,255,255,0.06)',
-    border: '1px solid rgba(255,255,255,0.12)',
-    borderRadius: 14,
+    background: 'white',
+    border: '1px solid rgba(0,119,182,0.14)',
+    borderLeft: `3px solid ${brand}`,
+    borderRadius: 12,
     padding: '18px 16px',
     marginBottom: 20,
+    boxShadow: '0 2px 12px rgba(0,0,0,0.05)',
   } as React.CSSProperties,
 
   resultText: {
     fontSize: 13,
-    color: 'rgba(255,255,255,0.82)',
-    lineHeight: 1.85,
+    color: textColor,
+    lineHeight: 1.9,
     whiteSpace: 'pre-line' as const,
   },
 
@@ -204,16 +222,16 @@ const S = {
     display: 'flex',
     flexWrap: 'wrap' as const,
     gap: 7,
-    marginBottom: 24,
+    marginBottom: 22,
   },
 
   tag: {
     fontSize: 11,
-    color: 'rgba(255,255,255,0.55)',
-    background: 'rgba(255,255,255,0.07)',
-    border: '1px solid rgba(255,255,255,0.12)',
+    color: brand,
+    background: 'rgba(0,119,182,0.07)',
+    border: '1px solid rgba(0,119,182,0.16)',
     borderRadius: 12,
-    padding: '5px 10px',
+    padding: '5px 11px',
     lineHeight: 1.3,
   } as React.CSSProperties,
 
@@ -221,7 +239,7 @@ const S = {
     width: '100%',
     padding: '14px 0',
     borderRadius: 12,
-    background: 'var(--brand, #0077b6)',
+    background: brand,
     border: 'none',
     color: 'white',
     fontSize: 14,
@@ -230,19 +248,21 @@ const S = {
     fontFamily: 'inherit',
     marginBottom: 10,
     letterSpacing: '0.02em',
+    boxShadow: '0 4px 18px rgba(0,119,182,0.28)',
   } as React.CSSProperties,
 
   btnOutline: (copied: boolean): React.CSSProperties => ({
     width: '100%',
     padding: '13px 0',
     borderRadius: 12,
-    background: copied ? 'rgba(0,200,100,0.15)' : 'rgba(255,255,255,0.07)',
-    border: `1px solid ${copied ? 'rgba(0,200,100,0.4)' : 'rgba(255,255,255,0.2)'}`,
-    color: copied ? 'rgba(100,220,150,1)' : 'rgba(255,255,255,0.75)',
+    background: copied ? 'rgba(0,160,90,0.07)' : 'white',
+    border: `1px solid ${copied ? 'rgba(0,160,90,0.35)' : 'rgba(0,119,182,0.28)'}`,
+    color: copied ? '#009060' : brand,
     fontSize: 13,
     cursor: 'pointer',
     fontFamily: 'inherit',
     transition: 'all 0.2s',
+    boxShadow: '0 1px 4px rgba(0,0,0,0.05)',
   }),
 }
 
@@ -261,10 +281,6 @@ export default function ConsultationCard() {
       if (step < 6) setStep(step + 1)
       else setSubmitted(true)
     }, 140)
-  }
-
-  const goBack = () => {
-    if (step > 0) setStep(step - 1)
   }
 
   const restart = () => {
@@ -295,10 +311,12 @@ export default function ConsultationCard() {
 
   return (
     <div style={S.wrap}>
+      <p style={S.title}>生成我的变美咨询卡</p>
+
       {/* progress bar */}
       <div style={S.progressTrack}>
         <motion.div
-          style={{ height: '100%', background: 'var(--brand, #0077b6)', borderRadius: 2 }}
+          style={{ height: '100%', background: brand, borderRadius: 2 }}
           animate={{ width: `${progress * 100}%` }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
         />
@@ -311,7 +329,7 @@ export default function ConsultationCard() {
             initial={{ opacity: 0, x: 18 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -18 }}
-            transition={{ duration: 0.22, ease: 'easeOut' }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <p style={S.stepLabel}>Q{step + 1} / 7</p>
             <p style={S.questionText}>{QUESTIONS[step].q}</p>
@@ -327,7 +345,7 @@ export default function ConsultationCard() {
               ))}
             </div>
             {step > 0 && (
-              <button style={S.backBtn} onClick={goBack}>
+              <button style={S.backBtn} onClick={() => setStep(step - 1)}>
                 ← 上一步
               </button>
             )}
@@ -335,11 +353,11 @@ export default function ConsultationCard() {
         ) : (
           <motion.div
             key="result"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
           >
-            <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.1em', marginBottom: 14 }}>
+            <p style={{ fontSize: 11, color: mutedColor, letterSpacing: '0.1em', marginBottom: 14 }}>
               变美咨询卡已生成
             </p>
 
@@ -350,13 +368,13 @@ export default function ConsultationCard() {
 
             {/* selected tags */}
             <div style={S.tagsWrap}>
-              {QUESTIONS.map((q, i) => (
+              {QUESTIONS.map((q, i) =>
                 answers[i] ? (
                   <span key={i} style={S.tag}>
                     {q.label}：{answers[i]}
                   </span>
                 ) : null
-              ))}
+              )}
             </div>
 
             {/* copy button */}
@@ -375,7 +393,7 @@ export default function ConsultationCard() {
             </button>
 
             <button
-              style={{ ...S.backBtn, display: 'block', margin: '12px auto 0', textAlign: 'center' }}
+              style={{ ...S.backBtn, display: 'block', margin: '14px auto 0', textAlign: 'center' as const }}
               onClick={restart}
             >
               重新填写
