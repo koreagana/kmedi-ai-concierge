@@ -101,7 +101,7 @@ export const translations: Record<LangCode, Translations> = {
     concierge2Title: 'Health & Medical Concierge',
     concierge2Specialty: '大健康 · 男性健康 · 再生医学 · 医疗旅游',
     concierge2Btn: '和金贤宇咨询',
-    concernTitle: '您这次最想解决什么？',
+    concernTitle: '请选择您最关心的方向',
     concern1: '想变年轻一点', concern1Sub: '抗衰老 · 皮肤提升 · 状态管理',
     concern2: '想改善脸部轮廓', concern2Sub: '轮廓 · 提升 · 眼鼻面部咨询',
     concern3: '想做一次系统检查', concern3Sub: '健康管理 · 功能医学 · 精密检查',
