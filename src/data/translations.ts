@@ -56,11 +56,17 @@ interface Translations {
   networkTitle: string
   networkSub: string
   networkDesc: string
-  networkTier1: string
-  networkTier2: string
-  networkTier3: string
-  networkTier4: string
-  networkDisclaimer: string
+  networkCard1Title: string
+  networkCard1Desc: string
+  networkCard1Reg: string
+  networkCard2Title: string
+  networkCard2Desc: string
+  networkCard2Reg: string
+  networkCard3Title: string
+  networkCard3Desc: string
+  networkCard3Status: string
+  networkCard4Title: string
+  networkCard4Desc: string
   // about
   aboutTitle: string
   aboutDesc: string
@@ -130,14 +136,20 @@ export const translations: Record<LangCode, Translations> = {
     contactFormSend: '提交',
     contactQRHint: '扫描二维码添加顾问',
     contactClose: '关闭',
-    networkTitle: 'Korea Medical Network',
-    networkSub: '韩国医疗资源对接网络',
-    networkDesc: '汉江春天根据客户需求，对接韩国不同级别的医疗机构与专业咨询资源。',
-    networkDisclaimer: '具体医疗机构与医生安排，将根据咨询内容、预约情况与医疗适应性进行个别确认。',
-    networkTier1: '三级医疗机构',
-    networkTier2: '二级医疗机构',
-    networkTier3: '专科医疗中心',
-    networkTier4: '健康检查中心',
+    networkTitle: '汉江春天之安心赴韩服务',
+    networkSub: '从医疗咨询到韩国停留，我们为您提供更安心的赴韩安排。',
+    networkDesc: '汉江春天具备外籍患者引进机构登记资质及韩国综合旅行业登记资质，可为海外客户提供医疗咨询整理、预约协调、翻译沟通、行程安排与赴韩接待相关协助服务。',
+    networkCard1Title: '外籍患者引进机构资质',
+    networkCard1Desc: '依法登记的韩国外籍患者引进机构',
+    networkCard1Reg: '登记号：A-2023-01-02-4752',
+    networkCard2Title: '韩国综合旅行服务',
+    networkCard2Desc: '具备韩国综合旅行业登记资质，可协助赴韩停留、车辆、行程与旅行安排',
+    networkCard2Reg: '登记号：城北区 第26004-2024-007号',
+    networkCard3Title: '汉江春天 3晚4天方案',
+    networkCard3Desc: '医疗咨询 · 翻译陪同 · 行程协助 · 韩国停留安排',
+    networkCard3Status: '即将开放',
+    networkCard4Title: '韩国全国医疗资源网络',
+    networkCard4Desc: '根据客户需求，对接韩国不同地区、不同级别及不同专科方向的医疗资源',
     aboutTitle: '关于汉江春天',
     aboutDesc: '汉江春天（kmedispring.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
     disclaimer: '温馨提示：本网站不提供医疗诊断、治疗建议或紧急医疗服务。所有医疗判断、检查结果解释与治疗方案，均以韩国正规医疗机构及专业医生面诊为准。汉江春天提供的是医疗咨询整理、预约协调、翻译沟通与医疗旅游相关协助服务。',
@@ -200,14 +212,20 @@ export const translations: Record<LangCode, Translations> = {
     contactFormSend: '문의 제출',
     contactQRHint: 'QR 코드를 스캔하여 상담 추가',
     contactClose: '닫기',
-    networkTitle: 'Korea Medical Network',
-    networkSub: '한국 의료 네트워크',
-    networkDesc: '한강애봄은 고객 니즈에 맞게 다양한 레벨의 한국 의료기관 및 전문 상담 리소스를 연결합니다.',
-    networkDisclaimer: '구체적인 의료기관 및 의사 배정은 상담 내용, 예약 상황, 의료 적합성에 따라 개별 확인됩니다.',
-    networkTier1: '3차 의료기관',
-    networkTier2: '2차 의료기관',
-    networkTier3: '전문 의료센터',
-    networkTier4: '건강검진센터',
+    networkTitle: '한강애봄 안심 방한 서비스',
+    networkSub: '의료상담부터 한국 체류까지, 더 안심하고 방한하실 수 있도록 안내드립니다.',
+    networkDesc: '한강애봄은 외국인환자유치기관 등록 자격 및 한국 종합여행업 등록 자격을 갖추고, 해외 고객에게 의료상담 정리, 예약 조율, 통역, 일정 안내 및 방한 접수 관련 협조 서비스를 제공합니다.',
+    networkCard1Title: '외국인환자유치기관 자격',
+    networkCard1Desc: '합법적으로 등록된 한국 외국인환자유치기관',
+    networkCard1Reg: '등록번호：A-2023-01-02-4752',
+    networkCard2Title: '한국 종합여행 서비스',
+    networkCard2Desc: '한국 종합여행업 등록 자격 보유, 방한 숙박·차량·일정·여행 안내 협조 가능',
+    networkCard2Reg: '등록번호：성북구 제26004-2024-007호',
+    networkCard3Title: '한강애봄 3박4일 패키지',
+    networkCard3Desc: '의료상담 · 통역 동행 · 일정 협조 · 한국 체류 안내',
+    networkCard3Status: '오픈 예정',
+    networkCard4Title: '전국 의료 리소스 네트워크',
+    networkCard4Desc: '고객 니즈에 맞게 한국 각 지역·레벨·전문과 방향의 의료 리소스를 연결',
     aboutTitle: '한강애봄 소개',
     aboutDesc: '한강애봄(kmedispring.com)은 해외 고객을 위한 한국 의료 상담 및 조율 서비스 플랫폼입니다.\n저희는 병원도 의사도 아닙니다.\n한국 의료 시스템과 개인 니즈 사이의 AI 지원 연락 브릿지 — 니즈 정리, 절차 안내, 예약 조율, 전체 여정의 중국어 지원을 제공합니다.',
     disclaimer: '안내: 본 웹사이트는 의료 진단, 치료 조언 또는 응급 의료 서비스를 제공하지 않습니다. 모든 의료 판단, 검사 결과 해석 및 치료 방안은 한국 정규 의료기관 및 전문 의사의 직접 진찰을 기준으로 합니다.',
@@ -270,14 +288,20 @@ export const translations: Record<LangCode, Translations> = {
     contactFormSend: 'Send Message',
     contactQRHint: 'Scan to connect via WeChat',
     contactClose: 'Close',
-    networkTitle: 'Korea Medical Network',
-    networkSub: 'Our Trusted Medical Partners',
-    networkDesc: 'K-MediSpring works with a curated network of Korean medical institutions across all levels — from major university hospitals to specialized clinics and wellness centers.',
-    networkDisclaimer: 'Specific institution and physician referrals are determined individually based on your consultation details, availability, and clinical suitability.',
-    networkTier1: 'University & Tertiary Hospitals',
-    networkTier2: 'General & Secondary Hospitals',
-    networkTier3: 'Specialty Clinics',
-    networkTier4: 'Health Screening Centers',
+    networkTitle: 'Korea Visit Services',
+    networkSub: 'From medical consultation to your stay in Korea — we make it easier.',
+    networkDesc: 'We hold registered status as a Licensed Foreign Patient Facilitator and a General Travel Agency in Korea, providing consultation coordination, appointment assistance, interpretation, itinerary planning, and arrival support.',
+    networkCard1Title: 'Foreign Patient Facilitator',
+    networkCard1Desc: 'Officially registered Korean foreign patient facilitation institution',
+    networkCard1Reg: 'Reg. No.: A-2023-01-02-4752',
+    networkCard2Title: 'General Travel Services',
+    networkCard2Desc: 'Licensed General Travel Agency — accommodation, transport, itinerary & travel arrangements',
+    networkCard2Reg: 'Reg. No.: Seongbuk-gu No. 26004-2024-007',
+    networkCard3Title: '3 Nights / 4 Days Package',
+    networkCard3Desc: 'Medical consultation · Interpreter escort · Itinerary support · Korea stay arrangements',
+    networkCard3Status: 'Coming Soon',
+    networkCard4Title: 'Nationwide Medical Network',
+    networkCard4Desc: 'We connect clients with Korean medical resources across regions, levels, and specialties based on individual needs',
     aboutTitle: 'About K-MediSpring',
     aboutDesc: 'K-MediSpring (kmedispring.com) is a concierge medical coordination service designed for international clients seeking quality healthcare in Korea.\nWe are not a hospital. We are not a doctor.\nWe are your dedicated liaison — helping you navigate the Korean medical system with clarity, translating your needs into the right connections, and supporting you at every step of your journey.',
     disclaimer: 'Disclaimer: K-MediSpring does not provide medical diagnosis, treatment recommendations, or emergency care. All clinical decisions, test interpretations, and treatment plans are made exclusively by licensed Korean healthcare professionals during in-person consultation. K-MediSpring provides medical coordination, appointment facilitation, interpretation, and travel support services only.',

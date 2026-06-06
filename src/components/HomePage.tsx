@@ -619,52 +619,141 @@ function MedicalNetworkSection() {
   const { lang } = useApp()
   const t = translations[lang]
 
-  const tierIcons = [
-    <svg key="t1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5"><rect x="2" y="11" width="20" height="11" rx="2"/><path d="M6 11V7a6 6 0 0112 0v4"/><line x1="12" y1="11" x2="12" y2="16"/></svg>,
-    <svg key="t2" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>,
-    <svg key="t3" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>,
-    <svg key="t4" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>,
-  ]
-  const tiers = [
-    { label: t.networkTier1 },
-    { label: t.networkTier2 },
-    { label: t.networkTier3 },
-    { label: t.networkTier4 },
+  const cards = [
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      ),
+      title: t.networkCard1Title,
+      desc: t.networkCard1Desc,
+      badge: t.networkCard1Reg,
+      badgeType: 'reg' as const,
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+        </svg>
+      ),
+      title: t.networkCard2Title,
+      desc: t.networkCard2Desc,
+      badge: t.networkCard2Reg,
+      badgeType: 'reg' as const,
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      ),
+      title: t.networkCard3Title,
+      desc: t.networkCard3Desc,
+      badge: t.networkCard3Status,
+      badgeType: 'status' as const,
+    },
+    {
+      icon: (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="5" r="2"/>
+          <circle cx="5" cy="19" r="2"/>
+          <circle cx="19" cy="19" r="2"/>
+          <path d="M12 7v4M8.5 17.5l3.5-2.5 3.5 2.5"/>
+        </svg>
+      ),
+      title: t.networkCard4Title,
+      desc: t.networkCard4Desc,
+      badge: null,
+      badgeType: 'none' as const,
+    },
   ]
 
   return (
     <section id="network" className="section-white">
-      <motion.div {...fadeUp} style={{ textAlign: 'center', marginBottom: 8 }}>
-        <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 4 }}>
+      <motion.div {...fadeUp} style={{ marginBottom: 24 }}>
+        <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.18em', marginBottom: 6 }}>
           {t.networkTitle}
         </p>
-        <p className="section-title">{t.networkSub}</p>
-        <div className="section-accent-line" />
-        <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: 24 }}>
+        <p className="section-title" style={{ textAlign: 'left' }}>{t.networkSub}</p>
+        <div style={{ width: 32, height: 2, background: 'var(--brand)', borderRadius: 1, margin: '10px 0 14px' }} />
+        <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.8 }}>
           {t.networkDesc}
         </p>
       </motion.div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        {tiers.map((tier, i) => (
+        {cards.map((card, i) => (
           <motion.div
-            key={tier.label}
+            key={card.title}
             {...fadeUp}
-            transition={{ delay: i * 0.08 }}
-            className="network-logo-slot"
+            transition={{ delay: i * 0.07 }}
+            style={{
+              background: 'white',
+              border: '1px solid rgba(0,119,182,0.14)',
+              borderTop: '2px solid var(--brand)',
+              borderRadius: 12,
+              padding: '16px 14px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8,
+            }}
           >
-            {tierIcons[i]}
-            <span className="network-logo-label">{tier.label}</span>
+            <div style={{ flexShrink: 0 }}>{card.icon}</div>
+            <p style={{
+              fontSize: 12,
+              fontWeight: 700,
+              color: 'var(--brand-dark, #003d6b)',
+              lineHeight: 1.4,
+            }}>
+              {card.title}
+            </p>
+            <p style={{
+              fontSize: 11,
+              color: 'var(--text-muted)',
+              lineHeight: 1.6,
+              flex: 1,
+            }}>
+              {card.desc}
+            </p>
+            {card.badge && card.badgeType === 'reg' && (
+              <span style={{
+                fontSize: 9,
+                color: '#0077b6',
+                background: 'rgba(0,119,182,0.06)',
+                border: '1px solid rgba(0,119,182,0.18)',
+                borderRadius: 6,
+                padding: '3px 7px',
+                letterSpacing: '0.03em',
+                lineHeight: 1.4,
+                display: 'inline-block',
+                wordBreak: 'break-all' as const,
+              }}>
+                {card.badge}
+              </span>
+            )}
+            {card.badge && card.badgeType === 'status' && (
+              <span style={{
+                fontSize: 10,
+                color: '#7a9ab5',
+                background: 'rgba(0,119,182,0.04)',
+                border: '1px dashed rgba(0,119,182,0.25)',
+                borderRadius: 6,
+                padding: '3px 9px',
+                letterSpacing: '0.04em',
+                display: 'inline-block',
+                alignSelf: 'flex-start',
+              }}>
+                {card.badge}
+              </span>
+            )}
           </motion.div>
         ))}
       </div>
-
-      <motion.p
-        {...fadeUp}
-        style={{ fontSize: 11, color: 'var(--text-muted)', textAlign: 'center', marginTop: 20, lineHeight: 1.8 }}
-      >
-        {t.networkDisclaimer}
-      </motion.p>
     </section>
   )
 }
