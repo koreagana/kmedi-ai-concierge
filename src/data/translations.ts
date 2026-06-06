@@ -114,7 +114,7 @@ export const translations: Record<LangCode, Translations> = {
     concern4: '想解决女性健康问题', concern4Sub: '女性护理 · 检查 · 治疗咨询',
     concern5: '想改善男性健康状态', concern5Sub: '男性健康 · 体力 · 脱发 · 泌尿相关',
     concern6: '想安排韩国医疗旅行', concern6Sub: '医院预约 · 翻译 · 车辆 · 行程安排',
-    categoryTitle: '请选择医疗项目',
+    categoryTitle: '请选择您想了解的韩国医疗服务',
     cardTitle: '填写我的咨询需求',
     cardQ1: '您最希望了解哪个方向？',
     cardQ2: '您大概什么时候来韩国？',
