@@ -139,7 +139,7 @@ export const translations: Record<LangCode, Translations> = {
     networkTier3: '专科医疗中心',
     networkTier4: '健康检查中心',
     aboutTitle: '关于汉江春天',
-    aboutDesc: '汉江春天（Hangangaebom / kmedispring.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
+    aboutDesc: '汉江春天（kmedispring.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
     disclaimer: '温馨提示：本网站不提供医疗诊断、治疗建议或紧急医疗服务。所有医疗判断、检查结果解释与治疗方案，均以韩国正规医疗机构及专业医生面诊为准。汉江春天提供的是医疗咨询整理、预约协调、翻译沟通与医疗旅游相关协助服务。',
     navConsult: '立即咨询',
     langZh: '中文',
