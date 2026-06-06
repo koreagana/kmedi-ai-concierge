@@ -259,7 +259,7 @@ function ConciergeSection() {
           {...fadeUp}
           transition={{ delay: 0.18, duration: 0.5 }}
           className="concierge-card"
-          onClick={() => setShowWxModal(true)}
+          onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}
         >
           <div className="concierge-avatar concierge-avatar-m">
             <img src="/concierge_image/kimhyunwoo_800.png" alt="金贤宇" className="concierge-avatar-img" />
@@ -269,7 +269,7 @@ function ConciergeSection() {
             <p className="concierge-title-text">{t.concierge2Title}</p>
           </div>
           <p className="concierge-specialty">{t.concierge2Specialty}</p>
-          <button className="concierge-btn" onClick={e => { e.stopPropagation(); setShowWxModal(true) }}>
+          <button className="concierge-btn" onClick={e => { e.stopPropagation(); window.open(WECHAT_BIZ_URL, '_blank') }}>
             {t.concierge2Btn}
           </button>
         </motion.div>
