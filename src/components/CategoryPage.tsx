@@ -4,6 +4,7 @@ import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { getCategoryById } from '../data/categories'
 import { categoryBlocksMap } from '../data/categoryBlocks'
+import { getConcernById } from '../data/concerns'
 import type { ConsultCard } from '../contexts/AppContext'
 
 const fadeUp = {
@@ -35,7 +36,7 @@ const CARD_Q5_EN = ['Enterprise WeChat', 'Personal WeChat', 'WhatsApp', 'Leave a
 type ContactModal = 'wechat-biz' | 'wechat-personal' | 'whatsapp' | 'form' | null
 
 export default function CategoryPage() {
-  const { lang, categoryId, goHome, setConsultCard } = useApp()
+  const { lang, categoryId, concernId, goHome, setConsultCard } = useApp()
   const t = translations[lang]
   const cat = getCategoryById(categoryId ?? '')
 
@@ -89,6 +90,9 @@ export default function CategoryPage() {
 
   const blocks = categoryBlocksMap[cat.id] ?? null
 
+  const concernObj = getConcernById(concernId ?? '')
+  const concernLocal = concernObj ? concernObj[lang] : null
+
   const blockItems = (arr: string[]) => (
     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
       {arr.map((item, i) => (
@@ -100,8 +104,27 @@ export default function CategoryPage() {
     </ul>
   )
 
-  const blockIcons: Record<string, string> = {
-    suitableFor: '👤', commonQuestions: '💬', beforeVisit: '✈️', afterConsult: '✅',
+  const blockIcons: Record<string, JSX.Element> = {
+    suitableFor: (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    ),
+    commonQuestions: (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+    ),
+    beforeVisit: (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+      </svg>
+    ),
+    afterConsult: (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/>
+      </svg>
+    ),
   }
 
   const infoBlock = (
@@ -122,7 +145,7 @@ export default function CategoryPage() {
       }}
     >
       <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--brand-dark)', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 6, letterSpacing: '0.03em' }}>
-        <span>{blockIcons[key]}</span>
+        <span style={{ color: 'var(--brand)', display: 'flex', alignItems: 'center' }}>{blockIcons[key]}</span>
         {title}
       </p>
       {blockItems(items)}
@@ -137,16 +160,77 @@ export default function CategoryPage() {
           ← {t.backHome}
         </motion.button>
 
-        <motion.span className="cat-hero-emoji" {...fadeUp} transition={{ delay: 0.05 }}>
-          {cat.emoji}
-        </motion.span>
-        <motion.h1 className="cat-hero-name" {...fadeUp} transition={{ delay: 0.1 }}>
-          {catName}
+        <motion.h1 className="cat-hero-name" {...fadeUp} transition={{ delay: 0.05 }}>
+          {concernLocal ? concernLocal.title : catName}
         </motion.h1>
-        <motion.p className="cat-hero-tag" {...fadeUp} transition={{ delay: 0.15 }}>
-          {catTag}
-        </motion.p>
+
+        {!concernLocal && (
+          <motion.p className="cat-hero-tag" {...fadeUp} transition={{ delay: 0.1 }}>
+            {catTag}
+          </motion.p>
+        )}
       </div>
+
+      {/* ── Concern description (only when navigated from concern card) ── */}
+      {concernLocal && (
+        <div className="section-white" style={{ paddingTop: 24, paddingBottom: 24 }}>
+          {concernLocal.desc.split('\n\n').map((para, i, arr) => (
+            <motion.p
+              key={i}
+              {...fadeUp}
+              transition={{ delay: i * 0.06 }}
+              style={{
+                fontSize: 13,
+                color: 'var(--text)',
+                lineHeight: 1.85,
+                marginBottom: i < arr.length - 1 ? 14 : 0,
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {para}
+            </motion.p>
+          ))}
+          <motion.div
+            {...fadeUp}
+            transition={{ delay: 0.28 }}
+            style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--border-blue)' }}
+          >
+            <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.1em', marginBottom: 6 }}>
+              {lang === 'zh' ? '推荐咨询方向' : lang === 'ko' ? '추천 상담 방향' : 'Recommended Areas'}
+            </p>
+            <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--brand-dark)' }}>
+              {concernLocal.recommended}
+            </p>
+          </motion.div>
+        </div>
+      )}
+
+      {/* ── Category name divider (only when coming from concern) ── */}
+      {concernLocal && (
+        <motion.div
+          {...fadeUp}
+          style={{
+            padding: '18px 20px 14px',
+            background: 'var(--bg-surface)',
+            borderBottom: '1px solid var(--border-blue)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+          }}
+        >
+          <span style={{
+            width: 3,
+            height: 30,
+            background: 'var(--brand)',
+            borderRadius: 2,
+            flexShrink: 0,
+          }} />
+          <div>
+            <p style={{ fontSize: 17, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2 }}>{catName}</p>
+            <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>{catTag}</p>
+          </div>
+        </motion.div>
+      )}
 
       {/* ── Summary card ── */}
       <div className="section-white" style={{ paddingTop: 28, paddingBottom: 28 }}>
@@ -214,7 +298,11 @@ export default function CategoryPage() {
               exit={{ opacity: 0 }}
               style={{ textAlign: 'center' }}
             >
-              <span style={{ fontSize: 44, display: 'block', marginBottom: 16 }}>📋</span>
+              <span style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.3">
+                  <rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h5"/>
+                </svg>
+              </span>
               <p style={{ fontSize: 16, fontWeight: 700, color: 'white', marginBottom: 8 }}>{t.makeCard}</p>
               <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.7, marginBottom: 24 }}>
                 {lang === 'zh' ? '整理您的需求，方便顾问为您精准匹配' :
@@ -306,8 +394,12 @@ export default function CategoryPage() {
               animate={{ opacity: 1, scale: 1 }}
             >
               <div style={{ textAlign: 'center', marginBottom: 20 }}>
-                <span style={{ fontSize: 40 }}>✅</span>
-                <p style={{ color: '#e8c76a', fontWeight: 700, fontSize: 16, marginTop: 8 }}>{t.cardGenerated}</p>
+                <span style={{ display: 'flex', justifyContent: 'center', marginBottom: 8 }}>
+                  <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#e8c76a" strokeWidth="1.5">
+                    <circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-5"/>
+                  </svg>
+                </span>
+                <p style={{ color: '#e8c76a', fontWeight: 700, fontSize: 16 }}>{t.cardGenerated}</p>
               </div>
 
               <div className="card-result" style={{ marginBottom: 20 }}>
@@ -358,19 +450,35 @@ export default function CategoryPage() {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <button className="contact-btn contact-btn-wechat-biz" onClick={() => window.open('https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0', '_blank')}>
-            <div className="contact-icon">💼</div>
+            <div className="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+            </div>
             <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatBiz}</p>
           </button>
           <button className="contact-btn contact-btn-wechat-personal" onClick={() => setModal('wechat-personal')}>
-            <div className="contact-icon">💬</div>
+            <div className="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              </svg>
+            </div>
             <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatPersonal}</p>
           </button>
           <button className="contact-btn contact-btn-whatsapp" onClick={() => setModal('whatsapp')}>
-            <div className="contact-icon">📱</div>
+            <div className="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6z"/>
+              </svg>
+            </div>
             <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWhatsapp}</p>
           </button>
           <button className="contact-btn contact-btn-form" onClick={() => setModal('form')}>
-            <div className="contact-icon" style={{ background: 'rgba(255,255,255,0.12)' }}>📝</div>
+            <div className="contact-icon" style={{ background: 'rgba(255,255,255,0.12)' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </div>
             <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactForm}</p>
           </button>
         </div>

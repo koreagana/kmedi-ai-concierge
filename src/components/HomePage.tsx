@@ -346,13 +346,13 @@ function ConcernSection() {
   const { lang, goToCategory } = useApp()
   const t = translations[lang]
 
-  const concerns: { icon: JSX.Element; title: string; sub: string; target: CategoryId }[] = [
-    { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M12 3C9 5 5 9 5 13a7 7 0 0014 0c0-4-4-8-7-10z"/><path d="M12 13v4"/></svg>, title: t.concern1, sub: t.concern1Sub, target: 'skin-beauty' },
-    { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 21v-1a6 6 0 0112 0v1"/></svg>, title: t.concern2, sub: t.concern2Sub, target: 'plastic-surgery' },
-    { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>, title: t.concern3, sub: t.concern3Sub, target: 'big-health' },
-    { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M12 13v8M9 18h6"/></svg>, title: t.concern4, sub: t.concern4Sub, target: 'womens-care' },
-    { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M18 8h2a2 2 0 010 4h-2"/><path d="M4 8h14v9a2 2 0 01-2 2H6a2 2 0 01-2-2V8z"/><path d="M8 8V5a2 2 0 014 0v3"/></svg>, title: t.concern5, sub: t.concern5Sub, target: 'mens-health' },
-    { icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 0112 18.34a19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 5.18 2 2 0 014.11 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6z"/></svg>, title: t.concern6, sub: t.concern6Sub, target: 'medical-tourism' },
+  const concerns: { id: string | null; icon: JSX.Element; title: string; sub: string; target: CategoryId }[] = [
+    { id: 'younger-look', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M12 3C9 5 5 9 5 13a7 7 0 0014 0c0-4-4-8-7-10z"/><path d="M12 13v4"/></svg>, title: t.concern1, sub: t.concern1Sub, target: 'skin-beauty' },
+    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 21v-1a6 6 0 0112 0v1"/></svg>, title: t.concern2, sub: t.concern2Sub, target: 'plastic-surgery' },
+    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>, title: t.concern3, sub: t.concern3Sub, target: 'big-health' },
+    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M12 13v8M9 18h6"/></svg>, title: t.concern4, sub: t.concern4Sub, target: 'womens-care' },
+    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M18 8h2a2 2 0 010 4h-2"/><path d="M4 8h14v9a2 2 0 01-2 2H6a2 2 0 01-2-2V8z"/><path d="M8 8V5a2 2 0 014 0v3"/></svg>, title: t.concern5, sub: t.concern5Sub, target: 'mens-health' },
+    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 0112 18.34a19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 5.18 2 2 0 014.11 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6z"/></svg>, title: t.concern6, sub: t.concern6Sub, target: 'medical-tourism' },
   ]
 
   return (
@@ -369,7 +369,7 @@ function ConcernSection() {
             {...fadeUp}
             transition={{ delay: i * 0.07, duration: 0.4 }}
             className="concern-card"
-            onClick={() => goToCategory(c.target)}
+            onClick={() => goToCategory(c.target, c.id)}
           >
             <span className="concern-icon">{c.icon}</span>
             <div>
