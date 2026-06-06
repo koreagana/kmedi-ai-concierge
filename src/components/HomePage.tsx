@@ -346,13 +346,15 @@ function ConcernSection() {
   const { lang, goToCategory } = useApp()
   const t = translations[lang]
 
-  const concerns: { id: string | null; icon: JSX.Element; title: string; sub: string; target: CategoryId }[] = [
-    { id: 'younger-look', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M12 3C9 5 5 9 5 13a7 7 0 0014 0c0-4-4-8-7-10z"/><path d="M12 13v4"/></svg>, title: t.concern1, sub: t.concern1Sub, target: 'skin-beauty' },
-    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 21v-1a6 6 0 0112 0v1"/></svg>, title: t.concern2, sub: t.concern2Sub, target: 'plastic-surgery' },
-    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>, title: t.concern3, sub: t.concern3Sub, target: 'big-health' },
-    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M12 13v8M9 18h6"/></svg>, title: t.concern4, sub: t.concern4Sub, target: 'womens-care' },
-    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M18 8h2a2 2 0 010 4h-2"/><path d="M4 8h14v9a2 2 0 01-2 2H6a2 2 0 01-2-2V8z"/><path d="M8 8V5a2 2 0 014 0v3"/></svg>, title: t.concern5, sub: t.concern5Sub, target: 'mens-health' },
-    { id: null, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 0112 18.34a19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 5.18 2 2 0 014.11 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6z"/></svg>, title: t.concern6, sub: t.concern6Sub, target: 'medical-tourism' },
+  const concerns: { id: string; icon: JSX.Element; title: string; sub: string; target: CategoryId }[] = [
+    { id: 'younger-look',    target: 'skin-beauty',      title: t.concern1, sub: t.concern1Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M12 3C9 5 5 9 5 13a7 7 0 0014 0c0-4-4-8-7-10z"/><path d="M12 13v4"/></svg> },
+    { id: 'slow-aging',      target: 'skin-beauty',      title: t.concern2, sub: t.concern2Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> },
+    { id: 'regen-medicine',  target: 'stem-cell',        title: t.concern3, sub: t.concern3Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
+    { id: 'face-contour',    target: 'skin-beauty',      title: t.concern4, sub: t.concern4Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 21v-1a6 6 0 0112 0v1"/></svg> },
+    { id: 'surgery-interest',target: 'plastic-surgery',  title: t.concern5, sub: t.concern5Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> },
+    { id: 'fatigue-look',    target: 'skin-beauty',      title: t.concern6, sub: t.concern6Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
+    { id: 'korea-trip-worry',target: 'medical-tourism',  title: t.concern7, sub: t.concern7Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> },
+    { id: 'health-checkup',  target: 'big-health',       title: t.concern8, sub: t.concern8Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg> },
   ]
 
   return (

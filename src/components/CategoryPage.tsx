@@ -56,10 +56,10 @@ export default function CategoryPage() {
         {concernLocal ? (
           <motion.div {...fadeUp} transition={{ delay: 0.1 }} style={{ marginTop: 10 }}>
             <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,0.92)', letterSpacing: '0.01em' }}>
-              {catName}
+              {concernLocal.catName ?? catName}
             </p>
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginTop: 4, letterSpacing: '0.02em' }}>
-              {catTag}
+              {concernLocal.catTag ?? catTag}
             </p>
           </motion.div>
         ) : (
