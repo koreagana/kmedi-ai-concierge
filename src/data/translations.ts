@@ -120,7 +120,7 @@ export const translations: Record<LangCode, Translations> = {
     cardContactBtn: '立即联系顾问',
     contactTitle: '选择联系方式',
     contactWechatBiz: '企业微信',
-    contactWechatPersonal: '个人微信',
+    contactWechatPersonal: '企业微信',
     contactWhatsapp: 'WhatsApp',
     contactForm: '在线留言',
     contactEmail: 'Email：egana@kmedispring.com',
