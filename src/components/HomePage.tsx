@@ -242,8 +242,7 @@ function ConciergeSection() {
           onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}
         >
           <div className="concierge-avatar concierge-avatar-f">
-            {/* 사진 준비되면 <img> 교체 */}
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c05080" strokeWidth="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <img src="/concierge_image/lijing_800.png" alt="李静" className="concierge-avatar-img" />
           </div>
           <div>
             <p className="concierge-name">{t.concierge1Name}</p>
@@ -263,8 +262,7 @@ function ConciergeSection() {
           onClick={() => setShowWxModal(true)}
         >
           <div className="concierge-avatar concierge-avatar-m">
-            {/* 사진 준비되면 <img> 교체 */}
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2a6ab0" strokeWidth="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <img src="/concierge_image/kimhyunwoo_800.png" alt="金贤宇" className="concierge-avatar-img" />
           </div>
           <div>
             <p className="concierge-name">{t.concierge2Name}</p>

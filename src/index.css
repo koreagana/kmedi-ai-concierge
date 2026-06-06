@@ -448,6 +448,14 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 32px;
+  overflow: hidden;
+}
+.concierge-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
 }
 .concierge-avatar-f {
   background: linear-gradient(135deg, #fce8f3 0%, #f8c4e4 100%);
