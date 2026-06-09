@@ -6,9 +6,9 @@ import PackagePage from './components/PackagePage'
 import { AnimatePresence, motion } from 'framer-motion'
 
 function PageRouter() {
-  const { page } = useApp()
+  const { page, lang } = useApp()
   return (
-    <div className="page-container">
+    <div className="page-container" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <NavBar />
       <AnimatePresence mode="wait">
         {page === 'home' ? (

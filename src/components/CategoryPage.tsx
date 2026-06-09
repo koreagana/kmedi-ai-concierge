@@ -124,7 +124,7 @@ export default function CategoryPage() {
               boxShadow: '0 4px 18px rgba(0,119,182,0.28)',
             }}
           >
-            生成我的变美咨询卡
+            {t.makeCard}
           </button>
         </motion.div>
       ) : (

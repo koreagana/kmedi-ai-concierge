@@ -480,6 +480,7 @@ export function ContactSection() {
   const [formName, setFormName] = useState('')
   const [formMsg, setFormMsg] = useState('')
   const [formSent, setFormSent] = useState(false)
+  const isAr = lang === 'ar'
 
   const handleFormSend = () => {
     if (formName.trim() && formMsg.trim()) setFormSent(true)
@@ -493,35 +494,51 @@ export function ContactSection() {
       </motion.div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open('https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0', '_blank')}>
-          <div className="contact-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="white"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
-          </div>
-          <div>
-            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatBiz}</p>
-            <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '企业账号咨询' : lang === 'ko' ? '기업 계정 상담' : 'Enterprise account'}</p>
-          </div>
-        </motion.button>
+        {isAr ? (
+          /* ── Arabic: WhatsApp direct link ── */
+          <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open('https://wa.me/821077671903', '_blank')}>
+            <div className="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
+            </div>
+            <div>
+              <p style={{ fontSize: 14, fontWeight: 700 }}>واتساب</p>
+              <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>تواصل مباشر عبر واتساب</p>
+            </div>
+          </motion.button>
+        ) : (
+          /* ── Non-Arabic: WeChat buttons ── */
+          <>
+            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open('https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0', '_blank')}>
+              <div className="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="white"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
+              </div>
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatBiz}</p>
+                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '企业账号咨询' : lang === 'ko' ? '기업 계정 상담' : 'Enterprise account'}</p>
+              </div>
+            </motion.button>
 
-        <motion.button {...fadeUp} transition={{ delay: 0.1 }} className="contact-btn contact-btn-wechat-personal" onClick={() => setModal('wechat-personal')}>
-          <div className="contact-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-          </div>
-          <div>
-            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatPersonal}</p>
-            <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '顾问直接沟通' : lang === 'ko' ? '컨시어지 직접 소통' : 'Direct concierge chat'}</p>
-          </div>
-        </motion.button>
+            <motion.button {...fadeUp} transition={{ delay: 0.1 }} className="contact-btn contact-btn-wechat-personal" onClick={() => setModal('wechat-personal')}>
+              <div className="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatPersonal}</p>
+                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '顾问直接沟通' : lang === 'ko' ? '컨시어지 직접 소통' : 'Direct concierge chat'}</p>
+              </div>
+            </motion.button>
 
-        <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => setModal('whatsapp')}>
-          <div className="contact-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
-          </div>
-          <div>
-            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWhatsapp}</p>
-            <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '国际用户推荐' : lang === 'ko' ? '국제 사용자 추천' : 'Recommended for international users'}</p>
-          </div>
-        </motion.button>
+            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => setModal('whatsapp')}>
+              <div className="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
+              </div>
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWhatsapp}</p>
+                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '国际用户推荐' : lang === 'ko' ? '국제 사용자 추천' : 'Recommended for international users'}</p>
+              </div>
+            </motion.button>
+          </>
+        )}
 
         <motion.button {...fadeUp} transition={{ delay: 0.2 }} className="contact-btn contact-btn-form" onClick={() => setModal('form')}>
           <div className="contact-icon" style={{ background: 'rgba(255,255,255,0.12)' }}>

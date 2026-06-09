@@ -371,7 +371,7 @@ export const translations: Record<LangCode, Translations> = {
     contactWechatPersonal: 'ويتشات الشخصي',
     contactWhatsapp: 'واتساب',
     contactForm: 'إرسال رسالة',
-    contactEmail: 'البريد الإلكتروني: egana@kmedispring.com',
+    contactEmail: 'البريد الإلكتروني: Alaadin22@yahoo.co.kr',
     contactFormTitle: 'أرسل لنا رسالة',
     contactFormName: 'اسمك أو جهة اتصالك المفضلة',
     contactFormMsg: 'أخبرنا بإيجاز عما تبحث عنه…',
