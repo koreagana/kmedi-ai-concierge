@@ -24,6 +24,7 @@ export default function NavBar() {
     { code: 'zh', label: '中文' },
     { code: 'ko', label: '한국어' },
     { code: 'en', label: 'English' },
+    { code: 'ar', label: 'العربية' },
   ]
 
   const scrollToContact = () => {

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { ContactSection, MedicalNetworkSection, AboutSection, FooterSection } from './HomePage'
@@ -10,7 +11,16 @@ const fadeUp = {
   transition: { duration: 0.45, ease: 'easeOut' },
 }
 
-/* ── data ──────────────────────────────────────────────── */
+/* ── types ─────────────────────────────────────────────── */
+
+type ItemType = 'medical' | 'service' | 'spot' | 'food' | 'shop' | 'rest'
+interface DayItem { text: string; type: ItemType }
+interface DayData { day: number; title: string; items: DayItem[] }
+
+type SlotKey = 'day1Spot' | 'day2Spot' | 'day3MorningSpot' | 'day3AftShop'
+type Selections = Record<SlotKey, string>
+
+/* ── static data ───────────────────────────────────────── */
 
 const INCLUDES = [
   { icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.8" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>, text: '医疗咨询与到院协助' },
@@ -28,67 +38,124 @@ const PRICES = [
   { group: '4 人', price: '5,000', unit: '元 / 人' },
 ]
 
-type ItemType = 'medical' | 'service' | 'spot' | 'food' | 'shop' | 'rest'
-
-interface DayItem { text: string; type: ItemType }
-interface DayData { day: number; title: string; items: DayItem[] }
-
-const DAYS: DayData[] = [
-  {
-    day: 1, title: '抵达首尔',
-    items: [
-      { text: '入境', type: 'rest' },
-      { text: '机场接送', type: 'service' },
-      { text: '入住酒店', type: 'rest' },
-      { text: '第1次到院：初诊咨询 / 基本检查', type: 'medical' },
-      { text: '北村韩屋村', type: 'spot' },
-      { text: '韩式烤肉晚餐', type: 'food' },
-    ],
-  },
-  {
-    day: 2, title: '医疗咨询与恢复',
-    items: [
-      { text: '酒店早餐', type: 'food' },
-      { text: '第2次到院：医疗项目', type: 'medical' },
-      { text: 'Sudam 韩定食', type: 'food' },
-      { text: '恢复 / 再生管理', type: 'rest' },
-      { text: '仁寺洞', type: 'spot' },
-      { text: '参鸡汤晚餐', type: 'food' },
-    ],
-  },
-  {
-    day: 3, title: '体验与自由购物',
-    items: [
-      { text: '酒店早餐', type: 'food' },
-      { text: '可选体验', type: 'spot' },
-      { text: '景福宫', type: 'spot' },
-      { text: '景点午餐', type: 'food' },
-      { text: '北村韩屋村 / 仁寺洞', type: 'spot' },
-      { text: '自由购物：现代百货 The Hyundai Seoul', type: 'shop' },
-      { text: '晚餐自由选择', type: 'food' },
-    ],
-  },
-  {
-    day: 4, title: '复查与离境',
-    items: [
-      { text: '酒店早餐', type: 'food' },
-      { text: '第3次到院：术后复查', type: 'medical' },
-      { text: '自由简餐', type: 'food' },
-      { text: '离境准备', type: 'rest' },
-      { text: '前往机场', type: 'service' },
-      { text: '如有需要可安排免税购物', type: 'shop' },
-    ],
-  },
-]
-
 const ADJUSTABLE = [
-  { label: '景点', options: '北村韩屋村 · 仁寺洞 · 景福宫' },
-  { label: '购物', options: 'The Hyundai Seoul · 明洞' },
+  { label: '景点', options: '北村韩屋村 · 仁寺洞 · 南山塔 · 清溪川 · 广藏市场 等 17处可选' },
+  { label: '购物', options: 'The Hyundai Seoul · 明洞 · 乐天 · 新世界 · COEX 等 18处可选' },
   { label: '体验', options: '韩式料理课程 · K-POP舞蹈 · 唱歌体验' },
   { label: '医疗咨询', options: '根据客户需求调整组合' },
 ]
 
+/* ── selection options ─────────────────────────────────── */
+
+const SPOT_OPTIONS = [
+  '北村韩屋村', '仁寺洞', '南山首尔塔', '汉江公园', '清溪川',
+  '广藏市场', '益善洞', '昌德宫', '德寿宫', '东大门设计广场 DDP',
+  'COEX 星光图书馆', '圣水洞', '弘大步行街', '林荫道',
+  '梨泰院', '西村', '首尔天空观景台',
+]
+
+const SHOP_OPTIONS = [
+  '现代百货 The Hyundai Seoul', '明洞', '乐天百货总店', '新世界百货总店',
+  '现代百货狎鸥亭总店', 'Starfield COEX Mall', '乐天世界购物城', 'IFC Mall',
+  '时代广场 Times Square', '现代百货贸易中心店', 'Galeria 名品馆',
+  '狎鸥亭罗德奥', '林荫道', '圣水洞买手店街区', '弘大购物街',
+  '东大门时尚城', '高速巴士地下商街 GOTO Mall', 'Common Ground',
+]
+
+const DEFAULT_SELECTIONS: Selections = {
+  day1Spot:        '北村韩屋村',
+  day2Spot:        '仁寺洞',
+  day3MorningSpot: '景福宫',
+  day3AftShop:     '现代百货 The Hyundai Seoul',
+}
+
+interface SlotDef {
+  key: SlotKey
+  label: string
+  summaryLabel: string
+  options: string[]
+  slotType: 'spot' | 'shop'
+}
+
+interface SlotGroup { dayLabel: string; slots: SlotDef[] }
+
+const SLOT_GROUPS: SlotGroup[] = [
+  {
+    dayLabel: 'DAY 1',
+    slots: [
+      { key: 'day1Spot', label: '景点', summaryLabel: '第1天景点', options: SPOT_OPTIONS, slotType: 'spot' },
+    ],
+  },
+  {
+    dayLabel: 'DAY 2',
+    slots: [
+      { key: 'day2Spot', label: '下午景点', summaryLabel: '第2天下午景点', options: SPOT_OPTIONS, slotType: 'spot' },
+    ],
+  },
+  {
+    dayLabel: 'DAY 3',
+    slots: [
+      { key: 'day3MorningSpot', label: '上午景点',   summaryLabel: '第3天上午景点',   options: SPOT_OPTIONS, slotType: 'spot' },
+      { key: 'day3AftShop',     label: '下午购物地点', summaryLabel: '第3天下午购物地点', options: SHOP_OPTIONS, slotType: 'shop' },
+    ],
+  },
+]
+
+const ALL_SLOTS: SlotDef[] = SLOT_GROUPS.flatMap(g => g.slots)
+
+/* ── dynamic itinerary ─────────────────────────────────── */
+
+function getDays(sel: Selections): DayData[] {
+  return [
+    {
+      day: 1, title: '抵达首尔',
+      items: [
+        { text: '入境', type: 'rest' },
+        { text: '机场接送', type: 'service' },
+        { text: '入住酒店', type: 'rest' },
+        { text: '第1次到院：初诊咨询 / 基本检查', type: 'medical' },
+        { text: sel.day1Spot, type: 'spot' },
+        { text: '韩式烤肉晚餐', type: 'food' },
+      ],
+    },
+    {
+      day: 2, title: '医疗咨询与恢复',
+      items: [
+        { text: '酒店早餐', type: 'food' },
+        { text: '第2次到院：医疗项目', type: 'medical' },
+        { text: 'Sudam 韩定食', type: 'food' },
+        { text: '恢复 / 再生管理', type: 'rest' },
+        { text: sel.day2Spot, type: 'spot' },
+        { text: '参鸡汤晚餐', type: 'food' },
+      ],
+    },
+    {
+      day: 3, title: '体验与自由购物',
+      items: [
+        { text: '酒店早餐', type: 'food' },
+        { text: '可选体验', type: 'spot' },
+        { text: sel.day3MorningSpot, type: 'spot' },
+        { text: '景点午餐', type: 'food' },
+        { text: `自由购物：${sel.day3AftShop}`, type: 'shop' },
+        { text: '晚餐自由选择', type: 'food' },
+      ],
+    },
+    {
+      day: 4, title: '复查与离境',
+      items: [
+        { text: '酒店早餐', type: 'food' },
+        { text: '第3次到院：术后复查', type: 'medical' },
+        { text: '自由简餐', type: 'food' },
+        { text: '离境准备', type: 'rest' },
+        { text: '前往机场', type: 'service' },
+        { text: '如有需要可安排免税购物', type: 'shop' },
+      ],
+    },
+  ]
+}
+
 /* ── item dot colors ──────────────────────────────────── */
+
 const itemColor: Record<ItemType, string> = {
   medical: '#0077b6',
   service: '#4a9cc7',
@@ -98,9 +165,25 @@ const itemColor: Record<ItemType, string> = {
   rest:    '#9ab0c0',
 }
 
+/* ── select arrow ─────────────────────────────────────── */
+
+function SelectArrow() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}>
+      <path d="M3 4.5l3 3 3-3" stroke="#0077b6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 /* ── component ───────────────────────────────────────── */
+
 export default function PackagePage() {
   const { goHome } = useApp()
+  const [selections, setSelections] = useState<Selections>(DEFAULT_SELECTIONS)
+
+  const days = getDays(selections)
+  const updateSlot = (key: SlotKey, value: string) =>
+    setSelections(s => ({ ...s, [key]: value }))
 
   return (
     <div>
@@ -219,24 +302,169 @@ export default function PackagePage() {
           ))}
         </motion.div>
 
-        <motion.p
-          {...fadeUp}
-          style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.8 }}
-        >
+        <motion.p {...fadeUp} style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.8 }}>
           费用包含车辆、医院陪同、景点安排及基础行程陪同。<br />
           不包含酒店、医疗费用及个人消费。
         </motion.p>
       </section>
 
+      {/* ══ 景点 / 购物地点 选择 ══════════════════════════════ */}
+      <section className="section-white" style={{ paddingBottom: 36 }}>
+        <motion.div {...fadeUp}>
+          <p className="section-title">可自由调整景点与购物地点</p>
+          <div className="section-accent-line" />
+          <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: 22 }}>
+            在下方选择您偏好的景点与购物地点，行程安排将自动更新。
+          </p>
+        </motion.div>
+
+        <motion.div {...fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+          {SLOT_GROUPS.map(group => (
+            <div key={group.dayLabel}>
+
+              {/* day divider */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                <span style={{
+                  fontSize: 10,
+                  fontWeight: 800,
+                  color: 'white',
+                  background: 'var(--brand)',
+                  borderRadius: 20,
+                  padding: '3px 10px',
+                  letterSpacing: '0.1em',
+                  flexShrink: 0,
+                }}>
+                  {group.dayLabel}
+                </span>
+                <div style={{ flex: 1, height: 1, background: 'rgba(0,119,182,0.12)' }} />
+              </div>
+
+              {/* slot cards */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {group.slots.map(slot => (
+                  <div
+                    key={slot.key}
+                    style={{
+                      background: 'white',
+                      border: '1px solid rgba(0,119,182,0.15)',
+                      borderLeft: `3px solid ${slot.slotType === 'shop' ? '#6b8ca5' : 'var(--brand)'}`,
+                      borderRadius: 10,
+                      padding: '12px 14px',
+                    }}
+                  >
+                    <p style={{
+                      fontSize: 10,
+                      fontWeight: 700,
+                      color: slot.slotType === 'shop' ? '#6b8ca5' : 'var(--brand)',
+                      marginBottom: 8,
+                      letterSpacing: '0.06em',
+                    }}>
+                      {slot.label}
+                    </p>
+                    <div style={{ position: 'relative' }}>
+                      <select
+                        value={selections[slot.key]}
+                        onChange={e => updateSlot(slot.key, e.target.value)}
+                        style={{
+                          width: '100%',
+                          padding: '10px 36px 10px 12px',
+                          borderRadius: 8,
+                          border: '1px solid rgba(0,119,182,0.2)',
+                          background: 'rgba(0,119,182,0.03)',
+                          color: 'var(--text)',
+                          fontSize: 13,
+                          fontWeight: 500,
+                          fontFamily: 'inherit',
+                          outline: 'none',
+                          cursor: 'pointer',
+                          appearance: 'none',
+                          WebkitAppearance: 'none',
+                        }}
+                      >
+                        {slot.options.map(opt => (
+                          <option key={opt} value={opt}>{opt}</option>
+                        ))}
+                      </select>
+                      <div style={{
+                        position: 'absolute',
+                        right: 11,
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        pointerEvents: 'none',
+                      }}>
+                        <SelectArrow />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          ))}
+        </motion.div>
+
+        {/* ── 我的行程选择 summary ── */}
+        <motion.div
+          {...fadeUp}
+          style={{
+            marginTop: 24,
+            background: 'rgba(0,119,182,0.04)',
+            border: '1px solid rgba(0,119,182,0.15)',
+            borderRadius: 12,
+            padding: '16px',
+          }}
+        >
+          <p style={{
+            fontSize: 11,
+            fontWeight: 700,
+            color: 'var(--brand)',
+            letterSpacing: '0.08em',
+            marginBottom: 14,
+          }}>
+            我的行程选择
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
+            {ALL_SLOTS.map(slot => (
+              <div
+                key={slot.key}
+                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}
+              >
+                <span style={{ fontSize: 11, color: 'var(--text-muted)', flexShrink: 0 }}>
+                  {slot.summaryLabel}
+                </span>
+                <span style={{
+                  fontSize: 12,
+                  fontWeight: 600,
+                  color: 'var(--brand-dark, #003d6b)',
+                  background: 'white',
+                  border: '1px solid rgba(0,119,182,0.18)',
+                  borderRadius: 20,
+                  padding: '3px 11px',
+                  whiteSpace: 'nowrap' as const,
+                  maxWidth: '54%',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}>
+                  {selections[slot.key]}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* ══ 3晚4天行程 ═════════════════════════════════════════ */}
-      <section className="section-white" style={{ paddingBottom: 40 }}>
+      <section className="section-light" style={{ paddingBottom: 40 }}>
         <motion.div {...fadeUp}>
           <p className="section-title">3晚4天行程安排</p>
           <div className="section-accent-line" />
+          <p style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 20, lineHeight: 1.7 }}>
+            以下行程已根据您的选择自动更新。
+          </p>
         </motion.div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
-          {DAYS.map((day, di) => (
+          {days.map((day, di) => (
             <motion.div key={day.day} {...fadeUp} transition={{ delay: di * 0.08 }}>
 
               {/* day header */}
@@ -259,7 +487,6 @@ export default function PackagePage() {
 
               {/* activity list */}
               <div style={{ position: 'relative', paddingLeft: 20 }}>
-                {/* vertical line */}
                 <div style={{
                   position: 'absolute',
                   left: 6,
@@ -272,6 +499,52 @@ export default function PackagePage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                   {day.items.map((item, ii) => {
                     const isMedical = item.type === 'medical'
+
+                    if (isMedical) {
+                      return (
+                        <div
+                          key={ii}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            marginBottom: 6,
+                          }}
+                        >
+                          {/* dot — on the timeline line, outside the box */}
+                          <div style={{
+                            width: 8,
+                            height: 8,
+                            borderRadius: '50%',
+                            background: itemColor.medical,
+                            flexShrink: 0,
+                            marginTop: 13,
+                            marginLeft: -18,
+                            marginRight: 12,
+                            position: 'relative',
+                            zIndex: 1,
+                          }} />
+                          {/* highlight box, visually separated from dot */}
+                          <div style={{
+                            flex: 1,
+                            background: 'rgba(0,119,182,0.06)',
+                            borderLeft: '2px solid var(--brand)',
+                            borderRadius: '0 8px 8px 0',
+                            padding: '10px 12px',
+                          }}>
+                            <p style={{
+                              fontSize: 13,
+                              fontWeight: 600,
+                              color: 'var(--brand-dark, #003d6b)',
+                              lineHeight: 1.5,
+                              margin: 0,
+                            }}>
+                              {item.text}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    }
+
                     return (
                       <div
                         key={ii}
@@ -279,15 +552,9 @@ export default function PackagePage() {
                           display: 'flex',
                           alignItems: 'flex-start',
                           gap: 10,
-                          padding: isMedical ? '10px 12px' : '7px 0',
-                          marginBottom: isMedical ? 6 : 0,
-                          background: isMedical ? 'rgba(0,119,182,0.06)' : 'transparent',
-                          borderLeft: isMedical ? '2px solid var(--brand)' : '2px solid transparent',
-                          borderRadius: isMedical ? '0 8px 8px 0' : 0,
-                          marginLeft: isMedical ? -2 : 0,
+                          padding: '7px 0',
                         }}
                       >
-                        {/* dot */}
                         <div style={{
                           width: 8,
                           height: 8,
@@ -297,12 +564,12 @@ export default function PackagePage() {
                           marginTop: 5,
                           position: 'relative',
                           zIndex: 1,
-                          marginLeft: isMedical ? -20 : -20,
+                          marginLeft: -20,
                         }} />
                         <p style={{
-                          fontSize: isMedical ? 13 : 12,
-                          fontWeight: isMedical ? 600 : 400,
-                          color: isMedical ? 'var(--brand-dark, #003d6b)' : 'var(--text)',
+                          fontSize: 12,
+                          fontWeight: 400,
+                          color: 'var(--text)',
                           lineHeight: 1.5,
                           margin: 0,
                         }}>
@@ -320,7 +587,7 @@ export default function PackagePage() {
       </section>
 
       {/* ══ 可调整项目 ════════════════════════════════════════ */}
-      <section className="section-light" style={{ paddingBottom: 32 }}>
+      <section className="section-white" style={{ paddingBottom: 32 }}>
         <motion.div {...fadeUp}>
           <p className="section-title">可根据客户喜好调整</p>
           <div className="section-accent-line" />
@@ -355,7 +622,7 @@ export default function PackagePage() {
       </section>
 
       {/* ══ 核心理念 ══════════════════════════════════════════ */}
-      <section className="section-white" style={{ paddingTop: 36, paddingBottom: 36 }}>
+      <section className="section-light" style={{ paddingTop: 36, paddingBottom: 36 }}>
         <motion.div {...fadeUp} style={{ textAlign: 'center' }}>
           <p style={{
             fontSize: 11,

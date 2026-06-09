@@ -7,3 +7,5 @@ concierge_image/
 다섯 가지 욕망/
 *.mp4
 *.xlsx
+# Local Netlify folder
+.netlify

@@ -6,6 +6,13 @@ import { categories, type CategoryId } from '../data/categories'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
 
+const videoSrcMap: Record<string, string> = {
+  zh: '/studio.mp4',
+  en: '/studio_eng.mp4',
+  ko: '/studio_kr.mp4',
+  ar: '/studio_arb.mp4',
+}
+
 function WechatIdBox({ id, lang }: { id: string; lang: string }) {
   const [copied, setCopied] = useState(false)
   const copy = () => {
@@ -57,10 +64,38 @@ function HeroSection() {
   const [soundOn, setSoundOn] = useState(false)
   const soundOnRef = useRef(false)
   const playCountRef = useRef(0)
+  const [videoSrc, setVideoSrc] = useState(() => videoSrcMap[lang] ?? '/studio.mp4')
+  const [videoFading, setVideoFading] = useState(false)
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  // 언어 변경 시 영상 페이드 전환
+  useEffect(() => {
+    const newSrc = videoSrcMap[lang] ?? '/studio.mp4'
+    if (newSrc === videoSrc) return
+    setVideoFading(true)
+    const timer = setTimeout(() => {
+      setVideoSrc(newSrc)
+      const v = videoRef.current
+      if (v) {
+        v.muted = true
+        soundOnRef.current = false
+        setSoundOn(false)
+        playCountRef.current = 0
+      }
+      setVideoFading(false)
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [lang, videoSrc])
+
+  // videoSrc 변경 시 재생
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    v.play().catch(() => {})
+  }, [videoSrc])
 
   // 영상 종료 시: 소리 ON이면 최대 3회, 이후 무음 루프
   useEffect(() => {
@@ -137,11 +172,12 @@ function HeroSection() {
       <video
         ref={videoRef}
         className="hero-video"
-        src="/studio.mp4"
+        src={videoSrc}
         autoPlay
         muted
         playsInline
         poster="/studio-hero.png"
+        style={{ transition: 'opacity 0.3s ease', opacity: videoFading ? 0 : 1 }}
       />
 
       {/* 우측 스피커 토글 버튼 — 위쪽에 배치, 홀로그램 링 */}
