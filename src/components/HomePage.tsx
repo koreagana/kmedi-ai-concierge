@@ -64,38 +64,36 @@ function HeroSection() {
   const [soundOn, setSoundOn] = useState(false)
   const soundOnRef = useRef(false)
   const playCountRef = useRef(0)
-  const [videoSrc, setVideoSrc] = useState(() => videoSrcMap[lang] ?? '/studio.mp4')
   const [videoFading, setVideoFading] = useState(false)
+  const activeSrcRef = useRef(videoSrcMap[lang] ?? '/studio.mp4')
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  // 언어 변경 시 영상 페이드 전환
+  // 언어 변경 시 영상 페이드 전환 (imperative DOM 조작)
   useEffect(() => {
     const newSrc = videoSrcMap[lang] ?? '/studio.mp4'
-    if (newSrc === videoSrc) return
+    if (newSrc === activeSrcRef.current) return
+    activeSrcRef.current = newSrc
+
     setVideoFading(true)
     const timer = setTimeout(() => {
-      setVideoSrc(newSrc)
       const v = videoRef.current
       if (v) {
+        v.pause()
+        v.src = newSrc
+        v.load()
         v.muted = true
         soundOnRef.current = false
         setSoundOn(false)
         playCountRef.current = 0
+        v.play().catch(() => {})
       }
       setVideoFading(false)
     }, 300)
     return () => clearTimeout(timer)
-  }, [lang, videoSrc])
-
-  // videoSrc 변경 시 재생
-  useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-    v.play().catch(() => {})
-  }, [videoSrc])
+  }, [lang])
 
   // 영상 종료 시: 소리 ON이면 최대 3회, 이후 무음 루프
   useEffect(() => {
@@ -172,7 +170,7 @@ function HeroSection() {
       <video
         ref={videoRef}
         className="hero-video"
-        src={videoSrc}
+        src={activeSrcRef.current}
         autoPlay
         muted
         playsInline
