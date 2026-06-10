@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   HeroSection,
@@ -19,6 +20,16 @@ const fadeUp = {
 }
 
 function ArConciergeSection() {
+  const [copiedPhone, setCopiedPhone] = useState(false)
+  const [copiedEmail, setCopiedEmail] = useState(false)
+
+  const copy = (text: string, setCopied: (v: boolean) => void) => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1500)
+    })
+  }
+
   return (
     <section id="concierge" className="section-light">
       <motion.div {...fadeUp}>
@@ -30,8 +41,7 @@ function ArConciergeSection() {
         {...fadeUp}
         transition={{ delay: 0.1, duration: 0.5 }}
         className="concierge-card"
-        style={{ maxWidth: 340, margin: '0 auto', cursor: 'pointer' }}
-        onClick={() => window.open(WHATSAPP_URL, '_blank')}
+        style={{ maxWidth: 340, margin: '0 auto' }}
       >
         <div className="concierge-avatar concierge-avatar-m">
           <img
@@ -51,12 +61,22 @@ function ArConciergeSection() {
           استشارات الأمراض الحرجة · استشارات شاملة في المجال الطبي الكوري · الفحوصات الدقيقة
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 12 }}>
-          <p style={{ fontSize: 11, color: 'var(--text-muted)' }}>📱 +82-10-7767-1903</p>
-          <p style={{ fontSize: 11, color: 'var(--text-muted)' }}>✉️ alaadin22@yahoo.co.kr</p>
+          <p
+            onClick={() => copy('+821077671903', setCopiedPhone)}
+            style={{ fontSize: 11, color: copiedPhone ? 'var(--brand)' : 'var(--text-muted)', cursor: 'pointer', userSelect: 'none', transition: 'color 0.2s' }}
+          >
+            📱 {copiedPhone ? '✓ تم النسخ' : '+82-10-7767-1903'}
+          </p>
+          <p
+            onClick={() => copy('alaadin22@yahoo.co.kr', setCopiedEmail)}
+            style={{ fontSize: 11, color: copiedEmail ? 'var(--brand)' : 'var(--text-muted)', cursor: 'pointer', userSelect: 'none', transition: 'color 0.2s' }}
+          >
+            ✉️ {copiedEmail ? '✓ تم النسخ' : 'alaadin22@yahoo.co.kr'}
+          </p>
         </div>
         <button
           className="concierge-btn"
-          onClick={e => { e.stopPropagation(); window.open(WHATSAPP_URL, '_blank') }}
+          onClick={() => window.open(WHATSAPP_URL, '_blank')}
         >
           تواصل عبر واتساب
         </button>
