@@ -72,46 +72,34 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* /ar 페이지: K-Medi Korea 텍스트 로고 / 그 외: 상담 버튼 */}
-        {page === 'home' && (
-          isArPage ? (
-            <div style={{ textAlign: 'center', lineHeight: 1.3 }}>
-              <div style={{
-                color: 'rgba(255,255,255,0.95)',
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.03em',
-              }}>
-                الكونسيرج الطبي لكوريا
-              </div>
-              <div style={{
-                color: 'rgba(255,255,255,0.7)',
-                fontSize: 9,
-                fontWeight: 400,
-                letterSpacing: '0.01em',
-              }}>
-                ربيع هان
-              </div>
-            </div>
-          ) : (
-            <button
-              onClick={scrollToContact}
-              style={{
-                background: 'rgba(255,255,255,0.18)',
-                border: '1px solid rgba(255,255,255,0.4)',
-                borderRadius: 10,
-                color: '#ffffff',
-                fontSize: 11,
-                fontWeight: 600,
-                padding: '5px 12px',
-                cursor: 'pointer',
-                letterSpacing: '0.04em',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {t.navConsult}
-            </button>
-          )
+        {/* /ar 페이지: 없음 / 그 외: 상담 버튼 */}
+        {page === 'home' && !isArPage && (
+          <button
+            onClick={scrollToContact}
+            style={{
+              background: 'rgba(255,255,255,0.18)',
+              border: '1px solid rgba(255,255,255,0.4)',
+              borderRadius: 10,
+              color: '#ffffff',
+              fontSize: 11,
+              fontWeight: 600,
+              padding: '5px 12px',
+              cursor: 'pointer',
+              letterSpacing: '0.04em',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {t.navConsult}
+          </button>
+        )}
+
+        {/* /ar 페이지 로고 이미지 */}
+        {isArPage && (
+          <img
+            src="/kmedi_logo.png"
+            alt="K-Medi"
+            style={{ height: 28, width: 'auto', objectFit: 'contain', display: 'block' }}
+          />
         )}
 
         {/* Language picker */}
