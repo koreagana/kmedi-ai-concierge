@@ -7,7 +7,9 @@ export default function NavBar() {
   const { lang, setLang, page, goHome } = useApp()
   const t = translations[lang]
   const [showLang, setShowLang] = useState(false)
+  const [dropdownPos, setDropdownPos] = useState({ top: 0, right: 0 })
   const langRef = useRef<HTMLDivElement>(null)
+  const langBtnRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (!showLang) return
@@ -19,6 +21,17 @@ export default function NavBar() {
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
   }, [showLang])
+
+  const toggleLang = () => {
+    if (!showLang && langBtnRef.current) {
+      const rect = langBtnRef.current.getBoundingClientRect()
+      setDropdownPos({
+        top: rect.bottom + 8,
+        right: window.innerWidth - rect.right,
+      })
+    }
+    setShowLang(s => !s)
+  }
 
   const langs: { code: LangCode; label: string }[] = [
     { code: 'zh', label: '中文' },
@@ -69,7 +82,8 @@ export default function NavBar() {
         {/* Language picker */}
         <div ref={langRef} style={{ position: 'relative' }}>
           <button
-            onClick={() => setShowLang(s => !s)}
+            ref={langBtnRef}
+            onClick={toggleLang}
             style={{
               background: 'rgba(255,255,255,0.15)',
               border: '1px solid rgba(255,255,255,0.35)',
@@ -98,9 +112,9 @@ export default function NavBar() {
                 exit={{ opacity: 0, y: -8, scale: 0.95 }}
                 transition={{ duration: 0.18, ease: 'easeOut' }}
                 style={{
-                  position: 'absolute',
-                  top: 'calc(100% + 8px)',
-                  right: 0,
+                  position: 'fixed',
+                  top: dropdownPos.top,
+                  right: dropdownPos.right,
                   background: '#1f4e79',
                   border: '1px solid rgba(255,255,255,0.15)',
                   borderRadius: 14,
