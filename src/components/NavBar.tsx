@@ -82,7 +82,7 @@ export default function NavBar() {
                 fontWeight: 700,
                 letterSpacing: '0.03em',
               }}>
-                Korea Medical Concierge
+                الكونسيرج الطبي لكوريا
               </div>
               <div style={{
                 color: 'rgba(255,255,255,0.7)',
@@ -90,7 +90,7 @@ export default function NavBar() {
                 fontWeight: 400,
                 letterSpacing: '0.01em',
               }}>
-                ربيع نهر هان
+                ربيع هان
               </div>
             </div>
           ) : (
