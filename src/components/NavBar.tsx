@@ -3,11 +3,13 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 
+const isArPage = window.location.pathname.startsWith('/ar')
+
 export default function NavBar() {
   const { lang, setLang, page, goHome } = useApp()
   const t = translations[lang]
   const [showLang, setShowLang] = useState(false)
-  const [dropdownPos, setDropdownPos] = useState({ top: 0, right: 0 })
+  const [dropdownPos, setDropdownPos] = useState<{ top: number; left?: number; right?: number }>({ top: 0, right: 0 })
   const langRef = useRef<HTMLDivElement>(null)
   const langBtnRef = useRef<HTMLButtonElement>(null)
 
@@ -25,10 +27,14 @@ export default function NavBar() {
   const toggleLang = () => {
     if (!showLang && langBtnRef.current) {
       const rect = langBtnRef.current.getBoundingClientRect()
-      setDropdownPos({
-        top: rect.bottom + 8,
-        right: window.innerWidth - rect.right,
-      })
+      const buttonCenterX = rect.left + rect.width / 2
+      if (buttonCenterX < window.innerWidth / 2) {
+        // 버튼이 왼쪽(RTL) — 드롭다운을 왼쪽 정렬
+        setDropdownPos({ top: rect.bottom + 8, left: rect.left })
+      } else {
+        // 버튼이 오른쪽(LTR) — 드롭다운을 오른쪽 정렬
+        setDropdownPos({ top: rect.bottom + 8, right: window.innerWidth - rect.right })
+      }
     }
     setShowLang(s => !s)
   }
@@ -47,7 +53,7 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-      {/* Brand — white on blue, same as kmedispring.com */}
+      {/* Brand */}
       <button
         onClick={goHome}
         style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
@@ -58,25 +64,37 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* Consult button */}
+        {/* Consult button — /ar 페이지에서는 K-Medi Korea 텍스트 로고로 교체 */}
         {page === 'home' && (
-          <button
-            onClick={scrollToContact}
-            style={{
-              background: 'rgba(255,255,255,0.18)',
-              border: '1px solid rgba(255,255,255,0.4)',
-              borderRadius: 10,
-              color: '#ffffff',
-              fontSize: 11,
-              fontWeight: 600,
-              padding: '5px 12px',
-              cursor: 'pointer',
-              letterSpacing: '0.04em',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {t.navConsult}
-          </button>
+          isArPage ? (
+            <span style={{
+              color: 'rgba(255,255,255,0.92)',
+              fontSize: 13,
+              fontWeight: 700,
+              letterSpacing: '0.06em',
+              fontFamily: 'inherit',
+            }}>
+              K-Medi Korea
+            </span>
+          ) : (
+            <button
+              onClick={scrollToContact}
+              style={{
+                background: 'rgba(255,255,255,0.18)',
+                border: '1px solid rgba(255,255,255,0.4)',
+                borderRadius: 10,
+                color: '#ffffff',
+                fontSize: 11,
+                fontWeight: 600,
+                padding: '5px 12px',
+                cursor: 'pointer',
+                letterSpacing: '0.04em',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {t.navConsult}
+            </button>
+          )
         )}
 
         {/* Language picker */}
@@ -114,7 +132,9 @@ export default function NavBar() {
                 style={{
                   position: 'fixed',
                   top: dropdownPos.top,
-                  right: dropdownPos.right,
+                  ...(dropdownPos.left !== undefined
+                    ? { left: dropdownPos.left }
+                    : { right: dropdownPos.right }),
                   background: '#1f4e79',
                   border: '1px solid rgba(255,255,255,0.15)',
                   borderRadius: 14,
