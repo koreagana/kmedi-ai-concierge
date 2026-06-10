@@ -332,8 +332,8 @@ export const translations: Record<LangCode, Translations> = {
     blockAfterConsult: 'What You\'ll Know After',
   },
   ar: {
-    brandName: 'كيمديسبرينج',
-    brandSub: 'صالة طبية AI كونسيرج',
+    brandName: 'كونسيرج كوريا الطبي',
+    brandSub: 'ربيع نهر هان',
     heroTagline: 'بوابتك الشخصية للرعاية الصحية الكورية',
     heroDesc: 'نرتب احتياجاتك ونوصلك بخدمات الاستشارة الطبية الكورية المناسبة',
     heroCta1: 'استعرض الخدمات',
