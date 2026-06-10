@@ -10,10 +10,10 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/zh" replace />} />
-        <Route path="/zh/*" element={<App initialLang="zh" />} />
-        <Route path="/en/*" element={<App initialLang="en" />} />
-        <Route path="/ko/*" element={<App initialLang="ko" />} />
-        <Route path="/ar/*" element={<ArApp />} />
+        <Route path="/zh/*" element={<App key="zh" initialLang="zh" />} />
+        <Route path="/en/*" element={<App key="en" initialLang="en" />} />
+        <Route path="/ko/*" element={<App key="ko" initialLang="ko" />} />
+        <Route path="/ar/*" element={<ArApp key="ar" />} />
         <Route path="*" element={<Navigate to="/zh" replace />} />
       </Routes>
     </BrowserRouter>
