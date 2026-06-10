@@ -4,6 +4,7 @@ import HomePage from './components/HomePage'
 import CategoryPage from './components/CategoryPage'
 import PackagePage from './components/PackagePage'
 import { AnimatePresence, motion } from 'framer-motion'
+import type { LangCode } from './data/translations'
 
 function PageRouter() {
   const { page, lang } = useApp()
@@ -47,9 +48,9 @@ function PageRouter() {
   )
 }
 
-export default function App() {
+export default function App({ initialLang = 'zh' }: { initialLang?: LangCode }) {
   return (
-    <AppProvider>
+    <AppProvider initialLang={initialLang}>
       <div className="app-shell">
         <PageRouter />
       </div>

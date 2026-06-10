@@ -1,13 +1,23 @@
 import { useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 
-const isArPage = window.location.pathname.startsWith('/ar')
+const langPaths: Record<LangCode, string> = {
+  zh: '/zh',
+  en: '/en',
+  ar: '/ar',
+  ko: '/ko',
+}
 
 export default function NavBar() {
-  const { lang, setLang, page, goHome } = useApp()
+  const { lang, page, goHome } = useApp()
   const t = translations[lang]
+  const navigate = useNavigate()
+  const location = useLocation()
+  const isArPage = location.pathname.startsWith('/ar')
+
   const [showLang, setShowLang] = useState(false)
   const [dropdownPos, setDropdownPos] = useState<{ top: number; left?: number; right?: number }>({ top: 0, right: 0 })
   const langRef = useRef<HTMLDivElement>(null)
@@ -29,10 +39,8 @@ export default function NavBar() {
       const rect = langBtnRef.current.getBoundingClientRect()
       const buttonCenterX = rect.left + rect.width / 2
       if (buttonCenterX < window.innerWidth / 2) {
-        // 버튼이 왼쪽(RTL) — 드롭다운을 왼쪽 정렬
         setDropdownPos({ top: rect.bottom + 8, left: rect.left })
       } else {
-        // 버튼이 오른쪽(LTR) — 드롭다운을 오른쪽 정렬
         setDropdownPos({ top: rect.bottom + 8, right: window.innerWidth - rect.right })
       }
     }
@@ -41,9 +49,9 @@ export default function NavBar() {
 
   const langs: { code: LangCode; label: string }[] = [
     { code: 'zh', label: '中文' },
-    { code: 'ko', label: '한국어' },
     { code: 'en', label: 'English' },
     { code: 'ar', label: 'العربية' },
+    { code: 'ko', label: '한국어' },
   ]
 
   const scrollToContact = () => {
@@ -64,7 +72,7 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* Consult button — /ar 페이지에서는 K-Medi Korea 텍스트 로고로 교체 */}
+        {/* /ar 페이지: K-Medi Korea 텍스트 로고 / 그 외: 상담 버튼 */}
         {page === 'home' && (
           isArPage ? (
             <span style={{
@@ -147,7 +155,10 @@ export default function NavBar() {
                 {langs.map(l => (
                   <button
                     key={l.code}
-                    onClick={() => { setLang(l.code); setShowLang(false) }}
+                    onClick={() => {
+                      setShowLang(false)
+                      navigate(langPaths[l.code])
+                    }}
                     style={{
                       display: 'block',
                       width: '100%',
