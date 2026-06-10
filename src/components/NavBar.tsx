@@ -75,15 +75,24 @@ export default function NavBar() {
         {/* /ar 페이지: K-Medi Korea 텍스트 로고 / 그 외: 상담 버튼 */}
         {page === 'home' && (
           isArPage ? (
-            <span style={{
-              color: 'rgba(255,255,255,0.92)',
-              fontSize: 13,
-              fontWeight: 700,
-              letterSpacing: '0.06em',
-              fontFamily: 'inherit',
-            }}>
-              K-Medi Korea
-            </span>
+            <div style={{ textAlign: 'center', lineHeight: 1.3 }}>
+              <div style={{
+                color: 'rgba(255,255,255,0.95)',
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '0.03em',
+              }}>
+                Korea Medical Concierge
+              </div>
+              <div style={{
+                color: 'rgba(255,255,255,0.7)',
+                fontSize: 9,
+                fontWeight: 400,
+                letterSpacing: '0.01em',
+              }}>
+                ربيع نهر هان
+              </div>
+            </div>
           ) : (
             <button
               onClick={scrollToContact}
