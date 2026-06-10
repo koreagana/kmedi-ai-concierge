@@ -13,10 +13,12 @@ export interface Category {
   zh: string
   ko: string
   en: string
+  ar: string
   emoji: string
   tagZh: string
   tagKo: string
   tagEn: string
+  tagAr: string
   scriptFull: string
   scriptSummary: string
 }
@@ -27,10 +29,12 @@ export const categories: Category[] = [
     zh: '大健康',
     ko: '대건강',
     en: 'Comprehensive Health',
+    ar: 'الصحة الشاملة',
     emoji: '🔬',
     tagZh: '健康管理 · 精密检查 · 功能医学',
     tagKo: '건강관리 · 정밀검진 · 기능의학',
     tagEn: 'Health Mgmt · Checkup · Functional Medicine',
+    tagAr: 'إدارة الصحة · فحص دقيق · الطب الوظيفي',
     scriptFull: `您好，欢迎来到汉江春天 AI Concierge Medical Lounge。
 
 大健康并不是只在身体出现问题之后才开始管理，而是通过生活状态、身体信号、疲劳感、代谢、免疫、睡眠和长期健康风险等方面，提前了解自己的身体状况。
@@ -50,10 +54,12 @@ export const categories: Category[] = [
     zh: '干细胞',
     ko: '줄기세포',
     en: 'Stem Cell & Regenerative',
+    ar: 'الخلايا الجذعية والتجديد',
     emoji: '🧬',
     tagZh: '再生医学 · 抗衰老 · 关节健康',
     tagKo: '재생의학 · 항노화 · 관절건강',
     tagEn: 'Regenerative · Anti-Aging · Joint Health',
+    tagAr: 'الطب التجديدي · مكافحة الشيخوخة · صحة المفاصل',
     scriptFull: `您好，这里是干细胞与再生医学相关咨询入口。
 
 干细胞相关项目在韩国通常与再生医学、抗衰老管理、关节健康、免疫状态、皮肤与组织修复等方向有关。
@@ -71,10 +77,12 @@ export const categories: Category[] = [
     zh: '皮肤医美',
     ko: '피부의료미용',
     en: 'Skin & Aesthetics',
+    ar: 'الطب التجميلي للبشرة',
     emoji: '✨',
     tagZh: '皮肤提升 · 肤质管理 · 抗衰美容',
     tagKo: '피부 리프팅 · 피부관리 · 항노화 미용',
     tagEn: 'Skin Lifting · Texture · Anti-Aging',
+    tagAr: 'رفع البشرة · إدارة البشرة · مكافحة الشيخوخة',
     scriptFull: `您好，欢迎进入皮肤医美咨询区。
 
 皮肤医美并不只是做一次项目，而是根据皮肤状态、年龄、松弛程度、色素、毛孔、痘疤、肤质和恢复时间，设计适合自己的管理方向。
@@ -91,10 +99,12 @@ export const categories: Category[] = [
     zh: '整形医美',
     ko: '성형의료미용',
     en: 'Plastic Surgery',
+    ar: 'الجراحة التجميلية',
     emoji: '🌸',
     tagZh: '面部轮廓 · 眼鼻整形 · 自然美感',
     tagKo: '얼굴 윤곽 · 눈코 성형 · 자연스러운 아름다움',
     tagEn: 'Facial Contouring · Eye & Nose · Natural Beauty',
+    tagAr: 'تشكيل الوجه · العيون والأنف · الجمال الطبيعي',
     scriptFull: `您好，这里是整形医美咨询区。
 
 整形医美咨询需要非常谨慎。
@@ -114,10 +124,12 @@ export const categories: Category[] = [
     zh: '女性护理中心',
     ko: '여성케어센터',
     en: "Women's Care Center",
+    ar: 'مركز رعاية المرأة',
     emoji: '🪷',
     tagZh: '妇科健康 · 私密护理 · 更年期管理',
     tagKo: '부인과 건강 · 프라이빗 케어 · 갱년기 관리',
     tagEn: "Gynecology · Private Care · Menopause Mgmt",
+    tagAr: 'صحة المرأة · رعاية خاصة · إدارة انقطاع الطمث',
     scriptFull: `您好，欢迎进入女性护理中心。
 
 女性健康咨询通常涉及隐私、身体变化、年龄阶段、妇科检查、生育计划、私密护理、更年期管理以及长期健康维护。
@@ -135,10 +147,12 @@ export const categories: Category[] = [
     zh: '男性健康中心',
     ko: '남성건강센터',
     en: "Men's Health Center",
+    ar: 'مركز صحة الرجل',
     emoji: '💪',
     tagZh: '体力活力 · 脱发 · 泌尿前列腺',
     tagKo: '체력 활력 · 탈모 · 비뇨기 전립선',
     tagEn: 'Vitality · Hair Loss · Urology & Prostate',
+    tagAr: 'الحيوية والطاقة · تساقط الشعر · المسالك البولية',
     scriptFull: `您好，这里是男性健康中心咨询区。
 
 男性健康管理不仅包括疾病检查，也包括体力、精力、睡眠、代谢、脱发、前列腺、泌尿健康和年龄相关状态变化。
@@ -156,10 +170,12 @@ export const categories: Category[] = [
     zh: '汉江春天 医疗旅游精品',
     ko: '한강애봄 의료관광 프리미엄',
     en: 'Premium Medical Tourism',
+    ar: 'السياحة الطبية المميزة',
     emoji: '✈️',
     tagZh: '预约协助 · 翻译陪同 · 行程安排',
     tagKo: '예약 지원 · 통역 동행 · 일정 조율',
     tagEn: 'Appointment · Interpreter · Itinerary',
+    tagAr: 'المواعيد · الترجمة · تخطيط الرحلة',
     scriptFull: `您好，欢迎了解汉江春天医疗旅游精品服务。
 
 来韩国接受医疗咨询或管理，并不只是预约一家医院。
@@ -177,10 +193,12 @@ export const categories: Category[] = [
     zh: '定制医疗观光方案',
     ko: '맞춤형 의료관광 플랜',
     en: 'Custom Medical Travel Plan',
+    ar: 'خطة سياحة طبية مخصصة',
     emoji: '🗺️',
     tagZh: '个性化方案 · 需求整理 · 全程协调',
     tagKo: '맞춤 플랜 · 니즈 정리 · 전체 조율',
     tagEn: 'Personalized Plan · Needs Assessment · Full Coordination',
+    tagAr: 'خطة مخصصة · تقييم الاحتياجات · تنسيق كامل',
     scriptFull: `您好，这里是定制医疗观光方案入口。
 
 如果您还不确定应该选择哪个项目，可以先从自己的需求开始。

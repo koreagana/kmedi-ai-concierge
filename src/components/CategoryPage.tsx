@@ -35,8 +35,8 @@ export default function CategoryPage() {
     )
   }
 
-  const catName = lang === 'ko' ? cat.ko : lang === 'en' ? cat.en : cat.zh
-  const catTag  = lang === 'ko' ? cat.tagKo : lang === 'en' ? cat.tagEn : cat.tagZh
+  const catName = lang === 'ko' ? cat.ko : lang === 'en' ? cat.en : lang === 'ar' ? cat.ar : cat.zh
+  const catTag  = lang === 'ko' ? cat.tagKo : lang === 'en' ? cat.tagEn : lang === 'ar' ? cat.tagAr : cat.tagZh
 
   const concernObj = getConcernById(concernId ?? '')
   const concernLocal = concernObj ? concernObj[lang] : null

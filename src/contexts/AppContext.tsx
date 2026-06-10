@@ -32,8 +32,8 @@ interface AppState {
 
 const AppContext = createContext<AppState>({} as AppState)
 
-export function AppProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<LangCode>('zh')
+export function AppProvider({ children, initialLang = 'zh' }: { children: ReactNode; initialLang?: LangCode }) {
+  const [lang, setLang] = useState<LangCode>(initialLang)
   const [page, setPage] = useState<PageView>('home')
   const [categoryId, setCategoryId] = useState<CategoryId | null>(null)
   const [concernId, setConcernId] = useState<string | null>(null)

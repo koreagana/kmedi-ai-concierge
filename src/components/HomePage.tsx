@@ -56,7 +56,7 @@ const fadeUp = {
 /* ═══════════════════════════════════════════════════════════════════
    1. HERO
    ═══════════════════════════════════════════════════════════════════ */
-function HeroSection() {
+export function HeroSection() {
   const { lang } = useApp()
   const t = translations[lang]
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -376,7 +376,7 @@ function ConciergeSection() {
 /* ═══════════════════════════════════════════════════════════════════
    3. CONCERN SELECTION
    ═══════════════════════════════════════════════════════════════════ */
-function ConcernSection() {
+export function ConcernSection() {
   const { lang, goToCategory } = useApp()
   const t = translations[lang]
 
@@ -430,12 +430,14 @@ export function CategoryGridSection() {
   const getTag = (c: typeof categories[0]) => {
     if (lang === 'ko') return c.tagKo
     if (lang === 'en') return c.tagEn
+    if (lang === 'ar') return c.tagAr
     return c.tagZh
   }
 
   const getName = (c: typeof categories[0]) => {
     if (lang === 'ko') return c.ko
     if (lang === 'en') return c.en
+    if (lang === 'ar') return c.ar
     return c.zh
   }
 
@@ -590,6 +592,7 @@ export function ContactSection() {
                   <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.7 }}>
                     {lang === 'zh' ? '扫描上方二维码，添加咨询。\n我们会在工作时间内尽快回复您。' :
                      lang === 'ko' ? '위의 QR 코드를 스캔하여 상담을 추가하세요.\n업무 시간 내에 최대한 빠르게 답변 드리겠습니다.' :
+                     lang === 'ar' ? 'امسح رمز QR أعلاه لبدء الاستشارة.\nسنرد خلال ساعات العمل.' :
                      'Scan the QR code above to start consultation.\nWe will respond within business hours.'}
                   </p>
 
@@ -637,11 +640,12 @@ export function ContactSection() {
                     <div style={{ textAlign: 'center', padding: '20px 0' }}>
                       <span style={{ fontSize: 48 }}>✅</span>
                       <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--text)', marginTop: 12 }}>
-                        {lang === 'zh' ? '留言已提交' : lang === 'ko' ? '문의가 접수되었습니다' : 'Message submitted'}
+                        {lang === 'zh' ? '留言已提交' : lang === 'ko' ? '문의가 접수되었습니다' : lang === 'ar' ? 'تم إرسال الرسالة' : 'Message submitted'}
                       </p>
                       <p style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 8, lineHeight: 1.7 }}>
                         {lang === 'zh' ? '我们会尽快与您联系。感谢您的咨询。' :
                          lang === 'ko' ? '빠른 시일 내에 연락 드리겠습니다. 감사합니다.' :
+                         lang === 'ar' ? 'سنتواصل معك في أقرب وقت. شكراً لاستشارتك.' :
                          'We will contact you shortly. Thank you.'}
                       </p>
                       <button
@@ -802,7 +806,7 @@ export function MedicalNetworkSection() {
                 display: 'inline-block',
                 alignSelf: 'flex-start',
               }}>
-                查看详情 ›
+                {lang === 'ko' ? '자세히 보기 ›' : lang === 'en' ? 'View Details ›' : lang === 'ar' ? 'عرض التفاصيل ›' : '查看详情 ›'}
               </span>
             )}
           </motion.div>
@@ -863,7 +867,7 @@ export function FooterSection() {
         }}
       >
         <p style={{ fontSize: 10, color: 'rgba(196,154,60,0.7)', marginBottom: 8, letterSpacing: '0.08em' }}>
-          {lang === 'zh' ? '⚠ 温馨提示' : lang === 'ko' ? '⚠ 안내' : '⚠ Notice'}
+          {lang === 'zh' ? '⚠ 温馨提示' : lang === 'ko' ? '⚠ 안내' : lang === 'ar' ? '⚠ تنبيه' : '⚠ Notice'}
         </p>
         <p className="disclaimer-text">{t.disclaimer}</p>
       </motion.div>
@@ -873,7 +877,7 @@ export function FooterSection() {
 
       {/* Copyright */}
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
-        © 2025 {lang === 'en' ? 'K-MediSpring' : '汉江春天'} · kmedispring.com
+        © 2025 {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · kmedispring.com
       </p>
     </section>
   )
