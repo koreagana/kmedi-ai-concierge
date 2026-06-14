@@ -67,8 +67,8 @@ const ZH: PackageLang = {
   includesTitle: '方案包含什么？',
   includesNote: '不含酒店及医疗费用。酒店可根据需要单独协助安排。',
   includes: ['医疗咨询与到院协助', '中文翻译沟通', '车辆与基础行程安排', '首尔核心景点 4处', '自由购物时间 2次', '医院访问 3次', '可选韩式体验'],
-  priceTitle: '参考价格（基础行程）',
-  priceNote: '含车辆、医院陪同、景点安排及基础行程陪同。\n不含医疗费、选诊费、个人购物及机票（均另计）。\n最终价格因人数、行程安排、选诊项目及汇率不同而有所差异。',
+  priceTitle: '参考价格（3晚4天基础行程）',
+  priceNote: '费用包含车辆、医院陪同、景点安排及基础行程陪同。\n不包含医疗费用、选诊项目、个人购物及机票等。\n最终价格可能根据人数、行程安排、选诊项目及汇率有所调整。',
   prices: [
     { group: '1 人', price: '12,000', unit: '元 / 人' },
     { group: '2 人', price: '10,000 ~ 10,500', unit: '元 / 人' },
@@ -119,7 +119,7 @@ const KO: PackageLang = {
   includesTitle: '패키지에 포함된 것은?',
   includesNote: '호텔 및 의료비 미포함. 호텔은 필요 시 별도 안내 가능.',
   includes: ['의료상담 및 병원 동행', '한국어·중국어 통역 소통', '차량 및 기본 일정 안내', '서울 핵심 관광지 4곳', '자유 쇼핑 시간 2회', '병원 방문 3회', '선택 한국 체험'],
-  priceTitle: '예상 참고 가격',
+  priceTitle: '3박 4일 기본 일정 참고 가격',
   priceNote: '비용에는 차량, 병원 동행, 관광지 안내, 기본 일정 동행이 포함됩니다.\n병원비, 선택 진료비, 개인 쇼핑비, 항공권은 별도입니다.\n최종 금액은 인원수, 일정, 선택 진료 항목, 환율에 따라 달라질 수 있습니다.',
   prices: [
     { group: '1인', price: 'USD 1,800', unit: '/ 인' },
@@ -171,8 +171,8 @@ const EN: PackageLang = {
   includesTitle: "What's Included?",
   includesNote: 'Hotel and medical costs not included. Hotel can be arranged separately on request.',
   includes: ['Medical consultation & hospital escort', 'Interpreter communication', 'Vehicle & basic itinerary arrangement', '4 key Seoul attractions', '2 free shopping sessions', '3 hospital visits', 'Optional Korean experience'],
-  priceTitle: 'Estimated Reference Price',
-  priceNote: 'Includes vehicle, hospital escort, attraction visits, and basic itinerary support.\nMedical fees, optional treatment costs, personal shopping, and airfare are not included.\nFinal price may vary based on group size, schedule, selected treatments, and exchange rates.',
+  priceTitle: 'Estimated Price for 3 Nights 4 Days',
+  priceNote: 'Includes vehicle service, hospital escort, attraction visits, and basic itinerary support.\nMedical fees, optional treatments, personal shopping, and airfare are not included.\nFinal price may vary depending on group size, itinerary, selected treatments, and exchange rates.',
   prices: [
     { group: '1 person', price: 'USD 1,800', unit: '/ person' },
     { group: '2 people', price: 'USD 1,500 ~ 1,550', unit: '/ person' },
@@ -223,8 +223,8 @@ const AR: PackageLang = {
   includesTitle: 'ماذا تشمل الباقة؟',
   includesNote: 'لا تشمل تكاليف الفندق والرعاية الطبية. يمكن ترتيب الفندق بشكل منفصل عند الطلب.',
   includes: ['استشارة طبية ومرافقة للمستشفى', 'تواصل مع مترجم', 'سيارة وترتيب جدول أساسي', '4 معالم رئيسية في سيول', 'جلستا تسوق حر', '3 زيارات للمستشفى', 'تجربة كورية اختيارية'],
-  priceTitle: 'الأسعار المرجعية التقديرية',
-  priceNote: 'يشمل السيارة، مرافقة المستشفى، زيارات المعالم، ودعم الجدول الأساسي.\nالرسوم الطبية وتكاليف العلاج الاختيارية والتسوق الشخصي وتذاكر الطيران غير مشمولة.\nقد يختلف السعر النهائي بحسب عدد الأشخاص والجدول والعلاجات المختارة وأسعار الصرف.',
+  priceTitle: 'السعر التقديري لبرنامج 3 ليالٍ و4 أيام',
+  priceNote: 'يشمل السعر خدمة السيارة، والمرافقة إلى المستشفى، وزيارات المعالم السياحية، والدعم الأساسي للبرنامج.\nلا يشمل السعر الرسوم الطبية، والعلاجات الاختيارية، والتسوق الشخصي، وتذاكر الطيران.\nقد يختلف السعر النهائي حسب عدد الأشخاص، والبرنامج، والعلاجات المختارة، وسعر الصرف.',
   prices: [
     { group: '1 شخص', price: 'USD 1,800', unit: '/ شخص' },
     { group: '2 أشخاص', price: 'USD 1,500 ~ 1,550', unit: '/ شخص' },
