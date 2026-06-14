@@ -674,14 +674,25 @@ export function MedicalNetworkSection() {
   const { lang, goToPackage } = useApp()
   const t = translations[lang]
 
-  const pulseStyle = `
-    @keyframes badge-pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.65); }
-      70%  { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+  useEffect(() => {
+    const style = document.createElement('style')
+    style.id = 'badge-pulse-style'
+    style.textContent = `
+      @keyframes badge-pulse {
+        0%   { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.65); }
+        70%  { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+      }
+      .badge-pulse { animation: badge-pulse 1.8s ease-out infinite; }
+    `
+    if (!document.getElementById('badge-pulse-style')) {
+      document.head.appendChild(style)
     }
-    .badge-pulse { animation: badge-pulse 1.8s ease-out infinite; }
-  `
+    return () => {
+      const existing = document.getElementById('badge-pulse-style')
+      if (existing) existing.remove()
+    }
+  }, [])
 
   const cards = [
     {
@@ -740,7 +751,6 @@ export function MedicalNetworkSection() {
 
   return (
     <section id="network" className="section-white" style={{ paddingTop: 28 }}>
-      <style>{pulseStyle}</style>
       <motion.div {...fadeUp} style={{ marginBottom: 24 }}>
         <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.18em', marginBottom: 6 }}>
           {t.networkTitle}
