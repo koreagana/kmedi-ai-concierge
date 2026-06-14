@@ -674,6 +674,15 @@ export function MedicalNetworkSection() {
   const { lang, goToPackage } = useApp()
   const t = translations[lang]
 
+  const pulseStyle = `
+    @keyframes badge-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.65); }
+      70%  { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+    }
+    .badge-pulse { animation: badge-pulse 1.8s ease-out infinite; }
+  `
+
   const cards = [
     {
       icon: (
@@ -731,6 +740,7 @@ export function MedicalNetworkSection() {
 
   return (
     <section id="network" className="section-white" style={{ paddingTop: 28 }}>
+      <style>{pulseStyle}</style>
       <motion.div {...fadeUp} style={{ marginBottom: 24 }}>
         <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.18em', marginBottom: 6 }}>
           {t.networkTitle}
