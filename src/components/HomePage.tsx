@@ -795,7 +795,7 @@ export function MedicalNetworkSection() {
               </span>
             )}
             {card.badgeType === 'link' && (
-              <span style={{
+              <span className="badge-pulse" style={{
                 fontSize: 10,
                 color: 'var(--brand)',
                 background: 'rgba(0,119,182,0.07)',

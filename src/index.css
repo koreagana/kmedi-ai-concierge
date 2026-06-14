@@ -939,3 +939,15 @@ body {
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-thumb { background: rgba(0,136,238,0.25); border-radius: 2px; }
+
+/* ══════════════════════════════════════════
+   PULSE ANIMATION — View Details 버튼
+   ══════════════════════════════════════════ */
+@keyframes badge-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.6); }
+  70%  { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+}
+.badge-pulse {
+  animation: badge-pulse 1.8s infinite;
+}
