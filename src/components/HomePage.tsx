@@ -679,11 +679,11 @@ export function MedicalNetworkSection() {
     style.id = 'badge-pulse-style'
     style.textContent = `
       @keyframes badge-pulse {
-        0%   { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.65); }
-        70%  { box-shadow: 0 0 0 10px rgba(0, 180, 216, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+        0%   { box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.9); background: rgba(0,119,182,0.18); border-color: rgba(0,119,182,0.7); }
+        60%  { box-shadow: 0 0 0 10px rgba(0, 119, 182, 0); background: rgba(0,119,182,0.05); border-color: rgba(0,119,182,0.22); }
+        100% { box-shadow: 0 0 0 0  rgba(0, 119, 182, 0); background: rgba(0,119,182,0.07); border-color: rgba(0,119,182,0.22); }
       }
-      .badge-pulse { animation: badge-pulse 1.8s ease-out infinite; }
+      .badge-pulse { animation: badge-pulse 2s ease-out infinite; }
     `
     if (!document.getElementById('badge-pulse-style')) {
       document.head.appendChild(style)
