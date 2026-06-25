@@ -1,0 +1,103 @@
+.halal-cta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border: 1px solid #6e4e0d;
+  border-radius: 14px;
+  cursor: pointer;
+  font-family: 'Noto Sans Arabic', 'Noto Sans KR', sans-serif;
+  background-image:
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.1) 0px, rgba(255, 255, 255, 0.1) 2px, transparent 2px, transparent 6px),
+    linear-gradient(135deg, #8a6512 0%, #d4af37 25%, #f5dd8e 50%, #d4af37 75%, #8a6512 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25),
+    0 2px 6px rgba(138, 101, 18, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.halal-cta:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25),
+    0 4px 10px rgba(138, 101, 18, 0.45);
+}
+
+.halal-cta:active {
+  transform: translateY(0);
+}
+
+.halal-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  animation: halal-cta-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes halal-cta-shine {
+  0% {
+    left: -60%;
+  }
+  45% {
+    left: 130%;
+  }
+  100% {
+    left: 130%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .halal-cta::before {
+    animation: none;
+  }
+}
+
+.halal-cta__text {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  position: relative;
+  z-index: 1;
+}
+
+.halal-cta__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #3b2a06;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.halal-cta__subtitle {
+  font-size: 12px;
+  color: #5b430d;
+  margin-top: 2px;
+}
+
+.halal-cta__icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a6512;
+  background: radial-gradient(circle at 30% 30%, #fff7e0, #f0d98c 60%, #c9a227 100%);
+  box-shadow:
+    inset 0 -2px 3px rgba(0, 0, 0, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}

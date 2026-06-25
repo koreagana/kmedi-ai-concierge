@@ -37,6 +37,7 @@ export default function CategoryPage() {
 
   const catName = lang === 'ko' ? cat.ko : lang === 'en' ? cat.en : lang === 'ar' ? cat.ar : cat.zh
   const catTag  = lang === 'ko' ? cat.tagKo : lang === 'en' ? cat.tagEn : lang === 'ar' ? cat.tagAr : cat.tagZh
+  const catScriptFull = lang === 'ko' ? cat.scriptFullKo : lang === 'en' ? cat.scriptFullEn : lang === 'ar' ? cat.scriptFullAr : cat.scriptFullZh
 
   const concernObj = getConcernById(concernId ?? '')
   const concernLocal = concernObj ? concernObj[lang] : null
@@ -69,33 +70,31 @@ export default function CategoryPage() {
         )}
       </div>
 
-      {/* ── Description (concern body, blue left border, no title) ── */}
-      {concernLocal && (
-        <div className="section-white" style={{ paddingTop: 28, paddingBottom: 28 }}>
-          <motion.div
-            {...fadeUp}
-            style={{
-              borderLeft: '3px solid var(--brand)',
-              paddingLeft: 16,
-            }}
-          >
-            {concernLocal.desc.split('\n\n').map((para, i, arr) => (
-              <p
-                key={i}
-                style={{
-                  fontSize: 13,
-                  color: 'var(--text)',
-                  lineHeight: 1.9,
-                  marginBottom: i < arr.length - 1 ? 14 : 0,
-                  whiteSpace: 'pre-line',
-                }}
-              >
-                {para}
-              </p>
-            ))}
-          </motion.div>
-        </div>
-      )}
+      {/* ── Description (concern body, or category scriptFull, blue left border, no title) ── */}
+      <div className="section-white" style={{ paddingTop: 28, paddingBottom: 28 }}>
+        <motion.div
+          {...fadeUp}
+          style={{
+            borderLeft: '3px solid var(--brand)',
+            paddingLeft: 16,
+          }}
+        >
+          {(concernLocal ? concernLocal.desc : catScriptFull).split('\n\n').map((para, i, arr) => (
+            <p
+              key={i}
+              style={{
+                fontSize: 13,
+                color: 'var(--text)',
+                lineHeight: 1.9,
+                marginBottom: i < arr.length - 1 ? 14 : 0,
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {para}
+            </p>
+          ))}
+        </motion.div>
+      </div>
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (

@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "name": "Itaewon Halal Restaurant",
+    "nameAr": "مطعم إيتاوون الحلال",
+    "lat": 37.5348,
+    "lng": 126.9942,
+    "address": "Itaewon-ro, Yongsan-gu, Seoul",
+    "cuisine": "Arabic / Turkish"
+  },
+  {
+    "id": 2,
+    "name": "Madinah Restaurant",
+    "nameAr": "مطعم المدينة",
+    "lat": 37.5341,
+    "lng": 126.9955,
+    "address": "Itaewon-dong, Yongsan-gu, Seoul",
+    "cuisine": "Middle Eastern"
+  },
+  {
+    "id": 3,
+    "name": "Al-Medina Halal",
+    "nameAr": "الحلال المدينة",
+    "lat": 37.5352,
+    "lng": 126.9930,
+    "address": "Noksapyeong-daero, Yongsan-gu, Seoul",
+    "cuisine": "Lebanese"
+  },
+  {
+    "id": 4,
+    "name": "Gangnam Halal Grill",
+    "nameAr": "شواية غانغنام الحلال",
+    "lat": 37.4979,
+    "lng": 127.0276,
+    "address": "Teheran-ro, Gangnam-gu, Seoul",
+    "cuisine": "Korean Halal"
+  },
+  {
+    "id": 5,
+    "name": "Islamic Center Cafeteria",
+    "nameAr": "مطعم المركز الإسلامي",
+    "lat": 37.5347,
+    "lng": 126.9938,
+    "address": "Usadan-ro, Yongsan-gu, Seoul",
+    "cuisine": "Various"
+  },
+  {
+    "id": 6,
+    "name": "Hongdae Halal Kitchen",
+    "nameAr": "مطبخ هونغدي الحلال",
+    "lat": 37.5573,
+    "lng": 126.9236,
+    "address": "Wausan-ro, Mapo-gu, Seoul",
+    "cuisine": "Korean Fusion Halal"
+  },
+  {
+    "id": 7,
+    "name": "Insadong Halal Bistro",
+    "nameAr": "بيسترو إنسادونغ الحلال",
+    "lat": 37.5741,
+    "lng": 126.9865,
+    "address": "Insadong-gil, Jongno-gu, Seoul",
+    "cuisine": "International Halal"
+  }
+]

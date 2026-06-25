@@ -5,137 +5,287 @@ import { useApp } from '../contexts/AppContext'
 const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
 const WHATSAPP_URL = 'https://wa.me/821077671903'
 
-/* ─── i18n data ────────────────────────────────────────────── */
+/* ─── i18n data (category-context card) ───────────────────────── */
 
 interface Q { label: string; q: string; opts: string[] }
 
 const QUESTIONS_ZH: Q[] = [
-  { label: '最想改善', q: '您最想改善的第一感觉是什么？', opts: ['看起来没精神', '脸看起来松了', '皮肤变粗糙了', '脸型不够清晰', '拍照不上镜', '想自然变年轻一点'] },
-  { label: '最在意部位', q: '您最在意的部位是哪里？', opts: ['下颌线/双下巴', '法令纹/嘴角下垂', '眼周/眼袋/黑眼圈', '毛孔/痘印/痘疤', '色斑/暗沉/肤色不均', '脸部凹陷/苹果肌流失', '整体轮廓/侧脸线条'] },
-  { label: '期望效果', q: '您希望效果是什么感觉？', opts: ['自然一点，不想被看出来', '明显变年轻，但不要夸张', '拍照更好看', '脸更紧致、更小一点', '皮肤更干净、更亮', '疲惫感少一点'] },
-  { label: '可接受恢复期', q: '您能接受的恢复期是？', opts: ['几乎不想有恢复期', '1-3天可以接受', '4-7天可以接受', '可以接受较长恢复期，但想效果更明显', '还不确定，想先咨询'] },
-  { label: '最担心', q: '您最担心什么？', opts: ['怕不自然', '怕疼', '怕恢复期影响工作', '怕价格太高', '怕选错项目', '怕沟通不清楚', '怕去了韩国不知道怎么安排'] },
-  { label: '计划来韩', q: '您计划什么时候来韩国？', opts: ['1个月内', '3个月内', '半年内', '还没确定', '先了解方案'] },
-  { label: '希望先做', q: '您希望我们先帮您做什么？', opts: ['先判断我适合哪个方向', '先整理大致预算', '先告诉我恢复期和行程安排', '先推荐适合的韩国咨询方向', '先帮我安排顾问沟通'] },
+  { label: '最关心的方向', q: '您这次最关心的方向是什么？', opts: ['看起来更年轻、更有精神', '从身体内部延缓衰老速度', '了解再生医学或关节恢复', '改善脸部线条和下颌线', '整形医美专业咨询', '改善疲惫感、暗沉和没精神', '韩国体检或功能医学', '医院、翻译和韩国行程安排'] },
+  { label: '具体困扰', q: '您目前最想先解决的具体问题是？', opts: ['皮肤松弛或下垂', '睡眠、疲劳、代谢变慢', '关节、恢复或再生医学咨询', '下颌线、双下巴或脸型不清晰', '眼部、鼻部或轮廓整形', '眼周、黑眼圈、肤色暗沉', '想系统了解身体状态', '不知道如何预约和安排行程'] },
+  { label: '希望先获得的结果', q: '您希望通过这次咨询先获得什么？', opts: ['先判断适合哪个方向', '了解可咨询的韩国医疗项目范围', '知道需要准备哪些检查或资料', '了解恢复期和停留时间', '获得初步行程和预约方向', '和中文顾问一对一沟通'] },
+  { label: '恢复期或停留时间', q: '您能接受的恢复期或韩国停留时间是？', opts: ['几乎不想有恢复期', '1-3天可以接受', '4-7天可以接受', '可以接受更长恢复期', '计划停留3晚4天左右', '还不确定，想先咨询'] },
+  { label: '最担心的问题', q: '您现在最担心什么？', opts: ['怕选错项目', '怕不自然或恢复期太长', '怕医疗信息看不懂', '怕沟通不清楚', '怕费用超出预期', '怕韩国行程安排不好', '担心是否合法合规'] },
+  { label: '计划来韩国时间', q: '您计划什么时候来韩国？', opts: ['1个月内', '3个月内', '半年内', '今年内', '还没确定', '先线上了解'] },
+  { label: '希望先获得的帮助', q: '您希望汉江春天先帮您做什么？', opts: ['先整理适合我的咨询方向', '先整理需要准备的问题和资料', '先说明韩国咨询流程', '先说明大致停留和恢复安排', '先连接中文顾问沟通', '先了解预约是否可行'] },
 ]
 
 const QUESTIONS_KO: Q[] = [
-  { label: '가장 개선하고 싶은 것', q: '가장 먼저 개선하고 싶은 것은?', opts: ['지쳐 보인다', '얼굴이 처져 보인다', '피부가 거칠어졌다', '얼굴 라인이 흐릿하다', '사진이 잘 안 나온다', '자연스럽게 젊어지고 싶다'] },
-  { label: '가장 신경 쓰이는 부위', q: '가장 신경 쓰이는 부위는?', opts: ['턱선/이중턱', '팔자주름/입꼬리 처짐', '눈 주위/눈 밑/다크서클', '모공/트러블 자국', '색소/칙칙함/피부톤 불균형', '얼굴 함몰/볼 볼륨 감소', '전체 윤곽/옆 라인'] },
-  { label: '원하는 효과', q: '어떤 효과를 원하시나요?', opts: ['자연스럽게, 티 안 나게', '확실히 젊어 보이게, 과하지 않게', '사진이 더 잘 나오게', '얼굴이 더 탄탄하고 작아 보이게', '피부가 더 깨끗하고 환하게', '피곤해 보이는 인상 개선'] },
-  { label: '감수할 수 있는 회복 기간', q: '감수할 수 있는 회복 기간은?', opts: ['거의 없으면 좋겠다', '1-3일은 괜찮다', '4-7일은 괜찮다', '긴 회복기도 괜찮다, 효과가 크다면', '아직 모르겠다, 먼저 상담하고 싶다'] },
-  { label: '가장 걱정되는 것', q: '가장 걱정되는 것은?', opts: ['부자연스러울까 봐', '아플까 봐', '회복 기간이 일정에 영향을 줄까 봐', '가격이 너무 비쌀까 봐', '잘못된 항목을 선택할까 봐', '소통이 잘 안 될까 봐', '한국에서 일정을 어떻게 해야 할지 몰라서'] },
-  { label: '방한 계획', q: '언제 한국에 방문할 계획인가요?', opts: ['1개월 이내', '3개월 이내', '6개월 이내', '아직 미정', '먼저 방향 파악 후 결정'] },
-  { label: '먼저 원하는 도움', q: '어떤 도움을 먼저 원하시나요?', opts: ['내게 맞는 방향 파악', '대략적인 예산 정리', '회복 기간 및 일정 안내', '적합한 한국 상담 방향 추천', '컨시어지 연결'] },
+  { label: '가장 관심 있는 방향', q: '이번에 가장 관심 있는 방향은 무엇인가요?', opts: ['좀 더 젊고 생기 있어 보이고 싶다', '몸속에서부터 노화 속도를 늦추고 싶다', '재생의학 또는 관절 회복을 알고 싶다', '얼굴 라인과 턱선을 개선하고 싶다', '성형의료미용 전문 상담', '피곤하고 칙칙하고 생기 없는 인상 개선', '한국 건강검진 또는 기능의학', '병원, 통역, 한국 일정 관리'] },
+  { label: '구체적인 고민', q: '지금 가장 먼저 해결하고 싶은 구체적인 문제는?', opts: ['피부 탄력 저하 또는 처짐', '수면, 피로, 대사 저하', '관절, 회복 또는 재생의학 상담', '턱선, 이중턱 또는 흐릿한 얼굴형', '눈, 코 또는 윤곽 성형', '눈가, 다크서클, 칙칙한 피부톤', '몸 상태를 체계적으로 알고 싶다', '예약과 일정을 어떻게 잡을지 모르겠다'] },
+  { label: '먼저 얻고 싶은 결과', q: '이번 상담을 통해 먼저 얻고 싶은 것은?', opts: ['먼저 적합한 방향을 판단하고 싶다', '상담 가능한 한국 의료 항목 범위 확인', '준비해야 할 검사나 자료 확인', '회복 기간과 체류 기간 안내', '초기 일정과 예약 방향 안내', '중국어 가능 컨시어지와 1:1 소통'] },
+  { label: '회복 기간 또는 체류 기간', q: '감수할 수 있는 회복 기간 또는 한국 체류 기간은?', opts: ['회복 기간이 거의 없으면 좋겠다', '1~3일 정도는 괜찮다', '4~7일 정도는 괜찮다', '더 긴 회복 기간도 괜찮다', '3박 4일 정도 체류 예정', '아직 모르겠다, 먼저 상담하고 싶다'] },
+  { label: '가장 걱정되는 것', q: '지금 가장 걱정되는 것은?', opts: ['항목을 잘못 고를까 봐', '부자연스럽거나 회복 기간이 길까 봐', '의료 정보를 이해하기 어려울까 봐', '소통이 잘 안 될까 봐', '비용이 예상보다 클까 봐', '한국 일정이 잘 안 짜일까 봐', '합법·합규 여부가 걱정된다'] },
+  { label: '방한 계획', q: '언제쯤 한국에 올 계획인가요?', opts: ['1개월 이내', '3개월 이내', '6개월 이내', '올해 안', '아직 미정', '먼저 온라인으로 알아보기'] },
+  { label: '먼저 원하는 도움', q: '한강애봄이 먼저 무엇을 도와드리면 좋을까요?', opts: ['나에게 맞는 상담 방향 정리', '준비할 질문과 자료 정리', '한국 상담 절차 안내', '대략적인 체류·회복 일정 안내', '중국어 가능 컨시어지 연결', '예약 가능 여부 확인'] },
 ]
 
 const QUESTIONS_EN: Q[] = [
-  { label: 'Main concern', q: 'What is the first thing you most want to improve?', opts: ['I look tired', 'My face looks saggy', 'My skin has gotten rough', 'My facial contours are unclear', "I don't photograph well", 'I want to look naturally younger'] },
-  { label: 'Target area', q: 'Which area concerns you most?', opts: ['Jawline / double chin', 'Nasolabial folds / drooping corners', 'Eye area / under-eye bags / dark circles', 'Pores / acne marks / scars', 'Pigmentation / dullness / uneven tone', 'Facial hollowing / volume loss', 'Overall contour / side profile'] },
-  { label: 'Desired result', q: 'What kind of result are you hoping for?', opts: ['Subtle — no one can tell', 'Noticeably younger, but not overdone', 'Look better in photos', 'Firmer and smaller-looking face', 'Cleaner and brighter skin', 'Less tired-looking'] },
-  { label: 'Downtime tolerance', q: 'How much downtime can you accept?', opts: ['Minimal — almost none', '1–3 days is fine', '4–7 days is fine', 'Longer is OK if results are stronger', "Not sure yet — I'd like to consult first"] },
-  { label: 'Biggest worry', q: 'What are you most worried about?', opts: ['Looking unnatural', 'Pain', 'Downtime affecting my schedule', 'Cost being too high', 'Choosing the wrong treatment', 'Communication barriers', "Not knowing how to plan my Korea trip"] },
-  { label: 'Visit timing', q: 'When are you thinking of visiting Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Not decided yet', 'Just exploring options for now'] },
-  { label: 'First step', q: 'What would you like us to help with first?', opts: ['Find the right direction for me', 'Give me a rough budget estimate', 'Explain downtime & itinerary', 'Recommend Korean consultation options', 'Connect me with a concierge'] },
+  { label: 'Main direction', q: 'What direction are you most interested in this time?', opts: ['Look younger and more refreshed', 'Slow aging from the inside', 'Learn about regenerative medicine or joint recovery', 'Improve facial line and jawline', 'Professional plastic surgery consultation', 'Improve a tired, dull, low-energy look', 'Korean health checkup or functional medicine', 'Hospital, interpretation, and Korea itinerary'] },
+  { label: 'Specific concern', q: 'What specific issue do you want to address first?', opts: ['Skin sagging or laxity', 'Sleep, fatigue, slowing metabolism', 'Joint, recovery, or regenerative medicine consultation', 'Jawline, double chin, or unclear face shape', 'Eyes, nose, or contour surgery', 'Eye area, dark circles, dull skin tone', 'Want a systematic understanding of my body', 'Not sure how to book or plan the itinerary'] },
+  { label: 'What I want to clarify first', q: 'What would you like to get out of this consultation first?', opts: ['Find the right direction for me first', 'Understand the scope of Korean services I can consult', 'Know what tests or documents to prepare', 'Understand downtime and stay duration', 'Get an initial itinerary and booking direction', 'Speak one-on-one with a Chinese-speaking concierge'] },
+  { label: 'Downtime or stay duration', q: 'How much downtime or Korea stay duration can you accept?', opts: ['Almost no downtime preferred', '1–3 days is fine', '4–7 days is fine', 'Longer downtime is fine', 'Planning to stay around 3 nights, 4 days', 'Not sure yet — want to consult first'] },
+  { label: 'Biggest worry', q: 'What are you most worried about right now?', opts: ['Choosing the wrong service', 'Looking unnatural or downtime too long', 'Not understanding medical information', 'Communication issues', 'Costs exceeding expectations', 'Korea itinerary not well arranged', 'Concerned about legal compliance'] },
+  { label: 'Korea visit timing', q: 'When are you planning to visit Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided yet', 'Just exploring online for now'] },
+  { label: 'Preferred first support', q: 'What would you like Hangangaeborn to help you with first?', opts: ['Sort out the right consultation direction for me', 'Organize the questions and materials to prepare', 'Explain the Korean consultation process', 'Explain rough stay and recovery planning', 'Connect me with a Chinese-speaking concierge', 'Check whether booking is feasible'] },
 ]
 
 const QUESTIONS_AR: Q[] = [
-  { label: 'أهم ما تريد تحسينه', q: 'ما أول شيء تريد تحسينه في مظهرك؟', opts: ['أبدو متعباً', 'وجهي يبدو مترهلاً', 'بشرتي أصبحت خشنة', 'ملامح وجهي غير واضحة', 'لا أبدو جيداً في الصور', 'أريد أن أبدو أصغر سناً بشكل طبيعي'] },
-  { label: 'المنطقة المستهدفة', q: 'أي منطقة تقلقك أكثر؟', opts: ['خط الفك / الذقن المزدوجة', 'تجاعيد الوجه / ترهل زوايا الفم', 'منطقة العين / الانتفاخ / الهالات', 'المسام / آثار حب الشباب', 'التصبغات / الإرهاق / عدم انتظام لون البشرة', 'تجويف الوجه / فقدان الحجم', 'الملامح العامة / الخط الجانبي'] },
-  { label: 'النتيجة المطلوبة', q: 'ما نوع النتيجة التي تأملها؟', opts: ['تغيير خفي — لا يلاحظه أحد', 'أبدو أصغر بوضوح لكن بشكل طبيعي', 'أبدو أفضل في الصور', 'وجه أكثر إحكاماً وأصغر مظهراً', 'بشرة أنظف وأكثر إشراقاً', 'مظهر أقل إرهاقاً'] },
-  { label: 'تحمل فترة التعافي', q: 'كم من الوقت يمكنك تخصيصه للتعافي؟', opts: ['الحد الأدنى — لا أريد أي فترة تعافي تقريباً', '1-3 أيام مقبول', '4-7 أيام مقبول', 'فترة أطول مقبولة إذا كانت النتائج أفضل', 'لست متأكداً بعد — أريد الاستشارة أولاً'] },
-  { label: 'أكبر قلق', q: 'ما الذي يقلقك أكثر؟', opts: ['الظهور بمظهر غير طبيعي', 'الألم', 'تأثير فترة التعافي على جدولي', 'ارتفاع التكلفة', 'اختيار العلاج الخاطئ', 'حاجز اللغة', 'عدم معرفة كيفية التخطيط لرحلة كوريا'] },
-  { label: 'موعد الزيارة', q: 'متى تفكر في زيارة كوريا؟', opts: ['خلال شهر', 'خلال 3 أشهر', 'خلال 6 أشهر', 'لم أقرر بعد', 'أستكشف الخيارات الآن فقط'] },
-  { label: 'أول خطوة', q: 'بماذا تريدنا أن نساعدك أولاً؟', opts: ['تحديد الاتجاه المناسب لي', 'تقديم تقدير تقريبي للميزانية', 'شرح فترة التعافي والجدول الزمني', 'التوصية بخيارات استشارة كورية', 'التواصل مع كونسيرج'] },
+  { label: 'الاتجاه الرئيسي', q: 'ما الاتجاه الذي يهمك أكثر هذه المرة؟', opts: ['أبدو أصغر سناً وأكثر حيوية', 'إبطاء الشيخوخة من الداخل', 'معرفة الطب التجديدي أو تعافي المفاصل', 'تحسين خط الوجه والفك', 'استشارة جراحة تجميلية متخصصة', 'تحسين مظهر التعب والشحوب وانخفاض الحيوية', 'فحص صحي كوري أو طب وظيفي', 'المستشفى والترجمة وجدول رحلتي لكوريا'] },
+  { label: 'القلق المحدد', q: 'ما المشكلة المحددة التي تريد معالجتها أولاً؟', opts: ['ترهل أو تراخي البشرة', 'النوم والتعب وتباطؤ التمثيل الغذائي', 'استشارة المفاصل أو التعافي أو الطب التجديدي', 'خط الفك أو الذقن المزدوجة أو شكل الوجه غير الواضح', 'جراحة العيون أو الأنف أو الملامح', 'منطقة العين والهالات وشحوب البشرة', 'أريد فهماً منهجياً لحالة جسمي', 'لا أعرف كيف أحجز أو أخطط للبرنامج'] },
+  { label: 'ما أريد توضيحه أولاً', q: 'ما الذي تريد الحصول عليه من هذه الاستشارة أولاً؟', opts: ['تحديد الاتجاه المناسب لي أولاً', 'فهم نطاق الخدمات الكورية التي يمكن استشارتها', 'معرفة الفحوصات أو المستندات المطلوبة', 'فهم فترة التعافي ومدة الإقامة', 'الحصول على برنامج وحجز أولي', 'التحدث مباشرة مع كونسيرج يتحدث الصينية'] },
+  { label: 'فترة التعافي أو مدة الإقامة', q: 'كم فترة تعافي أو إقامة في كوريا يمكنك قبولها؟', opts: ['أفضّل عدم وجود فترة تعافي تقريباً', '1-3 أيام مقبول', '4-7 أيام مقبول', 'فترة تعافي أطول مقبولة', 'أخطط للإقامة حوالي 3 ليالٍ و4 أيام', 'لست متأكداً بعد، أريد الاستشارة أولاً'] },
+  { label: 'أكبر قلق', q: 'ما الذي يقلقك أكثر الآن؟', opts: ['اختيار الخدمة الخاطئة', 'الظهور بمظهر غير طبيعي أو فترة تعافي طويلة', 'عدم فهم المعلومات الطبية', 'مشاكل التواصل', 'تجاوز التكلفة المتوقعة', 'عدم تنظيم جدول رحلتي لكوريا بشكل جيد', 'القلق بشأن الامتثال القانوني'] },
+  { label: 'موعد زيارة كوريا', q: 'متى تخطط لزيارة كوريا؟', opts: ['خلال شهر واحد', 'خلال 3 أشهر', 'خلال 6 أشهر', 'في وقت ما من هذا العام', 'لم أقرر بعد', 'أستكشف عبر الإنترنت فقط الآن'] },
+  { label: 'الدعم المفضل أولاً', q: 'ماذا تريد من Hangangaeborn أن يساعدك به أولاً؟', opts: ['تحديد اتجاه الاستشارة المناسب لي', 'تنظيم الأسئلة والمستندات التي يجب تحضيرها', 'شرح إجراءات الاستشارة الكورية', 'شرح خطة الإقامة والتعافي التقريبية', 'ربطي بكونسيرج يتحدث الصينية', 'التحقق من إمكانية الحجز'] },
 ]
 
 const COPY_LABELS: Record<string, string[]> = {
-  zh: ['我最想改善的第一感觉', '我最在意的部位', '我希望的效果', '我能接受的恢复期', '我最担心的问题', '计划来韩国时间', '希望先获得的帮助'],
-  ko: ['가장 개선하고 싶은 것', '가장 신경 쓰이는 부위', '원하는 효과', '감수할 수 있는 회복 기간', '가장 걱정되는 것', '방한 계획', '먼저 원하는 도움'],
-  en: ['Main concern', 'Target area', 'Desired result', 'Downtime tolerance', 'Biggest worry', 'Visit timing', 'First step'],
-  ar: ['أهم ما أريد تحسينه', 'المنطقة المستهدفة', 'النتيجة المطلوبة', 'تحمل فترة التعافي', 'أكبر قلق', 'موعد الزيارة', 'أول خطوة'],
+  zh: ['最关心的方向', '具体困扰', '希望先获得的结果', '恢复期或停留时间', '最担心的问题', '计划来韩国时间', '希望先获得的帮助'],
+  ko: ['가장 관심 있는 방향', '구체적인 고민', '먼저 얻고 싶은 결과', '회복 기간 또는 체류 기간', '가장 걱정되는 것', '방한 계획', '먼저 원하는 도움'],
+  en: ['Main direction', 'Specific concern', 'What I want to clarify first', 'Downtime or stay duration', 'Biggest worry', 'Korea visit timing', 'Preferred first support'],
+  ar: ['الاتجاه الرئيسي', 'القلق المحدد', 'ما أريد توضيحه أولاً', 'فترة التعافي أو مدة الإقامة', 'أكبر قلق', 'موعد زيارة كوريا', 'الدعم المفضل أولاً'],
 }
 
-const RESPONSES: Record<string, Record<string, string>> = {
+type ConsultationType =
+  | 'YOUNGER_LOOK' | 'SLOW_AGING' | 'REGEN_MEDICINE' | 'FACE_CONTOUR'
+  | 'SURGERY' | 'FATIGUE_LOOK' | 'CHECKUP' | 'TRAVEL_SUPPORT' | 'GENERAL'
+
+const END_ZH = '请点击下方按钮，通过企业微信联系顾问。'
+const END_KO = '아래 버튼을 눌러 컨시어지에게 상담 내용을 보내주세요.'
+const END_EN = 'Click the button below to connect with a concierge.'
+const END_AR = 'اضغط على الزر أدناه للتواصل مع الكونسيرج.'
+
+const RESPONSES: Record<string, Record<ConsultationType, string>> = {
   zh: {
-    A: `您好，已为您生成初步咨询方向。\n\n您比较关注自然变美、皮肤状态改善和费用控制。\n建议先从肤质管理、轻抗衰、皮肤亮泽度改善方向进行咨询。\n\n我们可以先帮您梳理：\n1. 适合您的皮肤管理方向\n2. 大致恢复期\n3. 来韩停留时间安排\n4. 合理预算范围\n\n请点击下方按钮，通过企业微信联系顾问。`,
-    B: `您好，您的变美咨询卡已生成。\n\n您主要关注脸部轮廓、下颌线、法令纹和整体年轻感。\n建议先进行轮廓提升与抗衰方向的初步咨询。\n\n请通过企业微信发送您的咨询卡，顾问会帮您进一步梳理方向。`,
-    C: `您好，已根据您的选择整理初步方向。\n\n您比较在意眼周疲惫感、黑眼圈、眼袋或整体没精神的问题。\n如果恢复期有限，建议先从非手术类改善、皮肤状态管理和眼周咨询方向开始了解。\n\n请点击下方按钮，通过企业微信联系顾问。`,
-    D: `您好，您的变美咨询卡已生成。\n\n根据您的选择，我们会先帮您梳理您最在意的外貌变化、可接受的恢复期、来韩时间与预算，以及适合进一步咨询的韩国医疗方向。\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    YOUNGER_LOOK: `您好，已为您整理初步咨询方向。\n\n您比较关注外观上的抗衰，例如皮肤弹性、肤色或轮廓下垂带来的显老感。建议先从皮肤医美、抗衰外观管理或轮廓提升方向了解，而不是直接选定某个项目。\n\n${END_ZH}`,
+    SLOW_AGING: `您好，已为您整理初步咨询方向。\n\n您更关注身体内部的衰老速度，例如睡眠、疲劳、代谢或激素变化。建议先从功能医学咨询、抗衰老检查或生活方式管理方向了解身体目前的状态。\n\n${END_ZH}`,
+    REGEN_MEDICINE: `您好，已为您整理初步咨询方向。\n\n您关注的是再生医学或关节恢复相关咨询。请注意，并非所有干细胞相关项目都可以在韩国自由进行，具体可咨询范围需由正规医疗机构和专业医生根据法规与您的状态判断。\n\n${END_ZH}`,
+    FACE_CONTOUR: `您好，已为您整理初步咨询方向。\n\n您比较关注脸部线条、下颌线或轮廓的清晰度。建议先从皮肤提升、轮廓咨询或容量支撑方向了解，是否需要手术或注射类项目需经医生面诊判断。\n\n${END_ZH}`,
+    SURGERY: `您好，已为您整理初步咨询方向。\n\n您对整形医美咨询感兴趣，例如眼部、鼻部或轮廓方向。建议先整理想改善的部位、期待的风格和可接受的恢复期，具体手术适合度需由专业医生面诊确认。\n\n${END_ZH}`,
+    FATIGUE_LOOK: `您好，已为您整理初步咨询方向。\n\n您比较在意疲惫感、肤色暗沉或没精神的状态，原因可能来自眼周、肤色，也可能与身体状态和生活节奏有关。我们会先帮您整理较轻负担的咨询方向。\n\n${END_ZH}`,
+    CHECKUP: `您好，已为您整理初步咨询方向。\n\n您关注的是韩国体检或功能医学方向。我们不会一开始建议越多越好的检查，而是根据您的年龄、家族史和当前症状，先整理合适的检查方向。\n\n${END_ZH}`,
+    TRAVEL_SUPPORT: `您好，已为您整理初步咨询方向。\n\n您比较关注医院预约、翻译、车辆或韩国行程安排等执行层面的问题。汉江春天会先帮您梳理来韩目的、停留时间和需要的陪同支持，再协助安排具体流程。\n\n${END_ZH}`,
+    GENERAL: `您好，已为您整理初步咨询方向。\n\n您目前的关注点比较多样，我们会先帮您梳理优先顺序，再根据实际情况连接合适的韩国医疗咨询方向。\n\n${END_ZH}`,
   },
   ko: {
-    A: `안녕하세요, 초기 상담 방향이 정리되었습니다.\n\n자연스러운 피부 개선과 비용 효율을 중시하시는 분께는 피부 관리, 가벼운 항노화, 피부 밝기 개선 방향을 먼저 추천드립니다.\n\n다음을 먼저 정리해 드리겠습니다:\n1. 적합한 피부 관리 방향\n2. 대략적인 회복 기간\n3. 한국 체류 일정\n4. 합리적인 예산 범위\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
-    B: `안녕하세요, 상담 카드가 생성되었습니다.\n\n얼굴 윤곽, 턱선, 팔자주름, 전반적인 젊어 보이는 인상에 관심 있으신 분께는 윤곽 리프팅 및 항노화 방향의 초기 상담을 추천드립니다.\n\n컨시어지에게 연락하여 방향을 구체화해 드리겠습니다.`,
-    C: `안녕하세요, 선택에 따라 초기 방향이 정리되었습니다.\n\n눈 주위 피로감, 다크서클, 눈 밑 개선에 관심 있으시고 회복 기간이 제한적이라면 비수술 개선, 피부 관리, 눈 주위 상담 방향부터 알아보시길 권장합니다.\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
-    D: `안녕하세요, 상담 카드가 생성되었습니다.\n\n선택 내용을 바탕으로 가장 원하시는 변화, 감수할 수 있는 회복 기간, 방한 시기와 예산, 적합한 한국 의료 상담 방향을 정리해 드리겠습니다.\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    YOUNGER_LOOK: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n외형적인 항노화에 관심이 있으신 것으로 보입니다. 피부 탄력, 피부톤, 윤곽 처짐에서 오는 노안일 수 있어, 피부의료미용, 항노화 외모 관리, 윤곽 리프팅 방향부터 알아보시길 권장합니다.\n\n${END_KO}`,
+    SLOW_AGING: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n몸속 노화 속도에 더 관심이 있으신 것으로 보입니다. 수면, 피로, 대사, 호르몬 변화일 수 있어, 기능의학 상담, 항노화 검진, 생활습관 관리 방향부터 몸 상태를 이해해 보시길 권장합니다.\n\n${END_KO}`,
+    REGEN_MEDICINE: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n재생의학 또는 관절 회복 관련 상담에 관심이 있으신 것으로 보입니다. 모든 줄기세포 관련 시술이 한국에서 자유롭게 가능한 것은 아니며, 구체적인 상담 가능 범위는 정식 의료기관과 전문의가 법규와 상태를 확인한 뒤 판단합니다.\n\n${END_KO}`,
+    FACE_CONTOUR: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n얼굴 라인, 턱선, 윤곽의 또렷함에 관심이 있으신 것으로 보입니다. 피부 리프팅, 윤곽 상담, 볼륨 지지 방향부터 알아보시고, 수술이나 시술 필요 여부는 의료진 면진을 통해 확인하시길 권장합니다.\n\n${END_KO}`,
+    SURGERY: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n성형의료미용 전문 상담에 관심이 있으신 것으로 보입니다. 개선하고 싶은 부위, 기대하는 스타일, 감수할 수 있는 회복 기간을 먼저 정리하시고, 수술 적합 여부는 전문의 면진을 통해 확인하시길 권장합니다.\n\n${END_KO}`,
+    FATIGUE_LOOK: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n피곤하고 칙칙하고 생기 없는 인상에 관심이 있으신 것으로 보입니다. 눈가, 피부톤, 또는 신체 컨디션과 관련이 있을 수 있어, 부담이 적은 상담 방향부터 정리해 드리겠습니다.\n\n${END_KO}`,
+    CHECKUP: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n한국 건강검진 또는 기능의학 방향에 관심이 있으신 것으로 보입니다. 검사를 무조건 많이 받기보다, 나이와 가족력, 현재 증상을 바탕으로 적합한 검진 방향을 먼저 정리해 드리겠습니다.\n\n${END_KO}`,
+    TRAVEL_SUPPORT: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n병원 예약, 통역, 차량 또는 한국 일정 관리에 대한 걱정이 있으신 것으로 보입니다. 방한 목적과 체류 기간, 필요한 동행 지원을 먼저 정리한 뒤 구체적인 절차를 안내해 드리겠습니다.\n\n${END_KO}`,
+    GENERAL: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n현재 관심사가 여러 가지로 섞여 있으신 것으로 보입니다. 먼저 우선순위를 정리한 뒤, 실제 상황에 맞는 한국 의료 상담 방향으로 연결해 드리겠습니다.\n\n${END_KO}`,
   },
   en: {
-    A: `Hello, your consultation profile has been generated.\n\nYou value natural improvement, skin condition, and cost efficiency. We recommend starting with skin management, light anti-aging, and brightening consultations.\n\nWe'll help you clarify:\n1. The right skin care direction for you\n2. Approximate downtime\n3. Korea stay planning\n4. Reasonable budget range\n\nClick below to connect with a concierge.`,
-    B: `Hello, your consultation profile is ready.\n\nYou're focused on facial contour, jawline, nasolabial folds, and overall youthfulness. We recommend starting with a facial lifting and anti-aging consultation.\n\nContact a concierge to refine your direction.`,
-    C: `Hello, your profile has been organized.\n\nYou're concerned about tired-looking eyes, dark circles, and under-eye issues. With limited downtime, we suggest starting with non-surgical improvement and eye area consultation.\n\nClick below to connect with a concierge.`,
-    D: `Hello, your consultation profile is ready.\n\nBased on your answers, we'll help clarify your main aesthetic goals, acceptable downtime, Korea visit timing, budget, and the best Korean medical consultation direction for you.\n\nClick below to connect with a concierge.`,
+    YOUNGER_LOOK: `Hello, here's your initial consultation direction.\n\nYou're focused on the outward signs of aging — such as skin elasticity, tone, or sagging contours. We recommend starting with skin aesthetics, anti-aging appearance management, or facial lifting consultation.\n\n${END_EN}`,
+    SLOW_AGING: `Hello, here's your initial consultation direction.\n\nYou're more focused on aging from the inside — sleep, fatigue, metabolism, or hormonal changes. We recommend starting with functional medicine consultation, anti-aging checkups, or lifestyle management to first understand your body's current state.\n\n${END_EN}`,
+    REGEN_MEDICINE: `Hello, here's your initial consultation direction.\n\nYou're interested in regenerative medicine or joint recovery. Not all stem-cell-related procedures can be freely performed in Korea — the specific consultable scope must be determined by a licensed medical institution and physician based on regulations and your condition.\n\n${END_EN}`,
+    FACE_CONTOUR: `Hello, here's your initial consultation direction.\n\nYou're focused on the clarity of your facial line, jawline, or contour. We recommend starting with skin lifting, contour consultation, or volume support, with whether surgery or an injectable is needed confirmed through a physician's evaluation.\n\n${END_EN}`,
+    SURGERY: `Hello, here's your initial consultation direction.\n\nYou're interested in professional plastic surgery consultation. Start by clarifying the areas you want to change, your desired style, and the downtime you can accept — surgical suitability is confirmed through an in-person physician evaluation.\n\n${END_EN}`,
+    FATIGUE_LOOK: `Hello, here's your initial consultation direction.\n\nYou're concerned about looking tired, dull, or low-energy, which may relate to the eye area, skin tone, or overall physical condition. We'll prioritize lighter consultation directions for you.\n\n${END_EN}`,
+    CHECKUP: `Hello, here's your initial consultation direction.\n\nYou're interested in a Korean health checkup or functional medicine. Rather than recommending as many tests as possible, we'll first identify the right checkup direction based on your age, family history, and current symptoms.\n\n${END_EN}`,
+    TRAVEL_SUPPORT: `Hello, here's your initial consultation direction.\n\nYou're concerned about hospital appointments, interpretation, transportation, or your Korea itinerary. We'll first clarify your purpose of visit, length of stay, and escort needs, then help arrange the specific process.\n\n${END_EN}`,
+    GENERAL: `Hello, here's your initial consultation direction.\n\nYour current interests cover a few different areas. We'll help you sort out priorities first, then connect you with the right Korean medical consultation direction.\n\n${END_EN}`,
   },
   ar: {
-    A: `مرحباً، تم إنشاء ملف استشارتك الأولي.\n\nأنت تهتم بالتحسين الطبيعي وحالة البشرة وفعالية التكلفة. نوصي بالبدء باستشارات العناية بالبشرة ومكافحة الشيخوخة الخفيفة وتحسين الإشراق.\n\nسنساعدك في توضيح:\n1. اتجاه العناية بالبشرة المناسب لك\n2. فترة التعافي التقريبية\n3. تخطيط الإقامة في كوريا\n4. نطاق الميزانية المعقول\n\nانقر أدناه للتواصل مع كونسيرج.`,
-    B: `مرحباً، ملف استشارتك جاهز.\n\nأنت تركز على ملامح الوجه وخط الفك والتجاعيد والشباب العام. نوصي بالبدء باستشارة رفع الوجه ومكافحة الشيخوخة.\n\nتواصل مع كونسيرج لتحديد اتجاهك.`,
-    C: `مرحباً، تم تنظيم ملفك.\n\nأنت قلق من مظهر العيون المتعبة والهالات والانتفاخ. مع محدودية وقت التعافي، نقترح البدء بالتحسين غير الجراحي واستشارة منطقة العين.\n\nانقر أدناه للتواصل مع كونسيرج.`,
-    D: `مرحباً، ملف استشارتك جاهز.\n\nبناءً على إجاباتك، سنساعدك في توضيح أهدافك الجمالية الرئيسية وفترة التعافي المقبولة وتوقيت زيارة كوريا والميزانية وأفضل اتجاه استشارة طبية كورية لك.\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    YOUNGER_LOOK: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت تركز على العلامات الخارجية للشيخوخة، مثل مرونة البشرة أو لونها أو ترهل الملامح. نوصي بالبدء باستشارة الطب التجميلي للبشرة أو إدارة مظهر مكافحة الشيخوخة أو رفع الملامح.\n\n${END_AR}`,
+    SLOW_AGING: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت تركز أكثر على الشيخوخة من الداخل - النوم أو التعب أو التمثيل الغذائي أو التغيرات الهرمونية. نوصي بالبدء باستشارة الطب الوظيفي أو فحوصات مكافحة الشيخوخة أو إدارة نمط الحياة لفهم حالة جسمك الحالية.\n\n${END_AR}`,
+    REGEN_MEDICINE: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت مهتم بالطب التجديدي أو تعافي المفاصل. ليست جميع الإجراءات المتعلقة بالخلايا الجذعية متاحة بحرية في كوريا، ويجب تحديد النطاق المحدد القابل للاستشارة من قبل مؤسسة طبية مرخصة وطبيب متخصص بناءً على اللوائح وحالتك.\n\n${END_AR}`,
+    FACE_CONTOUR: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت تركز على وضوح خط وجهك أو فكك أو ملامحك. نوصي بالبدء برفع البشرة أو استشارة تشكيل الملامح أو دعم الحجم، مع تأكيد الحاجة للجراحة أو الحقن من خلال تقييم الطبيب.\n\n${END_AR}`,
+    SURGERY: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت مهتم باستشارة جراحة تجميلية متخصصة. ابدأ بتوضيح المناطق التي تريد تغييرها والأسلوب المطلوب وفترة التعافي المقبولة - ويتم تأكيد ملاءمة الجراحة من خلال تقييم مباشر مع الطبيب.\n\n${END_AR}`,
+    FATIGUE_LOOK: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت قلق من الظهور بمظهر متعب أو شاحب أو منخفض الحيوية، وقد يرتبط ذلك بمنطقة العين أو لون البشرة أو الحالة الجسدية العامة. سنعطي الأولوية لاتجاهات استشارة أخف بالنسبة لك.\n\n${END_AR}`,
+    CHECKUP: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت مهتم بفحص صحي كوري أو طب وظيفي. بدلاً من التوصية بأكبر عدد ممكن من الفحوصات، سنحدد أولاً اتجاه الفحص المناسب بناءً على عمرك وتاريخك العائلي وأعراضك الحالية.\n\n${END_AR}`,
+    TRAVEL_SUPPORT: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت قلق بشأن مواعيد المستشفى أو الترجمة أو المواصلات أو جدول رحلتك لكوريا. سنوضح أولاً غرض زيارتك ومدة إقامتك واحتياجات المرافقة، ثم نساعد في تنظيم الإجراءات المحددة.\n\n${END_AR}`,
+    GENERAL: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nتتنوع اهتماماتك الحالية في عدة مجالات. سنساعدك أولاً على ترتيب الأولويات، ثم نربطك بالاتجاه المناسب للاستشارة الطبية الكورية.\n\n${END_AR}`,
   },
 }
+
+/* ─── i18n data (home / pre-category card) ────────────────────── */
+
+const QUESTIONS_HOME_ZH: Q[] = [
+  { label: '来韩目的', q: '您这次最想通过韩国医疗咨询解决什么？', opts: ['想做皮肤医美或抗衰管理', '想了解健康检查或功能医学', '想咨询再生医学或关节恢复', '想了解整形医美方向', '想安排家人一起体检', '想把医疗和旅行一起安排', '还不确定，想先整理需求'] },
+  { label: '既往经验', q: '您之前有过韩国医疗或医美体验吗？', opts: ['做过，整体满意', '做过，但价格偏高', '做过，但沟通不够清楚', '做过，但想换更可靠的医院', '没有做过，第一次了解', '在中国做过，想比较韩国方案', '帮家人或朋友了解'] },
+  { label: '选择医院时最看重', q: '选择韩国医院或项目时，您最看重什么？', opts: ['医生和医院是否可靠', '价格是否透明合理', '效果是否自然', '恢复期是否适合我的行程', '是否有中文沟通', '是否有人陪同和翻译', '是否能解释检查结果或方案'] },
+  { label: '目前最担心', q: '您现在最担心哪一点？', opts: ['怕选错医院', '怕项目不适合我', '怕价格超出预期', '怕语言沟通不清楚', '怕恢复期影响行程', '怕医疗信息看不懂', '怕到了韩国不知道怎么安排'] },
+  { label: '同行情况', q: '这次是您自己来，还是和家人朋友一起来？', opts: ['自己来', '和朋友一起来', '和家人一起来', '带父母做检查', '夫妻或情侣一起', '还没确定', '先线上咨询'] },
+  { label: '来韩计划', q: '您大概什么时候考虑来韩国？', opts: ['1个月内', '3个月内', '半年内', '今年内', '还没确定', '先了解后决定'] },
+  { label: '希望先获得', q: '您希望汉江春天先帮您整理什么？', opts: ['适合我的韩国医疗方向', '可咨询的医院或科室方向', '大致恢复期和停留安排', '参考预算方向', '预约和翻译流程', '健康检查或结果说明方向', '先和中文顾问沟通'] },
+]
+
+const QUESTIONS_HOME_KO: Q[] = [
+  { label: '방문 목적', q: '이번 한국 의료 상담을 통해 가장 알고 싶은 것은?', opts: ['피부미용 또는 항노화 관리', '건강검진 또는 기능의학', '재생의학 또는 관절 회복 상담', '성형의료미용 방향', '가족 건강검진 함께 안배', '의료와 여행 일정 함께 안배', '아직 모르겠고 먼저 정리하고 싶다'] },
+  { label: '기존 경험', q: '이전에 한국 의료 또는 미용 시술 경험이 있나요?', opts: ['해봤고 대체로 만족했다', '해봤지만 가격이 높았다', '해봤지만 소통이 부족했다', '해봤지만 더 신뢰할 수 있는 병원을 찾고 싶다', '처음 알아본다', '중국에서 해봤고 한국과 비교하고 싶다', '가족이나 친구 대신 알아보고 있다'] },
+  { label: '병원 선택 기준', q: '한국 병원이나 항목을 선택할 때 가장 중요한 것은?', opts: ['의사와 병원이 신뢰할 만한지', '가격이 투명하고 합리적인지', '결과가 자연스러운지', '회복 기간이 일정에 맞는지', '중국어 소통이 가능한지', '통역과 동행이 가능한지', '검사 결과나 상담 내용을 이해할 수 있는지'] },
+  { label: '현재 걱정', q: '지금 가장 걱정되는 것은?', opts: ['병원을 잘못 고를까 봐', '항목이 나에게 맞지 않을까 봐', '비용이 예상보다 커질까 봐', '언어 소통이 안 될까 봐', '회복 기간이 일정에 영향을 줄까 봐', '의료 정보를 이해하기 어려울까 봐', '한국에 가서 어떻게 움직일지 몰라서'] },
+  { label: '동행 상황', q: '이번에는 혼자 오나요, 가족이나 친구와 함께 오나요?', opts: ['혼자', '친구와 함께', '가족과 함께', '부모님 검진 동행', '부부 또는 커플', '아직 미정', '먼저 온라인 상담'] },
+  { label: '방한 계획', q: '언제쯤 한국 방문을 생각하고 있나요?', opts: ['1개월 이내', '3개월 이내', '6개월 이내', '올해 안', '아직 미정', '먼저 알아보고 결정'] },
+  { label: '먼저 원하는 도움', q: '한강애봄이 먼저 무엇을 정리해드리면 좋을까요?', opts: ['나에게 맞는 한국 의료 방향', '상담 가능한 병원 또는 진료과 방향', '대략적인 회복 기간과 체류 일정', '참고 예산 방향', '예약과 통역 절차', '건강검진 또는 결과 설명 방향', '먼저 중국어 가능 컨시어지와 상담'] },
+]
+
+const QUESTIONS_HOME_EN: Q[] = [
+  { label: 'Purpose', q: 'What would you most like to address through this Korea medical consultation?', opts: ['Skin aesthetics or anti-aging care', 'Health checkup or functional medicine', 'Regenerative medicine or joint recovery', 'Plastic surgery options', 'A family health checkup together', 'Combining medical care with travel', 'Not sure yet — want to organize my needs first'] },
+  { label: 'Past experience', q: 'Have you had medical or aesthetic treatment in Korea before?', opts: ['Yes, and I was generally satisfied', 'Yes, but the price was high', "Yes, but communication wasn't clear enough", 'Yes, but I want a more reliable hospital', 'No, this is my first time looking into it', 'Yes, in my home country — want to compare with Korea', 'Looking into it on behalf of family or a friend'] },
+  { label: 'Hospital priorities', q: 'When choosing a hospital or treatment in Korea, what matters most to you?', opts: ['Whether the doctor and hospital are reliable', 'Whether pricing is transparent and reasonable', 'Whether results look natural', 'Whether downtime fits my schedule', 'Whether Chinese-language support is available', 'Whether an escort/interpreter is available', 'Whether results or plans are clearly explained'] },
+  { label: 'Current worry', q: 'What concerns you most right now?', opts: ['Choosing the wrong hospital', 'The treatment not suiting me', 'Costs exceeding expectations', 'Communication issues', 'Downtime affecting my schedule', 'Not understanding medical information', 'Not knowing how to arrange things once in Korea'] },
+  { label: 'Travel companions', q: 'Are you coming alone, or with family or friends?', opts: ['Coming alone', 'With a friend', 'With family', 'Accompanying parents for a checkup', 'With a spouse or partner', 'Not decided yet', 'Starting with an online consultation first'] },
+  { label: 'Visit timing', q: 'Roughly when are you considering visiting Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided yet', 'Want to learn more before deciding'] },
+  { label: 'First priority', q: 'What would you like Hangangaeborn to help organize first?', opts: ['The right Korean medical direction for me', 'Which hospitals or departments to consult', 'Rough downtime and stay planning', 'A reference budget direction', 'Appointment and interpretation process', 'Health checkup or results explanation', 'Speaking with a Chinese-speaking concierge first'] },
+]
+
+const QUESTIONS_HOME_AR: Q[] = [
+  { label: 'الغرض من الزيارة', q: 'ما الذي تريد معالجته أكثر من خلال هذه الاستشارة الطبية في كوريا؟', opts: ['طب تجميلي للبشرة أو عناية بمكافحة الشيخوخة', 'فحص صحي أو طب وظيفي', 'طب تجديدي أو تعافي المفاصل', 'خيارات الجراحة التجميلية', 'فحص صحي عائلي مشترك', 'الجمع بين الرعاية الطبية والسفر', 'لست متأكداً بعد — أريد تنظيم احتياجاتي أولاً'] },
+  { label: 'الخبرة السابقة', q: 'هل سبق أن خضعت لعلاج طبي أو تجميلي في كوريا؟', opts: ['نعم، وكنت راضياً بشكل عام', 'نعم، ولكن السعر كان مرتفعاً', 'نعم، ولكن التواصل لم يكن واضحاً بما يكفي', 'نعم، ولكن أريد مستشفى أكثر موثوقية', 'لا، هذه أول مرة أستكشف الأمر', 'نعم، في بلدي — أريد المقارنة مع كوريا', 'أستكشف الأمر بالنيابة عن أحد أفراد العائلة أو صديق'] },
+  { label: 'أولويات اختيار المستشفى', q: 'عند اختيار مستشفى أو علاج في كوريا، ما الأهم بالنسبة لك؟', opts: ['موثوقية الطبيب والمستشفى', 'شفافية السعر ومعقوليته', 'مدى طبيعية النتائج', 'مدى توافق فترة التعافي مع جدولي', 'توفر الدعم باللغة الصينية', 'توفر مرافق أو مترجم', 'وضوح شرح النتائج أو الخطة'] },
+  { label: 'القلق الحالي', q: 'ما الذي يقلقك أكثر الآن؟', opts: ['اختيار المستشفى الخاطئ', 'عدم ملاءمة العلاج لي', 'تجاوز التكلفة المتوقعة', 'مشاكل التواصل', 'تأثير فترة التعافي على جدولي', 'عدم فهم المعلومات الطبية', 'عدم معرفة كيفية الترتيب بعد الوصول إلى كوريا'] },
+  { label: 'المرافقون', q: 'هل ستأتي بمفردك أم مع العائلة أو الأصدقاء؟', opts: ['بمفردي', 'مع صديق', 'مع العائلة', 'مرافقة الوالدين لإجراء فحص', 'مع الزوج/الزوجة أو الشريك', 'لم أقرر بعد', 'سأبدأ باستشارة عبر الإنترنت أولاً'] },
+  { label: 'موعد الزيارة', q: 'متى تفكر تقريباً في زيارة كوريا؟', opts: ['خلال شهر واحد', 'خلال 3 أشهر', 'خلال 6 أشهر', 'في وقت ما من هذا العام', 'لم أقرر بعد', 'أريد معرفة المزيد قبل اتخاذ القرار'] },
+  { label: 'الأولوية الأولى', q: 'ماذا تريد من Hangangaeborn أن ينظمه لك أولاً؟', opts: ['الاتجاه الطبي الكوري المناسب لي', 'المستشفيات أو الأقسام التي يمكن استشارتها', 'فترة التعافي التقريبية وخطة الإقامة', 'اتجاه ميزانية مرجعي', 'إجراءات الحجز والترجمة', 'الفحص الصحي أو شرح النتائج', 'التحدث مع كونسيرج يتحدث الصينية أولاً'] },
+]
+
+const COPY_LABELS_HOME: Record<string, string[]> = {
+  zh: ['来韩目的', '既往经验', '选择医院时最看重', '目前最担心', '同行情况', '来韩计划', '希望先获得'],
+  ko: ['방문 목적', '기존 경험', '병원 선택 기준', '현재 걱정', '동행 상황', '방한 계획', '먼저 원하는 도움'],
+  en: ['Purpose', 'Past Experience', 'Hospital Priorities', 'Current Worry', 'Travel Companions', 'Visit Timing', 'First Priority'],
+  ar: ['الغرض من الزيارة', 'الخبرة السابقة', 'أولويات اختيار المستشفى', 'القلق الحالي', 'المرافقون', 'موعد الزيارة', 'الأولوية الأولى'],
+}
+
+type HomeType =
+  | 'BEAUTY_EXPERIENCED' | 'BEAUTY_FIRST_TIME' | 'HEALTH_CHECKUP' | 'REGEN_OR_JOINT'
+  | 'SURGERY_INTEREST' | 'FAMILY_TRAVEL' | 'TRUST_HOSPITAL' | 'TRAVEL_SUPPORT' | 'GENERAL_HOME'
+
+const RESPONSES_HOME: Record<string, Record<HomeType, string>> = {
+  zh: {
+    BEAUTY_EXPERIENCED: `您好，已为您整理初步咨询方向。\n\n您此前在韩国或其他地区有过美容相关经验，这次更希望找到沟通清楚、值得信赖的医院，并获得更自然的效果。\n\n我们会先帮您梳理：\n1. 您此前体验中最在意的问题\n2. 这次希望优先确认的医院条件\n3. 大致恢复期与停留安排\n4. 参考预算方向\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    BEAUTY_FIRST_TIME: `您好，已为您整理初步咨询方向。\n\n您是第一次了解韩国皮肤医美或抗衰管理，建议先从了解自己的皮肤状态开始，而不是直接选择某个项目名称。\n\n我们会先帮您梳理：\n1. 您最在意的皮肤或外观问题\n2. 大致恢复期接受范围\n3. 来韩停留安排\n4. 参考预算方向\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    HEALTH_CHECKUP: `您好，已为您整理初步咨询方向。\n\n您比较关注健康检查、功能医学或长期健康状态管理，例如疲劳、睡眠、代谢或检查结果说明。\n\n我们会先帮您梳理：\n1. 您目前最关心的身体信号\n2. 既往病史与家族病史\n3. 大致停留与检查安排\n4. 参考预算方向\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    REGEN_OR_JOINT: `您好，已为您整理初步咨询方向。\n\n您比较关注再生医学或关节恢复方向。这类项目在韩国受到法律和医疗机构判断的影响较大，并非所有项目都可以自由进行。\n\n我们会先帮您梳理：\n1. 您关注的具体方向（如关节、恢复管理、抗衰咨询）\n2. 既往病史与年龄\n3. 来韩时间安排\n4. 可咨询范围与需专业医生判断的部分\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    SURGERY_INTEREST: `您好，已为您整理初步咨询方向。\n\n您比较关注整形医美方向。这类咨询需要先了解面部结构、想要的风格和可接受的恢复期，而不是直接确定手术方式。\n\n我们会先帮您梳理：\n1. 您关注的部位与风格方向\n2. 可接受的恢复期\n3. 来韩停留安排\n4. 参考预算方向\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    FAMILY_TRAVEL: `您好，已为您整理初步咨询方向。\n\n您计划与家人或父母一同来韩国，可能需要同时安排不同的咨询方向，例如检查、皮肤管理或休息行程。\n\n我们会先帮您梳理：\n1. 每位同行者的关注方向\n2. 大致停留天数与行程安排\n3. 是否需要分别安排咨询时间\n4. 参考预算方向\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    TRUST_HOSPITAL: `您好，已为您整理初步咨询方向。\n\n您此前的体验中，价格、沟通或医院可靠性方面让您有些顾虑。这次更希望找到透明、可信、沟通清楚的咨询方式。\n\n我们会先帮您梳理：\n1. 您希望优先确认的医院条件\n2. 之前体验中不满意的部分\n3. 沟通与翻译需求\n4. 参考预算方向\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    TRAVEL_SUPPORT: `您好，已为您整理初步咨询方向。\n\n您比较关注来韩的行程安排、预约、翻译或到院陪同等执行层面的问题。\n\n我们会先帮您梳理：\n1. 来韩目的与关注分类\n2. 预约、翻译与车辆需求\n3. 大致停留天数\n4. 后续协调方式\n\n请点击下方按钮，通过企业微信联系顾问。`,
+    GENERAL_HOME: `您好，已为您整理初步咨询方向。\n\n您目前的需求还比较多样，我们会先帮您理清优先顺序，再连接合适的咨询方向。\n\n我们会先帮您梳理：\n1. 目前最想优先解决的问题\n2. 大致停留与行程安排\n3. 参考预算方向\n4. 适合的咨询分类\n\n请点击下方按钮，通过企业微信联系顾问。`,
+  },
+  ko: {
+    BEAUTY_EXPERIENCED: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n이전에 한국이나 다른 곳에서 미용 관련 경험이 있으시고, 이번에는 소통이 명확하고 신뢰할 수 있는 병원에서 더 자연스러운 결과를 원하시는 것으로 보입니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 이전 경험에서 가장 신경 쓰였던 부분\n2. 이번에 우선 확인하고 싶은 병원 조건\n3. 대략적인 회복 기간과 체류 일정\n4. 참고 예산 방향\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    BEAUTY_FIRST_TIME: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n한국 피부의료미용이나 항노화 관리를 처음 알아보고 계시는 것 같습니다. 특정 시술명을 정하기보다 먼저 피부 상태를 이해하는 것이 좋습니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 가장 신경 쓰이는 피부 또는 외모 고민\n2. 감수할 수 있는 회복 기간\n3. 한국 체류 일정\n4. 참고 예산 방향\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    HEALTH_CHECKUP: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n건강검진, 기능의학 또는 장기적인 건강 상태 관리에 관심이 있으신 것으로 보입니다. 예를 들어 피로, 수면, 대사, 검사 결과 설명 등입니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 현재 가장 신경 쓰이는 몸의 신호\n2. 기존 병력과 가족력\n3. 대략적인 체류 및 검사 일정\n4. 참고 예산 방향\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    REGEN_OR_JOINT: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n재생의학 또는 관절 회복 방향에 관심이 있으신 것으로 보입니다. 이 분야는 한국의 법적 기준과 의료기관의 판단에 따라 상담 가능한 범위가 달라집니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 관심 있는 구체적인 방향(관절, 회복관리, 항노화 상담 등)\n2. 기존 병력과 연령\n3. 한국 방문 예정 시기\n4. 상담 가능한 범위와 전문의 판단이 필요한 부분\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    SURGERY_INTEREST: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n성형의료미용 방향에 관심이 있으신 것으로 보입니다. 수술 방식을 바로 정하기보다 얼굴 구조, 원하는 스타일, 감수할 수 있는 회복 기간을 먼저 정리하는 것이 좋습니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 관심 있는 부위와 원하는 스타일 방향\n2. 감수할 수 있는 회복 기간\n3. 한국 체류 일정\n4. 참고 예산 방향\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    FAMILY_TRAVEL: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n가족이나 부모님과 함께 한국에 오실 계획이신 것으로 보입니다. 검진, 피부 관리, 휴식 일정 등 동행자별로 다른 방향을 함께 정리해야 할 수 있습니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 동행자별 관심 방향\n2. 대략적인 체류 일수와 일정\n3. 상담 시간을 따로 안배해야 하는지\n4. 참고 예산 방향\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    TRUST_HOSPITAL: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n이전 경험에서 가격, 소통 또는 병원의 신뢰도와 관련해 우려가 있으셨던 것으로 보입니다. 이번에는 투명하고 신뢰할 수 있으며 소통이 명확한 상담을 원하시는 것으로 정리됩니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 우선 확인하고 싶은 병원 조건\n2. 이전 경험에서 불만족스러웠던 부분\n3. 소통 및 통역 필요 여부\n4. 참고 예산 방향\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    TRAVEL_SUPPORT: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n한국 방문 일정, 예약, 통역 또는 병원 동행과 같은 실행 단계에 대한 걱정이 있으신 것으로 보입니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 방한 목적과 관심 분야\n2. 예약, 통역, 차량 필요 여부\n3. 대략적인 체류 일수\n4. 이후 조율 방식\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+    GENERAL_HOME: `안녕하세요, 초기 상담 방향을 정리해 드렸습니다.\n\n현재 여러 가지 고민이 섞여 있으신 것으로 보입니다. 먼저 우선순위를 정리한 뒤 적합한 상담 방향으로 연결해 드리겠습니다.\n\n먼저 다음을 정리해 드리겠습니다:\n1. 지금 가장 먼저 해결하고 싶은 문제\n2. 대략적인 체류 및 일정\n3. 참고 예산 방향\n4. 적합한 상담 분류\n\n아래 버튼을 눌러 컨시어지에게 연락하세요.`,
+  },
+  en: {
+    BEAUTY_EXPERIENCED: `Hello, here's your initial consultation direction.\n\nYou've had aesthetic treatment experience before — in Korea or elsewhere — and this time you're looking for clearer communication and a more reliable hospital with natural-looking results.\n\nWe'll help clarify:\n1. What concerned you most in your previous experience\n2. The hospital conditions you'd like to confirm this time\n3. Approximate downtime and stay planning\n4. A reference budget direction\n\nClick below to connect with a concierge.`,
+    BEAUTY_FIRST_TIME: `Hello, here's your initial consultation direction.\n\nIt looks like this is your first time exploring skin aesthetics or anti-aging care in Korea. It helps to first understand your skin condition rather than choosing a specific procedure right away.\n\nWe'll help clarify:\n1. Your main skin or appearance concerns\n2. Acceptable downtime\n3. Your Korea stay planning\n4. A reference budget direction\n\nClick below to connect with a concierge.`,
+    HEALTH_CHECKUP: `Hello, here's your initial consultation direction.\n\nYou're focused on health checkups, functional medicine, or long-term health management — such as fatigue, sleep, metabolism, or understanding test results.\n\nWe'll help clarify:\n1. The body signals you're most concerned about now\n2. Your medical and family history\n3. Approximate stay and checkup planning\n4. A reference budget direction\n\nClick below to connect with a concierge.`,
+    REGEN_OR_JOINT: `Hello, here's your initial consultation direction.\n\nYou're interested in regenerative medicine or joint recovery. This area is significantly shaped by legal regulations and the judgment of the medical institution, so not all procedures are freely available.\n\nWe'll help clarify:\n1. Your specific area of interest (joints, recovery management, anti-aging consultation, etc.)\n2. Your medical history and age\n3. Your planned visit timing\n4. What's currently consultable in Korea versus what needs a specialist's judgment\n\nClick below to connect with a concierge.`,
+    SURGERY_INTEREST: `Hello, here's your initial consultation direction.\n\nYou're interested in plastic surgery. Rather than deciding on a procedure right away, it helps to first clarify your facial structure, desired style, and acceptable downtime.\n\nWe'll help clarify:\n1. The areas and style direction you're interested in\n2. Acceptable downtime\n3. Your Korea stay planning\n4. A reference budget direction\n\nClick below to connect with a concierge.`,
+    FAMILY_TRAVEL: `Hello, here's your initial consultation direction.\n\nIt looks like you're planning to come to Korea with family or parents. You may need to organize different directions for each companion — such as checkups, skin care, or rest time.\n\nWe'll help clarify:\n1. Each companion's area of interest\n2. Approximate length of stay and schedule\n3. Whether separate consultation times are needed\n4. A reference budget direction\n\nClick below to connect with a concierge.`,
+    TRUST_HOSPITAL: `Hello, here's your initial consultation direction.\n\nIt seems your previous experience left some concerns about pricing, communication, or hospital reliability. This time, you're looking for a transparent, trustworthy, and clearly communicated consultation.\n\nWe'll help clarify:\n1. The hospital conditions you'd like to confirm first\n2. What felt unsatisfactory in your previous experience\n3. Your communication and interpretation needs\n4. A reference budget direction\n\nClick below to connect with a concierge.`,
+    TRAVEL_SUPPORT: `Hello, here's your initial consultation direction.\n\nYou're concerned about the logistics of visiting Korea — appointments, interpretation, transportation, or hospital escort.\n\nWe'll help clarify:\n1. Your purpose of visit and areas of interest\n2. Appointment, interpretation, and vehicle needs\n3. Approximate length of stay\n4. How we'll coordinate going forward\n\nClick below to connect with a concierge.`,
+    GENERAL_HOME: `Hello, here's your initial consultation direction.\n\nYour current needs still cover a few different areas. We'll help you sort out the priorities first, then connect you with the right consultation direction.\n\nWe'll help clarify:\n1. What you'd like to address first\n2. Approximate stay and schedule\n3. A reference budget direction\n4. The most suitable consultation category\n\nClick below to connect with a concierge.`,
+  },
+  ar: {
+    BEAUTY_EXPERIENCED: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nلديك خبرة سابقة في العلاجات التجميلية، في كوريا أو في مكان آخر، وهذه المرة تبحث عن تواصل أوضح ومستشفى أكثر موثوقية بنتائج طبيعية.\n\nسنساعدك في توضيح:\n1. ما الذي أثار قلقك أكثر في تجربتك السابقة\n2. شروط المستشفى التي تريد التأكد منها هذه المرة\n3. فترة التعافي التقريبية وخطة الإقامة\n4. اتجاه ميزانية مرجعي\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    BEAUTY_FIRST_TIME: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nيبدو أن هذه أول مرة تستكشف الطب التجميلي للبشرة أو عناية مكافحة الشيخوخة في كوريا. من الأفضل أولاً فهم حالة بشرتك بدلاً من اختيار إجراء معين مباشرة.\n\nسنساعدك في توضيح:\n1. أهم مخاوفك المتعلقة بالبشرة أو المظهر\n2. فترة التعافي المقبولة\n3. خطة إقامتك في كوريا\n4. اتجاه ميزانية مرجعي\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    HEALTH_CHECKUP: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت تركز على الفحص الصحي أو الطب الوظيفي أو إدارة الصحة طويلة المدى، مثل التعب أو النوم أو التمثيل الغذائي أو فهم نتائج الفحوصات.\n\nسنساعدك في توضيح:\n1. أهم العلامات الصحية التي تقلقك الآن\n2. تاريخك المرضي وتاريخ عائلتك\n3. خطة الإقامة والفحص التقريبية\n4. اتجاه ميزانية مرجعي\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    REGEN_OR_JOINT: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت مهتم بالطب التجديدي أو تعافي المفاصل. يتأثر هذا المجال بشكل كبير باللوائح القانونية وتقييم المؤسسة الطبية، وليست جميع الإجراءات متاحة بحرية.\n\nسنساعدك في توضيح:\n1. اهتمامك المحدد (المفاصل، إدارة التعافي، استشارة مكافحة الشيخوخة، إلخ)\n2. تاريخك المرضي وعمرك\n3. توقيت زيارتك المخطط لها\n4. ما يمكن استشارته حالياً في كوريا وما يحتاج إلى تقييم طبيب مختص\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    SURGERY_INTEREST: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت مهتم بالجراحة التجميلية. بدلاً من تحديد إجراء معين مباشرة، من الأفضل أولاً توضيح بنية وجهك والمظهر المطلوب وفترة التعافي المقبولة.\n\nسنساعدك في توضيح:\n1. المناطق والمظهر الذي تهتم به\n2. فترة التعافي المقبولة\n3. خطة إقامتك في كوريا\n4. اتجاه ميزانية مرجعي\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    FAMILY_TRAVEL: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nيبدو أنك تخطط للقدوم إلى كوريا مع العائلة أو الوالدين. قد تحتاج إلى تنظيم اتجاهات مختلفة لكل مرافق، مثل الفحص أو العناية بالبشرة أو وقت الراحة.\n\nسنساعدك في توضيح:\n1. مجال اهتمام كل مرافق\n2. مدة الإقامة التقريبية والجدول الزمني\n3. إن كنت تحتاج مواعيد استشارة منفصلة\n4. اتجاه ميزانية مرجعي\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    TRUST_HOSPITAL: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nيبدو أن تجربتك السابقة تركت بعض المخاوف بشأن السعر أو التواصل أو موثوقية المستشفى. هذه المرة تبحث عن استشارة شفافة وموثوقة وواضحة التواصل.\n\nسنساعدك في توضيح:\n1. شروط المستشفى التي تريد التأكد منها أولاً\n2. ما لم يكن مرضياً في تجربتك السابقة\n3. حاجتك للتواصل والترجمة\n4. اتجاه ميزانية مرجعي\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    TRAVEL_SUPPORT: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nأنت قلق بشأن تفاصيل تنظيم زيارة كوريا، مثل المواعيد أو الترجمة أو التنقل أو مرافقة الزيارات الطبية.\n\nسنساعدك في توضيح:\n1. هدف زيارتك ومجالات اهتمامك\n2. حاجتك للمواعيد والترجمة والمركبات\n3. مدة الإقامة التقريبية\n4. كيفية التنسيق فيما بعد\n\nانقر أدناه للتواصل مع كونسيرج.`,
+    GENERAL_HOME: `مرحباً، هذا هو اتجاه استشارتك الأولي.\n\nتتنوع احتياجاتك الحالية حتى الآن. سنساعدك أولاً على ترتيب الأولويات، ثم نوجهك إلى اتجاه الاستشارة المناسب.\n\nسنساعدك في توضيح:\n1. ما تريد معالجته أولاً\n2. مدة الإقامة والجدول التقريبي\n3. اتجاه ميزانية مرجعي\n4. فئة الاستشارة المناسبة\n\nانقر أدناه للتواصل مع كونسيرج.`,
+  },
+}
+
+/* ─── UI labels ───────────────────────────────────────────────── */
 
 const UI: Record<string, {
   title: string; cardGenerated: string; copyBtn: string; copied: string;
   contactBtn: string; restart: string; back: string; step: string
 }> = {
-  zh: { title: '生成我的变美咨询卡', cardGenerated: '变美咨询卡已生成', copyBtn: '复制咨询内容', copied: '已复制', contactBtn: '打开企业微信咨询', restart: '重新填写', back: '← 上一步', step: 'Q' },
-  ko: { title: '나의 상담 카드 만들기', cardGenerated: '상담 카드가 생성되었습니다', copyBtn: '상담 내용 복사', copied: '복사됨', contactBtn: '지금 컨시어지에게 연락', restart: '다시 작성', back: '← 이전', step: 'Q' },
-  en: { title: 'Build My Consultation Profile', cardGenerated: 'Your Consultation Profile Is Ready', copyBtn: 'Copy Consultation Summary', copied: 'Copied!', contactBtn: 'Connect with a Concierge', restart: 'Start Over', back: '← Back', step: 'Q' },
-  ar: { title: 'أنشئ ملف استشارتي', cardGenerated: 'ملف استشارتك جاهز', copyBtn: 'نسخ ملخص الاستشارة', copied: 'تم النسخ', contactBtn: 'تواصل مع كونسيرج', restart: 'ابدأ من جديد', back: 'السابق ←', step: 'س' },
+  zh: { title: '生成我的韩国医疗咨询卡', cardGenerated: '韩国医疗咨询卡已生成', copyBtn: '复制咨询内容', copied: '已复制', contactBtn: '打开企业微信咨询', restart: '重新填写', back: '← 上一步', step: 'Q' },
+  ko: { title: '나의 한국 의료 상담카드 만들기', cardGenerated: '한국 의료 상담카드가 생성되었습니다', copyBtn: '상담 내용 복사', copied: '복사됨', contactBtn: '지금 컨시어지에게 연락', restart: '다시 작성', back: '← 이전', step: 'Q' },
+  en: { title: 'Build My Korea Medical Consultation Profile', cardGenerated: 'Your Korea Medical Consultation Profile Is Ready', copyBtn: 'Copy Consultation Summary', copied: 'Copied!', contactBtn: 'Connect with a Concierge', restart: 'Start Over', back: '← Back', step: 'Q' },
+  ar: { title: 'أنشئ ملف استشارتي الطبية في كوريا', cardGenerated: 'ملف استشارتك الطبية في كوريا جاهز', copyBtn: 'نسخ ملخص الاستشارة', copied: 'تم النسخ', contactBtn: 'تواصل مع كونسيرج', restart: 'ابدأ من جديد', back: 'السابق ←', step: 'س' },
 }
 
-/* ─── classify ─────────────────────────────────────────────── */
+const UI_HOME: Record<string, { title: string; cardGenerated: string }> = {
+  zh: { title: '生成我的韩国医疗咨询卡', cardGenerated: '韩国医疗咨询卡已生成' },
+  ko: { title: '나의 한국 의료 상담카드 만들기', cardGenerated: '한국 의료 상담카드가 생성되었습니다' },
+  en: { title: 'Build My Korea Medical Consultation Profile', cardGenerated: 'Your Korea Medical Consultation Profile Is Ready' },
+  ar: { title: 'أنشئ ملف استشارتي الطبية في كوريا', cardGenerated: 'ملف استشارتك الطبية في كوريا جاهز' },
+}
 
-function classify(answers: string[], lang: string): 'A' | 'B' | 'C' | 'D' {
-  const [q1, q2, q3, , q5] = answers
-  const zh = lang === 'zh'
-  const ko = lang === 'ko'
-  const en = lang === 'en'
-  const ar = lang === 'ar'
+const COPY_HEADER_HOME: Record<string, string> = {
+  zh: '【韩国医疗咨询卡】',
+  ko: '【한국 의료 상담카드】',
+  en: '[Korea Medical Consultation Card]',
+  ar: '[بطاقة الاستشارة الطبية الكورية]',
+}
 
-  const isA = zh
-    ? (q1 === '皮肤变粗糙了' || q2 === '毛孔/痘印/痘疤' || q2 === '色斑/暗沉/肤色不均') && q3 === '自然一点，不想被看出来' && q5 === '怕价格太高'
-    : ko
-    ? (q1 === '피부가 거칠어졌다' || q2 === '모공/트러블 자국' || q2 === '색소/칙칙함/피부톤 불균형') && q3 === '자연스럽게, 티 안 나게'
-    : en
-    ? (q1 === 'My skin has gotten rough' || q2 === 'Pores / acne marks / scars') && q3 === 'Subtle — no one can tell'
-    : ar
-    ? (q1 === 'بشرتي أصبحت خشنة' || q2 === 'المسام / آثار حب الشباب') && q3 === 'تغيير خفي — لا يلاحظه أحد'
-    : false
+const COPY_INTRO: Record<string, { category: string; home: string }> = {
+  zh: { category: '您好，我想咨询韩国变美/医美相关服务。', home: '您好，我想咨询韩国医疗相关服务。' },
+  ko: { category: '안녕하세요, 한국 의료미용 관련 상담을 원합니다.', home: '안녕하세요, 한국 의료 상담을 원합니다.' },
+  en: { category: 'Hello, I would like to inquire about Korean aesthetic medical services.', home: 'Hello, I would like to inquire about Korean medical consultation services.' },
+  ar: { category: 'مرحباً، أريد الاستفسار عن خدمات الجمال الطبي الكورية.', home: 'مرحباً، أرغب في الاستفسار عن خدمات الاستشارة الطبية الكورية.' },
+}
 
-  const isB = zh
-    ? (q1 === '脸看起来松了' || q1 === '想自然变年轻一点' || q2 === '下颌线/双下巴') && (q3 === '明显变年轻，但不要夸张' || q3 === '脸更紧致、更小一点')
-    : ko
-    ? (q1 === '얼굴이 처져 보인다' || q2 === '턱선/이중턱') && (q3 === '확실히 젊어 보이게, 과하지 않게' || q3 === '얼굴이 더 탄탄하고 작아 보이게')
-    : en
-    ? (q1 === 'My face looks saggy' || q2 === 'Jawline / double chin') && (q3 === 'Noticeably younger, but not overdone' || q3 === 'Firmer and smaller-looking face')
-    : ar
-    ? (q1 === 'وجهي يبدو مترهلاً' || q2 === 'خط الفك / الذقن المزدوجة') && (q3 === 'أبدو أصغر بوضوح لكن بشكل طبيعي' || q3 === 'وجه أكثر إحكاماً وأصغر مظهراً')
-    : false
+const COPY_OUTRO: Record<string, { category: string; home: string }> = {
+  zh: { category: '请帮我梳理适合的韩国医疗咨询方向。', home: '请帮我梳理适合的韩国医疗咨询方向。' },
+  ko: { category: '적합한 한국 의료 상담 방향을 정리해 주세요.', home: '적합한 한국 의료 상담 방향을 정리해 주세요.' },
+  en: { category: 'Please help me find the right Korean medical consultation direction.', home: 'Please help me find the right Korean medical consultation direction.' },
+  ar: { category: 'أرجو مساعدتي في تحديد اتجاه الاستشارة الطبية الكورية المناسب.', home: 'أرجو مساعدتي في تحديد اتجاه الاستشارة الطبية الكورية المناسب.' },
+}
 
-  const isC = zh
-    ? (q1 === '看起来没精神' || q2 === '眼周/眼袋/黑眼圈') && q3 === '疲惫感少一点'
-    : ko
-    ? (q1 === '지쳐 보인다' || q2 === '눈 주위/눈 밑/다크서클') && q3 === '피곤해 보이는 인상 개선'
-    : en
-    ? (q1 === 'I look tired' || q2 === 'Eye area / under-eye bags / dark circles') && q3 === 'Less tired-looking'
-    : ar
-    ? (q1 === 'أبدو متعباً' || q2 === 'منطقة العين / الانتفاخ / الهالات') && q3 === 'مظهر أقل إرهاقاً'
-    : false
+/* ─── classify (category-context card) ─────────────────────────── */
 
-  if (isA) return 'A'
-  if (isB) return 'B'
-  if (isC) return 'C'
-  return 'D'
+function classify(answers: string[], questions: Q[]): ConsultationType {
+  const idx = (i: number) => questions[i].opts.indexOf(answers[i])
+  const q1 = idx(0), q2 = idx(1), q5 = idx(4), q7 = idx(6)
+
+  if (q5 === 6) return 'REGEN_MEDICINE'
+  if (q2 === 7 || q7 === 5) return 'TRAVEL_SUPPORT'
+  if (q2 === 6) return 'CHECKUP'
+
+  const byDirection: ConsultationType[] = [
+    'YOUNGER_LOOK', 'SLOW_AGING', 'REGEN_MEDICINE', 'FACE_CONTOUR',
+    'SURGERY', 'FATIGUE_LOOK', 'CHECKUP', 'TRAVEL_SUPPORT',
+  ]
+  if (q1 >= 0 && q1 < byDirection.length) return byDirection[q1]
+  return 'GENERAL'
+}
+
+/* ─── classify (home-context card) ──────────────────────────────── */
+
+function classifyHome(answers: string[], questions: Q[]): HomeType {
+  const idx = (i: number) => questions[i].opts.indexOf(answers[i])
+  const q1 = idx(0), q2 = idx(1), q4 = idx(3), q5 = idx(4), q7 = idx(6)
+
+  if (q1 === 2) return 'REGEN_OR_JOINT'
+  if (q1 === 3) return 'SURGERY_INTEREST'
+  if (q1 === 1) return 'HEALTH_CHECKUP'
+  if (q2 === 1 || q2 === 2 || q2 === 3) return 'TRUST_HOSPITAL'
+  if (q1 === 0) return q2 === 0 || q2 === 5 ? 'BEAUTY_EXPERIENCED' : 'BEAUTY_FIRST_TIME'
+  if (q5 === 2 || q5 === 3 || q5 === 4) return 'FAMILY_TRAVEL'
+  if (q1 === 4) return 'FAMILY_TRAVEL'
+  if (q1 === 5) return 'TRAVEL_SUPPORT'
+  if (q4 === 6 || q7 === 4) return 'TRAVEL_SUPPORT'
+  return 'GENERAL_HOME'
 }
 
 /* ─── styles ───────────────────────────────────────────────── */
@@ -175,15 +325,24 @@ const S = {
 }
 
 /* ─── component ────────────────────────────────────────────── */
-export default function ConsultationCard() {
+interface ConsultationCardProps {
+  mode?: 'home' | 'category'
+}
+
+export default function ConsultationCard({ mode = 'category' }: ConsultationCardProps) {
   const { lang } = useApp()
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>(Array(7).fill(''))
   const [submitted, setSubmitted] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const questions = lang === 'ko' ? QUESTIONS_KO : lang === 'en' ? QUESTIONS_EN : lang === 'ar' ? QUESTIONS_AR : QUESTIONS_ZH
-  const ui = UI[lang] ?? UI['zh']
+  const isHome = mode === 'home'
+
+  const questions = isHome
+    ? (lang === 'ko' ? QUESTIONS_HOME_KO : lang === 'en' ? QUESTIONS_HOME_EN : lang === 'ar' ? QUESTIONS_HOME_AR : QUESTIONS_HOME_ZH)
+    : (lang === 'ko' ? QUESTIONS_KO : lang === 'en' ? QUESTIONS_EN : lang === 'ar' ? QUESTIONS_AR : QUESTIONS_ZH)
+
+  const ui = { ...(UI[lang] ?? UI['zh']), ...(isHome ? (UI_HOME[lang] ?? UI_HOME['zh']) : {}) }
   const isAr = lang === 'ar'
   const contactUrl = isAr ? WHATSAPP_URL : WECHAT_BIZ_URL
 
@@ -199,15 +358,24 @@ export default function ConsultationCard() {
 
   const restart = () => { setStep(0); setAnswers(Array(7).fill('')); setSubmitted(false); setCopied(false) }
 
-  const type = submitted ? classify(answers, lang) : 'D'
-  const labels = COPY_LABELS[lang] ?? COPY_LABELS['zh']
+  const labels = isHome ? (COPY_LABELS_HOME[lang] ?? COPY_LABELS_HOME['zh']) : (COPY_LABELS[lang] ?? COPY_LABELS['zh'])
+
+  const resultText = submitted
+    ? isHome
+      ? (RESPONSES_HOME[lang] ?? RESPONSES_HOME['zh'])[classifyHome(answers, questions)]
+      : (RESPONSES[lang] ?? RESPONSES['zh'])[classify(answers, questions)]
+    : ''
+
+  const introOutro = COPY_INTRO[lang] ?? COPY_INTRO['zh']
+  const outro = COPY_OUTRO[lang] ?? COPY_OUTRO['zh']
 
   const copyText = [
-    isAr ? 'مرحباً، أريد الاستفسار عن خدمات الجمال الطبي الكورية.' : lang === 'ko' ? '안녕하세요, 한국 의료미용 관련 상담을 원합니다.' : lang === 'en' ? 'Hello, I would like to inquire about Korean aesthetic medical services.' : '您好，我想咨询韩国变美/医美相关服务。',
+    ...(isHome ? [COPY_HEADER_HOME[lang] ?? COPY_HEADER_HOME['zh'], ''] : []),
+    isHome ? introOutro.home : introOutro.category,
     '',
     ...labels.map((label, i) => `${label}: ${answers[i]}`),
     '',
-    isAr ? 'أرجو مساعدتي في تحديد اتجاه الاستشارة الطبية الكورية المناسب.' : lang === 'ko' ? '적합한 한국 의료 상담 방향을 정리해 주세요.' : lang === 'en' ? 'Please help me find the right Korean medical consultation direction.' : '请帮我梳理适合的韩国医疗咨询方向。',
+    isHome ? outro.home : outro.category,
   ].join('\n')
 
   const handleCopy = () => {
@@ -267,7 +435,7 @@ export default function ConsultationCard() {
             </p>
 
             <div style={S.resultBox}>
-              <p style={S.resultText}>{(RESPONSES[lang] ?? RESPONSES['zh'])[type]}</p>
+              <p style={S.resultText}>{resultText}</p>
             </div>
 
             <div style={S.tagsWrap}>

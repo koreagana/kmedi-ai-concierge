@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
+import HalalMapButton from './HalalMapButton'
+import ConsultationCard from './ConsultationCard'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
 
@@ -374,6 +376,59 @@ function ConciergeSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
+   2.5 HOME CONSULTATION CARD ENTRY
+   ═══════════════════════════════════════════════════════════════════ */
+export function HomeConsultationSection() {
+  const { lang } = useApp()
+  const t = translations[lang]
+  const [open, setOpen] = useState(false)
+
+  return (
+    <section id="home-consultation" className="section-light">
+      <motion.div {...fadeUp}>
+        <p className="section-title">{t.homeCardSectionTitle}</p>
+        <div className="section-accent-line" />
+      </motion.div>
+
+      <motion.p
+        {...fadeUp}
+        transition={{ delay: 0.06, duration: 0.5 }}
+        style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: 20, textAlign: 'center' }}
+      >
+        {t.homeCardSectionDesc}
+      </motion.p>
+
+      {!open ? (
+        <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.5 }} style={{ textAlign: 'center' }}>
+          <button
+            onClick={() => setOpen(true)}
+            style={{
+              width: '100%',
+              maxWidth: 360,
+              padding: '15px 0',
+              borderRadius: 12,
+              background: 'var(--brand, #0077b6)',
+              border: 'none',
+              color: 'white',
+              fontSize: 15,
+              fontWeight: 700,
+              cursor: 'pointer',
+              fontFamily: 'inherit',
+              letterSpacing: '0.02em',
+              boxShadow: '0 4px 18px rgba(0,119,182,0.28)',
+            }}
+          >
+            {t.homeCardSectionBtn}
+          </button>
+        </motion.div>
+      ) : (
+        <ConsultationCard mode="home" />
+      )}
+    </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════════
    3. CONCERN SELECTION
    ═══════════════════════════════════════════════════════════════════ */
 export function ConcernSection() {
@@ -495,16 +550,24 @@ export function ContactSection() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {isAr ? (
-          /* ── Arabic: WhatsApp direct link ── */
-          <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open('https://wa.me/821077671903', '_blank')}>
-            <div className="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
-            </div>
-            <div>
-              <p style={{ fontSize: 14, fontWeight: 700 }}>واتساب</p>
-              <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>تواصل مباشر عبر واتساب</p>
-            </div>
-          </motion.button>
+          /* ── Arabic: WhatsApp + Halal Map button ── */
+          <>
+            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open('https://wa.me/821077671903', '_blank')}>
+              <div className="contact-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
+              </div>
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 700 }}>واتساب</p>
+                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>تواصل مباشر عبر واتساب</p>
+              </div>
+            </motion.button>
+            <motion.div {...fadeUp} transition={{ delay: 0.12 }}>
+              <HalalMapButton
+                dir="rtl"
+                onClick={() => document.getElementById('halal-map-section')?.scrollIntoView({ behavior: 'smooth' })}
+              />
+            </motion.div>
+          </>
         ) : (
           /* ── Non-Arabic: WeChat buttons ── */
           <>
@@ -911,6 +974,7 @@ export default function HomePage() {
     <div>
       <HeroSection />
       <ConciergeSection />
+      <HomeConsultationSection />
       <ConcernSection />
       <CategoryGridSection />
       <ContactSection />

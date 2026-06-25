@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   HeroSection,
+  HomeConsultationSection,
   ConcernSection,
   CategoryGridSection,
   ContactSection,
@@ -9,6 +10,7 @@ import {
   AboutSection,
   FooterSection,
 } from './HomePage'
+import HalalMap from './HalalMap'
 
 const WHATSAPP_URL = 'https://wa.me/821077671903'
 
@@ -90,9 +92,13 @@ export default function ArHomePage() {
     <div>
       <HeroSection />
       <ArConciergeSection />
+      <HomeConsultationSection />
       <ConcernSection />
       <CategoryGridSection />
       <ContactSection />
+      <section id="halal-map-section" className="section-light">
+        <HalalMap dir="rtl" />
+      </section>
       <MedicalNetworkSection />
       <AboutSection />
       <FooterSection />
