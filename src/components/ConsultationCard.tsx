@@ -51,13 +51,6 @@ const QUESTIONS_AR: Q[] = [
   { label: 'الدعم المفضل أولاً', q: 'ماذا تريد من Hangangaeborn أن يساعدك به أولاً؟', opts: ['تحديد اتجاه الاستشارة المناسب لي', 'تنظيم الأسئلة والمستندات التي يجب تحضيرها', 'شرح إجراءات الاستشارة الكورية', 'شرح خطة الإقامة والتعافي التقريبية', 'ربطي بكونسيرج يتحدث الصينية', 'التحقق من إمكانية الحجز'] },
 ]
 
-const COPY_LABELS: Record<string, string[]> = {
-  zh: ['最关心的方向', '具体困扰', '希望先获得的结果', '恢复期或停留时间', '最担心的问题', '计划来韩国时间', '希望先获得的帮助'],
-  ko: ['가장 관심 있는 방향', '구체적인 고민', '먼저 얻고 싶은 결과', '회복 기간 또는 체류 기간', '가장 걱정되는 것', '방한 계획', '먼저 원하는 도움'],
-  en: ['Main direction', 'Specific concern', 'What I want to clarify first', 'Downtime or stay duration', 'Biggest worry', 'Korea visit timing', 'Preferred first support'],
-  ar: ['الاتجاه الرئيسي', 'القلق المحدد', 'ما أريد توضيحه أولاً', 'فترة التعافي أو مدة الإقامة', 'أكبر قلق', 'موعد زيارة كوريا', 'الدعم المفضل أولاً'],
-}
-
 type ConsultationType =
   | 'YOUNGER_LOOK' | 'SLOW_AGING' | 'REGEN_MEDICINE' | 'FACE_CONTOUR'
   | 'SURGERY' | 'FATIGUE_LOOK' | 'CHECKUP' | 'TRAVEL_SUPPORT' | 'GENERAL'
@@ -156,13 +149,6 @@ const QUESTIONS_HOME_AR: Q[] = [
   { label: 'الأولوية الأولى', q: 'ماذا تريد من Hangangaeborn أن ينظمه لك أولاً؟', opts: ['الاتجاه الطبي الكوري المناسب لي', 'المستشفيات أو الأقسام التي يمكن استشارتها', 'فترة التعافي التقريبية وخطة الإقامة', 'اتجاه ميزانية مرجعي', 'إجراءات الحجز والترجمة', 'الفحص الصحي أو شرح النتائج', 'التحدث مع كونسيرج يتحدث الصينية أولاً'] },
 ]
 
-const COPY_LABELS_HOME: Record<string, string[]> = {
-  zh: ['来韩目的', '既往经验', '选择医院时最看重', '目前最担心', '同行情况', '来韩计划', '希望先获得'],
-  ko: ['방문 목적', '기존 경험', '병원 선택 기준', '현재 걱정', '동행 상황', '방한 계획', '먼저 원하는 도움'],
-  en: ['Purpose', 'Past Experience', 'Hospital Priorities', 'Current Worry', 'Travel Companions', 'Visit Timing', 'First Priority'],
-  ar: ['الغرض من الزيارة', 'الخبرة السابقة', 'أولويات اختيار المستشفى', 'القلق الحالي', 'المرافقون', 'موعد الزيارة', 'الأولوية الأولى'],
-}
-
 type HomeType =
   | 'BEAUTY_EXPERIENCED' | 'BEAUTY_FIRST_TIME' | 'HEALTH_CHECKUP' | 'REGEN_OR_JOINT'
   | 'SURGERY_INTEREST' | 'FAMILY_TRAVEL' | 'TRUST_HOSPITAL' | 'TRAVEL_SUPPORT' | 'GENERAL_HOME'
@@ -240,18 +226,103 @@ const COPY_HEADER_HOME: Record<string, string> = {
   ar: '[بطاقة الاستشارة الطبية الكورية]',
 }
 
-const COPY_INTRO: Record<string, { category: string; home: string }> = {
-  zh: { category: '您好，我想咨询韩国变美/医美相关服务。', home: '您好，我想咨询韩国医疗相关服务。' },
-  ko: { category: '안녕하세요, 한국 의료미용 관련 상담을 원합니다.', home: '안녕하세요, 한국 의료 상담을 원합니다.' },
-  en: { category: 'Hello, I would like to inquire about Korean aesthetic medical services.', home: 'Hello, I would like to inquire about Korean medical consultation services.' },
-  ar: { category: 'مرحباً، أريد الاستفسار عن خدمات الجمال الطبي الكورية.', home: 'مرحباً، أرغب في الاستفسار عن خدمات الاستشارة الطبية الكورية.' },
+/* ─── structured intake-card copy format ───────────────────────── */
+
+const STRUCTURED_HEADER: Record<string, string> = {
+  zh: '【韩国医疗咨询卡】',
+  ko: '【한국 의료상담 카드】',
+  en: '【Korea Medical Consultation Card】',
+  ar: '[بطاقة الاستشارة الطبية الكورية]',
 }
 
-const COPY_OUTRO: Record<string, { category: string; home: string }> = {
-  zh: { category: '请帮我梳理适合的韩国医疗咨询方向。', home: '请帮我梳理适合的韩国医疗咨询方向。' },
-  ko: { category: '적합한 한국 의료 상담 방향을 정리해 주세요.', home: '적합한 한국 의료 상담 방향을 정리해 주세요.' },
-  en: { category: 'Please help me find the right Korean medical consultation direction.', home: 'Please help me find the right Korean medical consultation direction.' },
-  ar: { category: 'أرجو مساعدتي في تحديد اتجاه الاستشارة الطبية الكورية المناسب.', home: 'أرجو مساعدتي في تحديد اتجاه الاستشارة الطبية الكورية المناسب.' },
+const STRUCTURED_TYPE_LABEL: Record<string, string> = { zh: '咨询类型', ko: '상담 유형', en: 'Consultation Type', ar: 'نوع الاستشارة' }
+const STRUCTURED_LANG_LABEL: Record<string, string> = { zh: '语言', ko: '언어', en: 'Language', ar: 'اللغة' }
+const STRUCTURED_LANG_NAME: Record<string, string> = { zh: '中文', ko: '한국어', en: 'English', ar: 'العربية' }
+
+const STRUCTURED_SECTION_TITLES: Record<string, string[]> = {
+  zh: ['主要咨询方向', '具体问题或关注部位', '既往经验 / 检查资料', '恢复期或韩国停留时间', '最担心的问题', '计划来韩国时间', '希望汉江春天先协助的内容'],
+  ko: ['주요 상담 방향', '구체적인 고민 또는 관심 부위', '기존 경험 / 검사자료', '회복기간 또는 한국 체류기간', '가장 걱정되는 점', '방한 예정 시기', '한강애봄에 먼저 원하는 도움'],
+  en: ['Main consultation direction', 'Specific concern or area of interest', 'Previous experience / medical records', 'Downtime or Korea stay duration', 'Biggest concern', 'Planned visit timing', 'Support requested from Hangangaeborn'],
+  ar: ['اتجاه الاستشارة الرئيسي', 'القلق المحدد أو منطقة الاهتمام', 'الخبرة السابقة / السجلات الطبية', 'فترة التعافي أو مدة الإقامة في كوريا', 'أكبر قلق', 'موعد الزيارة المخطط له', 'الدعم المطلوب من هانغانغايبورن'],
+}
+
+const STRUCTURED_DIRECTION_HEADER: Record<string, string> = {
+  zh: '【初步整理结果】', ko: '【초기 상담 방향】', en: '【Initial Consultation Direction】', ar: '[الاتجاه الاستشاري الأولي]',
+}
+
+const STRUCTURED_MATERIALS_HEADER: Record<string, string> = {
+  zh: '【建议提前准备的资料】', ko: '【상담 전 준비하면 좋은 자료】', en: '【Recommended materials to prepare】', ar: '[المستندات الموصى بتحضيرها]',
+}
+
+const STRUCTURED_MATERIALS: Record<string, string[]> = {
+  zh: ['护照姓名 / 出生年月日', '希望来韩时间', '既往病史或正在服用的药物', '最近检查结果或影像资料，如有', '想咨询的部位照片，如属于皮肤或整形咨询', '过敏史或特殊注意事项'],
+  ko: ['여권상 성명 / 생년월일', '희망 방한 시기', '기존 병력 또는 복용 중인 약', '최근 검사결과지 또는 영상자료가 있다면 첨부', '피부/성형 상담의 경우 상담 부위 사진', '알레르기 또는 특이사항'],
+  en: ['Passport name / date of birth', 'Planned visit timing to Korea', 'Medical history or current medications', 'Recent test results or imaging records, if available', 'Photos of the area of concern for skin or plastic surgery consultation', 'Allergy history or special notes'],
+  ar: ['اسم جواز السفر / تاريخ الميلاد', 'موعد الزيارة المخطط له لكوريا', 'التاريخ الطبي أو الأدوية الحالية', 'نتائج الفحوصات الأخيرة أو السجلات التصويرية، إن وجدت', 'صور المنطقة المعنية لاستشارة البشرة أو التجميل الجراحي', 'تاريخ الحساسية أو الملاحظات الخاصة'],
+}
+
+const STRUCTURED_NOTICE_HEADER: Record<string, string> = {
+  zh: '【说明】', ko: '【안내】', en: '【Notice】', ar: '[إشعار]',
+}
+
+const STRUCTURED_NOTICE: Record<string, string> = {
+  zh: '汉江春天不是医疗机构。我们会先协助整理咨询需求、预约方向、翻译、陪同和韩国行程。最终检查、诊疗和治疗方案需要由韩国正规医疗机构和专业医生判断。',
+  ko: '한강애봄은 의료기관이 아닙니다. 상담 내용 정리, 예약 방향, 통역, 동행, 한국 일정 조율을 돕는 컨시어지입니다. 최종 검사, 진료, 치료 방향은 한국의 정식 의료기관과 전문의 상담 후 결정됩니다.',
+  en: 'Hangangaeborn is not a medical institution. We help organize consultation needs, booking direction, interpretation, escort support, and Korea itinerary coordination. Final examinations, diagnosis, and treatment plans must be determined by licensed Korean medical institutions and specialist physicians.',
+  ar: 'هانغانغايبورن ليست مؤسسة طبية. نساعد في تنظيم احتياجات الاستشارة واتجاه الحجز والترجمة والمرافقة وتنسيق برنامج زيارتك إلى كوريا. يجب تحديد الفحوصات والتشخيص وخطط العلاج النهائية من قبل مؤسسات طبية كورية مرخصة وأطباء متخصصين.',
+}
+
+const GREETING_PREFIX: Record<string, string> = { zh: '您好', ko: '안녕하세요', en: 'Hello', ar: 'مرحباً' }
+
+function extractCoreDirection(resultText: string, lang: string): string {
+  const paragraphs = resultText.split('\n\n').map(p => p.trim()).filter(Boolean)
+  if (paragraphs.length === 0) return ''
+  const greeting = GREETING_PREFIX[lang] ?? GREETING_PREFIX.zh
+  if (paragraphs[0].startsWith(greeting) && paragraphs.length > 1) return paragraphs[1]
+  return paragraphs[0]
+}
+
+function stripBrackets(text: string): string {
+  return text.replace(/^[【[]+/, '').replace(/[】\]]+$/, '').trim()
+}
+
+function buildStructuredCopyText({
+  lang, consultationType, questions, answers, result,
+}: {
+  lang: string
+  consultationType: string
+  questions: Q[]
+  answers: string[]
+  result: string
+}): string {
+  const sectionTitles = STRUCTURED_SECTION_TITLES[lang] ?? STRUCTURED_SECTION_TITLES.zh
+  const materials = STRUCTURED_MATERIALS[lang] ?? STRUCTURED_MATERIALS.zh
+
+  const sections = questions
+    .map((q, i) => (answers[i] ? `${i + 1}. ${sectionTitles[i] ?? q.label}\n${q.label}: ${answers[i]}` : null))
+    .filter((s): s is string => Boolean(s))
+
+  const lines: string[] = [
+    STRUCTURED_HEADER[lang] ?? STRUCTURED_HEADER.zh,
+    `${STRUCTURED_TYPE_LABEL[lang] ?? STRUCTURED_TYPE_LABEL.zh}: ${consultationType}`,
+    `${STRUCTURED_LANG_LABEL[lang] ?? STRUCTURED_LANG_LABEL.zh}: ${STRUCTURED_LANG_NAME[lang] ?? STRUCTURED_LANG_NAME.zh}`,
+    '',
+  ]
+  sections.forEach((s, i) => {
+    lines.push(s)
+    if (i < sections.length - 1) lines.push('')
+  })
+  lines.push('')
+  lines.push(STRUCTURED_DIRECTION_HEADER[lang] ?? STRUCTURED_DIRECTION_HEADER.zh)
+  lines.push(extractCoreDirection(result, lang))
+  lines.push('')
+  lines.push(STRUCTURED_MATERIALS_HEADER[lang] ?? STRUCTURED_MATERIALS_HEADER.zh)
+  materials.forEach(m => lines.push(`- ${m}`))
+  lines.push('')
+  lines.push(STRUCTURED_NOTICE_HEADER[lang] ?? STRUCTURED_NOTICE_HEADER.zh)
+  lines.push(STRUCTURED_NOTICE[lang] ?? STRUCTURED_NOTICE.zh)
+
+  return lines.join('\n')
 }
 
 /* ─── classify (category-context card) ─────────────────────────── */
@@ -369,10 +440,6 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
 
   const restart = () => { setStep(0); setAnswers(Array(7).fill('')); setSubmitted(false); setCopied(false) }
 
-  const labels = categoryLangData
-    ? categoryLangData.questions.map(q => q.label)
-    : isHome ? (COPY_LABELS_HOME[lang] ?? COPY_LABELS_HOME['zh']) : (COPY_LABELS[lang] ?? COPY_LABELS['zh'])
-
   const resultText = submitted
     ? categoryLangData
       ? categoryLangData.result
@@ -381,19 +448,17 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
         : (RESPONSES[lang] ?? RESPONSES['zh'])[classify(answers, questions)]
     : ''
 
-  const introOutro = COPY_INTRO[lang] ?? COPY_INTRO['zh']
-  const outro = COPY_OUTRO[lang] ?? COPY_OUTRO['zh']
+  const consultationType = categoryLangData
+    ? stripBrackets(categoryLangData.copyHeader || categoryLangData.title)
+    : stripBrackets(isHome ? (COPY_HEADER_HOME[lang] ?? COPY_HEADER_HOME['zh']) : ui.title)
 
-  const copyText = [
-    ...(categoryLangData
-      ? [categoryLangData.copyHeader, '']
-      : isHome ? [COPY_HEADER_HOME[lang] ?? COPY_HEADER_HOME['zh'], ''] : []),
-    isHome ? introOutro.home : introOutro.category,
-    '',
-    ...labels.map((label, i) => `${label}: ${answers[i]}`),
-    '',
-    isHome ? outro.home : outro.category,
-  ].join('\n')
+  const copyText = buildStructuredCopyText({
+    lang,
+    consultationType,
+    questions,
+    answers,
+    result: resultText,
+  })
 
   const handleCopy = () => {
     navigator.clipboard.writeText(copyText).then(() => {
