@@ -75,15 +75,34 @@ function toggleInSet(set: Set<string>, value: string): Set<string> {
   return next
 }
 
-function formatOptionList(selected: Set<string>, options: BilingualOption[]): { zh: string; ko: string } {
+function formatOptionList(
+  selected: Set<string>,
+  options: BilingualOption[],
+  otherDetail?: string,
+): { zh: string; ko: string } {
   const picked = options.filter(o => selected.has(o.zh))
   if (picked.length === 0) {
     return { zh: '未填写', ko: '미작성' }
   }
+  const trimmedDetail = otherDetail?.trim()
   return {
-    zh: picked.map(o => o.zh).join('、'),
-    ko: picked.map(o => o.ko).join(', '),
+    zh: picked.map(o => (o.zh === '其他' && trimmedDetail ? `其他：${trimmedDetail}` : o.zh)).join('、'),
+    ko: picked.map(o => (o.zh === '其他' && trimmedDetail ? `기타: ${trimmedDetail}` : o.ko)).join(', '),
   }
+}
+
+const FREE_TEXT_TRANSLATIONS: Record<string, string> = {
+  '没有': '없음',
+  '有': '있음',
+  '不确定': '잘 모르겠음',
+}
+
+function translateFreeText(value: string): { zh: string; ko: string } {
+  const trimmed = value.trim()
+  if (!trimmed) {
+    return { zh: '未填写', ko: '미작성' }
+  }
+  return { zh: trimmed, ko: FREE_TEXT_TRANSLATIONS[trimmed] ?? trimmed }
 }
 
 export default function FunctionalIntakePage() {
@@ -97,14 +116,19 @@ export default function FunctionalIntakePage() {
   const [surgery, setSurgery] = useState('')
   const [allergy, setAllergy] = useState('')
   const [medications, setMedications] = useState('')
+  const [otherSymptomDetail, setOtherSymptomDetail] = useState('')
+  const [otherDiagnosisDetail, setOtherDiagnosisDetail] = useState('')
   const [sleep, setSleep] = useState<BilingualOption | null>(null)
   const [checkup, setCheckup] = useState<BilingualOption | null>(null)
   const [report, setReport] = useState<BilingualOption | null>(null)
   const [copied, setCopied] = useState(false)
 
   const buildIntakeText = (): string => {
-    const symptomText = formatOptionList(symptoms, SYMPTOM_OPTIONS)
-    const diagnosisText = formatOptionList(diagnoses, DIAGNOSIS_OPTIONS)
+    const symptomText = formatOptionList(symptoms, SYMPTOM_OPTIONS, otherSymptomDetail)
+    const diagnosisText = formatOptionList(diagnoses, DIAGNOSIS_OPTIONS, otherDiagnosisDetail)
+    const surgeryText = translateFreeText(surgery)
+    const allergyText = translateFreeText(allergy)
+    const medicationsText = translateFreeText(medications)
 
     const lines = [
       '【功能医学初诊问诊卡】',
@@ -128,14 +152,14 @@ export default function FunctionalIntakePage() {
       `6. 过去诊断疾病：${diagnosisText.zh}`,
       `   과거 진단 질환: ${diagnosisText.ko}`,
       '',
-      `7. 手术经历：${surgery || '未填写'}`,
-      `   수술 이력: ${surgery || '미작성'}`,
+      `7. 手术经历：${surgeryText.zh}`,
+      `   수술 이력: ${surgeryText.ko}`,
       '',
-      `8. 药物或食物过敏：${allergy || '未填写'}`,
-      `   약물 또는 음식 알레르기: ${allergy || '미작성'}`,
+      `8. 药物或食物过敏：${allergyText.zh}`,
+      `   약물 또는 음식 알레르기: ${allergyText.ko}`,
       '',
-      `9. 目前服用药物 / 维生素 / 保健食品：${medications || '未填写'}`,
-      `   현재 복용 중인 약 / 비타민 / 건강기능식품: ${medications || '미작성'}`,
+      `9. 目前服用药物 / 维生素 / 保健食品：${medicationsText.zh}`,
+      `   현재 복용 중인 약 / 비타민 / 건강기능식품: ${medicationsText.ko}`,
       '',
       `10. 平均睡眠时间：${sleep?.zh ?? '未填写'}`,
       `    평균 수면시간: ${sleep?.ko ?? '미작성'}`,
@@ -146,7 +170,7 @@ export default function FunctionalIntakePage() {
       `12. 是否可以提供检查报告：${report?.zh ?? '未填写'}`,
       `    검사 결과지 제공 가능 여부: ${report?.ko ?? '미작성'}`,
       '',
-      '【检查报告 안내】',
+      '【检查报告 / 검사결과 안내】',
       '如有最近的健康检查或血液检查报告，请通过顾问另行发送。',
       '최근 건강검진 또는 혈액검사 결과지가 있다면 상담원에게 별도로 보내주세요.',
       '',
@@ -251,6 +275,14 @@ export default function FunctionalIntakePage() {
               </button>
             ))}
           </div>
+          {symptoms.has('其他') && (
+            <input
+              className="intake-input intake-other-input"
+              value={otherSymptomDetail}
+              onChange={e => setOtherSymptomDetail(e.target.value)}
+              placeholder="其他症状详情 / 기타 증상 상세"
+            />
+          )}
         </div>
 
         <div className="intake-card">
@@ -285,6 +317,14 @@ export default function FunctionalIntakePage() {
               </button>
             ))}
           </div>
+          {diagnoses.has('其他') && (
+            <input
+              className="intake-input intake-other-input"
+              value={otherDiagnosisDetail}
+              onChange={e => setOtherDiagnosisDetail(e.target.value)}
+              placeholder="其他疾病详情 / 기타 질환 상세"
+            />
+          )}
         </div>
 
         <div className="intake-card">
