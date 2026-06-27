@@ -7,6 +7,7 @@ import ArApp from './ArApp'
 import FunctionalIntakePage from './components/FunctionalIntakePage'
 import AdminPrepPage from './components/AdminPrepPage'
 import PrepHealthCheckupBeforePage from './components/PrepHealthCheckupBeforePage'
+import PrepBloodTestBeforePage from './components/PrepBloodTestBeforePage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/intake/functional" element={<FunctionalIntakePage />} />
         <Route path="/admin/prep" element={<AdminPrepPage />} />
         <Route path="/prep/health-checkup-before" element={<PrepHealthCheckupBeforePage />} />
+        <Route path="/prep/blood-test-before" element={<PrepBloodTestBeforePage />} />
         <Route path="/zh/*" element={<App key="zh" initialLang="zh" />} />
         <Route path="/en/*" element={<App key="en" initialLang="en" />} />
         <Route path="/ko/*" element={<App key="ko" initialLang="ko" />} />

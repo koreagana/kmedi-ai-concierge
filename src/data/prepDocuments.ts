@@ -57,7 +57,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'exam_before',
     field: '건강검진',
     link: '/prep/blood-test-before',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: 'CT/MRI 검사 전 확인표',
