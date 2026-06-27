@@ -254,11 +254,63 @@ const STRUCTURED_MATERIALS_HEADER: Record<string, string> = {
   zh: '【建议提前准备的资料】', ko: '【상담 전 준비하면 좋은 자료】', en: '【Recommended materials to prepare】', ar: '[المستندات الموصى بتحضيرها]',
 }
 
-const STRUCTURED_MATERIALS: Record<string, string[]> = {
+/* generic fallback checklist — used only when no categoryId/concernId resolves */
+const STRUCTURED_MATERIALS_GENERIC: Record<string, string[]> = {
   zh: ['护照姓名 / 出生年月日', '希望来韩时间', '既往病史或正在服用的药物', '最近检查结果或影像资料，如有', '想咨询的部位照片，如属于皮肤或整形咨询', '过敏史或特殊注意事项'],
   ko: ['여권상 성명 / 생년월일', '희망 방한 시기', '기존 병력 또는 복용 중인 약', '최근 검사결과지 또는 영상자료가 있다면 첨부', '피부/성형 상담의 경우 상담 부위 사진', '알레르기 또는 특이사항'],
   en: ['Passport name / date of birth', 'Planned visit timing to Korea', 'Medical history or current medications', 'Recent test results or imaging records, if available', 'Photos of the area of concern for skin or plastic surgery consultation', 'Allergy history or special notes'],
   ar: ['اسم جواز السفر / تاريخ الميلاد', 'موعد الزيارة المخطط له لكوريا', 'التاريخ الطبي أو الأدوية الحالية', 'نتائج الفحوصات الأخيرة أو السجلات التصويرية، إن وجدت', 'صور المنطقة المعنية لاستشارة البشرة أو التجميل الجراحي', 'تاريخ الحساسية أو الملاحظات الخاصة'],
+}
+
+type MaterialsGroup = 'health' | 'regen' | 'skin' | 'surgery' | 'travel'
+
+/* maps each categoryId / concernId to the checklist group whose required documents actually apply */
+const MATERIALS_GROUP_BY_ID: Record<string, MaterialsGroup> = {
+  'big-health': 'health', 'womens-care': 'health', 'mens-health': 'health',
+  'slow-aging': 'health', 'health-checkup': 'health',
+  'stem-cell': 'regen', 'regen-medicine': 'regen',
+  'skin-beauty': 'skin', 'younger-look': 'skin', 'fatigue-look': 'skin',
+  'plastic-surgery': 'surgery', 'face-contour': 'surgery', 'surgery-interest': 'surgery',
+  'medical-tourism': 'travel', 'custom-plan': 'travel', 'korea-trip-worry': 'travel',
+}
+
+const STRUCTURED_MATERIALS_BY_GROUP: Record<MaterialsGroup, Record<string, string[]>> = {
+  health: {
+    zh: ['护照姓名 / 出生年月日', '希望来韩时间', '最近体检结果或异常项目', '既往病史、家族病史', '正在服用的药物或保健品', '过敏史或特殊注意事项'],
+    ko: ['여권상 성명 / 생년월일', '희망 방한 시기', '최근 검진 결과 또는 이상 소견', '기존 병력, 가족력', '복용 중인 약물 또는 건강보조식품', '알레르기 또는 특이사항'],
+    en: ['Passport name / date of birth', 'Planned visit timing to Korea', 'Recent checkup results or abnormal findings', 'Medical history, family history', 'Current medications or supplements', 'Allergy history or special notes'],
+    ar: ['اسم جواز السفر / تاريخ الميلاد', 'موعد الزيارة المخطط له لكوريا', 'نتائج الفحص الأخيرة أو النتائج غير الطبيعية', 'التاريخ الطبي والتاريخ العائلي', 'الأدوية الحالية أو المكملات الغذائية', 'تاريخ الحساسية أو الملاحظات الخاصة'],
+  },
+  regen: {
+    zh: ['护照姓名 / 出生年月日', '希望来韩时间', '既往病史或正在服用的药物', '相关部位的影像资料，如X光、MRI、CT、超声等', '诊断书、检查结果或医生意见书', '既往治疗或手术记录', '过敏史或特殊注意事项'],
+    ko: ['여권상 성명 / 생년월일', '희망 방한 시기', '기존 병력 또는 복용 중인 약', '관련 부위의 영상 자료(X-ray, MRI, CT, 초음파 등)', '진단서, 검사 결과지 또는 의사 소견서', '기존 치료 또는 수술 기록', '알레르기 또는 특이사항'],
+    en: ['Passport name / date of birth', 'Planned visit timing to Korea', 'Medical history or current medications', 'Imaging records of the relevant area (X-ray, MRI, CT, ultrasound, etc.)', "Diagnosis report, test results, or physician's opinion letter", 'Previous treatment or surgery records', 'Allergy history or special notes'],
+    ar: ['اسم جواز السفر / تاريخ الميلاد', 'موعد الزيارة المخطط له لكوريا', 'التاريخ الطبي أو الأدوية الحالية', 'السجلات التصويرية للمنطقة المعنية (أشعة سينية، رنين مغناطيسي، تصوير مقطعي، موجات فوق صوتية، إلخ)', 'تقرير التشخيص أو نتائج الفحص أو رأي الطبيب', 'سجلات العلاج أو الجراحة السابقة', 'تاريخ الحساسية أو الملاحظات الخاصة'],
+  },
+  skin: {
+    zh: ['护照姓名 / 出生年月日', '希望来韩时间', '正面/侧面/45度照片', '既往医美项目记录', '皮肤过敏史', '可接受的恢复期'],
+    ko: ['여권상 성명 / 생년월일', '희망 방한 시기', '정면/측면/45도 사진', '기존 의료미용 시술 기록', '피부 알레르기 이력', '감수 가능한 회복 기간'],
+    en: ['Passport name / date of birth', 'Planned visit timing to Korea', 'Front/side/45-degree photos', 'Past aesthetic treatment records', 'Skin allergy history', 'Acceptable downtime'],
+    ar: ['اسم جواز السفر / تاريخ الميلاد', 'موعد الزيارة المخطط له لكوريا', 'صور أمامية/جانبية/بزاوية 45 درجة', 'سجلات العلاجات التجميلية السابقة', 'تاريخ حساسية البشرة', 'فترة التعافي المقبولة'],
+  },
+  surgery: {
+    zh: ['护照姓名 / 出生年月日', '希望来韩时间', '正面/侧面/45度照片', '想改善的部位', '既往手术或医美经历', '可接受的恢复期', '过敏史或特殊注意事项'],
+    ko: ['여권상 성명 / 생년월일', '희망 방한 시기', '정면/측면/45도 사진', '개선하고 싶은 부위', '기존 수술 또는 의료미용 경험', '감수 가능한 회복 기간', '알레르기 또는 특이사항'],
+    en: ['Passport name / date of birth', 'Planned visit timing to Korea', 'Front/side/45-degree photos', 'Area you want to improve', 'Past surgery or aesthetic treatment experience', 'Acceptable downtime', 'Allergy history or special notes'],
+    ar: ['اسم جواز السفر / تاريخ الميلاد', 'موعد الزيارة المخطط له لكوريا', 'صور أمامية/جانبية/بزاوية 45 درجة', 'المنطقة التي تريد تحسينها', 'خبرة الجراحة أو العلاج التجميلي السابقة', 'فترة التعافي المقبولة', 'تاريخ الحساسية أو الملاحظات الخاصة'],
+  },
+  travel: {
+    zh: ['护照姓名 / 出生年月日', '同行人数', '希望来韩时间', '停留天数', '希望咨询的医疗方向', '是否需要翻译、车辆、陪同', '酒店或住宿区域，如已确定'],
+    ko: ['여권상 성명 / 생년월일', '동행 인원', '희망 방한 시기', '체류 일수', '상담받고 싶은 의료 방향', '통역, 차량, 동행 필요 여부', '호텔 또는 숙소 지역(확정된 경우)'],
+    en: ['Passport name / date of birth', 'Number of companions', 'Planned visit timing to Korea', 'Length of stay', "Medical direction you'd like to consult", 'Whether interpretation, vehicle, or escort support is needed', 'Hotel or accommodation area, if already decided'],
+    ar: ['اسم جواز السفر / تاريخ الميلاد', 'عدد المرافقين', 'موعد الزيارة المخطط له لكوريا', 'مدة الإقامة', 'الاتجاه الطبي الذي تريد استشارته', 'هل تحتاج إلى ترجمة أو سيارة أو مرافقة', 'منطقة الفندق أو الإقامة، إن تم تحديدها'],
+  },
+}
+
+function resolveMaterials(lang: string, materialsId?: string): string[] {
+  const group = materialsId ? MATERIALS_GROUP_BY_ID[materialsId] : undefined
+  const table = group ? STRUCTURED_MATERIALS_BY_GROUP[group] : STRUCTURED_MATERIALS_GENERIC
+  return table[lang] ?? table.zh
 }
 
 const STRUCTURED_NOTICE_HEADER: Record<string, string> = {
@@ -287,16 +339,17 @@ function stripBrackets(text: string): string {
 }
 
 function buildStructuredCopyText({
-  lang, consultationType, questions, answers, result,
+  lang, consultationType, questions, answers, result, materialsId,
 }: {
   lang: string
   consultationType: string
   questions: Q[]
   answers: string[]
   result: string
+  materialsId?: string
 }): string {
   const sectionTitles = STRUCTURED_SECTION_TITLES[lang] ?? STRUCTURED_SECTION_TITLES.zh
-  const materials = STRUCTURED_MATERIALS[lang] ?? STRUCTURED_MATERIALS.zh
+  const materials = resolveMaterials(lang, materialsId)
 
   const sections = questions
     .map((q, i) => (answers[i] ? `${i + 1}. ${sectionTitles[i] ?? q.label}\n${q.label}: ${answers[i]}` : null))
@@ -452,12 +505,15 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
     ? stripBrackets(categoryLangData.copyHeader || categoryLangData.title)
     : stripBrackets(isHome ? (COPY_HEADER_HOME[lang] ?? COPY_HEADER_HOME['zh']) : ui.title)
 
+  const materialsId = concernCard ? concernId : categoryCard ? categoryId : undefined
+
   const copyText = buildStructuredCopyText({
     lang,
     consultationType,
     questions,
     answers,
     result: resultText,
+    materialsId,
   })
 
   const handleCopy = () => {

@@ -593,7 +593,7 @@ const RC_SLOW_AGING = buildResult({
 })
 
 const RC_REGEN_MEDICINE = buildResult({
-  zh: '汉江春天不会代替医生判断适应性，也不会保证效果。我们会先帮您整理影像、诊断、治疗记录等既往资料，说明在韩国合法可咨询的范围,再连接到相应机构，由专科医生判断是否需要进一步面诊评估。',
+  zh: '汉江春天不会代替医生判断适应性，也不会保证效果。我们会先帮您整理影像、诊断、治疗记录等既往资料，说明在韩国合法可咨询的范围，再连接到相应机构，由专科医生判断是否需要进一步面诊评估。',
   ko: '한강애봄은 의사를 대신해 적합성을 판단하거나 효과를 보장하지 않습니다. 먼저 영상, 진단, 치료 기록 등 기존 자료를 정리해 드리고, 한국에서 합법적으로 상담 가능한 범위를 안내해 드린 뒤, 해당 의료기관과 연결하여 전문의가 추가적인 면대면 평가가 필요한지 판단하도록 합니다.',
   en: 'Hangangaeborn does not judge suitability on a doctor\'s behalf, nor guarantee outcomes. We will first help organize your existing imaging, diagnosis, and treatment records, explain the legally consultable scope in Korea, then connect you with a relevant institution where a specialist will determine whether further in-person evaluation is needed.',
   ar: 'لا يحدد هانغانغايبورن مدى الملاءمة بدلاً من الطبيب، ولا يضمن النتائج. سنساعدك أولاً في تنظيم سجلاتك التصويرية والتشخيصية والعلاجية الحالية، ونشرح النطاق القانوني القابل للاستشارة في كوريا، ثم نربطك بمؤسسة مناسبة حيث يحدد أخصائي ما إذا كان هناك حاجة لتقييم شخصي إضافي.',
@@ -607,7 +607,7 @@ const RC_FACE_CONTOUR = buildResult({
 })
 
 const RC_SURGERY_INTEREST = buildResult({
-  zh: '汉江春天会帮您整理关注部位、审美方向、既往经历、恢复期和来韩时间，并连接到相应的医疗机构,但不会代替医生判断是否需要手术，也不保证效果。最终的适应性判断和方案需由专科医生面诊评估后确定。',
+  zh: '汉江春天会帮您整理关注部位、审美方向、既往经历、恢复期和来韩时间，并连接到相应的医疗机构，但不会代替医生判断是否需要手术，也不保证效果。最终的适应性判断和方案需由专科医生面诊评估后确定。',
   ko: '한강애봄은 관심 부위, 미적 방향, 기존 경험, 회복기간과 방한 일정을 정리해 드리고 해당 의료기관과 연결해 드리지만, 의사를 대신해 수술 필요성을 판단하거나 결과를 보장하지 않습니다. 최종 적합성 판단과 방안은 전문의의 면대면 진료 후 결정됩니다.',
   en: 'Hangangaeborn will help organize your area of concern, aesthetic direction, past experience, downtime, and visit timing, and connect you with a relevant medical institution, but we do not judge surgical necessity on a doctor\'s behalf, nor guarantee results. Final suitability and the treatment plan will be determined after an in-person evaluation by a specialist.',
   ar: 'سيساعدك هانغانغايبورن في تنظيم منطقة اهتمامك واتجاهك الجمالي وخبرتك السابقة وفترة التعافي وموعد زيارتك، وربطك بمؤسسة طبية مناسبة، لكننا لا نحدد ضرورة الجراحة بدلاً من الطبيب، ولا نضمن النتائج. يتم تحديد الملاءمة النهائية والخطة بعد تقييم شخصي من أخصائي.',
@@ -621,14 +621,14 @@ const RC_FATIGUE_LOOK = buildResult({
 })
 
 const RC_KOREA_TRIP_WORRY = buildResult({
-  zh: '汉江春天会根据您的医疗目的、同行人数、停留时长,帮您整理初步的行程方向、翻译陪同范围、车辆与住宿动线建议。最终费用会根据同行人数、医疗项目、车辆、陪同范围、医院预约和汇率等因素调整。',
+  zh: '汉江春天会根据您的医疗目的、同行人数、停留时长，帮您整理初步的行程方向、翻译陪同范围、车辆与住宿动线建议。最终费用会根据同行人数、医疗项目、车辆、陪同范围、医院预约和汇率等因素调整。',
   ko: '한강애봄은 의료 목적, 동행 인원, 체류 기간을 바탕으로 초기 일정 방향, 통역·동행 범위, 차량과 숙소 동선 제안을 정리해 드립니다. 최종 비용은 동행 인원, 의료 항목, 차량, 동행 범위, 병원 예약 및 환율 등의 요인에 따라 조정됩니다.',
   en: 'Based on your medical purpose, number of companions, and stay duration, Hangangaeborn will help organize an initial itinerary direction, interpretation/escort scope, and vehicle/accommodation routing suggestions. The final cost will be adjusted based on factors such as number of travelers, medical procedures, vehicle, escort scope, hospital booking, and exchange rates.',
   ar: 'بناءً على هدفك الطبي وعدد المرافقين ومدة الإقامة، سيساعدك هانغانغايبورن في تنظيم اتجاه برنامج أولي ونطاق الترجمة/المرافقة واقتراحات مسار السيارة والإقامة. تُعدّل التكلفة النهائية بناءً على عوامل مثل عدد المسافرين والإجراءات الطبية والسيارة ونطاق المرافقة وحجز المستشفى وأسعار الصرف.',
 })
 
 const RC_HEALTH_CHECKUP = buildResult({
-  zh: '汉江春天会整理您的体检目的、既往结果、家族病史、慢性病情况和来韩时间,连接到适合的韩国体检中心、专科咨询或功能医学方向。最终的检查项目、麻醉适应性和诊断判断需由机构和专科医生确认。',
+  zh: '汉江春天会整理您的体检目的、既往结果、家族病史、慢性病情况和来韩时间，连接到适合的韩国体检中心、专科咨询或功能医学方向。最终的检查项目、麻醉适应性和诊断判断需由机构和专科医生确认。',
   ko: '한강애봄은 검진 목적, 기존 결과, 가족력, 만성질환 여부와 방한 일정을 정리하여 적합한 한국 건강검진 센터, 전문 상담, 또는 기능의학 방향으로 연결해 드립니다. 최종 검사 항목, 마취 적합성 및 진단 판단은 의료기관과 전문의가 확인합니다.',
   en: 'Hangangaeborn will help organize your checkup purpose, existing results, family medical history, chronic conditions, and visit timing, then connect you with a suitable Korean health checkup center, specialist consultation, or functional medicine direction. The final test items, anesthesia eligibility, and diagnostic judgment will be confirmed by the institution and the specialist.',
   ar: 'سيساعدك هانغانغايبورن في تنظيم هدف فحصك ونتائجك الحالية وتاريخك العائلي وحالاتك المزمنة وموعد زيارتك، ثم ربطك بمركز فحص صحي كوري مناسب أو استشارة تخصصية أو اتجاه طب وظيفي. يتم تأكيد عناصر الفحص النهائية وأهلية التخدير والحكم التشخيصي من قبل المؤسسة والأخصائي.',
