@@ -962,6 +962,16 @@ export function FooterSection() {
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
         © 2025 {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · kmedispring.com
       </p>
+
+      {/* Internal-only admin link, intentionally inconspicuous */}
+      <p style={{ textAlign: 'center', marginTop: 10 }}>
+        <a
+          href="/admin/prep"
+          style={{ fontSize: 8, color: 'rgba(255,255,255,0.12)', textDecoration: 'none' }}
+        >
+          관리자페이지
+        </a>
+      </p>
     </section>
   )
 }
