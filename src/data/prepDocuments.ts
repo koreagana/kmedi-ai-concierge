@@ -49,7 +49,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'exam_before',
     field: '건강검진',
     link: '/prep/health-checkup-before',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '혈액검사 전 안내',
