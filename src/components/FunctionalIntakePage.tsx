@@ -4,65 +4,66 @@ import './FunctionalIntakePage.css'
 const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
 
 interface BilingualOption {
+  value: string
   zh: string
   ko: string
 }
 
 const SYMPTOM_OPTIONS: BilingualOption[] = [
-  { zh: '疲劳', ko: '피로' },
-  { zh: '睡眠问题', ko: '수면 문제' },
-  { zh: '消化不良', ko: '소화불량' },
-  { zh: '腹胀', ko: '복부 팽만감' },
-  { zh: '便秘', ko: '변비' },
-  { zh: '腹泻', ko: '설사' },
-  { zh: '头痛', ko: '두통' },
-  { zh: '头晕', ko: '어지럼증' },
-  { zh: '体重变化', ko: '체중 변화' },
-  { zh: '皮肤问题', ko: '피부 문제' },
-  { zh: '过敏', ko: '알레르기' },
-  { zh: '其他', ko: '기타' },
+  { value: 'fatigue', zh: '疲劳', ko: '피로' },
+  { value: 'sleep_problem', zh: '睡眠问题', ko: '수면 문제' },
+  { value: 'indigestion', zh: '消化不良', ko: '소화불량' },
+  { value: 'bloating', zh: '腹胀', ko: '복부 팽만감' },
+  { value: 'constipation', zh: '便秘', ko: '변비' },
+  { value: 'diarrhea', zh: '腹泻', ko: '설사' },
+  { value: 'headache', zh: '头痛', ko: '두통' },
+  { value: 'dizziness', zh: '头晕', ko: '어지럼증' },
+  { value: 'weight_change', zh: '体重变化', ko: '체중 변화' },
+  { value: 'skin_problem', zh: '皮肤问题', ko: '피부 문제' },
+  { value: 'allergy', zh: '过敏', ko: '알레르기' },
+  { value: 'other', zh: '其他', ko: '기타' },
 ]
 
 const ONSET_OPTIONS: BilingualOption[] = [
-  { zh: '最近1个月', ko: '최근 1개월' },
-  { zh: '3个月以内', ko: '3개월 이내' },
-  { zh: '6个月以内', ko: '6개월 이내' },
-  { zh: '1年以上', ko: '1년 이상' },
-  { zh: '很久以前开始', ko: '오래전부터' },
-  { zh: '不确定', ko: '잘 모르겠음' },
+  { value: 'within_1_month', zh: '最近1个月', ko: '최근 1개월' },
+  { value: 'within_3_months', zh: '3个月以内', ko: '3개월 이내' },
+  { value: 'within_6_months', zh: '6个月以内', ko: '6개월 이내' },
+  { value: 'over_1_year', zh: '1年以上', ko: '1년 이상' },
+  { value: 'long_ago', zh: '很久以前开始', ko: '오래전부터' },
+  { value: 'unsure', zh: '不确定', ko: '잘 모르겠음' },
 ]
 
 const DIAGNOSIS_OPTIONS: BilingualOption[] = [
-  { zh: '高血压', ko: '고혈압' },
-  { zh: '糖尿病', ko: '당뇨병' },
-  { zh: '甲状腺疾病', ko: '갑상선 질환' },
-  { zh: '心脏疾病', ko: '심장질환' },
-  { zh: '癌症', ko: '암' },
-  { zh: '其他', ko: '기타' },
-  { zh: '没有', ko: '없음' },
+  { value: 'hypertension', zh: '高血压', ko: '고혈압' },
+  { value: 'diabetes', zh: '糖尿病', ko: '당뇨병' },
+  { value: 'thyroid', zh: '甲状腺疾病', ko: '갑상선 질환' },
+  { value: 'heart_disease', zh: '心脏疾病', ko: '심장질환' },
+  { value: 'cancer', zh: '癌症', ko: '암' },
+  { value: 'other', zh: '其他', ko: '기타' },
+  { value: 'none', zh: '没有', ko: '없음' },
 ]
 
 const SLEEP_OPTIONS: BilingualOption[] = [
-  { zh: '4小时以下', ko: '4시간 이하' },
-  { zh: '4-6小时', ko: '4~6시간' },
-  { zh: '6-8小时', ko: '6~8시간' },
-  { zh: '8小时以上', ko: '8시간 이상' },
-  { zh: '睡眠时间不规律', ko: '수면 시간이 불규칙함' },
+  { value: 'under_4h', zh: '4小时以下', ko: '4시간 이하' },
+  { value: '4_to_6h', zh: '4-6小时', ko: '4~6시간' },
+  { value: '6_to_8h', zh: '6-8小时', ko: '6~8시간' },
+  { value: 'over_8h', zh: '8小时以上', ko: '8시간 이상' },
+  { value: 'irregular', zh: '睡眠时间不规律', ko: '수면 시간이 불규칙함' },
 ]
 
 const CHECKUP_OPTIONS: BilingualOption[] = [
-  { zh: '最近3个月内做过', ko: '최근 3개월 이내 검사함' },
-  { zh: '最近6个月内做过', ko: '최근 6개월 이내 검사함' },
-  { zh: '最近1年内做过', ko: '최근 1년 이내 검사함' },
-  { zh: '1年以上没有检查', ko: '1년 이상 검사하지 않음' },
-  { zh: '不确定', ko: '잘 모르겠음' },
+  { value: 'within_3_months', zh: '最近3个月内做过', ko: '최근 3개월 이내 검사함' },
+  { value: 'within_6_months', zh: '最近6个月内做过', ko: '최근 6개월 이내 검사함' },
+  { value: 'within_1_year', zh: '最近1年内做过', ko: '최근 1년 이내 검사함' },
+  { value: 'over_1_year', zh: '1年以上没有检查', ko: '1년 이상 검사하지 않음' },
+  { value: 'unsure', zh: '不确定', ko: '잘 모르겠음' },
 ]
 
 const REPORT_OPTIONS: BilingualOption[] = [
-  { zh: '可以提供', ko: '제공 가능' },
-  { zh: '目前没有', ko: '현재 없음' },
-  { zh: '之后可以发送', ko: '추후 발송 가능' },
-  { zh: '不确定', ko: '잘 모르겠음' },
+  { value: 'can_provide', zh: '可以提供', ko: '제공 가능' },
+  { value: 'none_now', zh: '目前没有', ko: '현재 없음' },
+  { value: 'send_later', zh: '之后可以发送', ko: '추후 발송 가능' },
+  { value: 'unsure', zh: '不确定', ko: '잘 모르겠음' },
 ]
 
 function toggleInSet(set: Set<string>, value: string): Set<string> {
@@ -80,14 +81,14 @@ function formatOptionList(
   options: BilingualOption[],
   otherDetail?: string,
 ): { zh: string; ko: string } {
-  const picked = options.filter(o => selected.has(o.zh))
+  const picked = options.filter(o => selected.has(o.value))
   if (picked.length === 0) {
     return { zh: '未填写', ko: '미작성' }
   }
   const trimmedDetail = otherDetail?.trim()
   return {
-    zh: picked.map(o => (o.zh === '其他' && trimmedDetail ? `其他：${trimmedDetail}` : o.zh)).join('、'),
-    ko: picked.map(o => (o.zh === '其他' && trimmedDetail ? `기타: ${trimmedDetail}` : o.ko)).join(', '),
+    zh: picked.map(o => (o.value === 'other' && trimmedDetail ? `其他：${trimmedDetail}` : o.zh)).join('、'),
+    ko: picked.map(o => (o.value === 'other' && trimmedDetail ? `기타: ${trimmedDetail}` : o.ko)).join(', '),
   }
 }
 
@@ -95,6 +96,20 @@ const FREE_TEXT_TRANSLATIONS: Record<string, string> = {
   '没有': '없음',
   '有': '있음',
   '不确定': '잘 모르겠음',
+  '未填写': '미작성',
+  '可以提供': '제공 가능',
+  '目前没有': '현재 없음',
+  '之后可以发送': '추후 발송 가능',
+  '最近1个月': '최근 1개월',
+  '3个月以内': '3개월 이내',
+  '6个月以内': '6개월 이내',
+  '1年以上': '1년 이상',
+  '很久以前开始': '오래전부터',
+  '4小时以下': '4시간 이하',
+  '4-6小时': '4~6시간',
+  '6-8小时': '6~8시간',
+  '8小时以上': '8시간 이상',
+  '睡眠时间不规律': '수면 시간이 불규칙함',
 }
 
 function translateFreeText(value: string): { zh: string; ko: string } {
@@ -266,21 +281,21 @@ export default function FunctionalIntakePage() {
           <div className="intake-options">
             {SYMPTOM_OPTIONS.map(opt => (
               <button
-                key={opt.zh}
+                key={opt.value}
                 type="button"
-                className={`intake-chip ${symptoms.has(opt.zh) ? 'intake-chip-active' : ''}`}
-                onClick={() => setSymptoms(prev => toggleInSet(prev, opt.zh))}
+                className={`intake-chip ${symptoms.has(opt.value) ? 'intake-chip-active' : ''}`}
+                onClick={() => setSymptoms(prev => toggleInSet(prev, opt.value))}
               >
                 {opt.zh} / {opt.ko}
               </button>
             ))}
           </div>
-          {symptoms.has('其他') && (
+          {symptoms.has('other') && (
             <input
               className="intake-input intake-other-input"
               value={otherSymptomDetail}
               onChange={e => setOtherSymptomDetail(e.target.value)}
-              placeholder="其他症状详情 / 기타 증상 상세"
+              placeholder="可选，请简单填写 / 선택 입력, 간단히 작성해주세요"
             />
           )}
         </div>
@@ -291,9 +306,9 @@ export default function FunctionalIntakePage() {
           <div className="intake-options">
             {ONSET_OPTIONS.map(opt => (
               <button
-                key={opt.zh}
+                key={opt.value}
                 type="button"
-                className={`intake-chip ${onset?.zh === opt.zh ? 'intake-chip-active' : ''}`}
+                className={`intake-chip ${onset?.value === opt.value ? 'intake-chip-active' : ''}`}
                 onClick={() => setOnset(opt)}
               >
                 {opt.zh} / {opt.ko}
@@ -308,21 +323,21 @@ export default function FunctionalIntakePage() {
           <div className="intake-options">
             {DIAGNOSIS_OPTIONS.map(opt => (
               <button
-                key={opt.zh}
+                key={opt.value}
                 type="button"
-                className={`intake-chip ${diagnoses.has(opt.zh) ? 'intake-chip-active' : ''}`}
-                onClick={() => setDiagnoses(prev => toggleInSet(prev, opt.zh))}
+                className={`intake-chip ${diagnoses.has(opt.value) ? 'intake-chip-active' : ''}`}
+                onClick={() => setDiagnoses(prev => toggleInSet(prev, opt.value))}
               >
                 {opt.zh} / {opt.ko}
               </button>
             ))}
           </div>
-          {diagnoses.has('其他') && (
+          {diagnoses.has('other') && (
             <input
               className="intake-input intake-other-input"
               value={otherDiagnosisDetail}
               onChange={e => setOtherDiagnosisDetail(e.target.value)}
-              placeholder="其他疾病详情 / 기타 질환 상세"
+              placeholder="可选，请简单填写 / 선택 입력, 간단히 작성해주세요"
             />
           )}
         </div>
@@ -368,9 +383,9 @@ export default function FunctionalIntakePage() {
           <div className="intake-options">
             {SLEEP_OPTIONS.map(opt => (
               <button
-                key={opt.zh}
+                key={opt.value}
                 type="button"
-                className={`intake-chip ${sleep?.zh === opt.zh ? 'intake-chip-active' : ''}`}
+                className={`intake-chip ${sleep?.value === opt.value ? 'intake-chip-active' : ''}`}
                 onClick={() => setSleep(opt)}
               >
                 {opt.zh} / {opt.ko}
@@ -385,9 +400,9 @@ export default function FunctionalIntakePage() {
           <div className="intake-options">
             {CHECKUP_OPTIONS.map(opt => (
               <button
-                key={opt.zh}
+                key={opt.value}
                 type="button"
-                className={`intake-chip ${checkup?.zh === opt.zh ? 'intake-chip-active' : ''}`}
+                className={`intake-chip ${checkup?.value === opt.value ? 'intake-chip-active' : ''}`}
                 onClick={() => setCheckup(opt)}
               >
                 {opt.zh} / {opt.ko}
@@ -402,9 +417,9 @@ export default function FunctionalIntakePage() {
           <div className="intake-options">
             {REPORT_OPTIONS.map(opt => (
               <button
-                key={opt.zh}
+                key={opt.value}
                 type="button"
-                className={`intake-chip ${report?.zh === opt.zh ? 'intake-chip-active' : ''}`}
+                className={`intake-chip ${report?.value === opt.value ? 'intake-chip-active' : ''}`}
                 onClick={() => setReport(opt)}
               >
                 {opt.zh} / {opt.ko}
