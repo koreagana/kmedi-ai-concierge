@@ -974,7 +974,6 @@ export default function HomePage() {
     <div>
       <HeroSection />
       <ConciergeSection />
-      <HomeConsultationSection />
       <ConcernSection />
       <CategoryGridSection />
       <ContactSection />
