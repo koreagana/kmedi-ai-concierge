@@ -65,10 +65,8 @@ function restaurantName(r: HalalRestaurant, lang: LangCode): string {
 }
 
 function mapsUrl(r: HalalRestaurant): string {
-  if (r.lat != null && r.lng != null) {
-    return `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`
-  }
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${r.nameEn} ${r.address}`)}`
+  const mapQuery = encodeURIComponent(`${r.nameEn} ${r.address} ${r.city} Korea`)
+  return `https://www.google.com/maps/search/?api=1&query=${mapQuery}`
 }
 
 function HalalRestaurantList({ lang }: { lang: LangCode }) {
