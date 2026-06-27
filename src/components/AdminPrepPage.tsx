@@ -99,7 +99,7 @@ function PrepDocList() {
 
 // Lightweight access gate to keep this internal list off casual visitors.
 // Not a real security boundary — no patient data or pricing ever lives here.
-const ADMIN_PIN = '0000' // TODO: 원하는 4자리 관리자 비밀번호로 변경
+const ADMIN_PIN = '0707' // TODO: 원하는 4자리 관리자 비밀번호로 변경
 
 function AdminPinGate({ onSuccess }: { onSuccess: () => void }) {
   const [pin, setPin] = useState('')
