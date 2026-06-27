@@ -1,5 +1,5 @@
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import legacyRestaurants from '../data/halalRestaurants.json'
 import { HALAL_RESTAURANTS, type HalalRestaurant } from '../data/halalRestaurants'
 import { useApp } from '../contexts/AppContext'
@@ -17,8 +17,8 @@ const LIST_COPY: Record<LangCode, { title: string; desc: string; openMap: string
     title: '韩国清真餐厅指南',
     desc: '您可以查看医院或酒店附近的清真餐厅，并通过 Google Maps 打开位置。',
     openMap: '打开地图',
-    showMore: '查看更多',
-    showLess: '收起',
+    showMore: '查看更多餐厅',
+    showLess: '收起餐厅列表',
     prayerLabel: '祈祷室',
     prayer: { yes: '有', no: '无', unconfirmed: '未确认' },
   },
@@ -26,8 +26,8 @@ const LIST_COPY: Record<LangCode, { title: string; desc: string; openMap: string
     title: '한국 할랄 음식점 안내',
     desc: '병원 또는 호텔 근처의 할랄 음식점을 확인하고 Google Maps에서 위치를 열 수 있습니다.',
     openMap: '지도 열기',
-    showMore: '더 보기',
-    showLess: '접기',
+    showMore: '음식점 더 보기',
+    showLess: '음식점 접기',
     prayerLabel: '기도실',
     prayer: { yes: '있음', no: '없음', unconfirmed: '확인 필요' },
   },
@@ -35,7 +35,7 @@ const LIST_COPY: Record<LangCode, { title: string; desc: string; openMap: string
     title: 'Halal Restaurant Guide in Korea',
     desc: 'Find halal restaurants near your hospital or hotel and open the location in Google Maps.',
     openMap: 'Open Map',
-    showMore: 'Show More',
+    showMore: 'View More Restaurants',
     showLess: 'Show Less',
     prayerLabel: 'Prayer room',
     prayer: { yes: 'Yes', no: 'No', unconfirmed: 'Unconfirmed' },
@@ -44,8 +44,8 @@ const LIST_COPY: Record<LangCode, { title: string; desc: string; openMap: string
     title: 'خريطة المطاعم الحلال في كوريا',
     desc: 'يمكنك العثور على مطاعم حلال قريبة من المستشفى أو الفندق في سيول والمناطق المحيطة بها.',
     openMap: 'افتح الخريطة',
-    showMore: 'عرض المزيد',
-    showLess: 'عرض أقل',
+    showMore: 'عرض المزيد من المطاعم',
+    showLess: 'عرض عدد أقل',
     prayerLabel: 'غرفة الصلاة',
     prayer: { yes: 'نعم', no: 'لا', unconfirmed: 'غير مؤكد' },
   },
@@ -71,12 +71,21 @@ function mapsUrl(r: HalalRestaurant): string {
 
 function HalalRestaurantList({ lang }: { lang: LangCode }) {
   const [expanded, setExpanded] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
   const copy = LIST_COPY[lang] ?? LIST_COPY.en
   const categoryLabels = CATEGORY_LABEL[lang] ?? CATEGORY_LABEL.en
   const visible = expanded ? HALAL_RESTAURANTS : HALAL_RESTAURANTS.slice(0, INITIAL_VISIBLE_COUNT)
 
+  const handleToggle = () => {
+    const wasExpanded = expanded
+    setExpanded(v => !v)
+    if (wasExpanded) {
+      sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
-    <div className="halal-list-section">
+    <div className="halal-list-section" ref={sectionRef}>
       <p className="halal-list-title">{copy.title}</p>
       <p className="halal-list-desc">{copy.desc}</p>
 
@@ -107,7 +116,7 @@ function HalalRestaurantList({ lang }: { lang: LangCode }) {
         <button
           type="button"
           className="halal-list-toggle"
-          onClick={() => setExpanded(v => !v)}
+          onClick={handleToggle}
         >
           {expanded ? copy.showLess : copy.showMore}
         </button>
