@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { CATEGORY_CARDS } from '../data/categoryConsultation'
+import { CATEGORY_CARDS, CONCERN_CARDS } from '../data/categoryConsultation'
 import type { CategoryId } from '../data/categories'
 
 const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
@@ -330,9 +330,10 @@ const S = {
 interface ConsultationCardProps {
   mode?: 'home' | 'category'
   categoryId?: CategoryId
+  concernId?: string
 }
 
-export default function ConsultationCard({ mode = 'category', categoryId }: ConsultationCardProps) {
+export default function ConsultationCard({ mode = 'category', categoryId, concernId }: ConsultationCardProps) {
   const { lang } = useApp()
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>(Array(7).fill(''))
@@ -341,8 +342,10 @@ export default function ConsultationCard({ mode = 'category', categoryId }: Cons
 
   const isHome = mode === 'home'
 
+  const concernCard = !isHome && concernId ? CONCERN_CARDS[concernId] : undefined
   const categoryCard = !isHome && categoryId ? CATEGORY_CARDS[categoryId] : undefined
-  const categoryLangData = categoryCard ? (categoryCard[lang] ?? categoryCard.zh) : undefined
+  const resolvedCard = concernCard ?? categoryCard
+  const categoryLangData = resolvedCard ? (resolvedCard[lang] ?? resolvedCard.zh) : undefined
 
   const questions = categoryLangData
     ? categoryLangData.questions
