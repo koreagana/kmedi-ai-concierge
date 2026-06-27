@@ -422,7 +422,8 @@ const mutedColor = '#7a9ab5'
 
 const S = {
   wrap: { background: 'linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%)', padding: '28px 20px 40px', borderTop: '3px solid var(--brand, #0077b6)' } as React.CSSProperties,
-  title: { fontSize: 15, fontWeight: 700, color: brandDark, marginBottom: 20, letterSpacing: '0.01em' } as React.CSSProperties,
+  titleRow: { display: 'flex', flexWrap: 'wrap' as const, alignItems: 'center', justifyContent: 'space-between', gap: 10, marginBottom: 20 },
+  title: { fontSize: 15, fontWeight: 700, color: brandDark, letterSpacing: '0.01em' } as React.CSSProperties,
   progressTrack: { height: 3, background: 'rgba(0,119,182,0.12)', borderRadius: 2, marginBottom: 24, overflow: 'hidden' } as React.CSSProperties,
   stepLabel: { fontSize: 11, color: mutedColor, letterSpacing: '0.1em', marginBottom: 10 } as React.CSSProperties,
   questionText: { fontSize: 15, fontWeight: 700, color: brandDark, lineHeight: 1.5, marginBottom: 18 } as React.CSSProperties,
@@ -527,7 +528,10 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
 
   return (
     <div style={S.wrap}>
-      <p style={S.title}>{ui.title}</p>
+      <div style={S.titleRow}>
+        <p style={S.title}>{ui.title}</p>
+        <button className="cc-reset-btn" onClick={restart}>{ui.restart}</button>
+      </div>
 
       <div style={S.progressTrack}>
         <motion.div
@@ -592,13 +596,6 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
 
             <button style={S.btnPrimary} onClick={() => window.open(contactUrl, '_blank')}>
               {ui.contactBtn}
-            </button>
-
-            <button
-              style={{ ...S.backBtn, display: 'block', margin: '14px auto 0', textAlign: 'center' as const }}
-              onClick={restart}
-            >
-              {ui.restart}
             </button>
           </motion.div>
         )}

@@ -850,6 +850,68 @@ body {
 }
 .cat-back-btn:hover { color: white; }
 
+.cat-make-card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 22px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--brand-mid, #0091d9) 0%, var(--brand, #0077b6) 100%);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 20px rgba(0,119,182,0.32), 0 0 0 6px rgba(0,145,217,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.cat-make-card-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0,119,182,0.4), 0 0 0 8px rgba(0,145,217,0.12);
+}
+.cat-make-card-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 14px rgba(0,119,182,0.3), 0 0 0 6px rgba(0,145,217,0.08);
+}
+.cat-make-card-btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  font-size: 13px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+.cat-make-card-btn:hover .cat-make-card-btn-arrow {
+  transform: translateX(2px);
+}
+
+.cc-reset-btn {
+  background: none;
+  border: 1px solid rgba(0,119,182,0.3);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-size: 12px;
+  color: var(--brand, #0077b6);
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+.cc-reset-btn:hover {
+  background: rgba(0,119,182,0.07);
+  border-color: rgba(0,119,182,0.45);
+}
+
 .expand-btn {
   background: none;
   border: 1px solid var(--border-blue);
