@@ -86,9 +86,10 @@ function formatOptionList(
     return { zh: '未填写', ko: '미작성' }
   }
   const trimmedDetail = otherDetail?.trim()
+  const trimmedDetailKo = trimmedDetail ? FREE_TEXT_TRANSLATIONS[trimmedDetail] ?? trimmedDetail : trimmedDetail
   return {
     zh: picked.map(o => (o.value === 'other' && trimmedDetail ? `其他：${trimmedDetail}` : o.zh)).join('、'),
-    ko: picked.map(o => (o.value === 'other' && trimmedDetail ? `기타: ${trimmedDetail}` : o.ko)).join(', '),
+    ko: picked.map(o => (o.value === 'other' && trimmedDetailKo ? `기타: ${trimmedDetailKo}` : o.ko)).join(', '),
   }
 }
 
@@ -141,6 +142,7 @@ export default function FunctionalIntakePage() {
   const buildIntakeText = (): string => {
     const symptomText = formatOptionList(symptoms, SYMPTOM_OPTIONS, otherSymptomDetail)
     const diagnosisText = formatOptionList(diagnoses, DIAGNOSIS_OPTIONS, otherDiagnosisDetail)
+    const mainConcernText = translateFreeText(mainConcern)
     const surgeryText = translateFreeText(surgery)
     const allergyText = translateFreeText(allergy)
     const medicationsText = translateFreeText(medications)
@@ -155,8 +157,8 @@ export default function FunctionalIntakePage() {
       `2. 身高 / 体重：${height || '未填写'}cm / ${weight || '未填写'}kg`,
       `   키 / 몸무게: ${height || '미작성'}cm / ${weight || '미작성'}kg`,
       '',
-      `3. 目前最希望改善的健康问题：${mainConcern || '未填写'}`,
-      `   현재 가장 개선하고 싶은 건강 문제: ${mainConcern || '미작성'}`,
+      `3. 目前最希望改善的健康问题：${mainConcernText.zh}`,
+      `   현재 가장 개선하고 싶은 건강 문제: ${mainConcernText.ko}`,
       '',
       `4. 目前不舒服的症状：${symptomText.zh}`,
       `   현재 불편한 증상: ${symptomText.ko}`,
