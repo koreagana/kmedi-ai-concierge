@@ -542,7 +542,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="section-white" style={{ paddingBottom: 28 }}>
+    <section id="contact" className="section-white" style={{ paddingBottom: 16 }}>
       <motion.div {...fadeUp}>
         <p className="section-title">{t.contactTitle}</p>
         <div className="section-accent-line" />
@@ -813,7 +813,7 @@ export function MedicalNetworkSection() {
   ]
 
   return (
-    <section id="network" className="section-white" style={{ paddingTop: 28 }}>
+    <section id="network" className="section-white" style={{ paddingTop: 24 }}>
       <motion.div {...fadeUp} style={{ marginBottom: 24 }}>
         <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.18em', marginBottom: 6 }}>
           {t.networkTitle}
