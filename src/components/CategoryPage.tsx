@@ -127,7 +127,7 @@ export default function CategoryPage() {
           </button>
         </motion.div>
       ) : (
-        <ConsultationCard />
+        <ConsultationCard categoryId={cat.id} />
       )}
 
       {/* ── Common page footer sections ── */}

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
+import { CATEGORY_CARDS } from '../data/categoryConsultation'
+import type { CategoryId } from '../data/categories'
 
 const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
 const WHATSAPP_URL = 'https://wa.me/821077671903'
@@ -327,9 +329,10 @@ const S = {
 /* ─── component ────────────────────────────────────────────── */
 interface ConsultationCardProps {
   mode?: 'home' | 'category'
+  categoryId?: CategoryId
 }
 
-export default function ConsultationCard({ mode = 'category' }: ConsultationCardProps) {
+export default function ConsultationCard({ mode = 'category', categoryId }: ConsultationCardProps) {
   const { lang } = useApp()
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>(Array(7).fill(''))
@@ -338,11 +341,16 @@ export default function ConsultationCard({ mode = 'category' }: ConsultationCard
 
   const isHome = mode === 'home'
 
-  const questions = isHome
-    ? (lang === 'ko' ? QUESTIONS_HOME_KO : lang === 'en' ? QUESTIONS_HOME_EN : lang === 'ar' ? QUESTIONS_HOME_AR : QUESTIONS_HOME_ZH)
-    : (lang === 'ko' ? QUESTIONS_KO : lang === 'en' ? QUESTIONS_EN : lang === 'ar' ? QUESTIONS_AR : QUESTIONS_ZH)
+  const categoryCard = !isHome && categoryId ? CATEGORY_CARDS[categoryId] : undefined
+  const categoryLangData = categoryCard ? (categoryCard[lang] ?? categoryCard.zh) : undefined
 
-  const ui = { ...(UI[lang] ?? UI['zh']), ...(isHome ? (UI_HOME[lang] ?? UI_HOME['zh']) : {}) }
+  const questions = categoryLangData
+    ? categoryLangData.questions
+    : isHome
+      ? (lang === 'ko' ? QUESTIONS_HOME_KO : lang === 'en' ? QUESTIONS_HOME_EN : lang === 'ar' ? QUESTIONS_HOME_AR : QUESTIONS_HOME_ZH)
+      : (lang === 'ko' ? QUESTIONS_KO : lang === 'en' ? QUESTIONS_EN : lang === 'ar' ? QUESTIONS_AR : QUESTIONS_ZH)
+
+  const ui = { ...(UI[lang] ?? UI['zh']), ...(isHome ? (UI_HOME[lang] ?? UI_HOME['zh']) : {}), ...(categoryLangData ? { title: categoryLangData.title } : {}) }
   const isAr = lang === 'ar'
   const contactUrl = isAr ? WHATSAPP_URL : WECHAT_BIZ_URL
 
@@ -358,19 +366,25 @@ export default function ConsultationCard({ mode = 'category' }: ConsultationCard
 
   const restart = () => { setStep(0); setAnswers(Array(7).fill('')); setSubmitted(false); setCopied(false) }
 
-  const labels = isHome ? (COPY_LABELS_HOME[lang] ?? COPY_LABELS_HOME['zh']) : (COPY_LABELS[lang] ?? COPY_LABELS['zh'])
+  const labels = categoryLangData
+    ? categoryLangData.questions.map(q => q.label)
+    : isHome ? (COPY_LABELS_HOME[lang] ?? COPY_LABELS_HOME['zh']) : (COPY_LABELS[lang] ?? COPY_LABELS['zh'])
 
   const resultText = submitted
-    ? isHome
-      ? (RESPONSES_HOME[lang] ?? RESPONSES_HOME['zh'])[classifyHome(answers, questions)]
-      : (RESPONSES[lang] ?? RESPONSES['zh'])[classify(answers, questions)]
+    ? categoryLangData
+      ? categoryLangData.result
+      : isHome
+        ? (RESPONSES_HOME[lang] ?? RESPONSES_HOME['zh'])[classifyHome(answers, questions)]
+        : (RESPONSES[lang] ?? RESPONSES['zh'])[classify(answers, questions)]
     : ''
 
   const introOutro = COPY_INTRO[lang] ?? COPY_INTRO['zh']
   const outro = COPY_OUTRO[lang] ?? COPY_OUTRO['zh']
 
   const copyText = [
-    ...(isHome ? [COPY_HEADER_HOME[lang] ?? COPY_HEADER_HOME['zh'], ''] : []),
+    ...(categoryLangData
+      ? [categoryLangData.copyHeader, '']
+      : isHome ? [COPY_HEADER_HOME[lang] ?? COPY_HEADER_HOME['zh'], ''] : []),
     isHome ? introOutro.home : introOutro.category,
     '',
     ...labels.map((label, i) => `${label}: ${answers[i]}`),
