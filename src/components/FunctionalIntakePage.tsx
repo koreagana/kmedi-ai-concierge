@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { buildReferenceTranslation } from '../data/medicalTermMap'
 import './FunctionalIntakePage.css'
 
 const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
@@ -76,6 +77,29 @@ function toggleInSet(set: Set<string>, value: string): Set<string> {
   return next
 }
 
+const HANGUL_REGEX = /[ㄱ-ㆎ가-힣]/
+const ORIGINAL_TEXT_CHECK_NEEDED = '중국어 원문 확인 필요'
+
+function buildOtherDetailLines(detail: string): { zh: string; ko: string } {
+  const trimmed = detail.trim()
+  const zh = `其他：${trimmed}`
+
+  if (trimmed === '不确定') {
+    return { zh, ko: `기타: ${FREE_TEXT_TRANSLATIONS['不确定']}` }
+  }
+
+  if (HANGUL_REGEX.test(trimmed)) {
+    return { zh, ko: `기타: ${trimmed}` }
+  }
+
+  const referenceTranslation = buildReferenceTranslation(trimmed)
+  if (referenceTranslation) {
+    return { zh, ko: `기타 참고 번역: ${referenceTranslation}` }
+  }
+
+  return { zh, ko: `기타: ${ORIGINAL_TEXT_CHECK_NEEDED}` }
+}
+
 function formatOptionList(
   selected: Set<string>,
   options: BilingualOption[],
@@ -86,10 +110,10 @@ function formatOptionList(
     return { zh: '未填写', ko: '미작성' }
   }
   const trimmedDetail = otherDetail?.trim()
-  const trimmedDetailKo = trimmedDetail ? FREE_TEXT_TRANSLATIONS[trimmedDetail] ?? trimmedDetail : trimmedDetail
+  const otherLines = trimmedDetail ? buildOtherDetailLines(trimmedDetail) : null
   return {
-    zh: picked.map(o => (o.value === 'other' && trimmedDetail ? `其他：${trimmedDetail}` : o.zh)).join('、'),
-    ko: picked.map(o => (o.value === 'other' && trimmedDetailKo ? `기타: ${trimmedDetailKo}` : o.ko)).join(', '),
+    zh: picked.map(o => (o.value === 'other' && otherLines ? otherLines.zh : o.zh)).join('、'),
+    ko: picked.map(o => (o.value === 'other' && otherLines ? otherLines.ko : o.ko)).join(', '),
   }
 }
 
