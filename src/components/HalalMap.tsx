@@ -1,6 +1,7 @@
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import { useState } from 'react'
-import restaurants from '../data/halalRestaurants.json'
+import legacyRestaurants from '../data/halalRestaurants.json'
+import { HALAL_RESTAURANTS, type HalalRestaurant } from '../data/halalRestaurants'
 import { useApp } from '../contexts/AppContext'
 import type { LangCode } from '../data/translations'
 import './HalalMap.css'
@@ -9,38 +10,115 @@ const MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string ?? ''
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.9780 }
 
-const WHATSAPP_URL = 'https://wa.me/821077671903'
-const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
-const WHATSAPP_MESSAGE = 'Hello, I would like help finding a halal restaurant near my hospital or hotel in Korea.'
+const INITIAL_VISIBLE_COUNT = 4
 
-const GUIDE_COPY: Record<LangCode, { title: string; desc: string; tags: string[]; cta: string }> = {
+const LIST_COPY: Record<LangCode, { title: string; desc: string; openMap: string; showMore: string; showLess: string; prayerLabel: string; prayer: Record<HalalRestaurant['prayerRoom'], string> }> = {
   zh: {
     title: '韩国清真餐厅指南',
-    desc: '我们可以协助您查找医院或酒店附近的清真餐厅。',
-    tags: ['首尔', '江南', '明洞', '梨泰院', '弘大', '医院附近'],
-    cta: '咨询附近清真餐厅',
+    desc: '您可以查看医院或酒店附近的清真餐厅，并通过 Google Maps 打开位置。',
+    openMap: '打开地图',
+    showMore: '查看更多',
+    showLess: '收起',
+    prayerLabel: '祈祷室',
+    prayer: { yes: '有', no: '无', unconfirmed: '未确认' },
   },
   ko: {
     title: '한국 할랄 음식점 안내',
-    desc: '병원 또는 호텔 근처의 할랄 음식점을 확인할 수 있도록 도와드립니다.',
-    tags: ['서울', '강남', '명동', '이태원', '홍대', '병원 근처'],
-    cta: '근처 할랄 음식점 문의하기',
+    desc: '병원 또는 호텔 근처의 할랄 음식점을 확인하고 Google Maps에서 위치를 열 수 있습니다.',
+    openMap: '지도 열기',
+    showMore: '더 보기',
+    showLess: '접기',
+    prayerLabel: '기도실',
+    prayer: { yes: '있음', no: '없음', unconfirmed: '확인 필요' },
   },
   en: {
     title: 'Halal Restaurant Guide in Korea',
-    desc: 'We can help you find halal restaurants near your hospital or hotel in Korea.',
-    tags: ['Seoul', 'Gangnam', 'Myeongdong', 'Itaewon', 'Hongdae', 'Near Hospital'],
-    cta: 'Ask About Nearby Halal Restaurants',
+    desc: 'Find halal restaurants near your hospital or hotel and open the location in Google Maps.',
+    openMap: 'Open Map',
+    showMore: 'Show More',
+    showLess: 'Show Less',
+    prayerLabel: 'Prayer room',
+    prayer: { yes: 'Yes', no: 'No', unconfirmed: 'Unconfirmed' },
   },
   ar: {
-    title: 'دليل المطاعم الحلال في كوريا',
-    desc: 'نساعدك في العثور على مطاعم حلال قريبة من المستشفى أو الفندق في سيول والمناطق المحيطة بها.',
-    tags: ['سيول', 'جانجنام', 'ميونغدونغ', 'إيتاوون', 'هونغداي', 'قريبة من المستشفى'],
-    cta: 'اسأل الكونسيرج عن مطعم قريب',
+    title: 'خريطة المطاعم الحلال في كوريا',
+    desc: 'يمكنك العثور على مطاعم حلال قريبة من المستشفى أو الفندق في سيول والمناطق المحيطة بها.',
+    openMap: 'افتح الخريطة',
+    showMore: 'عرض المزيد',
+    showLess: 'عرض أقل',
+    prayerLabel: 'غرفة الصلاة',
+    prayer: { yes: 'نعم', no: 'لا', unconfirmed: 'غير مؤكد' },
   },
 }
 
-interface Restaurant {
+const CATEGORY_LABEL: Record<LangCode, Record<string, string>> = {
+  zh: { halal_certified: '清真认证', self_certified: '商家自称清真', muslim_friendly: '穆斯林友好' },
+  ko: { halal_certified: '할랄 인증', self_certified: '자체 할랄 표기', muslim_friendly: '무슬림 친화' },
+  en: { halal_certified: 'Halal Certified', self_certified: 'Self-Certified Halal', muslim_friendly: 'Muslim-Friendly' },
+  ar: { halal_certified: 'حلال معتمد', self_certified: 'حلال ذاتي التصديق', muslim_friendly: 'صديق للمسلمين' },
+}
+
+function restaurantName(r: HalalRestaurant, lang: LangCode): string {
+  if (lang === 'ko') return r.nameKo || r.nameEn
+  if (lang === 'ar') return r.nameAr || r.nameEn
+  return r.nameEn
+}
+
+function mapsUrl(r: HalalRestaurant): string {
+  if (r.lat != null && r.lng != null) {
+    return `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`
+  }
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${r.nameEn} ${r.address}`)}`
+}
+
+function HalalRestaurantList({ lang }: { lang: LangCode }) {
+  const [expanded, setExpanded] = useState(false)
+  const copy = LIST_COPY[lang] ?? LIST_COPY.en
+  const categoryLabels = CATEGORY_LABEL[lang] ?? CATEGORY_LABEL.en
+  const visible = expanded ? HALAL_RESTAURANTS : HALAL_RESTAURANTS.slice(0, INITIAL_VISIBLE_COUNT)
+
+  return (
+    <div className="halal-list-section">
+      <p className="halal-list-title">{copy.title}</p>
+      <p className="halal-list-desc">{copy.desc}</p>
+
+      <div className="halal-list-cards">
+        {visible.map(r => (
+          <div key={r.id} className="halal-restaurant-card">
+            <div className="halal-restaurant-card-top">
+              <p className="halal-restaurant-name">{restaurantName(r, lang)}</p>
+              <span className="halal-restaurant-tag">{r.city}</span>
+            </div>
+            <span className="halal-restaurant-category">{categoryLabels[r.category] ?? r.category}</span>
+            <p className="halal-restaurant-address">{r.address}</p>
+            {r.phone && <p className="halal-restaurant-phone">{r.phone}</p>}
+            <p className="halal-restaurant-prayer">{copy.prayerLabel}: {copy.prayer[r.prayerRoom]}</p>
+            <a
+              className="halal-restaurant-map-btn"
+              href={mapsUrl(r)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {copy.openMap}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      {HALAL_RESTAURANTS.length > INITIAL_VISIBLE_COUNT && (
+        <button
+          type="button"
+          className="halal-list-toggle"
+          onClick={() => setExpanded(v => !v)}
+        >
+          {expanded ? copy.showLess : copy.showMore}
+        </button>
+      )}
+    </div>
+  )
+}
+
+interface LegacyRestaurant {
   id: number
   name: string
   nameAr: string
@@ -50,45 +128,21 @@ interface Restaurant {
   cuisine: string
 }
 
-function HalalGuideCard({ lang }: { lang: LangCode }) {
-  const copy = GUIDE_COPY[lang] ?? GUIDE_COPY.en
-  const contactUrl = lang === 'zh' || lang === 'ko'
-    ? WECHAT_BIZ_URL
-    : `${WHATSAPP_URL}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
-
-  return (
-    <div className="halal-guide-card">
-      <div className="halal-guide-card-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.8">
-          <path d="M12 21s-7-6.5-7-11a7 7 0 1 1 14 0c0 4.5-7 11-7 11z" />
-          <circle cx="12" cy="10" r="2.5" />
-        </svg>
-      </div>
-      <p className="halal-guide-card-title">{copy.title}</p>
-      <p className="halal-guide-card-desc">{copy.desc}</p>
-      <div className="halal-guide-card-tags">
-        {copy.tags.map(tag => (
-          <span key={tag} className="halal-guide-card-tag">{tag}</span>
-        ))}
-      </div>
-      <button
-        type="button"
-        className="halal-guide-card-cta"
-        onClick={() => window.open(contactUrl, '_blank')}
-      >
-        {copy.cta}
-      </button>
-    </div>
-  )
-}
-
 interface HalalMapProps {
   dir?: 'rtl' | 'ltr'
 }
 
 export default function HalalMap({ dir = 'rtl' }: HalalMapProps) {
   const { lang } = useApp()
-  const [selected, setSelected] = useState<Restaurant | null>(null)
+  const [selected, setSelected] = useState<LegacyRestaurant | null>(null)
+
+  if (!MAPS_API_KEY) {
+    return (
+      <div className="halal-map-wrapper" dir={dir}>
+        <HalalRestaurantList lang={lang} />
+      </div>
+    )
+  }
 
   return (
     <div className="halal-map-wrapper" dir={dir}>
@@ -103,47 +157,43 @@ export default function HalalMap({ dir = 'rtl' }: HalalMapProps) {
         </p>
       </div>
 
-      {MAPS_API_KEY ? (
-        <LoadScript googleMapsApiKey={MAPS_API_KEY}>
-          <GoogleMap
-            mapContainerClassName="halal-map-container"
-            center={DEFAULT_CENTER}
-            zoom={12}
-            options={{
-              disableDefaultUI: false,
-              zoomControl: true,
-              streetViewControl: false,
-              mapTypeControl: false,
-            }}
-          >
-            {(restaurants as Restaurant[]).map((r) => (
-              <Marker
-                key={r.id}
-                position={{ lat: r.lat, lng: r.lng }}
-                title={dir === 'rtl' ? r.nameAr : r.name}
-                onClick={() => setSelected(r)}
-              />
-            ))}
+      <LoadScript googleMapsApiKey={MAPS_API_KEY}>
+        <GoogleMap
+          mapContainerClassName="halal-map-container"
+          center={DEFAULT_CENTER}
+          zoom={12}
+          options={{
+            disableDefaultUI: false,
+            zoomControl: true,
+            streetViewControl: false,
+            mapTypeControl: false,
+          }}
+        >
+          {(legacyRestaurants as LegacyRestaurant[]).map((r) => (
+            <Marker
+              key={r.id}
+              position={{ lat: r.lat, lng: r.lng }}
+              title={dir === 'rtl' ? r.nameAr : r.name}
+              onClick={() => setSelected(r)}
+            />
+          ))}
 
-            {selected && (
-              <InfoWindow
-                position={{ lat: selected.lat, lng: selected.lng }}
-                onCloseClick={() => setSelected(null)}
-              >
-                <div className="halal-map-infowindow">
-                  <p className="halal-map-infowindow-name">
-                    {dir === 'rtl' ? selected.nameAr : selected.name}
-                  </p>
-                  <p className="halal-map-infowindow-address">{selected.address}</p>
-                  <p className="halal-map-infowindow-cuisine">{selected.cuisine}</p>
-                </div>
-              </InfoWindow>
-            )}
-          </GoogleMap>
-        </LoadScript>
-      ) : (
-        <HalalGuideCard lang={lang} />
-      )}
+          {selected && (
+            <InfoWindow
+              position={{ lat: selected.lat, lng: selected.lng }}
+              onCloseClick={() => setSelected(null)}
+            >
+              <div className="halal-map-infowindow">
+                <p className="halal-map-infowindow-name">
+                  {dir === 'rtl' ? selected.nameAr : selected.name}
+                </p>
+                <p className="halal-map-infowindow-address">{selected.address}</p>
+                <p className="halal-map-infowindow-cuisine">{selected.cuisine}</p>
+              </div>
+            </InfoWindow>
+          )}
+        </GoogleMap>
+      </LoadScript>
     </div>
   )
 }

@@ -28,81 +28,107 @@
   border: 1px solid var(--border);
 }
 
-.halal-guide-card {
+.halal-list-section {
   width: 100%;
-  border-radius: 16px;
-  border: 1px solid var(--border-blue);
-  background: linear-gradient(180deg, var(--bg-surface) 0%, #ffffff 100%);
-  padding: 24px 20px;
+}
+
+.halal-list-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.halal-list-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.halal-list-cards {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  gap: 12px;
 }
 
-.halal-guide-card-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(0,119,182,0.08);
+.halal-restaurant-card {
+  border-radius: 14px;
+  border: 1px solid var(--border-blue);
+  background: #f6fbff;
+  padding: 16px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 4px;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
 }
 
-.halal-guide-card-title {
-  font-size: 16px;
+.halal-restaurant-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.halal-restaurant-name {
+  font-size: 15px;
   font-weight: 700;
   color: var(--text);
 }
 
-.halal-guide-card-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.7;
-  max-width: 320px;
-}
-
-.halal-guide-card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 7px;
-  margin: 6px 0 8px;
-}
-
-.halal-guide-card-tag {
+.halal-restaurant-tag {
+  flex-shrink: 0;
   font-size: 11px;
   color: var(--brand, #0077b6);
-  background: rgba(0,119,182,0.07);
+  background: rgba(0,119,182,0.08);
   border: 1px solid rgba(0,119,182,0.18);
   border-radius: 20px;
-  padding: 5px 12px;
-  line-height: 1.3;
+  padding: 3px 10px;
+  line-height: 1.4;
 }
 
-.halal-guide-card-cta {
-  width: 100%;
-  max-width: 320px;
-  padding: 13px 18px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(135deg, #128c7e 0%, #25d366 100%);
+.halal-restaurant-category {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.halal-restaurant-address,
+.halal-restaurant-phone,
+.halal-restaurant-prayer {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.halal-restaurant-map-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--brand, #0077b6);
   color: white;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.halal-list-toggle {
+  display: block;
+  margin: 16px auto 0;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--border-blue);
+  background: white;
+  color: var(--brand, #0077b6);
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
-  box-shadow: 0 4px 14px rgba(37,211,102,0.3);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-.halal-guide-card-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(37,211,102,0.4);
 }
 
 .halal-map-infowindow {
