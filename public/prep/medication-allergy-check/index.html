@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>汉江春天 | 用药与过敏确认表</title>
+<meta property="og:title" content="用药与过敏确认表">
+<meta property="og:description" content="汉江春天医疗咨询 — 手术前请填写用药及过敏情况确认表">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Apple SD Gothic Neo','Noto Sans SC','PingFang SC',sans-serif; background:#e8f0fb; color:#1a2a4a; min-height:100vh; padding:0 0 60px; }
+  .header { background:linear-gradient(135deg,#1a3a6b 0%,#2255a4 100%); color:white; text-align:center; padding:36px 20px 28px; }
+  .header .logo { font-size:13px; letter-spacing:2px; opacity:.75; margin-bottom:10px; text-transform:uppercase; }
+  .header h1 { font-size:22px; font-weight:700; line-height:1.4; margin-bottom:6px; }
+  .header h2 { font-size:14px; font-weight:400; opacity:.8; }
+  .intro { background:white; margin:16px 16px 0; border-radius:14px; padding:20px; font-size:14px; line-height:1.8; color:#2a3a5a; text-align:center; }
+  .intro .zh { color:#1a2a4a; margin-bottom:10px; }
+  .intro .ko { color:#4a6a9a; font-size:13px; }
+  .warning-box { background:#fffbe6; border:1.5px solid #f0c040; border-radius:12px; margin:14px 16px 0; padding:16px 18px; font-size:13px; line-height:1.8; }
+  .warning-box .title { font-weight:700; color:#b07800; margin-bottom:6px; font-size:14px; }
+  .warning-box .zh { color:#5a4000; }
+  .warning-box .ko { color:#7a6020; font-size:12px; margin-top:4px; }
+  .section { background:white; margin:12px 16px 0; border-radius:14px; padding:20px; }
+  .section-title { font-size:16px; font-weight:700; color:#1a2a4a; margin-bottom:4px; }
+  .section-title-ko { font-size:12px; color:#2255a4; margin-bottom:14px; font-weight:500; }
+  .item { margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid #eef2f8; }
+  .item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .item .zh { font-size:14px; line-height:1.7; color:#1a2a4a; }
+  .item .ko { font-size:12px; line-height:1.6; color:#4a6a9a; margin-top:4px; }
+  .check-list { margin-top:8px; }
+  .check-row { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid #eef2f8; }
+  .check-row:last-child { border-bottom:none; }
+  .check-box { width:22px; height:22px; border:2px solid #2255a4; border-radius:4px; flex-shrink:0; margin-top:1px; }
+  .check-content .zh { font-size:14px; color:#1a2a4a; line-height:1.6; }
+  .check-content .ko { font-size:11px; color:#4a6a9a; margin-top:2px; }
+  .input-area { background:#f4f8ff; border-radius:10px; padding:14px; margin-top:10px; min-height:60px; border:1px dashed #90b8e0; }
+  .input-label { font-size:12px; color:#4a6a9a; margin-bottom:6px; }
+  .red-box { background:#fff2f2; border:1.5px solid #f08080; border-radius:12px; margin:12px 16px 0; padding:16px 18px; font-size:13px; line-height:1.8; }
+  .red-box .title { font-weight:700; color:#c0392b; margin-bottom:6px; font-size:14px; }
+  .red-box .ko-title { color:#c0392b; font-size:12px; margin-bottom:8px; }
+  .red-box .zh { color:#4a1010; }
+  .red-box .ko { color:#7a3030; font-size:12px; margin-top:4px; }
+  .tag { display:inline-block; background:#dbeafe; color:#1a5a9a; font-size:11px; font-weight:600; padding:2px 8px; border-radius:10px; margin:2px; }
+  .footer { text-align:center; margin:20px 16px 0; font-size:12px; color:#7a8aaa; line-height:1.8; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">汉江春天 · 한강애봄</div>
+  <h1>用药与过敏确认表</h1>
+  <h2>복용약·알레르기 확인표</h2>
+</div>
+
+<div class="intro">
+  <div class="zh">手术前，医生需要了解您目前的用药情况和过敏史。<br>请如实填写以下信息，并发送给汉江春天顾问。</div>
+  <div class="ko">수술 전 의사가 현재 복용 중인 약물과 알레르기 병력을 파악해야 합니다.<br>아래 내용을 사실대로 작성 후 한강애봄 상담원에게 보내주세요.</div>
+</div>
+
+<div class="warning-box">
+  <div class="title">⚠️ 如实填写非常重要 / 사실대로 작성하는 것이 매우 중요합니다</div>
+  <div class="zh">隐瞒用药史或过敏史可能导致麻醉事故或严重并发症。请务必如实告知。</div>
+  <div class="ko">복용약 또는 알레르기 병력을 숨기면 마취 사고나 심각한 합병증이 생길 수 있습니다. 반드시 사실대로 알려주세요.</div>
+</div>
+
+<!-- 현재 복용 중인 약 -->
+<div class="section">
+  <div class="section-title">1. 目前正在服用的药物</div>
+  <div class="section-title-ko">현재 복용 중인 약물</div>
+  <div class="item">
+    <div class="zh">请在以下类别中勾选您正在服用的药物，并尽可能注明药品名称：</div>
+    <div class="ko">아래 항목 중 복용 중인 약에 체크하고, 가능하면 약 이름도 적어주세요:</div>
+    <div class="check-list">
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">阿司匹林 / 아스피린</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">布洛芬·消炎止痛药（NSAIDs） / 이부프로펜·소염진통제</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">抗凝血药（华法林、拜瑞妥等） / 항응고제 (와파린, 자렐토 등)</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">降压药 / 혈압약</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">糖尿病用药（口服/胰岛素） / 당뇨약 (경구/인슐린)</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">甲状腺药物 / 갑상선 약물</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">避孕药·激素药 / 피임약·호르몬제</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">抗抑郁药·精神科用药 / 항우울제·정신과 약물</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">维生素E·鱼油（Omega-3）·银杏 / 비타민E·오메가3·은행잎</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">中药·草药类保健品 / 한약·한방 건강기능식품</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">其他处方药 / 기타 처방약</div></div></div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="zh">其他药品名称（请尽量填写药品具体名称）：</div>
+    <div class="ko">기타 약품명 (가능하면 구체적인 약 이름을 적어주세요):</div>
+    <div class="input-area">
+      <div class="input-label">약 이름 / 药品名称</div>
+    </div>
+  </div>
+</div>
+
+<!-- 알레르기 -->
+<div class="section">
+  <div class="section-title">2. 过敏史</div>
+  <div class="section-title-ko">알레르기 병력</div>
+  <div class="item">
+    <div class="zh">请勾选曾经出现过过敏反应的类别：</div>
+    <div class="ko">과거에 알레르기 반응이 나타난 적 있는 항목에 체크하세요:</div>
+    <div class="check-list">
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">青霉素·抗生素类 / 페니실린·항생제류</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">麻醉药（局麻·全麻） / 마취제 (국소·전신)</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">造影剂·碘 / 조영제·요오드</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">消炎止痛药（阿司匹林·布洛芬等） / 소염진통제 (아스피린·이부프로펜 등)</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">乳胶（手套等） / 라텍스 (장갑 등)</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">食物过敏（请注明）/ 음식 알레르기 (내용 기재)</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">化妆品·外用药膏 / 화장품·외용 연고</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">其他 / 기타</div></div></div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="zh">过敏反应具体症状（例：荨麻疹、呼吸困难、休克等）：</div>
+    <div class="ko">알레르기 반응 구체적 증상 (예: 두드러기, 호흡 곤란, 쇼크 등):</div>
+    <div class="input-area">
+      <div class="input-label">증상 / 症状</div>
+    </div>
+  </div>
+</div>
+
+<!-- 과거 수술 이력 -->
+<div class="section">
+  <div class="section-title">3. 过去手术·麻醉经历</div>
+  <div class="section-title-ko">과거 수술·마취 경험</div>
+  <div class="item">
+    <div class="zh">• 是否曾经接受过手术？ 是 / 否</div>
+    <div class="ko">과거에 수술을 받은 적 있나요? 네 / 아니오</div>
+    <div class="input-area">
+      <div class="input-label">수술 내용·시기 / 手术内容·时间</div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="zh">• 接受麻醉时是否曾出现不良反应（恶心严重、苏醒困难等）？</div>
+    <div class="ko">마취 시 이상 반응(심한 메스꺼움, 각성 어려움 등)이 나타난 적 있나요?</div>
+    <div class="check-list">
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">有过 / 있음</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">没有 / 없음</div></div></div>
+      <div class="check-row"><div class="check-box"></div><div class="check-content"><div class="zh">不确定 / 잘 모르겠음</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="red-box">
+  <div class="title">🚨 以下药物请务必提前停用 / 아래 약물은 반드시 미리 중단하세요</div>
+  <div class="ko-title">수술 최소 2주 전부터 중단 필요 (반드시 의사와 상담 후 결정)</div>
+  <div class="zh">
+    <span class="tag">阿司匹林</span>
+    <span class="tag">布洛芬</span>
+    <span class="tag">华法林</span>
+    <span class="tag">维生素E</span>
+    <span class="tag">鱼油·Omega3</span>
+    <span class="tag">银杏叶</span>
+    <span class="tag">人参制品</span>
+    <span class="tag">避孕药（部分）</span>
+  </div>
+  <div class="ko" style="margin-top:8px">⚠️ 단, 고혈압·당뇨·심장병 약은 임의로 중단하지 마세요. 반드시 의사에게 먼저 상담하세요.</div>
+</div>
+
+<div class="footer">
+  汉江春天医疗咨询 · 한강애봄(k-medi spring)<br>
+  本文件仅供参考，不替代医疗建议。<br>
+  이 문서는 참고용이며, 의료적 조언을 대체하지 않습니다.
+</div>
+
+</body>
+</html>

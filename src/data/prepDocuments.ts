@@ -271,7 +271,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_before',
     field: '성형외과',
     link: '/prep/plastic-surgery-before',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '마취 전 확인 문진표',
@@ -289,7 +289,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_before',
     field: '성형외과 / 피부과 / 공통',
     link: '/prep/medication-allergy-check',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '성형 상담 사진 촬영 가이드',
@@ -298,7 +298,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_before',
     field: '성형외과',
     link: '/prep/plastic-photo-guide',
-    status: 'draft',
+    status: 'available',
   },
 
   // ── 6. 성형수술 후 주의사항 ─────────────────────────────────────
