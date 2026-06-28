@@ -13,7 +13,6 @@ const TEMPLATE = `<!DOCTYPE html>
 <meta property="og:description" content="__DESC__">
 <meta property="og:site_name" content="汉江春天">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://ai-kmedi.com/kmedi_logo.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="__TITLE__">
 <!-- 공유 링크를 짧게 압축하기 위한 라이브러리 (한글/중국어가 그대로 들어가면 링크가 매우 길어지므로 사용) -->
