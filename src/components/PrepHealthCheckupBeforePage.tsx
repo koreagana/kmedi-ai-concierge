@@ -144,7 +144,8 @@ export default function PrepHealthCheckupBeforePage() {
 
         <div className="prep-actions">
           <a className="prep-btn-primary" href="/intake/functional">
-            填写功能医学问诊表 / 기능의학 문진표 작성하기
+            <span className="btn-text-zh">填写功能医学问诊表</span>
+            <span className="btn-text-ko">기능의학 문진표 작성하기</span>
           </a>
           <a
             className="prep-wechat-btn"
@@ -152,7 +153,8 @@ export default function PrepHealthCheckupBeforePage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            打开企业微信咨询
+            <span className="btn-text-zh">打开企业微信咨询</span>
+            <span className="btn-text-ko">기업위챗 상담하기</span>
           </a>
         </div>
 

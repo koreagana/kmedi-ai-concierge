@@ -164,6 +164,7 @@
   width: 100%;
   max-width: 420px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 13px 18px;
@@ -175,6 +176,23 @@
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
+}
+
+.btn-text-zh {
+  display: block;
+}
+
+.btn-text-ko {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.prep-btn-secondary .btn-text-ko,
+.prep-wechat-btn .btn-text-ko {
+  color: var(--text-muted);
+  font-weight: 600;
 }
 
 .prep-privacy-note {

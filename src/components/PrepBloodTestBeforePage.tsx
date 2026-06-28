@@ -163,10 +163,12 @@ export default function PrepBloodTestBeforePage() {
 
         <div className="prep-actions">
           <a className="prep-btn-primary" href="/intake/functional">
-            填写功能医学问诊表 / 기능의학 문진표 작성하기
+            <span className="btn-text-zh">填写功能医学问诊表</span>
+            <span className="btn-text-ko">기능의학 문진표 작성하기</span>
           </a>
           <a className="prep-btn-secondary" href="/prep/health-checkup-before">
-            查看健康检查前准备事项 / 건강검진 전 준비사항 보기
+            <span className="btn-text-zh">查看健康检查前准备事项</span>
+            <span className="btn-text-ko">건강검진 전 준비사항 보기</span>
           </a>
           <a
             className="prep-wechat-btn"
@@ -174,7 +176,8 @@ export default function PrepBloodTestBeforePage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            打开企业微信咨询
+            <span className="btn-text-zh">打开企业微信咨询</span>
+            <span className="btn-text-ko">기업위챗 상담하기</span>
           </a>
         </div>
 

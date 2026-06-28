@@ -461,7 +461,8 @@ export default function FunctionalIntakePage() {
 
         <div className="intake-actions">
           <button type="button" className="intake-copy-btn" onClick={handleCopy}>
-            复制问诊内容 / 문진 내용 복사
+            <span className="btn-text-zh">复制问诊内容</span>
+            <span className="btn-text-ko">문진 내용 복사</span>
           </button>
           {copied && (
             <p className="intake-copied-msg">已复制，请发送给顾问 / 복사되었습니다, 상담원에게 보내주세요</p>
@@ -472,7 +473,8 @@ export default function FunctionalIntakePage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            打开企业微信咨询
+            <span className="btn-text-zh">打开企业微信咨询</span>
+            <span className="btn-text-ko">기업위챗 상담하기</span>
           </a>
         </div>
 

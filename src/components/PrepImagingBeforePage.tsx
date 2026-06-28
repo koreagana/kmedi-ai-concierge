@@ -169,10 +169,12 @@ export default function PrepImagingBeforePage() {
 
         <div className="prep-actions">
           <a className="prep-btn-secondary" href="/prep/health-checkup-before">
-            查看健康检查前准备事项 / 건강검진 전 준비사항 보기
+            <span className="btn-text-zh">查看健康检查前准备事项</span>
+            <span className="btn-text-ko">건강검진 전 준비사항 보기</span>
           </a>
           <a className="prep-btn-secondary" href="/prep/blood-test-before">
-            查看血液检查前注意事项 / 혈액검사 전 안내 보기
+            <span className="btn-text-zh">查看血液检查前注意事项</span>
+            <span className="btn-text-ko">혈액검사 전 안내 보기</span>
           </a>
           <a
             className="prep-wechat-btn"
@@ -180,7 +182,8 @@ export default function PrepImagingBeforePage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            打开企业微信咨询
+            <span className="btn-text-zh">打开企业微信咨询</span>
+            <span className="btn-text-ko">기업위챗 상담하기</span>
           </a>
         </div>
 
