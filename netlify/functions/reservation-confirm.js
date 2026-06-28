@@ -194,14 +194,6 @@ const TEMPLATE = `<!DOCTYPE html>
   }
   .copy-guide b{ color:var(--sky); }
 
-  /* 누르면 한국어 주소 기준으로 구글맵 길찾기를 새 탭에서 엶 (JS의 gmapbtn 리스너 참고) */
-  .gmap-btn{
-    width:100%; margin-top:16px; padding:14px; border-radius:11px; border:none;
-    background:var(--navy); color:#fff; font-size:14.5px; font-weight:800; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; gap:8px;
-  }
-  .gmap-btn .sub{ font-weight:500; opacity:0.7; font-size:12px; margin:0; color:#fff; }
-
   /* 카드 맨 아래 작게 들어가는 회사명 - 클릭하면 ai-kmedi.com으로 이동 */
   .brandfoot{ display:block; margin-top:16px; text-align:center; font-size:10px; color:var(--muted); letter-spacing:0.5px; text-decoration:none; }
 
@@ -217,6 +209,14 @@ const TEMPLATE = `<!DOCTYPE html>
   .sendbtn.copied{ background:var(--good); }
   .sendhint{ font-size:11.5px; color:var(--muted); margin-top:8px; line-height:1.6; }
 
+  /* "PDF로 저장" 버튼 - 브라우저 인쇄 기능(window.print)을 그대로 사용.
+     서버 변환 없이 클라이언트에서만 처리되며, 파일도 저장하지 않음. */
+  .pdfbtn{
+    width:100%; margin-top:10px; padding:13px; border-radius:11px;
+    border:1px solid var(--line); background:#fff; color:var(--navy);
+    font-size:14px; font-weight:700; cursor:pointer;
+  }
+
   /* ============================================================
      환자용 클린 화면 (patient-view)
      - 보내기 링크(?d=...)를 통해 페이지를 열면 자동으로 이 모드가 켜짐
@@ -230,6 +230,16 @@ const TEMPLATE = `<!DOCTYPE html>
   body.patient-view .sendhint{ display:none; }
   body.patient-view .card-panel{
     border:none; padding:0; background:transparent; box-shadow:none;
+  }
+
+  /* PDF로 저장(인쇄) 시: 폼/안내문/버튼들은 다 빼고 카드만 출력.
+     구글지도 버튼은 PDF에서 클릭이 안 되므로 같이 숨김 (주소는 카드에
+     이미 한/중/영 텍스트로 적혀 있어 인쇄물에서도 그대로 보임). */
+  @media print{
+    .intro, .form-panel, .resetbtn,
+    .sendbtn, .sendhint, .pdfbtn{ display:none !important; }
+    .card-panel{ border:none; padding:0; background:transparent; box-shadow:none; }
+    body{ background:#fff; }
   }
 </style>
 </head>
@@ -346,9 +356,6 @@ const TEMPLATE = `<!DOCTYPE html>
             <button class="copy-btn" data-target="c-addr-en">Copy</button>
           </div>
 
-          <button class="gmap-btn" id="gmapbtn">
-            📍 Google地图导航
-          </button>
           <a class="brandfoot" href="https://ai-kmedi.com" target="_blank" rel="noopener">한강애봄 ㅣ 汉江春天</a>
         </div>
       </div>
@@ -356,6 +363,8 @@ const TEMPLATE = `<!DOCTYPE html>
     <!-- ③ 환자에게 보내기 버튼 - 입력값을 링크에 담아 공유/복사 -->
     <button class="sendbtn" id="sendbtn">📩 환자에게 예약 확인서 보내기 / 发送预约确认书</button>
     <p class="sendhint">기기가 공유 기능을 지원하면 위챗 등으로 바로 보낼 수 있는 링크가 뜨고, 지원하지 않으면 링크가 자동으로 복사돼요.<br>支持分享的设备会直接弹出可发送到微信等的链接，不支持则自动复制链接。</p>
+    <!-- ④ PDF로 저장 - 브라우저 인쇄 기능을 그대로 사용 (서버 변환 없음, 파일 저장 없음) -->
+    <button class="pdfbtn" id="pdfbtn">📄 PDF로 저장 / 保存为PDF</button>
   </div>
 </div>
 
@@ -545,12 +554,11 @@ document.querySelectorAll('.copy-btn').forEach(btn=>{
   });
 });
 
-/* "Google地图导航" 버튼 - 한국어 주소 기준으로 구글맵 검색을 새 탭에서 엶 */
-document.getElementById('gmapbtn').addEventListener('click', function(){
-  const hospital = document.getElementById('f-hospital-ko').value || '';
-  const addr = document.getElementById('c-addr-ko').textContent || '';
-  const query = encodeURIComponent((hospital + ' ' + addr).trim());
-  window.open('https://www.google.com/maps/search/?api=1&query=' + query, '_blank');
+/* "PDF로 저장" 버튼 - 브라우저 인쇄 다이얼로그를 열어 "PDF로 저장"을 선택하게 함.
+   서버로 아무것도 전송하지 않으며, 인쇄용 CSS(@media print)가 폼/버튼을 가리고
+   카드만 보이게 해줌. */
+document.getElementById('pdfbtn').addEventListener('click', function(){
+  window.print();
 });
 
 /* 현재 입력된 모든 값을 압축해서 짧은 링크 하나로 만들어줌.
