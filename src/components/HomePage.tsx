@@ -537,8 +537,19 @@ export function ContactSection() {
   const [formSent, setFormSent] = useState(false)
   const isAr = lang === 'ar'
 
+  /* "在线留言/문의 남기기" 제출 - 서버나 DB가 없으므로 자체 백엔드로 보내지 않고,
+     이미 푸터에 공개된 실제 이메일로 제목/본문을 채운 mailto: 링크를 열어
+     방문자의 메일 앱에서 직접 "보내기"를 누르게 함. (서버 저장 없음) */
   const handleFormSend = () => {
-    if (formName.trim() && formMsg.trim()) setFormSent(true)
+    if (!formName.trim() || !formMsg.trim()) return
+    const to = isAr ? 'Alaadin22@yahoo.co.kr' : 'egana@kmedispring.com'
+    const subject = lang === 'zh' ? '韩国医疗咨询 - 在线留言'
+      : lang === 'ko' ? '한국 의료 상담 - 문의 남기기'
+      : lang === 'ar' ? 'استشارة طبية كورية - رسالة'
+      : 'Korea Medical Consultation - Message'
+    const body = `${formName}\n\n${formMsg}`
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setFormSent(true)
   }
 
   return (
@@ -701,15 +712,15 @@ export function ContactSection() {
                     </>
                   ) : (
                     <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                      <span style={{ fontSize: 48 }}>✅</span>
+                      <span style={{ fontSize: 48 }}>📧</span>
                       <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--text)', marginTop: 12 }}>
-                        {lang === 'zh' ? '留言已提交' : lang === 'ko' ? '문의가 접수되었습니다' : lang === 'ar' ? 'تم إرسال الرسالة' : 'Message submitted'}
+                        {lang === 'zh' ? '邮件应用已打开' : lang === 'ko' ? '메일 앱이 열렸습니다' : lang === 'ar' ? 'تم فتح تطبيق البريد' : 'Your email app has opened'}
                       </p>
                       <p style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 8, lineHeight: 1.7 }}>
-                        {lang === 'zh' ? '我们会尽快与您联系。感谢您的咨询。' :
-                         lang === 'ko' ? '빠른 시일 내에 연락 드리겠습니다. 감사합니다.' :
-                         lang === 'ar' ? 'سنتواصل معك في أقرب وقت. شكراً لاستشارتك.' :
-                         'We will contact you shortly. Thank you.'}
+                        {lang === 'zh' ? '请在邮件应用中点击"发送"以完成提交。我们会尽快与您联系。' :
+                         lang === 'ko' ? '메일 앱에서 "보내기"를 눌러야 실제로 전송됩니다. 받는 즉시 빠르게 연락 드리겠습니다.' :
+                         lang === 'ar' ? 'يرجى الضغط على "إرسال" في تطبيق البريد لإكمال الإرسال. سنتواصل معك في أقرب وقت.' :
+                         'Tap "Send" in your email app to complete it. We will contact you shortly after receiving it.'}
                       </p>
                       <button
                         className="btn-primary"
