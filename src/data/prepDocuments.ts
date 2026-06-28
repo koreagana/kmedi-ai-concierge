@@ -6,6 +6,7 @@ export type PrepDocType =
   | 'surgery_before'
   | 'surgery_after'
   | 'photo_guide'
+  | 'reservation'
 
 export type PrepDocStatus = 'available' | 'draft' | 'needs_hospital_check'
 
@@ -26,6 +27,7 @@ export const PREP_DOC_TYPE_LABEL: Record<PrepDocType, { ko: string; zh: string }
   surgery_before: { ko: '수술 전 주의사항', zh: '手术前注意事项' },
   surgery_after: { ko: '수술 후 주의사항', zh: '手术后注意事项' },
   photo_guide: { ko: '사진/자료 준비 안내', zh: '照片/资料准备指南' },
+  reservation: { ko: '예약확인증 생성', zh: '预约确认书生成' },
 }
 
 export const PREP_DOC_STATUS_LABEL: Record<PrepDocStatus, string> = {
@@ -35,6 +37,14 @@ export const PREP_DOC_STATUS_LABEL: Record<PrepDocStatus, string> = {
 }
 
 export const PREP_DOCUMENTS: PrepDocument[] = [
+  {
+    titleKo: '예약확인증 생성기',
+    titleZh: '预约确认书生成器',
+    type: 'reservation',
+    field: '예약 관리 / 공통',
+    link: '/reservation/confirm',
+    status: 'available',
+  },
   {
     titleKo: '기능의학 초진 문진표',
     titleZh: '功能医学初诊问诊表',
