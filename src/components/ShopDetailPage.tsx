@@ -38,14 +38,18 @@ export default function ShopDetailPage() {
         <span className="nav-title">상품 상세 · 商品详情</span>
       </div>
 
-      <div className="product-hero">{product.emoji}</div>
+      <div className="product-hero">
+        <span>{product.emoji}</span>
+        <span className="product-soldout">SOLD OUT</span>
+        <span className="product-preparing">准备中</span>
+      </div>
 
       <div className="product-basic">
         <div className="product-category">
           {product.categoryLabel.zh} · {product.categoryLabel.ko}
         </div>
-        <div className="product-name-ko">{product.nameKo}</div>
         <div className="product-name-zh">{product.nameZh}</div>
+        <div className="product-name-ko">{product.nameKo}</div>
         <div className="price-row">
           <span className="price-krw">₩ {product.priceKrw.toLocaleString()}</span>
           <span className="price-cny">{product.priceCnyLabel}</span>

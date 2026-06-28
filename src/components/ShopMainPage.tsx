@@ -54,12 +54,14 @@ export default function ShopMainPage() {
           <Link className="product-card" to={`/shop/${p.id}`} key={p.id}>
             <div className="product-img">
               {p.emoji}
+              <span className="product-soldout">SOLD OUT</span>
+              <span className="product-preparing">准备中</span>
               {p.badge === 'best' && <span className="best-badge">BEST</span>}
               {p.badge === 'new' && <span className="new-badge">NEW</span>}
             </div>
             <div className="product-info">
-              <div className="product-name-ko">{p.nameKo}</div>
               <div className="product-name-zh">{p.nameZh}</div>
+              <div className="product-name-ko">{p.nameKo}</div>
               <div className="product-price">₩ {p.priceKrw.toLocaleString()}</div>
               <div className="product-price-sub">{p.priceCnyLabel}</div>
             </div>
