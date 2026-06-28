@@ -893,6 +893,7 @@ export function AboutSection() {
 export function FooterSection() {
   const { lang } = useApp()
   const t = translations[lang]
+  const [showMiniProgram, setShowMiniProgram] = useState(false)
 
   return (
     <section className="section-dark" style={{ paddingBottom: 52 }}>
@@ -928,7 +929,7 @@ export function FooterSection() {
       {/* Email */}
       <p className="contact-email">{t.contactEmail}</p>
 
-      {/* SNS icons — 小红书(RedNote) / YouTube / WhatsApp / TikTok */}
+      {/* SNS icons — 小红书(RedNote) / YouTube / WhatsApp / TikTok / 微信小程序 */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 20 }}>
         <a
           href="https://www.rednote.com/user/profile/5c62c866000000001201b355"
@@ -984,7 +985,63 @@ export function FooterSection() {
         >
           <img src="/icons/tiktok.png" alt="TikTok" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </a>
+        <button
+          type="button"
+          onClick={() => setShowMiniProgram(true)}
+          title={lang === 'zh' ? '微信小程序' : lang === 'ko' ? '위챗 샤오청쉬' : 'WeChat Mini Program'}
+          style={{
+            width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'white', border: 'none', padding: 0, cursor: 'pointer',
+          }}
+        >
+          <img src="/icons/xiaochengxu.jpg" alt={lang === 'zh' ? '微信小程序' : 'WeChat Mini Program'} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </button>
       </div>
+
+      <AnimatePresence>
+        {showMiniProgram && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowMiniProgram(false)}
+          >
+            <motion.div
+              className="modal-sheet"
+              initial={{ y: 60, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 60, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="modal-handle" />
+              <p className="modal-title">
+                {lang === 'zh' ? '汉江春天 · 微信小程序' : lang === 'ko' ? '한강애봄 · 위챗 샤오청쉬' : lang === 'ar' ? 'هانغانغ آيبوم · برنامج ويتشات المصغر' : 'K-MediSpring · WeChat Mini Program'}
+              </p>
+              <img
+                src="/icons/xiaochengxu.jpg"
+                alt="WeChat Mini Program QR"
+                style={{ width: 220, height: 220, borderRadius: 16, display: 'block', margin: '0 auto 16px', border: '1px solid var(--border-blue)' }}
+              />
+              <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.7 }}>
+                {lang === 'zh' ? '长按或扫描上方二维码，在微信中打开「汉江春天」小程序。' :
+                 lang === 'ko' ? '위 QR 코드를 길게 누르거나 스캔하면 위챗에서 「汉江春天」샤오청쉬가 열립니다.' :
+                 lang === 'ar' ? 'اضغط مطولاً أو امسح رمز QR أعلاه لفتح برنامج "汉江春天" المصغر في WeChat.' :
+                 'Press and hold or scan the QR code above to open the "汉江春天" mini program in WeChat.'}
+              </p>
+              <button
+                className="btn-primary"
+                style={{ marginTop: 20 }}
+                onClick={() => setShowMiniProgram(false)}
+              >
+                {t.contactClose}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Copyright */}
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
