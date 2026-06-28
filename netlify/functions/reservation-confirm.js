@@ -3,8 +3,8 @@ import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import LZString from 'lz-string'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const TEMPLATE = readFileSync(join(__dirname, 'reservation-confirm-template.html'), 'utf-8')
+const currentDir = dirname(fileURLToPath(import.meta.url))
+const TEMPLATE = readFileSync(join(currentDir, 'reservation-confirm-template.html'), 'utf-8')
 
 function escapeHtml(str) {
   return str
