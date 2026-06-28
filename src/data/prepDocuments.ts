@@ -80,6 +80,14 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
   {
+    titleKo: '대장내시경 검사 전 준비사항',
+    titleZh: '肠镜检查前准备事项',
+    type: 'exam_before',
+    field: '건강검진 / 내시경',
+    link: '/prep/colonoscopy-before',
+    status: 'available',
+  },
+  {
     titleKo: 'CT/MRI 검사 전 확인표',
     titleZh: 'CT/MRI检查前确认表',
     type: 'exam_before',

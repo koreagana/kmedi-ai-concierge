@@ -13,6 +13,7 @@ export default defineConfig({
         prepHealthCheckupBefore: resolve(__dirname, 'prep/health-checkup-before/index.html'),
         prepBloodTestBefore: resolve(__dirname, 'prep/blood-test-before/index.html'),
         prepImagingBefore: resolve(__dirname, 'prep/imaging-before/index.html'),
+        prepColonoscopyBefore: resolve(__dirname, 'prep/colonoscopy-before/index.html'),
         adminPrep: resolve(__dirname, 'admin/prep/index.html'),
       },
     },
