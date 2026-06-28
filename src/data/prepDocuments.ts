@@ -7,6 +7,7 @@ export type PrepDocType =
   | 'surgery_after'
   | 'photo_guide'
   | 'reservation'
+  | 'agreement'
 
 export type PrepDocStatus = 'available' | 'draft' | 'needs_hospital_check'
 
@@ -28,6 +29,7 @@ export const PREP_DOC_TYPE_LABEL: Record<PrepDocType, { ko: string; zh: string }
   surgery_after: { ko: '수술 후 주의사항', zh: '手术后注意事项' },
   photo_guide: { ko: '사진/자료 준비 안내', zh: '照片/资料准备指南' },
   reservation: { ko: '예약확인증 생성', zh: '预约确认书生成' },
+  agreement: { ko: '업무협약서', zh: '业务协议书' },
 }
 
 export const PREP_DOC_STATUS_LABEL: Record<PrepDocStatus, string> = {
@@ -37,6 +39,14 @@ export const PREP_DOC_STATUS_LABEL: Record<PrepDocStatus, string> = {
 }
 
 export const PREP_DOCUMENTS: PrepDocument[] = [
+  {
+    titleKo: '외국인환자 유치 업무협약서',
+    titleZh: 'Agreement for Foreign Patient Attraction Services',
+    type: 'agreement',
+    field: '병원 협약 / 공통',
+    link: '/contract.html',
+    status: 'available',
+  },
   {
     titleKo: '예약확인증 생성기',
     titleZh: '预约确认书生成器',
