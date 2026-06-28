@@ -358,6 +358,39 @@ body {
   border-color: rgba(255,255,255,0.8);
 }
 
+/* Shop entry CTA — white bg + brand blue text, same size/radius as btn-secondary */
+.btn-shop {
+  background: #ffffff;
+  color: #0077b6;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 13px 24px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  text-align: center;
+  transition: all 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.btn-shop:hover {
+  background: #f0f8ff;
+  transform: translateY(-2px);
+}
+.btn-shop-title {
+  font-size: 13px;
+  font-weight: 700;
+}
+.btn-shop-sub {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #4e97d1;
+  letter-spacing: 0.03em;
+}
+
 .hero-scroll-hint {
   position: absolute;
   bottom: 28px;

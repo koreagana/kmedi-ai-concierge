@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
@@ -61,6 +62,7 @@ const fadeUp = {
 export function HeroSection() {
   const { lang } = useApp()
   const t = translations[lang]
+  const navigate = useNavigate()
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const [soundOn, setSoundOn] = useState(false)
@@ -274,8 +276,10 @@ export function HeroSection() {
           <button className="btn-primary" onClick={() => scrollTo('categories')}>
             {t.heroCta1}
           </button>
-          <button className="btn-secondary" onClick={() => scrollTo('concierge')}>
-            {t.heroCta2}
+          {/* 쇼핑몰 진입 버튼 - 상품은 추후 추가, 지금은 /shop 빈 페이지로 연결 */}
+          <button className="btn-shop" onClick={() => navigate('/shop')}>
+            <span className="btn-shop-title">韩国医美恢复护理精选</span>
+            <span className="btn-shop-sub">K-Beauty Recovery Shop</span>
           </button>
         </motion.div>
       </div>
