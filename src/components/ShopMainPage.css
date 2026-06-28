@@ -47,7 +47,6 @@
   gap: 8px;
 }
 .section-label span { font-size: 15px; font-weight: 600; color: #1a2a4a; }
-.section-label .zh { font-size: 12px; color: #6a8aaa; font-weight: 400; }
 
 /* 베스트 배너 */
 .best-banner {
@@ -145,8 +144,7 @@
   gap: 14px;
 }
 .pay-icon { font-size: 28px; flex-shrink: 0; }
-.pay-txt .t1 { font-size: 13px; font-weight: 600; color: #0077B6; margin-bottom: 2px; }
-.pay-txt .t2 { font-size: 11px; color: #6a8aaa; }
+.pay-txt .t1 { font-size: 17px; font-weight: 700; color: #0077B6; }
 
 /* 배송 안내 */
 .ship-info {
@@ -156,22 +154,9 @@
   padding: 14px 18px;
 }
 .ship-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 0;
+  padding: 7px 0;
   border-bottom: 1px solid #f0f2f6;
   font-size: 13px;
   color: #3a5a7a;
 }
 .ship-row:last-child { border-bottom: none; }
-.ship-row .icon { font-size: 16px; width: 22px; text-align: center; }
-
-/* 푸터 */
-.shop-footer {
-  text-align: center;
-  padding: 24px 20px 36px;
-  font-size: 11px;
-  color: #9aabcc;
-  line-height: 2;
-}

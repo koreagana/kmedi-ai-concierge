@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PRODUCTS, PRODUCT_CATEGORIES, type ProductCategoryId } from '../data/products'
+import { AppProvider } from '../contexts/AppContext'
+import { FooterSection } from './HomePage'
 import './ShopMainPage.css'
 
 export default function ShopMainPage() {
@@ -13,7 +15,7 @@ export default function ShopMainPage() {
   return (
     <div className="shop-page">
       <div className="shop-header">
-        <div className="brand">汉江春天 · 한강애봄</div>
+        <div className="brand">汉江春天</div>
         <h1>韩国医美恢复护理精选</h1>
         <div className="sub">K-Beauty Recovery Shop</div>
       </div>
@@ -36,14 +38,13 @@ export default function ShopMainPage() {
 
       {/* 베스트 배너 */}
       <div className="section-label">
-        <span>베스트 상품</span>
-        <span className="zh">精选推荐</span>
+        <span>精选推荐</span>
       </div>
 
       <div className="best-banner">
         <div className="txt">
           <h2>术后真正需要的，<br />都在这里。</h2>
-          <p>수술 후 필요한 모든 케어<br />한국 직배송 · 韩国直发</p>
+          <p>术后恢复全程必备 · 韩国直发</p>
         </div>
       </div>
 
@@ -71,23 +72,21 @@ export default function ShopMainPage() {
       <div className="pay-banner">
         <div className="pay-icon">💚</div>
         <div className="pay-txt">
-          <div className="t1">위챗페이로 간편 결제</div>
-          <div className="t2">微信支付 · 한국 직배송 · 韩国直发</div>
+          <div className="t1">微信支付便捷结算</div>
         </div>
       </div>
 
       {/* 배송 안내 */}
       <div className="ship-info">
-        <div className="ship-row"><span className="icon">📦</span> 한국에서 직접 발송 · 韩国直发</div>
-        <div className="ship-row"><span className="icon">⏱️</span> 주문 후 2~3일 내 발송 · 2-3天内发货</div>
-        <div className="ship-row"><span className="icon">💬</span> 문의: 위챗 汉江春天 · 微信咨询</div>
+        <div className="ship-row">韩国直发</div>
+        <div className="ship-row">下单后1-2天内发货</div>
+        <div className="ship-row">中国配送预计7-14天送达</div>
+        <div className="ship-row">微信咨询：汉江春天</div>
       </div>
 
-      <div className="shop-footer">
-        한강애봄(k-medi spring) · 汉江春天<br />
-        韩国首尔 · 서울특별시 성북구<br />
-        © 2026 한강애봄. All rights reserved.
-      </div>
+      <AppProvider initialLang="zh">
+        <FooterSection />
+      </AppProvider>
     </div>
   )
 }
