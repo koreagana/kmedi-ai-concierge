@@ -52,6 +52,9 @@ export interface PrepDocument {
   field: string
   link: string
   status: PrepDocStatus
+  description?: string
+  /** 환자에게 보내는 문서가 아니라 코디네이터/직원이 내부적으로만 쓰는 도구 */
+  internal?: boolean
 }
 
 export const PREP_DOC_TYPE_LABEL: Record<PrepDocType, { ko: string; zh: string }> = {
@@ -93,6 +96,27 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     field: '예약 관리 / 공통',
     link: '/reservation/confirm',
     status: 'available',
+  },
+  {
+    titleKo: '환자 사전 파악 체크리스트',
+    titleZh: '患者预先了解检查表',
+    type: 'common_checklist',
+    category: 'admin_contract',
+    field: '코디네이터 내부용',
+    link: '/prep/coordinator-checklist',
+    status: 'available',
+    description: '상담 전 파악 → 병원 브리핑 메모 자동 생성',
+    internal: true,
+  },
+  {
+    titleKo: '수술 전 사전 정보 확인',
+    titleZh: '手术前信息确认',
+    type: 'intake',
+    category: 'admin_contract',
+    field: '환자 전송용 · 성형외과 공통',
+    link: '/prep/presurgery-form',
+    status: 'available',
+    description: '환자가 작성 후 위챗으로 복사 전송',
   },
 
   // ── 2. 건강검진·기능의학 ───────────────────────────────────────

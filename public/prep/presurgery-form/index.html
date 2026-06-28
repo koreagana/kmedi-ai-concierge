@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>汉江春天 | 手术前信息确认</title>
+<meta property="og:title" content="手术前信息确认">
+<meta property="og:description" content="汉江春天医疗咨询 — 请在咨询前填写以下信息">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Apple SD Gothic Neo','Noto Sans SC','PingFang SC',sans-serif; background:#e8f0fb; color:#1a2a4a; min-height:100vh; padding:0 0 80px; }
+  .header { background:linear-gradient(135deg,#1a3a6b 0%,#2255a4 100%); color:white; text-align:center; padding:36px 20px 28px; }
+  .header .logo { font-size:13px; letter-spacing:2px; opacity:.75; margin-bottom:10px; text-transform:uppercase; }
+  .header h1 { font-size:22px; font-weight:700; line-height:1.4; margin-bottom:6px; }
+  .header h2 { font-size:14px; font-weight:400; opacity:.8; }
+  .intro { background:white; margin:16px 16px 0; border-radius:14px; padding:20px; font-size:14px; line-height:1.8; text-align:center; }
+  .intro .zh { color:#1a2a4a; margin-bottom:8px; }
+  .intro .ko { color:#4a6a9a; font-size:12px; }
+  .progress { margin:14px 16px 0; }
+  .progress-bar { background:#dde8f8; border-radius:10px; height:6px; }
+  .progress-fill { background:#2255a4; border-radius:10px; height:6px; transition:width 0.4s; }
+  .progress-text { font-size:12px; color:#4a6a9a; text-align:right; margin-top:4px; }
+  .question-card { background:white; margin:12px 16px 0; border-radius:14px; padding:22px; display:none; }
+  .question-card.active { display:block; }
+  .q-num { font-size:11px; color:#2255a4; font-weight:700; letter-spacing:1px; margin-bottom:8px; }
+  .optional-badge { display:inline-block; background:#f0f4ff; color:#6a8aaa; font-size:10px; padding:2px 8px; border-radius:10px; margin-left:6px; vertical-align:middle; }
+  .q-text { font-size:16px; font-weight:700; color:#1a2a4a; line-height:1.5; margin-bottom:6px; }
+  .q-sub { font-size:12px; color:#4a6a9a; margin-bottom:16px; line-height:1.6; }
+  .btn-group { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:4px; }
+  .btn-opt { background:#f0f4ff; border:1.5px solid #c8d8f0; border-radius:10px; padding:10px 16px; font-size:14px; color:#1a2a4a; cursor:pointer; transition:all 0.2s; }
+  .btn-opt.selected { background:#2255a4; color:white; border-color:#2255a4; }
+  .btn-opt:active { transform:scale(0.97); }
+  .sub-section { background:#f4f8ff; border-radius:10px; padding:14px; margin-top:12px; display:none; }
+  .sub-section.show { display:block; }
+  .sub-label { font-size:12px; color:#2255a4; font-weight:600; margin-bottom:8px; }
+  textarea, input[type=text], input[type=date] {
+    width:100%; border:1.5px solid #c8d8f0; border-radius:10px;
+    padding:12px; font-size:14px; color:#1a2a4a; background:white;
+    font-family:inherit; resize:none; margin-top:6px;
+    -webkit-appearance:none;
+  }
+  textarea:focus, input:focus { outline:none; border-color:#2255a4; }
+  .check-grid { display:flex; flex-wrap:wrap; gap:8px; }
+  .check-item { display:flex; align-items:center; gap:6px; background:white; border:1.5px solid #c8d8f0; border-radius:8px; padding:8px 12px; cursor:pointer; }
+  .check-item.checked { border-color:#2255a4; background:#e8f0fb; }
+  .check-item .cb { width:16px; height:16px; border:2px solid #c8d8f0; border-radius:4px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .check-item.checked .cb { background:#2255a4; border-color:#2255a4; color:white; font-size:10px; }
+  .check-item span { font-size:13px; color:#1a2a4a; }
+  .nav-btns { display:flex; gap:10px; margin-top:18px; }
+  .btn-prev { flex:1; background:#f0f4ff; color:#2255a4; border:none; border-radius:12px; padding:14px; font-size:15px; font-weight:600; cursor:pointer; }
+  .btn-next { flex:2; background:#2255a4; color:white; border:none; border-radius:12px; padding:14px; font-size:15px; font-weight:700; cursor:pointer; }
+  .btn-next:active { background:#1a3a6b; }
+  .result-card { background:white; margin:12px 16px 0; border-radius:14px; padding:22px; display:none; }
+  .result-card.active { display:block; }
+  .result-title { font-size:16px; font-weight:700; color:#1a2a4a; margin-bottom:14px; text-align:center; }
+  .result-box { background:#f4f8ff; border-radius:10px; padding:16px; font-size:13px; line-height:2; color:#1a2a4a; white-space:pre-wrap; border:1px solid #dde8f8; }
+  .copy-btn { width:100%; background:#2255a4; color:white; border:none; border-radius:12px; padding:16px; font-size:16px; font-weight:700; margin-top:14px; cursor:pointer; }
+  .copy-btn.copied { background:#27ae60; }
+  .footer-note { text-align:center; margin:16px 16px 0; font-size:11px; color:#9aabcc; line-height:1.8; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">汉江春天 · 한강애봄</div>
+  <h1>手术前信息确认</h1>
+  <h2>수술 전 사전 정보 확인</h2>
+</div>
+
+<div class="intro">
+  <div class="zh">为了给您安排最合适的医生和手术方案，<br>请提前填写以下简单信息。<br>填写完成后点击"复制内容"发送给顾问即可。</div>
+  <div class="ko">가장 적합한 의사와 수술 방안을 안내해드리기 위해<br>아래 간단한 정보를 미리 작성해주세요.</div>
+</div>
+
+<div class="progress">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12%"></div></div>
+  <div class="progress-text" id="progressText">1 / 8</div>
+</div>
+
+<!-- Q1 첫수술/재수술 -->
+<div class="question-card active" id="q1">
+  <div class="q-num">Q1 · 08</div>
+  <div class="q-text">这次是第一次手术，还是修复手术？</div>
+  <div class="q-sub">이번 수술이 처음인가요, 재수술인가요?</div>
+  <div class="btn-group">
+    <div class="btn-opt" onclick="selectOpt(this,'q1','first')">第一次 / 첫 수술</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q1','revision')">修复手术 / 재수술</div>
+  </div>
+  <div class="sub-section" id="q1-revision">
+    <div class="sub-label">修复手术详情 / 재수술 상세</div>
+    <input type="text" id="q1-nth" placeholder="第几次修复？例：第2次 / 몇 차 재수술? 예: 2차">
+    <input type="text" id="q1-when" placeholder="上次手术时间？例：2022年 / 이전 수술 시기? 예: 2022년" style="margin-top:8px">
+    <input type="text" id="q1-where" placeholder="上次手术医院/国家？/ 이전 수술 병원·국가?" style="margin-top:8px">
+    <input type="text" id="q1-reason" placeholder="修复原因？（不满意的地方）/ 재수술 이유?" style="margin-top:8px">
+    <input type="text" id="q1-material" placeholder="上次使用的材料？（假体种类等）可选择 / 이전 사용 재료? (선택)" style="margin-top:8px">
+  </div>
+  <div class="nav-btns">
+    <button class="btn-next" onclick="nextQ(1)">下一步 →</button>
+  </div>
+</div>
+
+<!-- Q2 복용약 -->
+<div class="question-card" id="q2">
+  <div class="q-num">Q2 · 08</div>
+  <div class="q-text">目前是否正在服用任何药物？</div>
+  <div class="q-sub">현재 복용 중인 약이 있나요? (혈압약·당뇨약·피임약·혈액희석제·한약 등)</div>
+  <div class="btn-group">
+    <div class="btn-opt" onclick="selectOpt(this,'q2','none')">没有 / 없음</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q2','yes')">有 / 있음</div>
+  </div>
+  <div class="sub-section" id="q2-yes">
+    <div class="sub-label">请勾选正在服用的药物 / 복용 중인 약 선택</div>
+    <div class="check-grid" id="q2-meds">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>降压药 / 혈압약</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>糖尿病药 / 당뇨약</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>避孕药 / 피임약</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>阿司匹林 / 아스피린</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>抗凝血药 / 항응고제</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>甲状腺药 / 갑상선약</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>中药·한약</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>维生素E·鱼油</span></div>
+    </div>
+    <input type="text" id="q2-other" placeholder="其他药物名称 / 기타 약물명 (선택)" style="margin-top:10px">
+  </div>
+  <div class="nav-btns">
+    <button class="btn-prev" onclick="prevQ(2)">← 上一步</button>
+    <button class="btn-next" onclick="nextQ(2)">下一步 →</button>
+  </div>
+</div>
+
+<!-- Q3 알레르기 -->
+<div class="question-card" id="q3">
+  <div class="q-num">Q3 · 08</div>
+  <div class="q-text">是否有过敏史？</div>
+  <div class="q-sub">약물·마취제·음식·라텍스 등 알레르기 병력이 있나요?</div>
+  <div class="btn-group">
+    <div class="btn-opt" onclick="selectOpt(this,'q3','none')">没有 / 없음</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q3','yes')">有 / 있음</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q3','unknown')">不确定 / 잘 모름</div>
+  </div>
+  <div class="sub-section" id="q3-yes">
+    <div class="sub-label">请勾选过敏类别 / 알레르기 종류 선택</div>
+    <div class="check-grid">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>药物 / 약물</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>麻醉药 / 마취제</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>食物 / 음식</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>乳胶 / 라텍스</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>碘·造影剂 / 요오드</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>其他 / 기타</span></div>
+    </div>
+    <input type="text" id="q3-detail" placeholder="具体说明（例：青霉素过敏→荨麻疹）/ 구체적 내용" style="margin-top:10px">
+  </div>
+  <div class="nav-btns">
+    <button class="btn-prev" onclick="prevQ(3)">← 上一步</button>
+    <button class="btn-next" onclick="nextQ(3)">下一步 →</button>
+  </div>
+</div>
+
+<!-- Q4 만성질환 -->
+<div class="question-card" id="q4">
+  <div class="q-num">Q4 · 08</div>
+  <div class="q-text">是否有慢性疾病？</div>
+  <div class="q-sub">고혈압·당뇨·갑상선·심장질환·자가면역 등</div>
+  <div class="btn-group">
+    <div class="btn-opt" onclick="selectOpt(this,'q4','none')">没有 / 없음</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q4','yes')">有 / 있음</div>
+  </div>
+  <div class="sub-section" id="q4-yes">
+    <div class="sub-label">请勾选 / 해당 항목 선택</div>
+    <div class="check-grid">
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>高血压 / 고혈압</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>糖尿病 / 당뇨</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>甲状腺 / 갑상선</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>心脏病 / 심장질환</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>自身免疫 / 자가면역</span></div>
+      <div class="check-item" onclick="toggleCheck(this)"><div class="cb"></div><span>其他 / 기타</span></div>
+    </div>
+    <input type="text" id="q4-detail" placeholder="具体病名 / 구체적 병명 (선택)" style="margin-top:10px">
+  </div>
+  <div class="nav-btns">
+    <button class="btn-prev" onclick="prevQ(4)">← 上一步</button>
+    <button class="btn-next" onclick="nextQ(4)">下一步 →</button>
+  </div>
+</div>
+
+<!-- Q5 최근 수술·시술 -->
+<div class="question-card" id="q5">
+  <div class="q-num">Q5 · 08</div>
+  <div class="q-text">最近6个月内是否接受过手术或医美治疗？</div>
+  <div class="q-sub">최근 6개월 내 수술·시술 이력이 있나요?<br><span style="color:#9aabcc">可选择 / 선택사항</span></div>
+  <div class="btn-group">
+    <div class="btn-opt" onclick="selectOpt(this,'q5','none')">没有 / 없음</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q5','yes')">有 / 있음</div>
+  </div>
+  <div class="sub-section" id="q5-yes">
+    <textarea id="q5-detail" rows="3" placeholder="请说明（例：6个月前鼻部手术·最近肉毒素注射等）/ 내용 기재"></textarea>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-prev" onclick="prevQ(5)">← 上一步</button>
+    <button class="btn-next" onclick="nextQ(5)">下一步 →</button>
+  </div>
+</div>
+
+<!-- Q6 임신·수유 -->
+<div class="question-card" id="q6">
+  <div class="q-num">Q6 · 08</div>
+  <div class="q-text">目前是否处于妊娠期或哺乳期？</div>
+  <div class="q-sub">현재 임신 중이거나 수유 중인가요?</div>
+  <div class="btn-group">
+    <div class="btn-opt" onclick="selectOpt(this,'q6','no')">否 / 아니오</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q6','pregnant')">妊娠中 / 임신 중</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q6','nursing')">哺乳中 / 수유 중</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q6','unknown')">不确定 / 모름</div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-prev" onclick="prevQ(6)">← 上一步</button>
+    <button class="btn-next" onclick="nextQ(6)">下一步 →</button>
+  </div>
+</div>
+
+<!-- Q7 체류기간 -->
+<div class="question-card" id="q7">
+  <div class="q-num">Q7 · 08</div>
+  <div class="q-text">您在韩国的停留时间是？</div>
+  <div class="q-sub">한국 체류 기간과 귀국 예정일을 알려주세요. (발사·재내원 일정 조율에 필요합니다)</div>
+  <input type="text" id="q7-arrive" placeholder="入境日期 / 입국일 (예: 7月3日)">
+  <input type="text" id="q7-depart" placeholder="귀국 예정일 / 出境日期 (예: 7月12日)" style="margin-top:8px">
+  <div class="sub-section show" style="margin-top:12px">
+    <div class="sub-label">同行人员 / 동행인 여부 <span style="color:#9aabcc;font-weight:400">可选择</span></div>
+    <div class="btn-group">
+      <div class="btn-opt" onclick="selectOpt(this,'q7-companion','alone')">单独 / 혼자</div>
+      <div class="btn-opt" onclick="selectOpt(this,'q7-companion','with')">有同行人 / 동행인 있음</div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-prev" onclick="prevQ(7)">← 上一步</button>
+    <button class="btn-next" onclick="nextQ(7)">下一步 →</button>
+  </div>
+</div>
+
+<!-- Q8 참고사진·희망사항 -->
+<div class="question-card" id="q8">
+  <div class="q-num">Q8 · 08</div>
+  <div class="q-text">是否有理想效果的参考图片？</div>
+  <div class="q-sub">원하는 결과의 참고 사진이 있나요? <span style="color:#9aabcc">可选择</span></div>
+  <div class="btn-group">
+    <div class="btn-opt" onclick="selectOpt(this,'q8','yes')">有，稍后发送 / 있음, 나중에 전송</div>
+    <div class="btn-opt" onclick="selectOpt(this,'q8','no')">没有 / 없음</div>
+  </div>
+  <div class="sub-section show" style="margin-top:12px">
+    <div class="sub-label">希望效果 / 원하는 결과 <span style="color:#9aabcc;font-weight:400">可选择</span></div>
+    <div class="btn-group">
+      <div class="btn-opt" onclick="selectOpt(this,'q8-style','natural')">自然效果 / 자연스럽게</div>
+      <div class="btn-opt" onclick="selectOpt(this,'q8-style','clear')">效果明显 / 확실하게</div>
+    </div>
+    <textarea id="q8-wish" rows="3" placeholder="其他希望或顾虑（可选择）/ 기타 희망사항이나 걱정되는 점 (선택)" style="margin-top:10px"></textarea>
+  </div>
+  <div class="nav-btns">
+    <button class="btn-prev" onclick="prevQ(8)">← 上一步</button>
+    <button class="btn-next" onclick="showResult()">完成 ✓</button>
+  </div>
+</div>
+
+<!-- 결과 -->
+<div class="result-card" id="result">
+  <div class="result-title">✅ 填写完成！请复制后发送给顾问</div>
+  <div class="result-box" id="resultText"></div>
+  <button class="copy-btn" id="copyBtn" onclick="copyResult()">📋 复制内容 / 내용 복사</button>
+</div>
+
+<div class="footer-note">
+  汉江春天医疗咨询 · 한강애봄(k-medi spring)<br>
+  本信息仅用于医疗咨询目的，严格保密。
+</div>
+
+<script>
+const answers = {};
+
+function selectOpt(el, key, val) {
+  const group = el.parentElement;
+  group.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[key] = val;
+
+  // 조건부 서브섹션 토글
+  const subMap = {
+    'q1-revision': ['q1','revision'],
+    'q2-yes': ['q2','yes'],
+    'q3-yes': ['q3','yes'],
+    'q4-yes': ['q4','yes'],
+    'q5-yes': ['q5','yes'],
+  };
+  for (const [subId, [k,v]] of Object.entries(subMap)) {
+    const sub = document.getElementById(subId);
+    if (sub) sub.classList.toggle('show', answers[k] === v);
+  }
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const cb = el.querySelector('.cb');
+  cb.textContent = el.classList.contains('checked') ? '✓' : '';
+}
+
+function getChecked(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return [];
+  return [...el.querySelectorAll('.check-item.checked')].map(i => i.querySelector('span').textContent);
+}
+
+function nextQ(n) {
+  document.getElementById('q'+n).classList.remove('active');
+  const next = n + 1;
+  if (next <= 8) {
+    document.getElementById('q'+next).classList.add('active');
+    updateProgress(next);
+  }
+  window.scrollTo(0,0);
+}
+
+function prevQ(n) {
+  document.getElementById('q'+n).classList.remove('active');
+  document.getElementById('q'+(n-1)).classList.add('active');
+  updateProgress(n-1);
+  window.scrollTo(0,0);
+}
+
+function updateProgress(n) {
+  document.getElementById('progressFill').style.width = (n/8*100)+'%';
+  document.getElementById('progressText').textContent = n + ' / 8';
+}
+
+function showResult() {
+  document.getElementById('q8').classList.remove('active');
+  document.getElementById('result').classList.add('active');
+  updateProgress(8);
+
+  const q1 = answers['q1'] === 'revision' ? '修复手术（재수술）' : '第一次（첫 수술）';
+  let revisionDetail = '';
+  if (answers['q1'] === 'revision') {
+    const nth = document.getElementById('q1-nth').value;
+    const when = document.getElementById('q1-when').value;
+    const where = document.getElementById('q1-where').value;
+    const reason = document.getElementById('q1-reason').value;
+    const material = document.getElementById('q1-material').value;
+    revisionDetail = `\n  · 차수: ${nth||'미기재'} / 시기: ${when||'미기재'} / 병원: ${where||'미기재'}\n  · 재수술 이유: ${reason||'미기재'}${material ? '\n  · 이전 재료: '+material : ''}`;
+  }
+
+  const q2meds = getChecked('q2-meds');
+  const q2other = document.getElementById('q2-other').value;
+  const q2txt = answers['q2'] === 'none' ? '없음' : (q2meds.join(', ') + (q2other ? ', '+q2other : '')) || '있음(미기재)';
+
+  const q3checked = getChecked('q3-yes') || [];
+  const q3detail = document.getElementById('q3-detail')?.value || '';
+  const q3txt = answers['q3'] === 'none' ? '없음' : answers['q3'] === 'unknown' ? '불확실' : (q3checked.join(', ') + (q3detail ? ' / '+q3detail : '')) || '있음(미기재)';
+
+  const q4checked = getChecked('q4-yes') || [];
+  const q4detail = document.getElementById('q4-detail')?.value || '';
+  const q4txt = answers['q4'] === 'none' ? '없음' : (q4checked.join(', ') + (q4detail ? ' / '+q4detail : '')) || '있음(미기재)';
+
+  const q5txt = answers['q5'] === 'none' ? '없음' : document.getElementById('q5-detail')?.value || '있음(미기재)';
+
+  const q6map = { no:'해당없음', pregnant:'임신 중', nursing:'수유 중', unknown:'불확실' };
+  const q6txt = q6map[answers['q6']] || '미답변';
+
+  const arrive = document.getElementById('q7-arrive').value || '미기재';
+  const depart = document.getElementById('q7-depart').value || '미기재';
+  const companion = answers['q7-companion'] === 'alone' ? '혼자' : answers['q7-companion'] === 'with' ? '동행인 있음' : '미답변';
+
+  const q8ref = answers['q8'] === 'yes' ? '있음(추후 전송)' : '없음';
+  const q8style = answers['q8-style'] === 'natural' ? '자연스럽게' : answers['q8-style'] === 'clear' ? '확실하게' : '';
+  const q8wish = document.getElementById('q8-wish')?.value || '';
+
+  const text = `📋 汉江春天 手术前信息确认
+한강애봄 수술 전 사전 정보
+━━━━━━━━━━━━━━━━
+【수술 이력】
+${q1}${revisionDetail}
+
+【복용약】
+${q2txt}
+
+【알레르기】
+${q3txt}
+
+【만성질환】
+${q4txt}
+
+【최근 6개월 시술】
+${q5txt}
+
+【임신·수유】
+${q6txt}
+
+【체류 기간】
+입국: ${arrive} / 귀국: ${depart}
+동행: ${companion}
+
+【참고 사진】
+${q8ref}${q8style ? ' / 스타일: '+q8style : ''}${q8wish ? '\n희망사항: '+q8wish : ''}
+━━━━━━━━━━━━━━━━
+汉江春天医疗咨询`;
+
+  document.getElementById('resultText').textContent = text;
+}
+
+function copyResult() {
+  const text = document.getElementById('resultText').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ 已复制！/ 복사 완료!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 复制内容 / 내용 복사';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+</script>
+</body>
+</html>

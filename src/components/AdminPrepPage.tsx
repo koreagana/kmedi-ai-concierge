@@ -31,10 +31,15 @@ function PrepDocCard({ doc }: { doc: PrepDocument }) {
           <p className="admin-prep-card-title-ko">{doc.titleKo}</p>
           <p className="admin-prep-card-title-zh">{doc.titleZh}</p>
         </div>
-        <span className={`admin-prep-badge admin-prep-badge-${doc.status}`}>
-          {PREP_DOC_STATUS_LABEL[doc.status]}
-        </span>
+        <div className="admin-prep-badges">
+          {doc.internal && <span className="admin-prep-badge admin-prep-badge-internal">🔒 내부용</span>}
+          <span className={`admin-prep-badge admin-prep-badge-${doc.status}`}>
+            {PREP_DOC_STATUS_LABEL[doc.status]}
+          </span>
+        </div>
       </div>
+
+      {doc.description && <p className="admin-prep-card-desc">{doc.description}</p>}
 
       <div className="admin-prep-meta">
         <span>
