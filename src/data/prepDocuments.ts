@@ -170,7 +170,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 미용시술',
     link: '/prep/filler-botox-guide',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '레이저 시술 후 주의사항',
@@ -179,7 +179,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 레이저',
     link: '/prep/laser-treatment-guide',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '스킨부스터·리쥬란 후 주의사항',
@@ -188,7 +188,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 미용시술',
     link: '/prep/skin-booster-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '보톡스 후 주의사항',
@@ -197,7 +197,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 성형외과 / 미용시술',
     link: '/prep/botox-guide',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '필러 후 주의사항',
@@ -206,7 +206,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 성형외과 / 미용시술',
     link: '/prep/filler-guide',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '실리프팅 전 문진표',
@@ -327,7 +327,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 눈성형',
     link: '/prep/double-eyelid-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '눈밑지방재배치 후 주의사항',
@@ -354,7 +354,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 코성형',
     link: '/prep/rhinoplasty-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '안면윤곽 후 주의사항',
