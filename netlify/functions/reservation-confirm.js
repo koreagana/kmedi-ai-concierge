@@ -602,13 +602,18 @@ document.getElementById('sendbtn').addEventListener('click', async function(){
   const btn = this;
   const url = buildShareUrl();
   const hospitalKo = document.getElementById('f-hospital-ko').value || '예약 확인서';
-  const hospitalZh = document.getElementById('f-hospital-zh').value || '';
-  const shareTitle = hospitalKo + ' 预约确认书';
-  const shareText = hospitalKo + (hospitalZh ? ' / ' + hospitalZh : '') + ' 예약 확인서입니다.';
+  const patient = document.getElementById('f-patient').value;
+  /* 가능하면 환자 이름으로, 없으면 병원명으로 짧게 표시.
+     공유 시 본문에 들어가는 문구를 최대한 짧게 만들어
+     링크 미리보기 카드 위에 불필요한 설명 문장이 겹쳐 보이지 않게 함.
+     (URL 자체를 안 보이게 숨기는 것은 메신저 앱 구조상 불가능 —
+     이 문구는 미리보기 카드와 함께 보이는 짧은 본문일 뿐,
+     실제 링크 텍스트는 공유 대상 앱이 그대로 표시함) */
+  const shareLabel = (patient ? patient : hospitalKo) + ' 预约确认书';
 
   if(navigator.share){
     try{
-      await navigator.share({ title: shareTitle, text: shareText, url: url });
+      await navigator.share({ title: shareLabel, text: shareLabel, url: url });
     } catch(e){ /* 사용자가 공유 취소 */ }
   } else {
     copyText(url, btn);
