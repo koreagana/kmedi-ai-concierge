@@ -530,7 +530,7 @@ export function CategoryGridSection() {
 /* ═══════════════════════════════════════════════════════════════════
    6. CONTACT SECTION
    ═══════════════════════════════════════════════════════════════════ */
-type ContactModal = 'wechat-biz' | 'wechat-personal' | 'whatsapp' | 'form' | null
+type ContactModal = 'form' | null
 
 export function ContactSection() {
   const { lang } = useApp()
@@ -596,17 +596,7 @@ export function ContactSection() {
               </div>
             </motion.button>
 
-            <motion.button {...fadeUp} transition={{ delay: 0.1 }} className="contact-btn contact-btn-wechat-personal" onClick={() => setModal('wechat-personal')}>
-              <div className="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              </div>
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatPersonal}</p>
-                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '顾问直接沟通' : lang === 'ko' ? '컨시어지 직접 소통' : 'Direct concierge chat'}</p>
-              </div>
-            </motion.button>
-
-            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => setModal('whatsapp')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open('https://wa.me/821077671903', '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
               </div>
@@ -648,41 +638,6 @@ export function ContactSection() {
               onClick={e => e.stopPropagation()}
             >
               <div className="modal-handle" />
-
-              {/* QR modals */}
-              {(modal === 'wechat-biz' || modal === 'wechat-personal' || modal === 'whatsapp') && (
-                <>
-                  <p className="modal-title">
-                    {modal === 'wechat-biz' ? t.contactWechatBiz :
-                     modal === 'wechat-personal' ? t.contactWechatPersonal :
-                     t.contactWhatsapp}
-                  </p>
-
-                  <div className="qr-placeholder">
-                    <span style={{ fontSize: 36 }}>
-                      {modal === 'whatsapp' ? '📱' : '💬'}
-                    </span>
-                    <span style={{ fontSize: 10, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.5, padding: '0 8px' }}>
-                      {t.contactQRHint}
-                    </span>
-                  </div>
-
-                  <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.7 }}>
-                    {lang === 'zh' ? '扫描上方二维码，添加咨询。\n我们会在工作时间内尽快回复您。' :
-                     lang === 'ko' ? '위의 QR 코드를 스캔하여 상담을 추가하세요.\n업무 시간 내에 최대한 빠르게 답변 드리겠습니다.' :
-                     lang === 'ar' ? 'امسح رمز QR أعلاه لبدء الاستشارة.\nسنرد خلال ساعات العمل.' :
-                     'Scan the QR code above to start consultation.\nWe will respond within business hours.'}
-                  </p>
-
-                  <button
-                    className="btn-primary"
-                    style={{ marginTop: 20 }}
-                    onClick={() => setModal(null)}
-                  >
-                    {t.contactClose}
-                  </button>
-                </>
-              )}
 
               {/* Form modal */}
               {modal === 'form' && (

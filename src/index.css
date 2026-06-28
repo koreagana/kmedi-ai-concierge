@@ -700,11 +700,6 @@ body {
   color: white;
   box-shadow: 0 4px 16px rgba(30,142,62,0.35);
 }
-.contact-btn-wechat-personal {
-  background: linear-gradient(135deg, #07c160 0%, #1ac26e 100%);
-  color: white;
-  box-shadow: 0 4px 16px rgba(7,193,96,0.35);
-}
 .contact-btn-whatsapp {
   background: linear-gradient(135deg, #128c7e 0%, #25d366 100%);
   color: white;
@@ -776,20 +771,6 @@ body {
   color: var(--text);
   text-align: center;
   margin-bottom: 20px;
-}
-
-.qr-placeholder {
-  width: 160px;
-  height: 160px;
-  border: 1.5px solid var(--border-blue);
-  border-radius: 16px;
-  background: var(--bg-surface);
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
 }
 
 .form-input {

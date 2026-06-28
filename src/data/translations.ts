@@ -47,7 +47,6 @@ interface Translations {
   // contact section
   contactTitle: string
   contactWechatBiz: string
-  contactWechatPersonal: string
   contactWhatsapp: string
   contactForm: string
   contactEmail: string
@@ -55,7 +54,6 @@ interface Translations {
   contactFormName: string
   contactFormMsg: string
   contactFormSend: string
-  contactQRHint: string
   contactClose: string
   // network section
   networkTitle: string
@@ -136,7 +134,6 @@ export const translations: Record<LangCode, Translations> = {
     cardContactBtn: '立即联系顾问',
     contactTitle: '选择联系方式',
     contactWechatBiz: '企业微信',
-    contactWechatPersonal: '企业微信',
     contactWhatsapp: 'WhatsApp',
     contactForm: '在线留言',
     contactEmail: 'Email：egana@kmedispring.com',
@@ -144,7 +141,6 @@ export const translations: Record<LangCode, Translations> = {
     contactFormName: '您的姓名或联系方式',
     contactFormMsg: '请简单说明您的需求…',
     contactFormSend: '提交',
-    contactQRHint: '扫描二维码添加顾问',
     contactClose: '关闭',
     networkTitle: '汉江春天之安心赴韩服务',
     networkSub: '从医疗咨询到韩国停留，我们为您提供更安心的赴韩安排。',
@@ -217,7 +213,6 @@ export const translations: Record<LangCode, Translations> = {
     cardContactBtn: '지금 컨시어지에게 연락',
     contactTitle: '상담 방법을 선택하세요',
     contactWechatBiz: '기업 위챗 상담',
-    contactWechatPersonal: '개인 위챗 상담',
     contactWhatsapp: 'WhatsApp 상담',
     contactForm: '문의 남기기',
     contactEmail: 'Email：egana@kmedispring.com',
@@ -225,7 +220,6 @@ export const translations: Record<LangCode, Translations> = {
     contactFormName: '성함 또는 연락처',
     contactFormMsg: '상담 내용을 간단히 입력해 주세요…',
     contactFormSend: '문의 제출',
-    contactQRHint: 'QR 코드를 스캔하여 상담 추가',
     contactClose: '닫기',
     networkTitle: '한강애봄 안심 방한 서비스',
     networkSub: '의료상담부터 한국 체류까지, 더 안심하고 방한하실 수 있도록 안내드립니다.',
@@ -298,7 +292,6 @@ export const translations: Record<LangCode, Translations> = {
     cardContactBtn: 'Reach a Concierge Now',
     contactTitle: 'How Would You Like to Reach Us?',
     contactWechatBiz: 'Enterprise WeChat',
-    contactWechatPersonal: 'Personal WeChat',
     contactWhatsapp: 'WhatsApp',
     contactForm: 'Send a Message',
     contactEmail: 'Email: egana@kmedispring.com',
@@ -306,7 +299,6 @@ export const translations: Record<LangCode, Translations> = {
     contactFormName: 'Your name or preferred contact',
     contactFormMsg: 'Tell us briefly what you\'re looking for…',
     contactFormSend: 'Send Message',
-    contactQRHint: 'Scan to connect via WeChat',
     contactClose: 'Close',
     networkTitle: 'Korea Visit Services',
     networkSub: 'From medical consultation to your stay in Korea — we make it easier.',
@@ -379,7 +371,6 @@ export const translations: Record<LangCode, Translations> = {
     cardContactBtn: 'تواصل مع كونسيرج الآن',
     contactTitle: 'كيف تريد التواصل معنا؟',
     contactWechatBiz: 'ويتشات المؤسسي',
-    contactWechatPersonal: 'ويتشات الشخصي',
     contactWhatsapp: 'واتساب',
     contactForm: 'إرسال رسالة',
     contactEmail: 'البريد الإلكتروني: Alaadin22@yahoo.co.kr',
@@ -387,7 +378,6 @@ export const translations: Record<LangCode, Translations> = {
     contactFormName: 'اسمك أو جهة اتصالك المفضلة',
     contactFormMsg: 'أخبرنا بإيجاز عما تبحث عنه…',
     contactFormSend: 'إرسال الرسالة',
-    contactQRHint: 'امسح للتواصل عبر ويتشات',
     contactClose: 'إغلاق',
     networkTitle: 'خدمات زيارة كوريا',
     networkSub: 'من الاستشارة الطبية إلى إقامتك في كوريا — نجعل الأمر أسهل.',
