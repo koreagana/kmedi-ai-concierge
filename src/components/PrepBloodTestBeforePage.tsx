@@ -26,20 +26,20 @@ const SECTIONS: PrepSection[] = [
     ],
   },
   {
-    titleZh: '2. 禁食안내',
+    titleZh: '2. 禁食说明',
     titleKo: '금식 안내',
     items: [
       { zh: '部分血液检查需要空腹进行。', ko: '일부 혈액검사는 공복 상태에서 진행해야 할 수 있습니다.' },
       { zh: '常见项目如血糖、胰岛素、血脂、部分功能医学检查等，可能需要禁食。', ko: '혈당, 인슐린, 지질검사, 일부 기능의학 검사 등은 금식이 필요할 수 있습니다.' },
-      { zh: '禁食时间请按照医院或顾问안내。', ko: '금식 시간은 병원 또는 상담원이 안내한 기준을 따라주세요.' },
+      { zh: '禁食时间请按照医院或顾问的说明。', ko: '금식 시간은 병원 또는 상담원이 안내한 기준을 따라주세요.' },
       { zh: '如不确定是否需要禁食，请提前询问顾问。', ko: '금식 여부가 확실하지 않다면 미리 상담원에게 확인해주세요.' },
     ],
   },
   {
-    titleZh: '3. 饮水안내',
+    titleZh: '3. 饮水说明',
     titleKo: '물 섭취 안내',
     items: [
-      { zh: '禁食期间是否可以喝水，请按照医院안내。', ko: '금식 중 물 섭취 가능 여부는 병원 안내를 따라주세요.' },
+      { zh: '禁食期间是否可以喝水，请按照医院说明。', ko: '금식 중 물 섭취 가능 여부는 병원 안내를 따라주세요.' },
       { zh: '一般情况下，少量清水可能允许。', ko: '일반적으로 소량의 생수는 가능할 수 있습니다.' },
       { zh: '咖啡、茶、牛奶、果汁、含糖饮料请避免。', ko: '커피, 차, 우유, 주스, 당이 들어간 음료는 피해주세요.' },
       { zh: '不要喝酒精饮料。', ko: '술은 마시지 마세요.' },
@@ -94,7 +94,7 @@ const SECTIONS: PrepSection[] = [
     ],
   },
   {
-    titleZh: '9. 检查报告提交안내',
+    titleZh: '9. 检查报告提交说明',
     titleKo: '검사결과지 제출 안내',
     items: [
       { zh: '如最近做过健康检查、血液检查、影像检查，请提前发送给顾问。', ko: '최근 건강검진, 혈액검사, 영상검사를 받은 적이 있다면 상담원에게 미리 보내주세요.' },
@@ -113,7 +113,7 @@ export default function PrepBloodTestBeforePage() {
           <p className="prep-title-ko">혈액검사 전 안내</p>
           <p className="prep-desc-zh">
             为了让血液检查结果更加准确，请在来院前确认以下注意事项。
-            不同检查项目可能需要不同的准备方式，如医院另有说明，请以医院안내为准。
+            不同检查项目可能需要不同的准备方式，如医院另有说明，请以医院说明为准。
           </p>
           <p className="prep-desc-ko">
             혈액검사 결과를 보다 정확하게 확인할 수 있도록 내원 전 아래 주의사항을 확인해주세요.
@@ -122,11 +122,11 @@ export default function PrepBloodTestBeforePage() {
         </header>
 
         <div className="prep-priority-notice">
-          <p className="prep-priority-notice-title-zh">医院안내优先</p>
+          <p className="prep-priority-notice-title-zh">医院说明优先</p>
           <p className="prep-priority-notice-title-ko">병원 안내 우선</p>
           <p className="prep-priority-notice-zh">
             不同血液检查项目的禁食时间、服药方式和注意事项可能不同。
-            如医院或顾问已单独안내，请优先按照该안내准备。
+            如医院或顾问已单独说明，请优先按照该说明准备。
           </p>
           <p className="prep-priority-notice-ko">
             혈액검사 항목에 따라 금식 시간, 약 복용 방식, 주의사항이 달라질 수 있습니다.
@@ -152,7 +152,7 @@ export default function PrepBloodTestBeforePage() {
 
         <div className="prep-notice">
           <p className="prep-notice-zh">
-            以上内容仅为血液检查前准备参考，具体禁食时间、服药调整及注意事项需以医院最终안내为准。
+            以上内容仅为血液检查前准备参考，具体禁食时间、服药调整及注意事项需以医院最终说明为准。
             汉江春天不是医疗机构，不进行诊断或治疗判断。
           </p>
           <p className="prep-notice-ko">

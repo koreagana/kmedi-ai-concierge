@@ -25,19 +25,19 @@ const SECTIONS: PrepSection[] = [
     ],
   },
   {
-    titleZh: '2. 禁食안내',
+    titleZh: '2. 禁食说明',
     titleKo: '금식 안내',
     items: [
       { zh: '如包含血液检查、腹部超声、胃镜等项目，通常需要禁食。', ko: '혈액검사, 복부초음파, 위내시경 등이 포함된 경우 금식이 필요할 수 있습니다.' },
       { zh: '禁食时间可能因检查项目不同而不同。', ko: '금식 시간은 검사 항목에 따라 달라질 수 있습니다.' },
-      { zh: '请按照医院或顾问안내的时间进行禁食。', ko: '병원 또는 상담원이 안내한 시간에 따라 금식해주세요.' },
+      { zh: '请按照医院或顾问的说明进行禁食。', ko: '병원 또는 상담원이 안내한 시간에 따라 금식해주세요.' },
     ],
   },
   {
-    titleZh: '3. 饮水안내',
+    titleZh: '3. 饮水说明',
     titleKo: '물 섭취 안내',
     items: [
-      { zh: '禁食期间是否可以喝水，请按照医院안내。', ko: '금식 중 물 섭취 가능 여부는 병원 안내를 따라주세요.' },
+      { zh: '禁食期间是否可以喝水，请按照医院说明。', ko: '금식 중 물 섭취 가능 여부는 병원 안내를 따라주세요.' },
       { zh: '一般少量清水可能允许，但咖啡、茶、牛奶、果汁等请避免。', ko: '일반적으로 소량의 생수는 가능할 수 있으나, 커피, 차, 우유, 주스 등은 피해주세요.' },
       { zh: '如不确定，请提前询问顾问。', ko: '확실하지 않으면 상담원에게 미리 확인해주세요.' },
     ],
@@ -71,7 +71,7 @@ const SECTIONS: PrepSection[] = [
     ],
   },
   {
-    titleZh: '7. 检查报告提交안내',
+    titleZh: '7. 检查报告提交说明',
     titleKo: '검사결과지 제출 안내',
     items: [
       { zh: '如最近做过健康检查、血液检查、影像检查，请提前发送给顾问。', ko: '최근 건강검진, 혈액검사, 영상검사를 받은 적이 있다면 상담원에게 미리 보내주세요.' },
@@ -102,7 +102,7 @@ export default function PrepHealthCheckupBeforePage() {
           <p className="prep-title-ko">건강검진 전 준비사항</p>
           <p className="prep-desc-zh">
             为了让健康检查和功能医学检查更加顺利，请在来院前确认以下准备事项。
-            具体检查项目可能因医院安排而不同，如医院另有说明，请以医院안내为准。
+            具体检查项目可能因医院安排而不同，如医院另有说明，请以医院说明为准。
           </p>
           <p className="prep-desc-ko">
             건강검진 및 기능의학 검사가 원활하게 진행될 수 있도록 내원 전 아래 준비사항을 확인해주세요.
@@ -111,7 +111,7 @@ export default function PrepHealthCheckupBeforePage() {
         </header>
 
         <div className="prep-priority-notice">
-          <p className="prep-priority-notice-zh">⚠ 病院别具体指示优先适用</p>
+          <p className="prep-priority-notice-zh">⚠ 各医院具体指示优先适用</p>
           <p className="prep-priority-notice-ko">⚠ 병원별 세부 지시는 본 안내보다 우선 적용됩니다.</p>
         </div>
 
@@ -133,7 +133,7 @@ export default function PrepHealthCheckupBeforePage() {
 
         <div className="prep-notice">
           <p className="prep-notice-zh">
-            以上内容仅为来院前准备参考，具体检查项目、禁食时间、服药调整及注意事项需以医院最终안내为准。
+            以上内容仅为来院前准备参考，具体检查项目、禁食时间、服药调整及注意事项需以医院最终说明为准。
             汉江春天不是医疗机构，不进行诊断或治疗判断。
           </p>
           <p className="prep-notice-ko">
