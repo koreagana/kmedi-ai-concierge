@@ -1,0 +1,176 @@
+.shop-page {
+  font-family: 'Apple SD Gothic Neo', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  background: #f5f7fa;
+  color: #1a2a4a;
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 120px;
+}
+.top-nav {
+  background: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eef0f4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.back-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #f0f4f8;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: #1a2a4a;
+}
+.nav-title { font-size: 14px; font-weight: 600; }
+
+.section {
+  background: white;
+  margin: 12px 16px 0;
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0077B6;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f2f6;
+}
+.section-title .zh { font-size: 11px; color: #9aabcc; font-weight: 400; margin-left: 6px; }
+
+/* 주문 요약 */
+.order-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f7fa; }
+.order-item:last-child { border-bottom: none; }
+.order-item .label { font-size: 13px; color: #6a8aaa; }
+.order-item .value { font-size: 13px; font-weight: 600; color: #1a2a4a; }
+.total-row { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; margin-top: 4px; border-top: 1.5px solid #eef0f4; }
+.total-row .label { font-size: 14px; font-weight: 700; color: #1a2a4a; }
+.total-row .value { font-size: 20px; font-weight: 700; color: #0077B6; }
+
+/* 입력 폼 */
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 12px; color: #6a8aaa; font-weight: 600; margin-bottom: 6px; }
+.field input, .field textarea {
+  width: 100%;
+  border: 1.5px solid #dde8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: inherit;
+  color: #1a2a4a;
+  background: white;
+  -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: #0077B6; }
+.field textarea { resize: none; height: 80px; line-height: 1.5; }
+.field-hint { font-size: 11px; color: #9aabcc; margin-top: 4px; }
+
+/* 결제 안내 */
+.pay-guide {
+  background: #e8f4fd;
+  border: 1.5px solid #b8ddf5;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 12px;
+}
+.pay-guide .step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.pay-guide .step:last-child { margin-bottom: 0; }
+.pay-guide .step-num {
+  width: 22px; height: 22px;
+  background: #0077B6;
+  color: white;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pay-guide .step-txt { font-size: 13px; color: #1a4a6a; line-height: 1.6; }
+.pay-guide .step-txt .zh { display: block; font-size: 11px; color: #5a8aaa; margin-top: 2px; }
+
+/* QR 영역 */
+.qr-section {
+  text-align: center;
+  padding: 20px 0 4px;
+}
+.qr-box {
+  width: 160px; height: 160px;
+  margin: 0 auto 12px;
+  background: white;
+  border: 2px solid #0077B6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #9aabcc;
+  flex-direction: column;
+  gap: 8px;
+}
+.qr-box .qr-icon { font-size: 40px; }
+.qr-amount { font-size: 22px; font-weight: 700; color: #0077B6; margin-bottom: 4px; }
+.qr-note { font-size: 12px; color: #6a8aaa; }
+
+/* 하단 버튼 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  padding: 12px 16px 28px;
+  border-top: 1px solid #eef0f4;
+}
+.submit-btn {
+  width: 100%;
+  background: #0077B6;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.submit-btn:active { background: #005a8e; }
+.submit-btn.done { background: #27ae60; }
+.copy-btn {
+  width: 100%;
+  background: white;
+  color: #0077B6;
+  border: 1.5px solid #0077B6;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.copy-btn.copied {
+  background: #e8fff0;
+  color: #27ae60;
+  border-color: #27ae60;
+}
