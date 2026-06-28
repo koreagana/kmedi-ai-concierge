@@ -969,6 +969,64 @@ export function FooterSection() {
       {/* Email */}
       <p className="contact-email">{t.contactEmail}</p>
 
+      {/* SNS icons — 小红书(RedNote) / YouTube / WhatsApp / TikTok */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 20 }}>
+        <a
+          href="https://www.rednote.com/user/profile/5c62c866000000001201b355"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="小红书"
+          style={{
+            width: 34, height: 34, borderRadius: 9, background: '#FE2C55',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: 'white', fontSize: 9, fontWeight: 800, letterSpacing: '-0.02em',
+            textDecoration: 'none', lineHeight: 1,
+          }}
+        >
+          小红书
+        </a>
+        <a
+          href="https://www.youtube.com/@k-medispring"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="YouTube"
+          style={{
+            width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'white',
+          }}
+        >
+          <img src="/icons/youtube.jpg" alt="YouTube" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </a>
+        <a
+          href="https://wa.me/821077671903"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="WhatsApp"
+          style={{
+            width: 34, height: 34, borderRadius: '50%', background: '#25D366',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z" />
+          </svg>
+        </a>
+        <a
+          href="https://www.tiktok.com/@gngwg7"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="TikTok"
+          style={{
+            width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'white',
+          }}
+        >
+          <img src="/icons/tiktok.jpg" alt="TikTok" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </a>
+      </div>
+
       {/* Copyright */}
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
         © 2025 {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · kmedispring.com
