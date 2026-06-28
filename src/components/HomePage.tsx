@@ -569,7 +569,7 @@ export function ContactSection() {
               </div>
               <div>
                 <p style={{ fontSize: 14, fontWeight: 700 }}>واتساب</p>
-                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>تواصل مباشر عبر واتساب</p>
+                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>Dr. Alaa Eldin Elastel</p>
               </div>
             </motion.button>
             <motion.div {...fadeUp} transition={{ delay: 0.12 }}>
@@ -1002,7 +1002,7 @@ export function FooterSection() {
           href="https://wa.me/821077671903"
           target="_blank"
           rel="noopener noreferrer"
-          title="WhatsApp"
+          title="WhatsApp · Dr. Alaa Eldin Elastel"
           style={{
             width: 34, height: 34, borderRadius: '50%', background: '#25D366',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
