@@ -224,7 +224,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 미용시술',
     link: '/prep/thread-lifting-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '색소·토닝·피코레이저 후 주의사항',
@@ -233,7 +233,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 레이저',
     link: '/prep/pigment-toning-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '여드름·흉터 치료 후 주의사항',
@@ -242,7 +242,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과',
     link: '/prep/acne-scar-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '리프팅 장비 시술 후 주의사항',
@@ -251,7 +251,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과 / 미용시술',
     link: '/prep/device-lifting-after',
-    status: 'draft',
+    status: 'available',
   },
 
   // ── 5. 성형외과 상담·수술 전 준비 ───────────────────────────────
@@ -336,7 +336,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 눈성형',
     link: '/prep/lower-eyelid-fat-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '트임수술 후 주의사항',
@@ -345,7 +345,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 눈성형',
     link: '/prep/epicanthoplasty-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '코성형 후 주의사항',
@@ -363,7 +363,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 윤곽',
     link: '/prep/facial-contouring-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '거상수술 후 주의사항',
@@ -372,7 +372,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과',
     link: '/prep/facelift-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '목거상 후 주의사항',
@@ -381,7 +381,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과',
     link: '/prep/necklift-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '지방흡입 후 주의사항',
@@ -390,7 +390,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 체형',
     link: '/prep/liposuction-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '지방이식 후 주의사항',
@@ -399,7 +399,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 체형',
     link: '/prep/fat-graft-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '가슴성형 후 주의사항',
@@ -408,7 +408,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과',
     link: '/prep/breast-surgery-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '흉터관리 안내',
