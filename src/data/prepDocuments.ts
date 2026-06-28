@@ -170,15 +170,6 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
 
   // ── 4. 피부·레이저·미용시술 ────────────────────────────────────
   {
-    titleKo: '피부시술 전 문진표',
-    titleZh: '皮肤治疗前问诊表',
-    type: 'intake',
-    category: 'skin_laser',
-    field: '피부과 / 미용시술',
-    link: '/prep/skin-treatment-intake',
-    status: 'draft',
-  },
-  {
     titleKo: '피부시술 후 주의사항',
     titleZh: '皮肤治疗后注意事项',
     type: 'procedure_after',
@@ -233,15 +224,6 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
   {
-    titleKo: '실리프팅 전 문진표',
-    titleZh: '埋线提升前问诊表',
-    type: 'intake',
-    category: 'skin_laser',
-    field: '피부과 / 미용시술',
-    link: '/prep/thread-lifting-intake',
-    status: 'draft',
-  },
-  {
     titleKo: '실리프팅 후 주의사항',
     titleZh: '埋线提升后注意事项',
     type: 'procedure_after',
@@ -279,15 +261,6 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
   },
 
   // ── 5. 성형외과 상담·수술 전 준비 ───────────────────────────────
-  {
-    titleKo: '성형외과 상담 전 문진표',
-    titleZh: '整形外科咨询前问诊表',
-    type: 'intake',
-    category: 'plastic_before',
-    field: '성형외과',
-    link: '/prep/plastic-surgery-intake',
-    status: 'draft',
-  },
   {
     titleKo: '성형수술 전 공통 주의사항',
     titleZh: '整形手术前通用注意事项',
