@@ -982,7 +982,7 @@ export function FooterSection() {
             background: 'white',
           }}
         >
-          <img src="/icons/tiktok.jpg" alt="TikTok" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="/icons/tiktok.png" alt="TikTok" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </a>
       </div>
 
