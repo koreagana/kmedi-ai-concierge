@@ -12,6 +12,7 @@ export default defineConfig({
         intakeFunctional: resolve(__dirname, 'intake/functional/index.html'),
         prepHealthCheckupBefore: resolve(__dirname, 'prep/health-checkup-before/index.html'),
         prepBloodTestBefore: resolve(__dirname, 'prep/blood-test-before/index.html'),
+        prepImagingBefore: resolve(__dirname, 'prep/imaging-before/index.html'),
         adminPrep: resolve(__dirname, 'admin/prep/index.html'),
       },
     },

@@ -75,7 +75,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'exam_before',
     field: '영상검사',
     link: '/prep/imaging-before',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '피부시술 전 문진표',
