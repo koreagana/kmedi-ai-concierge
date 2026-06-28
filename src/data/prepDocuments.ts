@@ -161,7 +161,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'skin_laser',
     field: '피부과',
     link: '/prep/skin-treatment-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '필러/보톡스 전후 주의사항',
@@ -309,7 +309,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 공통',
     link: '/prep/surgery-after',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '마취 후 귀가 주의사항',
@@ -318,7 +318,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 마취',
     link: '/prep/anesthesia-after-care',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '쌍꺼풀 수술 후 주의사항',
@@ -417,7 +417,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 공통',
     link: '/prep/scar-care-guide',
-    status: 'draft',
+    status: 'available',
   },
   {
     titleKo: '실밥 제거·재내원 안내',
@@ -426,7 +426,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     category: 'plastic_after',
     field: '성형외과 / 공통',
     link: '/prep/suture-removal-guide',
-    status: 'draft',
+    status: 'available',
   },
 
   // ── 7. 여성의학 / 8. 남성의학 / 9. 정형외과·통증·재생상담 ──────
