@@ -20,11 +20,10 @@ export interface ProductCategory {
 }
 
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
-  { id: 'all', label: '전체 / 全部' },
-  { id: 'recovery', label: '术后恢复 / 수술 후' },
-  { id: 'skincare', label: '院线护肤 / 병원 화장품' },
-  { id: 'kit', label: '恢复套装 / 회복 키트' },
-  { id: 'travel', label: '旅行便携 / 여행용' },
+  { id: 'all', label: '全部' },
+  { id: 'recovery', label: '术后恢复' },
+  { id: 'skincare', label: '院线护肤' },
+  { id: 'kit', label: '恢复套装' },
 ]
 
 export interface Product {
