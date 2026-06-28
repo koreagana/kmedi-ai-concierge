@@ -45,7 +45,6 @@ export default function ShopMainPage() {
           <h2>术后真正需要的，<br />都在这里。</h2>
           <p>수술 후 필요한 모든 케어<br />한국 직배송 · 韩国直发</p>
         </div>
-        <div className="icon">🌿</div>
       </div>
 
       {/* 상품 그리드 */}
@@ -53,7 +52,6 @@ export default function ShopMainPage() {
         {visibleProducts.map((p) => (
           <Link className="product-card" to={`/shop/${p.id}`} key={p.id}>
             <div className="product-img">
-              {p.emoji}
               <span className="product-soldout">SOLD OUT</span>
               <span className="product-preparing">准备中</span>
               {p.badge === 'best' && <span className="best-badge">BEST</span>}

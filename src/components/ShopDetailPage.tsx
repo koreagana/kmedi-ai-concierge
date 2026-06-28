@@ -39,7 +39,6 @@ export default function ShopDetailPage() {
       </div>
 
       <div className="product-hero">
-        <span>{product.emoji}</span>
         <span className="product-soldout">SOLD OUT</span>
         <span className="product-preparing">准备中</span>
       </div>
