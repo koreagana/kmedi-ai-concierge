@@ -1,0 +1,209 @@
+.pc-page {
+  font-family: 'Apple SD Gothic Neo', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  background: #f5f7fa;
+  color: #1a2a4a;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 110px;
+}
+
+/* 네비 */
+.pc-top-nav {
+  background: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eef0f4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.pc-back-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #f0f4f8;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #1a2a4a;
+  display: flex; align-items: center; justify-content: center;
+}
+.pc-nav-title { font-size: 13px; font-weight: 600; color: #6a8aaa; }
+
+/* 상품 이미지 */
+.pc-hero-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #eef4fb;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.pc-hero-img img { width: 80%; height: 80%; object-fit: contain; }
+
+/* 브랜드 */
+.pc-brand-badge {
+  background: white;
+  padding: 12px 20px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid #f0f2f6;
+}
+.pc-brand-tag {
+  font-size: 11px; font-weight: 700;
+  color: #0077B6; letter-spacing: 0.5px;
+  background: #eaf3fb; padding: 3px 10px; border-radius: 20px;
+}
+.pc-brand-name { font-size: 12px; color: #6a8aaa; }
+
+/* 기본 정보 */
+.pc-product-basic {
+  background: white;
+  padding: 20px 20px 24px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.pc-name-ko { font-size: 20px; font-weight: 700; color: #1a2a4a; margin-bottom: 4px; line-height: 1.3; }
+.pc-name-zh { font-size: 14px; color: #6a8aaa; margin-bottom: 6px; }
+.pc-product-desc { font-size: 12px; color: #9aabcc; margin-bottom: 12px; }
+.pc-divider { border: none; border-top: 1px solid #f0f2f6; margin: 12px 0; }
+.pc-price-block { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.pc-price-krw { font-size: 26px; font-weight: 700; color: #0077B6; }
+.pc-price-cny { font-size: 14px; color: #9aabcc; }
+.pc-price-note { font-size: 11px; color: #9aabcc; margin-bottom: 16px; }
+.pc-qty-label { font-size: 12px; color: #6a8aaa; margin-bottom: 8px; }
+.pc-qty-wrap {
+  display: flex; align-items: center; gap: 0;
+  background: #f5f7fa; border-radius: 12px;
+  width: fit-content; overflow: hidden;
+}
+.pc-qty-btn {
+  width: 44px; height: 44px;
+  border: none; background: transparent;
+  font-size: 20px; cursor: pointer;
+  color: #0077B6; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.pc-qty-num { width: 44px; text-align: center; font-size: 16px; font-weight: 700; color: #1a2a4a; }
+
+/* 민감성 테스트 배너 */
+.pc-test-banner {
+  background: linear-gradient(135deg, #0077B6 0%, #005a90 100%);
+  margin: 0 0 8px;
+  padding: 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.pc-test-num { font-size: 38px; font-weight: 700; color: white; flex-shrink: 0; line-height: 1; }
+.pc-t1 { font-size: 13px; font-weight: 700; color: white; margin-bottom: 2px; }
+.pc-t2 { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+/* 공통 섹션 */
+.pc-sec-title {
+  font-size: 15px; font-weight: 700; color: #1a2a4a; margin-bottom: 2px;
+}
+.pc-sec-title-zh { font-size: 12px; color: #9aabcc; margin-bottom: 16px; }
+
+/* 성분 */
+.pc-ingredient-section {
+  background: white; padding: 20px; border-bottom: 8px solid #f5f7fa;
+}
+.pc-ingredient-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.pc-ingredient-card {
+  background: #f5f7fa; border-radius: 12px; padding: 14px 12px; text-align: center;
+}
+.pc-ingredient-icon { font-size: 22px; margin-bottom: 6px; }
+.pc-ingredient-name { font-size: 13px; font-weight: 700; color: #1a2a4a; margin-bottom: 2px; }
+.pc-ingredient-name-zh { font-size: 11px; color: #0077B6; margin-bottom: 6px; }
+.pc-ingredient-desc { font-size: 11px; color: #6a8aaa; line-height: 1.7; }
+
+/* 추천/정보 */
+.pc-info-section {
+  background: white; padding: 20px; border-bottom: 8px solid #f5f7fa;
+}
+.pc-info-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+.pc-info-row:last-child { margin-bottom: 0; }
+.pc-info-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #0077B6; flex-shrink: 0; margin-top: 7px;
+}
+.pc-info-text { font-size: 13px; color: #3a5a7a; line-height: 1.7; }
+
+/* 사용법 */
+.pc-usage-section {
+  background: white; padding: 20px; border-bottom: 8px solid #f5f7fa;
+}
+.pc-step-row {
+  display: flex; gap: 14px; margin-bottom: 14px; align-items: flex-start;
+}
+.pc-step-row:last-child { margin-bottom: 0; }
+.pc-step-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #0077B6; color: white;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.pc-step-text { font-size: 13px; color: #3a5a7a; line-height: 1.7; }
+
+/* 공통 zh 서브텍스트 */
+.pc-zh { display: block; font-size: 12px; color: #9aabcc; margin-top: 2px; }
+
+/* 관련 상품 */
+.pc-related-section {
+  background: white; padding: 20px; border-bottom: 8px solid #f5f7fa;
+}
+.pc-related-scroll {
+  display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px;
+}
+.pc-related-scroll::-webkit-scrollbar { display: none; }
+.pc-related-card {
+  flex-shrink: 0; width: 120px;
+  background: #f5f7fa; border-radius: 12px; overflow: hidden;
+}
+.pc-related-img {
+  width: 120px; height: 120px;
+  display: flex; align-items: center; justify-content: center; background: #eef4fb;
+}
+.pc-related-img img { width: 80%; height: 80%; object-fit: contain; }
+.pc-related-info { padding: 8px 10px 10px; }
+.pc-related-name { font-size: 11px; font-weight: 600; color: #1a2a4a; margin-bottom: 3px; line-height: 1.4; }
+.pc-related-price { font-size: 12px; font-weight: 700; color: #0077B6; }
+
+/* 주의사항 */
+.pc-caution-section {
+  background: #fffbe6; border-top: 1px solid #f0e8b0; border-bottom: 1px solid #f0e8b0;
+  padding: 16px 20px; margin-bottom: 8px;
+}
+.pc-caution-title { font-size: 13px; font-weight: 700; color: #b07800; margin-bottom: 10px; }
+.pc-caution-row {
+  font-size: 12px; color: #7a5a00; line-height: 1.8;
+  padding-left: 12px; position: relative;
+}
+.pc-caution-row::before { content: '·'; position: absolute; left: 0; }
+
+/* 하단 버튼 */
+.pc-bottom-bar {
+  position: fixed; bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  background: white;
+  padding: 12px 16px 28px;
+  border-top: 1px solid #eef0f4;
+  display: flex; gap: 10px;
+}
+.pc-cart-btn {
+  flex: 1; border: 1.5px solid #0077B6;
+  background: white; color: #0077B6;
+  border-radius: 14px; padding: 14px;
+  font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+}
+.pc-buy-btn {
+  flex: 2; border: none;
+  background: #0077B6; color: white;
+  border-radius: 14px; padding: 14px;
+  font-size: 15px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.pc-buy-btn:active { background: #005a8e; }

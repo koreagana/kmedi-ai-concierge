@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>주문서 | 韩国医美恢复护理精选</title>
+<link rel="icon" href="/favicon.ico">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  background: #f5f7fa;
+  color: #1a2a4a;
+  min-height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: 120px;
+}
+.top-nav {
+  background: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eef0f4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.back-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #f0f4f8;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: #1a2a4a;
+}
+.nav-title { font-size: 14px; font-weight: 600; }
+
+.section {
+  background: white;
+  margin: 12px 16px 0;
+  border-radius: 14px;
+  padding: 18px 20px;
+}
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0077B6;
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f2f6;
+}
+.section-title .zh { font-size: 11px; color: #9aabcc; font-weight: 400; margin-left: 6px; }
+
+/* 주문 요약 */
+.order-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f5f7fa; }
+.order-item:last-child { border-bottom: none; }
+.order-item .label { font-size: 13px; color: #6a8aaa; }
+.order-item .value { font-size: 13px; font-weight: 600; color: #1a2a4a; }
+.total-row { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; margin-top: 4px; border-top: 1.5px solid #eef0f4; }
+.total-row .label { font-size: 14px; font-weight: 700; color: #1a2a4a; }
+.total-row .value { font-size: 20px; font-weight: 700; color: #0077B6; }
+
+/* 입력 폼 */
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 12px; color: #6a8aaa; font-weight: 600; margin-bottom: 6px; }
+.field input, .field textarea {
+  width: 100%;
+  border: 1.5px solid #dde8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: inherit;
+  color: #1a2a4a;
+  background: white;
+  -webkit-appearance: none;
+  transition: border-color 0.15s;
+}
+.field input:focus, .field textarea:focus { outline: none; border-color: #0077B6; }
+.field textarea { resize: none; height: 80px; line-height: 1.5; }
+.field-hint { font-size: 11px; color: #9aabcc; margin-top: 4px; }
+
+/* 결제 안내 */
+.pay-guide {
+  background: #e8f4fd;
+  border: 1.5px solid #b8ddf5;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 12px;
+}
+.pay-guide .step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.pay-guide .step:last-child { margin-bottom: 0; }
+.pay-guide .step-num {
+  width: 22px; height: 22px;
+  background: #0077B6;
+  color: white;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pay-guide .step-txt { font-size: 13px; color: #1a4a6a; line-height: 1.6; }
+.pay-guide .step-txt .zh { display: block; font-size: 11px; color: #5a8aaa; margin-top: 2px; }
+
+/* QR 영역 */
+.qr-section {
+  text-align: center;
+  padding: 20px 0 4px;
+}
+.qr-box {
+  width: 160px; height: 160px;
+  margin: 0 auto 12px;
+  background: white;
+  border: 2px solid #0077B6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #9aabcc;
+  flex-direction: column;
+  gap: 8px;
+}
+.qr-box .qr-icon { font-size: 40px; }
+.qr-amount { font-size: 22px; font-weight: 700; color: #0077B6; margin-bottom: 4px; }
+.qr-note { font-size: 12px; color: #6a8aaa; }
+
+/* 하단 버튼 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  background: white;
+  padding: 12px 16px 28px;
+  border-top: 1px solid #eef0f4;
+}
+.submit-btn {
+  width: 100%;
+  background: #0077B6;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.submit-btn:active { background: #005a8e; }
+.submit-btn.done { background: #27ae60; }
+.copy-btn {
+  width: 100%;
+  background: white;
+  color: #0077B6;
+  border: 1.5px solid #0077B6;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <button class="back-btn" onclick="history.back()">←</button>
+  <span class="nav-title">주문서 · 订单确认</span>
+</div>
+
+<!-- 주문 요약 -->
+<div class="section">
+  <div class="section-title">주문 내역 <span class="zh">订单详情</span></div>
+  <div class="order-item">
+    <span class="label">상품명 · 商品名</span>
+    <span class="value" id="orderName">—</span>
+  </div>
+  <div class="order-item">
+    <span class="label">수량 · 数量</span>
+    <span class="value" id="orderQty">—</span>
+  </div>
+  <div class="order-item">
+    <span class="label">단가 · 单价</span>
+    <span class="value" id="orderUnit">—</span>
+  </div>
+  <div class="total-row">
+    <span class="label">합계 · 合计</span>
+    <span class="value" id="orderTotal">—</span>
+  </div>
+</div>
+
+<!-- 배송지 입력 -->
+<div class="section">
+  <div class="section-title">배송지 입력 <span class="zh">收货信息</span></div>
+  <div class="field">
+    <label>받는 분 이름 · 收件人姓名</label>
+    <input type="text" id="shipName" placeholder="이름 / 姓名">
+  </div>
+  <div class="field">
+    <label>연락처 · 联系方式 (위챗ID 또는 전화번호)</label>
+    <input type="text" id="shipContact" placeholder="微信ID 或 手机号">
+  </div>
+  <div class="field">
+    <label>배송 주소 · 收货地址</label>
+    <textarea id="shipAddr" placeholder="국가·도시·상세주소 / 国家·城市·详细地址"></textarea>
+    <div class="field-hint">중국 주소 기재 시 한자로 작성해주세요 · 中国地址请用汉字填写</div>
+  </div>
+  <div class="field">
+    <label>요청사항 <span style="color:#9aabcc;font-weight:400">선택 · 可选</span></label>
+    <input type="text" id="shipNote" placeholder="배송 요청사항 / 备注">
+  </div>
+</div>
+
+<!-- 결제 방법 -->
+<div class="section">
+  <div class="section-title">결제 방법 <span class="zh">支付方式</span></div>
+  <div class="pay-guide">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-txt">아래 "결제하기" 버튼을 누르면 위챗페이 QR이 나타납니다
+        <span class="zh">点击下方按钮后，将显示微信支付二维码</span></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-txt">위챗으로 정확한 금액을 송금해주세요
+        <span class="zh">请通过微信转账准确金额</span></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-txt">"결제 완료 알림" 버튼으로 주문 내역을 위챗으로 전송해주세요
+        <span class="zh">点击"付款完成通知"按钮，将订单发送至微信</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- QR 영역 (결제하기 후 표시) -->
+<div class="section" id="qrSection" style="display:none;">
+  <div class="section-title">위챗페이 결제 <span class="zh">微信支付</span></div>
+  <div class="qr-section">
+    <div class="qr-box">
+      <div class="qr-icon">💚</div>
+      <div style="font-size:12px;color:#9aabcc;text-align:center">리디아 위챗페이 QR<br>汉江春天 微信支付</div>
+    </div>
+    <div class="qr-amount" id="qrAmount">₩ 0</div>
+    <div class="qr-note">위 금액을 정확히 송금해주세요<br>请准确转账上方金额</div>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <button class="submit-btn" id="mainBtn" onclick="handleBtn()">결제하기 · 立即付款</button>
+  <button class="copy-btn" id="copyBtn" style="display:none" onclick="copyOrder()">📋 결제 완료 알림 · 付款完成通知</button>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const name = decodeURIComponent(params.get('name') || '상품');
+const qty = parseInt(params.get('qty') || '1');
+const total = parseInt(params.get('total') || '0');
+const unit = Math.round(total / qty);
+
+document.getElementById('orderName').textContent = name;
+document.getElementById('orderQty').textContent = qty + '개';
+document.getElementById('orderUnit').textContent = '₩ ' + unit.toLocaleString();
+document.getElementById('orderTotal').textContent = '₩ ' + total.toLocaleString();
+document.getElementById('qrAmount').textContent = '₩ ' + total.toLocaleString();
+
+let step = 1;
+
+function handleBtn() {
+  if (step === 1) {
+    const shipName = document.getElementById('shipName').value.trim();
+    const shipContact = document.getElementById('shipContact').value.trim();
+    const shipAddr = document.getElementById('shipAddr').value.trim();
+    if (!shipName || !shipContact || !shipAddr) {
+      alert('배송지 정보를 모두 입력해주세요.\n请填写完整收货信息。');
+      return;
+    }
+    document.getElementById('qrSection').style.display = 'block';
+    document.getElementById('qrSection').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('mainBtn').textContent = '✅ QR 확인 완료 · 已确认二维码';
+    document.getElementById('mainBtn').classList.add('done');
+    document.getElementById('copyBtn').style.display = 'block';
+    step = 2;
+  }
+}
+
+function copyOrder() {
+  const shipName = document.getElementById('shipName').value;
+  const shipContact = document.getElementById('shipContact').value;
+  const shipAddr = document.getElementById('shipAddr').value;
+  const shipNote = document.getElementById('shipNote').value;
+
+  const text = `📦 한강애봄 주문 알림
+━━━━━━━━━━━━━━━━
+상품: ${name}
+수량: ${qty}개
+금액: ₩ ${total.toLocaleString()}
+━━━━━━━━━━━━━━━━
+받는 분: ${shipName}
+연락처: ${shipContact}
+주소: ${shipAddr}${shipNote ? '\n요청사항: ' + shipNote : ''}
+━━━━━━━━━━━━━━━━
+위챗페이 송금 완료했습니다.
+汉江春天(k-medi spring)`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ 복사 완료! 위챗에 붙여넣기 하세요';
+    setTimeout(() => {
+      btn.textContent = '📋 결제 완료 알림 · 付款完成通知';
+    }, 3000);
+  });
+}
+</script>
+</body>
+</html>
