@@ -1,8 +1,8 @@
+import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
 import { useState } from 'react'
 import { buildReferenceTranslation } from '../data/medicalTermMap'
 import './FunctionalIntakePage.css'
 
-const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
 
 interface BilingualOption {
   value: string

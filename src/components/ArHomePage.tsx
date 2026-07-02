@@ -10,8 +10,7 @@ import {
   FooterSection,
 } from './HomePage'
 import HalalMap from './HalalMap'
-
-const WHATSAPP_URL = 'https://wa.me/821077671903'
+import { WHATSAPP_URL, WHATSAPP_PHONE } from '../data/contacts'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -63,7 +62,7 @@ function ArConciergeSection() {
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 12 }}>
           <p
-            onClick={() => copy('+821077671903', setCopiedPhone)}
+            onClick={() => copy(WHATSAPP_PHONE, setCopiedPhone)}
             style={{ fontSize: 11, color: copiedPhone ? 'var(--brand)' : 'var(--text-muted)', cursor: 'pointer', userSelect: 'none', transition: 'color 0.2s' }}
           >
             📱 {copiedPhone ? '✓ تم النسخ' : '+82-10-7767-1903'}

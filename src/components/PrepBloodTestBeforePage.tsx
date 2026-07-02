@@ -1,6 +1,6 @@
+import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
 import './PrepBloodTestBeforePage.css'
 
-const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
 
 interface PrepItem {
   zh: string

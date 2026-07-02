@@ -1,10 +1,9 @@
+import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { ContactSection, MedicalNetworkSection, AboutSection, FooterSection } from './HomePage'
 
-const WECHAT_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
-const WHATSAPP_URL = 'https://wa.me/821077671903'
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -284,7 +283,7 @@ export default function PackagePage() {
   const { lang, goHome } = useApp()
   const p = lang === 'ko' ? KO : lang === 'en' ? EN : lang === 'ar' ? AR : ZH
   const isAr = lang === 'ar'
-  const contactUrl = isAr ? WHATSAPP_URL : WECHAT_URL
+  const contactUrl = isAr ? WHATSAPP_URL : WECHAT_BIZ_URL
 
   const [selections, setSelections] = useState<Selections>(p.defaultSelections)
   const days = p.dayItems(selections)

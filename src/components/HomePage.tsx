@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
+import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR } from '../data/contacts'
 import HalalMapButton from './HalalMapButton'
 import ConsultationCard from './ConsultationCard'
 
@@ -294,7 +295,6 @@ function ConciergeSection() {
   const { lang } = useApp()
   const t = translations[lang]
 
-  const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
   const [showWxModal, setShowWxModal] = useState(false)
 
   return (
@@ -546,7 +546,7 @@ export function ContactSection() {
      방문자의 메일 앱에서 직접 "보내기"를 누르게 함. (서버 저장 없음) */
   const handleFormSend = () => {
     if (!formName.trim() || !formMsg.trim()) return
-    const to = isAr ? 'Alaadin22@yahoo.co.kr' : 'egana@kmedispring.com'
+    const to = isAr ? EMAIL_AR : EMAIL_GENERAL
     const subject = lang === 'zh' ? '韩国医疗咨询 - 在线留言'
       : lang === 'ko' ? '한국 의료 상담 - 문의 남기기'
       : lang === 'ar' ? 'استشارة طبية كورية - رسالة'
@@ -567,7 +567,7 @@ export function ContactSection() {
         {isAr ? (
           /* ── Arabic: WhatsApp + Halal Map button ── */
           <>
-            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open('https://wa.me/821077671903', '_blank')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(WHATSAPP_URL, '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
               </div>
@@ -586,7 +586,7 @@ export function ContactSection() {
         ) : (
           /* ── Non-Arabic: WeChat buttons ── */
           <>
-            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open('https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0', '_blank')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="white"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
               </div>
@@ -596,7 +596,7 @@ export function ContactSection() {
               </div>
             </motion.button>
 
-            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open('https://wa.me/821077671903', '_blank')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(WHATSAPP_URL, '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
               </div>
@@ -959,7 +959,7 @@ export function FooterSection() {
           <img src="/icons/youtube.jpg" alt="YouTube" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </a>
         <a
-          href="https://wa.me/821077671903"
+          href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           title="WhatsApp · Dr. Alaa Eldin Elastel"

@@ -1,11 +1,10 @@
+import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { CATEGORY_CARDS, CONCERN_CARDS } from '../data/categoryConsultation'
 import type { CategoryId } from '../data/categories'
 
-const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
-const WHATSAPP_URL = 'https://wa.me/821077671903'
 
 /* ─── i18n data (category-context card) ───────────────────────── */
 
