@@ -85,7 +85,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'agreement',
     category: 'admin_contract',
     field: '병원 협약 / 공통',
-    link: '/contract.html',
+    link: '/docs/contract.html',
     status: 'available',
   },
   {
