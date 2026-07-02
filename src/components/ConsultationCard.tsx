@@ -425,6 +425,120 @@ function classifyHome(answers: string[], questions: Q[]): HomeType {
   return 'GENERAL_HOME'                            // 극히 드문 케이스
 }
 
+/* ─── 심화 질문 (follow-up) — 홈 모드 특정 타입에만 적용 ─────────── */
+
+interface FollowUpData {
+  q: Record<string, string>
+  opts: Record<string, string[]>
+  suffix: Record<number, Record<string, string>>
+}
+
+const FOLLOW_UP: Partial<Record<HomeType, FollowUpData>> = {
+  SURGERY_INTEREST: {
+    q: {
+      zh: '您对哪方面的整形最感兴趣？',
+      ko: '어떤 분야의 성형에 관심이 있으신가요?',
+      en: 'Which area of plastic surgery interests you most?',
+      ar: 'ما هو مجال الجراحة التجميلية الذي يهمك أكثر؟',
+    },
+    opts: {
+      zh: ['眼部整形', '鼻部整形', '面部轮廓·颧骨', '身体整形', '先了解整体方向'],
+      ko: ['눈 성형', '코 성형', '얼굴 윤곽·광대', '바디 성형', '먼저 전체 방향 파악'],
+      en: ['Eyes', 'Nose', 'Face contour', 'Body', 'Explore overall options first'],
+      ar: ['العيون', 'الأنف', 'ملامح الوجه', 'الجسم', 'استكشاف الخيارات أولاً'],
+    },
+    suffix: {
+      0: { zh: '（眼部整形方向已标注，我们会为您匹配相关专科。）', ko: '（눈 성형 방향으로 전문병원을 안내해 드리겠습니다.）', en: '(Eye surgery noted — we\'ll match you with relevant specialists.)', ar: '(تم تسجيل اهتمامك بجراحة العيون.)' },
+      1: { zh: '（鼻部整形方向已标注，我们会整理韩国鼻整形专科方向。）', ko: '（코 성형 방향으로 한국 전문 상담을 정리해 드리겠습니다.）', en: '(Rhinoplasty noted — we\'ll arrange Korean rhinoplasty consultation.)', ar: '(تم تسجيل اهتمامك بتجميل الأنف.)' },
+      2: { zh: '（面部轮廓是韩国的强项，相关方向已记录。）', ko: '（얼굴 윤곽·광대는 한국의 강점 분야입니다. 방향을 기록했습니다.）', en: '(Face contouring is a Korean specialty — direction noted.)', ar: '(ملامح الوجه من تخصصات كوريا — تم التسجيل.)' },
+      3: { zh: '（身体整形方向已记录，我们会为您整理适合的选项。）', ko: '（바디 성형 방향을 기록했습니다. 적합한 옵션을 안내드리겠습니다.）', en: '(Body procedures noted — we\'ll organize suitable options.)', ar: '(تم تسجيل اهتمامك بعمليات الجسم.)' },
+      4: { zh: '（我们会先帮您全面了解整形方向，再逐步锁定最适合的项目。）', ko: '（먼저 전체 성형 방향을 안내한 후 단계적으로 좁혀드리겠습니다.）', en: '(We\'ll start with an overview and narrow down to what suits you best.)', ar: '(سنبدأ بنظرة عامة ثم نحدد ما يناسبك.)' },
+    },
+  },
+  REGEN_OR_JOINT: {
+    q: {
+      zh: '您最关注哪方面的再生医学咨询？',
+      ko: '재생의학 중 어떤 분야에 가장 관심이 있으신가요?',
+      en: 'Which area of regenerative medicine interests you most?',
+      ar: 'ما هو مجال الطب التجديدي الذي يهمك أكثر؟',
+    },
+    opts: {
+      zh: ['关节疼痛·再生修复', '줄기세포 抗衰老', '术后恢复加速', '干细胞整体健康', '先了解整体方向'],
+      ko: ['관절 통증·재생 회복', '줄기세포 항노화', '수술 후 회복 촉진', '줄기세포 전반 건강', '먼저 전체 방향 파악'],
+      en: ['Joint pain & regeneration', 'Stem cell anti-aging', 'Post-surgery recovery', 'Overall stem cell health', 'Explore overall options first'],
+      ar: ['آلام المفاصل والتجديد', 'الخلايا الجذعية لمكافحة الشيخوخة', 'تسريع التعافي', 'صحة الخلايا الجذعية الشاملة', 'استكشاف الخيارات أولاً'],
+    },
+    suffix: {
+      0: { zh: '（关节再生方向已标注，我们会为您匹配专业方向。）', ko: '（관절 재생 방향을 기록했습니다. 전문 상담 방향을 안내해 드리겠습니다.）', en: '(Joint regeneration noted — we\'ll match you with specialists.)', ar: '(تم تسجيل تجديد المفاصل.)' },
+      1: { zh: '（줄기세포 항노화 방향이 기록되었습니다. 전문 방향을 안내해 드리겠습니다.）', ko: '（줄기세포 항노화 방향을 기록했습니다. 전문 방향을 안내해 드리겠습니다.）', en: '(Stem cell anti-aging noted — we\'ll organize the consultation direction.)', ar: '(تم تسجيل الخلايا الجذعية لمكافحة الشيخوخة.)' },
+      2: { zh: '（수술 후 회복 촉진 방향이 기록되었습니다.）', ko: '（수술 후 회복 촉진 방향을 기록했습니다.）', en: '(Post-surgery recovery acceleration noted.)', ar: '(تم تسجيل تسريع التعافي بعد الجراحة.)' },
+      3: { zh: '（줄기세포 전반 건강 방향이 기록되었습니다.）', ko: '（줄기세포 전반 건강 방향을 기록했습니다.）', en: '(Overall stem cell health noted.)', ar: '(تم تسجيل صحة الخلايا الجذعية الشاملة.)' },
+      4: { zh: '（没关系，我们会先帮您全面了解再生医学方向。）', ko: '（괜찮습니다. 먼저 재생의학 전반을 안내한 후 좁혀드리겠습니다.）', en: '(No problem — we\'ll start with a full overview of regenerative medicine.)', ar: '(لا بأس — سنبدأ بنظرة عامة.)' },
+    },
+  },
+  HEALTH_CHECKUP: {
+    q: {
+      zh: '您最想了解哪类体检？',
+      ko: '어떤 종류의 건강검진에 관심이 있으신가요?',
+      en: 'What type of health checkup are you most interested in?',
+      ar: 'ما نوع الفحص الصحي الذي يهمك أكثر؟',
+    },
+    opts: {
+      zh: ['基本体检套餐', '精密综合体检', '功能医学检测', '癌症早期筛查', '先了解整体方向'],
+      ko: ['기본 건강검진 패키지', '정밀 종합 건강검진', '기능의학 검사', '암 조기 검진', '먼저 전체 방향 파악'],
+      en: ['Basic health checkup', 'Comprehensive checkup', 'Functional medicine', 'Cancer screening', 'Explore overall options first'],
+      ar: ['فحص صحي أساسي', 'فحص شامل', 'الطب الوظيفي', 'فحص مبكر للسرطان', 'استكشاف الخيارات أولاً'],
+    },
+    suffix: {
+      0: { zh: '（基础体检套餐方向已记录。）', ko: '（기본 건강검진 패키지 방향을 기록했습니다.）', en: '(Basic checkup package direction noted.)', ar: '(تم تسجيل الفحص الأساسي.)' },
+      1: { zh: '（精密综合体检方向已记录，我们会为您整理适合的方案。）', ko: '（정밀 종합 건강검진 방향을 기록했습니다. 적합한 방안을 정리해 드리겠습니다.）', en: '(Comprehensive checkup noted — we\'ll organize suitable plans.)', ar: '(تم تسجيل الفحص الشامل.)' },
+      2: { zh: '（功能医学方向已记录，这是韩国近年来快速发展的领域。）', ko: '（기능의학 방향을 기록했습니다. 한국에서 빠르게 성장하는 분야입니다.）', en: '(Functional medicine noted — a rapidly growing field in Korea.)', ar: '(تم تسجيل الطب الوظيفي — مجال سريع النمو في كوريا.)' },
+      3: { zh: '（癌症早筛方向已记录，韩国在这方面有丰富经验和先进技术。）', ko: '（암 조기 검진 방향을 기록했습니다. 한국은 이 분야에서 풍부한 경험을 갖고 있습니다.）', en: '(Cancer screening noted — Korea has extensive experience in this field.)', ar: '(تم تسجيل الفحص المبكر للسرطان — كوريا لديها خبرة واسعة.)' },
+      4: { zh: '（没关系，我们会先为您介绍各类体检选项及区别。）', ko: '（괜찮습니다. 먼저 각종 건강검진 옵션과 차이를 안내해 드리겠습니다.）', en: '(No problem — we\'ll introduce the different checkup options and their differences.)', ar: '(لا بأس — سنقدم لك خيارات الفحص المختلفة.)' },
+    },
+  },
+  BEAUTY_FIRST_TIME: {
+    q: {
+      zh: '您最想先改善或了解的是？',
+      ko: '가장 먼저 개선하거나 알고 싶은 것은 무엇인가요?',
+      en: 'What would you most like to improve or learn about first?',
+      ar: 'ما الذي تريد تحسينه أو معرفته أولاً؟',
+    },
+    opts: {
+      zh: ['脸部肌肤护理', '身体轮廓管理', '抗衰老综合方案', '先了解整体选项'],
+      ko: ['얼굴 피부 관리', '바디 윤곽 관리', '항노화 종합 방안', '먼저 전체 옵션 파악'],
+      en: ['Facial skincare', 'Body contouring', 'Anti-aging overall', 'Explore all options first'],
+      ar: ['العناية بالبشرة', 'نحت الجسم', 'مكافحة الشيخوخة', 'استكشاف الخيارات أولاً'],
+    },
+    suffix: {
+      0: { zh: '（脸部肌肤护理方向已记录，我们会为您匹配合适的项目方向。）', ko: '（얼굴 피부 관리 방향을 기록했습니다. 적합한 항목 방향을 안내해 드리겠습니다.）', en: '(Facial skincare direction noted — we\'ll match you with suitable options.)', ar: '(تم تسجيل العناية بالبشرة.)' },
+      1: { zh: '（바디 윤곽 관리 방향이 기록되었습니다.）', ko: '（바디 윤곽 관리 방향을 기록했습니다.）', en: '(Body contouring direction noted.)', ar: '(تم تسجيل نحت الجسم.)' },
+      2: { zh: '（항노화 종합 방안 방향이 기록되었습니다.）', ko: '（항노화 종합 방안 방향을 기록했습니다.）', en: '(Anti-aging overall direction noted.)', ar: '(تم تسجيل مكافحة الشيخوخة الشاملة.)' },
+      3: { zh: '（没关系，我们会先帮您全面了解各类选项。）', ko: '（괜찮습니다. 먼저 전체 옵션을 안내해 드리겠습니다.）', en: '(No problem — we\'ll give you a full overview of all options.)', ar: '(لا بأس — سنقدم لك نظرة شاملة على الخيارات.)' },
+    },
+  },
+  BEAUTY_EXPERIENCED: {
+    q: {
+      zh: '这次最想重点关注哪个方向？',
+      ko: '이번에 가장 중점적으로 관심 있는 방향은 무엇인가요?',
+      en: 'What would you like to focus on this time?',
+      ar: 'ما الذي تريد التركيز عليه هذه المرة؟',
+    },
+    opts: {
+      zh: ['升级护肤·院线护理', '局部改善·精细化调整', '抗衰老综合方案', '比较不同方案后再决定'],
+      ko: ['업그레이드 피부관리·원내 케어', '부분 개선·정밀 조정', '항노화 종합 방안', '여러 방안 비교 후 결정'],
+      en: ['Upgrade skincare / clinical care', 'Targeted improvement', 'Anti-aging overall', 'Compare options before deciding'],
+      ar: ['ترقية العناية بالبشرة', 'تحسين موضعي', 'مكافحة الشيخوخة', 'المقارنة قبل القرار'],
+    },
+    suffix: {
+      0: { zh: '（升级护肤和院线护理方向已记录。）', ko: '（업그레이드 피부관리·원내 케어 방향을 기록했습니다.）', en: '(Upgraded skincare/clinical care direction noted.)', ar: '(تم تسجيل ترقية العناية بالبشرة.)' },
+      1: { zh: '（局部改善方向已记录，我们会为您整理精细化的建议。）', ko: '（부분 개선·정밀 조정 방향을 기록했습니다.）', en: '(Targeted improvement direction noted.)', ar: '(تم تسجيل التحسين الموضعي.)' },
+      2: { zh: '（항노화 종합 방향이 기록되었습니다.）', ko: '（항노화 종합 방안 방향을 기록했습니다.）', en: '(Anti-aging overall direction noted.)', ar: '(تم تسجيل مكافحة الشيخوخة الشاملة.)' },
+      3: { zh: '（我们会为您整理多个方案的对比，方便您做决定。）', ko: '（여러 방안을 비교해서 정리해 드리겠습니다.）', en: '(We\'ll organize a comparison of options to help you decide.)', ar: '(سنقدم مقارنة بين الخيارات.)' },
+    },
+  },
+}
+
 /* ─── styles ───────────────────────────────────────────────── */
 const brand = 'var(--brand, #0077b6)'
 const brandDark = 'var(--brand-dark, #003d6b)'
@@ -475,6 +589,8 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
   const [answers, setAnswers] = useState<string[]>(Array(7).fill(''))
   const [submitted, setSubmitted] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [showFollowUp, setShowFollowUp] = useState(false)
+  const [followUpAnswer, setFollowUpAnswer] = useState<string>('')
 
   const isHome = mode === 'home'
 
@@ -498,18 +614,55 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
     next[step] = opt
     setAnswers(next)
     setTimeout(() => {
-      if (step < 6) setStep(step + 1)
-      else setSubmitted(true)
+      if (step < 6) {
+        setStep(step + 1)
+      } else {
+        // 홈 모드: 분류 결과에 따라 심화 질문 표시 여부 결정
+        if (isHome) {
+          const type = classifyHome(next, questions)
+          if (FOLLOW_UP[type]) {
+            setShowFollowUp(true)
+          } else {
+            setSubmitted(true)
+          }
+        } else {
+          setSubmitted(true)
+        }
+      }
     }, 140)
   }
 
-  const restart = () => { setStep(0); setAnswers(Array(7).fill('')); setSubmitted(false); setCopied(false) }
+  const selectFollowUp = (opt: string) => {
+    setFollowUpAnswer(opt)
+    setTimeout(() => {
+      setShowFollowUp(false)
+      setSubmitted(true)
+    }, 140)
+  }
+
+  const restart = () => {
+    setStep(0)
+    setAnswers(Array(7).fill(''))
+    setSubmitted(false)
+    setCopied(false)
+    setShowFollowUp(false)
+    setFollowUpAnswer('')
+  }
+
+  const homeType = isHome ? classifyHome(answers, questions) : undefined
+  const followUpData = homeType ? FOLLOW_UP[homeType] : undefined
+  const followUpSuffix = (() => {
+    if (!followUpAnswer || !followUpData) return ''
+    const idx = (followUpData.opts[lang] ?? followUpData.opts['zh'] ?? []).indexOf(followUpAnswer)
+    if (idx < 0) return ''
+    return '\n' + ((followUpData.suffix[idx]?.[lang]) ?? (followUpData.suffix[idx]?.['zh']) ?? '')
+  })()
 
   const resultText = submitted
     ? categoryLangData
       ? categoryLangData.result
       : isHome
-        ? (RESPONSES_HOME[lang] ?? RESPONSES_HOME['zh'])[classifyHome(answers, questions)]
+        ? ((RESPONSES_HOME[lang] ?? RESPONSES_HOME['zh'])[homeType ?? 'GENERAL_HOME'] ?? '') + followUpSuffix
         : (RESPONSES[lang] ?? RESPONSES['zh'])[classify(answers, questions)]
     : ''
 
@@ -535,7 +688,8 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
     })
   }
 
-  const progress = submitted ? 1 : step / 7
+  const totalSteps = isHome && followUpData ? 8 : 7
+  const progress = submitted ? 1 : showFollowUp ? 7 / totalSteps : step / totalSteps
 
   return (
     <div style={S.wrap}>
@@ -553,7 +707,29 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
       </div>
 
       <AnimatePresence mode="wait">
-        {!submitted ? (
+        {showFollowUp && followUpData ? (
+          /* ── 심화 질문 단계 ── */
+          <motion.div
+            key="follow-up"
+            initial={{ opacity: 0, x: isAr ? -18 : 18 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: isAr ? 18 : -18 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+          >
+            <p style={S.stepLabel}>{ui.step}8 / {totalSteps}</p>
+            <p style={S.questionText}>{followUpData.q[lang] ?? followUpData.q['zh']}</p>
+            <div style={S.chipsWrap}>
+              {(followUpData.opts[lang] ?? followUpData.opts['zh'] ?? []).map(opt => (
+                <button key={opt} style={S.chip(followUpAnswer === opt)} onClick={() => selectFollowUp(opt)}>
+                  {opt}
+                </button>
+              ))}
+            </div>
+            <button style={S.backBtn} onClick={() => { setShowFollowUp(false); setStep(6) }}>
+              {ui.back}
+            </button>
+          </motion.div>
+        ) : !submitted ? (
           <motion.div
             key={step}
             initial={{ opacity: 0, x: isAr ? -18 : 18 }}
@@ -561,7 +737,7 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
             exit={{ opacity: 0, x: isAr ? 18 : -18 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
-            <p style={S.stepLabel}>{ui.step}{step + 1} / 7</p>
+            <p style={S.stepLabel}>{ui.step}{step + 1} / {totalSteps}</p>
             <p style={S.questionText}>{questions[step].q}</p>
             <div style={S.chipsWrap}>
               {questions[step].opts.map(opt => (
