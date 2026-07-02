@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>定制医疗观光方案 | 汉江春天 韩国医疗旅游</title>
+<meta property="og:title" content="定制医疗观光方案 · 汉江春天">
+<meta property="og:description" content="如果您还不确定选择哪个项目，可以先提交定制需求。汉江春天会根据您的目的、时间、预算与停留计划，为您整理韩国医疗观光咨询方向。...">
+<link rel="icon" href="/favicon.png">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  background: #f5f7fa;
+  color: #1a2a4a;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+.top-nav {
+  background: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eef0f4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.back-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #f0f4f8;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #1a2a4a;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+}
+.nav-title { font-size: 13px; font-weight: 600; color: #6a8aaa; }
+
+.hero {
+  background: linear-gradient(135deg, #2a6099 0%, #164c85 100%);
+  padding: 28px 20px 24px;
+  color: white;
+}
+.hero-emoji { font-size: 36px; margin-bottom: 10px; }
+.hero-zh { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+.hero-ko { font-size: 12px; opacity: 0.7; margin-bottom: 14px; }
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
+
+.summary-box {
+  background: white;
+  margin: 0;
+  padding: 18px 20px;
+  border-bottom: 8px solid #f5f7fa;
+  border-left: 3px solid #2a6099;
+}
+.summary-text { font-size: 13px; color: #3a5a7a; line-height: 1.8; }
+
+.section {
+  background: white;
+  padding: 20px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.section-title { font-size: 14px; font-weight: 700; color: #1a2a4a; margin-bottom: 4px; }
+.section-title-zh { font-size: 11px; color: #9aabcc; margin-bottom: 16px; }
+
+.service-list { display: flex; flex-direction: column; gap: 10px; }
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #f5f7fa;
+  border-radius: 12px;
+}
+.service-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.service-name { font-size: 13px; font-weight: 700; color: #1a2a4a; margin-bottom: 2px; }
+.service-desc { font-size: 11px; color: #6a8aaa; line-height: 1.5; }
+
+.for-whom-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.for-whom-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #3a5a7a;
+  line-height: 1.6;
+}
+.for-whom-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #2a6099;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.flow-list { display: flex; flex-direction: column; gap: 0; }
+.flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f2f6;
+}
+.flow-item:last-child { border-bottom: none; }
+.flow-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: #2a6099;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.flow-text { font-size: 13px; color: #3a5a7a; line-height: 1.6; padding-top: 4px; }
+
+.cta-section {
+  background: white;
+  padding: 24px 20px 28px;
+}
+.cta-note { font-size: 12px; color: #9aabcc; text-align: center; margin-bottom: 14px; line-height: 1.6; }
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #2a6099;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,119,182,0.30);
+}
+.brand-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 11px;
+  color: #9aabcc;
+}
+.brand-name { font-size: 14px; font-weight: 700; color: #1a2a4a; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a class="back-btn" href="javascript:history.back()">←</a>
+  <span class="nav-title">汉江春天 · 韩国医疗旅游咨询</span>
+</div>
+
+<div class="hero">
+  <div class="hero-emoji">🗺️</div>
+  <div class="hero-zh">定制医疗观光方案</div>
+  <div class="hero-ko">맞춤형 의료관광 플랜</div>
+  <span class="hero-tag">多项目组合 · 预算行程 · 全程协调</span>
+</div>
+
+<div class="summary-box">
+  <p class="summary-text">如果您还不确定选择哪个项目，可以先提交定制需求。汉江春天会根据您的目的、时间、预算与停留计划，为您整理韩国医疗观光咨询方向。</p>
+</div>
+
+<div class="section">
+  <div class="section-title">主要咨询方向</div>
+  <div class="section-title-zh">Main Services</div>
+  <div class="service-list">
+    <div class="service-item">
+      <div class="service-icon">🔀</div>
+      <div>
+        <div class="service-name">多项目组合咨询</div>
+        <div class="service-desc">健康检查 + 皮肤医美 + 整形等组合规划</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">👨‍👩‍👧</div>
+      <div>
+        <div class="service-name">家庭医疗旅游</div>
+        <div class="service-desc">为父母、家人和自己同时安排不同方向</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">💰</div>
+      <div>
+        <div class="service-name">预算与行程统筹</div>
+        <div class="service-desc">在预算范围内设计最合适的医疗旅行方案</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🤝</div>
+      <div>
+        <div class="service-name">全程协调</div>
+        <div class="service-desc">从预约到回国，统一由汉江春天协调</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">适合哪些人群</div>
+  <div class="section-title-zh">Who Is This For</div>
+  <ul class="for-whom-list">
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>不确定选哪个医疗方向</span>
+    </li>
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>需要同时安排多个不同项目</span>
+    </li>
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>想为家人和自己同时规划</span>
+    </li>
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>预算有限，希望性价比最优的安排</span>
+    </li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-title">汉江春天服务流程</div>
+  <div class="section-title-zh">How We Help</div>
+  <div class="flow-list">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-text">告诉我们来访目的、人数、天数、预算</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-text">我们帮您整合多个方向，设计组合咨询路径</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-text">统一协调预约、翻译、行程与住宿</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">4</div>
+      <div class="flow-text">一站式服务，无需分别联系多家机构</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <p class="cta-note">以上内容仅供参考，不构成医疗诊断。<br>具体治疗方案由韩国正规医疗机构和专业医生判断。</p>
+  <a class="cta-btn" href="https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0" target="_blank" rel="noopener noreferrer">
+    💬 企业微信咨询 · 联系顾问
+  </a>
+</div>
+
+<div class="brand-footer">
+  <div class="brand-name">汉江春天</div>
+  韩国医疗旅游专业顾问
+</div>
+
+</body>
+</html>
