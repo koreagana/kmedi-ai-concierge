@@ -402,6 +402,7 @@ function classifyHome(answers: string[], questions: Q[]): HomeType {
   const idx = (i: number) => questions[i].opts.indexOf(answers[i])
   const q1 = idx(0), q2 = idx(1), q4 = idx(3), q5 = idx(4), q7 = idx(6)
 
+  // Q1 명확한 선택 우선 처리
   if (q1 === 2) return 'REGEN_OR_JOINT'
   if (q1 === 3) return 'SURGERY_INTEREST'
   if (q1 === 1) return 'HEALTH_CHECKUP'
@@ -411,7 +412,18 @@ function classifyHome(answers: string[], questions: Q[]): HomeType {
   if (q1 === 4) return 'FAMILY_TRAVEL'
   if (q1 === 5) return 'TRAVEL_SUPPORT'
   if (q4 === 6 || q7 === 4) return 'TRAVEL_SUPPORT'
-  return 'GENERAL_HOME'
+
+  // Q1 === 6 ("아직 모르겠다") — Q2·Q5·Q7 조합으로 방향 추론
+  if (q7 === 5) return 'HEALTH_CHECKUP'           // Q7: 건강검진 방향 원함
+  if (q7 === 1) return 'TRUST_HOSPITAL'            // Q7: 믿을 수 있는 병원/과 방향 원함
+  if (q7 === 2) return 'TRAVEL_SUPPORT'            // Q7: 체류·회복 일정 안내 원함
+  if (q5 === 0 && q2 === 4) return 'BEAUTY_FIRST_TIME' // 혼자, 처음 방문
+  if (q2 === 6) return 'FAMILY_TRAVEL'             // Q2: 가족·친구 대신 알아보는 중
+  if (q2 === 0 || q2 === 5) return 'BEAUTY_EXPERIENCED' // Q2: 경험 있거나 타국과 비교
+  if (q2 === 4) return 'BEAUTY_FIRST_TIME'         // Q2: 처음
+  if (q5 === 1 || q5 === 5) return 'BEAUTY_FIRST_TIME' // 친구 동행 or 아직 미정
+
+  return 'GENERAL_HOME'                            // 극히 드문 케이스
 }
 
 /* ─── styles ───────────────────────────────────────────────── */
