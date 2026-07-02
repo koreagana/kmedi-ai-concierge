@@ -463,16 +463,16 @@ const FOLLOW_UP: Partial<Record<HomeType, FollowUpData>> = {
       ar: 'ما هو مجال الطب التجديدي الذي يهمك أكثر؟',
     },
     opts: {
-      zh: ['关节疼痛·再生修复', '줄기세포 抗衰老', '术后恢复加速', '干细胞整体健康', '先了解整体方向'],
+      zh: ['关节疼痛·再生修复', '干细胞抗衰老', '术后恢复加速', '干细胞整体健康', '先了解整体方向'],
       ko: ['관절 통증·재생 회복', '줄기세포 항노화', '수술 후 회복 촉진', '줄기세포 전반 건강', '먼저 전체 방향 파악'],
       en: ['Joint pain & regeneration', 'Stem cell anti-aging', 'Post-surgery recovery', 'Overall stem cell health', 'Explore overall options first'],
       ar: ['آلام المفاصل والتجديد', 'الخلايا الجذعية لمكافحة الشيخوخة', 'تسريع التعافي', 'صحة الخلايا الجذعية الشاملة', 'استكشاف الخيارات أولاً'],
     },
     suffix: {
       0: { zh: '（关节再生方向已标注，我们会为您匹配专业方向。）', ko: '（관절 재생 방향을 기록했습니다. 전문 상담 방향을 안내해 드리겠습니다.）', en: '(Joint regeneration noted — we\'ll match you with specialists.)', ar: '(تم تسجيل تجديد المفاصل.)' },
-      1: { zh: '（줄기세포 항노화 방향이 기록되었습니다. 전문 방향을 안내해 드리겠습니다.）', ko: '（줄기세포 항노화 방향을 기록했습니다. 전문 방향을 안내해 드리겠습니다.）', en: '(Stem cell anti-aging noted — we\'ll organize the consultation direction.)', ar: '(تم تسجيل الخلايا الجذعية لمكافحة الشيخوخة.)' },
-      2: { zh: '（수술 후 회복 촉진 방향이 기록되었습니다.）', ko: '（수술 후 회복 촉진 방향을 기록했습니다.）', en: '(Post-surgery recovery acceleration noted.)', ar: '(تم تسجيل تسريع التعافي بعد الجراحة.)' },
-      3: { zh: '（줄기세포 전반 건강 방향이 기록되었습니다.）', ko: '（줄기세포 전반 건강 방향을 기록했습니다.）', en: '(Overall stem cell health noted.)', ar: '(تم تسجيل صحة الخلايا الجذعية الشاملة.)' },
+      1: { zh: '（干细胞抗衰老方向已记录，我们会为您整理专业咨询方向。）', ko: '（줄기세포 항노화 방향을 기록했습니다. 전문 방향을 안내해 드리겠습니다.）', en: '(Stem cell anti-aging noted — we\'ll organize the consultation direction.)', ar: '(تم تسجيل الخلايا الجذعية لمكافحة الشيخوخة.)' },
+      2: { zh: '（术后恢复加速方向已记录。）', ko: '（수술 후 회복 촉진 방향을 기록했습니다.）', en: '(Post-surgery recovery acceleration noted.)', ar: '(تم تسجيل تسريع التعافي بعد الجراحة.)' },
+      3: { zh: '（干细胞整体健康方向已记录。）', ko: '（줄기세포 전반 건강 방향을 기록했습니다.）', en: '(Overall stem cell health noted.)', ar: '(تم تسجيل صحة الخلايا الجذعية الشاملة.)' },
       4: { zh: '（没关系，我们会先帮您全面了解再生医学方向。）', ko: '（괜찮습니다. 먼저 재생의학 전반을 안내한 후 좁혀드리겠습니다.）', en: '(No problem — we\'ll start with a full overview of regenerative medicine.)', ar: '(لا بأس — سنبدأ بنظرة عامة.)' },
     },
   },
@@ -513,7 +513,7 @@ const FOLLOW_UP: Partial<Record<HomeType, FollowUpData>> = {
     suffix: {
       0: { zh: '（脸部肌肤护理方向已记录，我们会为您匹配合适的项目方向。）', ko: '（얼굴 피부 관리 방향을 기록했습니다. 적합한 항목 방향을 안내해 드리겠습니다.）', en: '(Facial skincare direction noted — we\'ll match you with suitable options.)', ar: '(تم تسجيل العناية بالبشرة.)' },
       1: { zh: '（바디 윤곽 관리 방향이 기록되었습니다.）', ko: '（바디 윤곽 관리 방향을 기록했습니다.）', en: '(Body contouring direction noted.)', ar: '(تم تسجيل نحت الجسم.)' },
-      2: { zh: '（항노화 종합 방안 방향이 기록되었습니다.）', ko: '（항노화 종합 방안 방향을 기록했습니다.）', en: '(Anti-aging overall direction noted.)', ar: '(تم تسجيل مكافحة الشيخوخة الشاملة.)' },
+      2: { zh: '（抗衰老综合方向已记录。）', ko: '（항노화 종합 방안 방향을 기록했습니다.）', en: '(Anti-aging overall direction noted.)', ar: '(تم تسجيل مكافحة الشيخوخة الشاملة.)' },
       3: { zh: '（没关系，我们会先帮您全面了解各类选项。）', ko: '（괜찮습니다. 먼저 전체 옵션을 안내해 드리겠습니다.）', en: '(No problem — we\'ll give you a full overview of all options.)', ar: '(لا بأس — سنقدم لك نظرة شاملة على الخيارات.)' },
     },
   },
@@ -533,7 +533,7 @@ const FOLLOW_UP: Partial<Record<HomeType, FollowUpData>> = {
     suffix: {
       0: { zh: '（升级护肤和院线护理方向已记录。）', ko: '（업그레이드 피부관리·원내 케어 방향을 기록했습니다.）', en: '(Upgraded skincare/clinical care direction noted.)', ar: '(تم تسجيل ترقية العناية بالبشرة.)' },
       1: { zh: '（局部改善方向已记录，我们会为您整理精细化的建议。）', ko: '（부분 개선·정밀 조정 방향을 기록했습니다.）', en: '(Targeted improvement direction noted.)', ar: '(تم تسجيل التحسين الموضعي.)' },
-      2: { zh: '（항노화 종합 방향이 기록되었습니다.）', ko: '（항노화 종합 방안 방향을 기록했습니다.）', en: '(Anti-aging overall direction noted.)', ar: '(تم تسجيل مكافحة الشيخوخة الشاملة.)' },
+      2: { zh: '（抗衰老综合方向已记录。）', ko: '（항노화 종합 방안 방향을 기록했습니다.）', en: '(Anti-aging overall direction noted.)', ar: '(تم تسجيل مكافحة الشيخوخة الشاملة.)' },
       3: { zh: '（我们会为您整理多个方案的对比，方便您做决定。）', ko: '（여러 방안을 비교해서 정리해 드리겠습니다.）', en: '(We\'ll organize a comparison of options to help you decide.)', ar: '(سنقدم مقارنة بين الخيارات.)' },
     },
   },
@@ -688,8 +688,8 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
     })
   }
 
-  const totalSteps = isHome && followUpData ? 8 : 7
-  const progress = submitted ? 1 : showFollowUp ? 7 / totalSteps : step / totalSteps
+  // 진행바: 7문항 기준 고정 (follow-up은 보너스 스텝, bar 안 줄어듦)
+  const progress = submitted ? 1 : showFollowUp ? 1 : step / 7
 
   return (
     <div style={S.wrap}>
@@ -716,7 +716,7 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
             exit={{ opacity: 0, x: isAr ? 18 : -18 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
-            <p style={S.stepLabel}>{ui.step}8 / {totalSteps}</p>
+            <p style={S.stepLabel}>{ui.step}8 / 8</p>
             <p style={S.questionText}>{followUpData.q[lang] ?? followUpData.q['zh']}</p>
             <div style={S.chipsWrap}>
               {(followUpData.opts[lang] ?? followUpData.opts['zh'] ?? []).map(opt => (
@@ -737,7 +737,7 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
             exit={{ opacity: 0, x: isAr ? 18 : -18 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
-            <p style={S.stepLabel}>{ui.step}{step + 1} / {totalSteps}</p>
+            <p style={S.stepLabel}>{ui.step}{step + 1} / 7</p>
             <p style={S.questionText}>{questions[step].q}</p>
             <div style={S.chipsWrap}>
               {questions[step].opts.map(opt => (

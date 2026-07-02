@@ -4,9 +4,39 @@ import ArHomePage from './components/ArHomePage'
 import CategoryPage from './components/CategoryPage'
 import PackagePage from './components/PackagePage'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect } from 'react'
+import { categories } from './data/categories'
+
+const BRAND = '汉江春天 · AI Medical Concierge'
+
+const PACKAGE_TITLE_AR = 'السياحة الطبية المميزة'
+
+function updateMeta(title: string) {
+  document.title = `${title} · ${BRAND}`
+  const og = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
+  if (og) og.content = `${title} · ${BRAND}`
+}
 
 function ArPageRouter() {
-  const { page } = useApp()
+  const { page, categoryId } = useApp()
+
+  useEffect(() => {
+    if (page === 'home') {
+      document.title = BRAND
+      const og = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
+      if (og) og.content = BRAND
+      return
+    }
+    if (page === 'package') {
+      updateMeta(PACKAGE_TITLE_AR)
+      return
+    }
+    if (page === 'category' && categoryId) {
+      const cat = categories.find((c) => c.id === categoryId)
+      if (cat) updateMeta(cat.ar ?? cat.zh)
+    }
+  }, [page, categoryId])
+
   return (
     <div className="page-container" dir="rtl">
       <NavBar />
