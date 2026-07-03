@@ -19,7 +19,7 @@ export interface CategoryCard {
 const SAFETY = {
   zh: '最终的检查、诊疗和治疗方向，需要由韩国医疗机构和专业医生确认。汉江春天并非医疗机构，而是协助您整理咨询需求、对接医院、安排翻译、陪同与行程的咨询顾问服务。',
   ko: '최종 검사, 진료, 치료 방향은 한국 의료기관과 전문의 상담 후 결정됩니다. 한강애봄은 의료기관이 아니라 의료상담 정리, 병원 연결, 통역, 동행, 일정 조율을 돕는 컨시어지 서비스입니다.',
-  en: 'The final examination, diagnosis, and treatment direction will be determined by a licensed Korean medical institution and specialist physician after consultation. Hangangaeborn is not a medical institution — it is a concierge service that helps organize your consultation needs, connect you with hospitals, and arrange interpretation, escort, and scheduling support.',
+  en: 'The final examination, diagnosis, and treatment direction will be determined by a licensed Korean medical institution and specialist physician after consultation. K-Medi Spring is not a medical institution — it is a concierge service that helps organize your consultation needs, connect you with hospitals, and arrange interpretation, escort, and scheduling support.',
   ar: 'يتم تحديد الفحص والتشخيص والعلاج النهائي من قبل مؤسسة طبية كورية مرخصة وطبيب مختص بعد الاستشارة. هانغانغايبورن ليست مؤسسة طبية، بل خدمة كونسيرج تساعد في تنظيم احتياجات الاستشارة والتواصل مع المستشفيات وترتيب الترجمة والمرافقة والجدولة.',
 }
 
@@ -42,56 +42,56 @@ function buildResult(body: { zh: string; ko: string; en: string; ar: string }) {
 const R_BIG_HEALTH = buildResult({
   zh: '根据您的选择，您适合先从大健康咨询开始。汉江春天可以先帮您整理目前最关心的问题、既往病史、家族病史、服用药物和来韩停留时间，再根据情况连接韩国健康检查、功能医学、代谢管理、睡眠疲劳管理或抗衰老相关咨询方向。',
   ko: '선택하신 내용을 보면, 먼저 항노화·건강관리 상담부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 현재 가장 신경 쓰이는 문제, 기존 병력, 가족력, 복용 중인 약, 방한 기간을 정리해 드리고, 이를 바탕으로 한국의 건강검진, 기능의학, 대사 관리, 수면·피로 관리 또는 항노화 관련 상담 방향으로 연결해 드립니다.',
-  en: 'Based on your selections, starting with an Anti-aging & Health Management consultation suits you well. Hangangaeborn will first help organize your main concerns, medical history, family history, current medications, and length of stay in Korea, then connect you with relevant Korean directions such as health checkups, functional medicine, metabolic management, sleep/fatigue management, or anti-aging consultation.',
+  en: 'Based on your selections, starting with an Anti-aging & Health Management consultation suits you well. K-Medi Spring will first help organize your main concerns, medical history, family history, current medications, and length of stay in Korea, then connect you with relevant Korean directions such as health checkups, functional medicine, metabolic management, sleep/fatigue management, or anti-aging consultation.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء باستشارة الصحة الشاملة. سيساعدك هانغانغايبورن أولاً في تنظيم أهم مشاكلك الحالية وتاريخك المرضي وتاريخك العائلي والأدوية التي تتناولها ومدة إقامتك في كوريا، ثم ربطك بالاتجاهات الكورية المناسبة مثل الفحص الصحي أو الطب الوظيفي أو إدارة التمثيل الغذائي أو إدارة النوم والتعب أو استشارة مكافحة الشيخوخة.',
 })
 
 const R_STEM_CELL = buildResult({
   zh: '根据您的选择，您适合先进行再生医学方向的资料整理和合法合规咨询。汉江春天不会判断您是否适合某项治疗，也不会承诺效果。我们可以先帮您整理既往资料、影像检查、手术或治疗经历，并说明韩国可咨询的合规范围，再连接相应医疗机构，由专业医生判断是否需要进一步面诊或检查。',
   ko: '선택하신 내용을 보면, 먼저 재생의학 분야의 자료 정리와 합법·합규 상담부터 시작하시는 것이 적합합니다. 한강애봄은 특정 시술이 적합한지 판단하지 않으며 효과를 보장하지 않습니다. 먼저 기존 자료, 영상 검사, 수술 또는 치료 경험을 정리하고 한국에서 상담 가능한 합법적 범위를 안내한 뒤, 관련 의료기관과 연결하여 전문의가 추가 면진이나 검사가 필요한지 판단하도록 도와드립니다.',
-  en: 'Based on your selections, starting with document organization and a legal-compliance consultation in regenerative medicine suits you well. Hangangaeborn does not determine whether a specific treatment suits you, nor guarantee results. We will first help organize your existing records, imaging, and surgical or treatment history, explain the legally consultable scope in Korea, and then connect you with the relevant medical institution, where a specialist physician will determine whether further in-person evaluation or testing is needed.',
+  en: 'Based on your selections, starting with document organization and a legal-compliance consultation in regenerative medicine suits you well. K-Medi Spring does not determine whether a specific treatment suits you, nor guarantee results. We will first help organize your existing records, imaging, and surgical or treatment history, explain the legally consultable scope in Korea, and then connect you with the relevant medical institution, where a specialist physician will determine whether further in-person evaluation or testing is needed.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء بتنظيم المستندات والاستشارة القانونية في مجال الطب التجديدي. لا يحدد هانغانغايبورن مدى ملاءمة علاج معين لك ولا يضمن النتائج. سنساعدك أولاً في تنظيم سجلاتك السابقة وفحوصات التصوير وتاريخك الجراحي أو العلاجي، ونوضح لك النطاق القانوني القابل للاستشارة في كوريا، ثم نربطك بالمؤسسة الطبية المناسبة ليحدد الطبيب المختص ما إذا كان التقييم أو الفحص الإضافي ضرورياً.',
 })
 
 const R_SKIN_BEAUTY = buildResult({
   zh: '根据您的选择，您适合先从皮肤医美咨询开始。汉江春天可以先帮您整理皮肤松弛、毛孔、色斑、肤质、眼周或脸部线条等关注点，并结合您能接受的恢复期、来韩时间和预算方向，整理适合咨询的韩国皮肤科方向。',
   ko: '선택하신 내용을 보면, 먼저 피부의료미용 상담부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 탄력, 모공, 색소, 피부질, 눈가 또는 얼굴 라인 등 신경 쓰이는 부분을 정리하고, 감수 가능한 회복기간과 방한 일정, 예산 방향을 함께 고려하여 상담하기 적합한 한국 피부과 방향을 정리해 드립니다.',
-  en: 'Based on your selections, starting with a Skin Aesthetics consultation suits you well. Hangangaeborn will first help organize your concerns — such as sagging, pores, pigmentation, texture, the eye area, or facial lines — and combine this with your acceptable downtime, visit timing, and budget direction to identify a suitable Korean dermatology direction for consultation.',
+  en: 'Based on your selections, starting with a Skin Aesthetics consultation suits you well. K-Medi Spring will first help organize your concerns — such as sagging, pores, pigmentation, texture, the eye area, or facial lines — and combine this with your acceptable downtime, visit timing, and budget direction to identify a suitable Korean dermatology direction for consultation.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء باستشارة التجميل الجلدي. سيساعدك هانغانغايبورن أولاً في تنظيم مخاوفك مثل الترهل أو المسام أو التصبغ أو ملمس البشرة أو منطقة العين أو خطوط الوجه، مع مراعاة فترة التعافي المقبولة وموعد زيارتك واتجاه الميزانية، لتحديد اتجاه قسم الجلدية الكوري المناسب للاستشارة.',
 })
 
 const R_PLASTIC_SURGERY = buildResult({
   zh: '根据您的选择，您适合先进行整形医美方向的初步咨询整理。汉江春天可以帮您整理关注部位、审美方向、恢复期、既往经历和来韩时间，并协助连接合适的韩国医疗机构。我们不会代替医生判断是否需要手术，也不会承诺效果。',
   ko: '선택하신 내용을 보면, 먼저 성형의료미용 방향의 초기 상담 정리부터 시작하시는 것이 적합합니다. 한강애봄은 관심 부위, 원하는 스타일 방향, 회복기간, 이전 경험과 방한 일정을 정리해 드리고, 적합한 한국 의료기관과 연결되도록 도와드립니다. 수술 필요 여부를 대신 판단하지 않으며 효과를 보장하지 않습니다.',
-  en: "Based on your selections, starting with an initial consultation summary for Plastic Surgery suits you well. Hangangaeborn will help organize your area of interest, desired style, downtime, past experience, and visit timing, and help connect you with a suitable Korean medical institution. We do not determine on a doctor's behalf whether surgery is needed, nor guarantee results.",
+  en: "Based on your selections, starting with an initial consultation summary for Plastic Surgery suits you well. K-Medi Spring will help organize your area of interest, desired style, downtime, past experience, and visit timing, and help connect you with a suitable Korean medical institution. We do not determine on a doctor's behalf whether surgery is needed, nor guarantee results.",
   ar: 'بناءً على اختياراتك، يُنصح بالبدء بتنظيم استشارة أولية في مجال الجراحة التجميلية. سيساعدك هانغانغايبورن في تنظيم المنطقة المهمة لك والأسلوب المطلوب وفترة التعافي وخبراتك السابقة وموعد زيارتك، والمساعدة في ربطك بمؤسسة طبية كورية مناسبة. لا نحدد بدلاً من الطبيب ما إذا كانت الجراحة ضرورية، ولا نضمن النتائج.',
 })
 
 const R_WOMENS_CARE = buildResult({
   zh: '根据您的选择，您适合先进行女性健康方向的私密咨询整理。汉江春天可以先帮您整理关注问题、年龄阶段、既往检查结果和来韩安排，再连接韩国女性医疗相关机构。',
   ko: '선택하신 내용을 보면, 먼저 여성건강 분야의 은밀한 상담 정리부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 관심 문제, 연령대, 기존 검진 결과, 방한 일정을 정리해 드리고, 한국의 여성 의료 관련 기관과 연결해 드립니다.',
-  en: "Based on your selections, starting with a private Women's Health consultation summary suits you well. Hangangaeborn will first help organize your concerns, life stage, past checkup results, and Korea visit plans, then connect you with relevant Korean women's health institutions.",
+  en: "Based on your selections, starting with a private Women's Health consultation summary suits you well. K-Medi Spring will first help organize your concerns, life stage, past checkup results, and Korea visit plans, then connect you with relevant Korean women's health institutions.",
   ar: 'بناءً على اختياراتك، يُنصح بالبدء بتنظيم استشارة خاصة في مجال صحة المرأة. سيساعدك هانغانغايبورن أولاً في تنظيم مخاوفك ومرحلتك العمرية ونتائج فحوصاتك السابقة وخطط زيارتك لكوريا، ثم ربطك بالمؤسسات الكورية المتخصصة في صحة المرأة.',
 })
 
 const R_MENS_HEALTH = buildResult({
   zh: '根据您的选择，您适合先进行男性健康方向的咨询整理。汉江春天可以协助整理体力、睡眠、脱发、泌尿前列腺、代谢或男性健康检查相关问题，并根据您的来韩时间和隐私需求安排中文沟通。',
   ko: '선택하신 내용을 보면, 먼저 남성건강 분야의 상담 정리부터 시작하시는 것이 적합합니다. 한강애봄은 체력, 수면, 탈모, 비뇨기·전립선, 대사 또는 남성 건강검진 관련 문제를 정리해 드리고, 방한 일정과 사생활 보호 요구에 맞춰 중국어 소통을 안배해 드립니다.',
-  en: "Based on your selections, starting with a Men's Health consultation summary suits you well. Hangangaeborn can help organize concerns related to energy, sleep, hair loss, urology/prostate, metabolism, or men's health checkups, and arrange Chinese-language communication based on your visit timing and privacy needs.",
+  en: "Based on your selections, starting with a Men's Health consultation summary suits you well. K-Medi Spring can help organize concerns related to energy, sleep, hair loss, urology/prostate, metabolism, or men's health checkups, and arrange Chinese-language communication based on your visit timing and privacy needs.",
   ar: 'بناءً على اختياراتك، يُنصح بالبدء بتنظيم استشارة في مجال صحة الرجل. يمكن لهانغانغايبورن مساعدتك في تنظيم المخاوف المتعلقة بالطاقة والنوم وتساقط الشعر والمسالك البولية والبروستاتا والتمثيل الغذائي أو فحص صحة الرجل، وترتيب التواصل باللغة الصينية بناءً على موعد زيارتك واحتياجات الخصوصية.',
 })
 
 const R_MEDICAL_TOURISM = buildResult({
   zh: '根据您的选择，您适合先进行赴韩医疗旅游行程咨询。汉江春天可以根据人数、停留时间、医疗项目、翻译陪同范围、车辆需求和住宿动线，先整理一个初步行程方向。最终费用会根据人数、项目、车辆、陪同范围、医院预约和汇率等因素调整。',
   ko: '선택하신 내용을 보면, 먼저 방한 의료관광 일정 상담부터 시작하시는 것이 적합합니다. 한강애봄은 인원, 체류 기간, 의료 항목, 통역·동행 범위, 차량 필요 여부와 숙소 동선을 바탕으로 초기 일정 방향을 정리해 드립니다. 최종 비용은 인원, 항목, 차량, 동행 범위, 병원 예약, 환율 등 여러 요인에 따라 조정됩니다.',
-  en: 'Based on your selections, starting with a Korea medical travel itinerary consultation suits you well. Hangangaeborn will organize an initial itinerary direction based on the number of travelers, length of stay, medical procedures, scope of interpretation and escort, vehicle needs, and accommodation routing. Final costs will be adjusted based on factors such as number of travelers, procedures, vehicle use, escort scope, hospital bookings, and exchange rates.',
+  en: 'Based on your selections, starting with a Korea medical travel itinerary consultation suits you well. K-Medi Spring will organize an initial itinerary direction based on the number of travelers, length of stay, medical procedures, scope of interpretation and escort, vehicle needs, and accommodation routing. Final costs will be adjusted based on factors such as number of travelers, procedures, vehicle use, escort scope, hospital bookings, and exchange rates.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء باستشارة برنامج السفر الطبي إلى كوريا. سيقوم هانغانغايبورن بتنظيم اتجاه برنامج أولي بناءً على عدد المسافرين ومدة الإقامة والإجراءات الطبية ونطاق الترجمة والمرافقة واحتياجات السيارة ومسار الإقامة. سيتم تعديل التكلفة النهائية بناءً على عوامل مثل عدد المسافرين والإجراءات واستخدام السيارة ونطاق المرافقة وحجوزات المستشفى وأسعار الصرف.',
 })
 
 const R_CUSTOM_PLAN = buildResult({
   zh: '根据您的选择，您适合先进行定制医疗观光方案整理。汉江春天可以根据服务对象、同行人数、停留时间、医疗咨询方向、旅行偏好和预算方向，先整理一版初步方案。具体预约、费用和医疗安排需要根据医疗机构确认结果、车辆和陪同范围进一步调整。',
   ko: '선택하신 내용을 보면, 먼저 맞춤형 의료관광 방안 정리부터 시작하시는 것이 적합합니다. 한강애봄은 대상, 동행 인원, 체류 기간, 의료 상담 방향, 여행 선호와 예산 방향을 바탕으로 초기 방안을 정리해 드립니다. 구체적인 예약, 비용, 의료 안배는 의료기관의 확인 결과와 차량·동행 범위에 따라 추가로 조정됩니다.',
-  en: 'Based on your selections, starting with a custom medical travel plan summary suits you well. Hangangaeborn will organize an initial plan based on who it\'s for, number of travelers, length of stay, medical consultation direction, travel preferences, and budget direction. Specific bookings, costs, and medical arrangements will be further adjusted based on confirmation from the medical institution, vehicle use, and escort scope.',
+  en: 'Based on your selections, starting with a custom medical travel plan summary suits you well. K-Medi Spring will organize an initial plan based on who it\'s for, number of travelers, length of stay, medical consultation direction, travel preferences, and budget direction. Specific bookings, costs, and medical arrangements will be further adjusted based on confirmation from the medical institution, vehicle use, and escort scope.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء بتنظيم خطة سفر طبي مخصصة. سيقوم هانغانغايبورن بتنظيم خطة أولية بناءً على المستفيد وعدد المسافرين ومدة الإقامة واتجاه الاستشارة الطبية وتفضيلات السفر واتجاه الميزانية. سيتم تعديل الحجوزات والتكاليف والترتيبات الطبية المحددة بناءً على تأكيد المؤسسة الطبية واستخدام السيارة ونطاق المرافقة.',
 })
 
@@ -135,7 +135,7 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
         { label: 'Consultation focus', q: 'Which type of consultation would you like to focus on?', opts: ['Health checkup', 'Functional medicine', 'Anti-aging assessment', 'Nutrition & lifestyle management', 'Sleep & stress management', 'Metabolism & weight management', 'Test results explanation'] },
         { label: 'Stay duration', q: 'How long do you plan to stay in Korea?', opts: ['Within 1 day', '2-3 days', '3 nights 4 days', '5+ days', 'Not decided', 'Online consultation first'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Not knowing which tests to take', 'Not understanding the results', 'Too many tests without focus', 'Costs exceeding expectations', 'Not enough time', 'Language communication', 'Wanting to know suitability first'] },
-        { label: 'First priority', q: 'What would you like Hangangaeborn to help organize first?', opts: ['Suitable test direction', 'Functional medicine direction', 'Korea checkup scheduling', 'Documents to prepare', 'Results explanation process', 'Chinese-speaking concierge contact', 'Booking feasibility'] },
+        { label: 'First priority', q: 'What would you like K-Medi Spring to help organize first?', opts: ['Suitable test direction', 'Functional medicine direction', 'Korea checkup scheduling', 'Documents to prepare', 'Results explanation process', 'Chinese-speaking concierge contact', 'Booking feasibility'] },
       ],
       result: R_BIG_HEALTH.en,
     },
@@ -194,7 +194,7 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
         { label: 'Consultation goal', q: 'What do you most want to get from this consultation?', opts: ['Understand the scope', "Confirm physician's judgment boundary", 'Prepare documents', 'In-person evaluation needs', 'Recovery management direction', 'Legal boundaries', 'Talk with a concierge'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Legality', 'Suitability', 'Exaggerated claims', 'Test items', 'Cost', 'Length of stay', 'Language'] },
         { label: 'Visit timing', q: 'When are you planning to visit Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided', 'Online first'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help with first?', opts: ['Organize concerns and documents', 'Explain the legal scope', 'Help judge the direction', 'Organize preparation items', 'Connect with a concierge', 'Check booking feasibility', 'Explain the process'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help with first?', opts: ['Organize concerns and documents', 'Explain the legal scope', 'Help judge the direction', 'Organize preparation items', 'Connect with a concierge', 'Check booking feasibility', 'Explain the process'] },
       ],
       result: R_STEM_CELL.en,
     },
@@ -312,7 +312,7 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
         { label: 'Acceptable downtime', q: 'How much downtime can you accept?', opts: ['Within 3 days', '1 week', '2 weeks', 'Even 1 month is fine', 'Should not affect work', 'Not sure'] },
         { label: 'Past experience', q: "What's your past experience with this?", opts: ['Have had plastic surgery', 'Have had skin aesthetics', 'Want a revision', 'No experience', 'Consulted in my home country', 'Have photos ready', 'No documents prepared'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Looking unnatural', "Doctor's aesthetic not matching mine", 'Long downtime', 'Surgical risk', 'Costs exceeding expectations', 'Language communication', 'Not knowing which area to consult first'] },
-        { label: 'First priority', q: 'What would you like Hangangaeborn to help organize first?', opts: ['Suitable area', 'Photos to prepare', 'Downtime and Korea visit timing', 'Surgical vs. non-surgical direction', 'Chinese-speaking concierge', 'Booking process', 'Things to know before consultation'] },
+        { label: 'First priority', q: 'What would you like K-Medi Spring to help organize first?', opts: ['Suitable area', 'Photos to prepare', 'Downtime and Korea visit timing', 'Surgical vs. non-surgical direction', 'Chinese-speaking concierge', 'Booking process', 'Things to know before consultation'] },
       ],
       result: R_PLASTIC_SURGERY.en,
     },
@@ -371,7 +371,7 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
         { label: 'Recent checkup history', q: "What's your recent checkup history?", opts: ['Within the past year', 'More than a year ago', 'Never had a systematic checkup', 'Had one in my home country, want to compare', 'Had abnormal results', "Not sure what's needed", 'Want to understand the process first'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Privacy', 'Language communication', 'Not knowing which tests to choose', 'Not understanding the results', 'Cost', 'Length of stay', 'Not knowing if an in-person visit is needed'] },
         { label: 'Visit timing', q: 'When are you planning to visit Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided', 'Online consultation first'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help with first?', opts: ['Organize the direction', 'Explain needed tests', 'Explain the process', 'Private consultation', 'Results explanation', 'Check booking feasibility', 'Chinese-speaking concierge contact'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help with first?', opts: ['Organize the direction', 'Explain needed tests', 'Explain the process', 'Private consultation', 'Results explanation', 'Check booking feasibility', 'Chinese-speaking concierge contact'] },
       ],
       result: R_WOMENS_CARE.en,
     },
@@ -430,7 +430,7 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
         { label: 'Consultation focus', q: 'Which type of consultation would you like to focus on?', opts: ["Men's health checkup", 'Hair loss consultation', 'Urology and prostate consultation', 'Functional medicine metabolic management', 'Energy recovery and anti-aging management', 'Results explanation', 'Korea visit booking process'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Embarrassed to bring it up', 'Privacy', 'Language communication', 'Not knowing which department to see', 'Too many test items', 'Cost', 'Korea itinerary planning'] },
         { label: 'Visit timing', q: 'When are you planning to visit Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided', 'Online consultation first'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help with first?', opts: ['Organize the direction', 'Prepare documents', 'Explain the test process', 'Results explanation direction', 'Check booking feasibility', 'Chinese-speaking concierge contact', 'Korea schedule planning'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help with first?', opts: ['Organize the direction', 'Prepare documents', 'Explain the test process', 'Results explanation direction', 'Check booking feasibility', 'Chinese-speaking concierge contact', 'Korea schedule planning'] },
       ],
       result: R_MENS_HEALTH.en,
     },
@@ -548,7 +548,7 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
         { label: 'Length of stay', q: 'How long are you planning to stay?', opts: ['3-4 days', '5-7 days', 'Over a week', 'About 2 weeks', 'Not specifically decided', 'Will decide based on the plan'] },
         { label: 'Preferred inclusions', q: "What would you like included in the plan?", opts: ['Dedicated medical consultant', 'Premium accommodation', 'Private car pickup', 'Full-trip Chinese-speaking escort', 'Sightseeing & dining coordination', 'Health follow-up tracking', 'Decide after seeing the plan'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Whether the plan is truly personalized', 'Whether the cost is reasonable', 'Whether the itinerary runs smoothly', 'Whether the hospital matches my needs', 'Whether communication will be smooth', 'Whether privacy is protected', 'No particular worry'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help with first?', opts: ['Understand needs and draft an initial plan', 'Organize budget direction', 'Recommend a suitable combination of items', 'Explain the customization process', 'Connect with a dedicated consultant', 'Provide similar case references', 'Start with a brief online chat'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help with first?', opts: ['Understand needs and draft an initial plan', 'Organize budget direction', 'Recommend a suitable combination of items', 'Explain the customization process', 'Connect with a dedicated consultant', 'Provide similar case references', 'Start with a brief online chat'] },
       ],
       result: R_CUSTOM_PLAN.en,
     },
@@ -581,56 +581,56 @@ export interface ConcernCard {
 const RC_YOUNGER_LOOK = buildResult({
   zh: '根据您的选择，您适合先从"年轻感改善"方向整理咨询。汉江春天可以先帮您区分是肤质、松弛、容量流失、眼周疲惫，还是整体抗衰管理的问题，再结合您的恢复期、来韩时间和预算方向，整理适合咨询的韩国皮肤医美或抗衰管理方向。',
   ko: '선택하신 내용을 보면, 먼저 "젊은 인상 개선" 방향부터 상담을 시작하시는 것이 적합합니다. 한강애봄은 먼저 피부질, 탄력 저하, 볼륨 손실, 눈가 피로감, 또는 전반적인 항노화 관리 중 어디에 해당하는지 구분해 드리고, 감수 가능한 회복 기간과 방한 일정, 예산 방향을 함께 고려하여 상담하기 적합한 한국 피부의료미용 또는 항노화 관리 방향을 정리해 드립니다.',
-  en: 'Based on your selections, starting with a "youthful look improvement" consultation suits you well. Hangangaeborn will first help distinguish whether your concern is mainly skin texture, reduced elasticity, volume loss, tired-looking eyes, or overall anti-aging management, then combine this with your acceptable downtime, visit timing, and budget direction to identify a suitable Korean skin aesthetics or anti-aging management direction for consultation.',
+  en: 'Based on your selections, starting with a "youthful look improvement" consultation suits you well. K-Medi Spring will first help distinguish whether your concern is mainly skin texture, reduced elasticity, volume loss, tired-looking eyes, or overall anti-aging management, then combine this with your acceptable downtime, visit timing, and budget direction to identify a suitable Korean skin aesthetics or anti-aging management direction for consultation.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء باستشارة "تحسين المظهر الشاب". سيساعدك هانغانغايبورن أولاً في تحديد ما إذا كانت مشكلتك الأساسية هي ملمس البشرة أو تراجع المرونة أو فقدان الحجم أو مظهر العين المتعب أو إدارة شاملة لمكافحة الشيخوخة، ثم دمج ذلك مع فترة التعافي المقبولة وموعد زيارتك واتجاه الميزانية لتحديد اتجاه مناسب للتجميل الجلدي الكوري أو إدارة مكافحة الشيخوخة للاستشارة.',
 })
 
 const RC_SLOW_AGING = buildResult({
   zh: '根据您的选择，您适合先从"慢衰老与大健康管理"方向开始。汉江春天可以先帮您整理疲劳、睡眠、代谢、激素、家族病史、既往检查结果和服药情况，再根据来韩时间连接韩国健康检查、功能医学、代谢管理或抗衰老相关咨询方向。',
   ko: '선택하신 내용을 보면, 먼저 "슬로우 에이징과 항노화·건강관리" 방향부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 피로, 수면, 대사, 호르몬, 가족력, 기존 검진 결과와 복약 현황을 정리해 드리고, 방한 일정에 맞춰 한국 건강검진, 기능의학, 대사 관리 또는 항노화 관련 상담 방향으로 연결해 드립니다.',
-  en: 'Based on your selections, starting with "slow aging and anti-aging & health management" suits you well. Hangangaeborn will first help organize your fatigue, sleep, metabolism, hormones, family history, existing checkup results, and current medications, then connect you with Korean health checkup, functional medicine, metabolic management, or anti-aging consultation directions based on your visit timing.',
+  en: 'Based on your selections, starting with "slow aging and anti-aging & health management" suits you well. K-Medi Spring will first help organize your fatigue, sleep, metabolism, hormones, family history, existing checkup results, and current medications, then connect you with Korean health checkup, functional medicine, metabolic management, or anti-aging consultation directions based on your visit timing.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء باستشارة "الشيخوخة البطيئة والصحة الشاملة". سيساعدك هانغانغايبورن أولاً في تنظيم التعب والنوم والتمثيل الغذائي والهرمونات والتاريخ العائلي ونتائج الفحوصات السابقة والأدوية الحالية، ثم ربطك باتجاهات الفحص الصحي الكوري أو الطب الوظيفي أو إدارة التمثيل الغذائي أو استشارة مكافحة الشيخوخة بناءً على موعد زيارتك.',
 })
 
 const RC_REGEN_MEDICINE = buildResult({
   zh: '汉江春天不会代替医生判断适应性，也不会保证效果。我们会先帮您整理影像、诊断、治疗记录等既往资料，说明在韩国合法可咨询的范围，再连接到相应机构，由专科医生判断是否需要进一步面诊评估。',
   ko: '한강애봄은 의사를 대신해 적합성을 판단하거나 효과를 보장하지 않습니다. 먼저 영상, 진단, 치료 기록 등 기존 자료를 정리해 드리고, 한국에서 합법적으로 상담 가능한 범위를 안내해 드린 뒤, 해당 의료기관과 연결하여 전문의가 추가적인 면대면 평가가 필요한지 판단하도록 합니다.',
-  en: 'Hangangaeborn does not judge suitability on a doctor\'s behalf, nor guarantee outcomes. We will first help organize your existing imaging, diagnosis, and treatment records, explain the legally consultable scope in Korea, then connect you with a relevant institution where a specialist will determine whether further in-person evaluation is needed.',
+  en: 'K-Medi Spring does not judge suitability on a doctor\'s behalf, nor guarantee outcomes. We will first help organize your existing imaging, diagnosis, and treatment records, explain the legally consultable scope in Korea, then connect you with a relevant institution where a specialist will determine whether further in-person evaluation is needed.',
   ar: 'لا يحدد هانغانغايبورن مدى الملاءمة بدلاً من الطبيب، ولا يضمن النتائج. سنساعدك أولاً في تنظيم سجلاتك التصويرية والتشخيصية والعلاجية الحالية، ونشرح النطاق القانوني القابل للاستشارة في كوريا، ثم نربطك بمؤسسة مناسبة حيث يحدد أخصائي ما إذا كان هناك حاجة لتقييم شخصي إضافي.',
 })
 
 const RC_FACE_CONTOUR = buildResult({
   zh: '根据您的选择，汉江春天会先帮您区分是松弛、下颌线、双下巴、容量流失，还是结构性轮廓问题，再结合您能接受的恢复期和来韩时间，建议适合先咨询的皮肤医美、提升类项目，或整形外科方向。最终方案需由医生面诊评估后确定。',
   ko: '선택하신 내용을 보면, 한강애봄은 먼저 처짐, 턱선, 이중턱, 볼륨 손실, 또는 구조적 윤곽 문제 중 어디에 해당하는지 구분해 드리고, 감수 가능한 회복기간과 방한 일정을 함께 고려하여 먼저 상담하기 적합한 피부 의료미용, 리프팅 시술, 또는 성형외과 방향을 안내해 드립니다. 최종 방안은 의사의 면대면 진료 후 결정됩니다.',
-  en: 'Based on your selections, Hangangaeborn will first help distinguish whether your concern is mainly sagging, jawline definition, double chin, volume loss, or a structural contour issue, then combine this with your acceptable downtime and visit timing to recommend a suitable skin aesthetics, lifting, or plastic surgery direction to consult first. The final plan will be determined after an in-person evaluation by the physician.',
+  en: 'Based on your selections, K-Medi Spring will first help distinguish whether your concern is mainly sagging, jawline definition, double chin, volume loss, or a structural contour issue, then combine this with your acceptable downtime and visit timing to recommend a suitable skin aesthetics, lifting, or plastic surgery direction to consult first. The final plan will be determined after an in-person evaluation by the physician.',
   ar: 'بناءً على اختياراتك، سيساعدك هانغانغايبورن أولاً في تحديد ما إذا كانت مشكلتك الأساسية هي الترهل أو تحديد خط الفك أو الذقن المزدوجة أو فقدان الحجم أو مشكلة هيكلية في الملامح، ثم دمج ذلك مع فترة التعافي المقبولة وموعد زيارتك للتوصية باتجاه مناسب للتجميل الجلدي أو الرفع أو الجراحة التجميلية للاستشارة أولاً. تُحدد الخطة النهائية بعد تقييم شخصي من الطبيب.',
 })
 
 const RC_SURGERY_INTEREST = buildResult({
   zh: '汉江春天会帮您整理关注部位、审美方向、既往经历、恢复期和来韩时间，并连接到相应的医疗机构，但不会代替医生判断是否需要手术，也不保证效果。最终的适应性判断和方案需由专科医生面诊评估后确定。',
   ko: '한강애봄은 관심 부위, 미적 방향, 기존 경험, 회복기간과 방한 일정을 정리해 드리고 해당 의료기관과 연결해 드리지만, 의사를 대신해 수술 필요성을 판단하거나 결과를 보장하지 않습니다. 최종 적합성 판단과 방안은 전문의의 면대면 진료 후 결정됩니다.',
-  en: 'Hangangaeborn will help organize your area of concern, aesthetic direction, past experience, downtime, and visit timing, and connect you with a relevant medical institution, but we do not judge surgical necessity on a doctor\'s behalf, nor guarantee results. Final suitability and the treatment plan will be determined after an in-person evaluation by a specialist.',
+  en: 'K-Medi Spring will help organize your area of concern, aesthetic direction, past experience, downtime, and visit timing, and connect you with a relevant medical institution, but we do not judge surgical necessity on a doctor\'s behalf, nor guarantee results. Final suitability and the treatment plan will be determined after an in-person evaluation by a specialist.',
   ar: 'سيساعدك هانغانغايبورن في تنظيم منطقة اهتمامك واتجاهك الجمالي وخبرتك السابقة وفترة التعافي وموعد زيارتك، وربطك بمؤسسة طبية مناسبة، لكننا لا نحدد ضرورة الجراحة بدلاً من الطبيب، ولا نضمن النتائج. يتم تحديد الملاءمة النهائية والخطة بعد تقييم شخصي من أخصائي.',
 })
 
 const RC_FATIGUE_LOOK = buildResult({
   zh: '您的疲惫感可能不只是皮肤问题，也可能与眼周、睡眠、疲劳或代谢有关。汉江春天会先帮您区分是皮肤医美、眼部改善、综合健康检查，还是功能医学方向，并整理照片和既往体检资料、来韩时间，最终判断需由机构和专科医生确认。',
   ko: '느끼시는 피곤한 인상은 단순히 피부 문제만이 아니라 눈가, 수면, 피로, 또는 대사와 관련이 있을 수 있습니다. 한강애봄은 먼저 피부 의료미용, 눈가 개선, 종합 건강검진, 또는 기능의학 방향 중 어디에 해당하는지 구분해 드리고, 사진과 기존 검진 자료, 방한 일정을 정리해 드립니다. 최종 판단은 의료기관과 전문의가 확인합니다.',
-  en: 'Your tired look may not be purely a skin issue — it could also relate to the eye area, sleep, fatigue, or metabolism. Hangangaeborn will first help distinguish whether skin aesthetics, eye-area improvement, comprehensive health checkup, or functional medicine is the right direction, and organize your photos, existing checkup documents, and visit timing. The final judgment will be confirmed by the institution and the specialist.',
+  en: 'Your tired look may not be purely a skin issue — it could also relate to the eye area, sleep, fatigue, or metabolism. K-Medi Spring will first help distinguish whether skin aesthetics, eye-area improvement, comprehensive health checkup, or functional medicine is the right direction, and organize your photos, existing checkup documents, and visit timing. The final judgment will be confirmed by the institution and the specialist.',
   ar: 'قد لا يكون مظهرك المتعب مشكلة جلدية فقط، فقد يتعلق أيضاً بمنطقة العين أو النوم أو التعب أو التمثيل الغذائي. سيساعدك هانغانغايبورن أولاً في تحديد ما إذا كان الاتجاه المناسب هو تجميل البشرة أو تحسين منطقة العين أو الفحص الصحي الشامل أو الطب الوظيفي، وتنظيم صورك ومستندات الفحص الحالية وموعد زيارتك. يتم تأكيد الحكم النهائي من قبل المؤسسة والأخصائي.',
 })
 
 const RC_KOREA_TRIP_WORRY = buildResult({
   zh: '汉江春天会根据您的医疗目的、同行人数、停留时长，帮您整理初步的行程方向、翻译陪同范围、车辆与住宿动线建议。最终费用会根据同行人数、医疗项目、车辆、陪同范围、医院预约和汇率等因素调整。',
   ko: '한강애봄은 의료 목적, 동행 인원, 체류 기간을 바탕으로 초기 일정 방향, 통역·동행 범위, 차량과 숙소 동선 제안을 정리해 드립니다. 최종 비용은 동행 인원, 의료 항목, 차량, 동행 범위, 병원 예약 및 환율 등의 요인에 따라 조정됩니다.',
-  en: 'Based on your medical purpose, number of companions, and stay duration, Hangangaeborn will help organize an initial itinerary direction, interpretation/escort scope, and vehicle/accommodation routing suggestions. The final cost will be adjusted based on factors such as number of travelers, medical procedures, vehicle, escort scope, hospital booking, and exchange rates.',
+  en: 'Based on your medical purpose, number of companions, and stay duration, K-Medi Spring will help organize an initial itinerary direction, interpretation/escort scope, and vehicle/accommodation routing suggestions. The final cost will be adjusted based on factors such as number of travelers, medical procedures, vehicle, escort scope, hospital booking, and exchange rates.',
   ar: 'بناءً على هدفك الطبي وعدد المرافقين ومدة الإقامة، سيساعدك هانغانغايبورن في تنظيم اتجاه برنامج أولي ونطاق الترجمة/المرافقة واقتراحات مسار السيارة والإقامة. تُعدّل التكلفة النهائية بناءً على عوامل مثل عدد المسافرين والإجراءات الطبية والسيارة ونطاق المرافقة وحجز المستشفى وأسعار الصرف.',
 })
 
 const RC_HEALTH_CHECKUP = buildResult({
   zh: '汉江春天会整理您的体检目的、既往结果、家族病史、慢性病情况和来韩时间，连接到适合的韩国体检中心、专科咨询或功能医学方向。最终的检查项目、麻醉适应性和诊断判断需由机构和专科医生确认。',
   ko: '한강애봄은 검진 목적, 기존 결과, 가족력, 만성질환 여부와 방한 일정을 정리하여 적합한 한국 건강검진 센터, 전문 상담, 또는 기능의학 방향으로 연결해 드립니다. 최종 검사 항목, 마취 적합성 및 진단 판단은 의료기관과 전문의가 확인합니다.',
-  en: 'Hangangaeborn will help organize your checkup purpose, existing results, family medical history, chronic conditions, and visit timing, then connect you with a suitable Korean health checkup center, specialist consultation, or functional medicine direction. The final test items, anesthesia eligibility, and diagnostic judgment will be confirmed by the institution and the specialist.',
+  en: 'K-Medi Spring will help organize your checkup purpose, existing results, family medical history, chronic conditions, and visit timing, then connect you with a suitable Korean health checkup center, specialist consultation, or functional medicine direction. The final test items, anesthesia eligibility, and diagnostic judgment will be confirmed by the institution and the specialist.',
   ar: 'سيساعدك هانغانغايبورن في تنظيم هدف فحصك ونتائجك الحالية وتاريخك العائلي وحالاتك المزمنة وموعد زيارتك، ثم ربطك بمركز فحص صحي كوري مناسب أو استشارة تخصصية أو اتجاه طب وظيفي. يتم تأكيد عناصر الفحص النهائية وأهلية التخدير والحكم التشخيصي من قبل المؤسسة والأخصائي.',
 })
 
@@ -674,7 +674,7 @@ export const CONCERN_CARDS: Partial<Record<string, ConcernCard>> = {
         { label: 'Downtime', q: 'How much downtime can you accept?', opts: ['Almost no downtime', '1-3 days', '4-7 days', 'A week or more is fine', 'Must not affect my Korea itinerary', 'Not sure, want to consult first'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Looking unnatural', 'Face looking stiff', 'Pain', 'Downtime being too visible', 'Cost exceeding expectations', "Doctor's aesthetic not matching mine", 'Not knowing whether to choose dermatology or lifting'] },
         { label: 'Visit timing', q: 'When are you planning to visit Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided', 'Online consultation first'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help organize first?', opts: ['Suitable skin/lifting direction to consult first', 'Photos to prepare', 'Downtime and stay schedule', 'Reference budget direction', 'Korean dermatology consultation process', 'Chinese-speaking concierge contact', 'Booking feasibility'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help organize first?', opts: ['Suitable skin/lifting direction to consult first', 'Photos to prepare', 'Downtime and stay schedule', 'Reference budget direction', 'Korean dermatology consultation process', 'Chinese-speaking concierge contact', 'Booking feasibility'] },
       ],
       result: RC_YOUNGER_LOOK.en,
     },
@@ -733,7 +733,7 @@ export const CONCERN_CARDS: Partial<Record<string, ConcernCard>> = {
         { label: 'Consultation focus', q: 'Which type of consultation would you like to focus on?', opts: ['Comprehensive Korean checkup', 'Functional medicine testing', 'Metabolism/weight management', 'Sleep/stress management', 'Nutrition/lifestyle management', 'Hormone/menopause consultation', 'Results explanation'] },
         { label: 'Stay duration', q: 'How long do you plan to stay in Korea?', opts: ['Within 1 day', '2-3 days', 'About 3 nights 4 days', '5+ days', 'Not decided', 'Online consultation first'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Not knowing which tests to take', 'Too many tests without focus', 'Not understanding the results', 'Costs exceeding expectations', 'Not enough time', 'Language communication', 'Not knowing how Korean and home-country checkups differ'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help with first?', opts: ['Organize a suitable test direction', 'Organize medical history and documents', 'Explain the Korean checkup/functional medicine process', 'Plan the Korea checkup schedule', 'Results explanation process', 'Chinese-speaking concierge contact', 'Check booking feasibility'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help with first?', opts: ['Organize a suitable test direction', 'Organize medical history and documents', 'Explain the Korean checkup/functional medicine process', 'Plan the Korea checkup schedule', 'Results explanation process', 'Chinese-speaking concierge contact', 'Check booking feasibility'] },
       ],
       result: RC_SLOW_AGING.en,
     },
@@ -792,7 +792,7 @@ export const CONCERN_CARDS: Partial<Record<string, ConcernCard>> = {
         { label: 'Consultation purpose', q: 'What would you like to know first?', opts: ['What scope is legally consultable in Korea', 'Whether I need to be examined in person', 'What documents to prepare', 'A suitable medical institution', 'Recovery management direction', 'A rough stay duration', 'Want to understand risks and limits first'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Legality concerns', 'Exaggerated marketing claims', 'Whether it suits my case', 'High cost', 'What tests are needed', 'Whether stay duration is enough', 'Whether communication will be clear'] },
         { label: 'Visit timing', q: 'When are you planning to visit Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided', 'Online consultation first'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help with first?', opts: ['Organize medical documents', 'Explain the legally consultable scope in Korea', 'Help judge a suitable specialty direction', 'Organize pre-visit preparations', 'Check booking feasibility', 'Chinese-speaking concierge contact', 'Explain the consultation process'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help with first?', opts: ['Organize medical documents', 'Explain the legally consultable scope in Korea', 'Help judge a suitable specialty direction', 'Organize pre-visit preparations', 'Check booking feasibility', 'Chinese-speaking concierge contact', 'Explain the consultation process'] },
       ],
       result: RC_REGEN_MEDICINE.en,
     },
@@ -910,7 +910,7 @@ export const CONCERN_CARDS: Partial<Record<string, ConcernCard>> = {
         { label: 'Downtime', q: 'How much downtime can you accept?', opts: ['Within 3 days', 'About 1 week', 'About 2 weeks', 'Even 1 month is fine', 'Must not affect work', 'Depends on the procedure', 'Not sure'] },
         { label: 'Past experience', q: 'Do you have related past experience?', opts: ['No plastic surgery experience', 'Had skin aesthetics treatments', 'Had eye/nose/contour procedures', 'Want a revision procedure', 'Consulted in home country before', 'Photos/documents already ready', 'No documents prepared'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Looking unnatural', "Doctor's aesthetic not matching mine", 'Surgical risk', 'Downtime too long', 'Cost', 'Language communication', 'Not knowing which area to consult first'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help organize first?', opts: ['Suitable area to consult first', 'Photos/documents to prepare', 'Surgical vs non-surgical direction', 'Downtime and visit timing', 'Reference budget direction', 'Chinese-speaking concierge contact', 'Booking process'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help organize first?', opts: ['Suitable area to consult first', 'Photos/documents to prepare', 'Surgical vs non-surgical direction', 'Downtime and visit timing', 'Reference budget direction', 'Chinese-speaking concierge contact', 'Booking process'] },
       ],
       result: RC_SURGERY_INTEREST.en,
     },
@@ -969,7 +969,7 @@ export const CONCERN_CARDS: Partial<Record<string, ConcernCard>> = {
         { label: 'Consultation direction', q: 'Which direction would you like to consult first?', opts: ['Skin aesthetics', 'Eye-area improvement', 'Health checkup', 'Functional medicine', 'Anti-aging management', 'Nutrition/lifestyle management', "Don't know where to start"] },
         { label: 'Downtime', q: 'How much downtime can you accept?', opts: ['Almost no downtime', '1-3 days', '4-7 days', 'Longer is fine', 'Must not affect my Korea itinerary', 'Not sure'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Only fixing skin without solving the underlying issue', 'Not knowing whether to choose dermatology or a checkup', 'Cost', 'Visible downtime', "Can't understand medical information", "Communication isn't clear", 'Choosing the wrong service direction'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help with first?', opts: ['Judge skin vs. health direction first', 'Organize eye-area/skin/fatigue issues', 'Organize photos/checkup documents to prepare', 'Explain downtime and stay arrangements', 'Chinese-speaking concierge contact', 'Check booking feasibility', 'Organize an initial consultation direction'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help with first?', opts: ['Judge skin vs. health direction first', 'Organize eye-area/skin/fatigue issues', 'Organize photos/checkup documents to prepare', 'Explain downtime and stay arrangements', 'Chinese-speaking concierge contact', 'Check booking feasibility', 'Organize an initial consultation direction'] },
       ],
       result: RC_FATIGUE_LOOK.en,
     },
@@ -1087,7 +1087,7 @@ export const CONCERN_CARDS: Partial<Record<string, ConcernCard>> = {
         { label: 'Relevant history', q: 'Do any of the following apply to you?', opts: ['Family medical history', 'Chronic illness', 'Long-term medication', "Haven't had a checkup in the past year", "Haven't had a systematic checkup in 2+ years", 'Checked in home country, want a re-check in Korea', 'Want to arrange a checkup for my parents'] },
         { label: 'Stay duration', q: 'How long do you plan to stay?', opts: ['Mainly same-day', '1-2 days', '2-3 days', '3 nights 4 days', 'Need time reserved for results explanation', 'Not decided'] },
         { label: 'Biggest worry', q: 'What worries you most?', opts: ['Not knowing which package to choose', 'Too many tests without focus', 'Worried about endoscopy/anesthesia', "Can't understand the results", 'Cost', 'Not enough time', 'Language communication'] },
-        { label: 'Preferred help', q: 'What would you like Hangangaeborn to help organize first?', opts: ['A suitable checkup direction', 'Explanation of differences between Korean and home-country checkups', 'Documents to prepare', 'A visit checkup schedule', 'Results explanation process', 'Reference budget direction', 'Chinese-speaking concierge contact'] },
+        { label: 'Preferred help', q: 'What would you like K-Medi Spring to help organize first?', opts: ['A suitable checkup direction', 'Explanation of differences between Korean and home-country checkups', 'Documents to prepare', 'A visit checkup schedule', 'Results explanation process', 'Reference budget direction', 'Chinese-speaking concierge contact'] },
       ],
       result: RC_HEALTH_CHECKUP.en,
     },

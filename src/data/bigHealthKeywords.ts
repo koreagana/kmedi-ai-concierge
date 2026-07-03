@@ -427,8 +427,8 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       caution: {
         zh: '以上产品仅作为韩国已获批准细胞治疗剂的示例，不代表客户一定适用，也不代表汉江春天可以判断或安排相关治疗。\n是否可以咨询或使用相关治疗，需要由正规医疗机构根据韩国法规、适应症和医生判断确认。',
         ko: '위 제품명은 한국에서 허가된 세포치료제 예시일 뿐이며, 고객에게 반드시 적용된다는 뜻이 아니고 한강애봄이 관련 치료 적합 여부를 판단하거나 확정한다는 의미도 아닙니다.\n관련 치료 상담 또는 사용 가능 여부는 정규 의료기관이 한국 법규, 적응증, 의사의 판단에 따라 확인해야 합니다.',
-        en: 'The products above are only examples of cell therapy products approved in Korea. They do not imply that any of them will necessarily apply to you, nor that Hangangaeborn can determine or arrange the related treatment.\nWhether a related treatment can be consulted on or used must be confirmed by a licensed medical institution, based on Korean regulations, indications, and the physician\'s judgment.',
-        ar: 'المنتجات المذكورة أعلاه هي مجرد أمثلة على منتجات العلاج الخلوي المعتمدة في كوريا، ولا تعني بالضرورة أن أياً منها سينطبق عليك، ولا تعني أن Hangangaeborn يمكنه تحديد أو ترتيب العلاج المعني.\nيجب تأكيد إمكانية استشارة أو استخدام العلاج المعني من قبل مؤسسة طبية مرخصة، بناءً على اللوائح الكورية ودواعي الاستعمال وتقدير الطبيب.',
+        en: 'The products above are only examples of cell therapy products approved in Korea. They do not imply that any of them will necessarily apply to you, nor that K-Medi Spring can determine or arrange the related treatment.\nWhether a related treatment can be consulted on or used must be confirmed by a licensed medical institution, based on Korean regulations, indications, and the physician\'s judgment.',
+        ar: 'المنتجات المذكورة أعلاه هي مجرد أمثلة على منتجات العلاج الخلوي المعتمدة في كوريا، ولا تعني بالضرورة أن أياً منها سينطبق عليك، ولا تعني أن K-Medi يمكنه تحديد أو ترتيب العلاج المعني.\nيجب تأكيد إمكانية استشارة أو استخدام العلاج المعني من قبل مؤسسة طبية مرخصة، بناءً على اللوائح الكورية ودواعي الاستعمال وتقدير الطبيب.',
       },
     },
     testsLabel: {
@@ -463,8 +463,8 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
     extraDisclaimer: {
       zh: '再生医学、细胞治疗、关节或抗衰老相关项目，需根据韩国法律法规、医疗机构资质和医生判断进行咨询。\n汉江春天不进行诊断、治疗判断或效果保证。',
       ko: '재생의학, 세포치료, 관절 또는 항노화 관련 항목은 한국의 법규, 의료기관 자격, 의사의 판단에 따라 상담되어야 합니다.\n한강애봄은 진단, 치료 판단 또는 효과 보장을 하지 않습니다.',
-      en: "Regenerative medicine, cell therapy, joint, and anti-aging related items must be consulted in accordance with Korean laws and regulations, the qualifications of the medical institution, and the physician's judgment.\nHangangaeborn does not provide diagnosis, treatment decisions, or guarantee outcomes.",
-      ar: 'يجب استشارة العناصر المتعلقة بالطب التجديدي والعلاج الخلوي والمفاصل ومكافحة الشيخوخة وفقاً للقوانين واللوائح الكورية ومؤهلات المؤسسة الطبية وتقدير الطبيب.\nلا تقدم Hangangaeborn تشخيصاً أو قرارات علاجية أو ضماناً للنتائج.',
+      en: "Regenerative medicine, cell therapy, joint, and anti-aging related items must be consulted in accordance with Korean laws and regulations, the qualifications of the medical institution, and the physician's judgment.\nK-Medi Spring does not provide diagnosis, treatment decisions, or guarantee outcomes.",
+      ar: 'يجب استشارة العناصر المتعلقة بالطب التجديدي والعلاج الخلوي والمفاصل ومكافحة الشيخوخة وفقاً للقوانين واللوائح الكورية ومؤهلات المؤسسة الطبية وتقدير الطبيب.\nلا تقدم K-Medi تشخيصاً أو قرارات علاجية أو ضماناً للنتائج.',
     },
   },
 ]

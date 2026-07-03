@@ -485,8 +485,8 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     note: {
       zh: '汉江春天不进行医疗判断。我们可以帮助客户理解医院说明、整理翻译内容、提醒复诊和异常症状联系医院，但具体处理方式必须以医院判断为准。',
       ko: '한강애봄은 의료 판단을 하지 않습니다. 병원 안내를 고객 언어로 정리하고, 번역 내용을 전달하며, 재내원과 이상 증상 시 병원 연락을 돕지만, 구체적인 처치는 반드시 병원 판단을 기준으로 해야 합니다.',
-      en: 'Hangangaeborn does not make medical judgments. We help clients understand hospital instructions, organize translations, remind them about follow-up visits, and connect them to the hospital if abnormal symptoms occur. Specific medical decisions must follow the hospital\'s judgment.',
-      ar: 'لا تقوم Hangangaeborn باتخاذ قرارات طبية. يمكننا مساعدة العميل على فهم تعليمات المستشفى، وتنظيم الترجمة، والتذكير بمواعيد المتابعة، وربط العميل بالمستشفى عند ظهور أعراض غير طبيعية، لكن القرار الطبي النهائي يجب أن يكون وفقًا لتقدير المستشفى.',
+      en: 'K-Medi Spring does not make medical judgments. We help clients understand hospital instructions, organize translations, remind them about follow-up visits, and connect them to the hospital if abnormal symptoms occur. Specific medical decisions must follow the hospital\'s judgment.',
+      ar: 'لا تقوم K-Medi باتخاذ قرارات طبية. يمكننا مساعدة العميل على فهم تعليمات المستشفى، وتنظيم الترجمة، والتذكير بمواعيد المتابعة، وربط العميل بالمستشفى عند ظهور أعراض غير طبيعية، لكن القرار الطبي النهائي يجب أن يكون وفقًا لتقدير المستشفى.',
     },
     docKeys: ['surgeryAfter', 'sutureRemovalGuide', 'anesthesiaAfterCare', 'medicationAllergyCheck'],
   },

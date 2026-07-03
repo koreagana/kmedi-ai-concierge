@@ -37,7 +37,7 @@ const QUESTIONS_EN: Q[] = [
   { label: 'Downtime or stay duration', q: 'How much downtime or Korea stay duration can you accept?', opts: ['Almost no downtime preferred', '1–3 days is fine', '4–7 days is fine', 'Longer downtime is fine', 'Planning to stay around 3 nights, 4 days', 'Not sure yet — want to consult first'] },
   { label: 'Biggest worry', q: 'What are you most worried about right now?', opts: ['Choosing the wrong service', 'Looking unnatural or downtime too long', 'Not understanding medical information', 'Communication issues', 'Costs exceeding expectations', 'Korea itinerary not well arranged', 'Concerned about legal compliance'] },
   { label: 'Korea visit timing', q: 'When are you planning to visit Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided yet', 'Just exploring online for now'] },
-  { label: 'Preferred first support', q: 'What would you like Hangangaeborn to help you with first?', opts: ['Sort out the right consultation direction for me', 'Organize the questions and materials to prepare', 'Explain the Korean consultation process', 'Explain rough stay and recovery planning', 'Connect me with a Chinese-speaking concierge', 'Check whether booking is feasible'] },
+  { label: 'Preferred first support', q: 'What would you like K-Medi Spring to help you with first?', opts: ['Sort out the right consultation direction for me', 'Organize the questions and materials to prepare', 'Explain the Korean consultation process', 'Explain rough stay and recovery planning', 'Connect me with a Chinese-speaking concierge', 'Check whether booking is feasible'] },
 ]
 
 const QUESTIONS_AR: Q[] = [
@@ -47,7 +47,7 @@ const QUESTIONS_AR: Q[] = [
   { label: 'فترة التعافي أو مدة الإقامة', q: 'كم فترة تعافي أو إقامة في كوريا يمكنك قبولها؟', opts: ['أفضّل عدم وجود فترة تعافي تقريباً', '1-3 أيام مقبول', '4-7 أيام مقبول', 'فترة تعافي أطول مقبولة', 'أخطط للإقامة حوالي 3 ليالٍ و4 أيام', 'لست متأكداً بعد، أريد الاستشارة أولاً'] },
   { label: 'أكبر قلق', q: 'ما الذي يقلقك أكثر الآن؟', opts: ['اختيار الخدمة الخاطئة', 'الظهور بمظهر غير طبيعي أو فترة تعافي طويلة', 'عدم فهم المعلومات الطبية', 'مشاكل التواصل', 'تجاوز التكلفة المتوقعة', 'عدم تنظيم جدول رحلتي لكوريا بشكل جيد', 'القلق بشأن الامتثال القانوني'] },
   { label: 'موعد زيارة كوريا', q: 'متى تخطط لزيارة كوريا؟', opts: ['خلال شهر واحد', 'خلال 3 أشهر', 'خلال 6 أشهر', 'في وقت ما من هذا العام', 'لم أقرر بعد', 'أستكشف عبر الإنترنت فقط الآن'] },
-  { label: 'الدعم المفضل أولاً', q: 'ماذا تريد من Hangangaeborn أن يساعدك به أولاً؟', opts: ['تحديد اتجاه الاستشارة المناسب لي', 'تنظيم الأسئلة والمستندات التي يجب تحضيرها', 'شرح إجراءات الاستشارة الكورية', 'شرح خطة الإقامة والتعافي التقريبية', 'ربطي بكونسيرج يتحدث الصينية', 'التحقق من إمكانية الحجز'] },
+  { label: 'الدعم المفضل أولاً', q: 'ماذا تريد من K-Medi أن يساعدك به أولاً؟', opts: ['تحديد اتجاه الاستشارة المناسب لي', 'تنظيم الأسئلة والمستندات التي يجب تحضيرها', 'شرح إجراءات الاستشارة الكورية', 'شرح خطة الإقامة والتعافي التقريبية', 'ربطي بكونسيرج يتحدث الصينية', 'التحقق من إمكانية الحجز'] },
 ]
 
 type ConsultationType =
@@ -135,7 +135,7 @@ const QUESTIONS_HOME_EN: Q[] = [
   { label: 'Current worry', q: 'What concerns you most right now?', opts: ['Choosing the wrong hospital', 'The treatment not suiting me', 'Costs exceeding expectations', 'Communication issues', 'Downtime affecting my schedule', 'Not understanding medical information', 'Not knowing how to arrange things once in Korea'] },
   { label: 'Travel companions', q: 'Are you coming alone, or with family or friends?', opts: ['Coming alone', 'With a friend', 'With family', 'Accompanying parents for a checkup', 'With a spouse or partner', 'Not decided yet', 'Starting with an online consultation first'] },
   { label: 'Visit timing', q: 'Roughly when are you considering visiting Korea?', opts: ['Within 1 month', 'Within 3 months', 'Within 6 months', 'Sometime this year', 'Not decided yet', 'Want to learn more before deciding'] },
-  { label: 'First priority', q: 'What would you like Hangangaeborn to help organize first?', opts: ['The right Korean medical direction for me', 'Which hospitals or departments to consult', 'Rough downtime and stay planning', 'A reference budget direction', 'Appointment and interpretation process', 'Health checkup or results explanation', 'Speaking with a Chinese-speaking concierge first'] },
+  { label: 'First priority', q: 'What would you like K-Medi Spring to help organize first?', opts: ['The right Korean medical direction for me', 'Which hospitals or departments to consult', 'Rough downtime and stay planning', 'A reference budget direction', 'Appointment and interpretation process', 'Health checkup or results explanation', 'Speaking with a Chinese-speaking concierge first'] },
 ]
 
 const QUESTIONS_HOME_AR: Q[] = [
@@ -145,7 +145,7 @@ const QUESTIONS_HOME_AR: Q[] = [
   { label: 'القلق الحالي', q: 'ما الذي يقلقك أكثر الآن؟', opts: ['اختيار المستشفى الخاطئ', 'عدم ملاءمة العلاج لي', 'تجاوز التكلفة المتوقعة', 'مشاكل التواصل', 'تأثير فترة التعافي على جدولي', 'عدم فهم المعلومات الطبية', 'عدم معرفة كيفية الترتيب بعد الوصول إلى كوريا'] },
   { label: 'المرافقون', q: 'هل ستأتي بمفردك أم مع العائلة أو الأصدقاء؟', opts: ['بمفردي', 'مع صديق', 'مع العائلة', 'مرافقة الوالدين لإجراء فحص', 'مع الزوج/الزوجة أو الشريك', 'لم أقرر بعد', 'سأبدأ باستشارة عبر الإنترنت أولاً'] },
   { label: 'موعد الزيارة', q: 'متى تفكر تقريباً في زيارة كوريا؟', opts: ['خلال شهر واحد', 'خلال 3 أشهر', 'خلال 6 أشهر', 'في وقت ما من هذا العام', 'لم أقرر بعد', 'أريد معرفة المزيد قبل اتخاذ القرار'] },
-  { label: 'الأولوية الأولى', q: 'ماذا تريد من Hangangaeborn أن ينظمه لك أولاً؟', opts: ['الاتجاه الطبي الكوري المناسب لي', 'المستشفيات أو الأقسام التي يمكن استشارتها', 'فترة التعافي التقريبية وخطة الإقامة', 'اتجاه ميزانية مرجعي', 'إجراءات الحجز والترجمة', 'الفحص الصحي أو شرح النتائج', 'التحدث مع كونسيرج يتحدث الصينية أولاً'] },
+  { label: 'الأولوية الأولى', q: 'ماذا تريد من K-Medi أن ينظمه لك أولاً؟', opts: ['الاتجاه الطبي الكوري المناسب لي', 'المستشفيات أو الأقسام التي يمكن استشارتها', 'فترة التعافي التقريبية وخطة الإقامة', 'اتجاه ميزانية مرجعي', 'إجراءات الحجز والترجمة', 'الفحص الصحي أو شرح النتائج', 'التحدث مع كونسيرج يتحدث الصينية أولاً'] },
 ]
 
 type HomeType =
@@ -241,7 +241,7 @@ const STRUCTURED_LANG_NAME: Record<string, string> = { zh: '中文', ko: '한국
 const STRUCTURED_SECTION_TITLES: Record<string, string[]> = {
   zh: ['主要咨询方向', '具体问题或关注部位', '既往经验 / 检查资料', '恢复期或韩国停留时间', '最担心的问题', '计划来韩国时间', '希望汉江春天先协助的内容'],
   ko: ['주요 상담 방향', '구체적인 고민 또는 관심 부위', '기존 경험 / 검사자료', '회복기간 또는 한국 체류기간', '가장 걱정되는 점', '방한 예정 시기', '한강애봄에 먼저 원하는 도움'],
-  en: ['Main consultation direction', 'Specific concern or area of interest', 'Previous experience / medical records', 'Downtime or Korea stay duration', 'Biggest concern', 'Planned visit timing', 'Support requested from Hangangaeborn'],
+  en: ['Main consultation direction', 'Specific concern or area of interest', 'Previous experience / medical records', 'Downtime or Korea stay duration', 'Biggest concern', 'Planned visit timing', 'Support requested from K-Medi Spring'],
   ar: ['اتجاه الاستشارة الرئيسي', 'القلق المحدد أو منطقة الاهتمام', 'الخبرة السابقة / السجلات الطبية', 'فترة التعافي أو مدة الإقامة في كوريا', 'أكبر قلق', 'موعد الزيارة المخطط له', 'الدعم المطلوب من هانغانغايبورن'],
 }
 
@@ -319,7 +319,7 @@ const STRUCTURED_NOTICE_HEADER: Record<string, string> = {
 const STRUCTURED_NOTICE: Record<string, string> = {
   zh: '汉江春天不是医疗机构。我们会先协助整理咨询需求、预约方向、翻译、陪同和韩国行程。最终检查、诊疗和治疗方案需要由韩国正规医疗机构和专业医生判断。',
   ko: '한강애봄은 의료기관이 아닙니다. 상담 내용 정리, 예약 방향, 통역, 동행, 한국 일정 조율을 돕는 컨시어지입니다. 최종 검사, 진료, 치료 방향은 한국의 정식 의료기관과 전문의 상담 후 결정됩니다.',
-  en: 'Hangangaeborn is not a medical institution. We help organize consultation needs, booking direction, interpretation, escort support, and Korea itinerary coordination. Final examinations, diagnosis, and treatment plans must be determined by licensed Korean medical institutions and specialist physicians.',
+  en: 'K-Medi Spring is not a medical institution. We help organize consultation needs, booking direction, interpretation, escort support, and Korea itinerary coordination. Final examinations, diagnosis, and treatment plans must be determined by licensed Korean medical institutions and specialist physicians.',
   ar: 'هانغانغايبورن ليست مؤسسة طبية. نساعد في تنظيم احتياجات الاستشارة واتجاه الحجز والترجمة والمرافقة وتنسيق برنامج زيارتك إلى كوريا. يجب تحديد الفحوصات والتشخيص وخطط العلاج النهائية من قبل مؤسسات طبية كورية مرخصة وأطباء متخصصين.',
 }
 

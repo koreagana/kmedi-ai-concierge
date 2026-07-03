@@ -83,7 +83,7 @@ export const categories: Category[] = [
 가장 관심 있는 방향을 먼저 선택해 주세요. 상담카드로 정리한 뒤 담당 상담사가 적절한 진료 방향으로 연결해 드립니다.
 
 최종 검사 방향과 진료 판단은 정식 의료기관과 전문의 기준입니다.`,
-    scriptFullEn: `Hello, and welcome to the Hangangaeborn AI Concierge Medical Lounge.
+    scriptFullEn: `Hello, and welcome to the K-Medi Spring AI Concierge Medical Lounge.
 
 Anti-aging & Health Management is not simply a physical checkup.
 
@@ -104,7 +104,7 @@ How many days do you plan to stay in Korea? Do you need Chinese-language support
 Please select the direction you're most concerned about. We'll summarize it into a consultation card, then connect you with the right medical direction.
 
 Final testing direction and medical judgment remain with licensed medical institutions and physicians.`,
-    scriptFullAr: `مرحباً بكم في صالة الكونسيرج الطبي الذكي لـ Hangangaeborn.
+    scriptFullAr: `مرحباً بكم في صالة الكونسيرج الطبي الذكي لـ K-Medi.
 
 "مكافحة الشيخوخة وإدارة الصحة" ليست مجرد فحص طبي بسيط.
 
@@ -127,8 +127,8 @@ Final testing direction and medical judgment remain with licensed medical instit
 القرار النهائي بشأن الفحوصات والتشخيص يبقى من اختصاص المؤسسات الطبية المرخصة والأطباء المتخصصين.`,
     scriptSummaryZh: `大健康管理适合希望系统了解身体状态、改善疲劳、睡眠、代谢与长期健康风险的人群。汉江春天可协助您整理需求，并对接韩国相关医疗咨询与健康管理服务。`,
     scriptSummaryKo: `항노화·건강관리는 몸 상태를 체계적으로 이해하고 피로, 수면, 대사, 장기적인 건강 위험을 개선하고 싶은 분에게 적합합니다. 한강애봄이 필요사항을 정리해 한국의 관련 의료상담과 건강관리 서비스로 연결해 드립니다.`,
-    scriptSummaryEn: `Anti-aging & Health Management is suited for those who want to systematically understand their body and improve fatigue, sleep, metabolism, and long-term health risks. Hangangaeborn helps organize your needs and connects you to related medical consultations and health management services in Korea.`,
-    scriptSummaryAr: `تناسب "مكافحة الشيخوخة وإدارة الصحة" من يريد فهم حالة جسمه بشكل منهجي وتحسين التعب والنوم والتمثيل الغذائي والمخاطر الصحية طويلة المدى. تساعدكم Hangangaeborn في تنظيم احتياجاتكم وربطكم بالاستشارات الطبية وخدمات إدارة الصحة المناسبة في كوريا.`,
+    scriptSummaryEn: `Anti-aging & Health Management is suited for those who want to systematically understand their body and improve fatigue, sleep, metabolism, and long-term health risks. K-Medi Spring helps organize your needs and connects you to related medical consultations and health management services in Korea.`,
+    scriptSummaryAr: `تناسب "مكافحة الشيخوخة وإدارة الصحة" من يريد فهم حالة جسمه بشكل منهجي وتحسين التعب والنوم والتمثيل الغذائي والمخاطر الصحية طويلة المدى. تساعدكم K-Medi في تنظيم احتياجاتكم وربطكم بالاستشارات الطبية وخدمات إدارة الصحة المناسبة في كوريا.`,
   },
   {
     id: 'stem-cell',
@@ -273,7 +273,7 @@ Please tell us first whether your main concern is firmness, pores, pigmentation,
 
 If you're planning a visit to Korea, we'll also consider your stay duration, recovery time, budget, and whether you need an interpreter.
 
-Hangangaeborn does not determine a specific procedure on this page.
+K-Medi Spring does not determine a specific procedure on this page.
 
 The specific treatment method is decided after assessing your skin condition and consulting with the medical team.`,
     scriptFullAr: `مرحباً بكم في قسم استشارات الطب التجميلي للبشرة.
@@ -290,13 +290,13 @@ The specific treatment method is decided after assessing your skin condition and
 
 إذا كنتم تخططون لزيارة كوريا، سنأخذ بعين الاعتبار مدة الإقامة، ومدة التعافي، والميزانية، والحاجة لمرافق ترجمة.
 
-لا تحدد Hangangaeborn إجراءً معيناً في هذه الصفحة.
+لا تحدد K-Medi إجراءً معيناً في هذه الصفحة.
 
 يتم تحديد طريقة العلاج المحددة بعد تقييم حالة بشرتكم واستشارة الفريق الطبي.`,
     scriptSummaryZh: `皮肤医美适合关注皮肤松弛、提升、肤质、毛孔、色斑、痘疤与抗衰管理的人群。汉江春天可帮助您整理皮肤需求，并连接韩国皮肤医美咨询服务。`,
     scriptSummaryKo: `피부의료미용은 피부 탄력, 리프팅, 피부결, 모공, 색소, 여드름 자국, 항노화 관리에 관심 있는 분께 적합합니다. 한강애봄이 피부 고민을 정리해 한국 피부의료미용 상담으로 연결해 드립니다.`,
-    scriptSummaryEn: `Skin & Aesthetics suits those interested in skin firmness, lifting, texture, pores, pigmentation, acne scars, or anti-aging care. Hangangaeborn organizes your skin concerns and connects you to skin and aesthetic consultations in Korea.`,
-    scriptSummaryAr: `يناسب الطب التجميلي للبشرة من يهتم بمرونة البشرة والرفع والملمس والمسام والتصبغ وآثار حب الشباب والعناية بمكافحة الشيخوخة. تنظم Hangangaeborn اهتماماتكم وتربطكم باستشارات الطب التجميلي للبشرة في كوريا.`,
+    scriptSummaryEn: `Skin & Aesthetics suits those interested in skin firmness, lifting, texture, pores, pigmentation, acne scars, or anti-aging care. K-Medi Spring organizes your skin concerns and connects you to skin and aesthetic consultations in Korea.`,
+    scriptSummaryAr: `يناسب الطب التجميلي للبشرة من يهتم بمرونة البشرة والرفع والملمس والمسام والتصبغ وآثار حب الشباب والعناية بمكافحة الشيخوخة. تنظم K-Medi اهتماماتكم وتربطكم باستشارات الطب التجميلي للبشرة في كوريا.`,
   },
   {
     id: 'plastic-surgery',
@@ -379,8 +379,8 @@ Whether surgery is possible and the specific method must be determined through a
 يتم تحديد إمكانية إجراء الجراحة والطريقة المحددة فقط من خلال استشارة مباشرة مع طبيب متخصص.`,
     scriptSummaryZh: `整形医美适合希望改善眼部、鼻部、面部轮廓、下垂、眼袋或整体年轻感的人群。汉江春天可协助整理需求，并连接后续专业整形咨询流程。`,
     scriptSummaryKo: `성형의료미용은 눈, 코, 윤곽, 처짐, 눈밑 또는 전체적인 젊어 보이는 인상 개선에 관심 있는 분께 적합합니다. 한강애봄이 필요사항을 정리해 전문 성형 상담으로 연결해 드립니다.`,
-    scriptSummaryEn: `Plastic Surgery suits those interested in improving the eyes, nose, facial contour, sagging, under-eye area, or overall youthful impression. Hangangaeborn organizes your needs and connects you to specialized plastic surgery consultations.`,
-    scriptSummaryAr: `تناسب الجراحة التجميلية من يهتم بتحسين العيون أو الأنف أو ملامح الوجه أو الترهل أو منطقة تحت العين أو المظهر العام الأصغر سناً. تنظم Hangangaeborn احتياجاتكم وتربطكم باستشارات تجميلية متخصصة.`,
+    scriptSummaryEn: `Plastic Surgery suits those interested in improving the eyes, nose, facial contour, sagging, under-eye area, or overall youthful impression. K-Medi Spring organizes your needs and connects you to specialized plastic surgery consultations.`,
+    scriptSummaryAr: `تناسب الجراحة التجميلية من يهتم بتحسين العيون أو الأنف أو ملامح الوجه أو الترهل أو منطقة تحت العين أو المظهر العام الأصغر سناً. تنظم K-Medi احتياجاتكم وتربطكم باستشارات تجميلية متخصصة.`,
   },
   {
     id: 'womens-care',
@@ -439,7 +439,7 @@ Concerns in your 20s–30s, after childbirth, after 40, or around menopause are 
 
 Please first select the direction you're most interested in — for example, gynecological checkup, hormones and menopause, private care, or postpartum recovery.
 
-Hangangaeborn organizes this information in a quiet, private way.
+K-Medi Spring organizes this information in a quiet, private way.
 
 We do not provide a diagnosis here and do not replace a physician's judgment.
 
@@ -456,15 +456,15 @@ We'll then connect you with a specialized women's medical institution.`,
 
 يرجى أولاً اختيار الاتجاه الذي يهمكم أكثر، مثل فحص أمراض النساء أو الهرمونات وانقطاع الطمث أو الرعاية الخاصة أو التعافي بعد الولادة.
 
-تنظم Hangangaeborn هذه المعلومات بطريقة هادئة وخاصة.
+تنظم K-Medi هذه المعلومات بطريقة هادئة وخاصة.
 
 لا نقدم تشخيصاً هنا ولا نحل محل قرار الطبيب.
 
 بعد ذلك سنربطكم بمؤسسة طبية متخصصة في صحة المرأة.`,
     scriptSummaryZh: `女性护理中心适合关注妇科检查、女性健康、私密护理、产后恢复、更年期管理等需求的人群。汉江春天提供私密、清晰的咨询整理与韩国医疗对接服务。`,
     scriptSummaryKo: `여성케어센터는 부인과 검진, 여성 건강, 프라이빗 케어, 산후 회복, 갱년기 관리에 관심 있는 분께 적합합니다. 한강애봄이 사적이고 명확한 방식으로 상담을 정리해 한국 의료기관과 연결해 드립니다.`,
-    scriptSummaryEn: `The Women's Care Center suits those interested in gynecological checkups, women's health, private care, postpartum recovery, or menopause management. Hangangaeborn organizes your consultation privately and clearly, then connects you to Korean medical institutions.`,
-    scriptSummaryAr: `يناسب مركز رعاية المرأة من يهتم بفحوصات أمراض النساء أو صحة المرأة أو الرعاية الخاصة أو التعافي بعد الولادة أو إدارة انقطاع الطمث. تنظم Hangangaeborn استشارتكم بطريقة خاصة وواضحة وتربطكم بالمؤسسات الطبية الكورية.`,
+    scriptSummaryEn: `The Women's Care Center suits those interested in gynecological checkups, women's health, private care, postpartum recovery, or menopause management. K-Medi Spring organizes your consultation privately and clearly, then connects you to Korean medical institutions.`,
+    scriptSummaryAr: `يناسب مركز رعاية المرأة من يهتم بفحوصات أمراض النساء أو صحة المرأة أو الرعاية الخاصة أو التعافي بعد الولادة أو إدارة انقطاع الطمث. تنظم K-Medi استشارتكم بطريقة خاصة وواضحة وتربطكم بالمؤسسات الطبية الكورية.`,
   },
   {
     id: 'mens-health',
@@ -519,7 +519,7 @@ Many male clients find it hard to talk about uncomfortable symptoms directly.
 
 So we'll first help sort out which matters most to you — fatigue and low energy, hair loss, urinary issues, prostate health, or weight and metabolic changes.
 
-Hangangaeborn helps organize difficult-to-discuss topics into a consultation card.
+K-Medi Spring helps organize difficult-to-discuss topics into a consultation card.
 
 We'll then connect you with checkup, urology, hair loss, or functional medicine consultation directions.
 
@@ -534,15 +534,15 @@ Diagnosis and treatment must follow the judgment of a medical institution and ph
 
 لذلك سنساعدكم أولاً على تصنيف ما يهمكم أكثر: التعب وانخفاض الطاقة، تساقط الشعر، مشاكل التبول، صحة البروستاتا، أو تغيرات الوزن والتمثيل الغذائي.
 
-تساعد Hangangaeborn في تنظيم المواضيع الحساسة في بطاقة استشارة.
+تساعد K-Medi في تنظيم المواضيع الحساسة في بطاقة استشارة.
 
 بعد ذلك سنربطكم بالفحص الصحي أو طب المسالك البولية أو تساقط الشعر أو الطب الوظيفي.
 
 يجب أن يتبع التشخيص والعلاج قرار المؤسسة الطبية والطبيب المتخصص.`,
     scriptSummaryZh: `男性健康中心适合关注体力、睡眠、代谢、脱发、泌尿健康、前列腺与男性抗衰管理的人群。汉江春天可协助进行咨询整理与韩国医疗服务对接。`,
     scriptSummaryKo: `남성건강센터는 체력, 수면, 대사, 탈모, 비뇨 건강, 전립선, 남성기능 관리에 관심 있는 분께 적합합니다. 한강애봄이 상담을 정리해 한국 의료 서비스와 연결해 드립니다.`,
-    scriptSummaryEn: `The Men's Health Center suits those interested in energy, sleep, metabolism, hair loss, urinary health, prostate, and male function management. Hangangaeborn organizes your consultation and connects you to Korean medical services.`,
-    scriptSummaryAr: `يناسب مركز صحة الرجل من يهتم بالطاقة والنوم والتمثيل الغذائي وتساقط الشعر وصحة المسالك البولية والبروستاتا وإدارة الوظيفة الجنسية. تنظم Hangangaeborn استشارتكم وتربطكم بالخدمات الطبية الكورية.`,
+    scriptSummaryEn: `The Men's Health Center suits those interested in energy, sleep, metabolism, hair loss, urinary health, prostate, and male function management. K-Medi Spring organizes your consultation and connects you to Korean medical services.`,
+    scriptSummaryAr: `يناسب مركز صحة الرجل من يهتم بالطاقة والنوم والتمثيل الغذائي وتساقط الشعر وصحة المسالك البولية والبروستاتا وإدارة الوظيفة الجنسية. تنظم K-Medi استشارتكم وتربطكم بالخدمات الطبية الكورية.`,
   },
   {
     id: 'medical-tourism',
@@ -585,7 +585,7 @@ Diagnosis and treatment must follow the judgment of a medical institution and ph
 의료 판단은 병원과 전문의가 맡고, 한강애봄은 의료여행 과정을 안전하고 명확하게 정리하는 역할을 합니다.
 
 3박 4일은 참고 일정이며, 실제 일정은 상담 내용에 따라 조정될 수 있습니다.`,
-    scriptFullEn: `Hello, welcome to Hangangaeborn's Premium Medical Tourism service.
+    scriptFullEn: `Hello, welcome to K-Medi Spring's Premium Medical Tourism service.
 
 Receiving medical consultation in Korea doesn't end with booking a single hospital.
 
@@ -597,10 +597,10 @@ We'll first organize your purpose of visit, schedule, number of companions, area
 
 We'll then help with appointments, interpretation, vehicles, hospital escort, and accommodation guidance.
 
-Medical decisions are made by the hospital and physicians, while Hangangaeborn's role is to organize the medical travel process safely and clearly.
+Medical decisions are made by the hospital and physicians, while K-Medi Spring's role is to organize the medical travel process safely and clearly.
 
 The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adjusted based on your consultation.`,
-    scriptFullAr: `مرحباً بكم في خدمة السياحة الطبية المميزة من Hangangaeborn.
+    scriptFullAr: `مرحباً بكم في خدمة السياحة الطبية المميزة من K-Medi.
 
 الحصول على استشارة طبية في كوريا لا ينتهي بحجز مستشفى واحد فقط.
 
@@ -612,13 +612,13 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
 
 بعد ذلك سنساعدكم في المواعيد والترجمة والمركبات ومرافقة الزيارات الطبية وترتيبات الإقامة.
 
-تتخذ المستشفيات والأطباء القرارات الطبية، بينما يكون دور Hangangaeborn هو تنظيم رحلة العلاج بأمان وبوضوح.
+تتخذ المستشفيات والأطباء القرارات الطبية، بينما يكون دور K-Medi هو تنظيم رحلة العلاج بأمان وبوضوح.
 
 برنامج 3 ليالٍ و4 أيام هو برنامج مرجعي، وقد يتم تعديل الجدول الفعلي بناءً على محتوى الاستشارة.`,
     scriptSummaryZh: `医疗旅游精品服务适合计划来韩国进行医疗咨询、皮肤医美、整形、健康管理或抗衰服务的人群。汉江春天可协助预约、翻译、行程、车辆与到院沟通。`,
     scriptSummaryKo: `의료관광 프리미엄 서비스는 한국에서 의료 상담, 피부의료미용, 성형, 건강관리, 항노화 서비스를 계획하는 분께 적합합니다. 한강애봄이 예약, 통역, 일정, 차량, 병원 동행을 도와드립니다.`,
-    scriptSummaryEn: `The Premium Medical Tourism service suits those planning medical consultation, skin aesthetics, plastic surgery, health management, or anti-aging services in Korea. Hangangaeborn helps with appointments, interpretation, itinerary, transportation, and hospital escort.`,
-    scriptSummaryAr: `تناسب خدمة السياحة الطبية المميزة من يخطط لاستشارة طبية أو طب تجميلي للبشرة أو جراحة تجميلية أو إدارة صحية أو خدمات مكافحة الشيخوخة في كوريا. تساعد Hangangaeborn في المواعيد والترجمة والبرنامج والمركبات ومرافقة الزيارات الطبية.`,
+    scriptSummaryEn: `The Premium Medical Tourism service suits those planning medical consultation, skin aesthetics, plastic surgery, health management, or anti-aging services in Korea. K-Medi Spring helps with appointments, interpretation, itinerary, transportation, and hospital escort.`,
+    scriptSummaryAr: `تناسب خدمة السياحة الطبية المميزة من يخطط لاستشارة طبية أو طب تجميلي للبشرة أو جراحة تجميلية أو إدارة صحية أو خدمات مكافحة الشيخوخة في كوريا. تساعد K-Medi في المواعيد والترجمة والبرنامج والمركبات ومرافقة الزيارات الطبية.`,
   },
   {
     id: 'custom-plan',
@@ -693,8 +693,8 @@ Final medical decisions and treatment feasibility remain with medical institutio
 يبقى القرار الطبي النهائي وإمكانية إجراء العلاج من اختصاص المؤسسات الطبية والأطباء المتخصصين.`,
     scriptSummaryZh: `如果您还不确定选择哪个项目，可以先提交定制需求。汉江春天会根据您的目的、时间、预算与停留计划，为您整理韩国医疗观光咨询方向。`,
     scriptSummaryKo: `어떤 항목을 선택할지 아직 모르신다면 맞춤형 플랜으로 먼저 시작하셔도 됩니다. 한강애봄이 목적, 일정, 예산, 체류 계획을 바탕으로 한국 의료관광 상담 방향을 정리해 드립니다.`,
-    scriptSummaryEn: `If you're not sure which category to choose, you can start with a custom plan. Hangangaeborn organizes your Korean medical tourism consultation direction based on your purpose, schedule, budget, and stay plan.`,
-    scriptSummaryAr: `إذا لم تكونوا متأكدين من الفئة المناسبة، يمكنكم البدء بخطة مخصصة. تنظم Hangangaeborn اتجاه استشارة السياحة الطبية الكورية بناءً على هدفكم وجدولكم وميزانيتكم وخطة إقامتكم.`,
+    scriptSummaryEn: `If you're not sure which category to choose, you can start with a custom plan. K-Medi Spring organizes your Korean medical tourism consultation direction based on your purpose, schedule, budget, and stay plan.`,
+    scriptSummaryAr: `إذا لم تكونوا متأكدين من الفئة المناسبة، يمكنكم البدء بخطة مخصصة. تنظم K-Medi اتجاه استشارة السياحة الطبية الكورية بناءً على هدفكم وجدولكم وميزانيتكم وخطة إقامتكم.`,
   },
 ]
 

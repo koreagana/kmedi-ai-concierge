@@ -454,7 +454,7 @@ Before your medical consultation, we help you clarify the purpose of your visit,
 
 We don't simply recommend a hospital — we help you sort out consultation, booking, transport, interpretation, and accommodation before you arrive in Korea.
 
-Medical decisions are made by the hospital and physicians, while Hangangaeborn's role is to help coordinate the itinerary, communication, and escort arrangements.`,
+Medical decisions are made by the hospital and physicians, while K-Medi Spring's role is to help coordinate the itinerary, communication, and escort arrangements.`,
       recommended: 'Safe Korea Visit · Appointment Coordination · Interpreter',
     },
     ar: {
@@ -469,7 +469,7 @@ Medical decisions are made by the hospital and physicians, while Hangangaeborn's
 
 نحن لا نوصي ببساطة بمستشفى — نساعدك في تنظيم الاستشارة والحجز والمواصلات والترجمة والإقامة قبل وصولك إلى كوريا.
 
-تتخذ المستشفيات والأطباء القرارات الطبية، بينما يكون دور Hangangaeborn هو المساعدة في تنسيق البرنامج والتواصل وترتيبات المرافقة.`,
+تتخذ المستشفيات والأطباء القرارات الطبية، بينما يكون دور K-Medi هو المساعدة في تنسيق البرنامج والتواصل وترتيبات المرافقة.`,
       recommended: 'زيارة آمنة لكوريا · تنسيق المواعيد · الترجمة',
     },
   },
