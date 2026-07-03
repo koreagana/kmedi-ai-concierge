@@ -95,11 +95,16 @@ export default function NavBar() {
 
         {/* /ar 페이지 로고 이미지 */}
         {isArPage && (
-          <img
-            src="/kmedi_logo.png"
-            alt="K-Medi"
-            style={{ height: 28, width: 'auto', objectFit: 'contain', display: 'block' }}
-          />
+          <button
+            onClick={goHome}
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex' }}
+          >
+            <img
+              src="/kmedi_logo.png"
+              alt="K-Medi"
+              style={{ height: 28, width: 'auto', objectFit: 'contain', display: 'block' }}
+            />
+          </button>
         )}
 
         {/* Language picker */}
