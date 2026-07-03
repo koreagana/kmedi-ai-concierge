@@ -5,6 +5,7 @@ import { translations } from '../data/translations'
 import { getCategoryById } from '../data/categories'
 import { getConcernById } from '../data/concerns'
 import ConsultationCard from './ConsultationCard'
+import BigHealthKeywords from './BigHealthKeywords'
 import {
   CategoryGridSection,
   ContactSection,
@@ -95,6 +96,9 @@ export default function CategoryPage() {
           ))}
         </motion.div>
       </div>
+
+      {/* ── Big Health keyword pills (only for the big-health category) ── */}
+      {cat.id === 'big-health' && <BigHealthKeywords />}
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (

@@ -41,8 +41,8 @@ function buildResult(body: { zh: string; ko: string; en: string; ar: string }) {
 
 const R_BIG_HEALTH = buildResult({
   zh: '根据您的选择，您适合先从大健康咨询开始。汉江春天可以先帮您整理目前最关心的问题、既往病史、家族病史、服用药物和来韩停留时间，再根据情况连接韩国健康检查、功能医学、代谢管理、睡眠疲劳管理或抗衰老相关咨询方向。',
-  ko: '선택하신 내용을 보면, 먼저 대건강 상담부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 현재 가장 신경 쓰이는 문제, 기존 병력, 가족력, 복용 중인 약, 방한 기간을 정리해 드리고, 이를 바탕으로 한국의 건강검진, 기능의학, 대사 관리, 수면·피로 관리 또는 항노화 관련 상담 방향으로 연결해 드립니다.',
-  en: 'Based on your selections, starting with a Comprehensive Health consultation suits you well. Hangangaeborn will first help organize your main concerns, medical history, family history, current medications, and length of stay in Korea, then connect you with relevant Korean directions such as health checkups, functional medicine, metabolic management, sleep/fatigue management, or anti-aging consultation.',
+  ko: '선택하신 내용을 보면, 먼저 항노화·건강관리 상담부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 현재 가장 신경 쓰이는 문제, 기존 병력, 가족력, 복용 중인 약, 방한 기간을 정리해 드리고, 이를 바탕으로 한국의 건강검진, 기능의학, 대사 관리, 수면·피로 관리 또는 항노화 관련 상담 방향으로 연결해 드립니다.',
+  en: 'Based on your selections, starting with an Anti-aging & Health Management consultation suits you well. Hangangaeborn will first help organize your main concerns, medical history, family history, current medications, and length of stay in Korea, then connect you with relevant Korean directions such as health checkups, functional medicine, metabolic management, sleep/fatigue management, or anti-aging consultation.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء باستشارة الصحة الشاملة. سيساعدك هانغانغايبورن أولاً في تنظيم أهم مشاكلك الحالية وتاريخك المرضي وتاريخك العائلي والأدوية التي تتناولها ومدة إقامتك في كوريا، ثم ربطك بالاتجاهات الكورية المناسبة مثل الفحص الصحي أو الطب الوظيفي أو إدارة التمثيل الغذائي أو إدارة النوم والتعب أو استشارة مكافحة الشيخوخة.',
 })
 
@@ -112,8 +112,8 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
       result: R_BIG_HEALTH.zh,
     },
     ko: {
-      title: '나의 대건강 상담카드 만들기',
-      copyHeader: '【대건강 상담카드】',
+      title: '나의 항노화·건강관리 상담카드 만들기',
+      copyHeader: '【항노화·건강관리 상담카드】',
       questions: [
         { label: '건강 고민', q: '지금 가장 알고 싶은 신체 문제는 무엇인가요?', opts: ['자주 피곤함', '수면 질 저하', '체중·혈당·혈중지질 변화', '대사 저하', '기능의학', '정밀 건강검진', '장기적 건강 위험'] },
         { label: '몸의 신호', q: '최근 가장 뚜렷하게 느껴지는 몸의 신호는?', opts: ['쉽게 피곤함', '깊이 못 자거나 일찍 깸', '체중 증가 또는 감소', '소화기 상태 저하', '면역력 저하', '근육량 감소', '특별한 증상 없이 검진만 원함'] },
@@ -126,8 +126,8 @@ export const CATEGORY_CARDS: Partial<Record<CategoryId, CategoryCard>> = {
       result: R_BIG_HEALTH.ko,
     },
     en: {
-      title: 'Build My Comprehensive Health Consultation Profile',
-      copyHeader: '[Comprehensive Health Consultation Card]',
+      title: 'Build My Anti-aging & Health Management Consultation Profile',
+      copyHeader: '[Anti-aging & Health Management Consultation Card]',
       questions: [
         { label: 'Health concern', q: 'What body issue would you most like to understand right now?', opts: ['Frequent fatigue', 'Poor sleep quality', 'Changes in weight, blood sugar, or lipids', 'Slowing metabolism', 'Functional medicine', 'Comprehensive checkup', 'Long-term health risks'] },
         { label: 'Recent signal', q: "What's the most noticeable signal from your body recently?", opts: ['Getting tired easily', 'Light sleep or early waking', 'Weight gain or loss', 'Poor digestive condition', 'Lowered immunity', 'Muscle mass loss', 'No clear symptoms, just want a systematic checkup'] },
@@ -587,8 +587,8 @@ const RC_YOUNGER_LOOK = buildResult({
 
 const RC_SLOW_AGING = buildResult({
   zh: '根据您的选择，您适合先从"慢衰老与大健康管理"方向开始。汉江春天可以先帮您整理疲劳、睡眠、代谢、激素、家族病史、既往检查结果和服药情况，再根据来韩时间连接韩国健康检查、功能医学、代谢管理或抗衰老相关咨询方向。',
-  ko: '선택하신 내용을 보면, 먼저 "슬로우 에이징과 대건강 관리" 방향부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 피로, 수면, 대사, 호르몬, 가족력, 기존 검진 결과와 복약 현황을 정리해 드리고, 방한 일정에 맞춰 한국 건강검진, 기능의학, 대사 관리 또는 항노화 관련 상담 방향으로 연결해 드립니다.',
-  en: 'Based on your selections, starting with "slow aging and comprehensive health management" suits you well. Hangangaeborn will first help organize your fatigue, sleep, metabolism, hormones, family history, existing checkup results, and current medications, then connect you with Korean health checkup, functional medicine, metabolic management, or anti-aging consultation directions based on your visit timing.',
+  ko: '선택하신 내용을 보면, 먼저 "슬로우 에이징과 항노화·건강관리" 방향부터 시작하시는 것이 적합합니다. 한강애봄은 먼저 피로, 수면, 대사, 호르몬, 가족력, 기존 검진 결과와 복약 현황을 정리해 드리고, 방한 일정에 맞춰 한국 건강검진, 기능의학, 대사 관리 또는 항노화 관련 상담 방향으로 연결해 드립니다.',
+  en: 'Based on your selections, starting with "slow aging and anti-aging & health management" suits you well. Hangangaeborn will first help organize your fatigue, sleep, metabolism, hormones, family history, existing checkup results, and current medications, then connect you with Korean health checkup, functional medicine, metabolic management, or anti-aging consultation directions based on your visit timing.',
   ar: 'بناءً على اختياراتك، يُنصح بالبدء باستشارة "الشيخوخة البطيئة والصحة الشاملة". سيساعدك هانغانغايبورن أولاً في تنظيم التعب والنوم والتمثيل الغذائي والهرمونات والتاريخ العائلي ونتائج الفحوصات السابقة والأدوية الحالية، ثم ربطك باتجاهات الفحص الصحي الكوري أو الطب الوظيفي أو إدارة التمثيل الغذائي أو استشارة مكافحة الشيخوخة بناءً على موعد زيارتك.',
 })
 

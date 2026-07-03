@@ -33,9 +33,9 @@ export const categories: Category[] = [
   {
     id: 'big-health',
     zh: '大健康',
-    ko: '대건강',
-    en: 'Comprehensive Health',
-    ar: 'الصحة الشاملة',
+    ko: '항노화·건강관리',
+    en: 'Anti-aging & Health Management',
+    ar: 'مكافحة الشيخوخة وإدارة الصحة',
     emoji: '🔬',
     tagZh: '功能医学 · 慢性疲劳 · 代谢抗衰',
     tagKo: '기능의학 · 만성피로 · 대사 항노화',
@@ -64,13 +64,13 @@ export const categories: Category[] = [
 最终的检查方向和诊疗判断，需以正规医疗机构和专业医生的判断为准。`,
     scriptFullKo: `안녕하세요, 한강애봄 AI Concierge Medical Lounge에 오신 것을 환영합니다.
 
-대건강(大健康)은 단순한 건강검진이 아닙니다.
+항노화·건강관리(大健康)는 단순한 건강검진이 아닙니다.
 
 피로, 수면, 대사, 면역, 호르몬, 생활습관 등 여러 방향에서 몸 상태를 미리 이해하는 건강관리 입구입니다.
 
 평소 피곤하거나 잠을 잘 못 자거나 체중 변화가 크거나 장기적인 건강 위험을 알고 싶다면 여기서 시작할 수 있습니다.
 
-한국에서 대건강 상담은 보통 건강검진센터, 기능의학 클리닉, 내과, 가정의학과, 항노화 클리닉으로 연결됩니다.
+한국에서 항노화·건강관리 상담은 보통 건강검진센터, 기능의학 클리닉, 내과, 가정의학과, 항노화 클리닉으로 연결됩니다.
 
 방향에 따라 검사와 상담 방식이 달라집니다.
 
@@ -85,7 +85,7 @@ export const categories: Category[] = [
 최종 검사 방향과 진료 판단은 정식 의료기관과 전문의 기준입니다.`,
     scriptFullEn: `Hello, and welcome to the Hangangaeborn AI Concierge Medical Lounge.
 
-Comprehensive Health is not simply a physical checkup.
+Anti-aging & Health Management is not simply a physical checkup.
 
 It's an entry point for understanding your body in advance — through fatigue, sleep, metabolism, immunity, hormones, and lifestyle.
 
@@ -106,7 +106,7 @@ Please select the direction you're most concerned about. We'll summarize it into
 Final testing direction and medical judgment remain with licensed medical institutions and physicians.`,
     scriptFullAr: `مرحباً بكم في صالة الكونسيرج الطبي الذكي لـ Hangangaeborn.
 
-"الصحة الشاملة" ليست مجرد فحص طبي بسيط.
+"مكافحة الشيخوخة وإدارة الصحة" ليست مجرد فحص طبي بسيط.
 
 إنها بوابة لفهم حالة جسمك مسبقاً من خلال التعب والنوم والتمثيل الغذائي والمناعة والهرمونات وأسلوب الحياة.
 
@@ -126,9 +126,9 @@ Final testing direction and medical judgment remain with licensed medical instit
 
 القرار النهائي بشأن الفحوصات والتشخيص يبقى من اختصاص المؤسسات الطبية المرخصة والأطباء المتخصصين.`,
     scriptSummaryZh: `大健康管理适合希望系统了解身体状态、改善疲劳、睡眠、代谢与长期健康风险的人群。汉江春天可协助您整理需求，并对接韩国相关医疗咨询与健康管理服务。`,
-    scriptSummaryKo: `대건강 관리는 몸 상태를 체계적으로 이해하고 피로, 수면, 대사, 장기적인 건강 위험을 개선하고 싶은 분에게 적합합니다. 한강애봄이 필요사항을 정리해 한국의 관련 의료상담과 건강관리 서비스로 연결해 드립니다.`,
-    scriptSummaryEn: `Comprehensive Health is suited for those who want to systematically understand their body and improve fatigue, sleep, metabolism, and long-term health risks. Hangangaeborn helps organize your needs and connects you to related medical consultations and health management services in Korea.`,
-    scriptSummaryAr: `تناسب "الصحة الشاملة" من يريد فهم حالة جسمه بشكل منهجي وتحسين التعب والنوم والتمثيل الغذائي والمخاطر الصحية طويلة المدى. تساعدكم Hangangaeborn في تنظيم احتياجاتكم وربطكم بالاستشارات الطبية وخدمات إدارة الصحة المناسبة في كوريا.`,
+    scriptSummaryKo: `항노화·건강관리는 몸 상태를 체계적으로 이해하고 피로, 수면, 대사, 장기적인 건강 위험을 개선하고 싶은 분에게 적합합니다. 한강애봄이 필요사항을 정리해 한국의 관련 의료상담과 건강관리 서비스로 연결해 드립니다.`,
+    scriptSummaryEn: `Anti-aging & Health Management is suited for those who want to systematically understand their body and improve fatigue, sleep, metabolism, and long-term health risks. Hangangaeborn helps organize your needs and connects you to related medical consultations and health management services in Korea.`,
+    scriptSummaryAr: `تناسب "مكافحة الشيخوخة وإدارة الصحة" من يريد فهم حالة جسمه بشكل منهجي وتحسين التعب والنوم والتمثيل الغذائي والمخاطر الصحية طويلة المدى. تساعدكم Hangangaeborn في تنظيم احتياجاتكم وربطكم بالاستشارات الطبية وخدمات إدارة الصحة المناسبة في كوريا.`,
   },
   {
     id: 'stem-cell',
