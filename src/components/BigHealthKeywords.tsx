@@ -89,6 +89,25 @@ export default function BigHealthKeywords() {
           </div>
         )}
 
+        {active.approvedProducts && (
+          <div className="bh-card-section">
+            <p className="bh-card-label">{pick(active.approvedProducts.title, lang)}</p>
+            <ul className="bh-product-list">
+              {active.approvedProducts.items.map((item, i) => (
+                <li key={i}>
+                  <span className="bh-product-name">{pick(item.name, lang)}</span>
+                  <span className="bh-product-desc">{pick(item.desc, lang)}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="bh-note">
+              {pick(active.approvedProducts.caution, lang).split('\n').map((line, i) => (
+                <p key={i} className="bh-card-text">{line}</p>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="bh-card-section">
           <p className="bh-card-label">{pick(active.testsLabel, lang)}</p>
           <ul className="bh-list">
