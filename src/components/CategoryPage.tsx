@@ -9,6 +9,7 @@ import BigHealthKeywords from './BigHealthKeywords'
 import StemCellKeywords from './StemCellKeywords'
 import SkinAestheticsKeywords from './SkinAestheticsKeywords'
 import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
+import WomensHealthKeywords from './WomensHealthKeywords'
 import {
   CategoryGridSection,
   ContactSection,
@@ -111,6 +112,9 @@ export default function CategoryPage() {
 
       {/* ── Plastic surgery keyword pills (only for the plastic-surgery category) ── */}
       {cat.id === 'plastic-surgery' && <PlasticSurgeryKeywords />}
+
+      {/* ── Women's health keyword pills (only for the womens-care category) ── */}
+      {cat.id === 'womens-care' && <WomensHealthKeywords />}
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (
