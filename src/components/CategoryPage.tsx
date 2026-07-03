@@ -6,6 +6,7 @@ import { getCategoryById } from '../data/categories'
 import { getConcernById } from '../data/concerns'
 import ConsultationCard from './ConsultationCard'
 import BigHealthKeywords from './BigHealthKeywords'
+import StemCellKeywords from './StemCellKeywords'
 import {
   CategoryGridSection,
   ContactSection,
@@ -99,6 +100,9 @@ export default function CategoryPage() {
 
       {/* ── Big Health keyword pills (only for the big-health category) ── */}
       {cat.id === 'big-health' && <BigHealthKeywords />}
+
+      {/* ── Stem cell / regenerative medicine keyword pills (only for the stem-cell category) ── */}
+      {cat.id === 'stem-cell' && <StemCellKeywords />}
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (
