@@ -1346,3 +1346,36 @@ body {
   color: var(--text-dark);
   font-weight: 500;
 }
+
+/* ══════════════════════════════════════════
+   TTS SPEAKER BUTTON
+   ══════════════════════════════════════════ */
+.tts-btn {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-blue);
+  background: var(--bg-surface);
+  color: var(--brand);
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.tts-btn:hover { background: var(--bg-light); }
+.tts-btn:active { transform: scale(0.94); }
+
+.tts-btn-active {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
+  animation: tts-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes tts-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,119,182,0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(0,119,182,0); }
+}

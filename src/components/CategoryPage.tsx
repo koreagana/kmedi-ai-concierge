@@ -12,6 +12,7 @@ import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
 import WomensHealthKeywords from './WomensHealthKeywords'
 import MensHealthKeywords from './MensHealthKeywords'
 import CustomPlanContent from './CustomPlanContent'
+import TtsButton from './TtsButton'
 import {
   CategoryGridSection,
   ContactSection,
@@ -86,6 +87,9 @@ export default function CategoryPage() {
             paddingLeft: 16,
           }}
         >
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
+            <TtsButton text={concernLocal ? concernLocal.desc : catScriptFull} lang={lang} />
+          </div>
           {(concernLocal ? concernLocal.desc : catScriptFull).split('\n\n').map((para, i, arr) => (
             <p
               key={i}
