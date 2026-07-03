@@ -55,6 +55,8 @@ const PRODUCT_EXAMPLES_LABEL: LocalizedText = {
   ar: 'أمثلة على المنتجات',
 }
 
+// TODO: once the admin prep-documents page adds a "재생의학 상담 전 자료 준비 / 再生医学咨询前资料准备"
+// entry (candidate path: /prep/regenerative-consultation-before), add its key to docKeys on each item below.
 export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   {
     id: 'approved-cell-therapies',
@@ -123,7 +125,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
         ar: 'لهذه المنتجات دواعي استعمال وشروط استخدام محددة بوضوح، ولا تنطبق على كل مشكلة تتعلق بمكافحة الشيخوخة أو الألم أو المفاصل.',
       },
     },
-    docKeys: ['functionalIntake', 'bloodTestPrep'],
+    docKeys: ['functionalIntake'],
   },
   {
     id: 'what-is-stem-cell-consultation',
@@ -154,7 +156,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { zh: '过敏史和慢性疾病', ko: '알레르기 및 만성질환', en: 'Allergy history and chronic conditions', ar: 'تاريخ الحساسية والأمراض المزمنة' },
       { zh: '希望来韩国的时间和停留时间', ko: '한국 방문 희망 시기와 체류 기간', en: 'Preferred visit timing and length of stay in Korea', ar: 'التوقيت المفضل للزيارة ومدة الإقامة في كوريا' },
     ],
-    docKeys: ['functionalIntake', 'bloodTestPrep'],
+    docKeys: ['functionalIntake'],
   },
   {
     id: 'legal-consultation-scope',
@@ -182,7 +184,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { zh: '是否可以预约相关咨询，需要根据医院回复确认', ko: '관련 상담 예약 가능 여부는 병원 회신에 따라 확인해야 합니다', en: "Whether a related consultation can be booked must be confirmed based on the hospital's response", ar: 'يجب تأكيد إمكانية حجز استشارة معينة بناءً على رد المستشفى' },
       { zh: '不应相信"任何人都可以做"的宣传', ko: '"누구나 가능하다"는 식의 홍보는 주의해야 합니다', en: 'Advertising claiming "anyone can do this" should be treated with caution', ar: 'يجب الحذر من الإعلانات التي تدعي أن "الجميع يمكنه ذلك"' },
     ],
-    docKeys: ['functionalIntake', 'bloodTestPrep'],
+    docKeys: ['functionalIntake'],
   },
   {
     id: 'joint-cartilage-consultation',
@@ -212,7 +214,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { zh: '既往注射、手术或康复治疗记录', ko: '기존 주사치료, 수술, 재활치료 기록', en: 'Records of prior injection therapy, surgery, or rehabilitation', ar: 'سجلات العلاج بالحقن أو الجراحة أو إعادة التأهيل السابقة' },
       { zh: '正在服用的药物', ko: '현재 복용 중인 약', en: 'Current medications', ar: 'الأدوية الحالية' },
     ],
-    docKeys: ['functionalIntake', 'bloodTestPrep'],
+    docKeys: ['functionalIntake'],
   },
   {
     id: 'anti-aging-regenerative-consultation',
@@ -242,7 +244,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { zh: '再生医学相关咨询范围', ko: '재생의학 관련 상담 범위', en: 'Scope of regenerative medicine consultation', ar: 'نطاق استشارة الطب التجديدي' },
       { zh: '医院可提供的合法咨询路径', ko: '병원에서 제공 가능한 합법 상담 경로', en: 'Legally consultable pathways available at the hospital', ar: 'المسارات القانونية للاستشارة المتاحة في المستشفى' },
     ],
-    docKeys: ['functionalIntake', 'bloodTestPrep'],
+    docKeys: ['functionalIntake'],
   },
   {
     id: 'materials-preparation',
@@ -277,8 +279,6 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { zh: '过敏史和慢性疾病信息', ko: '알레르기 및 만성질환 정보', en: 'Allergy history and chronic illness information', ar: 'تاريخ الحساسية ومعلومات الأمراض المزمنة' },
       { zh: '希望来韩国时间和可停留时间', ko: '한국 방문 희망 시기와 체류 가능 기간', en: 'Preferred visit timing and possible length of stay in Korea', ar: 'التوقيت المفضل للزيارة ومدة الإقامة الممكنة في كوريا' },
     ],
-    // TODO: once the admin prep-documents page adds a "재생의학 상담 전 자료 준비 / 再生医学咨询前资料准备"
-    // entry (candidate path: /prep/regenerative-consultation-before), add its key to docKeys below.
-    docKeys: ['functionalIntake', 'bloodTestPrep'],
+    docKeys: ['functionalIntake'],
   },
 ]
