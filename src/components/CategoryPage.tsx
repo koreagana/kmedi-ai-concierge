@@ -11,6 +11,7 @@ import SkinAestheticsKeywords from './SkinAestheticsKeywords'
 import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
 import WomensHealthKeywords from './WomensHealthKeywords'
 import MensHealthKeywords from './MensHealthKeywords'
+import CustomPlanContent from './CustomPlanContent'
 import {
   CategoryGridSection,
   ContactSection,
@@ -119,6 +120,9 @@ export default function CategoryPage() {
 
       {/* ── Men's health keyword pills (only for the mens-health category) ── */}
       {cat.id === 'mens-health' && <MensHealthKeywords />}
+
+      {/* ── Custom medical tourism plan trust content (only for the custom-plan category) ── */}
+      {cat.id === 'custom-plan' && <CustomPlanContent />}
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (

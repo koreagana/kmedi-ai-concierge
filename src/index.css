@@ -1240,3 +1240,109 @@ body {
 .badge-pulse {
   animation: badge-pulse 1.8s infinite;
 }
+
+/* ══════════════════════════════════════════
+   CUSTOM PLAN — trust page (stacked mini-cards, steps)
+   ══════════════════════════════════════════ */
+.bh-subsection-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 22px 20px 12px;
+}
+
+.bh-mini-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 20px;
+}
+
+.bh-mini-card {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-blue);
+}
+
+.bh-mini-card-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.bh-mini-card-desc {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+.bh-client-card-audience {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--text);
+  margin-top: 6px;
+}
+
+.bh-client-card-focus {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.bh-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 20px;
+}
+
+.bh-step {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-blue);
+}
+
+.bh-step-number {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bh-step-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.bh-step-desc {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.bh-closing-text {
+  margin: 18px 20px 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-blue);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  font-weight: 500;
+}
