@@ -1,15 +1,20 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useApp } from '../contexts/AppContext'
 import {
   BIG_HEALTH_KEYWORDS,
   BIG_HEALTH_DOC_BUTTONS,
+  BIG_HEALTH_DOC_SECTION_LABEL,
+  BIG_HEALTH_PILLS_PROMPT,
   BIG_HEALTH_SECTION,
   type BigHealthDocButtonKey,
+  type LocalizedText,
 } from '../data/bigHealthKeywords'
+import type { LangCode } from '../data/translations'
 
-const bi = (zh: string, ko: string) => `${zh} / ${ko}`
+const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
-function DocButton({ docKey }: { docKey: BigHealthDocButtonKey }) {
+function DocButton({ docKey, lang }: { docKey: BigHealthDocButtonKey; lang: LangCode }) {
   const doc = BIG_HEALTH_DOC_BUTTONS[docKey]
   if (doc.kind === 'external') {
     return (
@@ -18,7 +23,7 @@ function DocButton({ docKey }: { docKey: BigHealthDocButtonKey }) {
         className="bh-doc-btn"
         onClick={() => window.open(doc.target, '_blank', 'noopener,noreferrer')}
       >
-        <span>{bi(doc.zh, doc.ko)}</span>
+        <span>{pick(doc.label, lang)}</span>
         <span className="bh-doc-btn-arrow">→</span>
       </button>
     )
@@ -27,26 +32,29 @@ function DocButton({ docKey }: { docKey: BigHealthDocButtonKey }) {
   // a plain anchor triggers the real page load.
   return (
     <a className="bh-doc-btn" href={doc.target}>
-      <span>{bi(doc.zh, doc.ko)}</span>
+      <span>{pick(doc.label, lang)}</span>
       <span className="bh-doc-btn-arrow">→</span>
     </a>
   )
 }
 
 export default function BigHealthKeywords() {
+  const { lang } = useApp()
   const [activeIndex, setActiveIndex] = useState(0)
   const active = BIG_HEALTH_KEYWORDS[activeIndex]
 
   return (
     <div className="bh-section">
-      <p className="bh-section-title">{bi(BIG_HEALTH_SECTION.titleZh, BIG_HEALTH_SECTION.titleKo)}</p>
-      <p className="bh-section-desc">{bi(BIG_HEALTH_SECTION.descZh, BIG_HEALTH_SECTION.descKo)}</p>
+      <p className="bh-section-title">{pick(BIG_HEALTH_SECTION.title, lang)}</p>
+      <p className="bh-section-desc">{pick(BIG_HEALTH_SECTION.desc, lang)}</p>
 
       <div className="bh-safety">
-        {BIG_HEALTH_SECTION.safetyZh.map((line, i) => (
-          <p key={i} className="bh-safety-line">{bi(line, BIG_HEALTH_SECTION.safetyKo[i])}</p>
+        {BIG_HEALTH_SECTION.safety.map((line, i) => (
+          <p key={i} className="bh-safety-line">{pick(line, lang)}</p>
         ))}
       </div>
+
+      <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
       <div className="bh-pills" role="tablist">
         {BIG_HEALTH_KEYWORDS.map((kw, i) => (
@@ -58,7 +66,7 @@ export default function BigHealthKeywords() {
             className={`bh-pill ${i === activeIndex ? 'bh-pill-active' : ''}`}
             onClick={() => setActiveIndex(i)}
           >
-            {bi(kw.zh, kw.ko)}
+            {pick(kw.title, lang)}
           </button>
         ))}
       </div>
@@ -70,49 +78,49 @@ export default function BigHealthKeywords() {
         transition={{ duration: 0.22, ease: 'easeOut' }}
         className="bh-card"
       >
-        <p className="bh-card-title">{bi(active.zh, active.ko)}</p>
-        <p className="bh-card-text">{bi(active.descriptionZh, active.descriptionKo)}</p>
+        <p className="bh-card-title">{pick(active.title, lang)}</p>
+        <p className="bh-card-text">{pick(active.description, lang)}</p>
 
-        {active.noteZh && active.noteKo && (
+        {active.note && (
           <div className="bh-note">
-            {active.noteZh.split('\n').map((line, i) => (
-              <p key={i} className="bh-card-text">{bi(line, active.noteKo!.split('\n')[i])}</p>
+            {pick(active.note, lang).split('\n').map((line, i) => (
+              <p key={i} className="bh-card-text">{line}</p>
             ))}
           </div>
         )}
 
         <div className="bh-card-section">
-          <p className="bh-card-label">{bi(active.testsLabelZh, active.testsLabelKo)}</p>
+          <p className="bh-card-label">{pick(active.testsLabel, lang)}</p>
           <ul className="bh-list">
             {active.tests.map((item, i) => (
-              <li key={i}>{bi(item.zh, item.ko)}</li>
+              <li key={i}>{pick(item, lang)}</li>
             ))}
           </ul>
         </div>
 
         <div className="bh-card-section">
-          <p className="bh-card-label">{bi(active.directionLabelZh, active.directionLabelKo)}</p>
+          <p className="bh-card-label">{pick(active.directionLabel, lang)}</p>
           <ul className="bh-list">
             {active.direction.map((item, i) => (
-              <li key={i}>{bi(item.zh, item.ko)}</li>
+              <li key={i}>{pick(item, lang)}</li>
             ))}
           </ul>
         </div>
 
         <div className="bh-card-section">
-          <p className="bh-card-label">{bi('相关准备文档', '관련 준비문서')}</p>
+          <p className="bh-card-label">{pick(BIG_HEALTH_DOC_SECTION_LABEL, lang)}</p>
           <div className="bh-doc-buttons">
             {active.docKeys.map(key => (
-              <DocButton key={key} docKey={key} />
+              <DocButton key={key} docKey={key} lang={lang} />
             ))}
-            <DocButton docKey="wechatConsult" />
+            <DocButton docKey="wechatConsult" lang={lang} />
           </div>
         </div>
 
-        {active.extraDisclaimerZh && active.extraDisclaimerKo && (
+        {active.extraDisclaimer && (
           <div className="bh-disclaimer">
-            {active.extraDisclaimerZh.split('\n').map((line, i) => (
-              <p key={i}>{bi(line, active.extraDisclaimerKo!.split('\n')[i])}</p>
+            {pick(active.extraDisclaimer, lang).split('\n').map((line, i) => (
+              <p key={i}>{line}</p>
             ))}
           </div>
         )}
