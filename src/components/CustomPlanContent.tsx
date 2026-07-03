@@ -16,6 +16,7 @@ import {
 } from '../data/customPlanContent'
 import type { LangCode } from '../data/translations'
 import type { CustomPlanTextSection } from '../data/customPlanContent'
+import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -28,7 +29,10 @@ const fadeUp = {
 function TextSection({ section, lang }: { section: CustomPlanTextSection; lang: LangCode }) {
   return (
     <motion.div {...fadeUp} className="bh-card" style={{ margin: '0 20px' }}>
-      <p className="bh-card-title">{pick(section.title, lang)}</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
+        <p className="bh-card-title">{pick(section.title, lang)}</p>
+        <TtsButton text={`${pick(section.title, lang)}\n\n${pick(section.body, lang)}`} lang={lang} />
+      </div>
       {pick(section.body, lang).split('\n\n').map((para, i) => (
         <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
       ))}
@@ -42,7 +46,13 @@ export default function CustomPlanContent() {
 
   return (
     <div className="bh-section">
-      <p className="bh-section-title">{pick(CUSTOM_PLAN_SECTION.title, lang)}</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, padding: '26px 20px 8px' }}>
+        <p className="bh-section-title" style={{ padding: 0 }}>{pick(CUSTOM_PLAN_SECTION.title, lang)}</p>
+        <TtsButton
+          text={`${pick(CUSTOM_PLAN_SECTION.title, lang)}\n\n${pick(CUSTOM_PLAN_SECTION.subCopy, lang)}\n\n${pick(CUSTOM_PLAN_SECTION.desc, lang)}`}
+          lang={lang}
+        />
+      </div>
       <p className="bh-section-subcopy">{pick(CUSTOM_PLAN_SECTION.subCopy, lang)}</p>
       {pick(CUSTOM_PLAN_SECTION.desc, lang).split('\n\n').map((para, i) => (
         <p key={i} className="bh-section-desc">{para}</p>

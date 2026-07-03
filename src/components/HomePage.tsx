@@ -7,6 +7,7 @@ import { categories, type CategoryId } from '../data/categories'
 import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR } from '../data/contacts'
 import HalalMapButton from './HalalMapButton'
 import ConsultationCard from './ConsultationCard'
+import TtsButton from './TtsButton'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
 
@@ -882,6 +883,9 @@ export function AboutSection() {
         <p className="section-title">{t.aboutTitle}</p>
         <div className="section-accent-line" />
         <p className="about-desc">{t.aboutDesc}</p>
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
+          <TtsButton text={`${t.aboutTitle}\n\n${t.aboutDesc}`} lang={lang} />
+        </div>
       </motion.div>
     </section>
   )

@@ -9,6 +9,7 @@ import {
   type PlasticSurgeryDocButtonKey,
 } from '../data/plasticSurgeryKeywords'
 import type { LangCode } from '../data/translations'
+import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -82,7 +83,17 @@ export default function PlasticSurgeryKeywords() {
         transition={{ duration: 0.22, ease: 'easeOut' }}
         className="bh-card"
       >
-        <p className="bh-card-title">{pick(active.title, lang)}</p>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
+          <p className="bh-card-title">{pick(active.title, lang)}</p>
+          <TtsButton
+            text={[
+              pick(active.title, lang),
+              pick(active.description, lang),
+              pick(active.note, lang),
+            ].filter(Boolean).join('\n\n')}
+            lang={lang}
+          />
+        </div>
         {pick(active.description, lang).split('\n\n').map((para, i) => (
           <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
         ))}

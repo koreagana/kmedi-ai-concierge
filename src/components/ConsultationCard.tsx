@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { CATEGORY_CARDS, CONCERN_CARDS } from '../data/categoryConsultation'
 import type { CategoryId } from '../data/categories'
+import TtsButton from './TtsButton'
 
 
 /* ─── i18n data (category-context card) ───────────────────────── */
@@ -764,6 +765,9 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
             </p>
 
             <div style={S.resultBox}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 8 }}>
+                <TtsButton text={resultText} lang={lang} />
+              </div>
               <p style={S.resultText}>{resultText}</p>
             </div>
 
