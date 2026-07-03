@@ -483,7 +483,7 @@ export function ConcernSection() {
    4. CATEGORY GRID
    ═══════════════════════════════════════════════════════════════════ */
 export function CategoryGridSection() {
-  const { lang, goToCategory } = useApp()
+  const { lang, goToCategory, goToPackage } = useApp()
   const t = translations[lang]
 
   const getTag = (c: typeof categories[0]) => {
@@ -514,7 +514,7 @@ export function CategoryGridSection() {
             {...fadeUp}
             transition={{ delay: i * 0.06, duration: 0.4 }}
             className="category-card"
-            onClick={() => goToCategory(cat.id)}
+            onClick={() => (cat.id === 'medical-tourism' ? goToPackage() : goToCategory(cat.id))}
           >
             <span className="category-arrow">›</span>
             <p className="category-name">{getName(cat)}</p>
