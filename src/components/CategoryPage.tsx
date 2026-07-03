@@ -7,6 +7,7 @@ import { getConcernById } from '../data/concerns'
 import ConsultationCard from './ConsultationCard'
 import BigHealthKeywords from './BigHealthKeywords'
 import StemCellKeywords from './StemCellKeywords'
+import SkinAestheticsKeywords from './SkinAestheticsKeywords'
 import {
   CategoryGridSection,
   ContactSection,
@@ -103,6 +104,9 @@ export default function CategoryPage() {
 
       {/* ── Stem cell / regenerative medicine keyword pills (only for the stem-cell category) ── */}
       {cat.id === 'stem-cell' && <StemCellKeywords />}
+
+      {/* ── Skin aesthetics keyword pills (only for the skin-beauty category) ── */}
+      {cat.id === 'skin-beauty' && <SkinAestheticsKeywords />}
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (
