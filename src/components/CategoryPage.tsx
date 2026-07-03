@@ -10,6 +10,7 @@ import StemCellKeywords from './StemCellKeywords'
 import SkinAestheticsKeywords from './SkinAestheticsKeywords'
 import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
 import WomensHealthKeywords from './WomensHealthKeywords'
+import MensHealthKeywords from './MensHealthKeywords'
 import {
   CategoryGridSection,
   ContactSection,
@@ -115,6 +116,9 @@ export default function CategoryPage() {
 
       {/* ── Women's health keyword pills (only for the womens-care category) ── */}
       {cat.id === 'womens-care' && <WomensHealthKeywords />}
+
+      {/* ── Men's health keyword pills (only for the mens-health category) ── */}
+      {cat.id === 'mens-health' && <MensHealthKeywords />}
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (
