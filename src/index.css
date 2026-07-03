@@ -1368,7 +1368,8 @@ body {
 .tts-btn:hover { background: var(--bg-light); }
 .tts-btn:active { transform: scale(0.94); }
 
-.tts-btn-active {
+.tts-btn.tts-btn-active,
+.tts-btn.tts-btn-active:hover {
   background: var(--brand);
   color: #fff;
   border-color: var(--brand);
