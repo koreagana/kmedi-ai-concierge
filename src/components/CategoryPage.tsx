@@ -8,6 +8,7 @@ import ConsultationCard from './ConsultationCard'
 import BigHealthKeywords from './BigHealthKeywords'
 import StemCellKeywords from './StemCellKeywords'
 import SkinAestheticsKeywords from './SkinAestheticsKeywords'
+import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
 import {
   CategoryGridSection,
   ContactSection,
@@ -107,6 +108,9 @@ export default function CategoryPage() {
 
       {/* ── Skin aesthetics keyword pills (only for the skin-beauty category) ── */}
       {cat.id === 'skin-beauty' && <SkinAestheticsKeywords />}
+
+      {/* ── Plastic surgery keyword pills (only for the plastic-surgery category) ── */}
+      {cat.id === 'plastic-surgery' && <PlasticSurgeryKeywords />}
 
       {/* ── CTA button / ConsultationCard ── */}
       {!showCard ? (
