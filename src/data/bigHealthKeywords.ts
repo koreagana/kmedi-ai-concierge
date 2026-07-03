@@ -1,3 +1,5 @@
+import { WECHAT_BIZ_URL } from './contacts'
+
 export interface BigHealthDocButton {
   zh: string
   ko: string
@@ -10,37 +12,37 @@ export const BIG_HEALTH_DOC_BUTTONS = {
     zh: '填写功能医学问诊表',
     ko: '기능의학 문진표 작성하기',
     kind: 'route',
-    target: '/intake/functional',
+    target: '/intake/functional/',
   },
   healthCheckupPrep: {
     zh: '查看健康检查前准备事项',
     ko: '건강검진 전 준비사항 보기',
     kind: 'route',
-    target: '/prep/health-checkup-before',
+    target: '/prep/health-checkup-before/',
   },
   bloodTestPrep: {
     zh: '查看血液检查前注意事项',
     ko: '혈액검사 전 안내 보기',
     kind: 'route',
-    target: '/prep/blood-test-before',
+    target: '/prep/blood-test-before/',
   },
   colonoscopyPrep: {
     zh: '查看肠镜检查前准备事项',
     ko: '대장내시경 전 준비사항 보기',
     kind: 'route',
-    target: '/prep/colonoscopy-before',
+    target: '/prep/colonoscopy-before/',
   },
   imagingPrep: {
     zh: '查看CT/MRI检查前确认表',
     ko: 'CT/MRI 검사 전 확인표 보기',
     kind: 'route',
-    target: '/prep/imaging-before',
+    target: '/prep/imaging-before/',
   },
   wechatConsult: {
     zh: '打开企业微信咨询',
     ko: '기업위챗 상담하기',
     kind: 'external',
-    target: 'wechat',
+    target: WECHAT_BIZ_URL,
   },
 } satisfies Record<string, BigHealthDocButton>
 

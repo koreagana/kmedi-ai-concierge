@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import {
   BIG_HEALTH_KEYWORDS,
   BIG_HEALTH_DOC_BUTTONS,
@@ -8,33 +7,35 @@ import {
   type BigHealthDocButtonKey,
 } from '../data/bigHealthKeywords'
 
-const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
-
 const bi = (zh: string, ko: string) => `${zh} / ${ko}`
 
-function DocButton({ docKey, onClick }: { docKey: BigHealthDocButtonKey; onClick: (key: BigHealthDocButtonKey) => void }) {
+function DocButton({ docKey }: { docKey: BigHealthDocButtonKey }) {
   const doc = BIG_HEALTH_DOC_BUTTONS[docKey]
+  if (doc.kind === 'external') {
+    return (
+      <button
+        type="button"
+        className="bh-doc-btn"
+        onClick={() => window.open(doc.target, '_blank', 'noopener,noreferrer')}
+      >
+        <span>{bi(doc.zh, doc.ko)}</span>
+        <span className="bh-doc-btn-arrow">→</span>
+      </button>
+    )
+  }
+  // Prep/intake pages are separate static entry pages (see vite.config.ts), not SPA routes —
+  // a plain anchor triggers the real page load.
   return (
-    <button type="button" className="bh-doc-btn" onClick={() => onClick(docKey)}>
+    <a className="bh-doc-btn" href={doc.target}>
       <span>{bi(doc.zh, doc.ko)}</span>
       <span className="bh-doc-btn-arrow">→</span>
-    </button>
+    </a>
   )
 }
 
 export default function BigHealthKeywords() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const navigate = useNavigate()
   const active = BIG_HEALTH_KEYWORDS[activeIndex]
-
-  const handleDocClick = (key: BigHealthDocButtonKey) => {
-    const doc = BIG_HEALTH_DOC_BUTTONS[key]
-    if (doc.kind === 'external') {
-      window.open(WECHAT_BIZ_URL, '_blank', 'noopener,noreferrer')
-    } else {
-      navigate(doc.target)
-    }
-  }
 
   return (
     <div className="bh-section">
@@ -102,9 +103,9 @@ export default function BigHealthKeywords() {
           <p className="bh-card-label">{bi('相关准备文档', '관련 준비문서')}</p>
           <div className="bh-doc-buttons">
             {active.docKeys.map(key => (
-              <DocButton key={key} docKey={key} onClick={handleDocClick} />
+              <DocButton key={key} docKey={key} />
             ))}
-            <DocButton docKey="wechatConsult" onClick={handleDocClick} />
+            <DocButton docKey="wechatConsult" />
           </div>
         </div>
 

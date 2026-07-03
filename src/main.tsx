@@ -4,16 +4,20 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './index.css'
 import App from './App'
 import ArApp from './ArApp'
-import FunctionalIntakePage from './components/FunctionalIntakePage'
-import PrepGuidePage from './components/PrepGuidePage'
+import ShopMainPage from './components/ShopMainPage'
+import ShopDetailPage from './components/ShopDetailPage'
+import ShopOrderPage from './components/ShopOrderPage'
+import PharmicellCreamPage from './components/PharmicellCreamPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/zh" replace />} />
-        <Route path="/intake/functional" element={<FunctionalIntakePage />} />
-        <Route path="/prep/:slug" element={<PrepGuidePage />} />
+        <Route path="/shop" element={<ShopMainPage />} />
+        <Route path="/shop/order" element={<ShopOrderPage />} />
+        <Route path="/shop/pharmicell-panthenol-cream" element={<PharmicellCreamPage />} />
+        <Route path="/shop/:productId" element={<ShopDetailPage />} />
         <Route path="/zh/*" element={<App key="zh" initialLang="zh" />} />
         <Route path="/en/*" element={<App key="en" initialLang="en" />} />
         <Route path="/ko/*" element={<App key="ko" initialLang="ko" />} />

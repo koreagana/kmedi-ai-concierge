@@ -5,9 +5,49 @@ import CategoryPage from './components/CategoryPage'
 import PackagePage from './components/PackagePage'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { LangCode } from './data/translations'
+import { categories } from './data/categories'
+import { useEffect } from 'react'
+
+const BRAND = '汉江春天 · AI Medical Concierge'
+
+const PACKAGE_TITLE: Record<LangCode, string> = {
+  zh: '汉江春天 医疗旅游精品',
+  ko: '한강애봄 의료관광 프리미엄',
+  en: 'Premium Medical Tourism',
+  ar: 'السياحة الطبية المميزة',
+}
+
+/** document.title 과 og:title meta를 동적으로 업데이트 */
+function updateMeta(title: string) {
+  document.title = `${title} · ${BRAND}`
+  const og = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
+  if (og) og.content = `${title} · ${BRAND}`
+}
 
 function PageRouter() {
-  const { page, lang } = useApp()
+  const { page, lang, categoryId } = useApp()
+
+  // 페이지/카테고리/언어 변경 시 title·og:title 업데이트
+  useEffect(() => {
+    if (page === 'home') {
+      document.title = BRAND
+      const og = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
+      if (og) og.content = BRAND
+      return
+    }
+    if (page === 'package') {
+      updateMeta(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'])
+      return
+    }
+    if (page === 'category' && categoryId) {
+      const cat = categories.find((c) => c.id === categoryId)
+      if (cat) {
+        const name = (cat as unknown as Record<string, string>)[lang] ?? cat.zh
+        updateMeta(name)
+      }
+    }
+  }, [page, lang, categoryId])
+
   return (
     <div className="page-container" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <NavBar />

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>大健康 | 汉江春天 韩国医疗旅游</title>
+<meta property="og:title" content="大健康 · 汉江春天">
+<meta property="og:description" content="大健康管理适合希望系统了解身体状态、改善疲劳、睡眠、代谢与长期健康风险的人群。汉江春天可协助您整理需求，并对接韩国相关医疗咨询与健康管理服务。...">
+<link rel="icon" href="/favicon.png">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  background: #f5f7fa;
+  color: #1a2a4a;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 80px;
+}
+.top-nav {
+  background: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eef0f4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.back-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #f0f4f8;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #1a2a4a;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+}
+.nav-title { font-size: 13px; font-weight: 600; color: #6a8aaa; }
+
+.hero {
+  background: linear-gradient(135deg, #0077B6 0%, #0063a2 100%);
+  padding: 28px 20px 24px;
+  color: white;
+}
+.hero-emoji { font-size: 36px; margin-bottom: 10px; }
+.hero-zh { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+.hero-ko { font-size: 12px; opacity: 0.7; margin-bottom: 14px; }
+.hero-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+}
+
+.summary-box {
+  background: white;
+  margin: 0;
+  padding: 18px 20px;
+  border-bottom: 8px solid #f5f7fa;
+  border-left: 3px solid #0077B6;
+}
+.summary-text { font-size: 13px; color: #3a5a7a; line-height: 1.8; }
+
+.section {
+  background: white;
+  padding: 20px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.section-title { font-size: 14px; font-weight: 700; color: #1a2a4a; margin-bottom: 4px; }
+.section-title-zh { font-size: 11px; color: #9aabcc; margin-bottom: 16px; }
+
+.service-list { display: flex; flex-direction: column; gap: 10px; }
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #f5f7fa;
+  border-radius: 12px;
+}
+.service-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.service-name { font-size: 13px; font-weight: 700; color: #1a2a4a; margin-bottom: 2px; }
+.service-desc { font-size: 11px; color: #6a8aaa; line-height: 1.5; }
+
+.for-whom-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.for-whom-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #3a5a7a;
+  line-height: 1.6;
+}
+.for-whom-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #0077B6;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.flow-list { display: flex; flex-direction: column; gap: 0; }
+.flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f2f6;
+}
+.flow-item:last-child { border-bottom: none; }
+.flow-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: #0077B6;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.flow-text { font-size: 13px; color: #3a5a7a; line-height: 1.6; padding-top: 4px; }
+
+.cta-section {
+  background: white;
+  padding: 24px 20px 28px;
+}
+.cta-note { font-size: 12px; color: #9aabcc; text-align: center; margin-bottom: 14px; line-height: 1.6; }
+.cta-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: #0077B6;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,119,182,0.30);
+}
+.brand-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 11px;
+  color: #9aabcc;
+}
+.brand-name { font-size: 14px; font-weight: 700; color: #1a2a4a; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <a class="back-btn" href="javascript:history.back()">←</a>
+  <span class="nav-title">汉江春天 · 韩国医疗旅游咨询</span>
+</div>
+
+<div class="hero">
+  <div class="hero-emoji">🔬</div>
+  <div class="hero-zh">大健康</div>
+  <div class="hero-ko">대건강</div>
+  <span class="hero-tag">功能医学 · 慢性疲劳 · 代谢抗衰</span>
+</div>
+
+<div class="summary-box">
+  <p class="summary-text">大健康管理适合希望系统了解身体状态、改善疲劳、睡眠、代谢与长期健康风险的人群。汉江春天可协助您整理需求，并对接韩国相关医疗咨询与健康管理服务。</p>
+</div>
+
+<div class="section">
+  <div class="section-title">主要咨询方向</div>
+  <div class="section-title-zh">Main Services</div>
+  <div class="service-list">
+    <div class="service-item">
+      <div class="service-icon">🩺</div>
+      <div>
+        <div class="service-name">健康检查中心</div>
+        <div class="service-desc">系统性健康检查，了解全身状态</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🧪</div>
+      <div>
+        <div class="service-name">功能医学诊所</div>
+        <div class="service-desc">深度检测代谢、激素、营养等功能性指标</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">💊</div>
+      <div>
+        <div class="service-name">内科 · 家庭医学科</div>
+        <div class="service-desc">慢性疲劳、睡眠障碍、代谢异常咨询</div>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">⚗️</div>
+      <div>
+        <div class="service-name">抗衰老门诊</div>
+        <div class="service-desc">针对长期健康管理的专科方向</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">适合哪些人群</div>
+  <div class="section-title-zh">Who Is This For</div>
+  <ul class="for-whom-list">
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>经常感到疲劳、睡眠不佳</span>
+    </li>
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>体重明显变化，代谢减慢</span>
+    </li>
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>想了解长期健康风险</span>
+    </li>
+    <li class="for-whom-item">
+      <div class="for-whom-dot"></div>
+      <span>希望系统管理身体状态的人群</span>
+    </li>
+  </ul>
+</div>
+
+<div class="section">
+  <div class="section-title">汉江春天服务流程</div>
+  <div class="section-title-zh">How We Help</div>
+  <div class="flow-list">
+    <div class="flow-item">
+      <div class="flow-num">1</div>
+      <div class="flow-text">整理您最关心的健康方向</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">2</div>
+      <div class="flow-text">收集既往病史、家族史、用药情况</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">3</div>
+      <div class="flow-text">推荐适合的检查与咨询方向</div>
+    </div>
+    <div class="flow-item">
+      <div class="flow-num">4</div>
+      <div class="flow-text">协助预约、翻译与到院陪同</div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <p class="cta-note">以上内容仅供参考，不构成医疗诊断。<br>具体治疗方案由韩国正规医疗机构和专业医生判断。</p>
+  <a class="cta-btn" href="https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0" target="_blank" rel="noopener noreferrer">
+    💬 企业微信咨询 · 联系顾问
+  </a>
+</div>
+
+<div class="brand-footer">
+  <div class="brand-name">汉江春天</div>
+  韩国医疗旅游专业顾问
+</div>
+
+</body>
+</html>

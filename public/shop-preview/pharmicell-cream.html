@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>플레이 셀 판테놀 닥터 크림 | 韩国医美护理精选</title>
+<meta property="og:title" content="플레이 셀 판테놀 닥터 크림 · Play Cell 干细胞修复霜">
+<meta property="og:description" content="줄기세포배양액 함유 재생·탄력·보습 멀티케어 크림 · 韩国直发 ₩48,000">
+<meta property="og:image" content="https://bypharmicell.com/web/product/big/202406/10038d801fd51d69e6d151fffcd5559b.png">
+<link rel="icon" href="/favicon.ico">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: 'Apple SD Gothic Neo', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  background: #f5f7fa;
+  color: #1a2a4a;
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 110px;
+}
+
+/* 상단 네비 */
+.top-nav {
+  background: white;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eef0f4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.back-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #f0f4f8;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #1a2a4a;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-title { font-size: 13px; font-weight: 600; color: #6a8aaa; }
+
+/* 상품 이미지 */
+.hero-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #f8f9fb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-img img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+/* 브랜드 배지 */
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px 0;
+  background: white;
+}
+.brand-tag {
+  background: #e8f4fd;
+  color: #0077B6;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+.brand-name { font-size: 11px; color: #9aabcc; }
+
+/* 상품 기본정보 */
+.product-basic {
+  background: white;
+  padding: 10px 20px 22px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.product-name-ko {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a2a4a;
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+.product-name-zh {
+  font-size: 15px;
+  color: #4a7a9a;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.product-desc {
+  font-size: 13px;
+  color: #6a8aaa;
+  margin-bottom: 18px;
+}
+.divider { border: none; border-top: 1px solid #f0f2f6; margin: 14px 0; }
+.price-block { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.price-krw { font-size: 28px; font-weight: 700; color: #0077B6; }
+.price-cny { font-size: 15px; color: #9aabcc; }
+.price-note {
+  font-size: 11px;
+  color: #9aabcc;
+  margin-bottom: 18px;
+}
+
+/* 수량 */
+.qty-label { font-size: 12px; color: #6a8aaa; font-weight: 600; margin-bottom: 8px; }
+.qty-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #f5f7fa;
+  border-radius: 12px;
+  width: fit-content;
+  overflow: hidden;
+}
+.qty-btn {
+  width: 44px; height: 44px;
+  border: none; background: transparent;
+  font-size: 20px; font-weight: 600;
+  color: #0077B6; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-num {
+  width: 44px; text-align: center;
+  font-size: 16px; font-weight: 700;
+  color: #1a2a4a;
+}
+
+/* 핵심 성분 */
+.ingredient-section {
+  background: white;
+  padding: 20px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.section-title {
+  font-size: 15px; font-weight: 700; color: #1a2a4a;
+  margin-bottom: 4px;
+}
+.section-title-zh { font-size: 12px; color: #6a8aaa; font-weight: 400; margin-bottom: 16px; }
+
+.ingredient-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ingredient-card {
+  background: #f4f8ff;
+  border-radius: 12px;
+  padding: 14px 12px;
+  text-align: center;
+}
+.ingredient-icon { font-size: 26px; margin-bottom: 6px; }
+.ingredient-name { font-size: 12px; font-weight: 700; color: #0077B6; margin-bottom: 3px; }
+.ingredient-name-zh { font-size: 11px; color: #6a8aaa; }
+.ingredient-desc { font-size: 11px; color: #4a6a8a; margin-top: 4px; line-height: 1.5; }
+
+/* 이런 분께 추천 */
+.info-section {
+  background: white;
+  padding: 20px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.info-row {
+  display: flex; gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.info-row:last-child { margin-bottom: 0; }
+.info-dot {
+  width: 6px; height: 6px;
+  background: #0077B6; border-radius: 50%;
+  flex-shrink: 0; margin-top: 7px;
+}
+.info-text { font-size: 13px; color: #3a5a7a; line-height: 1.7; }
+.info-text .zh { display: block; font-size: 12px; color: #9aabcc; margin-top: 2px; }
+
+/* 사용법 */
+.usage-section {
+  background: white;
+  padding: 20px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.step-row {
+  display: flex; gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.step-row:last-child { margin-bottom: 0; }
+.step-num {
+  width: 24px; height: 24px;
+  background: #0077B6; color: white;
+  border-radius: 50%; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 1px;
+}
+.step-text { font-size: 13px; color: #3a5a7a; line-height: 1.7; }
+.step-text .zh { display: block; font-size: 12px; color: #9aabcc; margin-top: 2px; }
+
+/* 피부 테스트 배너 */
+.test-banner {
+  background: linear-gradient(135deg, #0077B6 0%, #005a90 100%);
+  margin: 0 0 8px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.test-num { font-size: 38px; font-weight: 700; color: white; flex-shrink: 0; line-height: 1; }
+.test-txt .t1 { font-size: 13px; font-weight: 700; color: white; margin-bottom: 2px; }
+.test-txt .t2 { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+/* 함께 사면 좋은 상품 */
+.related-section {
+  background: white;
+  padding: 20px;
+  border-bottom: 8px solid #f5f7fa;
+}
+.related-scroll {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.related-scroll::-webkit-scrollbar { display: none; }
+.related-card {
+  flex-shrink: 0;
+  width: 120px;
+  background: #f5f7fa;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+.related-img {
+  width: 120px; height: 120px;
+  display: flex; align-items: center; justify-content: center;
+  background: #eef4fb;
+}
+.related-img img { width: 80%; height: 80%; object-fit: contain; }
+.related-info { padding: 8px 10px 10px; }
+.related-name { font-size: 11px; font-weight: 600; color: #1a2a4a; margin-bottom: 3px; line-height: 1.4; }
+.related-price { font-size: 12px; font-weight: 700; color: #0077B6; }
+
+/* 주의사항 */
+.caution-section {
+  background: #fffbe6;
+  border-top: 1px solid #f0e8b0;
+  border-bottom: 1px solid #f0e8b0;
+  padding: 16px 20px;
+  margin-bottom: 8px;
+}
+.caution-title { font-size: 13px; font-weight: 700; color: #b07800; margin-bottom: 10px; }
+.caution-row { font-size: 12px; color: #7a5a00; line-height: 1.8; padding-left: 12px; position: relative; }
+.caution-row::before { content: '·'; position: absolute; left: 0; }
+
+/* 하단 고정 버튼 */
+.bottom-bar {
+  position: fixed; bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px;
+  background: white;
+  padding: 12px 16px 28px;
+  border-top: 1px solid #eef0f4;
+  display: flex; gap: 10px;
+}
+.cart-btn {
+  flex: 1; border: 1.5px solid #0077B6;
+  background: white; color: #0077B6;
+  border-radius: 14px; padding: 14px;
+  font-size: 14px; font-weight: 600;
+  font-family: inherit; cursor: pointer;
+}
+.buy-btn {
+  flex: 2; border: none;
+  background: #0077B6; color: white;
+  border-radius: 14px; padding: 14px;
+  font-size: 15px; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.buy-btn:active { background: #005a8e; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <button class="back-btn" onclick="history.back()">←</button>
+  <span class="nav-title">韩国医美护理精选 · 상품 상세</span>
+</div>
+
+<!-- 상품 이미지 -->
+<div class="hero-img">
+  <img src="https://bypharmicell.com/web/product/big/202406/10038d801fd51d69e6d151fffcd5559b.png"
+       alt="플레이 셀 판테놀 닥터 크림">
+</div>
+
+<!-- 브랜드 -->
+<div class="brand-badge" style="background:white;">
+  <span class="brand-tag">PHARMICELL · 파미셀</span>
+  <span class="brand-name">Play Cell 라인</span>
+</div>
+
+<!-- 기본 정보 -->
+<div class="product-basic">
+  <div class="product-name-ko">플레이 셀 판테놀 닥터 크림</div>
+  <div class="product-name-zh">干细胞培养液修复霜</div>
+  <div class="product-desc">재생 · 탄력 · 보습 멀티케어 / 再生·弹力·保湿多效护理</div>
+  <hr class="divider">
+  <div class="price-block">
+    <span class="price-krw">₩ 48,000</span>
+    <span class="price-cny">¥ 约252元</span>
+  </div>
+  <div class="price-note">위챗페이 결제 · 微信支付 · 한국 직배송 · 韩国直发</div>
+  <div class="qty-label">수량 · 数量</div>
+  <div class="qty-wrap">
+    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+    <div class="qty-num" id="qtyNum">1</div>
+    <button class="qty-btn" onclick="changeQty(1)">+</button>
+  </div>
+</div>
+
+<!-- 민감성 테스트 배너 -->
+<div class="test-banner">
+  <div class="test-num">0.00</div>
+  <div class="test-txt">
+    <div class="t1">민감성 피부 자극도 0.00</div>
+    <div class="t2">敏感肌刺激度检测 0.00<br>피부과 테스트 완료 · 皮肤科测试通过</div>
+  </div>
+</div>
+
+<!-- 핵심 성분 -->
+<div class="ingredient-section">
+  <div class="section-title">핵심 성분</div>
+  <div class="section-title-zh">核心成分</div>
+  <div class="ingredient-grid">
+    <div class="ingredient-card">
+      <div class="ingredient-icon">🔬</div>
+      <div class="ingredient-name">줄기세포배양액</div>
+      <div class="ingredient-name-zh">干细胞培养液</div>
+      <div class="ingredient-desc">인체골수줄기세포<br>피부성장인자 함유<br>人体骨髓干细胞提取</div>
+    </div>
+    <div class="ingredient-card">
+      <div class="ingredient-icon">💧</div>
+      <div class="ingredient-name">판테놀</div>
+      <div class="ingredient-name-zh">泛醇 (维生素B5)</div>
+      <div class="ingredient-desc">피부 장벽 회복<br>깊은 보습 공급<br>修复皮肤屏障</div>
+    </div>
+    <div class="ingredient-card">
+      <div class="ingredient-icon">🌿</div>
+      <div class="ingredient-name">피부성장인자</div>
+      <div class="ingredient-name-zh">皮肤生长因子 EGF</div>
+      <div class="ingredient-desc">피부 재생 촉진<br>탄력 개선<br>促进皮肤再生</div>
+    </div>
+    <div class="ingredient-card">
+      <div class="ingredient-icon">✨</div>
+      <div class="ingredient-name">멀티케어</div>
+      <div class="ingredient-name-zh">多效护理配方</div>
+      <div class="ingredient-desc">재생+탄력+보습<br>하나로 해결<br>三效合一</div>
+    </div>
+  </div>
+</div>
+
+<!-- 이런 분께 추천 -->
+<div class="info-section">
+  <div class="section-title">이런 분께 추천해요</div>
+  <div class="section-title-zh">适合人群</div>
+  <div class="info-row">
+    <div class="info-dot"></div>
+    <div class="info-text">성형수술·레이저 시술 후 피부 재생이 필요한 분
+      <span class="zh">整形手术·激光治疗后需要皮肤再生护理</span></div>
+  </div>
+  <div class="info-row">
+    <div class="info-dot"></div>
+    <div class="info-text">피부 탄력이 떨어지고 건조함을 느끼는 분
+      <span class="zh">感觉皮肤失去弹性，干燥缺水的人</span></div>
+  </div>
+  <div class="info-row">
+    <div class="info-dot"></div>
+    <div class="info-text">민감성 피부로 자극 없는 크림을 찾는 분
+      <span class="zh">敏感肌肤，寻找无刺激温和霜的人</span></div>
+  </div>
+  <div class="info-row">
+    <div class="info-dot"></div>
+    <div class="info-text">재생·탄력·보습을 한 제품으로 해결하고 싶은 분
+      <span class="zh">希望用一款产品同时解决再生·弹力·保湿问题</span></div>
+  </div>
+</div>
+
+<!-- 사용법 -->
+<div class="usage-section">
+  <div class="section-title">사용 방법</div>
+  <div class="section-title-zh">使用方法</div>
+  <div class="step-row">
+    <div class="step-num">1</div>
+    <div class="step-text">세안 후 스킨케어 마지막 단계에 사용
+      <span class="zh">洁面后，作为护肤最后一步使用</span></div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">2</div>
+    <div class="step-text">적당량을 덜어 얼굴 전체에 부드럽게 펴 바름
+      <span class="zh">取适量均匀涂抹于全脸，轻柔按摩至吸收</span></div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">3</div>
+    <div class="step-text">아침·저녁 세안 후 매일 사용 권장
+      <span class="zh">建议每日早晚洁面后使用</span></div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">4</div>
+    <div class="step-text">시술 직후에는 의사 지시에 따라 사용 시점 확인
+      <span class="zh">手术后请遵医嘱确认使用时机</span></div>
+  </div>
+</div>
+
+<!-- 함께 사면 좋은 상품 -->
+<div class="related-section">
+  <div class="section-title">함께 쓰면 더 좋아요</div>
+  <div class="section-title-zh" style="margin-bottom:14px">搭配使用效果更佳</div>
+  <div class="related-scroll">
+    <a class="related-card" href="#">
+      <div class="related-img">
+        <img src="https://bypharmicell.com/web/product/big/202406/576798bb886b5399961541aa5947b405.png"
+             alt="판테놀 닥터 토너" onerror="this.style.display='none'">
+      </div>
+      <div class="related-info">
+        <div class="related-name">판테놀 닥터 토너</div>
+        <div class="related-price">₩ 42,000</div>
+      </div>
+    </a>
+    <a class="related-card" href="#">
+      <div class="related-img">
+        <img src="https://bypharmicell.com/web/product/big/202406/350a770beae3dd4d697397c9fb1b6076.png"
+             alt="판테놀 닥터 선크림" onerror="this.style.display='none'">
+      </div>
+      <div class="related-info">
+        <div class="related-name">판테놀 닥터 선크림</div>
+        <div class="related-price">₩ 32,000</div>
+      </div>
+    </a>
+    <a class="related-card" href="#">
+      <div class="related-img">
+        <img src="https://bypharmicell.com/web/product/big/202406/a85db59a6cb0c161d5c24995e92fba3d.png"
+             alt="판테놀 닥터 마스크" onerror="this.style.display='none'">
+      </div>
+      <div class="related-info">
+        <div class="related-name">닥터 마스크 5매</div>
+        <div class="related-price">₩ 20,000</div>
+      </div>
+    </a>
+    <a class="related-card" href="#">
+      <div class="related-img">
+        <img src="https://bypharmicell.com/web/product/big/202406/af735ebbb874dad039245b239be1bfb8.png"
+             alt="판테놀 닥터 젤클렌저" onerror="this.style.display='none'">
+      </div>
+      <div class="related-info">
+        <div class="related-name">닥터 젤클렌저</div>
+        <div class="related-price">₩ 35,000</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- 주의사항 -->
+<div class="caution-section">
+  <div class="caution-title">⚠️ 주의사항 · 注意事项</div>
+  <div class="caution-row">화장품 사용 시 이상이 있으면 즉시 사용 중단 / 如出现过敏反应请立即停用</div>
+  <div class="caution-row">어린이 손에 닿지 않는 곳에 보관 / 请放在儿童不易触及的地方保管</div>
+  <div class="caution-row">직사광선이 없는 서늘한 곳에 보관 / 避光阴凉处保存</div>
+  <div class="caution-row">성형·시술 직후 사용 전 의사와 상담 / 手术后使用前请咨询主治医生</div>
+</div>
+
+<!-- 하단 버튼 -->
+<div class="bottom-bar">
+  <button class="cart-btn">담기 · 加购</button>
+  <button class="buy-btn" onclick="goBuy()">바로 구매 · 立即购买</button>
+</div>
+
+<script>
+let qty = 1;
+const unitPrice = 48000;
+
+function changeQty(d) {
+  qty = Math.max(1, Math.min(99, qty + d));
+  document.getElementById('qtyNum').textContent = qty;
+}
+
+function goBuy() {
+  const total = unitPrice * qty;
+  const name = encodeURIComponent('플레이 셀 판테놀 닥터 크림');
+  window.location.href = `shop-order.html?id=pharmicell-cream&qty=${qty}&total=${total}&name=${name}`;
+}
+</script>
+</body>
+</html>

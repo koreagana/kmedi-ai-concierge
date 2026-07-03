@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>한강애봄 | 환자 사전 파악 체크리스트</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif; background:#e8f0fb; color:#1a2a4a; min-height:100vh; padding:0 0 80px; }
+  .header { background:linear-gradient(135deg,#0077B6 0%,#0096D6 100%); text-align:center; padding:30px 20px 22px; }
+  .header .badge { display:inline-block; background:rgba(255,255,255,0.2); font-size:11px; padding:3px 12px; border-radius:20px; margin-bottom:10px; letter-spacing:1px; color:white; }
+  .header h1 { font-size:20px; font-weight:700; color:white; margin-bottom:4px; }
+  .header p { font-size:12px; color:rgba(255,255,255,0.7); }
+  .patient-info { background:white; margin:14px 14px 0; border-radius:12px; padding:16px; box-shadow:0 2px 8px rgba(34,85,164,0.1); }
+  .patient-info .label { font-size:11px; color:#2255a4; margin-bottom:8px; font-weight:700; letter-spacing:1px; }
+  input[type=text], textarea, select {
+    width:100%; background:white; border:1.5px solid #c8d8f0; border-radius:8px;
+    padding:10px 12px; font-size:14px; color:#1a2a4a; font-family:inherit;
+    -webkit-appearance:none; resize:none;
+  }
+  input::placeholder, textarea::placeholder { color:#9ab0cc; }
+  input:focus, textarea:focus, select:focus { outline:none; border-color:#2255a4; }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+  .section { background:white; margin:10px 14px 0; border-radius:12px; padding:16px; box-shadow:0 2px 8px rgba(34,85,164,0.08); }
+  .section-header { display:flex; align-items:center; gap:8px; margin-bottom:14px; cursor:pointer; }
+  .section-header .dot { width:8px; height:8px; border-radius:50%; background:#2255a4; flex-shrink:0; }
+  .section-header h2 { font-size:14px; font-weight:700; color:#1a2a4a; flex:1; }
+  .section-header .toggle { font-size:18px; color:#4a6a9a; transition:transform 0.2s; }
+  .section-body { }
+  .section-body.collapsed { display:none; }
+  .field { margin-bottom:14px; }
+  .field:last-child { margin-bottom:0; }
+  .field-label { font-size:12px; color:#2255a4; margin-bottom:6px; font-weight:700; }
+  .field-label .optional { color:#9ab0cc; font-weight:400; font-size:11px; margin-left:4px; }
+  .chip-group { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { background:#f0f4ff; border:1.5px solid #c8d8f0; border-radius:8px; padding:7px 12px; font-size:13px; color:#1a2a4a; cursor:pointer; transition:all 0.15s; }
+  .chip.on { background:#2255a4; border-color:#2255a4; color:white; }
+  .chip.warn { }
+  .chip.on.warn { background:#c0392b; border-color:#e74c3c; color:white; }
+  .sub-field { background:#f4f8ff; border-radius:8px; padding:12px; margin-top:8px; display:none; border:1px solid #dde8f8; }
+  .sub-field.show { display:block; }
+  .warn-banner { background:#fff2f2; border:1px solid #f08080; border-radius:8px; padding:10px 12px; margin-top:8px; font-size:12px; color:#c0392b; display:none; }
+  .warn-banner.show { display:flex; gap:8px; align-items:flex-start; }
+  .divider { border:none; border-top:1px solid #eef2f8; margin:14px 0; }
+  .memo-section { background:white; margin:10px 14px 0; border-radius:12px; padding:16px; border:2px solid #2255a4; box-shadow:0 2px 8px rgba(34,85,164,0.1); }
+  .memo-section h2 { font-size:14px; font-weight:700; color:#2255a4; margin-bottom:12px; }
+  .memo-box { background:#f4f8ff; border-radius:8px; padding:14px; font-size:12px; line-height:1.9; color:#1a2a4a; white-space:pre-wrap; min-height:200px; border:1px solid #dde8f8; }
+  .btn-row { display:flex; gap:8px; margin-top:10px; }
+  .btn-gen { flex:2; background:#2255a4; color:white; border:none; border-radius:10px; padding:13px; font-size:14px; font-weight:700; cursor:pointer; }
+  .btn-copy { flex:1; background:#e8f0fb; color:#2255a4; border:1.5px solid #2255a4; border-radius:10px; padding:13px; font-size:14px; font-weight:600; cursor:pointer; }
+  .btn-copy.copied { background:#e8fff0; color:#27ae60; border-color:#27ae60; }
+  .btn-reset { width:100%; background:#fff2f2; color:#c0392b; border:1px solid #f08080; border-radius:10px; padding:11px; font-size:13px; margin-top:8px; cursor:pointer; }
+  .stay-warn { background:#fffbe6; border:1px solid #f0c040; border-radius:8px; padding:10px 12px; margin-top:8px; font-size:12px; color:#b07800; display:none; }
+  .stay-warn.show { display:flex; gap:8px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">🔒 INTERNAL · 내부용</div>
+  <h1>환자 사전 파악 체크리스트</h1>
+  <p>상담 전 파악 → 병원 브리핑 메모 자동 생성</p>
+</div>
+
+<!-- 환자 기본 정보 -->
+<div class="patient-info">
+  <div class="label">환자 기본 정보</div>
+  <input type="text" id="pt-name" placeholder="환자 이름 (위챗ID 또는 이름)">
+  <div class="row2">
+    <input type="text" id="pt-age" placeholder="나이 / 연령대">
+    <input type="text" id="pt-gender" placeholder="성별">
+  </div>
+  <input type="text" id="pt-target" placeholder="희망 수술 부위 (예: 코성형, 쌍꺼풀)" style="margin-top:8px">
+  <div class="row2" style="margin-top:8px">
+    <div>
+      <div style="font-size:11px;color:#2255a4;font-weight:600;margin-bottom:4px">상담 예정일</div>
+      <input type="date" id="pt-consult-date">
+    </div>
+    <div>
+      <div style="font-size:11px;color:#2255a4;font-weight:600;margin-bottom:4px">수술 예정일</div>
+      <input type="date" id="pt-surgery-date">
+    </div>
+  </div>
+</div>
+
+<!-- 1. 수술 이력 -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="dot"></div>
+    <h2>1. 수술 이력</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body">
+    <div class="field">
+      <div class="field-label">첫 수술 / 재수술</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChip(this,'surgery-type','first')">첫 수술</div>
+        <div class="chip" onclick="toggleChip(this,'surgery-type','revision')">재수술</div>
+      </div>
+    </div>
+    <div class="sub-field" id="sub-revision">
+      <div class="field">
+        <div class="field-label">재수술 차수</div>
+        <input type="text" id="rev-nth" placeholder="예: 2차 재수술">
+      </div>
+      <div class="field">
+        <div class="field-label">이전 수술 시기</div>
+        <input type="text" id="rev-when" placeholder="예: 2021년 / 3년 전">
+      </div>
+      <div class="field">
+        <div class="field-label">이전 수술 병원·국가</div>
+        <input type="text" id="rev-where" placeholder="예: 중국 상하이 / 한국 강남">
+      </div>
+      <div class="field">
+        <div class="field-label">재수술 이유 (불만족 내용)</div>
+        <textarea id="rev-reason" rows="2" placeholder="예: 코 보형물이 들떠 보임 / 쌍꺼풀이 비대칭"></textarea>
+      </div>
+      <div class="field">
+        <div class="field-label">이전 사용 재료 <span class="optional">선택</span></div>
+        <input type="text" id="rev-material" placeholder="예: 실리콘 보형물 / 귀 연골 / 필러">
+      </div>
+      <div class="field">
+        <div class="field-label">이전 수술 합병증 여부 <span class="optional">선택</span></div>
+        <div class="chip-group">
+          <div class="chip" onclick="toggleChipSimple(this)">없음</div>
+          <div class="chip warn" onclick="toggleChipSimple(this)">감염</div>
+          <div class="chip warn" onclick="toggleChipSimple(this)">혈종</div>
+          <div class="chip warn" onclick="toggleChipSimple(this)">보형물 이동</div>
+          <div class="chip warn" onclick="toggleChipSimple(this)">기타</div>
+        </div>
+        <input type="text" id="rev-complication-detail" placeholder="합병증 내용 기재" style="margin-top:8px">
+      </div>
+    </div>
+    <div class="field" style="margin-top:12px">
+      <div class="field-label">타 부위 성형 이력 <span class="optional">선택</span></div>
+      <textarea id="other-surgery" rows="2" placeholder="예: 3년 전 쌍꺼풀, 작년 필러 등"></textarea>
+    </div>
+    <div class="field">
+      <div class="field-label">흉터 체질 (켈로이드) 여부</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChip(this,'keloid','no')">없음</div>
+        <div class="chip warn" onclick="toggleChip(this,'keloid','yes')">있음</div>
+        <div class="chip" onclick="toggleChip(this,'keloid','unknown')">모름</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. 건강 상태 -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="dot" style="background:#f0a040"></div>
+    <h2>2. 건강 상태</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body">
+    <div class="field">
+      <div class="field-label">복용 중인 약물</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">없음</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">혈압약</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">당뇨약</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">피임약</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">아스피린</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">항응고제</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">갑상선약</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">한약</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">비타민E·오메가3</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">기타</div>
+      </div>
+      <input type="text" id="med-detail" placeholder="구체적 약물명 기재" style="margin-top:8px">
+      <div class="warn-banner" id="warn-med">
+        ⚠️ 혈액희석 약물은 수술 2주 전부터 중단 필요. 병원에 반드시 전달할 것.
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="field">
+      <div class="field-label">알레르기 병력</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">없음</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">약물</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">마취제</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">음식</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">라텍스</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">조영제·요오드</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">기타</div>
+      </div>
+      <input type="text" id="allergy-detail" placeholder="구체적 내용 (예: 페니실린→두드러기)" style="margin-top:8px">
+    </div>
+    <hr class="divider">
+    <div class="field">
+      <div class="field-label">만성질환</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">없음</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">고혈압</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">당뇨</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">갑상선</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">심장질환</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">자가면역</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">기타</div>
+      </div>
+      <input type="text" id="disease-detail" placeholder="구체적 병명 기재" style="margin-top:8px">
+    </div>
+    <hr class="divider">
+    <div class="field">
+      <div class="field-label">최근 6개월 수술·시술 이력 <span class="optional">선택</span></div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">없음</div>
+        <div class="chip" onclick="toggleChipSimple(this)">있음</div>
+      </div>
+      <input type="text" id="recent-proc" placeholder="내용 기재 (예: 6개월 전 코수술, 보톡스 등)" style="margin-top:8px">
+    </div>
+    <hr class="divider">
+    <div class="field">
+      <div class="field-label">임신·수유</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">해당없음</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">임신 중</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">수유 중</div>
+        <div class="chip" onclick="toggleChipSimple(this)">불확실</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. 일정 및 조건 -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="dot" style="background:#40c070"></div>
+    <h2>3. 일정 및 현실적 조건</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body">
+    <div class="field">
+      <div class="field-label">체류 기간</div>
+      <div class="row2">
+        <div>
+          <div style="font-size:11px;color:#2255a4;font-weight:600;margin-bottom:4px">입국일</div>
+          <input type="date" id="stay-arrive" onchange="checkStay()">
+        </div>
+        <div>
+          <div style="font-size:11px;color:#2255a4;font-weight:600;margin-bottom:4px">귀국 예정일</div>
+          <input type="date" id="stay-depart" onchange="checkStay()">
+        </div>
+      </div>
+      <div class="stay-warn" id="stay-warn">
+        ⚠️ 체류 기간이 짧습니다. 발사·재내원 일정 조율 필요. 수술 종류 제한 가능.
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">동행인</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">혼자</div>
+        <div class="chip" onclick="toggleChipSimple(this)">동행인 있음</div>
+      </div>
+      <input type="text" id="companion-detail" placeholder="동행인 관계 (예: 배우자, 친구)" style="margin-top:8px">
+    </div>
+    <div class="field">
+      <div class="field-label">숙소 위치 <span class="optional">선택</span></div>
+      <input type="text" id="accommodation" placeholder="예: 강남, 명동, 홍대 등">
+    </div>
+    <div class="field">
+      <div class="field-label">재내원 가능 횟수 <span class="optional">선택</span></div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">1회</div>
+        <div class="chip" onclick="toggleChipSimple(this)">2회</div>
+        <div class="chip" onclick="toggleChipSimple(this)">3회 이상</div>
+        <div class="chip" onclick="toggleChipSimple(this)">귀국 후 원격 관리</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. 기대치 및 심리 -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <div class="dot" style="background:#c070ff"></div>
+    <h2>4. 기대치 및 심리 상태</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body">
+    <div class="field">
+      <div class="field-label">원하는 결과 스타일</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">자연스럽게</div>
+        <div class="chip" onclick="toggleChipSimple(this)">확실하게</div>
+        <div class="chip" onclick="toggleChipSimple(this)">미결정</div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">참고 사진</div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">있음 (전달 완료)</div>
+        <div class="chip" onclick="toggleChipSimple(this)">있음 (추후 전달)</div>
+        <div class="chip" onclick="toggleChipSimple(this)">없음</div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">절대 원하지 않는 결과 <span class="optional">선택</span></div>
+      <input type="text" id="no-want" placeholder="예: 너무 높은 코, 인위적인 쌍꺼풀">
+    </div>
+    <div class="field">
+      <div class="field-label">재수술 환자 심리 상태 <span class="optional">선택</span></div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">차분함</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">불안 높음</div>
+        <div class="chip warn" onclick="toggleChipSimple(this)">이전 수술에 분노</div>
+        <div class="chip" onclick="toggleChipSimple(this)">기대 매우 높음</div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">의사결정권자 <span class="optional">선택</span></div>
+      <div class="chip-group">
+        <div class="chip" onclick="toggleChipSimple(this)">본인</div>
+        <div class="chip" onclick="toggleChipSimple(this)">동행인 강하게 개입</div>
+        <div class="chip" onclick="toggleChipSimple(this)">가족 원격 개입</div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="field-label">기타 메모 <span class="optional">선택</span></div>
+      <textarea id="extra-memo" rows="3" placeholder="병원에 전달할 기타 특이사항"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- 브리핑 메모 생성 -->
+<div class="memo-section">
+  <h2>📋 병원 브리핑 메모 자동 생성</h2>
+  <div class="memo-box" id="memoBox">버튼을 누르면 브리핑 메모가 생성됩니다.</div>
+  <div class="btn-row">
+    <button class="btn-gen" onclick="generateMemo()">⚡ 메모 생성</button>
+    <button class="btn-copy" id="copyMemoBtn" onclick="copyMemo()">복사</button>
+  </div>
+  <button class="btn-reset" onclick="resetAll()">🔄 초기화 (새 환자)</button>
+</div>
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.toggle');
+  body.classList.toggle('collapsed');
+  toggle.textContent = body.classList.contains('collapsed') ? '▸' : '▾';
+}
+
+function toggleChip(el, group, val) {
+  const parent = el.parentElement;
+  parent.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  // 재수술 서브필드 토글
+  if (group === 'surgery-type') {
+    const sub = document.getElementById('sub-revision');
+    if (sub) sub.classList.toggle('show', val === 'revision');
+  }
+}
+
+function toggleChipSimple(el) {
+  el.classList.toggle('on');
+  // 혈액희석 약물 경고
+  const warnMeds = ['아스피린','항응고제','비타민E·오메가3'];
+  const warnEl = document.getElementById('warn-med');
+  if (warnEl) {
+    const anyWarn = [...document.querySelectorAll('.chip.warn.on')].some(c =>
+      warnMeds.some(w => c.textContent.includes(w.split('·')[0]))
+    );
+    warnEl.classList.toggle('show', anyWarn);
+  }
+}
+
+function checkStay() {
+  const arrive = document.getElementById('stay-arrive').value;
+  const depart = document.getElementById('stay-depart').value;
+  const warn = document.getElementById('stay-warn');
+  if (arrive && depart) {
+    const days = (new Date(depart) - new Date(arrive)) / (1000*60*60*24);
+    if (warn) warn.classList.toggle('show', days <= 5);
+  }
+}
+
+function getCheckedTexts(container) {
+  if (!container) return [];
+  return [...container.querySelectorAll('.chip.on')].map(c => c.textContent.trim());
+}
+
+function generateMemo() {
+  const name = document.getElementById('pt-name').value || '미기재';
+  const age = document.getElementById('pt-age').value || '미기재';
+  const gender = document.getElementById('pt-gender').value || '';
+  const target = document.getElementById('pt-target').value || '미기재';
+  const date = document.getElementById('pt-consult-date').value;
+  const surgDate = document.getElementById('pt-surgery-date').value;
+  const dateStr = (date||'미기재') + (surgDate ? ' / 수술: '+surgDate : '');
+
+  // 수술이력
+  const surgeryType = document.querySelector('[onclick*="surgery-type"]')?.parentElement;
+  const surgTypeChecked = getCheckedTexts(surgeryType).join('') || '미확인';
+  const isRevision = surgTypeChecked.includes('재수술');
+  let revDetail = '';
+  if (isRevision) {
+    const nth = document.getElementById('rev-nth').value;
+    const when = document.getElementById('rev-when').value;
+    const where = document.getElementById('rev-where').value;
+    const reason = document.getElementById('rev-reason').value;
+    const mat = document.getElementById('rev-material').value;
+    revDetail = `\n  · ${nth||'차수 미기재'} / ${when||'시기 미기재'} / ${where||'병원 미기재'}\n  · 재수술 이유: ${reason||'미기재'}${mat?'\n  · 이전 재료: '+mat:''}`;
+  }
+  const otherSurg = document.getElementById('other-surgery').value;
+  const keloidEl = document.querySelector('[onclick*="keloid"]')?.parentElement;
+  const keloid = getCheckedTexts(keloidEl).join('') || '미확인';
+
+  // 건강
+  const medDetail = document.getElementById('med-detail').value;
+  const allergyDetail = document.getElementById('allergy-detail').value;
+  const diseaseDetail = document.getElementById('disease-detail').value;
+  const recentProc = document.getElementById('recent-proc').value;
+
+  // 일정
+  const arrive = document.getElementById('stay-arrive').value || '미기재';
+  const depart = document.getElementById('stay-depart').value || '미기재';
+  let stayDays = '';
+  if (arrive !== '미기재' && depart !== '미기재') {
+    const days = Math.round((new Date(depart) - new Date(arrive)) / (1000*60*60*24));
+    stayDays = ` (${days}일)`;
+  }
+  const companion = document.getElementById('companion-detail').value;
+  const accommodation = document.getElementById('accommodation').value;
+
+  // 기대치
+  const noWant = document.getElementById('no-want').value;
+  const extraMemo = document.getElementById('extra-memo').value;
+
+  // 섹션별 칩 수집
+  function sectionChips(sectionIndex) {
+    const sections = document.querySelectorAll('.section-body');
+    const sec = sections[sectionIndex];
+    if (!sec) return '';
+    return [...sec.querySelectorAll('.chip.on')].map(c => c.textContent.trim()).join(', ') || '없음';
+  }
+
+  const memo = `━━━━━━━━━━━━━━━━━━━━
+🏥 한강애봄 환자 브리핑 메모
+━━━━━━━━━━━━━━━━━━━━
+【환자 정보】
+이름: ${name} / 나이: ${age}${gender?' / '+gender:''}
+희망 수술: ${target}
+상담·수술 예정: ${dateStr}
+
+【수술 이력】
+구분: ${surgTypeChecked}${revDetail}${otherSurg?'\n타 부위 이력: '+otherSurg:''}
+흉터 체질: ${keloid}
+
+【건강 상태】
+복용약: ${sectionChips(1).replace('없음','없음')}${medDetail?' ('+medDetail+')':''}
+알레르기: ${allergyDetail||'없음'}
+만성질환: ${diseaseDetail||'없음'}
+최근 시술: ${recentProc||'없음'}
+임신·수유: ${['임신 중','수유 중'].find(t => sectionChips(1).includes(t))||'해당없음'}
+
+【일정 및 조건】
+체류: ${arrive} ~ ${depart}${stayDays}
+동행: ${companion||sectionChips(2).split(',')[0]||'미확인'}${accommodation?'\n숙소: '+accommodation:''}
+재내원: ${['1회','2회','3회 이상','귀국 후 원격 관리'].find(t => sectionChips(2).includes(t))||'미확인'}
+
+【기대치】
+스타일: ${['자연스럽게','확실하게','미결정'].find(t => sectionChips(3).includes(t))||'미확인'}
+참고사진: ${['있음 (전달 완료)','있음 (추후 전달)','없음'].find(t => sectionChips(3).includes(t))||'미확인'}${noWant?'\n금기 결과: '+noWant:''}
+심리상태: ${['차분함','불안 높음','이전 수술에 분노','기대 매우 높음'].find(t => sectionChips(3).includes(t))||'미확인'}
+의사결정: ${['본인','동행인 강하게 개입','가족 원격 개입'].find(t => sectionChips(3).includes(t))||'본인'}
+${extraMemo?'\n【특이사항】\n'+extraMemo:''}
+━━━━━━━━━━━━━━━━━━━━
+한강애봄(k-medi spring) 내부용`;
+
+  document.getElementById('memoBox').textContent = memo;
+}
+
+function copyMemo() {
+  const text = document.getElementById('memoBox').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyMemoBtn');
+    btn.textContent = '✅ 복사됨';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '복사';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+function resetAll() {
+  if (!confirm('초기화하면 모든 내용이 지워집니다. 새 환자 입력을 시작할까요?')) return;
+  document.querySelectorAll('input[type=text], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('.chip.on').forEach(c => c.classList.remove('on'));
+  document.querySelectorAll('.sub-field.show').forEach(s => s.classList.remove('show'));
+  document.querySelectorAll('.warn-banner.show, .stay-warn.show').forEach(w => w.classList.remove('show'));
+  document.getElementById('memoBox').textContent = '버튼을 누르면 브리핑 메모가 생성됩니다.';
+}
+</script>
+</body>
+</html>

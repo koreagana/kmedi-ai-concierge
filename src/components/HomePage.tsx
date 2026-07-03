@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
+import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR } from '../data/contacts'
 import HalalMapButton from './HalalMapButton'
 import ConsultationCard from './ConsultationCard'
 
@@ -61,6 +63,7 @@ const fadeUp = {
 export function HeroSection() {
   const { lang } = useApp()
   const t = translations[lang]
+  const navigate = useNavigate()
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const [soundOn, setSoundOn] = useState(false)
@@ -274,8 +277,10 @@ export function HeroSection() {
           <button className="btn-primary" onClick={() => scrollTo('categories')}>
             {t.heroCta1}
           </button>
-          <button className="btn-secondary" onClick={() => scrollTo('concierge')}>
-            {t.heroCta2}
+          {/* 쇼핑몰 진입 버튼 - 상품은 추후 추가, 지금은 /shop 빈 페이지로 연결 */}
+          <button className="btn-shop" onClick={() => navigate('/shop')}>
+            <span className="btn-shop-title">韩国医美恢复护理精选</span>
+            <span className="btn-shop-sub">K-Beauty Recovery Shop</span>
           </button>
         </motion.div>
       </div>
@@ -290,7 +295,6 @@ function ConciergeSection() {
   const { lang } = useApp()
   const t = translations[lang]
 
-  const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
   const [showWxModal, setShowWxModal] = useState(false)
 
   return (
@@ -526,7 +530,7 @@ export function CategoryGridSection() {
 /* ═══════════════════════════════════════════════════════════════════
    6. CONTACT SECTION
    ═══════════════════════════════════════════════════════════════════ */
-type ContactModal = 'wechat-biz' | 'wechat-personal' | 'whatsapp' | 'form' | null
+type ContactModal = 'form' | null
 
 export function ContactSection() {
   const { lang } = useApp()
@@ -537,8 +541,19 @@ export function ContactSection() {
   const [formSent, setFormSent] = useState(false)
   const isAr = lang === 'ar'
 
+  /* "在线留言/문의 남기기" 제출 - 서버나 DB가 없으므로 자체 백엔드로 보내지 않고,
+     이미 푸터에 공개된 실제 이메일로 제목/본문을 채운 mailto: 링크를 열어
+     방문자의 메일 앱에서 직접 "보내기"를 누르게 함. (서버 저장 없음) */
   const handleFormSend = () => {
-    if (formName.trim() && formMsg.trim()) setFormSent(true)
+    if (!formName.trim() || !formMsg.trim()) return
+    const to = isAr ? EMAIL_AR : EMAIL_GENERAL
+    const subject = lang === 'zh' ? '韩国医疗咨询 - 在线留言'
+      : lang === 'ko' ? '한국 의료 상담 - 문의 남기기'
+      : lang === 'ar' ? 'استشارة طبية كورية - رسالة'
+      : 'Korea Medical Consultation - Message'
+    const body = `${formName}\n\n${formMsg}`
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setFormSent(true)
   }
 
   return (
@@ -552,13 +567,13 @@ export function ContactSection() {
         {isAr ? (
           /* ── Arabic: WhatsApp + Halal Map button ── */
           <>
-            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open('https://wa.me/821077671903', '_blank')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(WHATSAPP_URL, '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
               </div>
               <div>
                 <p style={{ fontSize: 14, fontWeight: 700 }}>واتساب</p>
-                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>تواصل مباشر عبر واتساب</p>
+                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>Dr. Alaa Eldin Elastel</p>
               </div>
             </motion.button>
             <motion.div {...fadeUp} transition={{ delay: 0.12 }}>
@@ -571,7 +586,7 @@ export function ContactSection() {
         ) : (
           /* ── Non-Arabic: WeChat buttons ── */
           <>
-            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open('https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0', '_blank')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="white"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
               </div>
@@ -581,17 +596,7 @@ export function ContactSection() {
               </div>
             </motion.button>
 
-            <motion.button {...fadeUp} transition={{ delay: 0.1 }} className="contact-btn contact-btn-wechat-personal" onClick={() => setModal('wechat-personal')}>
-              <div className="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              </div>
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatPersonal}</p>
-                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '顾问直接沟通' : lang === 'ko' ? '컨시어지 직접 소통' : 'Direct concierge chat'}</p>
-              </div>
-            </motion.button>
-
-            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => setModal('whatsapp')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(WHATSAPP_URL, '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
               </div>
@@ -634,41 +639,6 @@ export function ContactSection() {
             >
               <div className="modal-handle" />
 
-              {/* QR modals */}
-              {(modal === 'wechat-biz' || modal === 'wechat-personal' || modal === 'whatsapp') && (
-                <>
-                  <p className="modal-title">
-                    {modal === 'wechat-biz' ? t.contactWechatBiz :
-                     modal === 'wechat-personal' ? t.contactWechatPersonal :
-                     t.contactWhatsapp}
-                  </p>
-
-                  <div className="qr-placeholder">
-                    <span style={{ fontSize: 36 }}>
-                      {modal === 'whatsapp' ? '📱' : '💬'}
-                    </span>
-                    <span style={{ fontSize: 10, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.5, padding: '0 8px' }}>
-                      {t.contactQRHint}
-                    </span>
-                  </div>
-
-                  <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.7 }}>
-                    {lang === 'zh' ? '扫描上方二维码，添加咨询。\n我们会在工作时间内尽快回复您。' :
-                     lang === 'ko' ? '위의 QR 코드를 스캔하여 상담을 추가하세요.\n업무 시간 내에 최대한 빠르게 답변 드리겠습니다.' :
-                     lang === 'ar' ? 'امسح رمز QR أعلاه لبدء الاستشارة.\nسنرد خلال ساعات العمل.' :
-                     'Scan the QR code above to start consultation.\nWe will respond within business hours.'}
-                  </p>
-
-                  <button
-                    className="btn-primary"
-                    style={{ marginTop: 20 }}
-                    onClick={() => setModal(null)}
-                  >
-                    {t.contactClose}
-                  </button>
-                </>
-              )}
-
               {/* Form modal */}
               {modal === 'form' && (
                 <>
@@ -701,15 +671,15 @@ export function ContactSection() {
                     </>
                   ) : (
                     <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                      <span style={{ fontSize: 48 }}>✅</span>
+                      <span style={{ fontSize: 48 }}>📧</span>
                       <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--text)', marginTop: 12 }}>
-                        {lang === 'zh' ? '留言已提交' : lang === 'ko' ? '문의가 접수되었습니다' : lang === 'ar' ? 'تم إرسال الرسالة' : 'Message submitted'}
+                        {lang === 'zh' ? '邮件应用已打开' : lang === 'ko' ? '메일 앱이 열렸습니다' : lang === 'ar' ? 'تم فتح تطبيق البريد' : 'Your email app has opened'}
                       </p>
                       <p style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 8, lineHeight: 1.7 }}>
-                        {lang === 'zh' ? '我们会尽快与您联系。感谢您的咨询。' :
-                         lang === 'ko' ? '빠른 시일 내에 연락 드리겠습니다. 감사합니다.' :
-                         lang === 'ar' ? 'سنتواصل معك في أقرب وقت. شكراً لاستشارتك.' :
-                         'We will contact you shortly. Thank you.'}
+                        {lang === 'zh' ? '请在邮件应用中点击"发送"以完成提交。我们会尽快与您联系。' :
+                         lang === 'ko' ? '메일 앱에서 "보내기"를 눌러야 실제로 전송됩니다. 받는 즉시 빠르게 연락 드리겠습니다.' :
+                         lang === 'ar' ? 'يرجى الضغط على "إرسال" في تطبيق البريد لإكمال الإرسال. سنتواصل معك في أقرب وقت.' :
+                         'Tap "Send" in your email app to complete it. We will contact you shortly after receiving it.'}
                       </p>
                       <button
                         className="btn-primary"
@@ -923,6 +893,7 @@ export function AboutSection() {
 export function FooterSection() {
   const { lang } = useApp()
   const t = translations[lang]
+  const [showMiniProgram, setShowMiniProgram] = useState(false)
 
   return (
     <section className="section-dark" style={{ paddingBottom: 52 }}>
@@ -958,9 +929,133 @@ export function FooterSection() {
       {/* Email */}
       <p className="contact-email">{t.contactEmail}</p>
 
+      {/* SNS icons — 小红书(RedNote) / YouTube / WhatsApp / TikTok / 微信小程序 */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 20 }}>
+        <a
+          href="https://www.rednote.com/user/profile/5c62c866000000001201b355"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="小红书"
+          style={{
+            width: 34, height: 34, borderRadius: 9, background: '#FE2C55',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: 'white', fontSize: 9, fontWeight: 800, letterSpacing: '-0.02em',
+            textDecoration: 'none', lineHeight: 1,
+          }}
+        >
+          小红书
+        </a>
+        <a
+          href="https://www.youtube.com/@k-medispring"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="YouTube"
+          style={{
+            width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'white',
+          }}
+        >
+          <img src="/icons/youtube.jpg" alt="YouTube" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </a>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="WhatsApp · Dr. Alaa Eldin Elastel"
+          style={{
+            width: 34, height: 34, borderRadius: '50%', background: '#25D366',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z" />
+          </svg>
+        </a>
+        <a
+          href="https://www.tiktok.com/@gngwg7"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="TikTok"
+          style={{
+            width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'white',
+          }}
+        >
+          <img src="/icons/tiktok.png" alt="TikTok" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </a>
+        <button
+          type="button"
+          onClick={() => setShowMiniProgram(true)}
+          title={lang === 'zh' ? '微信小程序' : lang === 'ko' ? '위챗 샤오청쉬' : 'WeChat Mini Program'}
+          style={{
+            width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'white', border: 'none', padding: 0, cursor: 'pointer',
+          }}
+        >
+          <img src="/icons/xiaochengxu.jpg" alt={lang === 'zh' ? '微信小程序' : 'WeChat Mini Program'} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {showMiniProgram && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowMiniProgram(false)}
+          >
+            <motion.div
+              className="modal-sheet"
+              initial={{ y: 60, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 60, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="modal-handle" />
+              <p className="modal-title">
+                {lang === 'zh' ? '汉江春天 · 微信小程序' : lang === 'ko' ? '한강애봄 · 위챗 샤오청쉬' : lang === 'ar' ? 'هانغانغ آيبوم · برنامج ويتشات المصغر' : 'K-MediSpring · WeChat Mini Program'}
+              </p>
+              <img
+                src="/icons/xiaochengxu.jpg"
+                alt="WeChat Mini Program QR"
+                style={{ width: 220, height: 220, borderRadius: 16, display: 'block', margin: '0 auto 16px', border: '1px solid var(--border-blue)' }}
+              />
+              <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.7 }}>
+                {lang === 'zh' ? '长按或扫描上方二维码，在微信中打开「汉江春天」小程序。' :
+                 lang === 'ko' ? '위 QR 코드를 길게 누르거나 스캔하면 위챗에서 「汉江春天」샤오청쉬가 열립니다.' :
+                 lang === 'ar' ? 'اضغط مطولاً أو امسح رمز QR أعلاه لفتح برنامج "汉江春天" المصغر في WeChat.' :
+                 'Press and hold or scan the QR code above to open the "汉江春天" mini program in WeChat.'}
+              </p>
+              <button
+                className="btn-primary"
+                style={{ marginTop: 20 }}
+                onClick={() => setShowMiniProgram(false)}
+              >
+                {t.contactClose}
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Copyright */}
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
         © 2025 {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · kmedispring.com
+      </p>
+
+      {/* Internal-only admin link, intentionally inconspicuous */}
+      <p style={{ textAlign: 'center', marginTop: 10 }}>
+        <a
+          href="/admin/prep"
+          style={{ fontSize: 8, color: 'rgba(255,255,255,0.12)', textDecoration: 'none' }}
+        >
+          관리자페이지
+        </a>
       </p>
     </section>
   )
@@ -974,6 +1069,7 @@ export default function HomePage() {
     <div>
       <HeroSection />
       <ConciergeSection />
+      <HomeConsultationSection />
       <ConcernSection />
       <CategoryGridSection />
       <ContactSection />
