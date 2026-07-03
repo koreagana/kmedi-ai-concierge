@@ -197,6 +197,15 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
   {
+    titleKo: '온다(ONDA) 바디 시술 후 주의사항',
+    titleZh: 'ONDA微波提升（身体部位）治疗后注意事项',
+    type: 'procedure_after',
+    category: 'skin_laser',
+    field: '피부과 / 미용시술',
+    link: '/prep/onda-body-after',
+    status: 'available',
+  },
+  {
     titleKo: '스킨부스터·리쥬란 후 주의사항',
     titleZh: '水光·丽珠兰治疗后注意事项',
     type: 'procedure_after',
