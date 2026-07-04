@@ -204,12 +204,12 @@ const RESPONSES_HOME: Record<string, Record<HomeType, string>> = {
 
 const UI: Record<string, {
   title: string; cardGenerated: string; copyBtn: string; copied: string;
-  contactBtn: string; restart: string; back: string; step: string
+  contactBtn: string; restart: string; back: string; step: string; exit: string
 }> = {
-  zh: { title: '生成我的韩国医疗咨询卡', cardGenerated: '韩国医疗咨询卡已生成', copyBtn: '复制咨询内容', copied: '已复制', contactBtn: '打开企业微信咨询', restart: '重新填写', back: '← 上一步', step: 'Q' },
-  ko: { title: '나의 한국 의료 상담카드 만들기', cardGenerated: '한국 의료 상담카드가 생성되었습니다', copyBtn: '상담 내용 복사', copied: '복사됨', contactBtn: '지금 컨시어지에게 연락', restart: '다시 작성', back: '← 이전', step: 'Q' },
-  en: { title: 'Build My Korea Medical Consultation Profile', cardGenerated: 'Your Korea Medical Consultation Profile Is Ready', copyBtn: 'Copy Consultation Summary', copied: 'Copied!', contactBtn: 'Connect with a Concierge', restart: 'Start Over', back: '← Back', step: 'Q' },
-  ar: { title: 'أنشئ ملف استشارتي الطبية في كوريا', cardGenerated: 'ملف استشارتك الطبية في كوريا جاهز', copyBtn: 'نسخ ملخص الاستشارة', copied: 'تم النسخ', contactBtn: 'تواصل مع كونسيرج', restart: 'ابدأ من جديد', back: 'السابق ←', step: 'س' },
+  zh: { title: '生成我的韩国医疗咨询卡', cardGenerated: '韩国医疗咨询卡已生成', copyBtn: '复制咨询内容', copied: '已复制', contactBtn: '打开企业微信咨询', restart: '重新填写', back: '← 上一步', step: 'Q', exit: '← 返回' },
+  ko: { title: '나의 한국 의료 상담카드 만들기', cardGenerated: '한국 의료 상담카드가 생성되었습니다', copyBtn: '상담 내용 복사', copied: '복사됨', contactBtn: '지금 컨시어지에게 연락', restart: '다시 작성', back: '← 이전', step: 'Q', exit: '← 뒤로' },
+  en: { title: 'Build My Korea Medical Consultation Profile', cardGenerated: 'Your Korea Medical Consultation Profile Is Ready', copyBtn: 'Copy Consultation Summary', copied: 'Copied!', contactBtn: 'Connect with a Concierge', restart: 'Start Over', back: '← Back', step: 'Q', exit: '← Back' },
+  ar: { title: 'أنشئ ملف استشارتي الطبية في كوريا', cardGenerated: 'ملف استشارتك الطبية في كوريا جاهز', copyBtn: 'نسخ ملخص الاستشارة', copied: 'تم النسخ', contactBtn: 'تواصل مع كونسيرج', restart: 'ابدأ من جديد', back: 'السابق ←', step: 'س', exit: 'رجوع ←' },
 }
 
 const UI_HOME: Record<string, { title: string; cardGenerated: string }> = {
@@ -582,9 +582,11 @@ interface ConsultationCardProps {
   mode?: 'home' | 'category'
   categoryId?: CategoryId
   concernId?: string
+  /** Called to leave this flow and return to whatever entry screen opened it. */
+  onExit?: () => void
 }
 
-export default function ConsultationCard({ mode = 'category', categoryId, concernId }: ConsultationCardProps) {
+export default function ConsultationCard({ mode = 'category', categoryId, concernId, onExit }: ConsultationCardProps) {
   const { lang } = useApp()
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState<string[]>(Array(7).fill(''))
@@ -650,6 +652,14 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
     setFollowUpAnswer('')
   }
 
+  // When this flow was opened from an entry card (e.g. the homepage ticket card),
+  // "restart" means going all the way back to that entry screen, not just
+  // resetting the question steps while staying open.
+  const handleRestart = () => {
+    if (onExit) onExit()
+    else restart()
+  }
+
   const homeType = isHome ? classifyHome(answers, questions) : undefined
   const followUpData = homeType ? FOLLOW_UP[homeType] : undefined
   const followUpSuffix = (() => {
@@ -694,9 +704,15 @@ export default function ConsultationCard({ mode = 'category', categoryId, concer
 
   return (
     <div style={S.wrap}>
+      {onExit && (
+        <button type="button" style={{ ...S.backBtn, marginBottom: 14 }} onClick={onExit}>
+          {ui.exit}
+        </button>
+      )}
+
       <div style={S.titleRow}>
         <p style={S.title}>{ui.title}</p>
-        <button className="cc-reset-btn" onClick={restart}>{ui.restart}</button>
+        <button className="cc-reset-btn" onClick={handleRestart}>{ui.restart}</button>
       </div>
 
       <div style={S.progressTrack}>

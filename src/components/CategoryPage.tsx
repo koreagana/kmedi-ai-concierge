@@ -154,7 +154,7 @@ export default function CategoryPage() {
           </button>
         </motion.div>
       ) : (
-        <ConsultationCard categoryId={cat.id} concernId={concernId ?? undefined} />
+        <ConsultationCard categoryId={cat.id} concernId={concernId ?? undefined} onExit={() => setShowCard(false)} />
       )}
 
       {/* ── Common page footer sections ── */}

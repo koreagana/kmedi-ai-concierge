@@ -1,17 +1,11 @@
-import { User, HeartPulse, Compass, Phone, CalendarCheck, ShieldCheck, ClipboardList } from 'lucide-react'
+import { CalendarCheck, ShieldCheck } from 'lucide-react'
 import { translations, type LangCode } from '../data/translations'
-
-interface RightItem {
-  title: string
-  desc: string
-}
 
 interface CardText {
   title: string
   subtitle: string
-  fields: string[]
   rightHeader: string
-  items: RightItem[]
+  service: { title: string; desc: string }
   cardNoLabel: string
 }
 
@@ -19,55 +13,32 @@ const TEXT: Record<LangCode, CardText> = {
   zh: {
     title: '韩国医疗咨询卡',
     subtitle: '专业 · 安心 · 高效 · 全程陪伴',
-    fields: ['姓名', '关心项目', '推荐方向', '联系方式'],
     rightHeader: 'MEDICAL CONSULTATION',
-    items: [
-      { title: '专属服务', desc: '一对一咨询・定制方案\n就医安排・全程协助' },
-      { title: '服务保障', desc: '隐私保护・专业团队\n权威资源・安心可靠' },
-      { title: '温馨提示', desc: '请妥善保管此卡\n以便享受专属服务' },
-    ],
+    service: { title: '专属服务', desc: '一对一咨询・定制方案\n就医安排・全程协助' },
     cardNoLabel: '卡片编号 NO.',
   },
   ko: {
     title: '한국 의료상담 카드',
     subtitle: '전문성 · 안심 · 신속 · 전 과정 동행',
-    fields: ['이름', '관심 항목', '추천 방향', '연락처'],
     rightHeader: 'MEDICAL CONSULTATION',
-    items: [
-      { title: '전담 서비스', desc: '1:1 상담・맞춤 플랜\n병원 예약・전 과정 동행' },
-      { title: '서비스 보장', desc: '개인정보 보호・전문팀\n신뢰 네트워크・안심 케어' },
-      { title: '안내 말씀', desc: '이 카드를 잘 보관해\n전용 서비스를 이용하세요' },
-    ],
+    service: { title: '전담 서비스', desc: '1:1 상담・맞춤 플랜\n병원 예약・전 과정 동행' },
     cardNoLabel: '카드 번호 NO.',
   },
   en: {
     title: 'Korea Medical Consult Card',
     subtitle: 'Professional · Reassuring · Guided',
-    fields: ['Name', 'Area of Interest', 'Recommended Direction', 'Contact'],
     rightHeader: 'MEDICAL CONSULTATION',
-    items: [
-      { title: 'Dedicated Service', desc: '1:1 Consult · Custom Plan\nHospital Booking · Full Support' },
-      { title: 'Service Assurance', desc: 'Privacy Protected · Expert Team\nTrusted Network · Reliable Care' },
-      { title: 'A Gentle Reminder', desc: 'Please keep this card\nto enjoy your full service' },
-    ],
+    service: { title: 'Dedicated Service', desc: '1:1 Consult · Custom Plan\nHospital Booking · Full Support' },
     cardNoLabel: 'CARD NO.',
   },
   ar: {
     title: 'بطاقة الاستشارة الطبية',
     subtitle: 'احترافية · طمأنينة · مرافقة كاملة',
-    fields: ['الاسم', 'المجال المهتم به', 'الاتجاه الموصى به', 'وسيلة التواصل'],
     rightHeader: 'MEDICAL CONSULTATION',
-    items: [
-      { title: 'خدمة مخصصة', desc: 'استشارة فردية · خطة مخصصة\nترتيب المواعيد · دعم كامل' },
-      { title: 'ضمان الخدمة', desc: 'حماية الخصوصية · فريق متخصص\nشبكة موثوقة · رعاية آمنة' },
-      { title: 'تذكير لطيف', desc: 'يرجى الاحتفاظ بهذه البطاقة\nللاستفادة من الخدمة المخصصة' },
-    ],
+    service: { title: 'خدمة مخصصة', desc: 'استشارة فردية · خطة مخصصة\nترتيب المواعيد · دعم كامل' },
     cardNoLabel: 'رقم البطاقة',
   },
 }
-
-const FIELD_ICONS = [User, HeartPulse, Compass, Phone]
-const RIGHT_ICONS = [CalendarCheck, ShieldCheck, ClipboardList]
 
 function todayCardNo(): string {
   const d = new Date()
@@ -144,19 +115,6 @@ export default function ConsultCardVisual({ lang, onClick }: { lang: LangCode; o
         <div className="ccv-title-underline" />
         <p className="ccv-subtitle">{t.subtitle}</p>
 
-        <div className="ccv-fields">
-          {t.fields.map((label, i) => {
-            const Icon = FIELD_ICONS[i]
-            return (
-              <div className="ccv-field" key={label}>
-                <span className="ccv-field-icon"><Icon size={16} strokeWidth={2} /></span>
-                <span className="ccv-field-label">{label}</span>
-                <span className="ccv-field-line" />
-              </div>
-            )
-          })}
-        </div>
-
         <SeoulSkyline />
       </div>
 
@@ -166,21 +124,13 @@ export default function ConsultCardVisual({ lang, onClick }: { lang: LangCode; o
           <ShieldCheck size={20} strokeWidth={2.25} style={{ flexShrink: 0 }} />
         </div>
 
-        {t.items.map((item, i) => {
-          const Icon = RIGHT_ICONS[i]
-          return (
-            <div key={item.title}>
-              {i > 0 && <div className="ccv-right-divider" />}
-              <div className="ccv-right-block-row">
-                <span className="ccv-right-icon"><Icon size={14} strokeWidth={2} /></span>
-                <div>
-                  <p className="ccv-right-block-title">{item.title}</p>
-                  <p className="ccv-right-block-text">{item.desc}</p>
-                </div>
-              </div>
-            </div>
-          )
-        })}
+        <div className="ccv-right-block-row">
+          <span className="ccv-right-icon"><CalendarCheck size={14} strokeWidth={2} /></span>
+          <div>
+            <p className="ccv-right-block-title">{t.service.title}</p>
+            <p className="ccv-right-block-text">{t.service.desc}</p>
+          </div>
+        </div>
 
         <div className="ccv-cardnum">
           <span className="ccv-cardnum-label">{t.cardNoLabel}</span>

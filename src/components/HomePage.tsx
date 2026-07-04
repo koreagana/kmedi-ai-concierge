@@ -406,7 +406,7 @@ export function HomeConsultationSection() {
           <ConsultCardVisual lang={lang} onClick={() => setOpen(true)} />
         </motion.div>
       ) : (
-        <ConsultationCard mode="home" />
+        <ConsultationCard mode="home" onExit={() => setOpen(false)} />
       )}
     </section>
   )

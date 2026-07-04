@@ -1471,22 +1471,6 @@ body {
   margin-bottom: 22px;
 }
 
-.ccv-fields { display: flex; flex-direction: column; gap: 13px; }
-.ccv-field { display: flex; align-items: center; gap: 11px; }
-.ccv-field-icon {
-  flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #eaf4fc;
-  color: #0077b6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ccv-field-label { flex-shrink: 0; font-size: 13.5px; font-weight: 700; color: #1a3a5c; white-space: nowrap; }
-.ccv-field-line { flex: 1; height: 1px; background: #cddcea; min-width: 20px; }
-
 .ccv-skyline {
   position: absolute;
   left: 0;
@@ -1537,7 +1521,6 @@ body {
 }
 .ccv-right-block-title { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
 .ccv-right-block-text { font-size: 10px; line-height: 1.55; color: rgba(255,255,255,0.76); white-space: pre-line; }
-.ccv-right-divider { border-top: 1px dashed rgba(255,255,255,0.28); margin: 11px 0; }
 
 .ccv-cardnum {
   margin-top: auto;
