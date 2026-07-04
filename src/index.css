@@ -1529,3 +1529,35 @@ body {
   .ccv-seam { display: none; }
   .ccv-subtitle { letter-spacing: 0.06em; }
 }
+
+/* ══════════════════════════════════════════
+   CONCERN SECTION TITLE CARD
+   ══════════════════════════════════════════ */
+.concern-title-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #ffffff;
+  border-radius: 16px;
+  border-left: 4px solid var(--brand);
+  box-shadow: 0 6px 24px rgba(0,119,182,0.10), 0 1px 4px rgba(0,0,0,0.04);
+  padding: 18px 20px;
+  margin: 0 20px 26px;
+}
+.concern-title-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0,119,182,0.12), rgba(0,168,204,0.14));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.concern-title-card-text {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--brand-dark);
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}

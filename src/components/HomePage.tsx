@@ -432,9 +432,17 @@ export function ConcernSection() {
 
   return (
     <section id="concern" className="section-white">
-      <motion.div {...fadeUp}>
-        <p className="section-title">{t.concernTitle}</p>
-        <div className="section-accent-line" />
+      <motion.div {...fadeUp} className="concern-title-card">
+        <span className="concern-title-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M15.5 8.5l-2 5-5 2 2-5z" strokeLinejoin="round" />
+          </svg>
+        </span>
+        <div>
+          <p className="concern-title-card-text">{t.concernTitle}</p>
+          <div className="section-accent-line" style={{ margin: '8px 0 0' }} />
+        </div>
       </motion.div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
