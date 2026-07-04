@@ -7,6 +7,7 @@ import { categories, type CategoryId } from '../data/categories'
 import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR } from '../data/contacts'
 import HalalMapButton from './HalalMapButton'
 import ConsultationCard from './ConsultationCard'
+import ConsultCardVisual from './ConsultCardVisual'
 import TtsButton from './TtsButton'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
@@ -404,27 +405,8 @@ export function HomeConsultationSection() {
       </motion.p>
 
       {!open ? (
-        <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.5 }} style={{ textAlign: 'center' }}>
-          <button
-            onClick={() => setOpen(true)}
-            style={{
-              width: '100%',
-              maxWidth: 360,
-              padding: '15px 0',
-              borderRadius: 12,
-              background: 'var(--brand, #0077b6)',
-              border: 'none',
-              color: 'white',
-              fontSize: 15,
-              fontWeight: 700,
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              letterSpacing: '0.02em',
-              boxShadow: '0 4px 18px rgba(0,119,182,0.28)',
-            }}
-          >
-            {t.homeCardSectionBtn}
-          </button>
+        <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.5 }} style={{ padding: '0 4px' }}>
+          <ConsultCardVisual lang={lang} onClick={() => setOpen(true)} />
         </motion.div>
       ) : (
         <ConsultationCard mode="home" />
