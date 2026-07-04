@@ -17,13 +17,14 @@ export type ProductBadge = 'best' | 'new' | null
 export interface ProductCategory {
   id: ProductCategoryId | 'all'
   label: string
+  labelKo: string
 }
 
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
-  { id: 'all', label: '全部' },
-  { id: 'recovery', label: '术后恢复' },
-  { id: 'skincare', label: '院线护肤' },
-  { id: 'kit', label: '恢复套装' },
+  { id: 'all', label: '全部', labelKo: '전체' },
+  { id: 'recovery', label: '术后恢复', labelKo: '수술 후 케어' },
+  { id: 'skincare', label: '院线护肤', labelKo: '더마 스킨케어' },
+  { id: 'kit', label: '恢复套装', labelKo: '회복 세트' },
 ]
 
 export interface Product {

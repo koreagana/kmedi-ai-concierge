@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { getProductById } from '../data/products'
 import './ShopDetailPage.css'
 
 export default function ShopDetailPage() {
   const { productId } = useParams()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const lang = searchParams.get('lang') ?? 'zh'
   const [qty, setQty] = useState(1)
 
   const product = productId ? getProductById(productId) : undefined
@@ -16,7 +18,7 @@ export default function ShopDetailPage() {
         <p style={{ fontSize: 14, color: '#6a8aaa', marginBottom: 16 }}>
           상품을 찾을 수 없습니다 · 未找到该商品
         </p>
-        <button className="buy-btn" style={{ width: '100%' }} onClick={() => navigate('/shop')}>
+        <button className="buy-btn" style={{ width: '100%' }} onClick={() => navigate(`/shop?lang=${lang}`)}>
           돌아가기 · 返回
         </button>
       </div>
@@ -28,7 +30,7 @@ export default function ShopDetailPage() {
   }
 
   const goBuy = () => {
-    navigate(`/shop/order?id=${product.id}&qty=${qty}`)
+    navigate(`/shop/order?id=${product.id}&qty=${qty}&lang=${lang}`)
   }
 
   return (

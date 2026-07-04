@@ -17,6 +17,14 @@ export default function NavBar() {
   const navigate = useNavigate()
   const location = useLocation()
   const isArPage = location.pathname.startsWith('/ar')
+  // /shop, /shop/order etc. are standalone routes outside the /zh|ko|en|ar
+  // nested router, so the usual goHome() (which just clears the search
+  // params on the current route) can't get back to the real homepage here.
+  const isShopPage = location.pathname.startsWith('/shop')
+  const handleBrandClick = () => {
+    if (isShopPage) navigate(langPaths[lang])
+    else goHome()
+  }
 
   const [showLang, setShowLang] = useState(false)
   const [dropdownPos, setDropdownPos] = useState<{ top: number; left?: number; right?: number }>({ top: 0, right: 0 })
@@ -63,7 +71,7 @@ export default function NavBar() {
     <nav className="navbar">
       {/* Brand */}
       <button
-        onClick={goHome}
+        onClick={handleBrandClick}
         style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
       >
         <div className="navbar-brand">{t.brandName}</div>
@@ -72,8 +80,8 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* /ar 페이지: 없음 / 그 외: 상담 버튼 */}
-        {page === 'home' && !isArPage && (
+        {/* /ar 페이지, /shop 페이지: 없음 / 그 외: 상담 버튼 */}
+        {page === 'home' && !isArPage && !isShopPage && (
           <button
             onClick={scrollToContact}
             style={{
@@ -96,7 +104,7 @@ export default function NavBar() {
         {/* /ar 페이지 로고 이미지 */}
         {isArPage && (
           <button
-            onClick={goHome}
+            onClick={handleBrandClick}
             style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex' }}
           >
             <img

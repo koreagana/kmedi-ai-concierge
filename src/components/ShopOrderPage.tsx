@@ -15,6 +15,7 @@ export default function ShopOrderPage() {
 
   const productId = params.get('id') ?? ''
   const qty = Math.max(1, parseInt(params.get('qty') ?? '1', 10) || 1)
+  const lang = params.get('lang') ?? 'zh'
   const product = getProductById(productId)
 
   if (!product) {
@@ -23,7 +24,7 @@ export default function ShopOrderPage() {
         <p style={{ fontSize: 14, color: '#6a8aaa', marginBottom: 16 }}>
           주문할 상품을 찾을 수 없습니다 · 未找到要下单的商品
         </p>
-        <button className="submit-btn" onClick={() => navigate('/shop')}>
+        <button className="submit-btn" onClick={() => navigate(`/shop?lang=${lang}`)}>
           돌아가기 · 返回
         </button>
       </div>
