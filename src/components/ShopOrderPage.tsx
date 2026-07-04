@@ -75,7 +75,7 @@ export default function ShopOrderPage() {
 
       {/* 주문 요약 */}
       <div className="section">
-        <div className="section-title">주문 내역 <span className="zh">订单详情</span></div>
+        <div className="order-section-title">주문 내역 <span className="zh">订单详情</span></div>
         <div className="order-item">
           <span className="label">상품명 · 商品名</span>
           <span className="value">{product.nameKo}</span>
@@ -96,7 +96,7 @@ export default function ShopOrderPage() {
 
       {/* 배송지 입력 */}
       <div className="section">
-        <div className="section-title">배송지 입력 <span className="zh">收货信息</span></div>
+        <div className="order-section-title">배송지 입력 <span className="zh">收货信息</span></div>
         <div className="field">
           <label>받는 분 이름 · 收件人姓名</label>
           <input type="text" placeholder="이름 / 姓名" value={shipName} onChange={(e) => setShipName(e.target.value)} />
@@ -118,7 +118,7 @@ export default function ShopOrderPage() {
 
       {/* 결제 방법 */}
       <div className="section">
-        <div className="section-title">결제 방법 <span className="zh">支付方式</span></div>
+        <div className="order-section-title">결제 방법 <span className="zh">支付方式</span></div>
         <div className="pay-guide">
           <div className="step">
             <div className="step-num">1</div>
@@ -147,7 +147,7 @@ export default function ShopOrderPage() {
       {/* QR 영역 (결제하기 후 표시) */}
       {step === 2 && (
         <div className="section" id="qrSection">
-          <div className="section-title">위챗페이 결제 <span className="zh">微信支付</span></div>
+          <div className="order-section-title">위챗페이 결제 <span className="zh">微信支付</span></div>
           <div className="qr-section">
             <div className="qr-box">
               <div className="qr-icon">💚</div>
