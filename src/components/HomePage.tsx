@@ -386,7 +386,6 @@ function ConciergeSection() {
    ═══════════════════════════════════════════════════════════════════ */
 export function HomeConsultationSection() {
   const { lang } = useApp()
-  const t = translations[lang]
   const [open, setOpen] = useState(false)
 
   // A real page reload already resets this (useState default), but bfcache-restored
@@ -402,19 +401,6 @@ export function HomeConsultationSection() {
 
   return (
     <section id="home-consultation" className="section-light">
-      <motion.div {...fadeUp}>
-        <p className="section-title">{t.homeCardSectionTitle}</p>
-        <div className="section-accent-line" />
-      </motion.div>
-
-      <motion.p
-        {...fadeUp}
-        transition={{ delay: 0.06, duration: 0.5 }}
-        style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: 20, textAlign: 'center' }}
-      >
-        {t.homeCardSectionDesc}
-      </motion.p>
-
       {!open ? (
         <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.5 }} style={{ padding: '0 4px' }}>
           <ConsultCardVisual lang={lang} onClick={() => setOpen(true)} />
