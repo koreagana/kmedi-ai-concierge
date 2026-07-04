@@ -181,9 +181,9 @@ export const translations: Record<LangCode, Translations> = {
   ko: {
     brandName: '한강애봄',
     brandSub: 'AI 컨시어지 메디컬 라운지',
-    heroTagline: '한국 의료 상담의 입구',
-    heroDesc: '니즈를 정리하고 적합한 한국 의료 상담 서비스를 연결해 드립니다',
-    heroCta1: '항목 선택하기',
+    heroTagline: '한국의료관광의 시작',
+    heroDesc: '내게 맞는 진료를 찾아보세요',
+    heroCta1: '진료항목 선택',
     shopBtnTitle: '한국 뷰티 회복케어 셀렉션',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
