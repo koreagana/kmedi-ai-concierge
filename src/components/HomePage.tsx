@@ -389,6 +389,17 @@ export function HomeConsultationSection() {
   const t = translations[lang]
   const [open, setOpen] = useState(false)
 
+  // A real page reload already resets this (useState default), but bfcache-restored
+  // pages (browser back/forward) keep the old in-memory state — force it back to
+  // the entry card in that case too, so the section always starts fresh.
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) setOpen(false)
+    }
+    window.addEventListener('pageshow', handlePageShow)
+    return () => window.removeEventListener('pageshow', handlePageShow)
+  }, [])
+
   return (
     <section id="home-consultation" className="section-light">
       <motion.div {...fadeUp}>

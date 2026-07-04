@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
@@ -32,6 +32,16 @@ export default function CategoryPage() {
   const t = translations[lang]
   const cat = getCategoryById(categoryId ?? '')
   const [showCard, setShowCard] = useState(false)
+
+  // Same bfcache safeguard as HomeConsultationSection — a fresh reload already
+  // resets this, but browser back/forward restores can keep stale state.
+  useEffect(() => {
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) setShowCard(false)
+    }
+    window.addEventListener('pageshow', handlePageShow)
+    return () => window.removeEventListener('pageshow', handlePageShow)
+  }, [])
 
   if (!cat) {
     return (
