@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   HeroSection,
+  HomeConsultationSection,
   ConcernSection,
   CategoryGridSection,
   ContactSection,
@@ -90,6 +91,7 @@ export default function ArHomePage() {
     <div>
       <HeroSection />
       <ArConciergeSection />
+      <HomeConsultationSection />
       <ConcernSection />
       <CategoryGridSection />
       <ContactSection />

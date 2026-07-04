@@ -281,8 +281,8 @@ export function HeroSection() {
           </button>
           {/* 쇼핑몰 진입 버튼 - 상품은 추후 추가, 지금은 /shop 빈 페이지로 연결 */}
           <button className="btn-shop" onClick={() => navigate('/shop')}>
-            <span className="btn-shop-title">韩国医美恢复护理精选</span>
-            <span className="btn-shop-sub">K-Beauty Recovery Shop</span>
+            <span className="btn-shop-title">{t.shopBtnTitle}</span>
+            <span className="btn-shop-sub">{t.shopBtnSub}</span>
           </button>
         </motion.div>
       </div>

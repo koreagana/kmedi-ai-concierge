@@ -8,6 +8,8 @@ interface Translations {
   heroTagline: string
   heroDesc: string
   heroCta1: string
+  shopBtnTitle: string
+  shopBtnSub: string
   // concierge section
   conciergeTitle: string
   concierge1Name: string
@@ -101,6 +103,8 @@ export const translations: Record<LangCode, Translations> = {
     heroTagline: '您的韩国医疗咨询入口',
     heroDesc: '为您梳理需求，对接适合的韩国医疗咨询服务',
     heroCta1: '选择咨询项目',
+    shopBtnTitle: '韩国医美恢复护理精选',
+    shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: '请选择您的 AI 医疗顾问',
     concierge1Name: '李静',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -180,6 +184,8 @@ export const translations: Record<LangCode, Translations> = {
     heroTagline: '한국 의료 상담의 입구',
     heroDesc: '니즈를 정리하고 적합한 한국 의료 상담 서비스를 연결해 드립니다',
     heroCta1: '항목 선택하기',
+    shopBtnTitle: '한국 뷰티 회복케어 셀렉션',
+    shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
     concierge1Name: '이정',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -259,6 +265,8 @@ export const translations: Record<LangCode, Translations> = {
     heroTagline: 'Your Personal Gateway to Korean Healthcare',
     heroDesc: 'From anti-aging and aesthetic medicine to comprehensive health management — K-MediSpring curates your needs and connects you with the right Korean medical specialists.',
     heroCta1: 'Explore Our Services',
+    shopBtnTitle: 'K-Beauty Recovery Care Selection',
+    shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'Meet Your AI Medical Concierge',
     concierge1Name: 'Lee Jing',
     concierge1Title: "Beauty & Women's Care Concierge",
@@ -338,6 +346,8 @@ export const translations: Record<LangCode, Translations> = {
     heroTagline: 'بوابتك الشخصية للرعاية الصحية الكورية',
     heroDesc: 'نرتب احتياجاتك ونوصلك بخدمات الاستشارة الطبية الكورية المناسبة',
     heroCta1: 'استعرض الخدمات',
+    shopBtnTitle: 'مختارات العناية والتعافي الكورية',
+    shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'اختر كونسيرجك الطبي AI',
     concierge1Name: 'لي جينغ',
     concierge1Title: 'كونسيرج التجميل والعناية بالمرأة',
