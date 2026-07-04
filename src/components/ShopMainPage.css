@@ -9,16 +9,13 @@
 
 /* 헤더 */
 .shop-header {
-  background: #0077B6;
-  padding: 28px 20px 24px;
+  background: #ffffff;
+  padding: 26px 20px 22px;
   text-align: center;
-  position: sticky;
-  top: 52px;
-  z-index: 99;
+  border-bottom: 1px solid #eef0f4;
 }
-.shop-header .brand { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 2px; margin-bottom: 6px; }
-.shop-header h1 { font-size: 19px; font-weight: 600; color: white; line-height: 1.4; margin-bottom: 3px; }
-.shop-header .sub { font-size: 12px; color: rgba(255,255,255,0.7); }
+.shop-header h1 { font-size: 19px; font-weight: 700; color: #0b3a63; line-height: 1.4; margin-bottom: 4px; }
+.shop-header .sub { font-size: 12px; color: #6a8aaa; letter-spacing: 0.04em; }
 
 /* 카테고리 탭 */
 .cat-wrap { background: white; border-bottom: 1px solid #eef0f4; padding: 12px 0; overflow-x: auto; scrollbar-width: none; }

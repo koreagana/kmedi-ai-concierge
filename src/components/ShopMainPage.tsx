@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { PRODUCTS, PRODUCT_CATEGORIES, type ProductCategoryId } from '../data/products'
 import { AppProvider } from '../contexts/AppContext'
-import { translations, type LangCode } from '../data/translations'
+import type { LangCode } from '../data/translations'
 import NavBar from './NavBar'
 import { FooterSection } from './HomePage'
 import './ShopMainPage.css'
@@ -82,7 +82,6 @@ export default function ShopMainPage() {
         <NavBar />
 
         <div className="shop-header">
-          <div className="brand">{translations[lang].brandName}</div>
           <h1>{t.heroTitle}</h1>
           <div className="sub">{t.heroSub}</div>
         </div>
