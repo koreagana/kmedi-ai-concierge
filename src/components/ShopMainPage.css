@@ -140,7 +140,6 @@
   align-items: center;
   gap: 14px;
 }
-.pay-icon { font-size: 28px; flex-shrink: 0; }
 .pay-txt .t1 { font-size: 17px; font-weight: 700; color: #0077B6; }
 
 /* 배송 안내 */

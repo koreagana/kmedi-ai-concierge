@@ -136,7 +136,6 @@ export default function ShopMainPage() {
 
         {/* 위챗 결제 안내 */}
         <div className="pay-banner">
-          <div className="pay-icon">💚</div>
           <div className="pay-txt">
             <div className="t1">{t.payText}</div>
           </div>
