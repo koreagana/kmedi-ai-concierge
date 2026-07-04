@@ -6,7 +6,6 @@ interface CardText {
   subtitle: string
   rightHeader: string
   service: { title: string; desc: string }
-  cardNoLabel: string
 }
 
 const TEXT: Record<LangCode, CardText> = {
@@ -15,37 +14,25 @@ const TEXT: Record<LangCode, CardText> = {
     subtitle: '专业 · 安心 · 高效 · 全程陪伴',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: '专属服务', desc: '一对一咨询・定制方案\n就医安排・全程协助' },
-    cardNoLabel: '卡片编号 NO.',
   },
   ko: {
     title: '한국 의료상담 카드',
     subtitle: '전문성 · 안심 · 신속 · 전 과정 동행',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: '전담 서비스', desc: '1:1 상담・맞춤 플랜\n병원 예약・전 과정 동행' },
-    cardNoLabel: '카드 번호 NO.',
   },
   en: {
     title: 'Korea Medical Consult Card',
     subtitle: 'Professional · Reassuring · Guided',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: 'Dedicated Service', desc: '1:1 Consult · Custom Plan\nHospital Booking · Full Support' },
-    cardNoLabel: 'CARD NO.',
   },
   ar: {
     title: 'بطاقة الاستشارة الطبية',
     subtitle: 'احترافية · طمأنينة · مرافقة كاملة',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: 'خدمة مخصصة', desc: 'استشارة فردية · خطة مخصصة\nترتيب المواعيد · دعم كامل' },
-    cardNoLabel: 'رقم البطاقة',
   },
-}
-
-function todayCardNo(): string {
-  const d = new Date()
-  const yy = String(d.getFullYear()).slice(2)
-  const mm = String(d.getMonth() + 1).padStart(2, '0')
-  const dd = String(d.getDate()).padStart(2, '0')
-  return `KR${yy}${mm}${dd}-001`
 }
 
 function SeoulSkyline() {
@@ -130,11 +117,6 @@ export default function ConsultCardVisual({ lang, onClick }: { lang: LangCode; o
             <p className="ccv-right-block-title">{t.service.title}</p>
             <p className="ccv-right-block-text">{t.service.desc}</p>
           </div>
-        </div>
-
-        <div className="ccv-cardnum">
-          <span className="ccv-cardnum-label">{t.cardNoLabel}</span>
-          <span className="ccv-cardnum-value">{todayCardNo()}</span>
         </div>
       </div>
     </button>
