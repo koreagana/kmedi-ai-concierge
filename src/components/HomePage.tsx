@@ -298,8 +298,28 @@ export function HeroSection() {
 function ConciergeSection() {
   const { lang } = useApp()
   const t = translations[lang]
+  const isZh = lang === 'zh'
 
   const [showWxModal, setShowWxModal] = useState(false)
+  const [liPlaying, setLiPlaying] = useState(false)
+  const [kimPlaying, setKimPlaying] = useState(false)
+  const liVideoRef = useRef<HTMLVideoElement>(null)
+  const kimVideoRef = useRef<HTMLVideoElement>(null)
+
+  // 중국어 페이지에서만: 아바타를 클릭하면 정지 사진 대신 짧은 인사 영상이
+  // (같은 원형 안에서) 재생됨. 카드 전체 클릭(위챗 연결)과 겹치지 않도록
+  // stopPropagation 처리. 영상이 끝나면 다시 사진으로 돌아감.
+  const playAvatarVideo = (
+    e: React.MouseEvent,
+    videoRef: React.RefObject<HTMLVideoElement>,
+    setPlaying: (v: boolean) => void
+  ) => {
+    if (!isZh || !videoRef.current) return
+    e.stopPropagation()
+    videoRef.current.currentTime = 0
+    videoRef.current.play()
+    setPlaying(true)
+  }
 
   return (
     <section id="concierge" className="section-light">
@@ -316,8 +336,28 @@ function ConciergeSection() {
           className="concierge-card"
           onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}
         >
-          <div className="concierge-avatar concierge-avatar-f">
-            <img src="/concierge_image/lijing_800.png" alt="李静" className="concierge-avatar-img" />
+          <div
+            className="concierge-avatar concierge-avatar-f"
+            onClick={e => playAvatarVideo(e, liVideoRef, setLiPlaying)}
+            style={isZh ? { cursor: 'pointer' } : undefined}
+          >
+            <img
+              src="/concierge_image/lijing_800.png"
+              alt="李静"
+              className="concierge-avatar-img"
+              style={{ display: liPlaying ? 'none' : 'block' }}
+            />
+            {isZh && (
+              <video
+                ref={liVideoRef}
+                src="/concierge_lijing.mp4"
+                className="concierge-avatar-img"
+                style={{ display: liPlaying ? 'block' : 'none' }}
+                playsInline
+                onEnded={() => setLiPlaying(false)}
+              />
+            )}
+            {isZh && !liPlaying && <span className="concierge-play-badge">▶</span>}
           </div>
           <div>
             <p className="concierge-name">{t.concierge1Name}</p>
@@ -336,8 +376,28 @@ function ConciergeSection() {
           className="concierge-card"
           onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}
         >
-          <div className="concierge-avatar concierge-avatar-m">
-            <img src="/concierge_image/kimhyunwoo_800.png" alt="金贤宇" className="concierge-avatar-img" />
+          <div
+            className="concierge-avatar concierge-avatar-m"
+            onClick={e => playAvatarVideo(e, kimVideoRef, setKimPlaying)}
+            style={isZh ? { cursor: 'pointer' } : undefined}
+          >
+            <img
+              src="/concierge_image/kimhyunwoo_800.png"
+              alt="金贤宇"
+              className="concierge-avatar-img"
+              style={{ display: kimPlaying ? 'none' : 'block' }}
+            />
+            {isZh && (
+              <video
+                ref={kimVideoRef}
+                src="/concierge_jinxianyou.mp4"
+                className="concierge-avatar-img"
+                style={{ display: kimPlaying ? 'block' : 'none' }}
+                playsInline
+                onEnded={() => setKimPlaying(false)}
+              />
+            )}
+            {isZh && !kimPlaying && <span className="concierge-play-badge">▶</span>}
           </div>
           <div>
             <p className="concierge-name">{t.concierge2Name}</p>
