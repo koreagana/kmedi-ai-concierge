@@ -307,8 +307,10 @@ function ConciergeSection() {
   const kimVideoRef = useRef<HTMLVideoElement>(null)
 
   // 중국어 페이지에서만: 아바타를 클릭하면 정지 사진 대신 짧은 인사 영상이
-  // (같은 원형 안에서) 재생됨. 카드 전체 클릭(위챗 연결)과 겹치지 않도록
-  // stopPropagation 처리. 영상이 끝나면 다시 사진으로 돌아감.
+  // (같은 원형 안에서) 재생됨. 재생 중에 한 번 더 클릭하면 정지(음소거 대신
+  // 영상 자체를 멈춤)하고 사진으로 돌아감 — 토글 방식. 카드 전체 클릭
+  // (위챗 연결)과 겹치지 않도록 stopPropagation 처리. 영상이 끝까지 재생되면
+  // 자동으로 사진으로 돌아감.
   const playAvatarVideo = (
     e: React.MouseEvent,
     videoRef: React.RefObject<HTMLVideoElement>,
@@ -316,6 +318,11 @@ function ConciergeSection() {
   ) => {
     if (!isZh || !videoRef.current) return
     e.stopPropagation()
+    if (!videoRef.current.paused) {
+      videoRef.current.pause()
+      setPlaying(false)
+      return
+    }
     videoRef.current.currentTime = 0
     videoRef.current.play()
     setPlaying(true)
