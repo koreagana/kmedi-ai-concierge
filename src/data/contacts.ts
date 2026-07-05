@@ -3,8 +3,8 @@
    채널을 바꿀 때 이 파일만 수정하면 전체 반영됩니다.
    ══════════════════════════════════════════════════════════════════ */
 
-/** 기업 위챗 고객서비스 채널 (Chinese / General) */
-export const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
+/** 기업 위챗 AI 고문 봇 채널 (韩国医疗观光顾问 BOT / DeepSeek 기반) — Chinese / General */
+export const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/wework_admin/common/openBotProfile/24286b438582413aee148c8861b60fd22a'
 
 /** WhatsApp — Dr. Alaa Eldin Elastel (Arabic / International) */
 export const WHATSAPP_URL = 'https://wa.me/821077671903'
