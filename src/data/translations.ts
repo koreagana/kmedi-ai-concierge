@@ -72,6 +72,8 @@ interface Translations {
   networkCard3Status: string
   networkCard4Title: string
   networkCard4Desc: string
+  networkCard4ExpandTitle: string
+  networkCard4Caption: string
   // about
   aboutTitle: string
   aboutDesc: string
@@ -160,6 +162,8 @@ export const translations: Record<LangCode, Translations> = {
     networkCard3Status: '即将开放',
     networkCard4Title: '韩国全国医疗资源网络',
     networkCard4Desc: '根据客户需求，对接韩国不同地区、不同级别及不同专科方向的医疗资源',
+    networkCard4ExpandTitle: '韩国主要城市医疗资源分布',
+    networkCard4Caption: '覆盖首尔・釜山・济州，医疗资源持续扩展中',
     aboutTitle: '关于汉江春天',
     aboutDesc: '汉江春天（kmedispring.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
     disclaimer: '温馨提示：本网站不提供医疗诊断、治疗建议或紧急医疗服务。所有医疗判断、检查结果解释与治疗方案，均以韩国正规医疗机构及专业医生面诊为准。汉江春天提供的是医疗咨询整理、预约协调、翻译沟通与医疗旅游相关协助服务。',
@@ -241,6 +245,8 @@ export const translations: Record<LangCode, Translations> = {
     networkCard3Status: '오픈 예정',
     networkCard4Title: '전국 의료 리소스 네트워크',
     networkCard4Desc: '고객 니즈에 맞게 한국 각 지역·레벨·전문과 방향의 의료 리소스를 연결',
+    networkCard4ExpandTitle: '한국 주요 도시 의료 리소스 분포',
+    networkCard4Caption: '서울・부산・제주까지, 의료 리소스 네트워크 확장 중',
     aboutTitle: '한강애봄 소개',
     aboutDesc: '한강애봄(kmedispring.com)은 해외 고객을 위한 한국 의료 상담 및 조율 서비스 플랫폼입니다.\n저희는 병원도 의사도 아닙니다.\n한국 의료 시스템과 개인 니즈 사이의 AI 지원 연락 브릿지 — 니즈 정리, 절차 안내, 예약 조율, 전체 여정의 중국어 지원을 제공합니다.',
     disclaimer: '안내: 본 웹사이트는 의료 진단, 치료 조언 또는 응급 의료 서비스를 제공하지 않습니다. 모든 의료 판단, 검사 결과 해석 및 치료 방안은 한국 정규 의료기관 및 전문 의사의 직접 진찰을 기준으로 합니다.',
@@ -322,6 +328,8 @@ export const translations: Record<LangCode, Translations> = {
     networkCard3Status: 'Coming Soon',
     networkCard4Title: 'Nationwide Medical Network',
     networkCard4Desc: 'We connect clients with Korean medical resources across regions, levels, and specialties based on individual needs',
+    networkCard4ExpandTitle: "Medical Resources Across Korea's Major Cities",
+    networkCard4Caption: 'Covering Seoul, Busan, and Jeju — our network keeps growing',
     aboutTitle: 'About K-MediSpring',
     aboutDesc: 'K-MediSpring (kmedispring.com) is a concierge medical coordination service designed for international clients seeking quality healthcare in Korea.\nWe are not a hospital. We are not a doctor.\nWe are your dedicated liaison — helping you navigate the Korean medical system with clarity, translating your needs into the right connections, and supporting you at every step of your journey.',
     disclaimer: 'Disclaimer: K-MediSpring does not provide medical diagnosis, treatment recommendations, or emergency care. All clinical decisions, test interpretations, and treatment plans are made exclusively by licensed Korean healthcare professionals during in-person consultation. K-MediSpring provides medical coordination, appointment facilitation, interpretation, and travel support services only.',
@@ -403,6 +411,8 @@ export const translations: Record<LangCode, Translations> = {
     networkCard3Status: 'قريباً',
     networkCard4Title: 'شبكة طبية وطنية',
     networkCard4Desc: 'نربطك بالموارد الطبية الكورية عبر المناطق والمستويات والتخصصات وفق احتياجاتك',
+    networkCard4ExpandTitle: 'الموارد الطبية في المدن الكورية الرئيسية',
+    networkCard4Caption: 'تغطية سيول وبوسان وجيجو، وشبكتنا في تطور مستمر',
     aboutTitle: 'عن كيمديسبرينج',
     aboutDesc: 'كيمديسبرينج (kmedispring.com) خدمة تنسيق طبي وكونسيرج مصممة للعملاء الدوليين.\nلسنا مستشفى. لسنا أطباء.\nنحن وسيطك المخصص — نساعدك على التنقل في المنظومة الطبية الكورية بوضوح، ونترجم احتياجاتك إلى الوصلات الصحيحة، وندعمك في كل خطوة من رحلتك.',
     disclaimer: 'تنبيه: لا تقدم كيمديسبرينج التشخيص الطبي أو توصيات العلاج أو الرعاية الطارئة. جميع القرارات السريرية وتفسيرات نتائج الفحوصات وخطط العلاج تُتخذ حصرياً من قِبل متخصصي الرعاية الصحية الكوريين المرخصين خلال الاستشارة الشخصية.',

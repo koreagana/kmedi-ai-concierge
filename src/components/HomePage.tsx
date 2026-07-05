@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
-import { translations } from '../data/translations'
+import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
 import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR } from '../data/contacts'
+import { NETWORK_CITIES } from '../data/networkCities'
 import HalalMapButton from './HalalMapButton'
 import ConsultationCard from './ConsultationCard'
 import ConsultCardVisual from './ConsultCardVisual'
@@ -757,12 +758,43 @@ export function ContactSection() {
   )
 }
 
+/* 韩国全国医疗资源网络 카드를 펼치면 나오는 아주 단순화된 한국 지도.
+   도시는 src/data/networkCities.ts 에서 관리 — 나중에 부산/제주 협력병원이
+   늘어나거나 다른 도시(대구 등)가 추가돼도 그 배열에만 추가하면 됨. */
+function NetworkCityMap({ lang }: { lang: LangCode }) {
+  return (
+    <div className="network-map-wrap">
+      <svg className="network-map-svg" viewBox="0 0 200 240" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <path
+          d="M75,10 C95,8 115,18 122,35 C128,50 120,62 128,78 C136,94 152,105 158,125
+             C164,145 158,162 145,175 C135,184 122,180 110,186 C95,193 80,190 68,182
+             C55,174 45,178 35,168 C25,158 28,142 22,128 C16,113 22,98 18,82
+             C14,66 22,52 30,40 C38,28 30,18 45,12 C55,8 65,12 75,10 Z"
+          fill="#e3f0fb"
+          stroke="#bcdcf2"
+          strokeWidth="1.5"
+        />
+        <ellipse cx="62" cy="218" rx="20" ry="10.5" fill="#e3f0fb" stroke="#bcdcf2" strokeWidth="1.5" />
+      </svg>
+
+      {NETWORK_CITIES.map(city => (
+        <div key={city.id} className="city-marker" style={{ left: `${(city.x / 200) * 100}%`, top: `${(city.y / 240) * 100}%` }}>
+          <span className="city-dot-ring" />
+          <span className="city-dot-core" />
+          <span className="city-label">{city.name[lang]}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    7. MEDICAL NETWORK
    ═══════════════════════════════════════════════════════════════════ */
 export function MedicalNetworkSection() {
   const { lang, goToPackage } = useApp()
   const t = translations[lang]
+  const [networkExpanded, setNetworkExpanded] = useState(false)
 
   useEffect(() => {
     const style = document.createElement('style')
@@ -835,7 +867,8 @@ export function MedicalNetworkSection() {
       title: t.networkCard4Title,
       desc: t.networkCard4Desc,
       badge: null,
-      badgeType: 'none' as const,
+      badgeType: 'expand' as const,
+      onClick: () => setNetworkExpanded(v => !v),
     },
   ]
 
@@ -919,9 +952,46 @@ export function MedicalNetworkSection() {
                 {lang === 'ko' ? '자세히 보기 ›' : lang === 'en' ? 'View Details ›' : lang === 'ar' ? 'عرض التفاصيل ›' : '查看详情 ›'}
               </span>
             )}
+            {card.badgeType === 'expand' && (
+              <span style={{
+                fontSize: 10,
+                color: 'var(--brand)',
+                background: 'rgba(0,119,182,0.07)',
+                border: '1px solid rgba(0,119,182,0.22)',
+                borderRadius: 6,
+                padding: '3px 9px',
+                letterSpacing: '0.04em',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 4,
+                alignSelf: 'flex-start',
+              }}>
+                {lang === 'ko' ? '지도 보기' : lang === 'en' ? 'View Map' : lang === 'ar' ? 'عرض الخريطة' : '查看地图'}
+                <span style={{ display: 'inline-block', transition: 'transform 0.25s ease', transform: networkExpanded ? 'rotate(180deg)' : 'none' }}>▾</span>
+              </span>
+            )}
           </motion.div>
         ))}
       </div>
+
+      <AnimatePresence initial={false}>
+        {networkExpanded && (
+          <motion.div
+            key="network-map-panel"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div className="network-map-panel">
+              <p className="network-map-title">{t.networkCard4ExpandTitle}</p>
+              <NetworkCityMap lang={lang} />
+              <p className="network-map-caption">{t.networkCard4Caption}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
