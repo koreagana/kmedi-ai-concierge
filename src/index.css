@@ -1632,38 +1632,22 @@ body {
   width: 100%;
   height: 100%;
 }
-.city-marker {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-}
+.city-dot-group { transform-box: fill-box; transform-origin: center; }
 .city-dot-core {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #ff7a1a;
-  box-shadow: 0 0 0 2px #fff;
+  fill: #ff7a1a;
+  transform-box: fill-box;
+  transform-origin: center;
   animation: city-core-pulse 2s ease-in-out infinite;
 }
 .city-dot-ring {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ff8a3d;
+  fill: #ff8a3d;
+  transform-box: fill-box;
+  transform-origin: center;
   animation: city-ring-pulse 2s ease-out infinite;
 }
 .city-label {
   position: absolute;
-  top: 12px;
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   font-size: 10px;
   font-weight: 700;
   color: #0b3a63;
@@ -1671,15 +1655,16 @@ body {
   background: rgba(255,255,255,0.88);
   padding: 1px 6px;
   border-radius: 5px;
+  pointer-events: none;
 }
 @keyframes city-ring-pulse {
-  0%   { transform: scale(1);   opacity: 0.55; }
-  70%  { transform: scale(2.6); opacity: 0; }
-  100% { transform: scale(2.6); opacity: 0; }
+  0%   { transform: scale(1);   opacity: 0.5; }
+  70%  { transform: scale(3.2); opacity: 0; }
+  100% { transform: scale(3.2); opacity: 0; }
 }
 @keyframes city-core-pulse {
   0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.2); }
+  50%      { transform: scale(1.25); }
 }
 .network-map-caption {
   margin-top: 14px;
