@@ -1,9 +1,10 @@
-import { CalendarCheck, ShieldCheck } from 'lucide-react'
+import { CalendarCheck, ShieldCheck, ListChecks } from 'lucide-react'
 import { translations, type LangCode } from '../data/translations'
 
 interface CardText {
   title: string
   subtitle: string
+  hintBadge: string
   rightHeader: string
   service: { title: string; desc: string }
 }
@@ -12,24 +13,28 @@ const TEXT: Record<LangCode, CardText> = {
   zh: {
     title: '韩国医疗咨询卡',
     subtitle: '专业 · 安心 · 高效 · 全程陪伴',
+    hintBadge: '8问快速判断你的韩国医疗方向',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: '专属服务', desc: '一对一咨询・定制方案\n就医安排・全程协助' },
   },
   ko: {
     title: '한국 의료상담 카드',
     subtitle: '전문성 · 안심 · 신속 · 전 과정 동행',
+    hintBadge: '8가지 질문으로 빠르게 찾는 나의 한국 의료 방향',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: '전담 서비스', desc: '1:1 상담・맞춤 플랜\n병원 예약・전 과정 동행' },
   },
   en: {
     title: 'Korea Medical Consult Card',
     subtitle: 'Professional · Reassuring · Guided',
+    hintBadge: '8 Quick Questions to Find Your Care Direction',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: 'Dedicated Service', desc: '1:1 Consult · Custom Plan\nHospital Booking · Full Support' },
   },
   ar: {
     title: 'بطاقة الاستشارة الطبية',
     subtitle: 'احترافية · طمأنينة · مرافقة كاملة',
+    hintBadge: '8 أسئلة سريعة لتحديد اتجاهك الطبي في كوريا',
     rightHeader: 'MEDICAL CONSULTATION',
     service: { title: 'خدمة مخصصة', desc: 'استشارة فردية · خطة مخصصة\nترتيب المواعيد · دعم كامل' },
   },
@@ -101,6 +106,11 @@ export default function ConsultCardVisual({ lang, onClick }: { lang: LangCode; o
         <p className="ccv-title">{t.title}</p>
         <div className="ccv-title-underline" />
         <p className="ccv-subtitle">{t.subtitle}</p>
+
+        <div className="ccv-hint-badge">
+          <span className="ccv-hint-icon"><ListChecks size={13} strokeWidth={2.25} /></span>
+          <span>{t.hintBadge}</span>
+        </div>
 
         <SeoulSkyline />
       </div>
