@@ -761,51 +761,40 @@ export function ContactSection() {
 /* 韩国全国医疗资源网络 카드를 펼치면 나오는 아주 단순화된 한국 지도.
    도시는 src/data/networkCities.ts 에서 관리 — 나중에 부산/제주 협력병원이
    늘어나거나 다른 도시(대구 등)가 추가돼도 그 배열에만 추가하면 됨. */
-const KOREA_PATH = `M85,8 C100,6 112,14 118,26 C124,38 120,48 126,60 C132,72 142,80 146,95
-  C150,110 144,122 150,136 C156,150 168,158 172,172 C176,185 170,196 158,204
-  C150,210 145,206 138,210 C130,215 128,206 120,210 C112,214 110,206 102,208
-  C95,210 92,202 85,206 C78,210 74,202 66,205 C58,208 54,200 48,202
-  C40,205 34,198 30,202 C24,206 18,200 22,190 C26,180 20,175 24,165
-  C28,155 22,148 26,138 C30,128 24,118 28,108 C32,98 26,88 32,78
-  C38,68 32,58 40,48 C46,40 42,32 50,26 C56,20 54,14 64,12 C72,10 76,12 85,8 Z`
+/* 실제 이미지(/public/korea_map.jpeg, 400x714px) 기준 좌표.
+   각 점은 파이썬으로 이미지 픽셀을 직접 샘플링해서 실제 육지 위에만
+   찍히도록 검증한 좌표임 (src/data/networkCities.ts 주석 참고). */
+const MAP_IMG_W = 400
+const MAP_IMG_H = 714
 
 function NetworkCityMap({ lang }: { lang: LangCode }) {
   return (
     <div className="network-map-wrap">
-      <svg className="network-map-svg" viewBox="0 0 190 265" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-        <defs>
-          <clipPath id="korea-clip">
-            <path d={KOREA_PATH} />
-            <ellipse cx="65" cy="235" rx="22" ry="10" transform="rotate(-8 65 235)" />
-          </clipPath>
-        </defs>
-
-        <path d={KOREA_PATH} fill="#e3f0fb" stroke="#bcdcf2" strokeWidth="1.5" />
-        <ellipse cx="65" cy="235" rx="22" ry="10" transform="rotate(-8 65 235)" fill="#e3f0fb" stroke="#bcdcf2" strokeWidth="1.5" />
-
-        {/* 도시별 점 무리 — 지도 모양 밖으로 절대 삐져나가지 않도록 클립 처리 */}
-        <g clipPath="url(#korea-clip)">
-          {NETWORK_CITIES.map(city => (
-            <g key={city.id}>
-              {city.dots.map(([dx, dy], i) => (
-                <g key={i} className="city-dot-group" style={{ animationDelay: `${(i % 5) * 0.3}s` }}>
-                  <circle className="city-dot-ring" cx={dx} cy={dy} r="3" />
-                  <circle className="city-dot-core" cx={dx} cy={dy} r="2.1" />
-                </g>
-              ))}
-            </g>
-          ))}
-        </g>
-      </svg>
+      <img src="/korea_map.jpeg" alt="" className="network-map-img" />
 
       {NETWORK_CITIES.map(city => (
-        <span
-          key={city.id}
-          className="city-label"
-          style={{ left: `${(city.x / 190) * 100}%`, top: `${(city.y / 265) * 100}%` }}
-        >
-          {city.name[lang]}
-        </span>
+        <div key={city.id}>
+          {city.dots.map(([dx, dy], i) => (
+            <span
+              key={i}
+              className="city-dot-group"
+              style={{
+                left: `${(dx / MAP_IMG_W) * 100}%`,
+                top: `${(dy / MAP_IMG_H) * 100}%`,
+                animationDelay: `${(i % 5) * 0.3}s`,
+              }}
+            >
+              <span className="city-dot-ring" />
+              <span className="city-dot-core" />
+            </span>
+          ))}
+          <span
+            className="city-label"
+            style={{ left: `${(city.x / MAP_IMG_W) * 100}%`, top: `${(city.y / MAP_IMG_H) * 100}%` }}
+          >
+            {city.name[lang]}
+          </span>
+        </div>
       ))}
     </div>
   )

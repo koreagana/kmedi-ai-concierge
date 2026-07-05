@@ -1623,26 +1623,43 @@ body {
   position: relative;
   width: 100%;
   max-width: 220px;
-  aspect-ratio: 200 / 240;
+  aspect-ratio: 400 / 714;
   margin: 0 auto;
 }
-.network-map-svg {
+.network-map-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
 }
-.city-dot-group { transform-box: fill-box; transform-origin: center; }
+.city-dot-group {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+}
 .city-dot-core {
-  fill: #ff7a1a;
-  transform-box: fill-box;
-  transform-origin: center;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff7a1a;
+  box-shadow: 0 0 0 1.5px #fff;
   animation: city-core-pulse 2s ease-in-out infinite;
 }
 .city-dot-ring {
-  fill: #ff8a3d;
-  transform-box: fill-box;
-  transform-origin: center;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff8a3d;
   animation: city-ring-pulse 2s ease-out infinite;
 }
 .city-label {
