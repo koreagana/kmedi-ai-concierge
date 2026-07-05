@@ -3,8 +3,10 @@
    채널을 바꿀 때 이 파일만 수정하면 전체 반영됩니다.
    ══════════════════════════════════════════════════════════════════ */
 
-/** 기업 위챗 AI 고문 봇 채널 (韩国医疗观光顾问 BOT / DeepSeek 기반) — Chinese / General */
-export const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/wework_admin/common/openBotProfile/24286b438582413aee148c8861b60fd22a'
+/** 기업 위챗 고객서비스 채널 (Chinese / General)
+    ※ openBotProfile 형식 링크(韩国医疗观光顾问 BOT)는 企业微信 앱이 있어야만 열려서
+      일반 고객용으로 쓸 수 없음 — kfid 형식(일반 위챗으로 열림)으로 되돌림 */
+export const WECHAT_BIZ_URL = 'https://work.weixin.qq.com/kfid/kfcde7d9ec26f6b0df0'
 
 /** WhatsApp — Dr. Alaa Eldin Elastel (Arabic / International) */
 export const WHATSAPP_URL = 'https://wa.me/821077671903'
