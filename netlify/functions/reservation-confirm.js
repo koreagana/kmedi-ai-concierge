@@ -189,7 +189,7 @@ const TEMPLATE = `<!DOCTYPE html>
   /* PDF로 저장(인쇄) 시: 폼/안내문/버튼들은 다 빼고 카드만 출력.
      @page에 세로로 긴 모바일 카드 비율을 지정해 카드가 종이를 가득 채우게 함. */
   @media print{
-    @page{ size:100mm 200mm; margin:0; }
+    @page{ size:90mm 160mm; margin:0; } /* 휴대폰 화면 비율 9:16 */
     /* 브라우저가 인쇄 시 배경색을 기본적으로 빼거나 색을 흐리게(회색조) 바꾸는 것을 막음
        - 이게 없으면 stub-main의 파란 배경이 사라지고 흰 글씨가 회색으로 보임 */
     *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
@@ -199,6 +199,25 @@ const TEMPLATE = `<!DOCTYPE html>
     .panel.card-panel{ border:none; padding:0; background:transparent; box-shadow:none; }
     .preview-wrap{ padding:0; }
     #card{ max-width:none; width:100%; height:100vh; min-height:0; border:none; border-radius:0; box-shadow:none; }
+
+    /* 90×160mm(9:16)는 기존 100×200mm보다 세로가 짧아서, 화면 미리보기용 여백/글자
+       크기 그대로 두면 카드 내용이 한 페이지를 넘어 2페이지로 잘림 → 인쇄 시에만
+       여백·글자 크기를 줄여 한 페이지(1장)에 맞춤. 화면 편집 화면은 그대로 유지됨. */
+    .stub-main{ padding:22px 20px; }
+    .eyebrow{ margin-bottom:10px; padding:5px 14px; font-size:12px; }
+    .hospital-ko{ font-size:23px; }
+    .hospital-zh{ font-size:13px; margin-top:4px; }
+    .datetime-row{ margin:14px 0 12px; padding-top:14px; }
+    .dt-block .label{ margin-bottom:3px; }
+    .dt-block .value{ font-size:20px; }
+    .patient-block{ padding-top:12px; gap:5px; }
+    .patient-row{ font-size:12.5px; }
+    .meta-row{ margin-top:4px; }
+    .stub-addr{ padding:16px 20px; }
+    .addr-head{ margin-bottom:10px; font-size:13px; }
+    .addr-row{ padding:8px 0; }
+    .addr-input{ font-size:12.5px; }
+    .brandfoot{ margin-top:10px; }
   }
 </style>
 </head>
