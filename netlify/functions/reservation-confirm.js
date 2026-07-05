@@ -190,6 +190,9 @@ const TEMPLATE = `<!DOCTYPE html>
      @page에 세로로 긴 모바일 카드 비율을 지정해 카드가 종이를 가득 채우게 함. */
   @media print{
     @page{ size:100mm 200mm; margin:0; }
+    /* 브라우저가 인쇄 시 배경색을 기본적으로 빼거나 색을 흐리게(회색조) 바꾸는 것을 막음
+       - 이게 없으면 stub-main의 파란 배경이 사라지고 흰 글씨가 회색으로 보임 */
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
     .intro, .form-panel, .resetbtn, .pdfbtn{ display:none !important; }
     body{ background:#fff; padding:0; }
     .layout{ max-width:none; gap:0; }
