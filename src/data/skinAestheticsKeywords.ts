@@ -180,14 +180,6 @@ export const SKIN_AESTHETICS_SECTION = {
   ] as LocalizedText[],
 }
 
-/** Shown once at the bottom of the section — pigment/melasma is intentionally kept off the main pills. */
-export const SKIN_AESTHETICS_PIGMENT_NOTE: LocalizedText = {
-  zh: '色斑、黄褐斑、色素沉着等问题通常需要多次治疗和长期防晒管理。短期访韩客户不建议作为主要项目安排，可根据医生判断作为辅助咨询项目。',
-  ko: '기미, 잡티, 색소침착 등은 보통 반복 치료와 장기적인 자외선 관리가 필요합니다. 단기 방한 고객에게는 주요 일정으로 권하지 않으며, 의사 판단에 따라 보조 상담 항목으로만 검토할 수 있습니다.',
-  en: 'Concerns such as melasma, dark spots, and pigmentation usually require repeated treatment and long-term sun protection management. These are not recommended as a primary treatment plan for customers visiting Korea for a short stay, and may only be considered as a supplementary consultation item based on the physician\'s judgment.',
-  ar: 'عادةً ما تتطلب مخاوف مثل الكلف والبقع الداكنة والتصبغ علاجاً متكرراً وإدارة طويلة الأمد للحماية من الشمس. لا يُنصح بها كخطة علاج أساسية للعملاء الذين يزورون كوريا لفترة قصيرة، ويمكن اعتبارها فقط كعنصر استشارة تكميلي بناءً على تقدير الطبيب.',
-}
-
 export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   {
     id: 'skin-lifting',
@@ -241,6 +233,12 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       ko: '모공, 거친 피부결, 잔주름, 고르지 않은 피부결, 화장이 잘 받지 않는 문제 등은 피부 두께, 피지 분비, 염증 상태, 회복 기간을 함께 고려해 상담 방향을 정리해야 합니다.',
       en: 'Concerns such as enlarged pores, rough skin texture, fine lines, uneven skin texture, and makeup not applying smoothly usually need to be considered together with skin thickness, sebum production, inflammation status, and recovery time when organizing a consultation direction.',
       ar: 'عادةً ما تحتاج مخاوف مثل توسع المسام وخشونة ملمس البشرة والخطوط الدقيقة وعدم انتظام ملمس البشرة وعدم التصاق المكياج جيداً إلى مراعاة سماكة البشرة وإفراز الزهم وحالة الالتهاب وفترة التعافي عند تنظيم اتجاه الاستشارة.',
+    },
+    specialNote: {
+      zh: '色斑、黄褐斑、色素沉着等问题通常需要多次治疗和长期防晒管理。短期访韩客户不建议作为主要项目安排，可根据医生判断作为辅助咨询项目。',
+      ko: '기미, 잡티, 색소침착 등은 보통 반복 치료와 장기적인 자외선 관리가 필요합니다. 단기 방한 고객에게는 주요 일정으로 권하지 않으며, 의사 판단에 따라 보조 상담 항목으로만 검토할 수 있습니다.',
+      en: 'Concerns such as melasma, dark spots, and pigmentation usually require repeated treatment and long-term sun protection management. These are not recommended as a primary treatment plan for customers visiting Korea for a short stay, and may only be considered as a supplementary consultation item based on the physician\'s judgment.',
+      ar: 'عادةً ما تتطلب مخاوف مثل الكلف والبقع الداكنة والتصبغ علاجاً متكرراً وإدارة طويلة الأمد للحماية من الشمس. لا يُنصح بها كخطة علاج أساسية للعملاء الذين يزورون كوريا لفترة قصيرة، ويمكن اعتبارها فقط كعنصر استشارة تكميلي بناءً على تقدير الطبيب.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [

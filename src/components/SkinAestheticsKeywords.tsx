@@ -5,7 +5,6 @@ import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKe
 import {
   SKIN_AESTHETICS_KEYWORDS,
   SKIN_AESTHETICS_SECTION,
-  SKIN_AESTHETICS_PIGMENT_NOTE,
 } from '../data/skinAestheticsKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
@@ -97,10 +96,6 @@ export default function SkinAestheticsKeywords() {
           <p className={active.noteStyle === 'warning' ? undefined : 'bh-card-text'}>{pick(active.note, lang)}</p>
         </div>
       </motion.div>
-
-      <div className="bh-note" style={{ margin: '14px 20px 0' }}>
-        <p className="bh-card-text">{pick(SKIN_AESTHETICS_PIGMENT_NOTE, lang)}</p>
-      </div>
     </div>
   )
 }
