@@ -7,7 +7,6 @@ import {
   CategoryGridSection,
   ContactSection,
   MedicalNetworkSection,
-  AboutSection,
   FooterSection,
 } from './HomePage'
 import HalalMap from './HalalMap'
@@ -99,7 +98,6 @@ export default function ArHomePage() {
         <HalalMap dir="rtl" />
       </section>
       <MedicalNetworkSection />
-      <AboutSection />
       <FooterSection />
     </div>
   )

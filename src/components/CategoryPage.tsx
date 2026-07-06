@@ -17,7 +17,6 @@ import {
   CategoryGridSection,
   ContactSection,
   MedicalNetworkSection,
-  AboutSection,
   FooterSection,
 } from './HomePage'
 
@@ -134,7 +133,6 @@ export default function CategoryPage() {
       <CategoryGridSection />
       <ContactSection />
       <MedicalNetworkSection />
-      <AboutSection />
       <FooterSection />
     </div>
   )

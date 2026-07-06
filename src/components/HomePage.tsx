@@ -1015,27 +1015,6 @@ export function MedicalNetworkSection() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   8. ABOUT
-   ═══════════════════════════════════════════════════════════════════ */
-export function AboutSection() {
-  const { lang } = useApp()
-  const t = translations[lang]
-
-  return (
-    <section id="about" className="section-light2">
-      <motion.div {...fadeUp} style={{ textAlign: 'center' }}>
-        <p className="section-title">{t.aboutTitle}</p>
-        <div className="section-accent-line" />
-        <p className="about-desc">{t.aboutDesc}</p>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: 10 }}>
-          <TtsButton text={`${t.aboutTitle}\n\n${t.aboutDesc}`} lang={lang} />
-        </div>
-      </motion.div>
-    </section>
-  )
-}
-
-/* ═══════════════════════════════════════════════════════════════════
    9. FOOTER / DISCLAIMER
    ═══════════════════════════════════════════════════════════════════ */
 export function FooterSection() {
@@ -1222,7 +1201,6 @@ export default function HomePage() {
       <CategoryGridSection />
       <ContactSection />
       <MedicalNetworkSection />
-      <AboutSection />
       <FooterSection />
     </div>
   )
