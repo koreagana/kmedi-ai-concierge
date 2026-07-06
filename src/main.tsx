@@ -8,6 +8,7 @@ import ShopMainPage from './components/ShopMainPage'
 import ShopDetailPage from './components/ShopDetailPage'
 import ShopOrderPage from './components/ShopOrderPage'
 import PharmicellCreamPage from './components/PharmicellCreamPage'
+import TermsPage from './components/TermsPage'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/shop/order" element={<ShopOrderPage />} />
         <Route path="/shop/pharmicell-panthenol-cream" element={<PharmicellCreamPage />} />
         <Route path="/shop/:productId" element={<ShopDetailPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="/zh/*" element={<App key="zh" initialLang="zh" />} />
         <Route path="/en/*" element={<App key="en" initialLang="en" />} />
         <Route path="/ko/*" element={<App key="ko" initialLang="ko" />} />

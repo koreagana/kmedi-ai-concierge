@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
@@ -1063,6 +1063,12 @@ export function FooterSection() {
       >
         <p className="footer-intro-text">{t.companyIntro}</p>
       </div>
+
+      <p style={{ textAlign: 'center', marginBottom: 4 }}>
+        <Link to={`/terms?lang=${lang}`} style={{ fontSize: 9, color: 'rgba(255,255,255,0.25)', textDecoration: 'none' }}>
+          {t.termsLink}
+        </Link>
+      </p>
 
       {/* Email */}
       <button type="button" className="contact-email" onClick={handleCopyEmail}>

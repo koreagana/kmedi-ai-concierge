@@ -79,6 +79,7 @@ interface Translations {
   aboutDesc: string
   // footer
   companyIntro: string
+  termsLink: string
   // nav
   navConsult: string
   langZh: string
@@ -167,6 +168,7 @@ export const translations: Record<LangCode, Translations> = {
     aboutTitle: '关于汉江春天',
     aboutDesc: '汉江春天（ai-kmedi.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
     companyIntro: '汉江春天是韩国外国患者医疗观光服务专业提供商。',
+    termsLink: '使用条款',
     navConsult: '立即咨询',
     langZh: '中文',
     langKo: '한국어',
@@ -250,6 +252,7 @@ export const translations: Record<LangCode, Translations> = {
     aboutTitle: '한강애봄 소개',
     aboutDesc: '한강애봄(ai-kmedi.com)은 해외 고객을 위한 한국 의료 상담 및 조율 서비스 플랫폼입니다.\n저희는 병원도 의사도 아닙니다.\n한국 의료 시스템과 개인 니즈 사이의 AI 지원 연락 브릿지 — 니즈 정리, 절차 안내, 예약 조율, 전체 여정의 중국어 지원을 제공합니다.',
     companyIntro: '한강애봄은 한국의 외국인환자 의료관광 서비스 제공 전문업체입니다.',
+    termsLink: '이용약관',
     navConsult: '지금 상담',
     langZh: '中文',
     langKo: '한국어',
@@ -333,6 +336,7 @@ export const translations: Record<LangCode, Translations> = {
     aboutTitle: 'About K-MediSpring',
     aboutDesc: 'K-MediSpring (ai-kmedi.com) is a concierge medical coordination service designed for international clients seeking quality healthcare in Korea.\nWe are not a hospital. We are not a doctor.\nWe are your dedicated liaison — helping you navigate the Korean medical system with clarity, translating your needs into the right connections, and supporting you at every step of your journey.',
     companyIntro: 'K-MediSpring is a professional medical tourism concierge company for international patients in Korea.',
+    termsLink: 'Terms of Use',
     navConsult: 'Get Started',
     langZh: '中文',
     langKo: '한국어',
@@ -416,6 +420,7 @@ export const translations: Record<LangCode, Translations> = {
     aboutTitle: 'عن كيمديسبرينج',
     aboutDesc: 'كيمديسبرينج (ai-kmedi.com) خدمة تنسيق طبي وكونسيرج مصممة للعملاء الدوليين.\nلسنا مستشفى. لسنا أطباء.\nنحن وسيطك المخصص — نساعدك على التنقل في المنظومة الطبية الكورية بوضوح، ونترجم احتياجاتك إلى الوصلات الصحيحة، وندعمك في كل خطوة من رحلتك.',
     companyIntro: 'كيمديسبرينج هي شركة كونسيرج متخصصة في خدمات السياحة العلاجية للمرضى الدوليين في كوريا.',
+    termsLink: 'شروط الاستخدام',
     navConsult: 'ابدأ الآن',
     langZh: '中文',
     langKo: '한국어',

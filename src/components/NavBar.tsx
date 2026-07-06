@@ -17,12 +17,14 @@ export default function NavBar() {
   const navigate = useNavigate()
   const location = useLocation()
   const isArPage = location.pathname.startsWith('/ar')
-  // /shop, /shop/order etc. are standalone routes outside the /zh|ko|en|ar
+  // /shop, /shop/order, /terms etc. are standalone routes outside the /zh|ko|en|ar
   // nested router, so the usual goHome() (which just clears the search
   // params on the current route) can't get back to the real homepage here.
   const isShopPage = location.pathname.startsWith('/shop')
+  const isTermsPage = location.pathname.startsWith('/terms')
+  const isStandalonePage = isShopPage || isTermsPage
   const handleBrandClick = () => {
-    if (isShopPage) navigate(langPaths[lang])
+    if (isStandalonePage) navigate(langPaths[lang])
     else goHome()
   }
 
@@ -80,8 +82,8 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* /ar 페이지, /shop 페이지: 없음 / 그 외: 상담 버튼 */}
-        {page === 'home' && !isArPage && !isShopPage && (
+        {/* /ar 페이지, /shop, /terms 페이지: 없음 / 그 외: 상담 버튼 */}
+        {page === 'home' && !isArPage && !isStandalonePage && (
           <button
             onClick={scrollToContact}
             style={{
