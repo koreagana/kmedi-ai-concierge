@@ -1208,8 +1208,8 @@ export default function HomePage() {
   return (
     <div>
       <HeroSection />
-      <ConciergeSection />
       <CategoryGridSection />
+      <ConciergeSection />
       <HomeConsultationSection />
       <ConcernSection />
       <ContactSection />

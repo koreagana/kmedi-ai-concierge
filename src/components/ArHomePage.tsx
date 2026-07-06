@@ -89,8 +89,8 @@ export default function ArHomePage() {
   return (
     <div>
       <HeroSection />
-      <ArConciergeSection />
       <CategoryGridSection />
+      <ArConciergeSection />
       <HomeConsultationSection />
       <ConcernSection />
       <ContactSection />
