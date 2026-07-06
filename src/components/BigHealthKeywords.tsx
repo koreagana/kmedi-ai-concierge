@@ -3,41 +3,14 @@ import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import {
   BIG_HEALTH_KEYWORDS,
-  BIG_HEALTH_DOC_BUTTONS,
-  BIG_HEALTH_DOC_SECTION_LABEL,
   BIG_HEALTH_PILLS_PROMPT,
   BIG_HEALTH_SECTION,
-  type BigHealthDocButtonKey,
   type LocalizedText,
 } from '../data/bigHealthKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
-
-function DocButton({ docKey, lang }: { docKey: BigHealthDocButtonKey; lang: LangCode }) {
-  const doc = BIG_HEALTH_DOC_BUTTONS[docKey]
-  if (doc.kind === 'external') {
-    return (
-      <button
-        type="button"
-        className="bh-doc-btn"
-        onClick={() => window.open(doc.target, '_blank', 'noopener,noreferrer')}
-      >
-        <span>{pick(doc.label, lang)}</span>
-        <span className="bh-doc-btn-arrow">→</span>
-      </button>
-    )
-  }
-  // Prep/intake pages are separate static entry pages (see vite.config.ts), not SPA routes —
-  // a plain anchor triggers the real page load.
-  return (
-    <a className="bh-doc-btn" href={doc.target}>
-      <span>{pick(doc.label, lang)}</span>
-      <span className="bh-doc-btn-arrow">→</span>
-    </a>
-  )
-}
 
 export default function BigHealthKeywords() {
   const { lang } = useApp()
@@ -137,16 +110,6 @@ export default function BigHealthKeywords() {
               <li key={i}>{pick(item, lang)}</li>
             ))}
           </ul>
-        </div>
-
-        <div className="bh-card-section">
-          <p className="bh-card-label">{pick(BIG_HEALTH_DOC_SECTION_LABEL, lang)}</p>
-          <div className="bh-doc-buttons">
-            {active.docKeys.map(key => (
-              <DocButton key={key} docKey={key} lang={lang} />
-            ))}
-            <DocButton docKey="wechatConsult" lang={lang} />
-          </div>
         </div>
 
         {active.extraDisclaimer && (

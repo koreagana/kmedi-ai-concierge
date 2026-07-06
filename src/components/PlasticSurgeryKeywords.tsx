@@ -5,42 +5,11 @@ import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKe
 import {
   PLASTIC_SURGERY_KEYWORDS,
   PLASTIC_SURGERY_SECTION,
-  PLASTIC_SURGERY_DOC_BUTTONS,
-  type PlasticSurgeryDocButtonKey,
 } from '../data/plasticSurgeryKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
-
-const DOC_SECTION_LABEL: LocalizedText = {
-  zh: '相关准备文档',
-  ko: '관련 준비문서',
-  en: 'Related Preparation Documents',
-  ar: 'المستندات التحضيرية ذات الصلة',
-}
-
-function DocButton({ docKey, lang }: { docKey: PlasticSurgeryDocButtonKey; lang: LangCode }) {
-  const doc = PLASTIC_SURGERY_DOC_BUTTONS[docKey]
-  if (doc.kind === 'external') {
-    return (
-      <button
-        type="button"
-        className="bh-doc-btn"
-        onClick={() => window.open(doc.target, '_blank', 'noopener,noreferrer')}
-      >
-        <span>{pick(doc.label, lang)}</span>
-        <span className="bh-doc-btn-arrow">→</span>
-      </button>
-    )
-  }
-  return (
-    <a className="bh-doc-btn" href={doc.target}>
-      <span>{pick(doc.label, lang)}</span>
-      <span className="bh-doc-btn-arrow">→</span>
-    </a>
-  )
-}
 
 export default function PlasticSurgeryKeywords() {
   const { lang } = useApp()
@@ -120,16 +89,6 @@ export default function PlasticSurgeryKeywords() {
 
         <div className="bh-note" style={{ marginTop: 14 }}>
           <p className="bh-card-text">{pick(active.note, lang)}</p>
-        </div>
-
-        <div className="bh-card-section">
-          <p className="bh-card-label">{pick(DOC_SECTION_LABEL, lang)}</p>
-          <div className="bh-doc-buttons">
-            {active.docKeys.map(key => (
-              <DocButton key={key} docKey={key} lang={lang} />
-            ))}
-            <DocButton docKey="wechatConsult" lang={lang} />
-          </div>
         </div>
       </motion.div>
     </div>
