@@ -91,8 +91,6 @@ interface Translations {
   aiScriptExpand: string
   aiScriptCollapse: string
   makeCard: string
-  detailItemsExpand: string
-  detailItemsCollapse: string
   // category info blocks
   blockSuitableFor: string
   blockCommonQuestions: string
@@ -179,8 +177,6 @@ export const translations: Record<LangCode, Translations> = {
     aiScriptExpand: '展开全文',
     aiScriptCollapse: '收起',
     makeCard: '生成我的韩国医疗咨询卡',
-    detailItemsExpand: '查看详细项目',
-    detailItemsCollapse: '收起',
     blockSuitableFor: '适合这样的人',
     blockCommonQuestions: '常见咨询点',
     blockBeforeVisit: '来韩前建议准备',
@@ -264,8 +260,6 @@ export const translations: Record<LangCode, Translations> = {
     aiScriptExpand: '전문 보기',
     aiScriptCollapse: '접기',
     makeCard: '나의 한국 의료상담 카드 만들기',
-    detailItemsExpand: '상세 항목 보기',
-    detailItemsCollapse: '접기',
     blockSuitableFor: '이런 분께 추천',
     blockCommonQuestions: '주요 상담 항목',
     blockBeforeVisit: '방한 전 준비사항',
@@ -349,8 +343,6 @@ export const translations: Record<LangCode, Translations> = {
     aiScriptExpand: 'Read More',
     aiScriptCollapse: 'Show Less',
     makeCard: 'Create My Korea Medical Consultation Card',
-    detailItemsExpand: 'View Details',
-    detailItemsCollapse: 'Hide Details',
     blockSuitableFor: 'Who This Is For',
     blockCommonQuestions: 'Common Consultation Topics',
     blockBeforeVisit: 'Prepare Before Your Visit',
@@ -434,8 +426,6 @@ export const translations: Record<LangCode, Translations> = {
     aiScriptExpand: 'اقرأ المزيد',
     aiScriptCollapse: 'عرض أقل',
     makeCard: 'أنشئ بطاقة استشارتي الطبية الكورية',
-    detailItemsExpand: 'عرض التفاصيل',
-    detailItemsCollapse: 'إخفاء التفاصيل',
     blockSuitableFor: 'لمن هذا؟',
     blockCommonQuestions: 'موضوعات الاستشارة الشائعة',
     blockBeforeVisit: 'الاستعداد قبل زيارتك',

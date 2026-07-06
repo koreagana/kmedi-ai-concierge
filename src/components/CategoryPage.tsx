@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { getCategoryById } from '../data/categories'
@@ -32,8 +32,6 @@ export default function CategoryPage() {
   const t = translations[lang]
   const cat = getCategoryById(categoryId ?? '')
   const [showCard, setShowCard] = useState(false)
-  // Full-description expand/collapse — currently scoped to skin-beauty only (see [작업 2]).
-  const [descExpanded, setDescExpanded] = useState(false)
 
   // Same bfcache safeguard as HomeConsultationSection — a fresh reload already
   // resets this, but browser back/forward restores can keep stale state.
@@ -44,10 +42,6 @@ export default function CategoryPage() {
     window.addEventListener('pageshow', handlePageShow)
     return () => window.removeEventListener('pageshow', handlePageShow)
   }, [])
-
-  useEffect(() => {
-    setDescExpanded(false)
-  }, [categoryId, concernId])
 
   if (!cat) {
     return (
@@ -112,64 +106,20 @@ export default function CategoryPage() {
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
             <TtsButton text={concernLocal ? concernLocal.desc : catScriptFull} lang={lang} />
           </div>
-          {(() => {
-            const paragraphs = (concernLocal ? concernLocal.desc : catScriptFull).split('\n\n')
-            // Summary-first + expand toggle is currently scoped to skin-beauty only ([작업 2]);
-            // every other category keeps showing all paragraphs unconditionally, unchanged.
-            const isCollapsible = cat.id === 'skin-beauty' && paragraphs.length > 1
-            const leadParagraphs = isCollapsible ? paragraphs.slice(0, 1) : paragraphs
-            const restParagraphs = isCollapsible ? paragraphs.slice(1) : []
-
-            const renderPara = (para: string, i: number, isLast: boolean) => (
-              <p
-                key={i}
-                style={{
-                  fontSize: 13,
-                  color: 'var(--text)',
-                  lineHeight: 1.9,
-                  marginBottom: isLast ? 0 : 14,
-                  whiteSpace: 'pre-line',
-                }}
-              >
-                {para}
-              </p>
-            )
-
-            return (
-              <>
-                {leadParagraphs.map((para, i) => renderPara(para, i, !isCollapsible && i === leadParagraphs.length - 1))}
-
-                {isCollapsible && (
-                  <>
-                    <AnimatePresence initial={false}>
-                      {descExpanded && (
-                        <motion.div
-                          key="rest"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: 'easeOut' }}
-                          style={{ overflow: 'hidden' }}
-                        >
-                          <div style={{ paddingTop: 14 }}>
-                            {restParagraphs.map((para, i) => renderPara(para, i, i === restParagraphs.length - 1))}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    <button
-                      type="button"
-                      className="cat-desc-toggle"
-                      onClick={() => setDescExpanded(v => !v)}
-                    >
-                      {descExpanded ? t.aiScriptCollapse : t.aiScriptExpand} {descExpanded ? '▴' : '▾'}
-                    </button>
-                  </>
-                )}
-              </>
-            )
-          })()}
+          {(concernLocal ? concernLocal.desc : catScriptFull).split('\n\n').map((para, i, arr) => (
+            <p
+              key={i}
+              style={{
+                fontSize: 13,
+                color: 'var(--text)',
+                lineHeight: 1.9,
+                marginBottom: i < arr.length - 1 ? 14 : 0,
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {para}
+            </p>
+          ))}
         </motion.div>
       </div>
 

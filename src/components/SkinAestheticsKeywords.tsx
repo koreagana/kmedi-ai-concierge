@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
 import {
@@ -9,7 +9,7 @@ import {
   SKIN_AESTHETICS_DOC_BUTTONS,
   type SkinAestheticsDocButtonKey,
 } from '../data/skinAestheticsKeywords'
-import { translations, type LangCode } from '../data/translations'
+import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
@@ -45,15 +45,8 @@ function DocButton({ docKey, lang }: { docKey: SkinAestheticsDocButtonKey; lang:
 
 export default function SkinAestheticsKeywords() {
   const { lang } = useApp()
-  const t = translations[lang]
   const [activeIndex, setActiveIndex] = useState(0)
-  const [detailsExpanded, setDetailsExpanded] = useState(false)
   const active = SKIN_AESTHETICS_KEYWORDS[activeIndex]
-
-  const selectPill = (i: number) => {
-    setActiveIndex(i)
-    setDetailsExpanded(false)
-  }
 
   return (
     <div className="bh-section">
@@ -77,7 +70,7 @@ export default function SkinAestheticsKeywords() {
             role="tab"
             aria-selected={i === activeIndex}
             className={`bh-pill ${i === activeIndex ? 'bh-pill-active' : ''}`}
-            onClick={() => selectPill(i)}
+            onClick={() => setActiveIndex(i)}
           >
             {pick(kw.title, lang)}
           </button>
@@ -113,46 +106,23 @@ export default function SkinAestheticsKeywords() {
           </div>
         )}
 
-        <button
-          type="button"
-          className="cat-desc-toggle"
-          onClick={() => setDetailsExpanded(v => !v)}
-        >
-          {detailsExpanded ? t.detailItemsCollapse : t.detailItemsExpand} {detailsExpanded ? '▴' : '▾'}
-        </button>
+        <div className="bh-card-section">
+          <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
+          <ul className="bh-list">
+            {active.directions.map((item, i) => (
+              <li key={i}>{pick(item, lang)}</li>
+            ))}
+          </ul>
+        </div>
 
-        <AnimatePresence initial={false}>
-          {detailsExpanded && (
-            <motion.div
-              key={`details-${active.id}`}
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              style={{ overflow: 'hidden' }}
-            >
-              <div style={{ paddingTop: 14 }}>
-                <div className="bh-card-section">
-                  <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
-                  <ul className="bh-list">
-                    {active.directions.map((item, i) => (
-                      <li key={i}>{pick(item, lang)}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="bh-card-section">
-                  <p className="bh-card-label">{pick(active.audienceLabel, lang)}</p>
-                  <ul className="bh-list">
-                    {active.audience.map((item, i) => (
-                      <li key={i}>{pick(item, lang)}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className="bh-card-section">
+          <p className="bh-card-label">{pick(active.audienceLabel, lang)}</p>
+          <ul className="bh-list">
+            {active.audience.map((item, i) => (
+              <li key={i}>{pick(item, lang)}</li>
+            ))}
+          </ul>
+        </div>
 
         <div className={active.noteStyle === 'warning' ? 'bh-disclaimer' : 'bh-note'} style={{ marginTop: 14 }}>
           <p className={active.noteStyle === 'warning' ? undefined : 'bh-card-text'}>{pick(active.note, lang)}</p>
