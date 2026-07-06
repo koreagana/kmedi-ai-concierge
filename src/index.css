@@ -4,13 +4,13 @@
 
 /* ══════════════════════════════════════════
    한강애봄 DESIGN TOKENS
-   Source: kmedispring.com exact brand colors
+   Source: ai-kmedi.com exact brand colors
    Primary  #0077b6  rgb(0,119,182)
    Dark     #1f4e79  rgb(31,78,121)
    Mid      #4e97d1  rgb(78,151,209)
    ══════════════════════════════════════════ */
 :root {
-  /* Brand Blues — kmedispring.com 공식 */
+  /* Brand Blues — ai-kmedi.com 공식 */
   --brand:        #0077b6;   /* 헤더/버튼 primary blue */
   --brand-dark:   #1f4e79;   /* 로고 텍스트 deep blue */
   --brand-mid:    #4e97d1;   /* light accent blue */
@@ -88,7 +88,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: var(--brand);          /* kmedispring.com 헤더와 동일한 파란 바 */
+  background: var(--brand);          /* ai-kmedi.com 헤더와 동일한 파란 바 */
   padding: 0 16px;
   height: 52px;
   display: flex;
@@ -316,7 +316,7 @@ body {
   max-width: 280px;
 }
 
-/* Primary CTA — kmedispring.com brand blue */
+/* Primary CTA — ai-kmedi.com brand blue */
 .btn-primary {
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-mid) 100%);
   color: #fff;

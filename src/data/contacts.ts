@@ -15,7 +15,7 @@ export const WHATSAPP_URL = 'https://wa.me/821077671903'
 export const WHATSAPP_PHONE = '+821077671903'
 
 /** 이가나 원장 이메일 (문의폼 일반) */
-export const EMAIL_GENERAL = 'egana@kmedispring.com'
+export const EMAIL_GENERAL = 'care@k-medispring.cn'
 
 /** 알라딘 박사 이메일 (아랍어 문의폼) */
 export const EMAIL_AR = 'Alaadin22@yahoo.co.kr'
