@@ -6,6 +6,7 @@ import PackagePage from './components/PackagePage'
 import { AnimatePresence, motion } from 'framer-motion'
 import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
+import { updateCanonical } from './seo'
 import { useEffect } from 'react'
 
 const PACKAGE_TITLE: Record<LangCode, string> = {
@@ -19,6 +20,8 @@ const PACKAGE_TITLE: Record<LangCode, string> = {
     현재 언어(lang)에 맞게 동적으로 업데이트. title이 없으면(홈) 브랜드명만 표시.
     description은 translations의 aboutDesc를 재사용해 150자로 잘라서 씀. */
 function updateMeta(title: string | null, lang: LangCode) {
+  updateCanonical(lang)
+
   const brand = `${translations[lang].brandName} · AI Medical Concierge`
   const fullTitle = title ? `${title} · ${brand}` : brand
   document.title = fullTitle
