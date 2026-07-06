@@ -1,64 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://ai-kmedi.com/</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-kmedi.com/zh" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-kmedi.com/ko" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-kmedi.com/en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ai-kmedi.com/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-kmedi.com/zh" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
   <url>
     <loc>https://ai-kmedi.com/zh</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-kmedi.com/zh" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-kmedi.com/ko" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-kmedi.com/en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ai-kmedi.com/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-kmedi.com/zh" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ai-kmedi.com/ko</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-kmedi.com/zh" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-kmedi.com/ko" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-kmedi.com/en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ai-kmedi.com/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-kmedi.com/zh" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ai-kmedi.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-kmedi.com/zh" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-kmedi.com/ko" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-kmedi.com/en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ai-kmedi.com/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-kmedi.com/zh" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ai-kmedi.com/ar</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://ai-kmedi.com/zh" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://ai-kmedi.com/ko" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://ai-kmedi.com/en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://ai-kmedi.com/ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ai-kmedi.com/zh" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/big-health/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/stem-cell/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/skin-beauty/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/plastic-surgery/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/womens-care/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/mens-health/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/medical-tourism/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ai-kmedi.com/category/custom-plan/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://ai-kmedi.com/shop</loc>

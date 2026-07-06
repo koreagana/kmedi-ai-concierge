@@ -4,11 +4,9 @@ import HomePage from './components/HomePage'
 import CategoryPage from './components/CategoryPage'
 import PackagePage from './components/PackagePage'
 import { AnimatePresence, motion } from 'framer-motion'
-import type { LangCode } from './data/translations'
+import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
 import { useEffect } from 'react'
-
-const BRAND = '汉江春天 · AI Medical Concierge'
 
 const PACKAGE_TITLE: Record<LangCode, string> = {
   zh: '汉江春天 医疗旅游精品',
@@ -17,33 +15,46 @@ const PACKAGE_TITLE: Record<LangCode, string> = {
   ar: 'السياحة الطبية المميزة',
 }
 
-/** document.title 과 og:title meta를 동적으로 업데이트 */
-function updateMeta(title: string) {
-  document.title = `${title} · ${BRAND}`
-  const og = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
-  if (og) og.content = `${title} · ${BRAND}`
+/** document.title / og:title / twitter:title / (og·twitter·기본) description meta를
+    현재 언어(lang)에 맞게 동적으로 업데이트. title이 없으면(홈) 브랜드명만 표시.
+    description은 translations의 aboutDesc를 재사용해 150자로 잘라서 씀. */
+function updateMeta(title: string | null, lang: LangCode) {
+  const brand = `${translations[lang].brandName} · AI Medical Concierge`
+  const fullTitle = title ? `${title} · ${brand}` : brand
+  document.title = fullTitle
+
+  const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
+  if (ogTitle) ogTitle.content = fullTitle
+  const twTitle = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
+  if (twTitle) twTitle.content = fullTitle
+
+  const desc = translations[lang].aboutDesc.replace(/\n/g, ' ').slice(0, 150)
+  const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]')
+  if (metaDesc) metaDesc.content = desc
+  const ogDesc = document.querySelector<HTMLMetaElement>('meta[property="og:description"]')
+  if (ogDesc) ogDesc.content = desc
+  const twDesc = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
+  if (twDesc) twDesc.content = desc
 }
 
 function PageRouter() {
   const { page, lang, categoryId } = useApp()
 
-  // 페이지/카테고리/언어 변경 시 title·og:title 업데이트
+  // 페이지/카테고리/언어 변경 시 title·description meta 업데이트
   useEffect(() => {
     if (page === 'home') {
-      document.title = BRAND
-      const og = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
-      if (og) og.content = BRAND
+      updateMeta(null, lang)
       return
     }
     if (page === 'package') {
-      updateMeta(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'])
+      updateMeta(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'], lang)
       return
     }
     if (page === 'category' && categoryId) {
       const cat = categories.find((c) => c.id === categoryId)
       if (cat) {
         const name = (cat as unknown as Record<string, string>)[lang] ?? cat.zh
-        updateMeta(name)
+        updateMeta(name, lang)
       }
     }
   }, [page, lang, categoryId])
