@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { getCategoryById } from '../data/categories'
@@ -32,6 +32,8 @@ export default function CategoryPage() {
   const t = translations[lang]
   const cat = getCategoryById(categoryId ?? '')
   const [showCard, setShowCard] = useState(false)
+  // Full-description expand/collapse — currently scoped to skin-beauty only (see [작업 2]).
+  const [descExpanded, setDescExpanded] = useState(false)
 
   // Same bfcache safeguard as HomeConsultationSection — a fresh reload already
   // resets this, but browser back/forward restores can keep stale state.
@@ -42,6 +44,10 @@ export default function CategoryPage() {
     window.addEventListener('pageshow', handlePageShow)
     return () => window.removeEventListener('pageshow', handlePageShow)
   }, [])
+
+  useEffect(() => {
+    setDescExpanded(false)
+  }, [categoryId, concernId])
 
   if (!cat) {
     return (
@@ -63,29 +69,35 @@ export default function CategoryPage() {
   return (
     <div>
       {/* ── Hero ── */}
-      <div className="cat-hero">
-        <motion.button className="cat-back-btn" onClick={goHome} {...fadeUp}>
-          ← {t.backHome}
-        </motion.button>
+      <div
+        className={`cat-hero${cat.heroImage ? ' cat-hero--image' : ''}`}
+        style={cat.heroImage ? { backgroundImage: `url(${cat.heroImage})` } : undefined}
+      >
+        {cat.heroImage && <div className="cat-hero-overlay" />}
+        <div className="cat-hero-content">
+          <motion.button className="cat-back-btn" onClick={goHome} {...fadeUp}>
+            ← {t.backHome}
+          </motion.button>
 
-        <motion.h1 className="cat-hero-name" {...fadeUp} transition={{ delay: 0.05 }}>
-          {concernLocal ? concernLocal.title : catName}
-        </motion.h1>
+          <motion.h1 className="cat-hero-name" {...fadeUp} transition={{ delay: 0.05 }}>
+            {concernLocal ? concernLocal.title : catName}
+          </motion.h1>
 
-        {concernLocal ? (
-          <motion.div {...fadeUp} transition={{ delay: 0.1 }} style={{ marginTop: 10 }}>
-            <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,0.92)', letterSpacing: '0.01em' }}>
-              {concernLocal.catName ?? catName}
-            </p>
-            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginTop: 4, letterSpacing: '0.02em' }}>
-              {concernLocal.catTag ?? catTag}
-            </p>
-          </motion.div>
-        ) : (
-          <motion.p className="cat-hero-tag" {...fadeUp} transition={{ delay: 0.1 }}>
-            {catTag}
-          </motion.p>
-        )}
+          {concernLocal ? (
+            <motion.div {...fadeUp} transition={{ delay: 0.1 }} style={{ marginTop: 10 }}>
+              <p style={{ fontSize: 15, fontWeight: 600, color: 'rgba(255,255,255,0.92)', letterSpacing: '0.01em' }}>
+                {concernLocal.catName ?? catName}
+              </p>
+              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', marginTop: 4, letterSpacing: '0.02em' }}>
+                {concernLocal.catTag ?? catTag}
+              </p>
+            </motion.div>
+          ) : (
+            <motion.p className="cat-hero-tag" {...fadeUp} transition={{ delay: 0.1 }}>
+              {catTag}
+            </motion.p>
+          )}
+        </div>
       </div>
 
       {/* ── Description (concern body, or category scriptFull, blue left border, no title) ── */}
@@ -100,20 +112,64 @@ export default function CategoryPage() {
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
             <TtsButton text={concernLocal ? concernLocal.desc : catScriptFull} lang={lang} />
           </div>
-          {(concernLocal ? concernLocal.desc : catScriptFull).split('\n\n').map((para, i, arr) => (
-            <p
-              key={i}
-              style={{
-                fontSize: 13,
-                color: 'var(--text)',
-                lineHeight: 1.9,
-                marginBottom: i < arr.length - 1 ? 14 : 0,
-                whiteSpace: 'pre-line',
-              }}
-            >
-              {para}
-            </p>
-          ))}
+          {(() => {
+            const paragraphs = (concernLocal ? concernLocal.desc : catScriptFull).split('\n\n')
+            // Summary-first + expand toggle is currently scoped to skin-beauty only ([작업 2]);
+            // every other category keeps showing all paragraphs unconditionally, unchanged.
+            const isCollapsible = cat.id === 'skin-beauty' && paragraphs.length > 1
+            const leadParagraphs = isCollapsible ? paragraphs.slice(0, 1) : paragraphs
+            const restParagraphs = isCollapsible ? paragraphs.slice(1) : []
+
+            const renderPara = (para: string, i: number, isLast: boolean) => (
+              <p
+                key={i}
+                style={{
+                  fontSize: 13,
+                  color: 'var(--text)',
+                  lineHeight: 1.9,
+                  marginBottom: isLast ? 0 : 14,
+                  whiteSpace: 'pre-line',
+                }}
+              >
+                {para}
+              </p>
+            )
+
+            return (
+              <>
+                {leadParagraphs.map((para, i) => renderPara(para, i, !isCollapsible && i === leadParagraphs.length - 1))}
+
+                {isCollapsible && (
+                  <>
+                    <AnimatePresence initial={false}>
+                      {descExpanded && (
+                        <motion.div
+                          key="rest"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: 'easeOut' }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <div style={{ paddingTop: 14 }}>
+                            {restParagraphs.map((para, i) => renderPara(para, i, i === restParagraphs.length - 1))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    <button
+                      type="button"
+                      className="cat-desc-toggle"
+                      onClick={() => setDescExpanded(v => !v)}
+                    >
+                      {descExpanded ? t.aiScriptCollapse : t.aiScriptExpand} {descExpanded ? '▴' : '▾'}
+                    </button>
+                  </>
+                )}
+              </>
+            )
+          })()}
         </motion.div>
       </div>
 

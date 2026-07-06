@@ -15,6 +15,8 @@ export interface Category {
   en: string
   ar: string
   emoji: string
+  /** 카테고리 히어로 영역에 표시할 실사 이미지 경로 (public/ 기준). 없으면 기존 그라디언트만 표시. */
+  heroImage?: string
   tagZh: string
   tagKo: string
   tagEn: string
@@ -221,6 +223,7 @@ Final suitability must be determined by a licensed medical institution and physi
     en: 'Skin & Aesthetics',
     ar: 'الطب التجميلي للبشرة',
     emoji: '✨',
+    heroImage: '/category-hero/skin-beauty.png',
     tagZh: '皮肤提升 · 毛孔色斑 · 抗衰外观',
     tagKo: '피부 리프팅 · 모공색소 · 외모 항노화',
     tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',
