@@ -818,6 +818,12 @@ export function MedicalNetworkSection() {
         100% { box-shadow: 0 0 0 0  rgba(0, 119, 182, 0); background: rgba(0,119,182,0.07); border-color: rgba(0,119,182,0.22); }
       }
       .badge-pulse { animation: badge-pulse 2s ease-out infinite; }
+      @keyframes badge-pulse-orange {
+        0%   { box-shadow: 0 0 0 0 rgba(255, 122, 26, 0.9); background: rgba(255,122,26,0.18); border-color: rgba(255,122,26,0.7); }
+        60%  { box-shadow: 0 0 0 10px rgba(255, 122, 26, 0); background: rgba(255,122,26,0.06); border-color: rgba(255,122,26,0.25); }
+        100% { box-shadow: 0 0 0 0  rgba(255, 122, 26, 0); background: rgba(255,122,26,0.08); border-color: rgba(255,122,26,0.25); }
+      }
+      .badge-pulse-orange { animation: badge-pulse-orange 2s ease-out infinite; }
     `
     if (!document.getElementById('badge-pulse-style')) {
       document.head.appendChild(style)
@@ -965,11 +971,11 @@ export function MedicalNetworkSection() {
               </span>
             )}
             {card.badgeType === 'expand' && (
-              <span style={{
+              <span className="badge-pulse-orange" style={{
                 fontSize: 10,
-                color: 'var(--brand)',
-                background: 'rgba(0,119,182,0.07)',
-                border: '1px solid rgba(0,119,182,0.22)',
+                color: '#c85a00',
+                background: 'rgba(255,122,26,0.08)',
+                border: '1px solid rgba(255,122,26,0.25)',
                 borderRadius: 6,
                 padding: '3px 9px',
                 letterSpacing: '0.04em',
@@ -978,7 +984,7 @@ export function MedicalNetworkSection() {
                 gap: 4,
                 alignSelf: 'flex-start',
               }}>
-                {lang === 'ko' ? '지도 보기' : lang === 'en' ? 'View Map' : lang === 'ar' ? 'عرض الخريطة' : '查看地图'}
+                {lang === 'ko' ? '의료 네트워크' : lang === 'en' ? 'Medical Network' : lang === 'ar' ? 'الشبكة الطبية' : '医疗网络'}
                 <span style={{ display: 'inline-block', transition: 'transform 0.25s ease', transform: networkExpanded ? 'rotate(180deg)' : 'none' }}>▾</span>
               </span>
             )}
