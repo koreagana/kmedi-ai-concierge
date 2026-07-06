@@ -90,9 +90,9 @@ export default function ArHomePage() {
     <div>
       <HeroSection />
       <ArConciergeSection />
+      <CategoryGridSection />
       <HomeConsultationSection />
       <ConcernSection />
-      <CategoryGridSection />
       <ContactSection />
       <section id="halal-map-section" className="section-light">
         <HalalMap dir="rtl" />

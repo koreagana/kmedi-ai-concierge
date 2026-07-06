@@ -1209,9 +1209,9 @@ export default function HomePage() {
     <div>
       <HeroSection />
       <ConciergeSection />
+      <CategoryGridSection />
       <HomeConsultationSection />
       <ConcernSection />
-      <CategoryGridSection />
       <ContactSection />
       <MedicalNetworkSection />
       <FooterSection />
