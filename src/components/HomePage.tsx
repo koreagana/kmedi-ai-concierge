@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
-import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR } from '../data/contacts'
+import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR, getWhatsappUrl } from '../data/contacts'
 import { NETWORK_CITIES } from '../data/networkCities'
 import HalalMapButton from './HalalMapButton'
 import ConsultationCard from './ConsultationCard'
@@ -654,7 +654,7 @@ export function ContactSection() {
               </div>
             </motion.button>
 
-            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(WHATSAPP_URL, '_blank')}>
+            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(getWhatsappUrl(lang), '_blank')}>
               <div className="contact-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
               </div>
@@ -1107,10 +1107,10 @@ export function FooterSection() {
           <img src="/icons/youtube.jpg" alt="YouTube" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </a>
         <a
-          href={WHATSAPP_URL}
+          href={getWhatsappUrl(lang)}
           target="_blank"
           rel="noopener noreferrer"
-          title="WhatsApp · Dr. Alaa Eldin Elastel"
+          title={lang === 'zh' || lang === 'ko' ? 'WhatsApp' : 'WhatsApp · Dr. Alaa Eldin Elastel'}
           style={{
             width: 34, height: 34, borderRadius: '50%', background: '#25D366',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
