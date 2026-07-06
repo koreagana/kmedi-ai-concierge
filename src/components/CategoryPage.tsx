@@ -12,6 +12,7 @@ import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
 import WomensHealthKeywords from './WomensHealthKeywords'
 import MensHealthKeywords from './MensHealthKeywords'
 import CustomPlanContent from './CustomPlanContent'
+import ConsultCardVisual from './ConsultCardVisual'
 import {
   CategoryGridSection,
   ContactSection,
@@ -123,10 +124,7 @@ export default function CategoryPage() {
             borderTop: '1px solid var(--border-blue)',
           }}
         >
-          <button className="cat-make-card-btn" onClick={() => setShowCard(true)}>
-            {t.makeCard}
-            <span className="cat-make-card-btn-arrow">{lang === 'ar' ? '←' : '→'}</span>
-          </button>
+          <ConsultCardVisual lang={lang} onClick={() => setShowCard(true)} />
         </motion.div>
       ) : (
         <ConsultationCard categoryId={cat.id} concernId={concernId ?? undefined} onExit={() => setShowCard(false)} />
