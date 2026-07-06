@@ -1021,13 +1021,28 @@ export function FooterSection() {
   const { lang } = useApp()
   const t = translations[lang]
   const [showMiniProgram, setShowMiniProgram] = useState(false)
+  const [emailCopied, setEmailCopied] = useState(false)
+
+  const emailAddress = t.contactEmail.match(/[\w.+-]+@[\w-]+\.[\w.-]+/)?.[0] ?? ''
+  const copiedLabel = lang === 'zh' ? '已复制' : lang === 'ko' ? '복사됨' : lang === 'ar' ? 'تم النسخ' : 'Copied'
+
+  const handleCopyEmail = async () => {
+    if (!emailAddress) return
+    try {
+      await navigator.clipboard.writeText(emailAddress)
+      setEmailCopied(true)
+      setTimeout(() => setEmailCopied(false), 1500)
+    } catch {
+      // clipboard API unavailable — silently ignore, the email is still visible to copy manually
+    }
+  }
 
   return (
-    <section className="section-dark" style={{ paddingBottom: 52 }}>
-      <div className="divider-light" style={{ marginBottom: 32 }} />
+    <section className="section-dark">
+      <div className="divider-light" style={{ marginBottom: 20 }} />
 
       {/* Brand mark */}
-      <div style={{ textAlign: 'center', marginBottom: 28 }}>
+      <div style={{ textAlign: 'center', marginBottom: 16 }}>
         <p style={{ fontSize: 18, fontWeight: 700, color: '#e8c76a', letterSpacing: '0.06em', marginBottom: 4 }}>
           {t.brandName}
         </p>
@@ -1036,28 +1051,26 @@ export function FooterSection() {
         </p>
       </div>
 
-      {/* Disclaimer */}
-      <motion.div
-        {...fadeUp}
+      {/* Company intro */}
+      <div
         style={{
           background: 'rgba(255,255,255,0.04)',
           border: '1px solid rgba(255,255,255,0.08)',
           borderRadius: 14,
-          padding: '18px 16px',
-          marginBottom: 24,
+          padding: '14px 16px',
+          marginBottom: 16,
         }}
       >
-        <p style={{ fontSize: 10, color: 'rgba(196,154,60,0.7)', marginBottom: 8, letterSpacing: '0.08em' }}>
-          {lang === 'zh' ? '⚠ 温馨提示' : lang === 'ko' ? '⚠ 안내' : lang === 'ar' ? '⚠ تنبيه' : '⚠ Notice'}
-        </p>
-        <p className="disclaimer-text">{t.disclaimer}</p>
-      </motion.div>
+        <p className="footer-intro-text">{t.companyIntro}</p>
+      </div>
 
       {/* Email */}
-      <p className="contact-email">{t.contactEmail}</p>
+      <button type="button" className="contact-email" onClick={handleCopyEmail}>
+        {emailCopied ? copiedLabel : t.contactEmail}
+      </button>
 
       {/* SNS icons — 小红书(RedNote) / YouTube / WhatsApp / TikTok / 微信小程序 */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 20 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 14 }}>
         <a
           href="https://www.rednote.com/user/profile/5c62c866000000001201b355"
           target="_blank"
@@ -1171,12 +1184,12 @@ export function FooterSection() {
       </AnimatePresence>
 
       {/* Copyright */}
-      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
+      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 18 }}>
         © {new Date().getFullYear()} {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · ai-kmedi.com
       </p>
 
       {/* Internal-only admin link, intentionally inconspicuous */}
-      <p style={{ textAlign: 'center', marginTop: 10 }}>
+      <p style={{ textAlign: 'center', marginTop: 8 }}>
         <a
           href="/admin/prep"
           style={{ fontSize: 8, color: 'rgba(255,255,255,0.12)', textDecoration: 'none' }}

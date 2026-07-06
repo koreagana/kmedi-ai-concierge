@@ -78,7 +78,7 @@ interface Translations {
   aboutTitle: string
   aboutDesc: string
   // footer
-  disclaimer: string
+  companyIntro: string
   // nav
   navConsult: string
   langZh: string
@@ -166,7 +166,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard4Caption: '覆盖首尔・釜山・大邱・济州，医疗资源持续扩展中',
     aboutTitle: '关于汉江春天',
     aboutDesc: '汉江春天（ai-kmedi.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
-    disclaimer: '温馨提示：本网站不提供医疗诊断、治疗建议或紧急医疗服务。所有医疗判断、检查结果解释与治疗方案，均以韩国正规医疗机构及专业医生面诊为准。汉江春天提供的是医疗咨询整理、预约协调、翻译沟通与医疗旅游相关协助服务。',
+    companyIntro: '汉江春天是韩国外国患者医疗观光服务专业提供商。',
     navConsult: '立即咨询',
     langZh: '中文',
     langKo: '한국어',
@@ -249,7 +249,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard4Caption: '서울・부산・대구・제주까지, 의료 리소스 네트워크 확장 중',
     aboutTitle: '한강애봄 소개',
     aboutDesc: '한강애봄(ai-kmedi.com)은 해외 고객을 위한 한국 의료 상담 및 조율 서비스 플랫폼입니다.\n저희는 병원도 의사도 아닙니다.\n한국 의료 시스템과 개인 니즈 사이의 AI 지원 연락 브릿지 — 니즈 정리, 절차 안내, 예약 조율, 전체 여정의 중국어 지원을 제공합니다.',
-    disclaimer: '안내: 본 웹사이트는 의료 진단, 치료 조언 또는 응급 의료 서비스를 제공하지 않습니다. 모든 의료 판단, 검사 결과 해석 및 치료 방안은 한국 정규 의료기관 및 전문 의사의 직접 진찰을 기준으로 합니다.',
+    companyIntro: '한강애봄은 한국의 외국인환자 의료관광 서비스 제공 전문업체입니다.',
     navConsult: '지금 상담',
     langZh: '中文',
     langKo: '한국어',
@@ -332,7 +332,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard4Caption: 'Covering Seoul, Busan, Daegu, and Jeju — our network keeps growing',
     aboutTitle: 'About K-MediSpring',
     aboutDesc: 'K-MediSpring (ai-kmedi.com) is a concierge medical coordination service designed for international clients seeking quality healthcare in Korea.\nWe are not a hospital. We are not a doctor.\nWe are your dedicated liaison — helping you navigate the Korean medical system with clarity, translating your needs into the right connections, and supporting you at every step of your journey.',
-    disclaimer: 'Disclaimer: K-MediSpring does not provide medical diagnosis, treatment recommendations, or emergency care. All clinical decisions, test interpretations, and treatment plans are made exclusively by licensed Korean healthcare professionals during in-person consultation. K-MediSpring provides medical coordination, appointment facilitation, interpretation, and travel support services only.',
+    companyIntro: 'K-MediSpring is a professional medical tourism concierge company for international patients in Korea.',
     navConsult: 'Get Started',
     langZh: '中文',
     langKo: '한국어',
@@ -415,7 +415,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard4Caption: 'تغطية سيول وبوسان ودايغو وجيجو، وشبكتنا في تطور مستمر',
     aboutTitle: 'عن كيمديسبرينج',
     aboutDesc: 'كيمديسبرينج (ai-kmedi.com) خدمة تنسيق طبي وكونسيرج مصممة للعملاء الدوليين.\nلسنا مستشفى. لسنا أطباء.\nنحن وسيطك المخصص — نساعدك على التنقل في المنظومة الطبية الكورية بوضوح، ونترجم احتياجاتك إلى الوصلات الصحيحة، وندعمك في كل خطوة من رحلتك.',
-    disclaimer: 'تنبيه: لا تقدم كيمديسبرينج التشخيص الطبي أو توصيات العلاج أو الرعاية الطارئة. جميع القرارات السريرية وتفسيرات نتائج الفحوصات وخطط العلاج تُتخذ حصرياً من قِبل متخصصي الرعاية الصحية الكوريين المرخصين خلال الاستشارة الشخصية.',
+    companyIntro: 'كيمديسبرينج هي شركة كونسيرج متخصصة في خدمات السياحة العلاجية للمرضى الدوليين في كوريا.',
     navConsult: 'ابدأ الآن',
     langZh: '中文',
     langKo: '한국어',
