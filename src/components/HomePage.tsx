@@ -1193,7 +1193,7 @@ export function FooterSection() {
 
       {/* Copyright */}
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 28 }}>
-        © 2025 {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · ai-kmedi.com
+        © {new Date().getFullYear()} {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · ai-kmedi.com
       </p>
 
       {/* Internal-only admin link, intentionally inconspicuous */}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /prep/
+Disallow: /admin/
+Disallow: /shop/order
+Disallow: /intake/
+
+Sitemap: https://ai-kmedi.com/sitemap.xml
