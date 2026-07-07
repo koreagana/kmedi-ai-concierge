@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { MessageCircle } from 'lucide-react'
-import { WECHAT_BIZ_URL } from '../data/contacts'
+import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 
@@ -33,6 +33,11 @@ const STYLES = `
  * Transform-origin of right label = bottom-left  (nearest point to button).
  * Rotation is fixed at ±28°; scale animates to produce the spring-pop.
  */
+@keyframes fcbGoldPulse {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(2.1); opacity: 0; }
+  100% { transform: scale(2.1); opacity: 0; }
+}
 @keyframes fcbAntennaL {
   0%   { opacity: 0; transform: rotate(-28deg) scale(0.15); }
   8%   { opacity: 1; transform: rotate(-28deg) scale(1.14); }
@@ -180,7 +185,8 @@ export default function FloatingChatButton() {
 
   const handleClick = () => {
     if (wasLastActionDrag.current) { wasLastActionDrag.current = false; return }
-    window.open(WECHAT_BIZ_URL, '_blank', 'noopener,noreferrer')
+    const url = isRTL ? WHATSAPP_URL : WECHAT_BIZ_URL
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
   if (!pos) return null
@@ -242,32 +248,83 @@ export default function FloatingChatButton() {
       <div style={antennaStyle('left')}>{t.antennaLeft}</div>
       <div style={antennaStyle('right')}>{t.antennaRight}</div>
 
-      {/* main button */}
-      <button
-        className="fcb-btn"
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onClick={handleClick}
-        aria-label={t.floatingChatTooltip}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          borderRadius: '50%',
-          background: 'linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%)',
-          border: 'none',
-          cursor: isDragging ? 'grabbing' : 'grab',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          outline: 'none',
-          WebkitTapHighlightColor: 'transparent',
-          transform: isDragging ? 'scale(1.1)' : 'scale(1)',
-          transition: isDragging ? 'transform 0.1s ease' : 'transform 0.2s ease',
-        }}
-      >
-        <MessageCircle color="white" size={24} strokeWidth={2} />
-      </button>
+      {/* main button — Arabic: gold WhatsApp, others: orange WeChat */}
+      {isRTL ? (
+        <>
+          {/* gold pulse rings */}
+          {([0, 1.1] as const).map((delay, i) => (
+            <span key={i} style={{
+              position: 'absolute',
+              top: -4, left: -4,
+              width: 64, height: 64,
+              borderRadius: '50%',
+              border: '2px solid #e8b530',
+              animation: 'fcbGoldPulse 2.2s ease-out infinite',
+              animationDelay: `${delay}s`,
+              animationFillMode: 'both',
+              animationPlayState: shown ? 'running' : 'paused',
+              pointerEvents: 'none',
+            }} />
+          ))}
+
+          {/* gold WhatsApp button */}
+          <button
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onClick={handleClick}
+            aria-label={t.floatingChatTooltip}
+            style={{
+              position: 'absolute',
+              top: -4, left: -4,
+              width: 64, height: 64,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle at 30% 26%, #fffbe8 0%, #f9e08a 22%, #e8b530 50%, #c68a1a 74%, #8a5a0d 100%)',
+              border: '2px solid #b8841c',
+              boxShadow: 'inset 1px 2px 5px rgba(255,255,255,0.5), inset -2px -3px 7px rgba(80,48,4,0.6), 0 6px 16px rgba(0,0,0,0.5)',
+              cursor: isDragging ? 'grabbing' : 'grab',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              outline: 'none',
+              WebkitTapHighlightColor: 'transparent',
+              transform: isDragging ? 'scale(1.1)' : 'scale(1)',
+              transition: isDragging ? 'transform 0.1s ease' : 'transform 0.2s ease',
+            }}
+          >
+            {/* WhatsApp icon (inline SVG — react-icons not installed) */}
+            <svg viewBox="0 0 24 24" width={28} height={28} fill="#3a2600" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+          </button>
+        </>
+      ) : (
+        <button
+          className="fcb-btn"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onClick={handleClick}
+          aria-label={t.floatingChatTooltip}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: '50%',
+            background: 'linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%)',
+            border: 'none',
+            cursor: isDragging ? 'grabbing' : 'grab',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            outline: 'none',
+            WebkitTapHighlightColor: 'transparent',
+            transform: isDragging ? 'scale(1.1)' : 'scale(1)',
+            transition: isDragging ? 'transform 0.1s ease' : 'transform 0.2s ease',
+          }}
+        >
+          <MessageCircle color="white" size={24} strokeWidth={2} />
+        </button>
+      )}
     </div>
   )
 
