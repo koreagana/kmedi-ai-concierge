@@ -188,28 +188,28 @@ export default function FloatingChatButton() {
   /*
    * Antenna label geometry (wrapper = 56×56, button center = (28,28)):
    *
-   * Left label  at -28° from vertical, ~45px from center:
-   *   center = (28 - sin28°·45, 28 - cos28°·45) ≈ (7, -13) in wrapper
-   *   top-left ≈ (-13, -24) → transform-origin: right bottom  (bottom-right of label ≈ button edge)
+   * Pivot (transform-origin) for each label is at its bottom corner nearest
+   * the button. Pivot is kept at y ≈ -6 (6px above wrapper top) so that even
+   * at minimum scale (0.15) the label stays clear of the button circle.
    *
-   * Right label at +28° from vertical:
-   *   center ≈ (49, -13) → top-left ≈ (29, -24) → transform-origin: left bottom
-   *
-   * Animation plays regardless of shown state; the wrapper's opacity gates
-   * visibility. animationPlayState pauses the loop while hidden so it always
-   * starts fresh at 0% (left first) when the button becomes visible.
+   * Left  label: top=-30, left=-10, pivot (bottom-right) = (36, -6)
+   *   → center after rotate(-28°) ≈ (10, -6) in wrapper, ~38px from button center
+   * Right label: top=-30, left=18,  pivot (bottom-left)  = (18, -6)
+   *   → center after rotate(+28°) ≈ (44, -6) in wrapper, ~38px from button center
    */
   const antennaStyle = (side: 'left' | 'right') => ({
     position: 'absolute' as const,
-    top: -24,
-    ...(side === 'left' ? { left: -13 } : { left: 29 }),
+    top: -30,
+    ...(side === 'left' ? { left: -10 } : { left: 18 }),
     transformOrigin: side === 'left' ? '100% 100%' : '0% 100%',
     animation: `${side === 'left' ? 'fcbAntennaL' : 'fcbAntennaR'} 5s ease-in-out infinite`,
     animationDelay: side === 'right' ? '2.5s' : '0s',
     animationFillMode: 'both' as const,
     animationPlayState: shown ? 'running' : 'paused',
-    background: '#FF6B35',
-    color: '#ffffff',
+    background: '#ffffff',
+    color: '#FF6B35',
+    border: '1.5px solid #FF6B35',
+    boxShadow: '0 2px 8px rgba(255,107,53,0.18)',
     fontSize: 12,
     fontWeight: 700,
     padding: '5px 11px',
