@@ -1179,7 +1179,7 @@ export function FooterSection() {
       </AnimatePresence>
 
       {/* Copyright */}
-      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 18, lineHeight: 1.9 }}>
+      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.75)', textAlign: 'center', marginTop: 18, lineHeight: 1.9 }}>
         © 2026 K-MediSpring. All rights reserved.<br />
         상호: 한강애봄 | 대표: 이가나 | 사업자등록번호: 829-21-01856<br />
         주소: 서울특별시 성북구 삼양로 29, 3층 11호
