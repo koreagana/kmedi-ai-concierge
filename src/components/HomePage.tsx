@@ -1042,26 +1042,13 @@ export function FooterSection() {
 
       {/* Brand mark */}
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
-        <p style={{ fontSize: 18, fontWeight: 700, color: '#e8c76a', letterSpacing: '0.06em', marginBottom: 8 }}>
+        <p style={{ fontSize: 18, fontWeight: 700, color: '#e8c76a', letterSpacing: '0.06em', marginBottom: 4 }}>
           {t.brandName}
         </p>
         {/* Email — click to copy */}
-        <button type="button" className="contact-email" onClick={handleCopyEmail} style={{ width: 'auto', display: 'inline-block' }}>
+        <button type="button" className="contact-email" onClick={handleCopyEmail} style={{ width: 'auto', display: 'inline-block', color: 'rgba(255,255,255,0.8)' }}>
           {emailCopied ? copiedLabel : 'Email: care@k-medispring.cn'}
         </button>
-      </div>
-
-      {/* Company intro */}
-      <div
-        style={{
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          borderRadius: 14,
-          padding: '14px 16px',
-          marginBottom: 16,
-        }}
-      >
-        <p className="footer-intro-text">{t.companyIntro}</p>
       </div>
 
       {/* SNS icons — 小红书(RedNote) / YouTube / WhatsApp / TikTok / 微信小程序 */}
