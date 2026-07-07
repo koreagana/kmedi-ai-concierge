@@ -65,6 +65,14 @@ export default function CategoryPage() {
         style={cat.heroImage ? { backgroundImage: `url(${cat.heroImage})` } : undefined}
       >
         {cat.heroImage && <div className="cat-hero-overlay" />}
+
+        {/* Video oval: plastic-surgery only, inside relative hero container */}
+        {cat.id === 'plastic-surgery' && cat.heroImage && (
+          <div className="ps-video-oval">
+            <video autoPlay muted loop playsInline src="/category-hero/gride_woman.mp4" />
+          </div>
+        )}
+
         <div className="cat-hero-content">
           <motion.button className="cat-back-btn" onClick={goHome} {...fadeUp}>
             ← {t.backHome}
