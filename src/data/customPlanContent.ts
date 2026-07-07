@@ -327,6 +327,22 @@ export const CUSTOM_PLAN_PROCESS_TITLE: LocalizedText = {
   ar: 'خطوات الخدمة',
 }
 
+// ── Diagram labels (short labels for SVG system diagram only) ─────────
+export const CPD: Record<string, LocalizedText> = {
+  c1:  { zh: '疾病·重症',           ko: '질병·중증',                 en: 'Serious Illness',           ar: 'مرض خطير'                  },
+  c2:  { zh: '健康检查',             ko: '건강검진',                   en: 'Health Check',              ar: 'فحص صحي'                   },
+  c3:  { zh: '皮肤·整形',           ko: '피부·성형',                 en: 'Aesthetics',                ar: 'تجميل'                     },
+  hub: { zh: '调协中心',             ko: '조율 센터',                  en: 'Coordination Hub',          ar: 'مركز التنسيق'              },
+  s1:  { zh: '病院预约',             ko: '병원 예약',                  en: 'Hospital',                  ar: 'حجز'                       },
+  s2:  { zh: '资料整理',             ko: '자료 정리',                  en: 'Records',                   ar: 'توثيق'                     },
+  s3:  { zh: '翻译陪同',             ko: '통역 동행',                  en: 'Interpreter',               ar: 'ترجمة'                     },
+  s4:  { zh: '车辆住宿',             ko: '차량·숙박',                 en: 'Transport',                 ar: 'نقل وإقامة'                },
+  s5:  { zh: '恢复提醒',             ko: '회복 알림',                  en: 'Recovery',                  ar: 'تعافي'                     },
+  s6:  { zh: '生活协助',             ko: '생활 지원',                  en: 'Daily Life',                ar: 'دعم يومي'                  },
+  b1:  { zh: '正规登记外患招徕机构', ko: '정식 등록 외국인환자유치기관', en: 'Registered Patient Agency',  ar: 'جهة مسجلة للمرضى الأجانب'  },
+  b2:  { zh: '责任保险体系加入',     ko: '책임보험 가입 완료',          en: 'Liability Insurance',       ar: 'تأمين المسؤولية'            },
+}
+
 export const CUSTOM_PLAN_STEPS: CustomPlanStep[] = [
   {
     title: {

@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { type LocalizedText } from '../data/bigHealthKeywords'
 import {
@@ -12,11 +13,12 @@ import {
   CUSTOM_PLAN_CLIENT_CARDS,
   CUSTOM_PLAN_PROCESS_TITLE,
   CUSTOM_PLAN_STEPS,
-  CUSTOM_PLAN_DOC_BUTTONS,
 } from '../data/customPlanContent'
+import { translations } from '../data/translations'
 import type { LangCode } from '../data/translations'
 import type { CustomPlanTextSection } from '../data/customPlanContent'
 import TtsButton from './TtsButton'
+import CustomPlanSystemDiagram from './CustomPlanSystemDiagram'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -42,10 +44,13 @@ function TextSection({ section, lang }: { section: CustomPlanTextSection; lang: 
 
 export default function CustomPlanContent() {
   const { lang } = useApp()
-  const wechat = CUSTOM_PLAN_DOC_BUTTONS.wechatConsult
+  const t = translations[lang]
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <div className="bh-section">
+
+      {/* ── Intro ── */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10, padding: '26px 20px 8px' }}>
         <p className="bh-section-title" style={{ padding: 0 }}>{pick(CUSTOM_PLAN_SECTION.title, lang)}</p>
         <TtsButton
@@ -58,36 +63,17 @@ export default function CustomPlanContent() {
         <p key={i} className="bh-section-desc">{para}</p>
       ))}
 
+      {/* ── Safety disclaimer ── */}
       <div className="bh-safety">
         {CUSTOM_PLAN_SECTION.safety.map((line, i) => (
           <p key={i} className="bh-safety-line">{pick(line, lang)}</p>
         ))}
       </div>
 
-      {/* ── Section 1: what we coordinate ── */}
-      <p className="bh-subsection-title">{pick(CUSTOM_PLAN_COORDINATION_TITLE, lang)}</p>
-      <div className="bh-mini-cards">
-        {CUSTOM_PLAN_COORDINATION_CARDS.map((card, i) => (
-          <motion.div key={i} {...fadeUp} className="bh-mini-card">
-            <p className="bh-mini-card-title">{pick(card.title, lang)}</p>
-            <p className="bh-mini-card-desc">{pick(card.desc, lang)}</p>
-          </motion.div>
-        ))}
-      </div>
+      {/* ── [작업 1] SVG system diagram ── */}
+      <CustomPlanSystemDiagram lang={lang} />
 
-      {/* ── Section 2: registered agency ── */}
-      <p className="bh-subsection-title">{pick(CUSTOM_PLAN_REGISTRATION.title, lang)}</p>
-      <TextSection section={CUSTOM_PLAN_REGISTRATION} lang={lang} />
-
-      {/* ── Section 3: serious illness referral ── */}
-      <p className="bh-subsection-title">{pick(CUSTOM_PLAN_REFERRAL.title, lang)}</p>
-      <TextSection section={CUSTOM_PLAN_REFERRAL} lang={lang} />
-
-      {/* ── Section 4: aesthetics hospital matching ── */}
-      <p className="bh-subsection-title">{pick(CUSTOM_PLAN_AESTHETICS_MATCHING.title, lang)}</p>
-      <TextSection section={CUSTOM_PLAN_AESTHETICS_MATCHING} lang={lang} />
-
-      {/* ── Section 5: plans by client type ── */}
+      {/* ── [작업 2] Client type cards — always visible ── */}
       <p className="bh-subsection-title">{pick(CUSTOM_PLAN_CLIENT_TYPES_TITLE, lang)}</p>
       <div className="bh-mini-cards">
         {CUSTOM_PLAN_CLIENT_CARDS.map((card, i) => (
@@ -99,33 +85,85 @@ export default function CustomPlanContent() {
         ))}
       </div>
 
-      {/* ── Section 6: service process ── */}
-      <p className="bh-subsection-title">{pick(CUSTOM_PLAN_PROCESS_TITLE, lang)}</p>
-      <div className="bh-steps">
-        {CUSTOM_PLAN_STEPS.map((step, i) => (
-          <motion.div key={i} {...fadeUp} className="bh-step">
-            <span className="bh-step-number">{i + 1}</span>
-            <div>
-              <p className="bh-step-title">{pick(step.title, lang)}</p>
-              <p className="bh-step-desc">{pick(step.desc, lang)}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* ── Closing + CTA ── */}
-      <p className="bh-closing-text">{pick(CUSTOM_PLAN_SECTION.closing, lang)}</p>
-
-      <div style={{ margin: '16px 20px 4px' }}>
+      {/* ── [작업 3] "더보기" toggle ── */}
+      <div style={{ padding: '16px 20px 4px', display: 'flex', justifyContent: 'center' }}>
         <button
           type="button"
-          className="bh-doc-btn"
-          onClick={() => window.open(wechat.target, '_blank', 'noopener,noreferrer')}
+          onClick={() => setExpanded(prev => !prev)}
+          style={{
+            background: 'transparent',
+            border: '1.5px solid var(--border-blue, #CBD5E1)',
+            borderRadius: 20,
+            padding: '8px 26px',
+            fontSize: 13,
+            fontWeight: 600,
+            color: 'var(--text-muted, #64748B)',
+            cursor: 'pointer',
+            letterSpacing: '0.01em',
+          }}
         >
-          <span>{pick(wechat.label, lang)}</span>
-          <span className="bh-doc-btn-arrow">→</span>
+          {expanded ? t.aiScriptCollapse : t.aiScriptExpand}
+          {' '}
+          {expanded ? '▴' : '▾'}
         </button>
       </div>
+
+      {/* ── [작업 3] Collapsible detailed content ── */}
+      <AnimatePresence initial={false}>
+        {expanded && (
+          <motion.div
+            key="custom-plan-detail"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            style={{ overflow: 'hidden' }}
+          >
+            {/* 6 coordination services with full desc */}
+            <p className="bh-subsection-title">{pick(CUSTOM_PLAN_COORDINATION_TITLE, lang)}</p>
+            <div className="bh-mini-cards">
+              {CUSTOM_PLAN_COORDINATION_CARDS.map((card, i) => (
+                <motion.div key={i} {...fadeUp} className="bh-mini-card">
+                  <p className="bh-mini-card-title">{pick(card.title, lang)}</p>
+                  <p className="bh-mini-card-desc">{pick(card.desc, lang)}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Registered agency */}
+            <p className="bh-subsection-title">{pick(CUSTOM_PLAN_REGISTRATION.title, lang)}</p>
+            <TextSection section={CUSTOM_PLAN_REGISTRATION} lang={lang} />
+
+            {/* Serious illness referral */}
+            <p className="bh-subsection-title">{pick(CUSTOM_PLAN_REFERRAL.title, lang)}</p>
+            <TextSection section={CUSTOM_PLAN_REFERRAL} lang={lang} />
+
+            {/* Aesthetics hospital matching */}
+            <p className="bh-subsection-title">{pick(CUSTOM_PLAN_AESTHETICS_MATCHING.title, lang)}</p>
+            <TextSection section={CUSTOM_PLAN_AESTHETICS_MATCHING} lang={lang} />
+
+            {/* Service process steps */}
+            <p className="bh-subsection-title">{pick(CUSTOM_PLAN_PROCESS_TITLE, lang)}</p>
+            <div className="bh-steps">
+              {CUSTOM_PLAN_STEPS.map((step, i) => (
+                <motion.div key={i} {...fadeUp} className="bh-step">
+                  <span className="bh-step-number">{i + 1}</span>
+                  <div>
+                    <p className="bh-step-title">{pick(step.title, lang)}</p>
+                    <p className="bh-step-desc">{pick(step.desc, lang)}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Closing text (always visible) ── */}
+      <p className="bh-closing-text">{pick(CUSTOM_PLAN_SECTION.closing, lang)}</p>
+
+      {/* [작업 4] wechat consult button removed — FloatingChatButton covers this */}
     </div>
   )
 }

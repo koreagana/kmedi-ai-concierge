@@ -8,6 +8,7 @@ concierge_image/
 위챗_샤오청쉬_의료진리스트/
 *.mp4
 !public/category-hero/gride_woman.mp4
+!public/category-hero/custom-plan.mp4
 *.xlsx
 # Local Netlify folder
 .netlify

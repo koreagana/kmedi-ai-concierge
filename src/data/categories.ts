@@ -17,6 +17,8 @@ export interface Category {
   emoji: string
   /** 카테고리 히어로 영역에 표시할 실사 이미지 경로 (public/ 기준). 없으면 기존 그라디언트만 표시. */
   heroImage?: string
+  /** heroImage 대신 배경 전체를 커버하는 영상으로 대체. 설정 시 heroImage는 poster로만 사용. */
+  heroVideo?: string
   tagZh: string
   tagKo: string
   tagEn: string
@@ -637,6 +639,7 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
     ar: 'خطة سياحة طبية مخصصة',
     emoji: '🗺️',
     heroImage: '/category-hero/custom-plan.png',
+    heroVideo: '/category-hero/custom-plan.mp4',
     tagZh: '多项目组合 · 预算行程 · 全程协调',
     tagKo: '복합상담 · 예산일정 · 전체조율',
     tagEn: 'Multi-Service Plan · Budget/Itinerary · Full Coordination',

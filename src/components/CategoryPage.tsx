@@ -61,10 +61,27 @@ export default function CategoryPage() {
     <div>
       {/* ── Hero ── */}
       <div
-        className={`cat-hero${cat.heroImage ? ' cat-hero--image' : ''}`}
-        style={cat.heroImage ? { backgroundImage: `url(${cat.heroImage})` } : undefined}
+        className={`cat-hero${(cat.heroImage || cat.heroVideo) ? ' cat-hero--image' : ''}`}
+        style={(cat.heroImage && !cat.heroVideo) ? { backgroundImage: `url(${cat.heroImage})` } : undefined}
       >
-        {cat.heroImage && <div className="cat-hero-overlay" />}
+        {(cat.heroImage || cat.heroVideo) && <div className="cat-hero-overlay" />}
+
+        {/* Full-cover background video (replaces background-image when heroVideo is set) */}
+        {cat.heroVideo && (
+          <video
+            autoPlay muted loop playsInline
+            src={cat.heroVideo}
+            poster={cat.heroImage}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center 30%',
+            }}
+          />
+        )}
 
         {/* Video oval: plastic-surgery only, inside relative hero container */}
         {cat.id === 'plastic-surgery' && cat.heroImage && (
