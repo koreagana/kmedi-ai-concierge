@@ -188,19 +188,21 @@ export default function FloatingChatButton() {
   /*
    * Antenna label geometry (wrapper = 56×56, button center = (28,28)):
    *
-   * Pivot (transform-origin) for each label is at its bottom corner nearest
-   * the button. Pivot is kept at y ≈ -6 (6px above wrapper top) so that even
-   * at minimum scale (0.15) the label stays clear of the button circle.
+   * Target: label center ~60px from button center at ±28° from vertical.
+   * C_final = (28 ∓ sin28°·60, 28 − cos28°·60) ≈ (0, −25) and (56, −25)
    *
-   * Left  label: top=-30, left=-10, pivot (bottom-right) = (36, -6)
-   *   → center after rotate(-28°) ≈ (10, -6) in wrapper, ~38px from button center
-   * Right label: top=-30, left=18,  pivot (bottom-left)  = (18, -6)
-   *   → center after rotate(+28°) ≈ (44, -6) in wrapper, ~38px from button center
+   * rotate(±28°) shifts the center by (∓25.94, +0.19) from pivot.
+   * Solving for pivot: O = C_final − shift
+   *   Left  pivot (bottom-right) = (26, −25) → top=−49, left=−20
+   *   Right pivot (bottom-left)  = (30, −25) → top=−49, left=+30
+   *
+   * Even at scale(0.15) the label collapses to its pivot, which is ~53px
+   * from the button center — well outside the 28px radius circle.
    */
   const antennaStyle = (side: 'left' | 'right') => ({
     position: 'absolute' as const,
-    top: -30,
-    ...(side === 'left' ? { left: -10 } : { left: 18 }),
+    top: -49,
+    ...(side === 'left' ? { left: -20 } : { left: 30 }),
     transformOrigin: side === 'left' ? '100% 100%' : '0% 100%',
     animation: `${side === 'left' ? 'fcbAntennaL' : 'fcbAntennaR'} 5s ease-in-out infinite`,
     animationDelay: side === 'right' ? '2.5s' : '0s',
