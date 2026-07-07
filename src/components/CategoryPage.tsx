@@ -91,6 +91,17 @@ export default function CategoryPage() {
         </div>
       </div>
 
+      {/* ── Plastic surgery: second hero photo (person) ── */}
+      {cat.id === 'plastic-surgery' && (
+        <div style={{ width: '100%', height: 300, overflow: 'hidden' }}>
+          <img
+            src="/category-hero/plastic-surgery-woman.png"
+            alt=""
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+          />
+        </div>
+      )}
+
       {/* ── Big Health keyword pills (only for the big-health category) ── */}
       {cat.id === 'big-health' && <BigHealthKeywords />}
 

@@ -99,6 +99,8 @@ interface Translations {
   blockAfterConsult: string
   // floating chat button
   floatingChatTooltip: string
+  antennaLeft: string
+  antennaRight: string
 }
 
 export const translations: Record<LangCode, Translations> = {
@@ -186,6 +188,8 @@ export const translations: Record<LangCode, Translations> = {
     blockBeforeVisit: '来韩前建议准备',
     blockAfterConsult: '咨询后您会更清楚',
     floatingChatTooltip: '点击企业微信咨询',
+    antennaLeft: '点击',
+    antennaRight: '秒回',
   },
   ko: {
     brandName: '한강애봄',
@@ -271,6 +275,8 @@ export const translations: Record<LangCode, Translations> = {
     blockBeforeVisit: '방한 전 준비사항',
     blockAfterConsult: '상담 후 더 명확해지는 것',
     floatingChatTooltip: '위챗으로 바로 상담하기',
+    antennaLeft: '클릭',
+    antennaRight: '즉답',
   },
   en: {
     brandName: 'K-MediSpring',
@@ -356,6 +362,8 @@ export const translations: Record<LangCode, Translations> = {
     blockBeforeVisit: 'Prepare Before Your Visit',
     blockAfterConsult: 'What You\'ll Know After',
     floatingChatTooltip: 'Chat with us on WeChat',
+    antennaLeft: 'Tap',
+    antennaRight: 'Reply',
   },
   ar: {
     brandName: 'كونسيرج كوريا الطبي',
@@ -441,5 +449,7 @@ export const translations: Record<LangCode, Translations> = {
     blockBeforeVisit: 'الاستعداد قبل زيارتك',
     blockAfterConsult: 'ما ستعرفه بعد ذلك',
     floatingChatTooltip: 'تواصل معنا عبر ويتشات',
+    antennaLeft: 'اضغط',
+    antennaRight: 'ردّ',
   },
 }

@@ -6,15 +6,14 @@ import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 
 /* ─── constants ─────────────────────────────────────────────────────── */
-const BTN = 56           // button diameter px
-const MARGIN = 20        // edge gap px
-const NAV_H = 80         // top area (nav bar) to avoid
-const DRAG_THRESHOLD = 5 // px — movement below this = click, not drag
-const SCROLL_TRIGGERS = [0.25, 0.55, 0.85]
-const POS_KEY = 'fcb_pos_v2'
+const BTN = 56
+const MARGIN = 20
+const NAV_H = 80
+const DRAG_THRESHOLD = 5
+const POS_KEY = 'fcb_pos_v3'  // v3: stores xRatio/yRatio instead of side/yFromBottom
 
-/* ─── pulse CSS injected once into <head> ────────────────────────────── */
-const PULSE_CSS = `
+/* ─── CSS injected once into <head> ──────────────────────────────────── */
+const STYLES = `
 @keyframes fcbPulse {
   0%   { box-shadow: 0 0 0 2.5px white, 0 4px 16px rgba(255,107,53,0.45),
                      0 0 0 0   rgba(255,140,66,0.65), 0 0 0 0   rgba(255,107,53,0.4); }
@@ -24,31 +23,63 @@ const PULSE_CSS = `
                      0 0 0 0   rgba(255,140,66,0.0), 0 0 0 0   rgba(255,107,53,0.0); }
 }
 .fcb-btn { animation: fcbPulse 2.5s ease-out infinite; }
+
+/*
+ * Antenna labels alternate every 2.5s: left first, then right.
+ * Each label has a 5s period:  appear 0–50% of cycle, hidden 50–100%.
+ * Right label uses animation-delay: 2.5s so it starts when left hides.
+ *
+ * Transform-origin of left label  = bottom-right (nearest point to button).
+ * Transform-origin of right label = bottom-left  (nearest point to button).
+ * Rotation is fixed at ±28°; scale animates to produce the spring-pop.
+ */
+@keyframes fcbAntennaL {
+  0%   { opacity: 0; transform: rotate(-28deg) scale(0.15); }
+  8%   { opacity: 1; transform: rotate(-28deg) scale(1.14); }
+  14%  { transform: rotate(-28deg) scale(0.94); }
+  19%  { transform: rotate(-28deg) scale(1.03); }
+  25%  { transform: rotate(-28deg) scale(1);    opacity: 1; }
+  42%  { transform: rotate(-28deg) scale(1);    opacity: 1; }
+  50%  { transform: rotate(-28deg) scale(0.85); opacity: 0; }
+  100% { transform: rotate(-28deg) scale(0.15); opacity: 0; }
+}
+@keyframes fcbAntennaR {
+  0%   { opacity: 0; transform: rotate(28deg) scale(0.15); }
+  8%   { opacity: 1; transform: rotate(28deg) scale(1.14); }
+  14%  { transform: rotate(28deg) scale(0.94); }
+  19%  { transform: rotate(28deg) scale(1.03); }
+  25%  { transform: rotate(28deg) scale(1);    opacity: 1; }
+  42%  { transform: rotate(28deg) scale(1);    opacity: 1; }
+  50%  { transform: rotate(28deg) scale(0.85); opacity: 0; }
+  100% { transform: rotate(28deg) scale(0.15); opacity: 0; }
+}
 `
 
-/* ─── position persistence ───────────────────────────────────────────── */
-interface StoredPos { side: 'left' | 'right'; yFromBottom: number }
+/* ─── position persistence (v3: viewport-ratio based) ────────────────── */
+interface StoredPos { xRatio: number; yRatio: number }
 
 function loadPos(): StoredPos | null {
   try { return JSON.parse(localStorage.getItem(POS_KEY) ?? 'null') } catch { return null }
 }
-function savePos(p: StoredPos) {
-  try { localStorage.setItem(POS_KEY, JSON.stringify(p)) } catch {}
+function savePos(x: number, y: number) {
+  try {
+    const p: StoredPos = {
+      xRatio: x / window.innerWidth,
+      yRatio: y / window.innerHeight,
+    }
+    localStorage.setItem(POS_KEY, JSON.stringify(p))
+  } catch {}
 }
 
-function resolveInitialPos(isRTL: boolean): { x: number; y: number; side: 'left' | 'right' } {
+function resolveInitialPos(isRTL: boolean): { x: number; y: number } {
   const stored = loadPos()
   if (stored) {
-    const x = stored.side === 'left' ? MARGIN : window.innerWidth - BTN - MARGIN
-    const y = Math.max(NAV_H, Math.min(
-      window.innerHeight - BTN - MARGIN,
-      window.innerHeight - stored.yFromBottom - BTN,
-    ))
-    return { x, y, side: stored.side }
+    const x = Math.max(0, Math.min(window.innerWidth - BTN, stored.xRatio * window.innerWidth))
+    const y = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, stored.yRatio * window.innerHeight))
+    return { x, y }
   }
-  const side = isRTL ? 'left' : 'right'
   const x = isRTL ? MARGIN : window.innerWidth - BTN - MARGIN
-  return { x, y: window.innerHeight - BTN - 24, side }
+  return { x, y: window.innerHeight - BTN - 24 }
 }
 
 /* ─── component ─────────────────────────────────────────────────────── */
@@ -59,43 +90,34 @@ export default function FloatingChatButton() {
 
   const [shown, setShown] = useState(false)
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null)
-  const [side, setSide] = useState<'left' | 'right'>('right')
   const [isDragging, setIsDragging] = useState(false)
-  const [isSnapping, setIsSnapping] = useState(false)
-  const [tooltipVisible, setTooltipVisible] = useState(false)
 
-  const tooltipTriggered = useRef<Set<number>>(new Set())
-  const tooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const wasLastActionDrag = useRef(false)
   const drag = useRef<{
     startX: number; startY: number
-    btnX: number; btnY: number
+    btnX: number;  btnY: number
     hasMoved: boolean
   } | null>(null)
 
-  /* inject pulse CSS once */
+  /* inject CSS once */
   useEffect(() => {
     if (!document.getElementById('fcb-style')) {
       const el = document.createElement('style')
       el.id = 'fcb-style'
-      el.textContent = PULSE_CSS
+      el.textContent = STYLES
       document.head.appendChild(el)
     }
   }, [])
 
   /* init position */
   useEffect(() => {
-    const { x, y, side: s } = resolveInitialPos(isRTL)
+    const { x, y } = resolveInitialPos(isRTL)
     setPos({ x, y })
-    setSide(s)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   /* visibility — home: wait for #categories; other pages: immediate */
   useEffect(() => {
-    if (page !== 'home') {
-      setShown(true)
-      return
-    }
+    if (page !== 'home') { setShown(true); return }
     setShown(false)
     const el = document.getElementById('categories')
     if (!el) { setShown(true); return }
@@ -104,38 +126,13 @@ export default function FloatingChatButton() {
       if (entry.isIntersecting) {
         setShown(true)
       } else if (entry.boundingClientRect.top > 0) {
-        // section still below viewport → user scrolled back to hero
         setShown(false)
       }
-      // section above viewport (user scrolled past) → stay visible
     }, { threshold: 0 })
 
     obs.observe(el)
     return () => obs.disconnect()
   }, [page])
-
-  /* scroll-triggered tooltip */
-  useEffect(() => {
-    const handle = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight
-      if (max <= 0) return
-      const prog = window.scrollY / max
-      for (const trig of SCROLL_TRIGGERS) {
-        if (!tooltipTriggered.current.has(trig) && prog >= trig) {
-          tooltipTriggered.current.add(trig)
-          setTooltipVisible(true)
-          if (tooltipTimer.current) clearTimeout(tooltipTimer.current)
-          tooltipTimer.current = setTimeout(() => setTooltipVisible(false), 2500)
-          break
-        }
-      }
-    }
-    window.addEventListener('scroll', handle, { passive: true })
-    return () => {
-      window.removeEventListener('scroll', handle)
-      if (tooltipTimer.current) clearTimeout(tooltipTimer.current)
-    }
-  }, [])
 
   /* ── drag handlers ─────────────────────────────────────────────────── */
   const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
@@ -147,7 +144,6 @@ export default function FloatingChatButton() {
       hasMoved: false,
     }
     setIsDragging(true)
-    setIsSnapping(false)
   }
 
   const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {
@@ -170,42 +166,59 @@ export default function FloatingChatButton() {
     setIsDragging(false)
 
     if (!hasMoved) return
-
     wasLastActionDrag.current = true
 
-    // Compute final position from event directly — avoids stale `pos` closure
-    // (React may not have committed the last setPos from handlePointerMove yet)
+    // Compute final position directly from event to avoid stale closure
     const dx = e.clientX - startX
     const dy = e.clientY - startY
     const finalX = Math.max(0, Math.min(window.innerWidth - BTN, btnX + dx))
     const finalY = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, btnY + dy))
 
-    // snap to nearest horizontal edge
-    const centerX = finalX + BTN / 2
-    const newSide = centerX < window.innerWidth / 2 ? 'left' : 'right'
-    const snappedX = newSide === 'left' ? MARGIN : window.innerWidth - BTN - MARGIN
-    const snappedY = finalY
-
-    setSide(newSide)
-    // set snapping flag first so transition is in the DOM before position changes
-    setIsSnapping(true)
-    requestAnimationFrame(() => {
-      setPos({ x: snappedX, y: snappedY })
-      savePos({ side: newSide, yFromBottom: window.innerHeight - snappedY - BTN })
-      setTimeout(() => setIsSnapping(false), 450)
-    })
+    setPos({ x: finalX, y: finalY })
+    savePos(finalX, finalY)
   }
 
   const handleClick = () => {
-    // suppress click that follows a drag
-    if (wasLastActionDrag.current) {
-      wasLastActionDrag.current = false
-      return
-    }
+    if (wasLastActionDrag.current) { wasLastActionDrag.current = false; return }
     window.open(WECHAT_BIZ_URL, '_blank', 'noopener,noreferrer')
   }
 
   if (!pos) return null
+
+  /*
+   * Antenna label geometry (wrapper = 56×56, button center = (28,28)):
+   *
+   * Left label  at -28° from vertical, ~45px from center:
+   *   center = (28 - sin28°·45, 28 - cos28°·45) ≈ (7, -13) in wrapper
+   *   top-left ≈ (-13, -24) → transform-origin: right bottom  (bottom-right of label ≈ button edge)
+   *
+   * Right label at +28° from vertical:
+   *   center ≈ (49, -13) → top-left ≈ (29, -24) → transform-origin: left bottom
+   *
+   * Animation plays regardless of shown state; the wrapper's opacity gates
+   * visibility. animationPlayState pauses the loop while hidden so it always
+   * starts fresh at 0% (left first) when the button becomes visible.
+   */
+  const antennaStyle = (side: 'left' | 'right') => ({
+    position: 'absolute' as const,
+    top: -24,
+    ...(side === 'left' ? { left: -13 } : { left: 29 }),
+    transformOrigin: side === 'left' ? '100% 100%' : '0% 100%',
+    animation: `${side === 'left' ? 'fcbAntennaL' : 'fcbAntennaR'} 5s ease-in-out infinite`,
+    animationDelay: side === 'right' ? '2.5s' : '0s',
+    animationFillMode: 'both' as const,
+    animationPlayState: shown ? 'running' : 'paused',
+    background: '#FF6B35',
+    color: '#ffffff',
+    fontSize: 12,
+    fontWeight: 700,
+    padding: '5px 11px',
+    borderRadius: 20,
+    whiteSpace: 'nowrap' as const,
+    pointerEvents: 'none' as const,
+    lineHeight: 1.2,
+    userSelect: 'none' as const,
+  })
 
   const content = (
     <div
@@ -218,41 +231,16 @@ export default function FloatingChatButton() {
         zIndex: 2147483647,
         opacity: shown ? 1 : 0,
         pointerEvents: shown ? 'auto' : 'none',
-        transition: isSnapping
-          ? 'left 0.38s cubic-bezier(0.34,1.56,0.64,1), top 0.38s ease, opacity 0.3s ease'
-          : 'opacity 0.3s ease',
+        transition: 'opacity 0.3s ease',
         touchAction: 'none',
         userSelect: 'none',
       }}
     >
-      {/* tooltip — absolutely positioned so it never shifts the button */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          // open to the right when button is on left edge, open left when on right edge
-          ...(side === 'left'
-            ? { left: BTN + 10 }
-            : { right: BTN + 10 }),
-          transform: `translateY(-50%) scale(${tooltipVisible ? 1 : 0.9})`,
-          opacity: tooltipVisible ? 1 : 0,
-          transition: 'opacity 0.3s ease, transform 0.3s ease',
-          background: '#ffffff',
-          color: '#FF6B35',
-          fontSize: 13,
-          fontWeight: 700,
-          padding: '9px 15px',
-          borderRadius: 22,
-          boxShadow: '0 3px 14px rgba(255,107,53,0.2)',
-          border: '1.5px solid #FFD4C2',
-          whiteSpace: 'nowrap',
-          pointerEvents: 'none',
-        }}
-      >
-        {t.floatingChatTooltip}
-      </div>
+      {/* antenna labels — absolutely positioned, never affect button layout */}
+      <div style={antennaStyle('left')}>{t.antennaLeft}</div>
+      <div style={antennaStyle('right')}>{t.antennaRight}</div>
 
-      {/* main button — fills the wrapper exactly */}
+      {/* main button */}
       <button
         className="fcb-btn"
         onPointerDown={handlePointerDown}
@@ -261,8 +249,8 @@ export default function FloatingChatButton() {
         onClick={handleClick}
         aria-label={t.floatingChatTooltip}
         style={{
-          width: BTN,
-          height: BTN,
+          position: 'absolute',
+          inset: 0,
           borderRadius: '50%',
           background: 'linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%)',
           border: 'none',
