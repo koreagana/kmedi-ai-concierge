@@ -3,18 +3,18 @@ import type { LocalizedText } from './bigHealthKeywords'
 export interface NetworkCity {
   id: string
   name: LocalizedText
-  /** label position in the /public/korea_map.jpeg pixel space (400 x 714) */
+  /** label position in the /public/korea_map.png pixel space (400 x 714) */
   x: number
   y: number
   /** scattered dot positions (already jittered, each individually verified
-      to land on the actual landmass in korea_map.jpeg) suggesting network
+      to land on the actual landmass in korea_map.png) suggesting network
       density — deliberately not a literal 1:1 count of partner hospitals,
       see note below */
   dots: [number, number][]
 }
 
 /* 韩国全国医疗资源网络 카드를 펼치면 보여주는 도시 목록.
-   좌표 기준: /public/korea_map.jpeg (400x714px, 양옆 살짝 잘린 실루엣 이미지)
+   좌표 기준: /public/korea_map.png (400x714px, 양옆 살짝 잘린 실루엣 이미지)
    나중에 도시가 늘어나면(예: 대구 협력병원 추가 확정 등) 이 배열에만
    추가하면 지도 위 점 무리와 라벨이 자동으로 늘어남.
 

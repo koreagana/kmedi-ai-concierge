@@ -1,133 +1,281 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { MessageCircle } from 'lucide-react'
 import { WECHAT_BIZ_URL } from '../data/contacts'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 
+/* ─── constants ─────────────────────────────────────────────────────── */
+const BTN = 56           // button diameter px
+const MARGIN = 20        // edge gap px
+const NAV_H = 80         // top area (nav bar) to avoid
+const DRAG_THRESHOLD = 5 // px — movement below this = click, not drag
 const SCROLL_TRIGGERS = [0.25, 0.55, 0.85]
+const POS_KEY = 'fcb_pos_v2'
 
+/* ─── pulse CSS injected once into <head> ────────────────────────────── */
 const PULSE_CSS = `
-@keyframes floatingBtnPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(0,168,204,0.55), 0 0 0 0 rgba(0,119,182,0.35); }
-  60%  { box-shadow: 0 0 0 14px rgba(0,168,204,0.0), 0 0 0 22px rgba(0,119,182,0.0); }
-  100% { box-shadow: 0 0 0 0 rgba(0,168,204,0.0), 0 0 0 0 rgba(0,119,182,0.0); }
+@keyframes fcbPulse {
+  0%   { box-shadow: 0 0 0 2.5px white, 0 4px 16px rgba(255,107,53,0.45),
+                     0 0 0 0   rgba(255,140,66,0.65), 0 0 0 0   rgba(255,107,53,0.4); }
+  60%  { box-shadow: 0 0 0 2.5px white, 0 4px 16px rgba(255,107,53,0.45),
+                     0 0 0 20px rgba(255,140,66,0.0), 0 0 0 32px rgba(255,107,53,0.0); }
+  100% { box-shadow: 0 0 0 2.5px white, 0 4px 16px rgba(255,107,53,0.45),
+                     0 0 0 0   rgba(255,140,66,0.0), 0 0 0 0   rgba(255,107,53,0.0); }
 }
-.floating-chat-btn {
-  animation: floatingBtnPulse 2.5s ease-out infinite;
-}
-.floating-chat-btn:hover {
-  transform: scale(1.08);
-  transition: transform 0.18s ease;
-}
+.fcb-btn { animation: fcbPulse 2.5s ease-out infinite; }
 `
 
+/* ─── position persistence ───────────────────────────────────────────── */
+interface StoredPos { side: 'left' | 'right'; yFromBottom: number }
+
+function loadPos(): StoredPos | null {
+  try { return JSON.parse(localStorage.getItem(POS_KEY) ?? 'null') } catch { return null }
+}
+function savePos(p: StoredPos) {
+  try { localStorage.setItem(POS_KEY, JSON.stringify(p)) } catch {}
+}
+
+function resolveInitialPos(isRTL: boolean): { x: number; y: number; side: 'left' | 'right' } {
+  const stored = loadPos()
+  if (stored) {
+    const x = stored.side === 'left' ? MARGIN : window.innerWidth - BTN - MARGIN
+    const y = Math.max(NAV_H, Math.min(
+      window.innerHeight - BTN - MARGIN,
+      window.innerHeight - stored.yFromBottom - BTN,
+    ))
+    return { x, y, side: stored.side }
+  }
+  const side = isRTL ? 'left' : 'right'
+  const x = isRTL ? MARGIN : window.innerWidth - BTN - MARGIN
+  return { x, y: window.innerHeight - BTN - 24, side }
+}
+
+/* ─── component ─────────────────────────────────────────────────────── */
 export default function FloatingChatButton() {
-  const { lang } = useApp()
+  const { lang, page } = useApp()
   const t = translations[lang]
   const isRTL = lang === 'ar'
-  const [tooltipVisible, setTooltipVisible] = useState(false)
-  const triggeredRef = useRef<Set<number>>(new Set())
-  const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // inject pulse keyframe CSS once
+  const [shown, setShown] = useState(false)
+  const [pos, setPos] = useState<{ x: number; y: number } | null>(null)
+  const [side, setSide] = useState<'left' | 'right'>('right')
+  const [isDragging, setIsDragging] = useState(false)
+  const [isSnapping, setIsSnapping] = useState(false)
+  const [tooltipVisible, setTooltipVisible] = useState(false)
+
+  const tooltipTriggered = useRef<Set<number>>(new Set())
+  const tooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const wasLastActionDrag = useRef(false)
+  const drag = useRef<{
+    startX: number; startY: number
+    btnX: number; btnY: number
+    hasMoved: boolean
+  } | null>(null)
+
+  /* inject pulse CSS once */
   useEffect(() => {
-    const styleId = 'floating-chat-btn-style'
-    if (!document.getElementById(styleId)) {
+    if (!document.getElementById('fcb-style')) {
       const el = document.createElement('style')
-      el.id = styleId
+      el.id = 'fcb-style'
       el.textContent = PULSE_CSS
       document.head.appendChild(el)
     }
-    return () => {
-      // leave style in DOM — removing on unmount would break if component remounts quickly
-    }
   }, [])
 
+  /* init position */
   useEffect(() => {
-    const handleScroll = () => {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-      if (maxScroll <= 0) return
-      const progress = window.scrollY / maxScroll
+    const { x, y, side: s } = resolveInitialPos(isRTL)
+    setPos({ x, y })
+    setSide(s)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-      for (const trigger of SCROLL_TRIGGERS) {
-        if (!triggeredRef.current.has(trigger) && progress >= trigger) {
-          triggeredRef.current.add(trigger)
+  /* visibility — home: wait for #categories; other pages: immediate */
+  useEffect(() => {
+    if (page !== 'home') {
+      setShown(true)
+      return
+    }
+    setShown(false)
+    const el = document.getElementById('categories')
+    if (!el) { setShown(true); return }
+
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setShown(true)
+      } else if (entry.boundingClientRect.top > 0) {
+        // section is still below viewport → user scrolled back to hero
+        setShown(false)
+      }
+      // section above viewport (user scrolled past) → stay visible
+    }, { threshold: 0 })
+
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [page])
+
+  /* scroll-triggered tooltip */
+  useEffect(() => {
+    const handle = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      if (max <= 0) return
+      const prog = window.scrollY / max
+      for (const trig of SCROLL_TRIGGERS) {
+        if (!tooltipTriggered.current.has(trig) && prog >= trig) {
+          tooltipTriggered.current.add(trig)
           setTooltipVisible(true)
-          if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current)
-          tooltipTimerRef.current = setTimeout(() => setTooltipVisible(false), 2500)
+          if (tooltipTimer.current) clearTimeout(tooltipTimer.current)
+          tooltipTimer.current = setTimeout(() => setTooltipVisible(false), 2500)
           break
         }
       }
     }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handle, { passive: true })
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      if (tooltipTimerRef.current) clearTimeout(tooltipTimerRef.current)
+      window.removeEventListener('scroll', handle)
+      if (tooltipTimer.current) clearTimeout(tooltipTimer.current)
     }
   }, [])
 
-  return (
+  /* ── drag handlers ─────────────────────────────────────────────────── */
+  const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId)
+    wasLastActionDrag.current = false
+    drag.current = {
+      startX: e.clientX, startY: e.clientY,
+      btnX: pos?.x ?? 0, btnY: pos?.y ?? 0,
+      hasMoved: false,
+    }
+    setIsDragging(true)
+    setIsSnapping(false)
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {
+    if (!drag.current) return
+    const dx = e.clientX - drag.current.startX
+    const dy = e.clientY - drag.current.startY
+    if (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD) {
+      drag.current.hasMoved = true
+    }
+    if (!drag.current.hasMoved) return
+    const newX = Math.max(0, Math.min(window.innerWidth - BTN, drag.current.btnX + dx))
+    const newY = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, drag.current.btnY + dy))
+    setPos({ x: newX, y: newY })
+  }
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLButtonElement>) => {
+    if (!drag.current) return
+    const { hasMoved } = drag.current
+    drag.current = null
+    setIsDragging(false)
+
+    if (!hasMoved || !pos) return
+
+    wasLastActionDrag.current = true
+
+    // snap to nearest horizontal edge
+    const centerX = pos.x + BTN / 2
+    const newSide = centerX < window.innerWidth / 2 ? 'left' : 'right'
+    const snappedX = newSide === 'left' ? MARGIN : window.innerWidth - BTN - MARGIN
+    const snappedY = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, pos.y))
+
+    setSide(newSide)
+    // set snapping flag first so transition is in the DOM before position changes
+    setIsSnapping(true)
+    requestAnimationFrame(() => {
+      setPos({ x: snappedX, y: snappedY })
+      savePos({ side: newSide, yFromBottom: window.innerHeight - snappedY - BTN })
+      setTimeout(() => setIsSnapping(false), 450)
+    })
+  }
+
+  const handleClick = () => {
+    // suppress click that follows a drag
+    if (wasLastActionDrag.current) {
+      wasLastActionDrag.current = false
+      return
+    }
+    window.open(WECHAT_BIZ_URL, '_blank', 'noopener,noreferrer')
+  }
+
+  if (!pos) return null
+
+  // tooltip appears on the opposite side from where the button is snapped
+  const tooltipOnRight = side === 'left'
+
+  const content = (
     <div
       style={{
         position: 'fixed',
-        bottom: 24,
-        ...(isRTL ? { left: 20 } : { right: 20 }),
-        zIndex: 9999,
+        left: pos.x,
+        top: pos.y,
+        zIndex: 2147483647,
         display: 'flex',
         alignItems: 'center',
         gap: 10,
-        flexDirection: isRTL ? 'row' : 'row-reverse',
+        // button first, tooltip on opposite side
+        flexDirection: tooltipOnRight ? 'row' : 'row-reverse',
+        opacity: shown ? 1 : 0,
+        pointerEvents: shown ? 'auto' : 'none',
+        transition: isSnapping
+          ? 'left 0.38s cubic-bezier(0.34,1.56,0.64,1), top 0.38s ease, opacity 0.3s ease'
+          : 'opacity 0.3s ease',
+        touchAction: 'none',
+        userSelect: 'none',
       }}
     >
-      {/* Tooltip speech bubble */}
+      {/* tooltip bubble */}
       <div
         style={{
           opacity: tooltipVisible ? 1 : 0,
           transform: tooltipVisible
-            ? 'translateX(0) scale(1)'
-            : isRTL
-            ? 'translateX(10px) scale(0.95)'
-            : 'translateX(-10px) scale(0.95)',
+            ? 'scale(1) translateX(0)'
+            : `scale(0.9) translateX(${tooltipOnRight ? '-8px' : '8px'})`,
           transition: 'opacity 0.3s ease, transform 0.3s ease',
           background: '#ffffff',
-          color: '#0077b6',
+          color: '#FF6B35',
           fontSize: 13,
           fontWeight: 700,
           padding: '9px 15px',
           borderRadius: 22,
-          boxShadow: '0 3px 14px rgba(0,119,182,0.18)',
-          border: '1.5px solid #c8e8f5',
+          boxShadow: '0 3px 14px rgba(255,107,53,0.2)',
+          border: '1.5px solid #FFD4C2',
           whiteSpace: 'nowrap',
-          pointerEvents: tooltipVisible ? 'auto' : 'none',
-          userSelect: 'none',
+          pointerEvents: 'none',
         }}
       >
         {t.floatingChatTooltip}
       </div>
 
-      {/* Floating button */}
+      {/* main button */}
       <button
-        className="floating-chat-btn"
-        onClick={() => window.open(WECHAT_BIZ_URL, '_blank', 'noopener,noreferrer')}
+        className="fcb-btn"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onClick={handleClick}
         aria-label={t.floatingChatTooltip}
         style={{
-          width: 56,
-          height: 56,
+          width: BTN,
+          height: BTN,
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, #0077b6 0%, #00a8cc 100%)',
+          background: 'linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%)',
           border: 'none',
-          cursor: 'pointer',
+          cursor: isDragging ? 'grabbing' : 'grab',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexShrink: 0,
           outline: 'none',
           WebkitTapHighlightColor: 'transparent',
+          transform: isDragging ? 'scale(1.1)' : 'scale(1)',
+          transition: isDragging ? 'transform 0.1s ease' : 'transform 0.2s ease',
         }}
       >
         <MessageCircle color="white" size={24} strokeWidth={2} />
       </button>
     </div>
   )
+
+  return createPortal(content, document.body)
 }

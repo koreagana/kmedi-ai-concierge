@@ -761,7 +761,7 @@ export function ContactSection() {
 /* 韩国全国医疗资源网络 카드를 펼치면 나오는 아주 단순화된 한국 지도.
    도시는 src/data/networkCities.ts 에서 관리 — 나중에 부산/제주 협력병원이
    늘어나거나 다른 도시(대구 등)가 추가돼도 그 배열에만 추가하면 됨. */
-/* 실제 이미지(/public/korea_map.jpeg, 400x714px) 기준 좌표.
+/* 실제 이미지(/public/korea_map.png, 400x714px) 기준 좌표.
    각 점은 파이썬으로 이미지 픽셀을 직접 샘플링해서 실제 육지 위에만
    찍히도록 검증한 좌표임 (src/data/networkCities.ts 주석 참고). */
 const MAP_IMG_W = 400
@@ -770,7 +770,7 @@ const MAP_IMG_H = 714
 function NetworkCityMap({ lang }: { lang: LangCode }) {
   return (
     <div className="network-map-wrap">
-      <img src="/korea_map.jpeg" alt="" className="network-map-img" />
+      <img src="/korea_map.png" alt="" className="network-map-img" />
 
       {NETWORK_CITIES.map(city => (
         <div key={city.id}>
