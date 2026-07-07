@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
@@ -1039,16 +1039,16 @@ export function FooterSection() {
 
   return (
     <section className="section-dark">
-      <div className="divider-light" style={{ marginBottom: 20 }} />
 
       {/* Brand mark */}
       <div style={{ textAlign: 'center', marginBottom: 16 }}>
-        <p style={{ fontSize: 18, fontWeight: 700, color: '#e8c76a', letterSpacing: '0.06em', marginBottom: 4 }}>
+        <p style={{ fontSize: 18, fontWeight: 700, color: '#e8c76a', letterSpacing: '0.06em', marginBottom: 8 }}>
           {t.brandName}
         </p>
-        <p style={{ fontSize: 9, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.18em', textTransform: 'uppercase' }}>
-          ai-kmedi.com
-        </p>
+        {/* Email — click to copy */}
+        <button type="button" className="contact-email" onClick={handleCopyEmail} style={{ width: 'auto', display: 'inline-block' }}>
+          {emailCopied ? copiedLabel : 'Email: care@k-medispring.cn'}
+        </button>
       </div>
 
       {/* Company intro */}
@@ -1063,17 +1063,6 @@ export function FooterSection() {
       >
         <p className="footer-intro-text">{t.companyIntro}</p>
       </div>
-
-      <p style={{ textAlign: 'center', marginBottom: 4 }}>
-        <Link to={`/terms?lang=${lang}`} style={{ fontSize: 9, color: 'rgba(255,255,255,0.25)', textDecoration: 'none' }}>
-          {t.termsLink}
-        </Link>
-      </p>
-
-      {/* Email */}
-      <button type="button" className="contact-email" onClick={handleCopyEmail}>
-        {emailCopied ? copiedLabel : t.contactEmail}
-      </button>
 
       {/* SNS icons — 小红书(RedNote) / YouTube / WhatsApp / TikTok / 微信小程序 */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: 14, marginTop: 14 }}>
@@ -1190,8 +1179,10 @@ export function FooterSection() {
       </AnimatePresence>
 
       {/* Copyright */}
-      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 18 }}>
-        © {new Date().getFullYear()} {lang === 'en' ? 'K-MediSpring' : lang === 'ar' ? 'كيمديسبرينج' : lang === 'ko' ? '한강애봄' : '汉江春天'} · ai-kmedi.com
+      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.2)', textAlign: 'center', marginTop: 18, lineHeight: 1.9 }}>
+        © 2026 K-MediSpring. All rights reserved.<br />
+        상호: 한강애봄 | 대표: 이가나 | 사업자등록번호: 829-21-01856<br />
+        주소: 서울특별시 성북구 삼양로 29, 3층 11호
       </p>
 
       {/* Internal-only admin link, intentionally inconspicuous */}
