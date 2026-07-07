@@ -15,7 +15,6 @@ import CustomPlanContent from './CustomPlanContent'
 import ConsultCardVisual from './ConsultCardVisual'
 import {
   CategoryGridSection,
-  ContactSection,
   MedicalNetworkSection,
   FooterSection,
 } from './HomePage'
@@ -131,7 +130,6 @@ export default function CategoryPage() {
 
       {/* ── Common page footer sections ── */}
       <CategoryGridSection />
-      <ContactSection />
       <MedicalNetworkSection />
       <FooterSection />
     </div>

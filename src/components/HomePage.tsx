@@ -1218,7 +1218,6 @@ export default function HomePage() {
       <ConciergeSection />
       <HomeConsultationSection />
       <ConcernSection />
-      <ContactSection />
       <MedicalNetworkSection />
       <FooterSection />
     </div>

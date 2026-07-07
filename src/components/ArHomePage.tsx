@@ -5,7 +5,6 @@ import {
   HomeConsultationSection,
   ConcernSection,
   CategoryGridSection,
-  ContactSection,
   MedicalNetworkSection,
   FooterSection,
 } from './HomePage'
@@ -93,7 +92,6 @@ export default function ArHomePage() {
       <ArConciergeSection />
       <HomeConsultationSection />
       <ConcernSection />
-      <ContactSection />
       <section id="halal-map-section" className="section-light">
         <HalalMap dir="rtl" />
       </section>

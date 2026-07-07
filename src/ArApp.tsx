@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import ArHomePage from './components/ArHomePage'
 import CategoryPage from './components/CategoryPage'
 import PackagePage from './components/PackagePage'
+import FloatingChatButton from './components/FloatingChatButton'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect } from 'react'
 import { categories } from './data/categories'
@@ -95,6 +96,7 @@ export default function ArApp() {
     <AppProvider initialLang="ar">
       <div className="app-shell">
         <ArPageRouter />
+        <FloatingChatButton />
       </div>
     </AppProvider>
   )

@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import HomePage from './components/HomePage'
 import CategoryPage from './components/CategoryPage'
 import PackagePage from './components/PackagePage'
+import FloatingChatButton from './components/FloatingChatButton'
 import { AnimatePresence, motion } from 'framer-motion'
 import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
@@ -107,6 +108,7 @@ export default function App({ initialLang = 'zh' }: { initialLang?: LangCode }) 
     <AppProvider initialLang={initialLang}>
       <div className="app-shell">
         <PageRouter />
+        <FloatingChatButton />
       </div>
     </AppProvider>
   )

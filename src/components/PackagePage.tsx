@@ -2,7 +2,7 @@ import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { ContactSection, MedicalNetworkSection, FooterSection } from './HomePage'
+import { MedicalNetworkSection, FooterSection } from './HomePage'
 
 
 const fadeUp = {
@@ -502,7 +502,6 @@ export default function PackagePage() {
         </motion.div>
       </section>
 
-      <ContactSection />
       <MedicalNetworkSection />
       <FooterSection />
     </div>
