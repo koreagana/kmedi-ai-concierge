@@ -104,7 +104,7 @@ export default function FloatingChatButton() {
       if (entry.isIntersecting) {
         setShown(true)
       } else if (entry.boundingClientRect.top > 0) {
-        // section is still below viewport → user scrolled back to hero
+        // section still below viewport → user scrolled back to hero
         setShown(false)
       }
       // section above viewport (user scrolled past) → stay visible
@@ -165,19 +165,26 @@ export default function FloatingChatButton() {
 
   const handlePointerUp = (e: React.PointerEvent<HTMLButtonElement>) => {
     if (!drag.current) return
-    const { hasMoved } = drag.current
+    const { hasMoved, startX, startY, btnX, btnY } = drag.current
     drag.current = null
     setIsDragging(false)
 
-    if (!hasMoved || !pos) return
+    if (!hasMoved) return
 
     wasLastActionDrag.current = true
 
+    // Compute final position from event directly — avoids stale `pos` closure
+    // (React may not have committed the last setPos from handlePointerMove yet)
+    const dx = e.clientX - startX
+    const dy = e.clientY - startY
+    const finalX = Math.max(0, Math.min(window.innerWidth - BTN, btnX + dx))
+    const finalY = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, btnY + dy))
+
     // snap to nearest horizontal edge
-    const centerX = pos.x + BTN / 2
+    const centerX = finalX + BTN / 2
     const newSide = centerX < window.innerWidth / 2 ? 'left' : 'right'
     const snappedX = newSide === 'left' ? MARGIN : window.innerWidth - BTN - MARGIN
-    const snappedY = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, pos.y))
+    const snappedY = finalY
 
     setSide(newSide)
     // set snapping flag first so transition is in the DOM before position changes
@@ -200,21 +207,15 @@ export default function FloatingChatButton() {
 
   if (!pos) return null
 
-  // tooltip appears on the opposite side from where the button is snapped
-  const tooltipOnRight = side === 'left'
-
   const content = (
     <div
       style={{
         position: 'fixed',
         left: pos.x,
         top: pos.y,
+        width: BTN,
+        height: BTN,
         zIndex: 2147483647,
-        display: 'flex',
-        alignItems: 'center',
-        gap: 10,
-        // button first, tooltip on opposite side
-        flexDirection: tooltipOnRight ? 'row' : 'row-reverse',
         opacity: shown ? 1 : 0,
         pointerEvents: shown ? 'auto' : 'none',
         transition: isSnapping
@@ -224,13 +225,17 @@ export default function FloatingChatButton() {
         userSelect: 'none',
       }}
     >
-      {/* tooltip bubble */}
+      {/* tooltip — absolutely positioned so it never shifts the button */}
       <div
         style={{
+          position: 'absolute',
+          top: '50%',
+          // open to the right when button is on left edge, open left when on right edge
+          ...(side === 'left'
+            ? { left: BTN + 10 }
+            : { right: BTN + 10 }),
+          transform: `translateY(-50%) scale(${tooltipVisible ? 1 : 0.9})`,
           opacity: tooltipVisible ? 1 : 0,
-          transform: tooltipVisible
-            ? 'scale(1) translateX(0)'
-            : `scale(0.9) translateX(${tooltipOnRight ? '-8px' : '8px'})`,
           transition: 'opacity 0.3s ease, transform 0.3s ease',
           background: '#ffffff',
           color: '#FF6B35',
@@ -247,7 +252,7 @@ export default function FloatingChatButton() {
         {t.floatingChatTooltip}
       </div>
 
-      {/* main button */}
+      {/* main button — fills the wrapper exactly */}
       <button
         className="fcb-btn"
         onPointerDown={handlePointerDown}
@@ -265,7 +270,6 @@ export default function FloatingChatButton() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          flexShrink: 0,
           outline: 'none',
           WebkitTapHighlightColor: 'transparent',
           transform: isDragging ? 'scale(1.1)' : 'scale(1)',
