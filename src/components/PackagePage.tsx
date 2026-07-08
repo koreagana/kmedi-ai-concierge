@@ -24,7 +24,6 @@ interface DayDef { num: number; title: string; dateLabel: string; slots: SlotDef
 interface GlanceItem { text: string; fixed: boolean }
 interface GlanceDay { title: string; sub: string; items: GlanceItem[] }
 interface PriceItem { title: string; desc: string; tag: string; tagKind: 'apart' | 'free' }
-interface AdjustItem { label: string; options: string }
 
 const ALL_SLOT_KEYS: SlotKey[] = ['meal1', 'meal2', 'sight1', 'meal3', 'meal4', 'shop', 'meal5', 'meal6', 'sight2']
 
@@ -34,7 +33,6 @@ interface PackageLang {
   heroEyebrow: string
   heroTitle: string
   heroSub: string
-  heroBtn: string
   heroNote: string
   countLabels: [string, string, string]
   glanceTitle: string
@@ -62,15 +60,6 @@ interface PackageLang {
   footNote: string
   summaryEmpty: string
   consultBtn: string
-  adjustTitle: string
-  adjustNote: string
-  adjustable: AdjustItem[]
-  philosophyLabel: string
-  philosophyTitle: string
-  philosophyDesc: string
-  ctaTitle: string
-  ctaDesc: string
-  ctaBtn: string
 }
 
 const SPOT_ZH = ['北村韩屋村', '仁寺洞', '南山首尔塔', '汉江公园', '清溪川', '广藏市场', '益善洞', '昌德宫', '德寿宫', '东大门设计广场 DDP', 'COEX 星光图书馆', '圣水洞', '弘大步行街', '林荫道', '梨泰院', '西村', '首尔天空观景台']
@@ -86,8 +75,7 @@ const ZH: PackageLang = {
   backHome: '← 返回首页',
   heroEyebrow: '✦ 可根据您的喜好定制',
   heroTitle: '汉江春天 3晚4天方案',
-  heroSub: '医疗咨询、旅游、购物的时间已固定安排，具体地点与餐饮种类可自由选择。',
-  heroBtn: '联系顾问咨询',
+  heroSub: '医疗咨询、观光、购物时间固定，地点与餐饮可自由选。',
   heroNote: '医疗费用不包含在本方案内，具体医疗项目需另行咨询确认。',
   countLabels: ['医院问诊（固定）', '旅游地点（可选）', '购物地点（可选）'],
   glanceTitle: '行程一览',
@@ -145,20 +133,6 @@ const ZH: PackageLang = {
   footNote: '以上为标准行程模板，具体医疗项目及时间将由专属顾问与您确认后调整。',
   summaryEmpty: '尚未选择行程项目',
   consultBtn: '联系顾问咨询',
-  adjustTitle: '可根据客户喜好调整',
-  adjustNote: '具体旅游地点、购物地点与餐饮种类，可根据客户时间、体力、医疗安排与个人喜好调整。',
-  adjustable: [
-    { label: '旅游地点', options: '北村韩屋村 · 仁寺洞 · 南山塔 · 清溪川 · 广藏市场 等 17处可选' },
-    { label: '购物地点', options: 'The Hyundai Seoul · 明洞 · 乐天 · 新世界 · COEX 等 18处可选' },
-    { label: '餐饮', options: '韩定食 · 烤肉 · 参鸡汤 · 汤锅定食 4种可选，每餐可不同' },
-    { label: '医疗项目', options: '根据客户需求与医院安排调整组合' },
-  ],
-  philosophyLabel: '这不是普通旅游行程',
-  philosophyTitle: '汉江春天 3晚4天方案，\n不是简单把医院和景点排在一起。',
-  philosophyDesc: '我们会根据您的医疗咨询需求、恢复时间、移动距离与停留节奏，帮您安排更轻松、更安心的韩国行程。',
-  ctaTitle: '想了解适合您的 3晚4天方案？',
-  ctaDesc: '告诉我们您的来韩时间、关注项目、\n同行人数与预算范围，\n我们会先为您整理适合的行程方向。',
-  ctaBtn: '联系顾问咨询',
 }
 
 const KO: PackageLang = {
@@ -166,7 +140,6 @@ const KO: PackageLang = {
   heroEyebrow: '✦ 고객님의 취향에 맞게 구성 가능',
   heroTitle: '한강애봄 3박4일 패키지',
   heroSub: '의료상담·관광·쇼핑 일정은 고정되어 있으며, 구체적인 장소와 식사 메뉴는 자유롭게 선택하실 수 있습니다.',
-  heroBtn: '컨시어지에게 연락',
   heroNote: '의료비는 본 패키지에 포함되지 않으며, 구체적인 의료 항목은 별도 확인이 필요합니다.',
   countLabels: ['병원 방문 (고정)', '관광지 (선택)', '쇼핑 장소 (선택)'],
   glanceTitle: '일정 한눈에 보기',
@@ -224,20 +197,6 @@ const KO: PackageLang = {
   footNote: '위 일정은 표준 템플릿이며, 구체적인 의료 항목과 시간은 전담 컨시어지와 상담 후 조정됩니다.',
   summaryEmpty: '아직 선택한 일정 항목이 없습니다',
   consultBtn: '컨시어지에게 문의',
-  adjustTitle: '고객 취향에 따라 조정 가능',
-  adjustNote: '구체적인 관광지, 쇼핑 장소, 식사 메뉴는 고객의 일정, 체력, 의료 일정 및 개인 취향에 맞게 조정 가능합니다.',
-  adjustable: [
-    { label: '관광지', options: '북촌한옥마을 · 인사동 · 남산타워 · 청계천 · 광장시장 등 17곳' },
-    { label: '쇼핑', options: 'The Hyundai Seoul · 명동 · 롯데 · 신세계 · COEX 등 18곳' },
-    { label: '식사', options: '한정식 · 숯불구이 · 삼계탕 · 전골정식 4종 중 매 끼니 선택 가능' },
-    { label: '의료 상담', options: '고객 니즈와 병원 일정에 맞게 조합 조정' },
-  ],
-  philosophyLabel: '이건 일반 관광 일정이 아닙니다',
-  philosophyTitle: '한강애봄 3박4일 패키지는\n단순히 병원과 관광지를 나열한 것이 아닙니다.',
-  philosophyDesc: '고객의 의료상담 니즈, 회복 시간, 이동 거리, 체류 리듬에 맞게 더 편안하고 안심할 수 있는 한국 일정을 안내해 드립니다.',
-  ctaTitle: '나에게 맞는 3박4일 패키지를 알고 싶으신가요?',
-  ctaDesc: '방한 시기, 관심 항목,\n동행 인원과 예산 범위를 알려주시면,\n적합한 일정 방향을 먼저 정리해 드리겠습니다.',
-  ctaBtn: '컨시어지에게 연락',
 }
 
 const EN: PackageLang = {
@@ -245,7 +204,6 @@ const EN: PackageLang = {
   heroEyebrow: '✦ Customizable to your preference',
   heroTitle: 'K-MediSpring 3 Nights 4 Days Package',
   heroSub: 'Medical consultation, sightseeing and shopping times are fixed — you can freely choose the specific locations and meals.',
-  heroBtn: 'Contact a Concierge',
   heroNote: 'Medical costs are not included in this package and must be confirmed separately.',
   countLabels: ['Hospital Visits (Fixed)', 'Attractions (Optional)', 'Shopping Spot (Optional)'],
   glanceTitle: 'Itinerary at a Glance',
@@ -303,20 +261,6 @@ const EN: PackageLang = {
   footNote: 'The above is a standard itinerary template. Specific medical treatments and timing will be confirmed and adjusted with your dedicated concierge.',
   summaryEmpty: 'No itinerary items selected yet',
   consultBtn: 'Contact a Concierge',
-  adjustTitle: 'Customizable to Your Preferences',
-  adjustNote: 'Specific attractions, shopping spots, and meals can be adjusted based on your schedule, energy, medical plan, and personal preferences.',
-  adjustable: [
-    { label: 'Attractions', options: 'Bukchon Hanok Village · Insadong · Namsan Tower · Cheonggyecheon · Gwangjang Market — 17 options' },
-    { label: 'Shopping', options: 'The Hyundai Seoul · Myeongdong · Lotte · Shinsegae · COEX — 18 options' },
-    { label: 'Meals', options: 'Korean Set Meal · Korean BBQ · Samgyetang · Hot Pot Set Meal — choose per meal' },
-    { label: 'Medical', options: 'Combination adjusted to client needs and hospital schedule' },
-  ],
-  philosophyLabel: 'This is not an ordinary tour',
-  philosophyTitle: 'The K-MediSpring 3N4D Package\nis not just hospitals and attractions stitched together.',
-  philosophyDesc: 'We plan a lighter, more reassuring Korea itinerary tailored to your medical consultation needs, recovery time, travel distance, and stay rhythm.',
-  ctaTitle: 'Want to know the right 3N4D plan for you?',
-  ctaDesc: 'Tell us your Korea visit timing, areas of interest,\ngroup size and budget range,\nand we will organize the best direction for you first.',
-  ctaBtn: 'Contact a Concierge',
 }
 
 const AR: PackageLang = {
@@ -324,7 +268,6 @@ const AR: PackageLang = {
   heroEyebrow: '✦ قابل للتخصيص حسب رغبتك',
   heroTitle: 'باقة كيميديسبرينغ 3 ليالٍ و4 أيام',
   heroSub: 'مواعيد الاستشارة الطبية والجولات السياحية والتسوق ثابتة، ويمكنك اختيار الأماكن والوجبات المحددة بحرية.',
-  heroBtn: 'تواصل مع كونسيرج',
   heroNote: 'التكاليف الطبية غير مشمولة في هذه الباقة ويجب تأكيدها بشكل منفصل.',
   countLabels: ['زيارات المستشفى (ثابتة)', 'معالم سياحية (اختياري)', 'موقع تسوق (اختياري)'],
   glanceTitle: 'نظرة عامة على البرنامج',
@@ -382,20 +325,6 @@ const AR: PackageLang = {
   footNote: 'ما ورد أعلاه هو نموذج قياسي للبرنامج. سيتم تأكيد العلاجات الطبية المحددة والتوقيت مع كونسيرج مخصص لك.',
   summaryEmpty: 'لم يتم اختيار أي عناصر من البرنامج بعد',
   consultBtn: 'تواصل مع كونسيرج',
-  adjustTitle: 'قابل للتخصيص حسب تفضيلاتك',
-  adjustNote: 'يمكن تعديل المعالم السياحية ومواقع التسوق والوجبات بناءً على جدولك وطاقتك وخطتك الطبية وتفضيلاتك الشخصية.',
-  adjustable: [
-    { label: 'معالم', options: 'قرية بوكتشون · إنسادونغ · برج نامسان · حديقة هانغانغ · سوق غوانجانغ — 17 خياراً' },
-    { label: 'تسوق', options: 'The Hyundai Seoul · ميونغدونغ · لوتي · شينسيغي · COEX — 18 خياراً' },
-    { label: 'وجبات', options: 'وجبة كورية تقليدية · شواء كوري · سامغيتانغ · حساء حار — اختيار لكل وجبة' },
-    { label: 'طبي', options: 'تعديل التركيبة حسب احتياجات العميل وجدول المستشفى' },
-  ],
-  philosophyLabel: 'هذه ليست جولة سياحية عادية',
-  philosophyTitle: 'باقة كيمديسبرينج 3 ليالٍ/4 أيام\nليست مجرد مستشفيات ومعالم مجمّعة.',
-  philosophyDesc: 'نخطط لرحلة كوريا أخف وأكثر طمأنينة مصممة خصيصاً لاحتياجات استشارتك الطبية ووقت التعافي والمسافات والإيقاع.',
-  ctaTitle: 'هل تريد معرفة الباقة المناسبة لك؟',
-  ctaDesc: 'أخبرنا بموعد زيارتك لكوريا ومجالات اهتمامك\nوعدد المرافقين ونطاق الميزانية،\nوسنرتب لك أفضل اتجاه أولاً.',
-  ctaBtn: 'تواصل مع كونسيرج',
 }
 
 /* ── component ─────────────────────────────────────────────── */
@@ -500,12 +429,13 @@ export default function PackagePage() {
       <div className="pkg-widget" dir={isAr ? 'rtl' : 'ltr'}>
         {/* ══ Hero ══════════════════════════════════════════════ */}
         <div className="pkg-hero">
-          <motion.button className="pkg-back-btn" onClick={goHome} {...fadeUp}>{p.backHome}</motion.button>
+          <div className="pkg-hero-topbar">
+            <motion.button className="pkg-back-btn" onClick={goHome} {...fadeUp}>{p.backHome}</motion.button>
+          </div>
           <motion.span className="pkg-eyebrow" {...fadeUp} transition={{ delay: 0.05 }}>{p.heroEyebrow}</motion.span>
           <motion.h1 className="pkg-hero-title" {...fadeUp} transition={{ delay: 0.1 }}>{p.heroTitle}</motion.h1>
           <motion.p className="pkg-hero-sub" {...fadeUp} transition={{ delay: 0.15 }}>{p.heroSub}</motion.p>
-          <motion.button className="pkg-hero-btn" {...fadeUp} transition={{ delay: 0.2 }} onClick={() => window.open(contactUrl, '_blank')}>{p.heroBtn}</motion.button>
-          <motion.p className="pkg-hero-note" {...fadeUp} transition={{ delay: 0.22 }}>{p.heroNote}</motion.p>
+          <motion.p className="pkg-hero-note" {...fadeUp} transition={{ delay: 0.2 }}>{p.heroNote}</motion.p>
         </div>
 
         {/* ══ Counts strip ══════════════════════════════════════ */}
@@ -622,45 +552,6 @@ export default function PackagePage() {
           </div>
         </div>
       </div>
-
-      {/* ══ Adjustable ════════════════════════════════════════ */}
-      <section className="section-white" style={{ paddingBottom: 32 }}>
-        <motion.div {...fadeUp}>
-          <p className="section-title">{p.adjustTitle}</p>
-          <div className="section-accent-line" />
-        </motion.div>
-        <motion.div {...fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
-          {p.adjustable.map((item, i) => (
-            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'baseline' }}>
-              <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--brand)', background: 'rgba(0,119,182,0.08)', border: '1px solid rgba(0,119,182,0.18)', borderRadius: 6, padding: '3px 9px', whiteSpace: 'nowrap' as const, flexShrink: 0 }}>{item.label}</span>
-              <span style={{ fontSize: 12, color: 'var(--text)', lineHeight: 1.6 }}>{item.options}</span>
-            </div>
-          ))}
-        </motion.div>
-        <motion.p {...fadeUp} style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.8 }}>{p.adjustNote}</motion.p>
-      </section>
-
-      {/* ══ Philosophy ════════════════════════════════════════ */}
-      <section className="section-light" style={{ paddingTop: 36, paddingBottom: 36 }}>
-        <motion.div {...fadeUp} style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.18em', marginBottom: 12 }}>{p.philosophyLabel}</p>
-          <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--brand-dark, #003d6b)', lineHeight: 1.7, marginBottom: 16, whiteSpace: 'pre-line' }}>{p.philosophyTitle}</p>
-          <div style={{ width: 32, height: 2, background: 'var(--brand)', borderRadius: 1, margin: '0 auto 16px' }} />
-          <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.9, maxWidth: 320, margin: '0 auto' }}>{p.philosophyDesc}</p>
-        </motion.div>
-      </section>
-
-      {/* ══ CTA ═══════════════════════════════════════════════ */}
-      <section style={{ background: 'var(--brand)', padding: '36px 20px 40px' }}>
-        <motion.div {...fadeUp} style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: 16, fontWeight: 700, color: 'white', marginBottom: 10, lineHeight: 1.4 }}>{p.ctaTitle}</p>
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.78)', lineHeight: 1.8, marginBottom: 24, whiteSpace: 'pre-line' }}>{p.ctaDesc}</p>
-          <button onClick={() => window.open(contactUrl, '_blank')}
-            style={{ width: '100%', padding: '15px 0', borderRadius: 12, background: 'white', border: 'none', color: 'var(--brand-dark, #003d6b)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '0.02em', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
-            {p.ctaBtn}
-          </button>
-        </motion.div>
-      </section>
 
       <MedicalNetworkSection />
       <FooterSection />
