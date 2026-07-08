@@ -42,6 +42,7 @@ export const categories: Category[] = [
     ar: 'مكافحة الشيخوخة وإدارة الصحة',
     emoji: '🔬',
     heroImage: '/category-hero/big-health.png',
+    heroVideo: '/category-hero/dajiankang.mp4',
     tagZh: '功能医学 · 慢性疲劳 · 代谢抗衰',
     tagKo: '기능의학 · 만성피로 · 대사 항노화',
     tagEn: 'Functional Medicine · Chronic Fatigue · Metabolic Anti-Aging',
@@ -137,16 +138,17 @@ Final testing direction and medical judgment remain with licensed medical instit
   },
   {
     id: 'stem-cell',
-    zh: '干细胞',
-    ko: '줄기세포',
-    en: 'Stem Cell & Regenerative',
-    ar: 'الخلايا الجذعية والتجديد',
+    zh: '再生医学中心',
+    ko: '재생의학센터',
+    en: 'Regenerative Medicine Center',
+    ar: 'مركز الطب التجديدي',
     emoji: '🧬',
     heroImage: '/category-hero/stem-cell.png',
-    tagZh: '再生医学 · 关节恢复 · 合法咨询',
-    tagKo: '재생의학 · 관절회복 · 합법 상담',
-    tagEn: 'Regenerative Medicine · Joint Recovery · Legal Consultation',
-    tagAr: 'الطب التجديدي · تعافي المفاصل · استشارة قانونية',
+    heroVideo: '/category-hero/zaishengyixue.mp4',
+    tagZh: '干细胞疗法 · NAD+抗衰老 · 免疫细胞疗法',
+    tagKo: '줄기세포 치료 · NAD+ 항노화 · 면역세포 치료',
+    tagEn: 'Stem Cell Therapy · NAD+ Anti-Aging · Immune Cell Therapy',
+    tagAr: 'علاج الخلايا الجذعية · مكافحة الشيخوخة NAD+ · علاج الخلايا المناعية',
     scriptFullZh: `您好，这里是干细胞与再生医学相关咨询入口。
 
 干细胞和再生医学是很多人关心的领域，但也容易被误解。

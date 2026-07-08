@@ -15,10 +15,10 @@ export interface StemCellKeyword {
 
 export const STEM_CELL_SECTION = {
   title: {
-    zh: '干细胞·再生医学',
-    ko: '줄기세포·재생의학',
-    en: 'Stem Cell & Regenerative Medicine',
-    ar: 'الخلايا الجذعية والطب التجديدي',
+    zh: '再生医学中心',
+    ko: '재생의학센터',
+    en: 'Regenerative Medicine Center',
+    ar: 'مركز الطب التجديدي',
   } as LocalizedText,
   subCopy: {
     zh: '韩国许可细胞治疗剂 · 合法咨询范围 · 关节与再生医学咨询',
