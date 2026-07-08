@@ -89,7 +89,7 @@ function resolveInitialPos(isRTL: boolean): { x: number; y: number } {
 
 /* ─── component ─────────────────────────────────────────────────────── */
 export default function FloatingChatButton() {
-  const { lang, page } = useApp()
+  const { lang, page, categoryId } = useApp()
   const t = translations[lang]
   const isRTL = lang === 'ar'
 
@@ -103,6 +103,55 @@ export default function FloatingChatButton() {
     btnX: number;  btnY: number
     hasMoved: boolean
   } | null>(null)
+
+  /* recent pointer samples (last ~100ms), used to estimate release velocity for the glide */
+  const moveSamples = useRef<{ x: number; y: number; t: number }[]>([])
+  const glideFrame = useRef<number | null>(null)
+
+  const cancelGlide = () => {
+    if (glideFrame.current !== null) {
+      cancelAnimationFrame(glideFrame.current)
+      glideFrame.current = null
+    }
+  }
+
+  /* Inertia glide: decays the release velocity to zero (no spring, no overshoot) —
+     it slides, decelerates, and settles in place rather than bouncing at the edges. */
+  const startGlide = (x0: number, y0: number, vx0: number, vy0: number) => {
+    cancelGlide()
+    let x = x0, y = y0, vx = vx0, vy = vy0
+    let lastT = performance.now()
+
+    const step = (now: number) => {
+      const dt = Math.min(now - lastT, 48) // clamp in case of a dropped/slow frame
+      lastT = now
+
+      const decay = Math.pow(0.994, dt)
+      vx *= decay
+      vy *= decay
+      x += vx * dt
+      y += vy * dt
+
+      const minX = 0, maxX = window.innerWidth - BTN
+      const minY = NAV_H, maxY = window.innerHeight - BTN - MARGIN
+      if (x < minX) { x = minX; vx = 0 }
+      if (x > maxX) { x = maxX; vx = 0 }
+      if (y < minY) { y = minY; vy = 0 }
+      if (y > maxY) { y = maxY; vy = 0 }
+
+      setPos({ x, y })
+
+      if (Math.hypot(vx, vy) > 0.02) {
+        glideFrame.current = requestAnimationFrame(step)
+      } else {
+        glideFrame.current = null
+        savePos(x, y)
+      }
+    }
+    glideFrame.current = requestAnimationFrame(step)
+  }
+
+  useEffect(() => () => cancelGlide(), [])
 
   /* inject CSS once */
   useEffect(() => {
@@ -120,27 +169,58 @@ export default function FloatingChatButton() {
     setPos({ x, y })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* visibility — home: wait for #categories; other pages: immediate */
+  /* visibility — hidden while the page's hero section is on screen, revealed once
+     scrolled past it. Covers home (#hero), category pages (.cat-hero) and the
+     package page (.pkg-hero) with one rule so the button never sits over hero
+     video/image content. */
   useEffect(() => {
-    if (page !== 'home') { setShown(true); return }
     setShown(false)
-    const el = document.getElementById('categories')
-    if (!el) { setShown(true); return }
 
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setShown(true)
-      } else if (entry.boundingClientRect.top > 0) {
-        setShown(false)
-      }
-    }, { threshold: 0 })
+    // Pick the selector for *this* page's hero specifically — with AnimatePresence's
+    // exit-then-enter transition, the previous page's hero element can still be sitting
+    // in the DOM for a moment after `page` has already updated, so a generic selector
+    // risks grabbing that stale node instead of waiting for the real one.
+    const selector = page === 'home' ? '#hero' : page === 'package' ? '.pkg-hero' : '.cat-hero'
 
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [page])
+    let io: IntersectionObserver | null = null
+    let mo: MutationObserver | null = null
+
+    const attach = (heroEl: Element) => {
+      io = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(false)
+        } else if (entry.boundingClientRect.top < 0) {
+          setShown(true)
+        }
+      }, { threshold: 0 })
+      io.observe(heroEl)
+    }
+
+    const existing = document.querySelector(selector)
+    if (existing) {
+      attach(existing)
+    } else {
+      // Hero not mounted yet (mid page-transition) — watch the DOM until it appears.
+      mo = new MutationObserver(() => {
+        const el = document.querySelector(selector)
+        if (el) {
+          mo?.disconnect()
+          mo = null
+          attach(el)
+        }
+      })
+      mo.observe(document.body, { childList: true, subtree: true })
+    }
+
+    return () => {
+      io?.disconnect()
+      mo?.disconnect()
+    }
+  }, [page, categoryId])
 
   /* ── drag handlers ─────────────────────────────────────────────────── */
   const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>) => {
+    cancelGlide()
     e.currentTarget.setPointerCapture(e.pointerId)
     wasLastActionDrag.current = false
     drag.current = {
@@ -148,6 +228,7 @@ export default function FloatingChatButton() {
       btnX: pos?.x ?? 0, btnY: pos?.y ?? 0,
       hasMoved: false,
     }
+    moveSamples.current = [{ x: e.clientX, y: e.clientY, t: performance.now() }]
     setIsDragging(true)
   }
 
@@ -159,6 +240,14 @@ export default function FloatingChatButton() {
       drag.current.hasMoved = true
     }
     if (!drag.current.hasMoved) return
+
+    const now = performance.now()
+    moveSamples.current.push({ x: e.clientX, y: e.clientY, t: now })
+    // keep only the last ~100ms of samples — recent enough to reflect the release flick
+    while (moveSamples.current.length > 2 && now - moveSamples.current[0].t > 100) {
+      moveSamples.current.shift()
+    }
+
     const newX = Math.max(0, Math.min(window.innerWidth - BTN, drag.current.btnX + dx))
     const newY = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, drag.current.btnY + dy))
     setPos({ x: newX, y: newY })
@@ -179,8 +268,32 @@ export default function FloatingChatButton() {
     const finalX = Math.max(0, Math.min(window.innerWidth - BTN, btnX + dx))
     const finalY = Math.max(NAV_H, Math.min(window.innerHeight - BTN - MARGIN, btnY + dy))
 
+    // Release velocity (px/ms) from the recent pointer samples — a slow, deliberate
+    // release yields ~0 velocity and just stays put; a flick carries through into a glide.
+    const samples = moveSamples.current
+    let vx = 0, vy = 0
+    if (samples.length >= 2) {
+      const first = samples[0]
+      const last = samples[samples.length - 1]
+      const dt = last.t - first.t
+      if (dt > 0) {
+        vx = (last.x - first.x) / dt
+        vy = (last.y - first.y) / dt
+      }
+    }
+    moveSamples.current = []
+
+    const MAX_V = 3 // px/ms safety cap
+    vx = Math.max(-MAX_V, Math.min(MAX_V, vx))
+    vy = Math.max(-MAX_V, Math.min(MAX_V, vy))
+
     setPos({ x: finalX, y: finalY })
-    savePos(finalX, finalY)
+
+    if (Math.hypot(vx, vy) > 0.05) {
+      startGlide(finalX, finalY, vx, vy)
+    } else {
+      savePos(finalX, finalY)
+    }
   }
 
   const handleClick = () => {
