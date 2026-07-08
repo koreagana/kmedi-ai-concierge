@@ -144,7 +144,7 @@ Final testing direction and medical judgment remain with licensed medical instit
     ar: 'مركز الطب التجديدي',
     emoji: '🧬',
     heroImage: '/category-hero/stem-cell.png',
-    heroVideo: '/category-hero/zaishengyixue.mp4',
+    heroVideo: '/category-hero/zaishengyiliao.mp4',
     tagZh: '干细胞疗法 · NAD+抗衰老 · 免疫细胞疗法',
     tagKo: '줄기세포 치료 · NAD+ 항노화 · 면역세포 치료',
     tagEn: 'Stem Cell Therapy · NAD+ Anti-Aging · Immune Cell Therapy',
