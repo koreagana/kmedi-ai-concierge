@@ -10,6 +10,7 @@ concierge_image/
 !public/category-hero/gride_woman.mp4
 !public/category-hero/custom-plan.mp4
 !public/category-hero/mens-health.mp4
+!public/category-hero/woman-care.mp4
 *.xlsx
 # Local Netlify folder
 .netlify

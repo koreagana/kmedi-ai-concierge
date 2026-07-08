@@ -398,6 +398,7 @@ Whether surgery is possible and the specific method must be determined through a
     ar: 'مركز رعاية المرأة',
     emoji: '🪷',
     heroImage: '/category-hero/womens-care.png',
+    heroVideo: '/category-hero/woman-care.mp4',
     tagZh: '妇科检查 · 激素更年期 · 私密护理',
     tagKo: '부인과검진 · 호르몬갱년기 · 프라이빗 케어',
     tagEn: 'Gynecology Checkup · Hormones/Menopause · Private Care',

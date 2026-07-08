@@ -44,7 +44,7 @@
 }
 .pkg-widget[dir="rtl"] .pkg-hero-topbar { justify-content: flex-end; }
 .pkg-back-btn {
-  background: rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.35);
   border: none;
   color: #fff;
   font-size: 12.5px;

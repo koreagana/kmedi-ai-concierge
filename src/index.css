@@ -933,21 +933,22 @@ body {
 }
 
 .cat-back-btn {
-  background: none;
+  background: rgba(0,0,0,0.35);
   border: none;
-  color: rgba(255,255,255,0.8);
+  color: #fff;
   text-shadow: 0 1px 4px rgba(0,0,0,0.5);
   font-size: 13px;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 0;
+  padding: 7px 14px;
+  border-radius: 999px;
   margin-bottom: 18px;
-  transition: color 0.18s;
+  transition: background 0.18s;
   font-family: inherit;
 }
-.cat-back-btn:hover { color: white; }
+.cat-back-btn:hover { background: rgba(0,0,0,0.5); }
 
 .cat-make-card-btn {
   display: flex;

@@ -44,8 +44,8 @@ export default function CategoryPage() {
   if (!cat) {
     return (
       <div style={{ padding: 32, textAlign: 'center' }}>
-        <button className="cat-back-btn" onClick={goHome} style={{ color: 'var(--text-muted)', margin: '0 auto 20px' }}>
-          ← {t.backHome}
+        <button className="cat-back-btn" onClick={goHome} style={{ margin: '0 auto 20px' }}>
+          {t.backHome}
         </button>
       </div>
     )
@@ -92,7 +92,7 @@ export default function CategoryPage() {
 
         <div className="cat-hero-content">
           <motion.button className="cat-back-btn" onClick={goHome} {...fadeUp}>
-            ← {t.backHome}
+            {t.backHome}
           </motion.button>
 
           <motion.h1 className="cat-hero-name" {...fadeUp} transition={{ delay: 0.05 }}>
