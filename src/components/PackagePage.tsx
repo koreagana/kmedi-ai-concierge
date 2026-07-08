@@ -1,9 +1,9 @@
 import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { MedicalNetworkSection, FooterSection } from './HomePage'
-
+import './PackagePage.css'
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -12,84 +12,146 @@ const fadeUp = {
 }
 
 /* ── types ─────────────────────────────────────────────── */
-type ItemType = 'medical' | 'service' | 'spot' | 'food' | 'shop' | 'rest'
-interface DayItem { text: string; type: ItemType }
-interface DayData { day: number; title: string; items: DayItem[] }
-type SlotKey = 'day1Spot' | 'day2Spot' | 'day3MorningSpot' | 'day3AftShop'
+type SlotKey = 'meal1' | 'meal2' | 'meal3' | 'meal4' | 'meal5' | 'meal6' | 'sight1' | 'sight2' | 'shop'
 type Selections = Record<SlotKey, string>
+type OptionsKind = 'meal' | 'spot' | 'shop'
+
+interface FixedSlotDef { kind: 'fixed'; time: string; label: string; detail?: string }
+interface SelectSlotDef { kind: 'select'; time: string; label: string; slotKey: SlotKey; optionsKind: OptionsKind }
+type SlotDef = FixedSlotDef | SelectSlotDef
+
+interface DayDef { num: number; title: string; dateLabel: string; slots: SlotDef[] }
+interface GlanceItem { text: string; fixed: boolean }
+interface GlanceDay { title: string; sub: string; items: GlanceItem[] }
+interface PriceItem { title: string; desc: string; tag: string; tagKind: 'apart' | 'free' }
+interface AdjustItem { label: string; options: string }
+
+const ALL_SLOT_KEYS: SlotKey[] = ['meal1', 'meal2', 'sight1', 'meal3', 'meal4', 'shop', 'meal5', 'meal6', 'sight2']
 
 /* ── i18n ──────────────────────────────────────────────── */
 interface PackageLang {
   backHome: string
+  heroEyebrow: string
   heroTitle: string
-  heroTag: string
-  heroDesc: string
+  heroSub: string
   heroBtn: string
   heroNote: string
-  includesTitle: string
-  includesNote: string
-  includes: string[]
-  priceTitle: string
-  priceNote: string
-  prices: { group: string; price: string; unit: string }[]
-  selectTitle: string
-  selectDesc: string
-  selectDayLabels: Record<string, string>
-  slotLabels: Record<SlotKey, string>
+  countLabels: [string, string, string]
+  glanceTitle: string
+  glanceSub: string
+  glanceDays: GlanceDay[]
+  legendFixed: string
+  legendSelect: string
+  selectCtaText: string
+  badgeFixed: string
+  badgeSelect: string
+  days: DayDef[]
+  mealOptions: string[]
+  spotOptions: string[]
+  shopOptions: string[]
   slotSummaryLabels: Record<SlotKey, string>
-  mySummaryTitle: string
-  itineraryTitle: string
-  itineraryNote: string
-  dayTitles: string[]
+  priceTitle: string
+  priceSub: string
+  priceMainLabel: string
+  priceMainSub: string
+  priceAmount: string
+  priceUnit: string
+  priceMainNote: string
+  priceItems: PriceItem[]
+  priceFx: string
+  footNote: string
+  summaryEmpty: string
+  consultBtn: string
   adjustTitle: string
   adjustNote: string
-  adjustable: { label: string; options: string }[]
+  adjustable: AdjustItem[]
   philosophyLabel: string
   philosophyTitle: string
   philosophyDesc: string
   ctaTitle: string
   ctaDesc: string
   ctaBtn: string
-  spotOptions: string[]
-  shopOptions: string[]
-  defaultSelections: Selections
-  dayItems: (sel: Selections) => DayData[]
 }
+
+const SPOT_ZH = ['北村韩屋村', '仁寺洞', '南山首尔塔', '汉江公园', '清溪川', '广藏市场', '益善洞', '昌德宫', '德寿宫', '东大门设计广场 DDP', 'COEX 星光图书馆', '圣水洞', '弘大步行街', '林荫道', '梨泰院', '西村', '首尔天空观景台']
+const SHOP_ZH = ['现代百货 The Hyundai Seoul', '明洞', '乐天百货总店', '新世界百货总店', '现代百货狎鸥亭总店', 'Starfield COEX Mall', '乐天世界购物城', 'IFC Mall', '时代广场 Times Square', '现代百货贸易中心店', 'Galeria 名品馆', '狎鸥亭罗德奥', '林荫道', '圣水洞买手店街区', '弘大购物街', '东大门时尚城', '高速巴士地下商街 GOTO Mall', 'Common Ground']
+const SPOT_KO = ['북촌한옥마을', '인사동', '남산서울타워', '한강공원', '청계천', '광장시장', '익선동', '창덕궁', '덕수궁', '동대문디자인플라자 DDP', 'COEX 별마당도서관', '성수동', '홍대 거리', '가로수길', '이태원', '서촌', '서울스카이 전망대']
+const SHOP_KO = ['현대백화점 The Hyundai Seoul', '명동', '롯데백화점 본점', '신세계백화점 본점', '현대백화점 압구정 본점', 'Starfield COEX Mall', '롯데월드몰', 'IFC Mall', '타임스퀘어', '현대백화점 무역센터점', 'Galeria 명품관', '압구정 로데오', '가로수길', '성수동 편집샵 거리', '홍대 쇼핑거리', '동대문 패션타운', '고속터미널 지하상가 GOTO Mall', 'Common Ground']
+const SPOT_EN = ['Bukchon Hanok Village', 'Insadong', 'Namsan Seoul Tower', 'Hangang Park', 'Cheonggyecheon', 'Gwangjang Market', 'Ikseon-dong', 'Changdeokgung Palace', 'Deoksugung Palace', 'DDP (Dongdaemun Design Plaza)', 'COEX Starfield Library', 'Seongsu-dong', 'Hongdae Street', 'Garosu-gil', 'Itaewon', 'Seochon', 'Seoul Sky Observatory']
+const SHOP_EN = ['The Hyundai Seoul', 'Myeongdong', 'Lotte Dept. Main', 'Shinsegae Dept. Main', 'Hyundai Apgujeong Main', 'Starfield COEX Mall', 'Lotte World Mall', 'IFC Mall', 'Times Square', 'Hyundai COEX', 'Galeria Luxury Hall', 'Apgujeong Rodeo', 'Garosu-gil', 'Seongsu Select Shops', 'Hongdae Shopping St.', 'Dongdaemun Fashion Town', 'GOTO Mall', 'Common Ground']
+const SPOT_AR = ['قرية بوكتشون هانوك', 'إنسادونغ', 'برج سيول نامسان', 'حديقة هانغانغ', 'تشيونغيتشيون', 'سوق غوانجانغ', 'إيكسيون-دونغ', 'قصر تشانغديوك', 'قصر ديوكسو', 'DDP دونغداي مون', 'مكتبة ستارفيلد COEX', 'سيونغسو-دونغ', 'شارع هونغداي', 'غاروسو-غيل', 'إيتايون', 'سيوتشون', 'مرصد سيول سكاي']
+const SHOP_AR = ['The Hyundai Seoul', 'ميونغدونغ', 'لوتي الرئيسي', 'شينسيغي الرئيسي', 'هيونداي أبغوجيونغ', 'Starfield COEX Mall', 'لوتي وورلد مول', 'IFC Mall', 'تايمز سكوير', 'هيونداي COEX', 'غالاريا لوكس', 'أبغوجيونغ رودييو', 'غاروسو-غيل', 'محلات سيونغسو', 'هونغداي للتسوق', 'دونغداي مون للأزياء', 'GOTO Mall', 'Common Ground']
 
 const ZH: PackageLang = {
   backHome: '← 返回首页',
+  heroEyebrow: '✦ 可根据您的喜好定制',
   heroTitle: '汉江春天 3晚4天方案',
-  heroTag: '医疗咨询 · 翻译陪同 · 行程协助 · 韩国停留安排',
-  heroDesc: '从医疗咨询到韩国停留，我们为您整理更安心、更清晰的 3晚4天赴韩行程。',
+  heroSub: '医疗咨询、旅游、购物的时间已固定安排，具体地点与餐饮种类可自由选择。',
   heroBtn: '联系顾问咨询',
   heroNote: '医疗费用不包含在本方案内，具体医疗项目需另行咨询确认。',
-  includesTitle: '方案包含什么？',
-  includesNote: '不含酒店及医疗费用。酒店可根据需要单独协助安排。',
-  includes: ['医疗咨询与到院协助', '中文翻译沟通', '车辆与基础行程安排', '首尔核心景点 4处', '自由购物时间 2次', '医院访问 3次', '可选韩式体验'],
-  priceTitle: '参考价格（3晚4天基础行程）',
-  priceNote: '费用包含车辆、医院陪同、景点安排及基础行程陪同。\n不包含医疗费用、选诊项目、个人购物及机票等。\n最终价格可能根据人数、行程安排、选诊项目及汇率有所调整。',
-  prices: [
-    { group: '1 人', price: '12,000', unit: '元 / 人' },
-    { group: '2 人', price: '10,000 ~ 10,500', unit: '元 / 人' },
-    { group: '3 人', price: '9,500', unit: '元 / 人' },
-    { group: '4 人', price: '8,800 ~ 9,000', unit: '元 / 人' },
+  countLabels: ['医院问诊（固定）', '旅游地点（可选）', '购物地点（可选）'],
+  glanceTitle: '行程一览',
+  glanceSub: '确认整体行程后，可查看每日详细时间与可选项目',
+  glanceDays: [
+    { title: '抵达首尔', sub: '从仁川机场出发', items: [{ text: '仁川机场接机', fixed: true }, { text: '入住酒店', fixed: true }, { text: '欢迎晚餐', fixed: false }] },
+    { title: '医院问诊①', sub: '一家医院 · 一次问诊', items: [{ text: '医院问诊①', fixed: true }, { text: '午餐', fixed: false }, { text: '旅游地点①', fixed: false }, { text: '晚餐', fixed: false }] },
+    { title: '医院复诊②', sub: '一家医院 · 自由购物', items: [{ text: '医院复诊②', fixed: true }, { text: '午餐', fixed: false }, { text: '购物', fixed: false }, { text: '晚餐', fixed: false }] },
+    { title: '医院复查③', sub: '返程准备', items: [{ text: '医院复查③', fixed: true }, { text: '午餐', fixed: false }, { text: '旅游地点②', fixed: false }, { text: '返程', fixed: true }] },
   ],
-  selectTitle: '可自由调整景点与购物地点',
-  selectDesc: '在下方选择您偏好的景点与购物地点，行程安排将自动更新。',
-  selectDayLabels: { DAY1: 'DAY 1', DAY2: 'DAY 2', DAY3: 'DAY 3' },
-  slotLabels: { day1Spot: '景点', day2Spot: '下午景点', day3MorningSpot: '上午景点', day3AftShop: '下午购物地点' },
-  slotSummaryLabels: { day1Spot: '第1天景点', day2Spot: '第2天下午景点', day3MorningSpot: '第3天上午景点', day3AftShop: '第3天下午购物地点' },
-  mySummaryTitle: '我的行程选择',
-  itineraryTitle: '3晚4天行程安排',
-  itineraryNote: '以下行程已根据您的选择自动更新。',
-  dayTitles: ['抵达首尔', '医疗咨询与恢复', '体验与自由购物', '复查与离境'],
+  legendFixed: '固定行程', legendSelect: '可选',
+  selectCtaText: '请选择旅游地点和购物地点',
+  badgeFixed: '固定', badgeSelect: '可选',
+  days: [
+    { num: 1, title: '抵达首尔', dateLabel: 'DAY 1 · 入境', slots: [
+      { kind: 'fixed', time: '14:00', label: '仁川机场接机', detail: '专属接送，直达酒店' },
+      { kind: 'fixed', time: '16:00', label: '酒店入住 · 休息' },
+      { kind: 'select', time: '19:00', label: '欢迎晚餐', slotKey: 'meal1', optionsKind: 'meal' },
+    ] },
+    { num: 2, title: '医院问诊①', dateLabel: 'DAY 2 · 医疗咨询', slots: [
+      { kind: 'fixed', time: '09:30', label: '医院问诊①', detail: '专业翻译全程陪同就诊' },
+      { kind: 'select', time: '12:30', label: '午餐', slotKey: 'meal2', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: '旅游地点①', slotKey: 'sight1', optionsKind: 'spot' },
+      { kind: 'select', time: '19:00', label: '晚餐', slotKey: 'meal3', optionsKind: 'meal' },
+    ] },
+    { num: 3, title: '医院复诊②', dateLabel: 'DAY 3 · 恢复与购物', slots: [
+      { kind: 'fixed', time: '09:30', label: '医院复诊②' },
+      { kind: 'select', time: '12:30', label: '午餐', slotKey: 'meal4', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: '购物', slotKey: 'shop', optionsKind: 'shop' },
+      { kind: 'select', time: '19:00', label: '晚餐', slotKey: 'meal5', optionsKind: 'meal' },
+    ] },
+    { num: 4, title: '医院复查③ & 返程', dateLabel: 'DAY 4 · 复查与离境', slots: [
+      { kind: 'fixed', time: '09:30', label: '医院复查③' },
+      { kind: 'select', time: '12:30', label: '午餐', slotKey: 'meal6', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: '旅游地点②', slotKey: 'sight2', optionsKind: 'spot' },
+      { kind: 'fixed', time: '18:30', label: '返程 · 前往机场' },
+    ] },
+  ],
+  mealOptions: ['韩定食', '烤肉', '参鸡汤', '汤锅定食'],
+  spotOptions: SPOT_ZH,
+  shopOptions: SHOP_ZH,
+  slotSummaryLabels: { meal1: '欢迎晚餐', meal2: '第2天午餐', meal3: '第2天晚餐', meal4: '第3天午餐', meal5: '第3天晚餐', meal6: '第4天午餐', sight1: '旅游地点①', sight2: '旅游地点②', shop: '购物地点' },
+  priceTitle: '费用说明',
+  priceSub: '价格依汇率浮动，无隐藏消费',
+  priceMainLabel: '套餐服务费',
+  priceMainSub: '专属车辆（机场接送 + 全程用车）· 6次用餐 · 翻译顾问全程陪同',
+  priceAmount: '¥9,600',
+  priceUnit: '/ 1~2人',
+  priceMainNote: '3人以上加车辆升级，费用另行报价，敬请咨询顾问',
+  priceItems: [
+    { title: '医疗项目费用', desc: '由您选择的具体医疗项目将单独核算，套餐费用不含医疗费', tag: '另行报价', tagKind: 'apart' },
+    { title: '住宿', desc: '不含在套餐内，由您自行预订。如需要，可为您免费推荐合作酒店并协助预订（不收取任何手续费）', tag: '免费协助', tagKind: 'free' },
+  ],
+  priceFx: '价格按实时汇率换算，如汇率波动较大，最终金额将与您重新确认',
+  footNote: '以上为标准行程模板，具体医疗项目及时间将由专属顾问与您确认后调整。',
+  summaryEmpty: '尚未选择行程项目',
+  consultBtn: '联系顾问咨询',
   adjustTitle: '可根据客户喜好调整',
-  adjustNote: '具体景点、购物地点与体验项目，可根据客户时间、体力、医疗安排与个人喜好调整。',
+  adjustNote: '具体旅游地点、购物地点与餐饮种类，可根据客户时间、体力、医疗安排与个人喜好调整。',
   adjustable: [
-    { label: '景点', options: '北村韩屋村 · 仁寺洞 · 南山塔 · 清溪川 · 广藏市场 等 17处可选' },
-    { label: '购物', options: 'The Hyundai Seoul · 明洞 · 乐天 · 新世界 · COEX 等 18处可选' },
-    { label: '体验', options: '韩式料理课程 · K-POP舞蹈 · 唱歌体验' },
-    { label: '医疗咨询', options: '根据客户需求调整组合' },
+    { label: '旅游地点', options: '北村韩屋村 · 仁寺洞 · 南山塔 · 清溪川 · 广藏市场 等 17处可选' },
+    { label: '购物地点', options: 'The Hyundai Seoul · 明洞 · 乐天 · 新世界 · COEX 等 18处可选' },
+    { label: '餐饮', options: '韩定食 · 烤肉 · 参鸡汤 · 汤锅定食 4种可选，每餐可不同' },
+    { label: '医疗项目', options: '根据客户需求与医院安排调整组合' },
   ],
   philosophyLabel: '这不是普通旅游行程',
   philosophyTitle: '汉江春天 3晚4天方案，\n不是简单把医院和景点排在一起。',
@@ -97,51 +159,78 @@ const ZH: PackageLang = {
   ctaTitle: '想了解适合您的 3晚4天方案？',
   ctaDesc: '告诉我们您的来韩时间、关注项目、\n同行人数与预算范围，\n我们会先为您整理适合的行程方向。',
   ctaBtn: '联系顾问咨询',
-  spotOptions: ['北村韩屋村', '仁寺洞', '南山首尔塔', '汉江公园', '清溪川', '广藏市场', '益善洞', '昌德宫', '德寿宫', '东大门设计广场 DDP', 'COEX 星光图书馆', '圣水洞', '弘大步行街', '林荫道', '梨泰院', '西村', '首尔天空观景台'],
-  shopOptions: ['现代百货 The Hyundai Seoul', '明洞', '乐天百货总店', '新世界百货总店', '现代百货狎鸥亭总店', 'Starfield COEX Mall', '乐天世界购物城', 'IFC Mall', '时代广场 Times Square', '现代百货贸易中心店', 'Galeria 名品馆', '狎鸥亭罗德奥', '林荫道', '圣水洞买手店街区', '弘大购物街', '东大门时尚城', '高速巴士地下商街 GOTO Mall', 'Common Ground'],
-  defaultSelections: { day1Spot: '北村韩屋村', day2Spot: '仁寺洞', day3MorningSpot: '景福宫', day3AftShop: '现代百货 The Hyundai Seoul' },
-  dayItems: (sel) => [
-    { day: 1, title: '抵达首尔', items: [{ text: '入境', type: 'rest' }, { text: '机场接送', type: 'service' }, { text: '入住酒店', type: 'rest' }, { text: '第1次到院：初诊咨询 / 基本检查', type: 'medical' }, { text: sel.day1Spot, type: 'spot' }, { text: '韩式烤肉晚餐', type: 'food' }] },
-    { day: 2, title: '医疗咨询与恢复', items: [{ text: '酒店早餐', type: 'food' }, { text: '第2次到院：医疗项目', type: 'medical' }, { text: 'Sudam 韩定食', type: 'food' }, { text: '恢复 / 再生管理', type: 'rest' }, { text: sel.day2Spot, type: 'spot' }, { text: '参鸡汤晚餐', type: 'food' }] },
-    { day: 3, title: '体验与自由购物', items: [{ text: '酒店早餐', type: 'food' }, { text: '可选体验', type: 'spot' }, { text: sel.day3MorningSpot, type: 'spot' }, { text: '景点午餐', type: 'food' }, { text: `自由购物：${sel.day3AftShop}`, type: 'shop' }, { text: '晚餐自由选择', type: 'food' }] },
-    { day: 4, title: '复查与离境', items: [{ text: '酒店早餐', type: 'food' }, { text: '第3次到院：术后复查', type: 'medical' }, { text: '自由简餐', type: 'food' }, { text: '离境准备', type: 'rest' }, { text: '前往机场', type: 'service' }, { text: '如有需要可安排免税购物', type: 'shop' }] },
-  ],
 }
 
 const KO: PackageLang = {
   backHome: '← 홈으로',
-  heroTitle: '3박 4일 한국 의료·웰니스 컨시어지 패키지',
-  heroTag: '의료상담 · 통역 동행 · 일정 협조 · 한국 체류 안내',
-  heroDesc: '1인 기준 USD 1,300부터. 의료상담부터 한국 체류까지, 더 안심하고 방한하실 수 있도록 정리해 드립니다.',
+  heroEyebrow: '✦ 고객님의 취향에 맞게 구성 가능',
+  heroTitle: '한강애봄 3박4일 패키지',
+  heroSub: '의료상담·관광·쇼핑 일정은 고정되어 있으며, 구체적인 장소와 식사 메뉴는 자유롭게 선택하실 수 있습니다.',
   heroBtn: '컨시어지에게 연락',
   heroNote: '의료비는 본 패키지에 포함되지 않으며, 구체적인 의료 항목은 별도 확인이 필요합니다.',
-  includesTitle: '패키지에 포함된 것은?',
-  includesNote: '호텔 및 의료비 미포함. 호텔은 필요 시 별도 안내 가능.',
-  includes: ['의료상담 및 병원 동행', '한국어·중국어 통역 소통', '차량 및 기본 일정 안내', '서울 핵심 관광지 4곳', '자유 쇼핑 시간 2회', '병원 방문 3회', '선택 한국 체험'],
-  priceTitle: '3박 4일 기본 일정 참고 가격',
-  priceNote: '비용에는 차량, 병원 동행, 관광지 안내, 기본 일정 동행이 포함됩니다.\n병원비, 선택 진료비, 개인 쇼핑비, 항공권은 별도입니다.\n최종 금액은 인원수, 일정, 선택 진료 항목, 환율에 따라 달라질 수 있습니다.',
-  prices: [
-    { group: '1인', price: 'USD 1,800', unit: '/ 인' },
-    { group: '2인', price: 'USD 1,500 ~ 1,550', unit: '/ 인' },
-    { group: '3인', price: 'USD 1,400', unit: '/ 인' },
-    { group: '4인', price: 'USD 1,300 ~ 1,350', unit: '/ 인' },
+  countLabels: ['병원 방문 (고정)', '관광지 (선택)', '쇼핑 장소 (선택)'],
+  glanceTitle: '일정 한눈에 보기',
+  glanceSub: '전체 일정을 확인한 후, 매일 세부 시간과 선택 항목을 확인하실 수 있습니다',
+  glanceDays: [
+    { title: '서울 도착', sub: '인천공항 출발', items: [{ text: '인천공항 픽업', fixed: true }, { text: '호텔 체크인', fixed: true }, { text: '환영 만찬', fixed: false }] },
+    { title: '병원 상담①', sub: '병원 1곳 · 상담 1회', items: [{ text: '병원 상담①', fixed: true }, { text: '점심', fixed: false }, { text: '관광지①', fixed: false }, { text: '저녁', fixed: false }] },
+    { title: '병원 재진②', sub: '병원 1곳 · 자유 쇼핑', items: [{ text: '병원 재진②', fixed: true }, { text: '점심', fixed: false }, { text: '쇼핑', fixed: false }, { text: '저녁', fixed: false }] },
+    { title: '병원 재진③', sub: '출국 준비', items: [{ text: '병원 재진③', fixed: true }, { text: '점심', fixed: false }, { text: '관광지②', fixed: false }, { text: '출국', fixed: true }] },
   ],
-  selectTitle: '관광지 및 쇼핑 장소 자유 선택',
-  selectDesc: '아래에서 선호하는 관광지와 쇼핑 장소를 선택하면 일정이 자동으로 업데이트됩니다.',
-  selectDayLabels: { DAY1: 'DAY 1', DAY2: 'DAY 2', DAY3: 'DAY 3' },
-  slotLabels: { day1Spot: '관광지', day2Spot: '오후 관광지', day3MorningSpot: '오전 관광지', day3AftShop: '오후 쇼핑 장소' },
-  slotSummaryLabels: { day1Spot: '1일차 관광지', day2Spot: '2일차 오후 관광지', day3MorningSpot: '3일차 오전 관광지', day3AftShop: '3일차 오후 쇼핑' },
-  mySummaryTitle: '나의 일정 선택',
-  itineraryTitle: '3박4일 일정',
-  itineraryNote: '아래 일정은 선택에 따라 자동 업데이트됩니다.',
-  dayTitles: ['서울 도착', '의료상담 및 회복', '체험 및 자유 쇼핑', '재진 및 출국'],
+  legendFixed: '고정 일정', legendSelect: '선택 가능',
+  selectCtaText: '관광지와 쇼핑 장소를 선택해 주세요',
+  badgeFixed: '고정', badgeSelect: '선택',
+  days: [
+    { num: 1, title: '서울 도착', dateLabel: 'DAY 1 · 입국', slots: [
+      { kind: 'fixed', time: '14:00', label: '인천공항 픽업', detail: '전용 차량으로 호텔까지 안내' },
+      { kind: 'fixed', time: '16:00', label: '호텔 체크인 · 휴식' },
+      { kind: 'select', time: '19:00', label: '환영 만찬', slotKey: 'meal1', optionsKind: 'meal' },
+    ] },
+    { num: 2, title: '병원 상담①', dateLabel: 'DAY 2 · 의료상담', slots: [
+      { kind: 'fixed', time: '09:30', label: '병원 상담①', detail: '전문 통역 동행' },
+      { kind: 'select', time: '12:30', label: '점심', slotKey: 'meal2', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: '관광지①', slotKey: 'sight1', optionsKind: 'spot' },
+      { kind: 'select', time: '19:00', label: '저녁', slotKey: 'meal3', optionsKind: 'meal' },
+    ] },
+    { num: 3, title: '병원 재진②', dateLabel: 'DAY 3 · 회복 및 쇼핑', slots: [
+      { kind: 'fixed', time: '09:30', label: '병원 재진②' },
+      { kind: 'select', time: '12:30', label: '점심', slotKey: 'meal4', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: '쇼핑', slotKey: 'shop', optionsKind: 'shop' },
+      { kind: 'select', time: '19:00', label: '저녁', slotKey: 'meal5', optionsKind: 'meal' },
+    ] },
+    { num: 4, title: '병원 재진③ & 출국', dateLabel: 'DAY 4 · 재진 및 출국', slots: [
+      { kind: 'fixed', time: '09:30', label: '병원 재진③' },
+      { kind: 'select', time: '12:30', label: '점심', slotKey: 'meal6', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: '관광지②', slotKey: 'sight2', optionsKind: 'spot' },
+      { kind: 'fixed', time: '18:30', label: '출국 · 공항 이동' },
+    ] },
+  ],
+  mealOptions: ['한정식', '숯불구이', '삼계탕', '전골정식'],
+  spotOptions: SPOT_KO,
+  shopOptions: SHOP_KO,
+  slotSummaryLabels: { meal1: '환영 만찬', meal2: '2일차 점심', meal3: '2일차 저녁', meal4: '3일차 점심', meal5: '3일차 저녁', meal6: '4일차 점심', sight1: '관광지①', sight2: '관광지②', shop: '쇼핑 장소' },
+  priceTitle: '비용 안내',
+  priceSub: '가격은 환율에 따라 변동되며, 숨겨진 비용은 없습니다.',
+  priceMainLabel: '패키지 서비스 비용',
+  priceMainSub: '전용 차량(공항 픽업 + 전 일정 이용) · 식사 6회 · 통역 코디네이터 전 일정 동행',
+  priceAmount: 'USD 1,350',
+  priceUnit: '/ 1~2인 기준',
+  priceMainNote: '3인 이상은 차량 등급이 상향되며 비용은 별도 안내해 드립니다. 컨시어지에게 문의해 주세요.',
+  priceItems: [
+    { title: '의료 항목 비용', desc: '고객님이 선택하시는 구체적인 의료 항목은 별도로 산정되며, 패키지 비용에는 의료비가 포함되지 않습니다.', tag: '별도 안내', tagKind: 'apart' },
+    { title: '숙박', desc: '패키지에 포함되지 않으며 직접 예약하시면 됩니다. 필요하실 경우 제휴 호텔을 무료로 추천 및 예약 지원해 드립니다(수수료 없음).', tag: '무료 지원', tagKind: 'free' },
+  ],
+  priceFx: '가격은 실시간 환율로 환산되며, 환율 변동이 클 경우 최종 금액은 다시 확인해 드립니다.',
+  footNote: '위 일정은 표준 템플릿이며, 구체적인 의료 항목과 시간은 전담 컨시어지와 상담 후 조정됩니다.',
+  summaryEmpty: '아직 선택한 일정 항목이 없습니다',
+  consultBtn: '컨시어지에게 문의',
   adjustTitle: '고객 취향에 따라 조정 가능',
-  adjustNote: '구체적인 관광지, 쇼핑 장소, 체험은 고객의 시간, 체력, 의료 일정, 개인 취향에 맞게 조정 가능합니다.',
+  adjustNote: '구체적인 관광지, 쇼핑 장소, 식사 메뉴는 고객의 일정, 체력, 의료 일정 및 개인 취향에 맞게 조정 가능합니다.',
   adjustable: [
     { label: '관광지', options: '북촌한옥마을 · 인사동 · 남산타워 · 청계천 · 광장시장 등 17곳' },
     { label: '쇼핑', options: 'The Hyundai Seoul · 명동 · 롯데 · 신세계 · COEX 등 18곳' },
-    { label: '체험', options: '한식 요리 클래스 · K-POP 댄스 · 노래 체험' },
-    { label: '의료상담', options: '고객 니즈에 맞게 조합 조정' },
+    { label: '식사', options: '한정식 · 숯불구이 · 삼계탕 · 전골정식 4종 중 매 끼니 선택 가능' },
+    { label: '의료 상담', options: '고객 니즈와 병원 일정에 맞게 조합 조정' },
   ],
   philosophyLabel: '이건 일반 관광 일정이 아닙니다',
   philosophyTitle: '한강애봄 3박4일 패키지는\n단순히 병원과 관광지를 나열한 것이 아닙니다.',
@@ -149,51 +238,78 @@ const KO: PackageLang = {
   ctaTitle: '나에게 맞는 3박4일 패키지를 알고 싶으신가요?',
   ctaDesc: '방한 시기, 관심 항목,\n동행 인원과 예산 범위를 알려주시면,\n적합한 일정 방향을 먼저 정리해 드리겠습니다.',
   ctaBtn: '컨시어지에게 연락',
-  spotOptions: ['북촌한옥마을', '인사동', '남산서울타워', '한강공원', '청계천', '광장시장', '익선동', '창덕궁', '덕수궁', '동대문디자인플라자 DDP', 'COEX 별마당도서관', '성수동', '홍대 거리', '가로수길', '이태원', '서촌', '서울스카이 전망대'],
-  shopOptions: ['현대백화점 The Hyundai Seoul', '명동', '롯데백화점 본점', '신세계백화점 본점', '현대백화점 압구정 본점', 'Starfield COEX Mall', '롯데월드몰', 'IFC Mall', '타임스퀘어', '현대백화점 무역센터점', 'Galeria 명품관', '압구정 로데오', '가로수길', '성수동 편집샵 거리', '홍대 쇼핑거리', '동대문 패션타운', '고속터미널 지하상가 GOTO Mall', 'Common Ground'],
-  defaultSelections: { day1Spot: '북촌한옥마을', day2Spot: '인사동', day3MorningSpot: '경복궁', day3AftShop: '현대백화점 The Hyundai Seoul' },
-  dayItems: (sel) => [
-    { day: 1, title: '서울 도착', items: [{ text: '입국', type: 'rest' }, { text: '공항 픽업', type: 'service' }, { text: '호텔 체크인', type: 'rest' }, { text: '1차 병원: 초진 상담 / 기본 검사', type: 'medical' }, { text: sel.day1Spot, type: 'spot' }, { text: '한국 바비큐 저녁', type: 'food' }] },
-    { day: 2, title: '의료상담 및 회복', items: [{ text: '호텔 조식', type: 'food' }, { text: '2차 병원: 의료 항목', type: 'medical' }, { text: 'Sudam 한정식', type: 'food' }, { text: '회복 / 재생 관리', type: 'rest' }, { text: sel.day2Spot, type: 'spot' }, { text: '삼계탕 저녁', type: 'food' }] },
-    { day: 3, title: '체험 및 자유 쇼핑', items: [{ text: '호텔 조식', type: 'food' }, { text: '선택 체험', type: 'spot' }, { text: sel.day3MorningSpot, type: 'spot' }, { text: '관광지 점심', type: 'food' }, { text: `자유 쇼핑: ${sel.day3AftShop}`, type: 'shop' }, { text: '저녁 자유 선택', type: 'food' }] },
-    { day: 4, title: '재진 및 출국', items: [{ text: '호텔 조식', type: 'food' }, { text: '3차 병원: 사후 점검', type: 'medical' }, { text: '간단한 자유 식사', type: 'food' }, { text: '출국 준비', type: 'rest' }, { text: '공항 이동', type: 'service' }, { text: '필요 시 면세 쇼핑 안내', type: 'shop' }] },
-  ],
 }
 
 const EN: PackageLang = {
   backHome: '← Back to Home',
-  heroTitle: '3 Nights 4 Days Korea Medical & Wellness Concierge Package',
-  heroTag: 'Medical Consultation · Interpreter Escort · Itinerary Support · Korea Stay',
-  heroDesc: 'From USD 1,300 per person. From medical consultation to your stay in Korea — we plan a clearer, more comfortable 3-night 4-day journey for you.',
+  heroEyebrow: '✦ Customizable to your preference',
+  heroTitle: 'K-MediSpring 3 Nights 4 Days Package',
+  heroSub: 'Medical consultation, sightseeing and shopping times are fixed — you can freely choose the specific locations and meals.',
   heroBtn: 'Contact a Concierge',
   heroNote: 'Medical costs are not included in this package and must be confirmed separately.',
-  includesTitle: "What's Included?",
-  includesNote: 'Hotel and medical costs not included. Hotel can be arranged separately on request.',
-  includes: ['Medical consultation & hospital escort', 'Interpreter communication', 'Vehicle & basic itinerary arrangement', '4 key Seoul attractions', '2 free shopping sessions', '3 hospital visits', 'Optional Korean experience'],
-  priceTitle: 'Estimated Price for 3 Nights 4 Days',
-  priceNote: 'Includes vehicle service, hospital escort, attraction visits, and basic itinerary support.\nMedical fees, optional treatments, personal shopping, and airfare are not included.\nFinal price may vary depending on group size, itinerary, selected treatments, and exchange rates.',
-  prices: [
-    { group: '1 person', price: 'USD 1,800', unit: '/ person' },
-    { group: '2 people', price: 'USD 1,500 ~ 1,550', unit: '/ person' },
-    { group: '3 people', price: 'USD 1,400', unit: '/ person' },
-    { group: '4 people', price: 'USD 1,300 ~ 1,350', unit: '/ person' },
+  countLabels: ['Hospital Visits (Fixed)', 'Attractions (Optional)', 'Shopping Spot (Optional)'],
+  glanceTitle: 'Itinerary at a Glance',
+  glanceSub: 'Once the overall plan is confirmed, you can check the detailed time and optional items for each day',
+  glanceDays: [
+    { title: 'Arrival in Seoul', sub: 'Depart from Incheon Airport', items: [{ text: 'Airport pickup', fixed: true }, { text: 'Hotel check-in', fixed: true }, { text: 'Welcome dinner', fixed: false }] },
+    { title: 'Hospital Consultation①', sub: '1 hospital · 1 consultation', items: [{ text: 'Hospital Consultation①', fixed: true }, { text: 'Lunch', fixed: false }, { text: 'Attraction①', fixed: false }, { text: 'Dinner', fixed: false }] },
+    { title: 'Hospital Follow-up②', sub: '1 hospital · free shopping', items: [{ text: 'Hospital Follow-up②', fixed: true }, { text: 'Lunch', fixed: false }, { text: 'Shopping', fixed: false }, { text: 'Dinner', fixed: false }] },
+    { title: 'Hospital Follow-up③', sub: 'Departure preparation', items: [{ text: 'Hospital Follow-up③', fixed: true }, { text: 'Lunch', fixed: false }, { text: 'Attraction②', fixed: false }, { text: 'Departure', fixed: true }] },
   ],
-  selectTitle: 'Customize Your Attractions & Shopping',
-  selectDesc: 'Select your preferred attractions and shopping spots below — the itinerary updates automatically.',
-  selectDayLabels: { DAY1: 'DAY 1', DAY2: 'DAY 2', DAY3: 'DAY 3' },
-  slotLabels: { day1Spot: 'Attraction', day2Spot: 'Afternoon Attraction', day3MorningSpot: 'Morning Attraction', day3AftShop: 'Afternoon Shopping' },
-  slotSummaryLabels: { day1Spot: 'Day 1 Attraction', day2Spot: 'Day 2 Afternoon Attraction', day3MorningSpot: 'Day 3 Morning Attraction', day3AftShop: 'Day 3 Afternoon Shopping' },
-  mySummaryTitle: 'My Itinerary Choices',
-  itineraryTitle: '3 Nights / 4 Days Itinerary',
-  itineraryNote: 'The itinerary below updates automatically based on your selections.',
-  dayTitles: ['Arrival in Seoul', 'Medical Consultation & Recovery', 'Experience & Free Shopping', 'Follow-up & Departure'],
+  legendFixed: 'Fixed', legendSelect: 'Optional',
+  selectCtaText: 'Please choose your attractions and shopping spot',
+  badgeFixed: 'Fixed', badgeSelect: 'Optional',
+  days: [
+    { num: 1, title: 'Arrival in Seoul', dateLabel: 'DAY 1 · ARRIVAL', slots: [
+      { kind: 'fixed', time: '14:00', label: 'Incheon Airport Pickup', detail: 'Private transfer directly to the hotel' },
+      { kind: 'fixed', time: '16:00', label: 'Hotel Check-in · Rest' },
+      { kind: 'select', time: '19:00', label: 'Welcome Dinner', slotKey: 'meal1', optionsKind: 'meal' },
+    ] },
+    { num: 2, title: 'Hospital Consultation①', dateLabel: 'DAY 2 · CONSULTATION', slots: [
+      { kind: 'fixed', time: '09:30', label: 'Hospital Consultation①', detail: 'Accompanied by a professional interpreter' },
+      { kind: 'select', time: '12:30', label: 'Lunch', slotKey: 'meal2', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: 'Attraction①', slotKey: 'sight1', optionsKind: 'spot' },
+      { kind: 'select', time: '19:00', label: 'Dinner', slotKey: 'meal3', optionsKind: 'meal' },
+    ] },
+    { num: 3, title: 'Hospital Follow-up②', dateLabel: 'DAY 3 · RECOVERY & SHOPPING', slots: [
+      { kind: 'fixed', time: '09:30', label: 'Hospital Follow-up②' },
+      { kind: 'select', time: '12:30', label: 'Lunch', slotKey: 'meal4', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: 'Shopping', slotKey: 'shop', optionsKind: 'shop' },
+      { kind: 'select', time: '19:00', label: 'Dinner', slotKey: 'meal5', optionsKind: 'meal' },
+    ] },
+    { num: 4, title: 'Hospital Follow-up③ & Departure', dateLabel: 'DAY 4 · FOLLOW-UP & DEPARTURE', slots: [
+      { kind: 'fixed', time: '09:30', label: 'Hospital Follow-up③' },
+      { kind: 'select', time: '12:30', label: 'Lunch', slotKey: 'meal6', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: 'Attraction②', slotKey: 'sight2', optionsKind: 'spot' },
+      { kind: 'fixed', time: '18:30', label: 'Departure · Transfer to Airport' },
+    ] },
+  ],
+  mealOptions: ['Korean Set Meal', 'Korean BBQ', 'Samgyetang (Ginseng Chicken Soup)', 'Hot Pot Set Meal'],
+  spotOptions: SPOT_EN,
+  shopOptions: SHOP_EN,
+  slotSummaryLabels: { meal1: 'Welcome Dinner', meal2: 'Day 2 Lunch', meal3: 'Day 2 Dinner', meal4: 'Day 3 Lunch', meal5: 'Day 3 Dinner', meal6: 'Day 4 Lunch', sight1: 'Attraction①', sight2: 'Attraction②', shop: 'Shopping Spot' },
+  priceTitle: 'Pricing',
+  priceSub: 'Prices vary with the exchange rate — no hidden fees.',
+  priceMainLabel: 'Package Service Fee',
+  priceMainSub: 'Private vehicle (airport transfer + full itinerary) · 6 meals · Interpreter/coordinator escort throughout',
+  priceAmount: 'USD 1,350',
+  priceUnit: '/ for 1–2 people',
+  priceMainNote: 'For 3+ people the vehicle is upgraded and pricing is quoted separately — please contact a concierge.',
+  priceItems: [
+    { title: 'Medical Treatment Fees', desc: 'The specific medical treatments you choose are calculated separately; medical costs are not included in the package fee.', tag: 'Quoted separately', tagKind: 'apart' },
+    { title: 'Accommodation', desc: 'Not included in the package — you may book it yourself. If needed, we can recommend and help book a partner hotel free of charge (no service fee).', tag: 'Free assistance', tagKind: 'free' },
+  ],
+  priceFx: 'Prices are converted at the current exchange rate. If the rate fluctuates significantly, the final amount will be reconfirmed with you.',
+  footNote: 'The above is a standard itinerary template. Specific medical treatments and timing will be confirmed and adjusted with your dedicated concierge.',
+  summaryEmpty: 'No itinerary items selected yet',
+  consultBtn: 'Contact a Concierge',
   adjustTitle: 'Customizable to Your Preferences',
-  adjustNote: 'Specific attractions, shopping spots, and experiences can be adjusted based on your schedule, energy, medical plan, and personal preferences.',
+  adjustNote: 'Specific attractions, shopping spots, and meals can be adjusted based on your schedule, energy, medical plan, and personal preferences.',
   adjustable: [
     { label: 'Attractions', options: 'Bukchon Hanok Village · Insadong · Namsan Tower · Cheonggyecheon · Gwangjang Market — 17 options' },
     { label: 'Shopping', options: 'The Hyundai Seoul · Myeongdong · Lotte · Shinsegae · COEX — 18 options' },
-    { label: 'Experiences', options: 'Korean Cooking Class · K-POP Dance · Singing Experience' },
-    { label: 'Medical', options: 'Combination adjusted to client needs' },
+    { label: 'Meals', options: 'Korean Set Meal · Korean BBQ · Samgyetang · Hot Pot Set Meal — choose per meal' },
+    { label: 'Medical', options: 'Combination adjusted to client needs and hospital schedule' },
   ],
   philosophyLabel: 'This is not an ordinary tour',
   philosophyTitle: 'The K-MediSpring 3N4D Package\nis not just hospitals and attractions stitched together.',
@@ -201,51 +317,78 @@ const EN: PackageLang = {
   ctaTitle: 'Want to know the right 3N4D plan for you?',
   ctaDesc: 'Tell us your Korea visit timing, areas of interest,\ngroup size and budget range,\nand we will organize the best direction for you first.',
   ctaBtn: 'Contact a Concierge',
-  spotOptions: ['Bukchon Hanok Village', 'Insadong', 'Namsan Seoul Tower', 'Hangang Park', 'Cheonggyecheon', 'Gwangjang Market', 'Ikseon-dong', 'Changdeokgung Palace', 'Deoksugung Palace', 'DDP (Dongdaemun Design Plaza)', 'COEX Starfield Library', 'Seongsu-dong', 'Hongdae Street', 'Garosu-gil', 'Itaewon', 'Seochon', 'Seoul Sky Observatory'],
-  shopOptions: ['The Hyundai Seoul', 'Myeongdong', 'Lotte Dept. Main', 'Shinsegae Dept. Main', 'Hyundai Apgujeong Main', 'Starfield COEX Mall', 'Lotte World Mall', 'IFC Mall', 'Times Square', 'Hyundai COEX', 'Galeria Luxury Hall', 'Apgujeong Rodeo', 'Garosu-gil', 'Seongsu Select Shops', 'Hongdae Shopping St.', 'Dongdaemun Fashion Town', 'GOTO Mall', 'Common Ground'],
-  defaultSelections: { day1Spot: 'Bukchon Hanok Village', day2Spot: 'Insadong', day3MorningSpot: 'Gyeongbokgung Palace', day3AftShop: 'The Hyundai Seoul' },
-  dayItems: (sel) => [
-    { day: 1, title: 'Arrival in Seoul', items: [{ text: 'Entry / Immigration', type: 'rest' }, { text: 'Airport pickup', type: 'service' }, { text: 'Hotel check-in', type: 'rest' }, { text: 'Visit 1: Initial consultation / Basic check', type: 'medical' }, { text: sel.day1Spot, type: 'spot' }, { text: 'Korean BBQ dinner', type: 'food' }] },
-    { day: 2, title: 'Medical Consultation & Recovery', items: [{ text: 'Hotel breakfast', type: 'food' }, { text: 'Visit 2: Medical treatment', type: 'medical' }, { text: 'Sudam Korean set meal', type: 'food' }, { text: 'Recovery / regenerative care', type: 'rest' }, { text: sel.day2Spot, type: 'spot' }, { text: 'Samgyetang dinner', type: 'food' }] },
-    { day: 3, title: 'Experience & Free Shopping', items: [{ text: 'Hotel breakfast', type: 'food' }, { text: 'Optional experience', type: 'spot' }, { text: sel.day3MorningSpot, type: 'spot' }, { text: 'Lunch near attraction', type: 'food' }, { text: `Free shopping: ${sel.day3AftShop}`, type: 'shop' }, { text: 'Dinner — free choice', type: 'food' }] },
-    { day: 4, title: 'Follow-up & Departure', items: [{ text: 'Hotel breakfast', type: 'food' }, { text: 'Visit 3: Post-procedure check', type: 'medical' }, { text: 'Light free meal', type: 'food' }, { text: 'Departure preparation', type: 'rest' }, { text: 'Transfer to airport', type: 'service' }, { text: 'Duty-free shopping if needed', type: 'shop' }] },
-  ],
 }
 
 const AR: PackageLang = {
   backHome: '← العودة للرئيسية',
-  heroTitle: '3 ليالٍ و4 أيام باقة كونسيرج طبية وعافية في كوريا',
-  heroTag: 'استشارة طبية · مرافق مترجم · دعم الجدول · الإقامة في كوريا',
-  heroDesc: 'ابتداءً من USD 1,300 للشخص الواحد. من الاستشارة الطبية إلى إقامتك في كوريا — نخطط لرحلة أكثر وضوحاً وراحة.',
+  heroEyebrow: '✦ قابل للتخصيص حسب رغبتك',
+  heroTitle: 'باقة كيميديسبرينغ 3 ليالٍ و4 أيام',
+  heroSub: 'مواعيد الاستشارة الطبية والجولات السياحية والتسوق ثابتة، ويمكنك اختيار الأماكن والوجبات المحددة بحرية.',
   heroBtn: 'تواصل مع كونسيرج',
   heroNote: 'التكاليف الطبية غير مشمولة في هذه الباقة ويجب تأكيدها بشكل منفصل.',
-  includesTitle: 'ماذا تشمل الباقة؟',
-  includesNote: 'لا تشمل تكاليف الفندق والرعاية الطبية. يمكن ترتيب الفندق بشكل منفصل عند الطلب.',
-  includes: ['استشارة طبية ومرافقة للمستشفى', 'تواصل مع مترجم', 'سيارة وترتيب جدول أساسي', '4 معالم رئيسية في سيول', 'جلستا تسوق حر', '3 زيارات للمستشفى', 'تجربة كورية اختيارية'],
-  priceTitle: 'السعر التقديري لبرنامج 3 ليالٍ و4 أيام',
-  priceNote: 'يشمل السعر خدمة السيارة، والمرافقة إلى المستشفى، وزيارات المعالم السياحية، والدعم الأساسي للبرنامج.\nلا يشمل السعر الرسوم الطبية، والعلاجات الاختيارية، والتسوق الشخصي، وتذاكر الطيران.\nقد يختلف السعر النهائي حسب عدد الأشخاص، والبرنامج، والعلاجات المختارة، وسعر الصرف.',
-  prices: [
-    { group: '1 شخص', price: 'USD 1,800', unit: '/ شخص' },
-    { group: '2 أشخاص', price: 'USD 1,500 ~ 1,550', unit: '/ شخص' },
-    { group: '3 أشخاص', price: 'USD 1,400', unit: '/ شخص' },
-    { group: '4 أشخاص', price: 'USD 1,300 ~ 1,350', unit: '/ شخص' },
+  countLabels: ['زيارات المستشفى (ثابتة)', 'معالم سياحية (اختياري)', 'موقع تسوق (اختياري)'],
+  glanceTitle: 'نظرة عامة على البرنامج',
+  glanceSub: 'بعد تأكيد الخطة الكاملة، يمكنك مراجعة الوقت التفصيلي والخيارات لكل يوم',
+  glanceDays: [
+    { title: 'الوصول إلى سيول', sub: 'المغادرة من مطار إنتشون', items: [{ text: 'استقبال المطار', fixed: true }, { text: 'تسجيل الوصول', fixed: true }, { text: 'عشاء ترحيبي', fixed: false }] },
+    { title: 'استشارة طبية ①', sub: 'مستشفى واحد · استشارة واحدة', items: [{ text: 'استشارة طبية ①', fixed: true }, { text: 'غداء', fixed: false }, { text: 'معلم سياحي ①', fixed: false }, { text: 'عشاء', fixed: false }] },
+    { title: 'متابعة طبية ②', sub: 'مستشفى واحد · تسوق حر', items: [{ text: 'متابعة طبية ②', fixed: true }, { text: 'غداء', fixed: false }, { text: 'تسوق', fixed: false }, { text: 'عشاء', fixed: false }] },
+    { title: 'متابعة طبية ③', sub: 'الاستعداد للمغادرة', items: [{ text: 'متابعة طبية ③', fixed: true }, { text: 'غداء', fixed: false }, { text: 'معلم سياحي ②', fixed: false }, { text: 'مغادرة', fixed: true }] },
   ],
-  selectTitle: 'خصص المعالم والتسوق',
-  selectDesc: 'اختر المعالم ومواقع التسوق المفضلة أدناه — سيتحدث الجدول تلقائياً.',
-  selectDayLabels: { DAY1: 'اليوم 1', DAY2: 'اليوم 2', DAY3: 'اليوم 3' },
-  slotLabels: { day1Spot: 'معلم', day2Spot: 'معلم بعد الظهر', day3MorningSpot: 'معلم الصباح', day3AftShop: 'تسوق بعد الظهر' },
-  slotSummaryLabels: { day1Spot: 'معلم اليوم 1', day2Spot: 'معلم اليوم 2 بعد الظهر', day3MorningSpot: 'معلم اليوم 3 صباحاً', day3AftShop: 'تسوق اليوم 3 بعد الظهر' },
-  mySummaryTitle: 'اختياراتي للجدول',
-  itineraryTitle: 'جدول 3 ليالٍ / 4 أيام',
-  itineraryNote: 'يتحدث الجدول أدناه تلقائياً بناءً على اختياراتك.',
-  dayTitles: ['الوصول إلى سيول', 'استشارة طبية وتعافٍ', 'تجربة وتسوق حر', 'متابعة ومغادرة'],
+  legendFixed: 'ثابت', legendSelect: 'اختياري',
+  selectCtaText: 'يرجى اختيار المعالم السياحية وموقع التسوق',
+  badgeFixed: 'ثابت', badgeSelect: 'اختياري',
+  days: [
+    { num: 1, title: 'الوصول إلى سيول', dateLabel: 'اليوم 1 · الوصول', slots: [
+      { kind: 'fixed', time: '14:00', label: 'استقبال من مطار إنتشون', detail: 'نقل خاص مباشرة إلى الفندق' },
+      { kind: 'fixed', time: '16:00', label: 'تسجيل الوصول بالفندق · راحة' },
+      { kind: 'select', time: '19:00', label: 'عشاء ترحيبي', slotKey: 'meal1', optionsKind: 'meal' },
+    ] },
+    { num: 2, title: 'استشارة طبية ①', dateLabel: 'اليوم 2 · الاستشارة', slots: [
+      { kind: 'fixed', time: '09:30', label: 'استشارة طبية ①', detail: 'برفقة مترجم محترف' },
+      { kind: 'select', time: '12:30', label: 'غداء', slotKey: 'meal2', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: 'معلم سياحي ①', slotKey: 'sight1', optionsKind: 'spot' },
+      { kind: 'select', time: '19:00', label: 'عشاء', slotKey: 'meal3', optionsKind: 'meal' },
+    ] },
+    { num: 3, title: 'متابعة طبية ②', dateLabel: 'اليوم 3 · التعافي والتسوق', slots: [
+      { kind: 'fixed', time: '09:30', label: 'متابعة طبية ②' },
+      { kind: 'select', time: '12:30', label: 'غداء', slotKey: 'meal4', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: 'تسوق', slotKey: 'shop', optionsKind: 'shop' },
+      { kind: 'select', time: '19:00', label: 'عشاء', slotKey: 'meal5', optionsKind: 'meal' },
+    ] },
+    { num: 4, title: 'متابعة طبية ③ والمغادرة', dateLabel: 'اليوم 4 · المتابعة والمغادرة', slots: [
+      { kind: 'fixed', time: '09:30', label: 'متابعة طبية ③' },
+      { kind: 'select', time: '12:30', label: 'غداء', slotKey: 'meal6', optionsKind: 'meal' },
+      { kind: 'select', time: '14:00', label: 'معلم سياحي ②', slotKey: 'sight2', optionsKind: 'spot' },
+      { kind: 'fixed', time: '18:30', label: 'المغادرة · التوجه للمطار' },
+    ] },
+  ],
+  mealOptions: ['وجبة كورية تقليدية', 'شواء كوري', 'سامغيتانغ (حساء دجاج بالجينسنغ)', 'وجبة حساء حار'],
+  spotOptions: SPOT_AR,
+  shopOptions: SHOP_AR,
+  slotSummaryLabels: { meal1: 'عشاء ترحيبي', meal2: 'غداء اليوم 2', meal3: 'عشاء اليوم 2', meal4: 'غداء اليوم 3', meal5: 'عشاء اليوم 3', meal6: 'غداء اليوم 4', sight1: 'معلم سياحي ①', sight2: 'معلم سياحي ②', shop: 'موقع التسوق' },
+  priceTitle: 'تفاصيل السعر',
+  priceSub: 'يتغير السعر حسب سعر الصرف، ولا توجد رسوم خفية.',
+  priceMainLabel: 'رسوم خدمة الباقة',
+  priceMainSub: 'سيارة خاصة (استقبال المطار + الاستخدام طوال الرحلة) · 6 وجبات · مرافقة مترجم/منسق طوال الرحلة',
+  priceAmount: 'USD 1,350',
+  priceUnit: '/ لـ 1-2 شخص',
+  priceMainNote: 'لـ 3 أشخاص أو أكثر يتم ترقية السيارة ويُقدَّم السعر بشكل منفصل — يرجى التواصل مع كونسيرج.',
+  priceItems: [
+    { title: 'تكاليف العلاجات الطبية', desc: 'يتم احتساب العلاجات الطبية المحددة التي تختارها بشكل منفصل، ولا تشمل رسوم الباقة التكاليف الطبية.', tag: 'يُقدَّم بشكل منفصل', tagKind: 'apart' },
+    { title: 'الإقامة', desc: 'غير مشمولة في الباقة، ويمكنك الحجز بنفسك. عند الحاجة، يمكننا التوصية بفندق شريك ومساعدتك في الحجز مجاناً (بدون رسوم خدمة).', tag: 'مساعدة مجانية', tagKind: 'free' },
+  ],
+  priceFx: 'يتم تحويل الأسعار حسب سعر الصرف الحالي. في حال حدوث تقلبات كبيرة، سيتم تأكيد المبلغ النهائي معك مجدداً.',
+  footNote: 'ما ورد أعلاه هو نموذج قياسي للبرنامج. سيتم تأكيد العلاجات الطبية المحددة والتوقيت مع كونسيرج مخصص لك.',
+  summaryEmpty: 'لم يتم اختيار أي عناصر من البرنامج بعد',
+  consultBtn: 'تواصل مع كونسيرج',
   adjustTitle: 'قابل للتخصيص حسب تفضيلاتك',
-  adjustNote: 'يمكن تعديل المعالم ومواقع التسوق والتجارب بناءً على جدولك وطاقتك وخطتك الطبية وتفضيلاتك الشخصية.',
+  adjustNote: 'يمكن تعديل المعالم السياحية ومواقع التسوق والوجبات بناءً على جدولك وطاقتك وخطتك الطبية وتفضيلاتك الشخصية.',
   adjustable: [
     { label: 'معالم', options: 'قرية بوكتشون · إنسادونغ · برج نامسان · حديقة هانغانغ · سوق غوانجانغ — 17 خياراً' },
     { label: 'تسوق', options: 'The Hyundai Seoul · ميونغدونغ · لوتي · شينسيغي · COEX — 18 خياراً' },
-    { label: 'تجارب', options: 'درس طبخ كوري · رقص K-POP · تجربة غناء' },
-    { label: 'طبي', options: 'تعديل التركيبة حسب احتياجات العميل' },
+    { label: 'وجبات', options: 'وجبة كورية تقليدية · شواء كوري · سامغيتانغ · حساء حار — اختيار لكل وجبة' },
+    { label: 'طبي', options: 'تعديل التركيبة حسب احتياجات العميل وجدول المستشفى' },
   ],
   philosophyLabel: 'هذه ليست جولة سياحية عادية',
   philosophyTitle: 'باقة كيمديسبرينج 3 ليالٍ/4 أيام\nليست مجرد مستشفيات ومعالم مجمّعة.',
@@ -253,29 +396,6 @@ const AR: PackageLang = {
   ctaTitle: 'هل تريد معرفة الباقة المناسبة لك؟',
   ctaDesc: 'أخبرنا بموعد زيارتك لكوريا ومجالات اهتمامك\nوعدد المرافقين ونطاق الميزانية،\nوسنرتب لك أفضل اتجاه أولاً.',
   ctaBtn: 'تواصل مع كونسيرج',
-  spotOptions: ['قرية بوكتشون هانوك', 'إنسادونغ', 'برج سيول نامسان', 'حديقة هانغانغ', 'تشيونغيتشيون', 'سوق غوانجانغ', 'إيكسيون-دونغ', 'قصر تشانغديوك', 'قصر ديوكسو', 'DDP دونغداي مون', 'مكتبة ستارفيلد COEX', 'سيونغسو-دونغ', 'شارع هونغداي', 'غاروسو-غيل', 'إيتايون', 'سيوتشون', 'مرصد سيول سكاي'],
-  shopOptions: ['The Hyundai Seoul', 'ميونغدونغ', 'لوتي الرئيسي', 'شينسيغي الرئيسي', 'هيونداي أبغوجيونغ', 'Starfield COEX Mall', 'لوتي وورلد مول', 'IFC Mall', 'تايمز سكوير', 'هيونداي COEX', 'غالاريا لوكس', 'أبغوجيونغ رودييو', 'غاروسو-غيل', 'محلات سيونغسو', 'هونغداي للتسوق', 'دونغداي مون للأزياء', 'GOTO Mall', 'Common Ground'],
-  defaultSelections: { day1Spot: 'قرية بوكتشون هانوك', day2Spot: 'إنسادونغ', day3MorningSpot: 'قصر غيونغبوك', day3AftShop: 'The Hyundai Seoul' },
-  dayItems: (sel) => [
-    { day: 1, title: 'الوصول إلى سيول', items: [{ text: 'الدخول / الهجرة', type: 'rest' }, { text: 'استقبال المطار', type: 'service' }, { text: 'تسجيل الوصول في الفندق', type: 'rest' }, { text: 'زيارة 1: استشارة أولية / فحص أساسي', type: 'medical' }, { text: sel.day1Spot, type: 'spot' }, { text: 'عشاء شواء كوري', type: 'food' }] },
-    { day: 2, title: 'استشارة طبية وتعافٍ', items: [{ text: 'إفطار الفندق', type: 'food' }, { text: 'زيارة 2: العلاج الطبي', type: 'medical' }, { text: 'وجبة سودام الكورية', type: 'food' }, { text: 'تعافٍ / رعاية تجديدية', type: 'rest' }, { text: sel.day2Spot, type: 'spot' }, { text: 'عشاء سامغيتانغ', type: 'food' }] },
-    { day: 3, title: 'تجربة وتسوق حر', items: [{ text: 'إفطار الفندق', type: 'food' }, { text: 'تجربة اختيارية', type: 'spot' }, { text: sel.day3MorningSpot, type: 'spot' }, { text: 'غداء قرب المعلم', type: 'food' }, { text: `تسوق حر: ${sel.day3AftShop}`, type: 'shop' }, { text: 'عشاء — اختيار حر', type: 'food' }] },
-    { day: 4, title: 'متابعة ومغادرة', items: [{ text: 'إفطار الفندق', type: 'food' }, { text: 'زيارة 3: فحص ما بعد الإجراء', type: 'medical' }, { text: 'وجبة خفيفة حرة', type: 'food' }, { text: 'الاستعداد للمغادرة', type: 'rest' }, { text: 'التوجه للمطار', type: 'service' }, { text: 'تسوق معفي من الضريبة إذا لزم', type: 'shop' }] },
-  ],
-}
-
-/* ── item dot colors ──────────────────────────────────────── */
-const itemColor: Record<ItemType, string> = {
-  medical: '#0077b6', service: '#4a9cc7', spot: '#5a8fa8',
-  food: '#7a9ab5', shop: '#6b8ca5', rest: '#9ab0c0',
-}
-
-function SelectArrow() {
-  return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}>
-      <path d="M3 4.5l3 3 3-3" stroke="#0077b6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
 }
 
 /* ── component ─────────────────────────────────────────────── */
@@ -285,183 +405,223 @@ export default function PackagePage() {
   const isAr = lang === 'ar'
   const contactUrl = isAr ? WHATSAPP_URL : WECHAT_BIZ_URL
 
-  const [selections, setSelections] = useState<Selections>(p.defaultSelections)
-  const days = p.dayItems(selections)
-  const updateSlot = (key: SlotKey, value: string) => setSelections(s => ({ ...s, [key]: value }))
+  const [selections, setSelections] = useState<Selections>({ meal1: '', meal2: '', meal3: '', meal4: '', meal5: '', meal6: '', sight1: '', sight2: '', shop: '' })
+  const [openSlot, setOpenSlot] = useState<SlotKey | null>(null)
 
-  const SLOT_GROUPS = [
-    { dayKey: 'DAY1', slots: [{ key: 'day1Spot' as SlotKey, slotType: 'spot' as const }] },
-    { dayKey: 'DAY2', slots: [{ key: 'day2Spot' as SlotKey, slotType: 'spot' as const }] },
-    { dayKey: 'DAY3', slots: [{ key: 'day3MorningSpot' as SlotKey, slotType: 'spot' as const }, { key: 'day3AftShop' as SlotKey, slotType: 'shop' as const }] },
-  ]
-  const ALL_SLOT_KEYS: SlotKey[] = ['day1Spot', 'day2Spot', 'day3MorningSpot', 'day3AftShop']
+  const toggleSlot = (key: SlotKey) => setOpenSlot(cur => (cur === key ? null : key))
+  const pick = (key: SlotKey, value: string) => {
+    setSelections(s => ({ ...s, [key]: value }))
+    setOpenSlot(null)
+  }
+  const getOptions = (kind: OptionsKind) => (kind === 'meal' ? p.mealOptions : kind === 'shop' ? p.shopOptions : p.spotOptions)
 
-  const getOptions = (slotType: 'spot' | 'shop') => slotType === 'shop' ? p.shopOptions : p.spotOptions
+  /* typewriter — plays once when the CTA line scrolls into view */
+  const ctaTextRef = useRef<HTMLSpanElement>(null)
+  const ctaWrapRef = useRef<HTMLParagraphElement>(null)
+  const [ctaTyped, setCtaTyped] = useState('')
+  const [ctaDone, setCtaDone] = useState(false)
+  const playedRef = useRef(false)
+
+  useEffect(() => {
+    const el = ctaWrapRef.current
+    if (!el) return
+    if (!('IntersectionObserver' in window)) {
+      setCtaTyped(p.selectCtaText)
+      setCtaDone(true)
+      return
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !playedRef.current) {
+          playedRef.current = true
+          let i = 0
+          const full = p.selectCtaText
+          const interval = setInterval(() => {
+            i++
+            setCtaTyped(full.slice(0, i))
+            if (i >= full.length) {
+              clearInterval(interval)
+              setTimeout(() => setCtaDone(true), 1200)
+            }
+          }, 70)
+          observer.disconnect()
+        }
+      })
+    }, { threshold: 0.6 })
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [p.selectCtaText])
+
+  const chips = ALL_SLOT_KEYS.filter(k => selections[k]).map(k => ({ key: k, label: p.slotSummaryLabels[k], value: selections[k] }))
+
+  const renderSlot = (slot: SlotDef, dayIdx: number, slotIdx: number) => {
+    if (slot.kind === 'fixed') {
+      return (
+        <div className="pkg-slot" key={`${dayIdx}-${slotIdx}`}>
+          <div className="pkg-slot-time">{slot.time}</div>
+          <div className="pkg-slot-body">
+            <div className="pkg-slot-top">
+              <span className="pkg-slot-label">{slot.label}</span>
+              <span className="pkg-badge fixed">{p.badgeFixed}</span>
+            </div>
+            {slot.detail && <div className="pkg-slot-detail">{slot.detail}</div>}
+          </div>
+        </div>
+      )
+    }
+    const isOpen = openSlot === slot.slotKey
+    const chosen = selections[slot.slotKey]
+    return (
+      <div className="pkg-slot" key={`${dayIdx}-${slotIdx}`}>
+        <div className="pkg-slot-time">{slot.time}</div>
+        <div className="pkg-slot-body">
+          <div className="pkg-slot-top">
+            <span className="pkg-slot-label">{slot.label}</span>
+            <button type="button" className={`pkg-choose-btn${isOpen ? ' open' : ''}`} onClick={() => toggleSlot(slot.slotKey)}>
+              <span>{chosen || p.badgeSelect}</span>
+              <span className="pw-arrow">▾</span>
+            </button>
+          </div>
+          <div className={`pkg-options${isOpen ? ' open' : ''}`}>
+            {getOptions(slot.optionsKind).map(opt => (
+              <button type="button" key={opt} className={`pkg-option${chosen === opt ? ' picked' : ''}`} onClick={() => pick(slot.slotKey, opt)}>
+                <span className="pw-check">✓</span>
+                <span>{opt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div>
-      {/* ══ Hero ══════════════════════════════════════════════ */}
-      <div className="cat-hero" style={{ paddingBottom: 36 }}>
-        <motion.button className="cat-back-btn" onClick={goHome} {...fadeUp}>
-          {p.backHome}
-        </motion.button>
-        <motion.h1 className="cat-hero-name" {...fadeUp} transition={{ delay: 0.05 }}>
-          {p.heroTitle}
-        </motion.h1>
-        <motion.p className="cat-hero-tag" {...fadeUp} transition={{ delay: 0.1 }}>
-          {p.heroTag}
-        </motion.p>
-        <motion.p {...fadeUp} transition={{ delay: 0.15 }} style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.8, marginTop: 14, marginBottom: 22 }}>
-          {p.heroDesc}
-        </motion.p>
-        <motion.button {...fadeUp} transition={{ delay: 0.2 }} onClick={() => window.open(contactUrl, '_blank')}
-          style={{ width: '100%', padding: '14px 0', borderRadius: 12, background: 'white', border: 'none', color: 'var(--brand-dark, #003d6b)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '0.02em', marginBottom: 14 }}>
-          {p.heroBtn}
-        </motion.button>
-        <motion.p {...fadeUp} transition={{ delay: 0.22 }} style={{ fontSize: 10, color: 'rgba(255,255,255,0.42)', lineHeight: 1.7, textAlign: 'center' }}>
-          {p.heroNote}
-        </motion.p>
-      </div>
+      <div className="pkg-widget" dir={isAr ? 'rtl' : 'ltr'}>
+        {/* ══ Hero ══════════════════════════════════════════════ */}
+        <div className="pkg-hero">
+          <motion.button className="pkg-back-btn" onClick={goHome} {...fadeUp}>{p.backHome}</motion.button>
+          <motion.span className="pkg-eyebrow" {...fadeUp} transition={{ delay: 0.05 }}>{p.heroEyebrow}</motion.span>
+          <motion.h1 className="pkg-hero-title" {...fadeUp} transition={{ delay: 0.1 }}>{p.heroTitle}</motion.h1>
+          <motion.p className="pkg-hero-sub" {...fadeUp} transition={{ delay: 0.15 }}>{p.heroSub}</motion.p>
+          <motion.button className="pkg-hero-btn" {...fadeUp} transition={{ delay: 0.2 }} onClick={() => window.open(contactUrl, '_blank')}>{p.heroBtn}</motion.button>
+          <motion.p className="pkg-hero-note" {...fadeUp} transition={{ delay: 0.22 }}>{p.heroNote}</motion.p>
+        </div>
 
-      {/* ══ Includes ══════════════════════════════════════════ */}
-      <section className="section-white" style={{ paddingBottom: 32 }}>
-        <motion.div {...fadeUp}>
-          <p className="section-title">{p.includesTitle}</p>
-          <div className="section-accent-line" />
-        </motion.div>
-        <motion.div {...fadeUp} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 16px', marginBottom: 18 }}>
-          {p.includes.map((text, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-              <span style={{ flexShrink: 0, marginTop: 2, color: 'var(--brand)' }}>✓</span>
-              <span style={{ fontSize: 12, color: 'var(--text)', lineHeight: 1.5 }}>{text}</span>
-            </div>
-          ))}
-        </motion.div>
-        <motion.p {...fadeUp} style={{ fontSize: 11, color: 'var(--text-muted)', background: 'rgba(0,119,182,0.05)', border: '1px solid rgba(0,119,182,0.14)', borderRadius: 8, padding: '9px 12px' }}>
-          {p.includesNote}
-        </motion.p>
-      </section>
-
-      {/* ══ Price ═════════════════════════════════════════════ */}
-      <section className="section-light" style={{ paddingBottom: 32 }}>
-        <motion.div {...fadeUp}>
-          <p className="section-title">{p.priceTitle}</p>
-          <div className="section-accent-line" />
-        </motion.div>
-        <motion.div {...fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 16 }}>
-          {p.prices.map((pr, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'white', border: '1px solid rgba(0,119,182,0.14)', borderLeft: '3px solid var(--brand)', borderRadius: 10, padding: '14px 16px' }}>
-              <span style={{ fontSize: 13, color: 'var(--text-muted)', fontWeight: 500 }}>{pr.group}</span>
-              <span>
-                <span style={{ fontSize: 20, fontWeight: 800, color: 'var(--brand-dark, #003d6b)', letterSpacing: '-0.02em' }}>{pr.price}</span>
-                <span style={{ fontSize: 11, color: 'var(--text-muted)', marginLeft: 4 }}>{pr.unit}</span>
-              </span>
-            </div>
-          ))}
-        </motion.div>
-        <motion.p {...fadeUp} style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.8, whiteSpace: 'pre-line' }}>
-          {p.priceNote}
-        </motion.p>
-      </section>
-
-      {/* ══ Slot selector ═════════════════════════════════════ */}
-      <section className="section-white" style={{ paddingBottom: 36 }}>
-        <motion.div {...fadeUp}>
-          <p className="section-title">{p.selectTitle}</p>
-          <div className="section-accent-line" />
-          <p style={{ fontSize: 12, color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: 22 }}>{p.selectDesc}</p>
-        </motion.div>
-        <motion.div {...fadeUp} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-          {SLOT_GROUPS.map(group => (
-            <div key={group.dayKey}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-                <span style={{ fontSize: 10, fontWeight: 800, color: 'white', background: 'var(--brand)', borderRadius: 20, padding: '3px 10px', letterSpacing: '0.1em', flexShrink: 0 }}>
-                  {p.selectDayLabels[group.dayKey]}
-                </span>
-                <div style={{ flex: 1, height: 1, background: 'rgba(0,119,182,0.12)' }} />
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {group.slots.map(slot => (
-                  <div key={slot.key} style={{ background: 'white', border: '1px solid rgba(0,119,182,0.15)', borderLeft: `3px solid ${slot.slotType === 'shop' ? '#6b8ca5' : 'var(--brand)'}`, borderRadius: 10, padding: '12px 14px' }}>
-                    <p style={{ fontSize: 10, fontWeight: 700, color: slot.slotType === 'shop' ? '#6b8ca5' : 'var(--brand)', marginBottom: 8, letterSpacing: '0.06em' }}>
-                      {p.slotLabels[slot.key]}
-                    </p>
-                    <div style={{ position: 'relative' }}>
-                      <select value={selections[slot.key]} onChange={e => updateSlot(slot.key, e.target.value)}
-                        style={{ width: '100%', padding: '10px 36px 10px 12px', borderRadius: 8, border: '1px solid rgba(0,119,182,0.2)', background: 'rgba(0,119,182,0.03)', color: 'var(--text)', fontSize: 13, fontWeight: 500, fontFamily: 'inherit', outline: 'none', cursor: 'pointer', appearance: 'none', WebkitAppearance: 'none' }}>
-                        {getOptions(slot.slotType).map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                      </select>
-                      <div style={{ position: 'absolute', right: 11, top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                        <SelectArrow />
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* ══ Counts strip ══════════════════════════════════════ */}
+        <motion.div className="pkg-counts" {...fadeUp} transition={{ delay: 0.1 }}>
+          <div className="pw-c"><div className="pw-num">3</div><div className="pw-lbl">{p.countLabels[0]}</div></div>
+          <div className="pw-c selectable"><div className="pw-num">2</div><div className="pw-lbl">{p.countLabels[1]}</div></div>
+          <div className="pw-c selectable"><div className="pw-num">1</div><div className="pw-lbl">{p.countLabels[2]}</div></div>
         </motion.div>
 
-        {/* Summary */}
-        <motion.div {...fadeUp} style={{ marginTop: 24, background: 'rgba(0,119,182,0.04)', border: '1px solid rgba(0,119,182,0.15)', borderRadius: 12, padding: '16px' }}>
-          <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--brand)', letterSpacing: '0.08em', marginBottom: 14 }}>{p.mySummaryTitle}</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-            {ALL_SLOT_KEYS.map(key => (
-              <div key={key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
-                <span style={{ fontSize: 11, color: 'var(--text-muted)', flexShrink: 0 }}>{p.slotSummaryLabels[key]}</span>
-                <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--brand-dark, #003d6b)', background: 'white', border: '1px solid rgba(0,119,182,0.18)', borderRadius: 20, padding: '3px 11px', whiteSpace: 'nowrap' as const, maxWidth: '54%', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {selections[key]}
-                </span>
+        {/* ══ Glance table ══════════════════════════════════════ */}
+        <div className="pkg-section pkg-glance-wrap">
+          <motion.div className="pkg-section-head" {...fadeUp}>
+            <h2>{p.glanceTitle}</h2>
+            <p>{p.glanceSub}</p>
+          </motion.div>
+          <motion.div className="pkg-glance-grid" {...fadeUp}>
+            {p.glanceDays.map((gd, i) => (
+              <div className="pkg-glance-col" key={i}>
+                <div className="pkg-glance-day">
+                  <span className="pw-dnum">{i + 1}</span>
+                  <span className="pw-dtitle">{gd.title}</span>
+                </div>
+                <div className="pkg-glance-sub">{gd.sub}</div>
+                <ul className="pkg-glance-list">
+                  {gd.items.map((it, ii) => (
+                    <li key={ii} className={it.fixed ? '' : 'op'}>
+                      {it.text}
+                      {!it.fixed && <em>{p.legendSelect}</em>}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
+          </motion.div>
+          <div className="pkg-legend">
+            <span><i className="pkg-dot fixed" />{p.legendFixed}</span>
+            <span><i className="pkg-dot select" />{p.legendSelect}</span>
           </div>
-        </motion.div>
-      </section>
+        </div>
 
-      {/* ══ Itinerary ═════════════════════════════════════════ */}
-      <section className="section-light" style={{ paddingBottom: 40 }}>
-        <motion.div {...fadeUp}>
-          <p className="section-title">{p.itineraryTitle}</p>
-          <div className="section-accent-line" />
-          <p style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 20, lineHeight: 1.7 }}>{p.itineraryNote}</p>
-        </motion.div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
-          {days.map((day, di) => (
-            <motion.div key={day.day} {...fadeUp} transition={{ delay: di * 0.08 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-                <span style={{ fontSize: 10, fontWeight: 800, color: 'white', background: 'var(--brand)', borderRadius: 20, padding: '4px 11px', letterSpacing: '0.1em' }}>
-                  DAY {day.day}
-                </span>
-                <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--brand-dark, #003d6b)' }}>{day.title}</span>
+        {/* ══ Timeline ══════════════════════════════════════════ */}
+        <div className="pkg-section pkg-timeline-wrap">
+          <div style={{ textAlign: 'center', marginBottom: 22 }}>
+            <p className="pkg-select-cta" ref={ctaWrapRef}>
+              <span ref={ctaTextRef}>{ctaTyped}</span>
+              <span className={`pkg-cta-cursor${ctaDone ? ' done' : ''}`}>|</span>
+            </p>
+          </div>
+
+          {p.days.map((day, di) => (
+            <div className="pkg-day" key={day.num}>
+              <div className="pkg-day-marker">{day.num}</div>
+              <div className="pkg-day-card">
+                <div className="pkg-day-title">{day.title}</div>
+                <div className="pkg-day-date">{day.dateLabel}</div>
+                {day.slots.map((slot, si) => renderSlot(slot, di, si))}
               </div>
-              <div style={{ position: 'relative', paddingLeft: isAr ? 0 : 20, paddingRight: isAr ? 20 : 0 }}>
-                <div style={{ position: 'absolute', [isAr ? 'right' : 'left']: 6, top: 6, bottom: 6, width: 1, background: 'rgba(0,119,182,0.15)' }} />
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                  {day.items.map((item, ii) => {
-                    const isMedical = item.type === 'medical'
-                    if (isMedical) {
-                      return (
-                        <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', marginBottom: 6 }}>
-                          <div style={{ width: 8, height: 8, borderRadius: '50%', background: itemColor.medical, flexShrink: 0, marginTop: 13, [isAr ? 'marginRight' : 'marginLeft']: -18, [isAr ? 'marginLeft' : 'marginRight']: 12, position: 'relative', zIndex: 1 }} />
-                          <div style={{ flex: 1, background: 'rgba(0,119,182,0.06)', borderLeft: isAr ? 'none' : '2px solid var(--brand)', borderRight: isAr ? '2px solid var(--brand)' : 'none', borderRadius: isAr ? '8px 0 0 8px' : '0 8px 8px 0', padding: '10px 12px' }}>
-                            <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--brand-dark, #003d6b)', lineHeight: 1.5, margin: 0 }}>{item.text}</p>
-                          </div>
-                        </div>
-                      )
-                    }
-                    return (
-                      <div key={ii} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '7px 0' }}>
-                        <div style={{ width: 8, height: 8, borderRadius: '50%', background: itemColor[item.type], flexShrink: 0, marginTop: 5, position: 'relative', zIndex: 1, [isAr ? 'marginRight' : 'marginLeft']: -20 }} />
-                        <p style={{ fontSize: 12, color: 'var(--text)', lineHeight: 1.5, margin: 0 }}>{item.text}</p>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </section>
+
+        {/* ══ Price ═════════════════════════════════════════════ */}
+        <div className="pkg-section pkg-price-wrap">
+          <motion.div className="pkg-section-head" {...fadeUp}>
+            <h2>{p.priceTitle}</h2>
+            <p>{p.priceSub}</p>
+          </motion.div>
+
+          <motion.div className="pkg-price-main" {...fadeUp}>
+            <div className="pkg-price-row">
+              <div>
+                <div className="pkg-price-label">{p.priceMainLabel}</div>
+                <div className="pkg-price-sub">{p.priceMainSub}</div>
+              </div>
+              <div className="pkg-price-amount">
+                <span className="pw-cny">{p.priceAmount}</span>
+                <span className="pw-unit">{p.priceUnit}</span>
+              </div>
+            </div>
+            <div className="pkg-price-note">{p.priceMainNote}</div>
+          </motion.div>
+
+          <motion.div className="pkg-price-list" {...fadeUp}>
+            {p.priceItems.map((it, i) => (
+              <div className="pkg-price-item" key={i}>
+                <div>
+                  <div className="pkg-item-title">{it.title}</div>
+                  <div className="pkg-item-desc">{it.desc}</div>
+                </div>
+                <span className={`pw-tag ${it.tagKind === 'apart' ? 'pkg-tag-apart' : 'pkg-tag-free'}`}>{it.tag}</span>
+              </div>
+            ))}
+          </motion.div>
+
+          <motion.div className="pkg-price-fx" {...fadeUp}>
+            <span>ⓘ</span>
+            <span>{p.priceFx}</span>
+          </motion.div>
+        </div>
+
+        <p className="pkg-footnote">{p.footNote}</p>
+
+        {/* ══ Sticky summary bar ════════════════════════════════ */}
+        <div className="pkg-summary-bar">
+          <div className="pkg-summary-inner">
+            <div className="pkg-summary-chips">
+              {chips.length === 0 ? (
+                <span className="pkg-chip empty">{p.summaryEmpty}</span>
+              ) : (
+                chips.map(c => <span className="pkg-chip" key={c.key}>{c.label}：{c.value}</span>)
+              )}
+            </div>
+            <button className="pkg-consult-btn" onClick={() => window.open(contactUrl, '_blank')}>{p.consultBtn}</button>
+          </div>
+        </div>
+      </div>
 
       {/* ══ Adjustable ════════════════════════════════════════ */}
       <section className="section-white" style={{ paddingBottom: 32 }}>
