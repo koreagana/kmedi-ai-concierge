@@ -10,6 +10,7 @@ export type PrepDocType =
   | 'common_checklist'
   | 'reservation'
   | 'agreement'
+  | 'post_op_followup'
 
 export type PrepDocStatus = 'available' | 'draft' | 'needs_hospital_check'
 
@@ -20,6 +21,7 @@ export type PrepCategoryId =
   | 'skin_laser'
   | 'plastic_before'
   | 'plastic_after'
+  | 'post_op_care'
   | 'womens_health'
   | 'mens_health'
   | 'ortho_pain'
@@ -39,6 +41,7 @@ export const PREP_CATEGORIES: PrepCategory[] = [
   { id: 'skin_laser', titleKo: '피부·레이저·미용시술', titleZh: '皮肤·激光·美容治疗', navLabel: '피부·미용' },
   { id: 'plastic_before', titleKo: '성형외과 상담·수술 전 준비', titleZh: '整形外科咨询·术前准备', navLabel: '성형 전 준비' },
   { id: 'plastic_after', titleKo: '성형수술 후 주의사항', titleZh: '整形术后注意事项', navLabel: '성형 후 주의사항' },
+  { id: 'post_op_care', titleKo: '수술후관리', titleZh: '术后管理', navLabel: '수술후관리' },
   { id: 'womens_health', titleKo: '여성의학', titleZh: '女性健康', navLabel: '여성' },
   { id: 'mens_health', titleKo: '남성의학', titleZh: '男性健康', navLabel: '남성' },
   { id: 'ortho_pain', titleKo: '정형외과·통증·재생상담', titleZh: '骨科·疼痛·再生咨询', navLabel: '정형·통증·재생' },
@@ -69,6 +72,7 @@ export const PREP_DOC_TYPE_LABEL: Record<PrepDocType, { ko: string; zh: string }
   common_checklist: { ko: '공통 체크리스트', zh: '通用检查表' },
   reservation: { ko: '예약확인증 생성', zh: '预约确认书生成' },
   agreement: { ko: '업무협약서', zh: '业务协议书' },
+  post_op_followup: { ko: '사후관리 안내', zh: '术后管理指南' },
 }
 
 export const PREP_DOC_STATUS_LABEL: Record<PrepDocStatus, string> = {
@@ -435,7 +439,72 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
 
-  // ── 7. 여성의학 / 8. 남성의학 / 9. 정형외과·통증·재생상담 ──────
+  // ── 7. 수술후관리 (시술 군 공통 사후관리 시퀀스) ─────────────────
+  {
+    titleKo: '수술 당일 안내',
+    titleZh: '手术当日注意事项',
+    type: 'post_op_followup',
+    category: 'post_op_care',
+    field: '공통',
+    link: '/prep/post-op-day0-guide',
+    status: 'available',
+  },
+  {
+    titleKo: '1일 후 체크리스트',
+    titleZh: '术后1天检查清单',
+    type: 'post_op_followup',
+    category: 'post_op_care',
+    field: '공통',
+    link: '/prep/post-op-day1-checklist',
+    status: 'available',
+  },
+  {
+    titleKo: '3일 후 회복 관리',
+    titleZh: '术后3天恢复管理',
+    type: 'post_op_followup',
+    category: 'post_op_care',
+    field: '공통',
+    link: '/prep/post-op-day3-recovery-guide',
+    status: 'available',
+  },
+  {
+    titleKo: '5일 후 경과 확인',
+    titleZh: '术后5天复查确认',
+    type: 'post_op_followup',
+    category: 'post_op_care',
+    field: '공통',
+    link: '/prep/post-op-day5-followup-guide',
+    status: 'available',
+  },
+  {
+    titleKo: '7일 후 1주차 마무리',
+    titleZh: '术后7天第一周总结',
+    type: 'post_op_followup',
+    category: 'post_op_care',
+    field: '공통',
+    link: '/prep/post-op-day7-week1-guide',
+    status: 'available',
+  },
+  {
+    titleKo: '2주 후 회복 안정기',
+    titleZh: '术后2周恢复稳定期',
+    type: 'post_op_followup',
+    category: 'post_op_care',
+    field: '공통',
+    link: '/prep/post-op-day14-recovery-guide',
+    status: 'available',
+  },
+  {
+    titleKo: '1개월 후 최종 만족도 조사',
+    titleZh: '术后1个月最终满意度调查',
+    type: 'post_op_followup',
+    category: 'post_op_care',
+    field: '공통',
+    link: '/prep/post-op-day30-survey-guide',
+    status: 'available',
+  },
+
+  // ── 8. 여성의학 / 9. 남성의학 / 10. 정형외과·통증·재생상담 ──────
   // 아직 등록된 문서 없음 — 관리자페이지에는 "준비 예정" 섹션으로 표시됨
 ]
 
