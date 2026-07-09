@@ -230,6 +230,7 @@ Final suitability must be determined by a licensed medical institution and physi
     ar: 'الطب التجميلي للبشرة',
     emoji: '✨',
     heroImage: '/category-hero/skin-beauty.png',
+    heroVideo: '/category-hero/skin-beauty.mp4',
     tagZh: '皮肤提升 · 毛孔色斑 · 抗衰外观',
     tagKo: '피부 리프팅 · 모공색소 · 외모 항노화',
     tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',
