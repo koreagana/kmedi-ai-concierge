@@ -182,6 +182,13 @@ export default function FloatingChatButton() {
     // risks grabbing that stale node instead of waiting for the real one.
     const selector = page === 'home' ? '#hero' : page === 'package' ? '.pkg-hero' : '.cat-hero'
 
+    // Category hero images use aspect-ratio:16/9, so their rendered height scales with
+    // viewport *width* — on a wide/desktop window the hero can run to 600px+ tall, which
+    // would hide the consult button for a long scroll. Cap how long we wait regardless of
+    // how tall the hero renders, so the button always reappears within one screenful.
+    // Home's hero is intentionally exempt — its extra height/content is expected.
+    const REVEAL_CAP = page === 'home' ? Infinity : 640
+
     let io: IntersectionObserver | null = null
     let mo: MutationObserver | null = null
 
@@ -212,9 +219,17 @@ export default function FloatingChatButton() {
       mo.observe(document.body, { childList: true, subtree: true })
     }
 
+    const onScroll = () => {
+      if (window.scrollY > REVEAL_CAP) setShown(true)
+    }
+    if (Number.isFinite(REVEAL_CAP)) {
+      window.addEventListener('scroll', onScroll, { passive: true })
+    }
+
     return () => {
       io?.disconnect()
       mo?.disconnect()
+      window.removeEventListener('scroll', onScroll)
     }
   }, [page, categoryId])
 
