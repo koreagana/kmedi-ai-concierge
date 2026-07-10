@@ -15,6 +15,7 @@ export default defineConfig({
         prepImagingBefore: resolve(__dirname, 'prep/imaging-before/index.html'),
         prepColonoscopyBefore: resolve(__dirname, 'prep/colonoscopy-before/index.html'),
         adminPrep: resolve(__dirname, 'admin/prep/index.html'),
+        adminPartners: resolve(__dirname, 'admin/partners/index.html'),
       },
     },
   },

@@ -35,6 +35,18 @@
   margin: 0 auto;
 }
 
+.admin-prep-subnav-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand);
+  text-decoration: none;
+}
+.admin-prep-subnav-link:hover {
+  text-decoration: underline;
+}
+
 .admin-prep-nav {
   display: flex;
   flex-wrap: wrap;
