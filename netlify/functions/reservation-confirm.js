@@ -162,6 +162,7 @@ const TEMPLATE = `<!DOCTYPE html>
     padding:13px 0; border-bottom:1px solid var(--line);
   }
   .addr-row:last-of-type{ border-bottom:none; }
+  .addr-row.is-empty{ display:none; }
   .addr-flag{
     flex-shrink:0; width:40px; height:24px; border-radius:5px; background:var(--sky-pale);
     color:var(--sky); font-size:10.5px; font-weight:800; display:flex; align-items:center; justify-content:center;
@@ -348,7 +349,7 @@ const TEMPLATE = `<!DOCTYPE html>
             <div class="addr-flag">EN</div>
             <div class="addr-input" id="c-addr-en" contenteditable="true" data-placeholder="Auto-filled on hospital select"></div>
           </div>
-          <div class="addr-row">
+          <div class="addr-row is-empty" id="row-phone">
             <div class="addr-flag">TEL</div>
             <div class="addr-input" id="c-phone" contenteditable="true" data-placeholder="-"></div>
           </div>
@@ -440,7 +441,10 @@ function applyHospital(h){
   document.getElementById('c-addr-ko').textContent = h.addrKo
   document.getElementById('c-addr-zh').textContent = h.addrZh
   document.getElementById('c-addr-en').textContent = h.addrEn
-  document.getElementById('c-phone').textContent = h.phone || '-'
+  // 전화번호가 없거나 "문의 필요" 같은 내부 placeholder면 예약확인증에 그대로 노출하지 않고 TEL 줄 자체를 숨김
+  const hasPhone = h.phone && h.phone !== '문의 필요'
+  document.getElementById('c-phone').textContent = hasPhone ? h.phone : ''
+  document.getElementById('row-phone').classList.toggle('is-empty', !hasPhone)
 }
 
 function handleHospitalInput(){
