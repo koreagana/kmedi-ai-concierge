@@ -1176,5 +1176,36 @@
     "logo_url": null,
     "status": "active",
     "mou_date": null
+  },
+  {
+    "id": "PH-037",
+    "category": "복합의원",
+    "name": {
+      "ko": "리앤장성형외과피부과",
+      "zh": "LIENJANG整形外科皮肤科",
+      "en": "LIENJANG Plastic Surgery & Dermatology"
+    },
+    "address": {
+      "ko": "서울특별시 서초구 강남대로 403, 343강남타워 16~18층",
+      "zh": "首尔特别市瑞草区江南大路403号343江南大厦16-18层",
+      "en": "403, Gangnam-daero, Seocho-gu, Seoul (343 Gangnam Tower 16-18F)"
+    },
+    "phone": "문의 필요",
+    "note": null,
+    "contact": {
+      "manager": null,
+      "email": null,
+      "phone_direct": null
+    },
+    "website": null,
+    "description": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "intro_page_url": null,
+    "logo_url": null,
+    "status": "active",
+    "mou_date": null
   }
 ]
