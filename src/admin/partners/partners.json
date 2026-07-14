@@ -1085,20 +1085,82 @@
     "mou_date": null
   },
   {
-    "id": "PH-036",
-    "category": "복합의원",
+    "id": "PH-037",
+    "category": "성형외과",
     "name": {
-      "ko": "양성자치료",
-      "zh": "质子治疗中心",
-      "en": "Proton Therapy Center"
+      "ko": "신상성형외과",
+      "zh": null,
+      "en": null
     },
     "address": {
-      "ko": "경기도 고양시 일산동구 일산로 323 (국립암센터)",
-      "zh": "京畿道高阳市一山东区一山路323(国立癌症中心)",
-      "en": "323, Ilsan-ro, Ilsandong-gu, Goyang-si, Gyeonggi-do"
+      "ko": null,
+      "zh": null,
+      "en": null
     },
-    "phone": "1588-8110",
-    "note": "국립암센터 내",
+    "phone": null,
+    "note": null,
+    "contact": {
+      "manager": null,
+      "email": null,
+      "phone_direct": null
+    },
+    "website": null,
+    "description": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "intro_page_url": null,
+    "logo_url": null,
+    "status": "active",
+    "mou_date": null
+  },
+  {
+    "id": "PH-038",
+    "category": "성형외과",
+    "name": {
+      "ko": "양윤돌성형외과",
+      "zh": null,
+      "en": null
+    },
+    "address": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "phone": null,
+    "note": null,
+    "contact": {
+      "manager": null,
+      "email": null,
+      "phone_direct": null
+    },
+    "website": null,
+    "description": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "intro_page_url": null,
+    "logo_url": null,
+    "status": "active",
+    "mou_date": null
+  },
+  {
+    "id": "PH-039",
+    "category": "성형외과",
+    "name": {
+      "ko": "쥬얼리성형외과",
+      "zh": null,
+      "en": null
+    },
+    "address": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "phone": null,
+    "note": null,
     "contact": {
       "manager": null,
       "email": null,
