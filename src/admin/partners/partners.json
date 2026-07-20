@@ -1207,5 +1207,36 @@
     "logo_url": null,
     "status": "active",
     "mou_date": null
+  },
+  {
+    "id": "PH-041",
+    "category": "성형외과",
+    "name": {
+      "ko": "도자기성형외과",
+      "zh": "陶瓷整形外科",
+      "en": "Dojaki Plastic Surgery"
+    },
+    "address": {
+      "ko": "서울특별시 서초구 강남대로 531, 2층",
+      "zh": "首尔特别市瑞草区江南大路531号2楼",
+      "en": "2F, 531 Gangnam-daero, Seocho-gu, Seoul"
+    },
+    "phone": "문의 필요",
+    "note": null,
+    "contact": {
+      "manager": null,
+      "email": null,
+      "phone_direct": null
+    },
+    "website": null,
+    "description": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "intro_page_url": null,
+    "logo_url": null,
+    "status": "active",
+    "mou_date": null
   }
 ]
