@@ -900,19 +900,19 @@
   },
   {
     "id": "PH-030",
-    "category": "피부과·의원",
+    "category": "성형외과",
     "name": {
-      "ko": "유캔비의원",
-      "zh": "You Can Be诊所",
-      "en": "You Can Be Clinic"
+      "ko": "유캔비성형외과",
+      "zh": "Ucan B整形外科",
+      "en": "Youcanbe Plastic Surgery"
     },
     "address": {
-      "ko": "서울특별시 강남구 (강남 위치)",
-      "zh": "首尔特别市江南区",
-      "en": "Gangnam-gu, Seoul"
+      "ko": "서울특별시 서초구 강남대로 405, 통영빌딩 7층",
+      "zh": "首尔特别市瑞草区江南大路405号通荣大厦7楼",
+      "en": "7F, Tongyoung Building, 405 Gangnam-daero, Seocho-gu, Seoul"
     },
     "phone": null,
-    "note": "확인 필요",
+    "note": "코 수술 전문",
     "contact": {
       "manager": null,
       "email": null,
