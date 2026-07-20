@@ -335,7 +335,7 @@ const TEMPLATE = `<!DOCTYPE html>
 
         <!-- ②-3. 카드 하단(흰 영역): 3개국어 주소 + 브랜드 -->
         <div class="stub-addr">
-          <div class="addr-head">주소 / 地址 / Address · 연락처</div>
+          <div class="addr-head">주소 / 地址 / Address</div>
 
           <div class="addr-row">
             <div class="addr-flag">KO</div>
