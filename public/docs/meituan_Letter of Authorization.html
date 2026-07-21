@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美团点评授权书 / 메이투안·따중디엔핑 수권서</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.6;
+    color: #222;
+    background: #eceef1;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 10mm 10mm;
+    background: #fff;
+    position: relative;
+  }
+
+  /* TITLE BLOCK */
+  .title-block { text-align: center; margin-bottom: 4mm; }
+
+  .title-block .main-title-cn {
+    font-size: 17pt;
+    font-weight: 700;
+    color: #1565C0;
+    letter-spacing: 6px;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .title-block .main-title-kr {
+    font-size: 10pt;
+    font-weight: 500;
+    color: #666;
+    letter-spacing: 1px;
+    display: block;
+  }
+
+  .title-divider {
+    width: 44px; height: 2px; background: #1565C0; margin: 10px auto 0;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 8.8pt;
+    font-weight: 700;
+    color: #fff;
+    background: #1565C0;
+    padding: 5px 12px;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    margin-bottom: 2px;
+  }
+
+  /* PARTY TABLE */
+  .party-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-bottom: 8px;
+  }
+  .party-table th {
+    background: #f4f5f6;
+    color: #444;
+    font-weight: 500;
+    padding: 5px 12px;
+    text-align: left;
+    width: 24%;
+    border: 0.5px solid #d8dade;
+    letter-spacing: 0.3px;
+  }
+  .party-table td {
+    padding: 5px 12px;
+    border: 0.5px solid #d8dade;
+    background: #fff;
+    color: #1a1a1a;
+  }
+
+  .fill-input {
+    border: none;
+    border-bottom: 1px solid #bbb;
+    background: transparent;
+    font-size: 9pt;
+    padding: 1px 4px;
+    width: 92%;
+    color: #1a1a1a;
+    font-family: inherit;
+  }
+
+  /* CONTENT BOX */
+  .content-box {
+    border: 0.5px solid #d8dade;
+    border-left: 3px solid #1565C0;
+    padding: 9px 14px;
+    font-size: 9pt;
+    line-height: 1.75;
+    color: #2c2c2c;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+  .content-box .cn { color: #667; font-size: 8.4pt; }
+  .content-box strong { color: #1a1a1a; }
+
+  /* PERIOD BOX */
+  .period-box {
+    border: 0.5px solid #d8dade;
+    background: #f9f9fa;
+    padding: 8px 14px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    font-size: 9pt;
+    color: #333;
+    text-align: center;
+  }
+  .period-box .period-label { color: #666; font-weight: 500; margin-bottom: 5px; letter-spacing: 0.5px; font-size: 8.5pt; }
+
+  .date-input {
+    border: none;
+    border-bottom: 1px solid #999;
+    background: transparent;
+    font-size: 9.5pt;
+    padding: 1px 2px;
+    text-align: center;
+    font-family: inherit;
+    color: #1a1a1a;
+  }
+  .date-y { width: 42px; }
+  .date-m { width: 26px; }
+  .date-d { width: 26px; }
+
+  /* CONFIRM SECTION */
+  .confirm-body {
+    font-size: 8.6pt;
+    line-height: 1.7;
+    color: #2c2c2c;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+  .confirm-body .cn { color: #778; font-size: 8.2pt; }
+
+  /* SIGNATURE SECTION */
+  .sig-section { margin-top: 28px; }
+
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .sig-card {
+    border: 0.5px solid #c8d8f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .sig-card-header {
+    background: #1565C0;
+    color: #fff;
+    font-size: 9pt;
+    font-weight: 500;
+    padding: 6px 12px;
+    letter-spacing: 1px;
+  }
+
+  .sig-card-body { padding: 8px 10px; }
+
+  .field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    font-size: 8.6pt;
+  }
+  .field .lbl {
+    width: 46px;
+    flex-shrink: 0;
+    color: #777;
+    letter-spacing: 0.5px;
+  }
+  .field .val { flex: 1; color: #1a1a1a; }
+
+  .sig-pad-wrap { position: relative; margin-top: 4px; }
+  .sig-pad-canvas {
+    width: 100%;
+    height: 50px;
+    display: block;
+    border: 0.5px dashed #b0bec5;
+    border-radius: 4px;
+    touch-action: none;
+    cursor: crosshair;
+    background: #fff;
+  }
+  .sig-pad-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7.3pt;
+    color: #bbb;
+    letter-spacing: 1px;
+    pointer-events: none;
+    text-align: center;
+    padding: 0 8px;
+  }
+  .sig-pad-clear {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 7pt;
+    color: #1565C0;
+    background: #fff;
+    border: 0.5px solid #c8d8f0;
+    border-radius: 3px;
+    padding: 1px 6px;
+    cursor: pointer;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; margin: 0; }
+    .sig-pad-clear, .sig-pad-hint { display: none; }
+    .sig-pad-canvas { border: none; border-bottom: 1px solid #999; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="title-block">
+    <span class="main-title-cn">美团 · 大众点评 授权书</span>
+    <span class="main-title-kr">메이투안(美团) · 따중디엔핑(大众点评) 계정 운영 수권서</span>
+    <div class="title-divider"></div>
+  </div>
+
+  <div class="section-label">수권인 (授权方) — 병원</div>
+  <table class="party-table">
+    <tr>
+      <th>병원명 (医院名称)</th>
+      <td>도자기의원 (陶瓷医院)</td>
+    </tr>
+    <tr>
+      <th>주소 (地址)</th>
+      <td>서울 서초구 강남대로 531, 2층</td>
+    </tr>
+    <tr>
+      <th>대표자 (法人代表)</th>
+      <td>박시현 (Park Sihyun)</td>
+    </tr>
+  </table>
+
+  <div class="section-label">피수권인 (被授权方) — 수권기관</div>
+  <table class="party-table">
+    <tr>
+      <th>업체명 (名称)</th>
+      <td>上海骥行文化传媒有限公司</td>
+    </tr>
+    <tr>
+      <th>주소 (地址)</th>
+      <td><input type="text" class="fill-input" placeholder="상해 회사 주소 입력"></td>
+    </tr>
+    <tr>
+      <th>대표자 (法人代表)</th>
+      <td><input type="text" class="fill-input" placeholder="대표자 이름 입력"></td>
+    </tr>
+  </table>
+
+  <div class="content-box">
+    상기 수권인은 아래의 피수권인에게 중국 플랫폼 <strong>'메이투안(美团)'</strong> 및 <strong>'따중디엔핑(大众点评)'</strong> 내에서의 병원 공식 계정 운영에 관한 일체의 권한을 위임합니다.<br>
+    <span class="cn">上述授权方特此授权下述被授权方，在中国平台"美团"及"大众点评"内代为运营医院官方账号的一切相关权限。</span>
+  </div>
+
+  <div class="period-box">
+    <div class="period-label">위임 기간 (委托期限)</div>
+    <input type="text" class="date-input date-y" placeholder="2026">년
+    <input type="text" class="date-input date-m" placeholder="__">월
+    <input type="text" class="date-input date-d" placeholder="__">일
+    &nbsp;～&nbsp;
+    <input type="text" class="date-input date-y" placeholder="2026">년
+    <input type="text" class="date-input date-m" placeholder="__">월
+    <input type="text" class="date-input date-d" placeholder="__">일
+  </div>
+
+  <div class="confirm-body">
+    본 기관(수권인)은 피수권인이 위임 범위 내에서 행하는 모든 운영 행위에 대하여 법적 책임을 공유하며, 본 수권서에 기재된 내용이 사실임을 보증합니다.<br>
+    <span class="cn">本机构（授权方）对被授权方在委托范围内实施的一切运营行为承担共同法律责任，并保证本授权书所载内容真实无误。</span>
+  </div>
+
+  <div class="sig-section">
+    <div class="sig-grid">
+      <div class="sig-card">
+        <div class="sig-card-header">수권인 — 병원</div>
+        <div class="sig-card-body">
+          <div class="field"><span class="lbl">기관명</span><span class="val">도자기의원(陶瓷医院)</span></div>
+          <div class="field"><span class="lbl">대표자</span><span class="val">박시현 (Park Sihyun)</span></div>
+          <div class="sig-pad-wrap">
+            <canvas class="sig-pad-canvas" data-sigpad="gap" width="501" height="108"></canvas>
+            <span class="sig-pad-hint">서명 / 날인 (마우스·손가락으로 그려주세요)</span>
+            <button type="button" class="sig-pad-clear no-print" data-sigclear="gap">지우기</button>
+          </div>
+        </div>
+      </div>
+      <div class="sig-card">
+        <div class="sig-card-header">피수권인 — 上海骥行文化传媒有限公司</div>
+        <div class="sig-card-body">
+          <div class="field"><span class="lbl">업체명</span><span class="val">上海骥行文化传媒有限公司</span></div>
+          <div class="field"><span class="lbl">대표자</span><span class="val">&nbsp;</span></div>
+          <div class="sig-pad-wrap">
+            <canvas class="sig-pad-canvas" data-sigpad="eul" width="501" height="108"></canvas>
+            <span class="sig-pad-hint">서명 / 날인 (마우스·손가락으로 그려주세요)</span>
+            <button type="button" class="sig-pad-clear no-print" data-sigclear="eul">지우기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    function setupSignaturePad(canvas) {
+      var ctx = canvas.getContext('2d');
+      var drawing = false;
+      var hint = canvas.parentElement.querySelector('.sig-pad-hint');
+
+      function resize() {
+        var ratio = window.devicePixelRatio || 1;
+        var rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width * ratio;
+        canvas.height = rect.height * ratio;
+        ctx.scale(ratio, ratio);
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#1a1a2e';
+      }
+
+      function pos(e) {
+        var rect = canvas.getBoundingClientRect();
+        return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      }
+
+      function start(e) {
+        drawing = true;
+        if (hint) hint.style.display = 'none';
+        var p = pos(e);
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        e.preventDefault();
+      }
+
+      function move(e) {
+        if (!drawing) return;
+        var p = pos(e);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+        e.preventDefault();
+      }
+
+      function end() { drawing = false; }
+
+      canvas.addEventListener('pointerdown', start);
+      canvas.addEventListener('pointermove', move);
+      canvas.addEventListener('pointerup', end);
+      canvas.addEventListener('pointerleave', end);
+
+      resize();
+      window.addEventListener('resize', resize);
+
+      canvas.clearPad = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (hint) hint.style.display = 'flex';
+      };
+    }
+
+    var pads = {};
+    document.querySelectorAll('[data-sigpad]').forEach(function (canvas) {
+      setupSignaturePad(canvas);
+      pads[canvas.getAttribute('data-sigpad')] = canvas;
+    });
+
+    document.querySelectorAll('[data-sigclear]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var pad = pads[btn.getAttribute('data-sigclear')];
+        if (pad) pad.clearPad();
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
