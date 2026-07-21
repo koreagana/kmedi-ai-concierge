@@ -93,6 +93,15 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
   {
+    titleKo: '메이투안·따중디엔핑 계정 운영 수권서',
+    titleZh: '美团·大众点评 授权书',
+    type: 'agreement',
+    category: 'admin_contract',
+    field: '병원 협약 / 메이투안 · 따중디엔핑',
+    link: '/docs/meituan_Letter_of_Authorization.html',
+    status: 'available',
+  },
+  {
     titleKo: '예약확인증 생성기',
     titleZh: '预约确认书生成器',
     type: 'reservation',
