@@ -372,7 +372,7 @@
   .sig-pad-wrap { position: relative; margin-top: 8px; }
   .sig-pad-canvas {
     width: 100%;
-    height: 120px;
+    height: 60px;
     display: block;
     border: 0.5px dashed #b0bec5;
     border-radius: 4px;
@@ -525,45 +525,6 @@
   </div>
 
   <div class="article">
-    <div class="article-title">제5-1조 (메이투안 플랫폼 운영 및 수수료 / 美团平台运营及持续费)</div>
-    <div class="article-body">
-      <div class="item"><span class="item-num">①</span> 병원은 한강애봄이 중국 메이투안(美团) 플랫폼을 통해 병원 정보 등록, 상품 운영, 홍보 및 외국인환자 유치를 수행하는 것에 동의하며, 필요한 경우 권한위임서(Authorization Letter) 등 관련 서류를 제공한다.<br>
-甲方同意乙方通过中国美团(美团)平台进行医院信息登记、产品运营、宣传及外国患者招揽，甲方应在必要时提供授权书(Authorization Letter)等相关文件。</div>
-      <div class="item"><span class="item-num">②</span> 메이투안 플랫폼을 통해 유치된 환자에 대한 수수료는 다음과 같다.<br>
-通过美团平台招揽的患者持续费如下：
-<ul style="margin-top: 6px; margin-left: 30px; margin-bottom: 6px;">
-<div style="margin-bottom: 12px;">피부과 시술: 결제금액의 15%(부가가치세 포함) / 皮肤科治疗：结算金额的15%(含增值税)</div>
-<div style="margin-bottom: 12px;">성형외과 수술: 결제금액의 20%(부가가치세 포함) / 整形外科手术：结算金额的20%(含增值税)</div>
-</ul></div>
-      <div class="item"><span class="item-num">③</span> 제2항의 수수료에는 중국 플랫폼 운영 및 마케팅 비용이 포함되며, 수수료의 세부 정산 방식은 한강애봄과 플랫폼 운영사 간 계약에 따라 처리한다.<br>
-第2项的持续费包括中国平台运营和营销费用，持续费的详细结算方式由乙方与平台运营方的协商确定。</div>
-      <div class="item"><span class="item-num">④</span> 메이투안 플랫폼의 신규 입점비, 계정 활성화 비용 등 별도 발생하는 비용은 병원이 부담한다.<br>
-美团平台新入驻费、账户激活费等额外发生的费用由甲方承担。</div>
-      <div class="item"><span class="item-num">⑤</span> 메이투안 플랫폼 이용에 따른 비용은 다음과 같다:<br>
-美团平台使用费用如下：
-<div style="margin-top: 6px; margin-left: 0px; margin-bottom: 6px;">
-<div style="margin-bottom: 12px;"><span style="font-weight: bold; margin-right: 8px;">①</span>메이투안 입점(계정 개설 및 활성화) 비용: 9,800 RMB (병원 부담) / 美团入驻(账户开设和激活)费用：9,800元人民币(甲方承担)</div>
-<div style="line-height: 2.4; word-spacing: 1px; padding-left: 0px;">
-<span style="font-weight: bold; margin-right: 8px;">②</span>광고 진행 여부:&nbsp;
-<input type="checkbox" name="meituan_ad_progress" style="width: 16px; height: 16px; cursor: pointer; vertical-align: middle; margin-right: 8px;">
-진행 (광고비 <input type="text" placeholder="________" style="width: 80px; border: none; border-bottom: 1.5px solid #333; padding: 2px 6px; font-size: 9pt; vertical-align: middle;"> RMB)
-&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="checkbox" name="meituan_ad_no" style="width: 16px; height: 16px; cursor: pointer; vertical-align: middle; margin-right: 8px;">
-미진행
-<br style="margin: 10px 0;">
-广告进行与否:&nbsp;
-<input type="checkbox" name="meituan_ad_progress_cn" style="width: 16px; height: 16px; cursor: pointer; vertical-align: middle; margin-right: 8px;">
-<span style="font-size: 9pt;">进行(广告费 <input type="text" placeholder="________" style="width: 80px; border: none; border-bottom: 1.5px solid #333; padding: 2px 6px; font-size: 9pt; vertical-align: middle;"> 元人民币)</span>
-&nbsp;&nbsp;&nbsp;&nbsp;
-<input type="checkbox" name="meituan_ad_no_cn" style="width: 16px; height: 16px; cursor: pointer; vertical-align: middle; margin-right: 8px;">
-<span style="font-size: 9pt;">不进行</span>
-</div>
-    </div>
-  </div>
-    </div>
-  </div>
-
-  <div class="article">
     <div class="article-title">제6조 (의료비 및 유치수수료 정산)</div>
     <div class="article-body">
      <div class="item">
@@ -575,22 +536,16 @@
   border-radius:4px;
   border:1px solid #EADCF7;">
  의료비(Medical Charges)의
-    <select class="fill-input fill-input-fee" style="font-size: 10pt; padding: 4px 6px;">
-      <option value="">선택해주세요</option>
-      <option value="10">10</option>
-      <option value="15">15</option>
-      <option value="20">20</option>
-      <option value="30">30</option>
-    </select>
+    <input type="number" class="fill-input fill-input-fee" min="0" max="100" step="0.1" placeholder="0">
     % (부가가치세 포함)
   </strong>
   로 하며, 진료가 종료되는 시점에 정산함을 원칙으로 한다. 다만, "을"이 할인쿠폰 발행 등 프로모션을 진행한 경우 해당 할인금액을 수수료에서 차감한다.
 </div>
-
+    
       <div class="bank-info">
-        <div><span class="label">은행</span><br><strong>우리은행</strong></div>
-        <div><span class="label">계좌번호</span><br><strong>1002-357-485595</strong></div>
-        <div><span class="label">예금주</span><br><strong>이가나</strong></div>
+        <div><span class="label">은행</span><br><strong>국민은행</strong></div>
+        <div><span class="label">계좌번호</span><br><strong>907637-00-000473</strong></div>
+        <div><span class="label">예금주</span><br><strong>이가나 (한강애봄)</strong></div>
       </div>
       <div class="item"><span class="item-num">④</span> 의료비는 원칙적으로 고객이 "갑"에게 직접 결제하며, 입원환자는 입원 시점에 100%, 외래환자는 매 진료 시마다 결제한다. 단, "을"이 선결제하는 경우 양 당사자가 합의한 수가를 적용한다.</div>
       <div class="item"><span class="item-num">⑤</span> 동일 외국인환자가 초진일로부터 1년 이내 재진료하거나, 건강검진 후 질병이 발견되어 치료받는 경우에도 유치수수료를 지급한다.</div>
@@ -705,12 +660,11 @@
   <span class="lbl">날짜</span>
   <span class="val">
     2026년
-    <input type="text" placeholder="월" style="width: 40px; border: none; border-bottom: 1px solid #333; padding: 2px 4px; font-size: 9pt; text-align: center;">월
-    <input type="text" placeholder="일" style="width: 40px; border: none; border-bottom: 1px solid #333; padding: 2px 4px; font-size: 9pt; text-align: center;">일
+    <span style="display:inline-block; width:166px; border-bottom:1px solid #aaa;"></span>
   </span>
 </div>
           <div class="sig-pad-wrap">
-            <canvas class="sig-pad-canvas" data-sigpad="gap" width="501" height="216"></canvas>
+            <canvas class="sig-pad-canvas" data-sigpad="gap"></canvas>
             <span class="sig-pad-hint">서명 / 날인 (마우스·손가락으로 그려주세요)</span>
             <button type="button" class="sig-pad-clear no-print" data-sigclear="gap">지우기</button>
           </div>
@@ -726,13 +680,13 @@
   <span class="lbl">날짜</span>
   <span class="val">
     2026년
-    <input type="text" placeholder="월" style="width: 40px; border: none; border-bottom: 1px solid #333; padding: 2px 4px; font-size: 9pt; text-align: center;">월
-    <input type="text" placeholder="일" style="width: 40px; border: none; border-bottom: 1px solid #333; padding: 2px 4px; font-size: 9pt; text-align: center;">일
+    <span style="display:inline-block; width:166px; border-bottom:1px solid #aaa;"></span>
   </span>
 </div>
-          <div class="sig-pad-wrap" style="position: relative;">
-            <canvas class="sig-pad-canvas" data-sigpad="eul" width="501" height="108" style="background-image: url('data:image/jpeg;base64,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'); background-size: 80px 80px; background-position: center; background-repeat: no-repeat; opacity: 1;"></canvas>
+          <div class="sig-pad-wrap">
+            <canvas class="sig-pad-canvas" data-sigpad="eul"></canvas>
             <span class="sig-pad-hint">서명 / 날인 (마우스·손가락으로 그려주세요)</span>
+            <button type="button" class="sig-pad-clear no-print" data-sigclear="eul">지우기</button>
           </div>
         </div>
       </div>
