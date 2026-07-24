@@ -117,6 +117,13 @@
     ]
   },
   {
+    "procedure": "리오투(REO2)",
+    "category": "스킨부스터",
+    "hospitals": [
+      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1대 90만원" }
+    ]
+  },
+  {
     "procedure": "실리프팅",
     "category": "리프팅",
     "hospitals": [

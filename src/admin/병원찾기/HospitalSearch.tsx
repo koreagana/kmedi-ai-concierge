@@ -44,6 +44,7 @@ const CAT_COLORS: Record<string, { bg: string; fg: string }> = {
   "암": { bg: "rgba(90,90,90,0.1)", fg: "#4E4E4E" },
   "심장": { bg: "rgba(178,58,46,0.09)", fg: "#B23A2E" },
   "필러": { bg: "rgba(60,110,160,0.1)", fg: "#2E6291" },
+  "스킨부스터": { bg: "rgba(90,140,90,0.1)", fg: "#3D7A3D" },
 };
 
 function SearchIcon() {
