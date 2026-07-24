@@ -16,7 +16,7 @@ export default defineConfig({
         prepColonoscopyBefore: resolve(__dirname, 'prep/colonoscopy-before/index.html'),
         adminPrep: resolve(__dirname, 'admin/prep/index.html'),
         adminPartners: resolve(__dirname, 'admin/partners/index.html'),
-        adminHospitalSearch: resolve(__dirname, 'admin/hospital-search/index.html'),
+        adminHospitalSearch: resolve(__dirname, 'admin/병원찾기/index.html'),
       },
     },
   },

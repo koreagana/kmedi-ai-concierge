@@ -28,7 +28,7 @@ function AdminPartnersPage() {
           ← 준비문서 관리자로 돌아가기
         </a>
         <a
-          href="/admin/hospital-search/"
+          href="/admin/병원찾기/"
           style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}
         >
           → 병원찾기 바로가기

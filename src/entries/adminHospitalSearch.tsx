@@ -2,7 +2,7 @@ import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import '../index.css'
 import AdminPinGate from '../components/AdminPinGate'
-import HospitalSearch from '../admin/hospital-search/HospitalSearch'
+import HospitalSearch from '../admin/병원찾기/HospitalSearch'
 
 function AdminHospitalSearchPage() {
   const [unlocked, setUnlocked] = useState(false)
