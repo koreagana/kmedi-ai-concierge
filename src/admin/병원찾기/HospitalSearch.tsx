@@ -44,7 +44,6 @@ const CAT_COLORS: Record<string, { bg: string; fg: string }> = {
   "암": { bg: "rgba(90,90,90,0.1)", fg: "#4E4E4E" },
   "심장": { bg: "rgba(178,58,46,0.09)", fg: "#B23A2E" },
   "필러": { bg: "rgba(60,110,160,0.1)", fg: "#2E6291" },
-  "보톡스": { bg: "rgba(90,140,90,0.1)", fg: "#3D7A3D" },
 };
 
 function SearchIcon() {
@@ -108,16 +107,18 @@ export default function HospitalSearch({ data = DATA }: { data?: ProcedureEntry[
     return ["전체", ...Array.from(set)];
   }, [data]);
 
-  const counts = useMemo(() => {
-    const c: Record<string, number> = { "전체": data.length };
-    data.forEach((d) => { c[d.category] = (c[d.category] || 0) + 1; });
-    return c;
-  }, [data]);
-
   const totalHospitalRows = useMemo(
     () => data.reduce((sum, d) => sum + d.hospitals.length, 0),
     [data]
   );
+
+  // 탭 옆 숫자는 "시술 항목 수"가 아니라 실제로 화면에 뜨는 병원 카드 수(칸 수) —
+  // 같은 병원이 여러 시술에 걸쳐 있으면 그만큼 중복으로 카운트된다.
+  const counts = useMemo(() => {
+    const c: Record<string, number> = { "전체": totalHospitalRows };
+    data.forEach((d) => { c[d.category] = (c[d.category] || 0) + d.hospitals.length; });
+    return c;
+  }, [data, totalHospitalRows]);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();

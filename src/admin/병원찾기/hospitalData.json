@@ -80,8 +80,7 @@
     "category": "코",
     "hospitals": [
       { "name": "DA성형외과", "doctor": "강현구/구현국/김경회", "phone": "02-545-4575", "city": "강남" },
-      { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "재수술 450만원~", "priceNote": "ENDO 재수술 기준" }
+      { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" }
     ]
   },
   {
@@ -146,7 +145,8 @@
     "category": "윤곽",
     "hospitals": [
       { "name": "아이디병원", "doctor": "박상훈/권주용", "phone": "02-511-8875", "city": "강남" },
-      { "name": "바노바기성형외과", "doctor": "반재상/오창현", "phone": "02-508-2875", "city": "강남" }
+      { "name": "바노바기성형외과", "doctor": "반재상/오창현", "phone": "02-508-2875", "city": "강남" },
+      { "name": "양윤돌 구강악안면외과 치과의원", "doctor": "양윤돌", "phone": "문의 필요", "city": "강남" }
     ]
   },
   {
@@ -188,19 +188,6 @@
     "hospitals": [
       { "name": "서울아산병원", "doctor": "김재중(심부전이식)", "phone": "02-3010-0114", "city": "송파" },
       { "name": "카톨릭성모병원", "doctor": "장기육", "phone": "02-2258-0114", "city": "강남" }
-    ]
-  },
-  {
-    "procedure": "보톡스",
-    "category": "보톡스",
-    "hospitals": [
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "5만원~", "priceNote": "브랜드/부위별 상이(리즈톡스~엘러간)" },
-      { "name": "리앤방성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1부위 4만원~", "priceNote": "브랜드별 상이(원더톡스~엘러간)" },
-      { "name": "바노바기피부과", "doctor": "의료진", "phone": "02-3288-3322", "city": "강남", "price": "1부위 4만원~", "priceNote": "브랜드별 상이" },
-      { "name": "살롱드닥터튠즈", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1부위 30만원~", "priceNote": "국산/수입 상이" },
-      { "name": "아름다운나라피부과", "doctor": "의료진", "phone": "02-3420-2201", "city": "강남", "price": "60만원~", "priceNote": "국산/독일 Xeomin 80만원" },
-      { "name": "온테나의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1부위 4만원~", "priceNote": "부위/브랜드별 상이" },
-      { "name": "제주와인피부과", "doctor": "의료진", "phone": "문의 필요", "city": "제주", "price": "이마 6만원~", "priceNote": "부위/브랜드별 상이" }
     ]
   }
 ]
