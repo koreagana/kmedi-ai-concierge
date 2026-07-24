@@ -12,8 +12,7 @@
     "category": "눈",
     "hospitals": [
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
-      { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
-      { "name": "허쉬성형외과", "doctor": "정영춘/김주봉", "phone": "02-511-3911", "city": "강남" }
+      { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" }
     ]
   },
   {
@@ -69,7 +68,20 @@
     "hospitals": [
       { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
-      { "name": "JK성형외과", "doctor": "의료진팀", "phone": "02-511-2080", "city": "강남" },
+      { "name": "JK성형외과", "doctor": "의료진팀", "phone": "02-511-2080", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "필러",
+    "category": "필러",
+    "hospitals": [
+      { "name": "허쉬성형외과", "doctor": "정영춘/김주봉", "phone": "02-511-3911", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "실리프팅",
+    "category": "리프팅",
+    "hospitals": [
       { "name": "허쉬성형외과", "doctor": "정영춘/김주봉", "phone": "02-511-3911", "city": "강남" }
     ]
   },
@@ -108,7 +120,8 @@
     "category": "가슴",
     "hospitals": [
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
-      { "name": "뷰성형외과", "doctor": "최순우/윤창운", "phone": "02-511-3366", "city": "강남" }
+      { "name": "뷰성형외과", "doctor": "최순우/윤창운", "phone": "02-511-3366", "city": "강남" },
+      { "name": "마인성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" }
     ]
   },
   {

@@ -39,6 +39,7 @@ const CAT_COLORS: Record<string, { bg: string; fg: string }> = {
   "산부인과": { bg: "rgba(198,120,60,0.1)", fg: "#B0611E" },
   "암": { bg: "rgba(90,90,90,0.1)", fg: "#4E4E4E" },
   "심장": { bg: "rgba(178,58,46,0.09)", fg: "#B23A2E" },
+  "필러": { bg: "rgba(60,110,160,0.1)", fg: "#2E6291" },
 };
 
 function SearchIcon() {
