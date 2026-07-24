@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
   HeroSection,
-  HomeConsultationSection,
   ConcernSection,
   CategoryGridSection,
   MedicalNetworkSection,
@@ -90,7 +89,6 @@ export default function ArHomePage() {
       <HeroSection />
       <CategoryGridSection />
       <ArConciergeSection />
-      <HomeConsultationSection />
       <ConcernSection />
       <section id="halal-map-section" className="section-light">
         <HalalMap dir="rtl" />

@@ -7,8 +7,6 @@ import { categories, type CategoryId } from '../data/categories'
 import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR, getWhatsappUrl } from '../data/contacts'
 import { NETWORK_CITIES } from '../data/networkCities'
 import HalalMapButton from './HalalMapButton'
-import ConsultationCard from './ConsultationCard'
-import ConsultCardVisual from './ConsultCardVisual'
 import TtsButton from './TtsButton'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
@@ -447,37 +445,6 @@ function ConciergeSection() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
-  )
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   2.5 HOME CONSULTATION CARD ENTRY
-   ═══════════════════════════════════════════════════════════════════ */
-export function HomeConsultationSection() {
-  const { lang } = useApp()
-  const [open, setOpen] = useState(false)
-
-  // A real page reload already resets this (useState default), but bfcache-restored
-  // pages (browser back/forward) keep the old in-memory state — force it back to
-  // the entry card in that case too, so the section always starts fresh.
-  useEffect(() => {
-    const handlePageShow = (e: PageTransitionEvent) => {
-      if (e.persisted) setOpen(false)
-    }
-    window.addEventListener('pageshow', handlePageShow)
-    return () => window.removeEventListener('pageshow', handlePageShow)
-  }, [])
-
-  return (
-    <section id="home-consultation" className="section-light">
-      {!open ? (
-        <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.5 }} style={{ padding: '0 4px' }}>
-          <ConsultCardVisual lang={lang} onClick={() => setOpen(true)} />
-        </motion.div>
-      ) : (
-        <ConsultationCard mode="home" onExit={() => setOpen(false)} />
-      )}
     </section>
   )
 }
@@ -1194,7 +1161,6 @@ export default function HomePage() {
       <HeroSection />
       <CategoryGridSection />
       <ConciergeSection />
-      <HomeConsultationSection />
       <ConcernSection />
       <MedicalNetworkSection />
       <FooterSection />
