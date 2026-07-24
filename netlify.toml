@@ -1,7 +1,13 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  functions = "netlify/functions"
+
+# 예약확인서 카드 생성기가 서버리스 함수(.netlify/functions/reservation-confirm)에서
+# 정적 페이지(/reservation-confirm/)로 옮겨감에 따라 기존 북마크가 안 깨지도록 리다이렉트.
+[[redirects]]
+  from = "/.netlify/functions/reservation-confirm"
+  to = "/reservation-confirm/"
+  status = 301
 
 [[headers]]
   for = "/studio.mp4"

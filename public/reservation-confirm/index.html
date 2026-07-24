@@ -1,18 +1,16 @@
-import LZString from 'lz-string'
-
-const TEMPLATE = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>__TITLE__</title>
+<title>预约确认书</title>
 <!-- 카카오톡/위챗 등 메신저 링크 미리보기용 태그 -->
-<meta property="og:title" content="__TITLE__">
-<meta property="og:description" content="__DESC__">
+<meta property="og:title" content="预约确认书">
+<meta property="og:description" content="点击查看预约确认书">
 <meta property="og:site_name" content="汉江春天">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="__TITLE__">
+<meta name="twitter:title" content="预约确认书">
 <style>
   /* ============================================================
      색상 변수 정의
@@ -530,48 +528,3 @@ document.getElementById('pdfbtn').addEventListener('click', function(){
 
 </body>
 </html>
-`
-
-function escapeHtml(str) {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-}
-
-// Decodes patient data from an old-style shared link (lz-string compressed
-// JSON in ?d=) purely to build a human-readable title, for backward
-// compatibility with any links sent before the share-link flow was removed.
-// Nothing here is written to disk or a database.
-function buildTitleAndDescription(compressed) {
-  if (!compressed) {
-    return { title: '预约确认书', description: '点击查看预约确认书' }
-  }
-  try {
-    const json = LZString.decompressFromEncodedURIComponent(compressed)
-    if (!json) return { title: '预约确认书', description: '点击查看预约确认书' }
-    const data = JSON.parse(json)
-    const hospital = data.hk || data.hz || ''
-    const title = hospital ? `${hospital} 预约确认书` : '预约确认书'
-    const description = hospital ? `${hospital} 预约确认书` : '点击查看预约确认书'
-    return { title, description }
-  } catch {
-    return { title: '预约确认书', description: '点击查看预约确认书' }
-  }
-}
-
-export const handler = async (event) => {
-  const compressed = event.queryStringParameters && event.queryStringParameters.d
-  const { title, description } = buildTitleAndDescription(compressed)
-
-  const html = TEMPLATE
-    .replaceAll('__TITLE__', escapeHtml(title))
-    .replaceAll('__DESC__', escapeHtml(description))
-
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    body: html,
-  }
-}
