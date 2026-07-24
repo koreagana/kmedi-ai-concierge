@@ -13,7 +13,9 @@ import hospitalData from "./hospitalData.json";
  * 환자배정 메모 복사.
  *
  * Data schema (see hospitalData.json):
- *  { procedure, category, hospitals: [{ name, doctor, phone, city }] }
+ *  { procedure, category, hospitals: [{ name, doctor, phone, city, price?, priceNote? }] }
+ * price/priceNote는 병원 자체 수가표가 있는 곳만 채워져 있고, 없으면 UI에서
+ * 자동으로 숨겨진다(placeholder 없이) — 수가표 확보되는 대로 값만 채우면 됨.
  */
 
 interface Hospital {
@@ -21,6 +23,8 @@ interface Hospital {
   doctor: string;
   phone: string;
   city: string;
+  price?: string;
+  priceNote?: string;
 }
 interface ProcedureEntry {
   procedure: string;
@@ -40,6 +44,7 @@ const CAT_COLORS: Record<string, { bg: string; fg: string }> = {
   "암": { bg: "rgba(90,90,90,0.1)", fg: "#4E4E4E" },
   "심장": { bg: "rgba(178,58,46,0.09)", fg: "#B23A2E" },
   "필러": { bg: "rgba(60,110,160,0.1)", fg: "#2E6291" },
+  "보톡스": { bg: "rgba(90,140,90,0.1)", fg: "#3D7A3D" },
 };
 
 function SearchIcon() {
@@ -131,7 +136,8 @@ export default function HospitalSearch({ data = DATA }: { data?: ProcedureEntry[
   }, [data, cat, query]);
 
   const handleCopyAssignment = (procedure: string, h: Hospital) => {
-    const text = `[한강애봄 환자배정]\n시술/질환: ${procedure}\n병원: ${h.name}\n담당의: ${h.doctor}\n연락처: ${h.phone}\n지역: ${h.city}`;
+    const priceLine = h.price ? `\n가격: ${h.price}${h.priceNote ? ` (${h.priceNote})` : ""}` : "";
+    const text = `[한강애봄 환자배정]\n시술/질환: ${procedure}\n병원: ${h.name}\n담당의: ${h.doctor}\n연락처: ${h.phone}\n지역: ${h.city}${priceLine}`;
     navigator.clipboard?.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
@@ -214,7 +220,15 @@ export default function HospitalSearch({ data = DATA }: { data?: ProcedureEntry[
                             <span>{h.city}</span>
                           </div>
                         </div>
-                        <button type="button" className="hsr-select-btn">선택</button>
+                        <div className="hsr-hospital-side">
+                          {h.price && (
+                            <div className="hsr-price-tag">
+                              <span className="hsr-mono">{h.price}</span>
+                              {h.priceNote && <span className="hsr-price-note">{h.priceNote}</span>}
+                            </div>
+                          )}
+                          <button type="button" className="hsr-select-btn">선택</button>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -244,6 +258,12 @@ export default function HospitalSearch({ data = DATA }: { data?: ProcedureEntry[
                 <span className="hsr-modal-label">지역</span>
                 <span className="hsr-modal-value">{selected.hospital.city}</span>
               </div>
+              {selected.hospital.price && (
+                <div className="hsr-modal-field">
+                  <span className="hsr-modal-label">가격{selected.hospital.priceNote ? ` (${selected.hospital.priceNote})` : ""}</span>
+                  <span className="hsr-modal-value hsr-mono hsr-price-value">{selected.hospital.price}</span>
+                </div>
+              )}
             </div>
 
             <div className="hsr-modal-actions">
@@ -314,6 +334,11 @@ const CSS = `
 .hsr-row svg{ flex-shrink:0; color:var(--slate); }
 .hsr-row svg + span{ margin-right:10px; }
 .hsr-mono{ font-family:'IBM Plex Mono',monospace; color:var(--navy); }
+.hsr-hospital-side{ display:flex; flex-direction:column; align-items:flex-end; gap:8px; flex-shrink:0; }
+.hsr-price-tag{ display:flex; flex-direction:column; align-items:flex-end; }
+.hsr-price-tag .hsr-mono{ font-size:14px; font-weight:600; color:var(--seal); }
+.hsr-price-note{ font-size:10.5px; color:var(--slate); }
+.hsr-price-value{ color:var(--seal); font-size:15px; }
 .hsr-select-btn{ flex-shrink:0; border:1px solid var(--ink); background:var(--ink); color:var(--paper); font-size:12.5px; font-weight:600; padding:8px 18px; border-radius:6px; cursor:pointer; white-space:nowrap; }
 .hsr-select-btn:hover{ background:var(--navy); }
 .hsr-modal-overlay{ position:fixed; inset:0; background:rgba(20,36,61,0.55); display:flex; align-items:center; justify-content:center; padding:20px; z-index:50; }
