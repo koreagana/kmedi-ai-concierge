@@ -1,0 +1,146 @@
+[
+  {
+    "procedure": "쌍꺼풀",
+    "category": "눈",
+    "hospitals": [
+      { "name": "ICON성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" },
+      { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "눈성형",
+    "category": "눈",
+    "hospitals": [
+      { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
+      { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
+      { "name": "허쉬성형외과", "doctor": "정영춘/김주봉", "phone": "02-511-3911", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "울쎄라",
+    "category": "리프팅",
+    "hospitals": [
+      { "name": "V&MJ피부과", "doctor": "김민주/장희원/권규현", "phone": "02-511-8875", "city": "강남" },
+      { "name": "SWITZ SKIN", "doctor": "김인용", "phone": "02-511-0707", "city": "강남" },
+      { "name": "닥터스피부과 신사본점", "doctor": "성현철/전문의", "phone": "02-511-8585", "city": "강남" },
+      { "name": "갤러리아피부과", "doctor": "금동인", "phone": "02-514-0707", "city": "강남" },
+      { "name": "로렐의원", "doctor": "허준혁", "phone": "02-511-8875", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "써마지",
+    "category": "리프팅",
+    "hospitals": [
+      { "name": "V&MJ피부과", "doctor": "김민주/장희원", "phone": "02-511-8875", "city": "강남" },
+      { "name": "닥터스피부과", "doctor": "성현철", "phone": "02-511-8585", "city": "강남" },
+      { "name": "갤러리아피부과", "doctor": "금동인", "phone": "02-514-0707", "city": "강남" },
+      { "name": "로렐의원", "doctor": "허준혁", "phone": "02-511-8875", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "온다",
+    "category": "리프팅",
+    "hospitals": [
+      { "name": "V&MJ피부과", "doctor": "김민주/장희원", "phone": "02-511-8875", "city": "강남" },
+      { "name": "닥터스피부과", "doctor": "성현철", "phone": "02-511-8585", "city": "강남" },
+      { "name": "갤러리아피부과", "doctor": "금동인", "phone": "02-514-0707", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "거상수술",
+    "category": "리프팅",
+    "hospitals": [
+      { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
+      { "name": "브라운성형외과", "doctor": "김태규/이지원", "phone": "02-529-5999", "city": "강남" },
+      { "name": "You_Can_Be성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "코재수술",
+    "category": "코",
+    "hospitals": [
+      { "name": "DA성형외과", "doctor": "강현구/구현국/김경회", "phone": "02-545-4575", "city": "강남" },
+      { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "코성형",
+    "category": "코",
+    "hospitals": [
+      { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
+      { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
+      { "name": "JK성형외과", "doctor": "의료진팀", "phone": "02-511-2080", "city": "강남" },
+      { "name": "허쉬성형외과", "doctor": "정영춘/김주봉", "phone": "02-511-3911", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "난임",
+    "category": "산부인과",
+    "hospitals": [
+      { "name": "강남차병원", "doctor": "이경은/염진아/류혜진(교수)", "phone": "02-3468-3000", "city": "강남" },
+      { "name": "차병원 서울역", "doctor": "생식의학팀", "phone": "02-6002-6400", "city": "중구" }
+    ]
+  },
+  {
+    "procedure": "시험관아기",
+    "category": "산부인과",
+    "hospitals": [
+      { "name": "강남차병원", "doctor": "이경은/염진아/류혜진", "phone": "02-3468-3000", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "난자냉동",
+    "category": "산부인과",
+    "hospitals": [
+      { "name": "강남차병원", "doctor": "이경은/염진아", "phone": "02-3468-3000", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "윤곽",
+    "category": "윤곽",
+    "hospitals": [
+      { "name": "아이디병원", "doctor": "박상훈/권주용", "phone": "02-511-8875", "city": "강남" },
+      { "name": "바노바기성형외과", "doctor": "반재상/오창현", "phone": "02-508-2875", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "가슴성형",
+    "category": "가슴",
+    "hospitals": [
+      { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
+      { "name": "뷰성형외과", "doctor": "최순우/윤창운", "phone": "02-511-3366", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "암치료",
+    "category": "암",
+    "hospitals": [
+      { "name": "서울아산병원", "doctor": "김재중/박승정", "phone": "02-3010-0114", "city": "송파" },
+      { "name": "삼성서울병원", "doctor": "박근칠", "phone": "02-3410-0114", "city": "강남" },
+      { "name": "세브란스병원", "doctor": "김혜련", "phone": "02-2228-0114", "city": "서대문" }
+    ]
+  },
+  {
+    "procedure": "간암",
+    "category": "암",
+    "hospitals": [
+      { "name": "삼성서울병원", "doctor": "박근칠(폐암)/간암팀", "phone": "02-3410-0114", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "폐암",
+    "category": "암",
+    "hospitals": [
+      { "name": "세브란스병원", "doctor": "김혜련", "phone": "02-2228-0114", "city": "서대문" },
+      { "name": "삼성서울병원", "doctor": "박근칠", "phone": "02-3410-0114", "city": "강남" }
+    ]
+  },
+  {
+    "procedure": "심장",
+    "category": "심장",
+    "hospitals": [
+      { "name": "서울아산병원", "doctor": "김재중(심부전이식)", "phone": "02-3010-0114", "city": "송파" },
+      { "name": "카톨릭성모병원", "doctor": "장기육", "phone": "02-2258-0114", "city": "강남" }
+    ]
+  }
+]

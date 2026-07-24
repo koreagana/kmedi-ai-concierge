@@ -43,6 +43,9 @@
   color: var(--brand);
   text-decoration: none;
 }
+.admin-prep-subnav-link + .admin-prep-subnav-link {
+  margin-left: 18px;
+}
 .admin-prep-subnav-link:hover {
   text-decoration: underline;
 }

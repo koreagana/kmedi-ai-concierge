@@ -157,6 +157,9 @@ function PrepDocList() {
           <a className="admin-prep-subnav-link" href="/admin/partners/">
             → 협력의료기관 대장 바로가기
           </a>
+          <a className="admin-prep-subnav-link" href="/admin/hospital-search/">
+            → 병원찾기 바로가기
+          </a>
         </header>
 
         <CategoryNav />
