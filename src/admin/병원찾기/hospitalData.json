@@ -5,7 +5,8 @@
     "hospitals": [
       { "name": "ICON성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" },
       { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" }
+      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" },
+      { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰 200만원~", "priceNote": "절개(DEFO) 300만원" }
     ]
   },
   {
@@ -14,7 +15,8 @@
     "hospitals": [
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
       { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" }
+      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" },
+      { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰 200만원~", "priceNote": "상안검/하안검 등 350만원대" }
     ]
   },
   {
@@ -34,7 +36,9 @@
       { "name": "아름다운나라피부과", "doctor": "의료진", "phone": "02-3420-2201", "city": "강남", "price": "100선 50만원~", "priceNote": "Ultherapy PRIME, 600선 260만원" },
       { "name": "온테나의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "100샷 72만원~", "priceNote": "울쎄라피 프라임, 정상가 기준(프로모션가 별도)" },
       { "name": "제주와인피부과", "doctor": "의료진", "phone": "문의 필요", "city": "제주", "price": "600샷 270만원", "priceNote": "부가세 별도" },
-      { "name": "바로그의원 강남", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "100발 29.9만원~", "priceNote": "미국판, 2025.05 이벤트가 기준·최신 확인 필요" }
+      { "name": "바로그의원 강남", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "100발 29.9만원~", "priceNote": "미국판, 2025.05 이벤트가 기준·최신 확인 필요" },
+      { "name": "유캔비성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300발 129만원~", "priceNote": "600발 245만원(300발 초과시 100발당 5.5만원 추가), 美版超声刀2代" },
+      { "name": "클림의원", "doctor": "의료진", "phone": "문의 필요", "city": "홍대", "price": "300샷 99만원~", "priceNote": "600샷+온다60kj 229만원" }
     ]
   },
   {
@@ -53,7 +57,8 @@
       { "name": "아름다운나라피부과", "doctor": "의료진", "phone": "02-3420-2201", "city": "강남", "price": "600발 260만원", "priceNote": "FLX 기준" },
       { "name": "온테나의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300샷 178만원~", "priceNote": "정상가 기준" },
       { "name": "제주와인피부과", "doctor": "의료진", "phone": "문의 필요", "city": "제주", "price": "600샷 330만원", "priceNote": "부가세 별도" },
-      { "name": "바로그의원 강남", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300발 129만원~", "priceNote": "2025.05 이벤트가 기준·최신 확인 필요" }
+      { "name": "바로그의원 강남", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300발 129만원~", "priceNote": "2025.05 이벤트가 기준·최신 확인 필요" },
+      { "name": "클림의원", "doctor": "의료진", "phone": "문의 필요", "city": "홍대", "price": "600샷 179만원~", "priceNote": "FLX 900샷 259만원" }
     ]
   },
   {
@@ -71,8 +76,9 @@
     "hospitals": [
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
       { "name": "브라운성형외과", "doctor": "김태규/이지원", "phone": "02-529-5999", "city": "강남" },
-      { "name": "You_Can_Be성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "미니거상 700만원~", "priceNote": "풀페이스 거상 1000만원" }
+      { "name": "유캔비성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" },
+      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "미니거상 700만원~", "priceNote": "풀페이스 거상 1000만원" },
+      { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "미니거상 1500만원~", "priceNote": "풀페이스거상 3000~4500만원(집도의 등급별)" }
     ]
   },
   {
@@ -80,7 +86,8 @@
     "category": "코",
     "hospitals": [
       { "name": "DA성형외과", "doctor": "강현구/구현국/김경회", "phone": "02-545-4575", "city": "강남" },
-      { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" }
+      { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" },
+      { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "재수술 500만원~", "priceNote": "난이도/집도의 등급별 상이" }
     ]
   },
   {
@@ -90,7 +97,8 @@
       { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
       { "name": "JK성형외과", "doctor": "의료진팀", "phone": "02-511-2080", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "콧대만 250만원~", "priceNote": "방식별 상이(오픈 400만원)" }
+      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "콧대만 250만원~", "priceNote": "방식별 상이(오픈 400만원)" },
+      { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "K5 500만원~", "priceNote": "집도의 등급별 상이(K1 2200만원까지)" }
     ]
   },
   {
@@ -103,7 +111,9 @@
       { "name": "바노바기피부과", "doctor": "의료진", "phone": "02-3288-3322", "city": "강남", "price": "1cc 25만원~", "priceNote": "브랜드별 상이(유스필~쥬비덤)" },
       { "name": "블랑드비의원", "doctor": "의료진", "phone": "02-563-0000", "city": "강남", "price": "쥬비덤 100만원~", "priceNote": "코필러 130만원" },
       { "name": "살롱드닥터튠즈", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1cc 60만원~", "priceNote": "브랜드별 상이(벨로테로~라풀렌)" },
-      { "name": "제주와인피부과", "doctor": "의료진", "phone": "문의 필요", "city": "제주", "price": "1cc 23만원~", "priceNote": "브랜드별 상이(레스틸렌·쥬비덤 등)" }
+      { "name": "제주와인피부과", "doctor": "의료진", "phone": "문의 필요", "city": "제주", "price": "1cc 23만원~", "priceNote": "브랜드별 상이(레스틸렌·쥬비덤 등)" },
+      { "name": "유캔비성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1cc 20.8만원~", "priceNote": "브랜드별 상이(레스틸렌 40만원~수입 63만원)" },
+      { "name": "클림의원", "doctor": "의료진", "phone": "문의 필요", "city": "홍대", "price": "레스틸렌 1cc 33만원~", "priceNote": "브랜드별 상이" }
     ]
   },
   {
