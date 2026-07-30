@@ -1,2 +1,2 @@
-/reservation/confirm  /.netlify/functions/reservation-confirm  200!
+/reservation/confirm  /reservation-confirm/  301
 /* /index.html 200

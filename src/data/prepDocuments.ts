@@ -107,7 +107,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'reservation',
     category: 'admin_contract',
     field: '예약 관리 / 공통',
-    link: '/reservation/confirm',
+    link: '/reservation-confirm/',
     status: 'available',
   },
   {
