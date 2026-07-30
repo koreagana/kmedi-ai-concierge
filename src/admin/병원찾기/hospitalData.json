@@ -5,7 +5,7 @@
     "hospitals": [
       { "name": "ICON성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" },
       { "name": "JK성형외과", "doctor": "대표의료진팀", "phone": "02-511-2080", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" },
       { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰 200만원~", "priceNote": "절개(DEFO) 300만원" }
     ]
   },
@@ -15,7 +15,7 @@
     "hospitals": [
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
       { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰(NI) 120만원~", "priceNote": "절개/매몰 종류별 상이, 정상가 기준" },
       { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "매몰 200만원~", "priceNote": "상안검/하안검 등 350만원대" }
     ]
   },
@@ -28,7 +28,7 @@
       { "name": "닥터스피부과 신사본점", "doctor": "성현철/전문의", "phone": "02-511-8585", "city": "강남" },
       { "name": "갤러리아피부과", "doctor": "금동인", "phone": "02-514-0707", "city": "강남" },
       { "name": "로렐의원", "doctor": "허준혁", "phone": "02-511-8875", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300샷 135만원~", "priceNote": "600샷 270만원, 부가세 별도" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300샷 135만원~", "priceNote": "600샷 270만원, 부가세 별도" },
       { "name": "리앤방성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "100샷 95만원~", "priceNote": "커스텀 울쎄라 프라임, 정가 기준" },
       { "name": "바노바기피부과", "doctor": "의료진", "phone": "02-3288-3322", "city": "강남", "price": "100샷 60만원~", "priceNote": "울쎄라피 프라임, 정가 기준" },
       { "name": "블랑드비의원", "doctor": "의료진", "phone": "02-563-0000", "city": "강남", "price": "400샷 330만원~", "priceNote": "800샷 600만원" },
@@ -49,7 +49,7 @@
       { "name": "닥터스피부과", "doctor": "성현철", "phone": "02-511-8585", "city": "강남" },
       { "name": "갤러리아피부과", "doctor": "금동인", "phone": "02-514-0707", "city": "강남" },
       { "name": "로렐의원", "doctor": "허준혁", "phone": "02-511-8875", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300샷 150만원~", "priceNote": "900샷 400만원, 부가세 별도" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300샷 150만원~", "priceNote": "900샷 400만원, 부가세 별도" },
       { "name": "리앤방성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "300샷 224만원~", "priceNote": "커스텀 써마지, 정가 기준" },
       { "name": "바노바기피부과", "doctor": "의료진", "phone": "02-3288-3322", "city": "강남", "price": "600샷 250만원~", "priceNote": "써마지FLX, 정가 기준" },
       { "name": "블랑드비의원", "doctor": "의료진", "phone": "02-563-0000", "city": "강남", "price": "600샷 500만원~", "priceNote": "FLX 900샷 670만원" },
@@ -77,7 +77,7 @@
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
       { "name": "브라운성형외과", "doctor": "김태규/이지원", "phone": "02-529-5999", "city": "강남" },
       { "name": "유캔비성형외과", "doctor": "의료진", "phone": "02-xxx-xxxx", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "미니거상 700만원~", "priceNote": "풀페이스 거상 1000만원" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "미니거상 700만원~", "priceNote": "풀페이스 거상 1000만원" },
       { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "미니거상 1500만원~", "priceNote": "풀페이스거상 3000~4500만원(집도의 등급별)" }
     ]
   },
@@ -97,7 +97,7 @@
       { "name": "DA성형외과", "doctor": "강현구/구현국", "phone": "02-545-4575", "city": "강남" },
       { "name": "JW정원성형외과", "doctor": "김연준/최홍림", "phone": "02-541-5114", "city": "강남" },
       { "name": "JK성형외과", "doctor": "의료진팀", "phone": "02-511-2080", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "콧대만 250만원~", "priceNote": "방식별 상이(오픈 400만원)" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "콧대만 250만원~", "priceNote": "방식별 상이(오픈 400만원)" },
       { "name": "4월31일성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "K5 500만원~", "priceNote": "집도의 등급별 상이(K1 2200만원까지)" }
     ]
   },
@@ -106,7 +106,7 @@
     "category": "필러",
     "hospitals": [
       { "name": "허쉬성형외과", "doctor": "정영춘/김주봉", "phone": "02-511-3911", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1cc 15만원~", "priceNote": "국산 기준, 수입(레스틸렌·쥬비덤 등) 50만원대" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1cc 15만원~", "priceNote": "국산 기준, 수입(레스틸렌·쥬비덤 등) 50만원대" },
       { "name": "리앤방성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1cc 20만원~", "priceNote": "국산 기준, 수입필러 별도" },
       { "name": "바노바기피부과", "doctor": "의료진", "phone": "02-3288-3322", "city": "강남", "price": "1cc 25만원~", "priceNote": "브랜드별 상이(유스필~쥬비덤)" },
       { "name": "블랑드비의원", "doctor": "의료진", "phone": "02-563-0000", "city": "강남", "price": "쥬비덤 100만원~", "priceNote": "코필러 130만원" },
@@ -120,7 +120,7 @@
     "procedure": "리오투(REO2)",
     "category": "스킨부스터",
     "hospitals": [
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1대 90만원" }
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "1대 90만원" }
     ]
   },
   {
@@ -128,7 +128,7 @@
     "category": "리프팅",
     "hospitals": [
       { "name": "허쉬성형외과", "doctor": "정영춘/김주봉", "phone": "02-511-3911", "city": "강남" },
-      { "name": "도자기피부과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "PDO 250만원~", "priceNote": "제작실+PDO 300만원, 얼굴전체 무제한" },
+      { "name": "도자기의원", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "PDO 250만원~", "priceNote": "제작실+PDO 300만원, 얼굴전체 무제한" },
       { "name": "리앤방성형외과", "doctor": "의료진", "phone": "문의 필요", "city": "강남", "price": "2개 16만원~", "priceNote": "실 종류별 상이(캐번실~민트실)" },
       { "name": "바노바기피부과", "doctor": "의료진", "phone": "02-3288-3322", "city": "강남", "price": "1줄 10만원~", "priceNote": "민트실/엔코그, 정가 기준" },
       { "name": "블랑드비의원", "doctor": "의료진", "phone": "02-563-0000", "city": "강남", "price": "아이쓰레드 495만원~" },
