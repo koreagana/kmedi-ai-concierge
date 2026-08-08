@@ -199,6 +199,8 @@ export type PlasticSurgeryDocButtonKey = keyof typeof PLASTIC_SURGERY_DOC_BUTTON
 export interface PlasticSurgeryKeyword {
   id: string
   title: LocalizedText
+  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  image?: string
   description: LocalizedText
   directionsLabel: LocalizedText
   directions: BigHealthBullet[]

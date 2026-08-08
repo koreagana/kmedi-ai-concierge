@@ -576,57 +576,70 @@ body {
 /* ══════════════════════════════════════════
    CATEGORY GRID
    ══════════════════════════════════════════ */
+/* Photo/video-first card — the old version was text-only (name + tag on a
+   white box). Every category now has a hero image or video, so the card
+   shows that as a full-bleed background: visitors read the grid by scanning
+   imagery first, text second. */
 .category-card {
-  background: var(--bg-white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px 14px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.22s ease;
   position: relative;
+  aspect-ratio: 1 / 1.05;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,100,220,0.05);
+  cursor: pointer;
+  background: var(--bg-surface);
+  box-shadow: 0 4px 16px rgba(10,30,55,0.12);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
+.category-card:hover {
+  box-shadow: 0 10px 30px rgba(10,30,55,0.22);
+  transform: translateY(-3px);
+}
+.category-card:active { transform: translateY(0); }
+
+.category-card-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
 .category-card::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--brand), var(--teal));
-  opacity: 0;
-  transition: opacity 0.22s;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6,18,34,0.86) 0%, rgba(6,18,34,0.22) 48%, rgba(6,18,34,0.05) 70%);
+  pointer-events: none;
 }
-.category-card:hover {
-  border-color: var(--border-blue);
-  box-shadow: 0 8px 28px rgba(0,100,220,0.14);
-  transform: translateY(-3px);
+
+.category-card-body {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 1;
+  padding: 12px 12px 13px;
 }
-.category-card:hover::after { opacity: 1; }
-.category-card:active { transform: translateY(0); }
 
 .category-emoji { font-size: 26px; }
-.category-name  { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
-.category-tag   { font-size: 10px; color: var(--text-muted); line-height: 1.5; }
+.category-name  { font-size: 13.5px; font-weight: 700; color: #fff; line-height: 1.32; text-shadow: 0 1px 6px rgba(0,0,0,0.35); }
+.category-tag   { font-size: 10px; color: rgba(255,255,255,0.78); line-height: 1.5; margin-top: 2px; text-shadow: 0 1px 4px rgba(0,0,0,0.35); }
 .category-arrow {
   position: absolute;
-  top: 12px; right: 12px;
-  width: 20px; height: 20px;
+  top: 10px; right: 10px;
+  z-index: 1;
+  width: 22px; height: 22px;
   border-radius: 50%;
-  background: var(--bg-surface);
+  background: rgba(0,0,0,0.32);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
-  color: var(--text-muted);
+  font-size: 11px;
+  color: #fff;
   transition: all 0.2s;
 }
 .category-card:hover .category-arrow {
   background: var(--brand);
-  color: white;
 }
 
 /* ══════════════════════════════════════════
@@ -1041,40 +1054,136 @@ body {
   font-size: 11.5px;
   font-weight: 600;
   color: var(--text-muted);
-  padding: 0 20px 8px;
+  padding: 0 20px 10px;
 }
 
-.bh-pills {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0 20px 14px;
-  scrollbar-width: none;
+/* Photo-style tile grid — replaces the old horizontal-scroll text pills.
+   No per-keyword photography exists yet, so tiles use a rotating brand-toned
+   gradient (set per category via .bh-tiles--<palette>) as a stand-in; swap to
+   background-image per tile once real photos are shot. */
+.bh-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 20px 16px;
 }
-.bh-pills::-webkit-scrollbar { display: none; }
 
-.bh-pill {
-  flex: 0 0 auto;
-  white-space: nowrap;
-  padding: 9px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border-blue);
-  background: var(--bg-white);
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--text-muted);
+.bh-tile {
+  position: relative;
+  aspect-ratio: 1 / 0.8;
+  border-radius: 16px;
+  border: none;
+  overflow: hidden;
   cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
   font-family: inherit;
-  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+  text-align: left;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 4px 14px rgba(10,30,55,0.14);
+}
+.bh-tile:active { transform: scale(0.97); }
+
+.bh-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,20,36,0.75) 0%, rgba(8,20,36,0.15) 55%, rgba(8,20,36,0) 100%);
 }
 
-.bh-pill-active {
-  background: var(--brand);
-  color: #ffffff;
-  border-color: var(--brand);
-  box-shadow: 0 4px 14px rgba(0,119,182,0.3);
+.bh-tile-label {
+  position: relative;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.32;
+  color: #fff;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.35);
 }
+
+.bh-tile-active {
+  box-shadow: 0 6px 22px rgba(10,30,55,0.28);
+}
+.bh-tile-active::after {
+  content: '✓';
+  position: absolute;
+  top: 9px; right: 9px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Default (blue) palette, cycling every 6 tiles */
+.bh-tiles .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#5aa8dd,#1f4e79); }
+.bh-tiles .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#4fc3d9,#0d6e82); }
+.bh-tiles .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#7d8fd0,#3c4a96); }
+.bh-tiles .bh-tile:nth-child(6n+4) { background: linear-gradient(150deg,#63b7a3,#1c6e5c); }
+.bh-tiles .bh-tile:nth-child(6n+5) { background: linear-gradient(150deg,#8ba7c9,#3a5f85); }
+.bh-tiles .bh-tile:nth-child(6n+6) { background: linear-gradient(150deg,#5b9bd0,#274d75); }
+
+/* Category-tinted palettes so each detail page keeps its own identity */
+.bh-tiles--violet .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#9b8fd6,#4a3b8f); }
+.bh-tiles--violet .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#7d9fd6,#3b4f8f); }
+.bh-tiles--violet .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#b088c9,#5c3b7a); }
+.bh-tiles--violet .bh-tile:nth-child(6n+4) { background: linear-gradient(150deg,#7fb0c9,#2e6b82); }
+.bh-tiles--violet .bh-tile:nth-child(6n+5) { background: linear-gradient(150deg,#8f9fd6,#43508f); }
+
+.bh-tiles--rose .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#e0a3b0,#95425a); }
+.bh-tiles--rose .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#d9a98f,#8a5738); }
+.bh-tiles--rose .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#dbb0d1,#7d4b8e); }
+.bh-tiles--rose .bh-tile:nth-child(6n+4) { background: linear-gradient(150deg,#e0b48f,#9c5f2e); }
+.bh-tiles--rose .bh-tile:nth-child(6n+5) { background: linear-gradient(150deg,#d99aa5,#8a3f52); }
+
+.bh-tiles--pink .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#e6a8c4,#9a3f6e); }
+.bh-tiles--pink .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#d9a3c9,#7a3f8a); }
+.bh-tiles--pink .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#eab3a8,#a04f3f); }
+.bh-tiles--pink .bh-tile:nth-child(6n+4) { background: linear-gradient(150deg,#c9a3d6,#5c3f8a); }
+
+.bh-tiles--steel .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#7d95b0,#233a52); }
+.bh-tiles--steel .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#6f9098,#1f4a4f); }
+.bh-tiles--steel .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#8a95b8,#333f6b); }
+.bh-tiles--steel .bh-tile:nth-child(6n+4) { background: linear-gradient(150deg,#7ba3a8,#2a5a52); }
+
+/* Collapsible "read more" wrapper for secondary detail content (test lists,
+   direction lists, disclaimers) — keeps every word intact but off-screen
+   by default so the tile grid + short summary are what visitors see first. */
+.bh-more {
+  margin-top: 14px;
+  border-radius: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-blue);
+  overflow: hidden;
+}
+.bh-more > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.bh-more > summary::-webkit-details-marker { display: none; }
+.bh-more > summary::after {
+  content: '+';
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+.bh-more[open] > summary::after { content: '−'; }
+.bh-more[open] > summary { border-bottom: 1px solid var(--border-blue); }
+.bh-more-body { padding: 4px 14px 14px; }
+.bh-more-body .bh-card-section:first-child { margin-top: 10px; }
 
 .bh-card {
   margin: 0 20px;

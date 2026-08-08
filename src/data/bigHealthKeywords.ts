@@ -95,6 +95,8 @@ export interface BigHealthApprovedProductsBlock {
 export interface BigHealthKeyword {
   id: string
   title: LocalizedText
+  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  image?: string
   description: LocalizedText
   /** Optional secondary note shown right under the description (used by regenerative medicine consult). */
   note?: LocalizedText
@@ -136,6 +138,14 @@ export const BIG_HEALTH_PILLS_PROMPT: LocalizedText = {
   ko: '관심 있는 방향을 선택해 주세요',
   en: 'Please select the topic you are most interested in',
   ar: 'يرجى اختيار الموضوع الذي يهمك',
+}
+
+/** Shared "read more" toggle label for the collapsible detail section under each keyword card. */
+export const BIG_HEALTH_MORE_LABEL: LocalizedText = {
+  zh: '查看详细内容',
+  ko: '자세히 보기',
+  en: 'View details',
+  ar: 'عرض التفاصيل',
 }
 
 export const BIG_HEALTH_SECTION = {

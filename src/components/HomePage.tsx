@@ -541,9 +541,21 @@ export function CategoryGridSection() {
             className="category-card"
             onClick={() => (cat.id === 'medical-tourism' ? goToPackage() : goToCategory(cat.id))}
           >
+            {cat.heroVideo ? (
+              <video
+                className="category-card-media"
+                src={cat.heroVideo}
+                poster={cat.heroImage}
+                autoPlay muted loop playsInline
+              />
+            ) : cat.heroImage ? (
+              <img className="category-card-media" src={cat.heroImage} alt="" loading="lazy" />
+            ) : null}
             <span className="category-arrow">›</span>
-            <p className="category-name">{getName(cat)}</p>
-            <p className="category-tag">{getTag(cat)}</p>
+            <div className="category-card-body">
+              <p className="category-name">{getName(cat)}</p>
+              <p className="category-tag">{getTag(cat)}</p>
+            </div>
           </motion.div>
         ))}
       </div>
@@ -1161,7 +1173,6 @@ export default function HomePage() {
       <HeroSection />
       <CategoryGridSection />
       <ConciergeSection />
-      <ConcernSection />
       <MedicalNetworkSection />
       <FooterSection />
     </div>

@@ -3,6 +3,8 @@ import type { LocalizedText, BigHealthBullet, BigHealthApprovedProductsBlock, Bi
 export interface StemCellKeyword {
   id: string
   title: LocalizedText
+  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  image?: string
   /** May contain \n\n to separate multiple paragraphs. */
   description: LocalizedText
   /** Optional secondary note shown right under the description (used by the approved-products item). */

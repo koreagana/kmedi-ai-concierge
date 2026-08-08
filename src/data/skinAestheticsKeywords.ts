@@ -117,6 +117,8 @@ export type SkinAestheticsDocButtonKey = keyof typeof SKIN_AESTHETICS_DOC_BUTTON
 export interface SkinAestheticsKeyword {
   id: string
   title: LocalizedText
+  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  image?: string
   /** May contain \n\n to separate multiple paragraphs. */
   description: LocalizedText
   /** Optional callout shown right under the description (used to clarify "skin stem cell" naming). */

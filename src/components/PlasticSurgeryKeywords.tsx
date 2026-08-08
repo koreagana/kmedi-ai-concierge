@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
+import { BIG_HEALTH_MORE_LABEL, BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
 import {
   PLASTIC_SURGERY_KEYWORDS,
   PLASTIC_SURGERY_SECTION,
@@ -30,17 +30,18 @@ export default function PlasticSurgeryKeywords() {
 
       <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
-      <div className="bh-pills" role="tablist">
+      <div className="bh-tiles bh-tiles--rose" role="tablist">
         {PLASTIC_SURGERY_KEYWORDS.map((kw, i) => (
           <button
             key={kw.id}
             type="button"
             role="tab"
             aria-selected={i === activeIndex}
-            className={`bh-pill ${i === activeIndex ? 'bh-pill-active' : ''}`}
+            className={`bh-tile ${i === activeIndex ? 'bh-tile-active' : ''}`}
+            style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
             onClick={() => setActiveIndex(i)}
           >
-            {pick(kw.title, lang)}
+            <span className="bh-tile-label">{pick(kw.title, lang)}</span>
           </button>
         ))}
       </div>
@@ -67,29 +68,34 @@ export default function PlasticSurgeryKeywords() {
           <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
         ))}
 
-        <div className="bh-card-section">
-          <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
-          <ul className="bh-list">
-            {active.directions.map((item, i) => (
-              <li key={i}>{pick(item, lang)}</li>
-            ))}
-          </ul>
-        </div>
+        <details className="bh-more">
+          <summary>{pick(BIG_HEALTH_MORE_LABEL, lang)}</summary>
+          <div className="bh-more-body">
+            <div className="bh-card-section" style={{ marginTop: 0 }}>
+              <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
+              <ul className="bh-list">
+                {active.directions.map((item, i) => (
+                  <li key={i}>{pick(item, lang)}</li>
+                ))}
+              </ul>
+            </div>
 
-        {active.safetyChecklistLabel && active.safetyChecklist && (
-          <div className="bh-card-section">
-            <p className="bh-card-label">{pick(active.safetyChecklistLabel, lang)}</p>
-            <ul className="bh-list">
-              {active.safetyChecklist.map((item, i) => (
-                <li key={i}>{pick(item, lang)}</li>
-              ))}
-            </ul>
+            {active.safetyChecklistLabel && active.safetyChecklist && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.safetyChecklistLabel, lang)}</p>
+                <ul className="bh-list">
+                  {active.safetyChecklist.map((item, i) => (
+                    <li key={i}>{pick(item, lang)}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="bh-note" style={{ marginTop: 14 }}>
+              <p className="bh-card-text">{pick(active.note, lang)}</p>
+            </div>
           </div>
-        )}
-
-        <div className="bh-note" style={{ marginTop: 14 }}>
-          <p className="bh-card-text">{pick(active.note, lang)}</p>
-        </div>
+        </details>
       </motion.div>
     </div>
   )

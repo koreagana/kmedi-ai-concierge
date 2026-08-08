@@ -59,6 +59,8 @@ export type MensHealthDocButtonKey = keyof typeof MENS_HEALTH_DOC_BUTTONS
 export interface MensHealthKeyword {
   id: string
   title: LocalizedText
+  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  image?: string
   description: LocalizedText
   directionsLabel: LocalizedText
   directions: BigHealthBullet[]

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import {
+  BIG_HEALTH_MORE_LABEL,
   BIG_HEALTH_PILLS_PROMPT,
   type LocalizedText,
 } from '../data/bigHealthKeywords'
@@ -30,17 +31,18 @@ export default function StemCellKeywords() {
 
       <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
-      <div className="bh-pills" role="tablist">
+      <div className="bh-tiles bh-tiles--violet" role="tablist">
         {STEM_CELL_KEYWORDS.map((kw, i) => (
           <button
             key={kw.id}
             type="button"
             role="tab"
             aria-selected={i === activeIndex}
-            className={`bh-pill ${i === activeIndex ? 'bh-pill-active' : ''}`}
+            className={`bh-tile ${i === activeIndex ? 'bh-tile-active' : ''}`}
+            style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
             onClick={() => setActiveIndex(i)}
           >
-            {pick(kw.title, lang)}
+            <span className="bh-tile-label">{pick(kw.title, lang)}</span>
           </button>
         ))}
       </div>
@@ -68,39 +70,44 @@ export default function StemCellKeywords() {
           <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
         ))}
 
-        {active.note && (
-          <div className="bh-note">
-            <p className="bh-card-text">{pick(active.note, lang)}</p>
-          </div>
-        )}
+        <details className="bh-more">
+          <summary>{pick(BIG_HEALTH_MORE_LABEL, lang)}</summary>
+          <div className="bh-more-body">
+            {active.note && (
+              <div className="bh-note" style={{ marginTop: 0 }}>
+                <p className="bh-card-text">{pick(active.note, lang)}</p>
+              </div>
+            )}
 
-        {active.approvedProducts && (
-          <div className="bh-card-section">
-            <p className="bh-card-label">{pick(active.approvedProducts.title, lang)}</p>
-            <ul className="bh-product-list">
-              {active.approvedProducts.items.map((item, i) => (
-                <li key={i}>
-                  <span className="bh-product-name">{pick(item.name, lang)}</span>
-                  <span className="bh-product-desc">{pick(item.desc, lang)}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="bh-note">
-              <p className="bh-card-text">{pick(active.approvedProducts.caution, lang)}</p>
-            </div>
-          </div>
-        )}
+            {active.approvedProducts && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.approvedProducts.title, lang)}</p>
+                <ul className="bh-product-list">
+                  {active.approvedProducts.items.map((item, i) => (
+                    <li key={i}>
+                      <span className="bh-product-name">{pick(item.name, lang)}</span>
+                      <span className="bh-product-desc">{pick(item.desc, lang)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="bh-note">
+                  <p className="bh-card-text">{pick(active.approvedProducts.caution, lang)}</p>
+                </div>
+              </div>
+            )}
 
-        {active.listLabel && active.list && (
-          <div className="bh-card-section">
-            <p className="bh-card-label">{pick(active.listLabel, lang)}</p>
-            <ul className="bh-list">
-              {active.list.map((item, i) => (
-                <li key={i}>{pick(item, lang)}</li>
-              ))}
-            </ul>
+            {active.listLabel && active.list && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.listLabel, lang)}</p>
+                <ul className="bh-list">
+                  {active.list.map((item, i) => (
+                    <li key={i}>{pick(item, lang)}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
-        )}
+        </details>
       </motion.div>
     </div>
   )
