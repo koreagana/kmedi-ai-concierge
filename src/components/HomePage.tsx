@@ -541,16 +541,9 @@ export function CategoryGridSection() {
             className="category-card"
             onClick={() => (cat.id === 'medical-tourism' ? goToPackage() : goToCategory(cat.id))}
           >
-            {cat.heroVideo ? (
-              <video
-                className="category-card-media"
-                src={cat.heroVideo}
-                poster={cat.heroImage}
-                autoPlay muted loop playsInline
-              />
-            ) : cat.heroImage ? (
+            {cat.heroImage && (
               <img className="category-card-media" src={cat.heroImage} alt="" loading="lazy" />
-            ) : null}
+            )}
             <span className="category-arrow">›</span>
             <div className="category-card-body">
               <p className="category-name">{getName(cat)}</p>

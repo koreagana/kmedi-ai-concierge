@@ -582,7 +582,7 @@ body {
    imagery first, text second. */
 .category-card {
   position: relative;
-  aspect-ratio: 1 / 1.05;
+  aspect-ratio: 3 / 2;
   border-radius: 18px;
   overflow: hidden;
   cursor: pointer;
