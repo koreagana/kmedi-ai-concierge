@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { translations } from '../data/translations'
 import { getCategoryById } from '../data/categories'
 import { getConcernById } from '../data/concerns'
-import ConsultationCard from './ConsultationCard'
 import BigHealthKeywords from './BigHealthKeywords'
 import StemCellKeywords from './StemCellKeywords'
 import SkinAestheticsKeywords from './SkinAestheticsKeywords'
@@ -12,7 +10,6 @@ import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
 import WomensHealthKeywords from './WomensHealthKeywords'
 import MensHealthKeywords from './MensHealthKeywords'
 import CustomPlanContent from './CustomPlanContent'
-import ConsultCardVisual from './ConsultCardVisual'
 import {
   CategoryGridSection,
   FooterSection,
@@ -28,17 +25,6 @@ export default function CategoryPage() {
   const { lang, categoryId, concernId, goHome } = useApp()
   const t = translations[lang]
   const cat = getCategoryById(categoryId ?? '')
-  const [showCard, setShowCard] = useState(false)
-
-  // Same bfcache safeguard as HomeConsultationSection — a fresh reload already
-  // resets this, but browser back/forward restores can keep stale state.
-  useEffect(() => {
-    const handlePageShow = (e: PageTransitionEvent) => {
-      if (e.persisted) setShowCard(false)
-    }
-    window.addEventListener('pageshow', handlePageShow)
-    return () => window.removeEventListener('pageshow', handlePageShow)
-  }, [])
 
   if (!cat) {
     return (
@@ -135,22 +121,6 @@ export default function CategoryPage() {
 
       {/* ── Custom medical tourism plan trust content (only for the custom-plan category) ── */}
       {cat.id === 'custom-plan' && <CustomPlanContent />}
-
-      {/* ── CTA button / ConsultationCard ── */}
-      {!showCard ? (
-        <motion.div
-          {...fadeUp}
-          style={{
-            padding: '28px 20px 32px',
-            background: 'var(--bg-surface, #f0f6ff)',
-            borderTop: '1px solid var(--border-blue)',
-          }}
-        >
-          <ConsultCardVisual lang={lang} onClick={() => setShowCard(true)} />
-        </motion.div>
-      ) : (
-        <ConsultationCard categoryId={cat.id} concernId={concernId ?? undefined} onExit={() => setShowCard(false)} />
-      )}
 
       {/* ── Common page footer sections ── */}
       <CategoryGridSection />
