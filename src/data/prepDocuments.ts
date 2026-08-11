@@ -102,6 +102,16 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
   {
+    titleKo: '메이투안·따중디엔핑 CPC 광고 집행 안내',
+    titleZh: '美团·大众点评 CPC广告投放指南',
+    type: 'agreement',
+    category: 'admin_contract',
+    field: '병원 협약 / 메이투안 · 따중디엔핑',
+    link: '/docs/meituan_cpc_ad_guide.html',
+    status: 'available',
+    description: '파트너 병원에 전달하는 광고 집행 준비 안내서',
+  },
+  {
     titleKo: '예약확인증 생성기',
     titleZh: '预约确认书生成器',
     type: 'reservation',
