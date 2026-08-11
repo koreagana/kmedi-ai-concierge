@@ -1038,16 +1038,6 @@ body {
   background: linear-gradient(to top, rgba(8,25,45,0.42) 0%, rgba(8,25,45,0.08) 32%, rgba(8,25,45,0) 55%);
 }
 
-/* Separate image layer so a per-tile filter (brightness/saturate) can be applied
-   to the photo only, without washing out the overlay or label text on top of it. */
-.bh-tile-img-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-size: cover;
-  background-position: center;
-}
-
 .bh-tile-label {
   position: relative;
   z-index: 2;

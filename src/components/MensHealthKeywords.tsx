@@ -11,15 +11,6 @@ import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
-// The men's-health tile photos lean moody/dark (evening bedroom, night skyline),
-// which read as gloomy next to the brighter women's-health set. Lift them all,
-// with an extra boost for the two darkest night scenes.
-const DARK_TILE_IDS = new Set(['urination-problems', 'sexual-function'])
-const tileImageFilter = (id: string) =>
-  DARK_TILE_IDS.has(id)
-    ? 'contrast(0.45) brightness(1.75) saturate(1.1)'
-    : 'brightness(1.12) saturate(1.05)'
-
 export default function MensHealthKeywords() {
   const { lang } = useApp()
   const [activeIndex, setActiveIndex] = useState(0)
@@ -47,17 +38,9 @@ export default function MensHealthKeywords() {
             role="tab"
             aria-selected={i === activeIndex}
             className={`bh-tile ${i === activeIndex ? 'bh-tile-active' : ''}`}
+            style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
             onClick={() => setActiveIndex(i)}
           >
-            {kw.image && (
-              <span
-                className="bh-tile-img-layer"
-                style={{
-                  backgroundImage: `url(${kw.image})`,
-                  filter: tileImageFilter(kw.id),
-                }}
-              />
-            )}
             <span className="bh-tile-label">{pick(kw.title, lang)}</span>
           </button>
         ))}
