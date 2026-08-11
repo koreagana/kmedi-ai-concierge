@@ -1038,6 +1038,12 @@ body {
   background: linear-gradient(to top, rgba(8,25,45,0.42) 0%, rgba(8,25,45,0.08) 32%, rgba(8,25,45,0) 55%);
 }
 
+/* Wraps the detail card below the tile grid; scroll-margin-top keeps the card
+   title clear of the sticky navbar when a tile click scrolls it into view. */
+.bh-card-anchor {
+  scroll-margin-top: 64px;
+}
+
 .bh-tile-label {
   position: relative;
   z-index: 2;
