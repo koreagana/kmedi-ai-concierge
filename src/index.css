@@ -1034,17 +1034,29 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(8,20,36,0.75) 0%, rgba(8,20,36,0.15) 55%, rgba(8,20,36,0) 100%);
+  z-index: 1;
+  background: linear-gradient(to top, rgba(8,25,45,0.65) 0%, rgba(8,25,45,0.18) 38%, rgba(8,25,45,0) 65%);
+}
+
+/* Separate image layer so a per-tile filter (brightness/saturate) can be applied
+   to the photo only, without washing out the overlay or label text on top of it. */
+.bh-tile-img-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
 }
 
 .bh-tile-label {
   position: relative;
+  z-index: 2;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.32;
   color: #fff;
   letter-spacing: 0.01em;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.45);
 }
 
 .bh-tile-active {

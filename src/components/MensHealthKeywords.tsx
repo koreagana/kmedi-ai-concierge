@@ -38,9 +38,20 @@ export default function MensHealthKeywords() {
             role="tab"
             aria-selected={i === activeIndex}
             className={`bh-tile ${i === activeIndex ? 'bh-tile-active' : ''}`}
-            style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
             onClick={() => setActiveIndex(i)}
           >
+            {kw.image && (
+              <span
+                className="bh-tile-img-layer"
+                style={{
+                  backgroundImage: `url(${kw.image})`,
+                  filter:
+                    kw.id === 'urination-problems' || kw.id === 'sexual-function'
+                      ? 'brightness(1.15) saturate(0.95)'
+                      : undefined,
+                }}
+              />
+            )}
             <span className="bh-tile-label">{pick(kw.title, lang)}</span>
           </button>
         ))}
