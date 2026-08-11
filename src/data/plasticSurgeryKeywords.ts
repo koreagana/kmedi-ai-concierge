@@ -256,6 +256,7 @@ export const PLASTIC_SURGERY_SECTION = {
 export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   {
     id: 'eye-surgery',
+    image: '/keyword-tiles/eye-surgery.jpg',
     title: {
       zh: '眼部整形',
       ko: '눈성형',
@@ -287,6 +288,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'nose-surgery',
+    image: '/keyword-tiles/nose-surgery.jpg',
     title: {
       zh: '鼻部整形',
       ko: '코성형',
@@ -319,6 +321,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'facelift-lifting',
+    image: '/keyword-tiles/facelift-lifting.jpg',
     title: {
       zh: '面部提升',
       ko: '거상·리프팅',
@@ -350,6 +353,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'facial-contour-two-jaw',
+    image: '/keyword-tiles/facial-contour-two-jaw.jpg',
     title: {
       zh: '面部轮廓·双颚',
       ko: '안면윤곽·양악',
@@ -399,6 +403,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'fat-grafting-liposuction',
+    image: '/keyword-tiles/fat-grafting-liposuction.jpg',
     title: {
       zh: '脂肪移植·吸脂',
       ko: '지방이식·지방흡입',
@@ -431,6 +436,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'breast-surgery',
+    image: '/keyword-tiles/breast-surgery.jpg',
     title: {
       zh: '胸部整形',
       ko: '가슴성형',
@@ -459,37 +465,5 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       ar: 'تجميل الثدي يتطلب التأكد من نوع الزرعة، ومكان الشق، وطريقة التخدير، وفترة التعافي، واستخدام حمالة أو رباط ضاغط، والحاجة إلى التدليك أو المتابعة طويلة المدى. الخطة المحددة يجب أن يقررها الطبيب.',
     },
     docKeys: ['breastSurgeryAfter', 'surgeryBefore'],
-  },
-  {
-    id: 'recovery-care',
-    title: {
-      zh: '术后恢复管理',
-      ko: '수술 후 회복관리',
-      en: 'Recovery Care',
-      ar: 'رعاية التعافي بعد العملية',
-    },
-    description: {
-      zh: '术后恢复管理是韩国医疗旅游中非常重要的一部分。客户需要了解复诊、拆线、药物服用、冰敷或热敷、饮食、洗脸或洗澡时间、异常症状和回国前确认事项。',
-      ko: '수술 후 회복관리는 한국 의료관광에서 매우 중요한 부분입니다. 고객은 재내원, 실밥 제거, 약 복용, 냉찜질 또는 온찜질, 식사, 세안 또는 샤워 가능 시점, 이상 증상, 귀국 전 확인사항을 이해해야 합니다.',
-      en: 'Postoperative recovery care is an important part of Korean medical tourism. Patients need to understand follow-up visits, stitch removal, medication, cold or warm compresses, diet, washing or shower timing, warning symptoms, and pre-departure checks.',
-      ar: 'تُعد رعاية التعافي بعد العملية جزءًا مهمًا من السياحة الطبية في كوريا. يحتاج المريض إلى فهم مواعيد المتابعة، وإزالة الغرز، وتناول الأدوية، والكمادات الباردة أو الدافئة، والنظام الغذائي، ووقت غسل الوجه أو الاستحمام، والأعراض غير الطبيعية، والفحص قبل العودة.',
-    },
-    directionsLabel: DIRECTIONS_LABEL,
-    directions: [
-      { zh: '术后注意事项整理', ko: '수술 후 주의사항 정리', en: 'Postoperative instruction organization', ar: 'تنظيم تعليمات ما بعد العملية' },
-      { zh: '复诊和拆线安排', ko: '재내원 및 실밥 제거 일정', en: 'Follow-up and stitch removal schedule', ar: 'مواعيد المتابعة وإزالة الغرز' },
-      { zh: '药物服用说明整理', ko: '약 복용 안내 정리', en: 'Medication instruction translation', ar: 'ترجمة تعليمات الأدوية' },
-      { zh: '冰敷和肿胀管理', ko: '냉찜질 및 붓기 관리', en: 'Swelling and cold compress management', ar: 'إدارة التورم والكمادات الباردة' },
-      { zh: '异常症状联系医院', ko: '이상 증상 발생 시 병원 연결', en: 'Contacting the hospital for abnormal symptoms', ar: 'التواصل مع المستشفى عند ظهور أعراض غير طبيعية' },
-      { zh: '回国前检查安排', ko: '귀국 전 체크 일정', en: 'Pre-departure check planning', ar: 'ترتيب الفحص قبل العودة' },
-      { zh: '术后生活管理', ko: '수술 후 생활관리', en: 'Postoperative lifestyle guidance', ar: 'إرشادات الحياة بعد العملية' },
-    ],
-    note: {
-      zh: '汉江春天不进行医疗判断。我们可以帮助客户理解医院说明、整理翻译内容、提醒复诊和异常症状联系医院，但具体处理方式必须以医院判断为准。',
-      ko: '한강애봄은 의료 판단을 하지 않습니다. 병원 안내를 고객 언어로 정리하고, 번역 내용을 전달하며, 재내원과 이상 증상 시 병원 연락을 돕지만, 구체적인 처치는 반드시 병원 판단을 기준으로 해야 합니다.',
-      en: 'K-Medi Spring does not make medical judgments. We help clients understand hospital instructions, organize translations, remind them about follow-up visits, and connect them to the hospital if abnormal symptoms occur. Specific medical decisions must follow the hospital\'s judgment.',
-      ar: 'لا تقوم K-Medi باتخاذ قرارات طبية. يمكننا مساعدة العميل على فهم تعليمات المستشفى، وتنظيم الترجمة، والتذكير بمواعيد المتابعة، وربط العميل بالمستشفى عند ظهور أعراض غير طبيعية، لكن القرار الطبي النهائي يجب أن يكون وفقًا لتقدير المستشفى.',
-    },
-    docKeys: ['surgeryAfter', 'sutureRemovalGuide', 'anesthesiaAfterCare', 'medicationAllergyCheck'],
   },
 ]

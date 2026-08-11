@@ -115,8 +115,9 @@ export const MENS_HEALTH_SECTION = {
 export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   {
     id: 'prostate-health',
+    image: '/keyword-tiles/prostate-health.jpg',
     title: {
-      zh: '前列腺健康',
+      zh: '前列腺健康咨询',
       ko: '전립선 건강',
       en: 'Prostate Health',
       ar: 'صحة البروستاتا',
@@ -146,9 +147,10 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'urination-problems',
+    image: '/keyword-tiles/urination-problems.jpg',
     title: {
-      zh: '排尿问题',
-      ko: '배뇨 문제',
+      zh: '排尿障碍咨询',
+      ko: '배뇨장애 상담',
       en: 'Urination Problems',
       ar: 'مشكلات التبول',
     },
@@ -178,9 +180,10 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'male-hormones-andropause',
+    image: '/keyword-tiles/male-hormones-andropause.jpg',
     title: {
-      zh: '男性激素·更年期',
-      ko: '남성호르몬·갱년기',
+      zh: '男性激素・更年期管理',
+      ko: '남성호르몬·갱년기 관리',
       en: 'Male Hormones & Andropause',
       ar: 'الهرمونات الذكورية وسن اليأس الذكوري',
     },
@@ -210,9 +213,10 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'sexual-function',
+    image: '/keyword-tiles/sexual-function.jpg',
     title: {
-      zh: '性功能咨询',
-      ko: '성기능 상담',
+      zh: '男性性功能咨询',
+      ko: '남성 성기능 상담',
       en: 'Sexual Function Consultation',
       ar: 'استشارة الوظيفة الجنسية',
     },
@@ -242,9 +246,10 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'fertility-sperm-health',
+    image: '/keyword-tiles/fertility-sperm-health.jpg',
     title: {
-      zh: '生育力·精子健康',
-      ko: '생식능력·정자 건강',
+      zh: '男性生育力・精子健康',
+      ko: '남성 가임력·정자 건강',
       en: 'Fertility & Sperm Health',
       ar: 'الخصوبة وصحة الحيوانات المنوية',
     },
@@ -274,9 +279,10 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'infection-inflammation',
+    image: '/keyword-tiles/infection-inflammation.jpg',
     title: {
-      zh: '感染·炎症咨询',
-      ko: '감염·염증 상담',
+      zh: '泌尿生殖感染・炎症咨询',
+      ko: '비뇨생식기 감염·염증 상담',
       en: 'Infection & Inflammation',
       ar: 'العدوى والالتهاب',
     },
@@ -307,9 +313,10 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'mens-intimate-care',
+    image: '/keyword-tiles/mens-intimate-care.jpg',
     title: {
-      zh: '男性私密护理',
-      ko: '남성 프라이빗 케어',
+      zh: '男性私密健康咨询',
+      ko: '남성 프라이빗 건강',
       en: "Men's Intimate Care",
       ar: 'العناية الحميمة للرجل',
     },

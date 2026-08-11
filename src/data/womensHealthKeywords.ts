@@ -113,9 +113,10 @@ export const WOMENS_HEALTH_SECTION = {
 export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   {
     id: 'basic-gynecologic',
+    image: '/keyword-tiles/basic-gynecologic.jpg',
     title: {
-      zh: '妇科基础咨询',
-      ko: '산부인과 기본상담',
+      zh: '妇科基础检查与咨询',
+      ko: '부인과 기본검진·상담',
       en: 'Basic Gynecologic Consultation',
       ar: 'استشارة نسائية أساسية',
     },
@@ -144,8 +145,9 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'cervix-hpv',
+    image: '/keyword-tiles/cervix-hpv.jpg',
     title: {
-      zh: '宫颈·HPV咨询',
+      zh: '宫颈健康・HPV咨询',
       ko: '자궁경부·HPV 상담',
       en: 'Cervix & HPV Consultation',
       ar: 'استشارة عنق الرحم وفيروس HPV',
@@ -174,9 +176,10 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'ovary-uterus',
+    image: '/keyword-tiles/ovary-uterus.jpg',
     title: {
-      zh: '卵巢·子宫咨询',
-      ko: '난소·자궁 상담',
+      zh: '卵巢・子宫健康咨询',
+      ko: '난소·자궁 건강',
       en: 'Ovary & Uterus Consultation',
       ar: 'استشارة المبيض والرحم',
     },
@@ -205,9 +208,10 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'fertility-infertility',
+    image: '/keyword-tiles/fertility-infertility.jpg',
     title: {
-      zh: '备孕·不孕咨询',
-      ko: '임신준비·난임 상담',
+      zh: '生育力・不孕不育咨询',
+      ko: '가임력·난임 상담',
       en: 'Fertility Planning & Infertility',
       ar: 'التخطيط للحمل وتأخر الحمل',
     },
@@ -237,9 +241,10 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'egg-freezing',
+    image: '/keyword-tiles/egg-freezing.jpg',
     title: {
-      zh: '卵子冷冻',
-      ko: '난자보존',
+      zh: '卵子冷冻咨询',
+      ko: '난자동결 상담',
       en: 'Egg Freezing',
       ar: 'تجميد البويضات',
     },
@@ -268,9 +273,10 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'intimate-care',
+    image: '/keyword-tiles/intimate-care.jpg',
     title: {
-      zh: '私密护理',
-      ko: '여성 프라이빗 케어',
+      zh: '女性私密健康咨询',
+      ko: '여성 프라이빗 건강',
       en: 'Intimate Care',
       ar: 'العناية الحميمة',
     },
@@ -300,8 +306,9 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'menopause-hormones',
+    image: '/keyword-tiles/menopause-hormones.jpg',
     title: {
-      zh: '更年期·激素管理',
+      zh: '更年期・激素管理',
       ko: '갱년기·호르몬 관리',
       en: 'Menopause & Hormone Management',
       ar: 'سن اليأس وإدارة الهرمونات',

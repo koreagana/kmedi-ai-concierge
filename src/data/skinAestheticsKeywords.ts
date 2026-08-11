@@ -185,6 +185,7 @@ export const SKIN_AESTHETICS_SECTION = {
 export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   {
     id: 'skin-lifting',
+    image: '/keyword-tiles/skin-lifting.jpg',
     title: {
       zh: '皮肤提升',
       ko: '피부 리프팅',
@@ -224,6 +225,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'pores-texture',
+    image: '/keyword-tiles/pores-texture.jpg',
     title: {
       zh: '毛孔·肤质',
       ko: '모공·피부결',
@@ -270,6 +272,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'skin-boosters-rejuran',
+    image: '/keyword-tiles/skin-boosters-rejuran.jpg',
     title: {
       zh: '水光·丽珠兰',
       ko: '스킨부스터·리쥬란',
@@ -316,6 +319,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'botox-fillers',
+    image: '/keyword-tiles/botox-fillers.jpg',
     title: {
       zh: '肉毒素·玻尿酸',
       ko: '보톡스·필러',
@@ -359,51 +363,13 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     docKeys: ['botoxGuide', 'fillerGuide', 'fillerBotoxGuide'],
   },
   {
-    id: 'thread-lifting',
-    title: {
-      zh: '埋线提升',
-      ko: '실리프팅',
-      en: 'Thread Lifting',
-      ar: 'شد الخيوط',
-    },
-    description: {
-      zh: '埋线提升咨询主要针对轻中度面部松弛、下颌线不清晰、法令纹、脸颊下垂等问题。它不是切开拉皮手术的替代品，适合与否需要根据皮肤厚度、脂肪量、松弛程度和期待值判断。',
-      ko: '실리프팅 상담은 경도에서 중등도의 얼굴 처짐, 턱선 흐림, 팔자주름, 볼처짐 등의 고민을 정리하는 과정입니다. 실리프팅은 절개 거상수술의 대체제가 아니며, 적합 여부는 피부 두께, 지방량, 처짐 정도, 기대치에 따라 판단해야 합니다.',
-      en: 'Thread lifting consultation mainly addresses mild to moderate facial sagging, an unclear jawline, nasolabial folds, and cheek drooping. It is not a substitute for surgical facelift procedures, and whether it is suitable must be determined based on skin thickness, fat volume, degree of sagging, and expectations.',
-      ar: 'تتناول استشارة شد الخيوط بشكل أساسي الترهل الخفيف إلى المتوسط للوجه وعدم وضوح خط الفك وخطوط الأنف والفم وترهل الخدين. وهي ليست بديلاً عن إجراءات شد الوجه الجراحية، ويجب تحديد مدى ملاءمتها بناءً على سماكة الجلد وكمية الدهون ودرجة الترهل والتوقعات.',
-    },
-    directionsLabel: DIRECTIONS_LABEL,
-    directions: [
-      { zh: '面部埋线提升', ko: '얼굴 실리프팅', en: 'Facial thread lifting', ar: 'شد الخيوط للوجه' },
-      { zh: '下颌线提升', ko: '턱선 리프팅', en: 'Jawline lifting', ar: 'شد خط الفك' },
-      { zh: '法令纹周围提升', ko: '팔자 주변 리프팅', en: 'Lifting around the nasolabial fold area', ar: 'الشد حول منطقة خط الأنف والفم' },
-      { zh: '轮廓线改善', ko: '윤곽선 개선', en: 'Contour line improvement', ar: 'تحسين خطوط الملامح' },
-      { zh: '与Skin Booster或仪器提升联合咨询', ko: '스킨부스터 또는 장비 리프팅 병합 상담', en: 'Combined consultation with skin boosters or device-based lifting', ar: 'استشارة مشتركة مع معززات البشرة أو الشد بالأجهزة' },
-      { zh: '术后恢复管理', ko: '시술 후 회복관리', en: 'Post-procedure recovery management', ar: 'إدارة التعافي بعد الإجراء' },
-    ],
-    audienceLabel: AUDIENCE_LABEL,
-    audience: [
-      { zh: '轻中度面部松弛', ko: '경도에서 중등도의 얼굴 처짐이 있는 경우', en: 'Mild to moderate facial sagging', ar: 'ترهل خفيف إلى متوسط في الوجه' },
-      { zh: '下颌线不清晰', ko: '턱선이 흐려진 경우', en: 'An unclear jawline', ar: 'عدم وضوح خط الفك' },
-      { zh: '不想直接做切开手术', ko: '바로 절개 수술을 원하지 않는 경우', en: 'Not wanting to go directly to surgical incision', ar: 'عدم الرغبة في الخضوع مباشرة لجراحة شق' },
-      { zh: '希望恢复期相对短', ko: '회복 기간이 비교적 짧기를 원하는 경우', en: 'Wanting a relatively shorter recovery period', ar: 'الرغبة في فترة تعافٍ أقصر نسبياً' },
-      { zh: '接受术后短期肿胀或拉扯感', ko: '시술 후 일시적인 붓기나 당김감을 이해하는 경우', en: 'Being prepared for temporary post-procedure swelling or a pulling sensation', ar: 'تقبل التورم المؤقت أو الشعور بالشد بعد الإجراء' },
-    ],
-    note: {
-      zh: '埋线提升后可能出现肿胀、淤青、拉扯感、异物感或短期不对称，具体恢复过程需要按照医院说明管理。',
-      ko: '실리프팅 후 붓기, 멍, 당김감, 이물감 또는 일시적 비대칭이 생길 수 있으며, 구체적인 회복 과정은 병원 안내에 따라 관리해야 합니다.',
-      en: "Swelling, bruising, a pulling sensation, a foreign-body sensation, or temporary asymmetry may occur after thread lifting. The specific recovery process should be managed according to the hospital's instructions.",
-      ar: 'قد يحدث تورم أو كدمات أو شعور بالشد أو شعور بجسم غريب أو عدم تناسق مؤقت بعد شد الخيوط. يجب إدارة عملية التعافي المحددة وفقاً لتعليمات المستشفى.',
-    },
-    docKeys: ['threadLiftingAfter', 'skinTreatmentAfter'],
-  },
-  {
     id: 'acne-scars',
+    image: '/keyword-tiles/acne-scars.jpg',
     title: {
-      zh: '痘痘·痘坑',
-      ko: '여드름·흉터',
-      en: 'Acne & Scars',
-      ar: 'حب الشباب والندبات',
+      zh: '黑斑·疤痕祛除',
+      ko: '흑자제거 및 흉터제거',
+      en: 'Dark Spot & Scar Removal',
+      ar: 'إزالة البقع الداكنة والندبات',
     },
     description: {
       zh: '痘痘、痘印、痘坑、皮脂分泌过多、反复炎症等问题，通常需要根据炎症状态、皮肤屏障、既往治疗经历和可接受的恢复期来整理咨询方向。',
@@ -439,6 +405,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'body-skin-care',
+    image: '/keyword-tiles/body-skin-care.jpg',
     title: {
       zh: '身体皮肤管理',
       ko: '바디 피부관리',

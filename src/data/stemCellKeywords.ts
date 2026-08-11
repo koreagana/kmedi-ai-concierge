@@ -62,6 +62,7 @@ const PRODUCT_EXAMPLES_LABEL: LocalizedText = {
 export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   {
     id: 'approved-cell-therapies',
+    image: '/keyword-tiles/approved-cell-therapies.jpg',
     title: {
       zh: '韩国许可细胞治疗剂',
       ko: '한국 허가 세포치료제',
@@ -131,6 +132,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   },
   {
     id: 'what-is-stem-cell-consultation',
+    image: '/keyword-tiles/what-is-stem-cell-consultation.jpg',
     title: {
       zh: '什么是干细胞咨询',
       ko: '줄기세포 상담이란',
@@ -162,6 +164,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   },
   {
     id: 'legal-consultation-scope',
+    image: '/keyword-tiles/legal-consultation-scope.jpg',
     title: {
       zh: '合法咨询范围',
       ko: '합법 상담 범위',
@@ -190,6 +193,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   },
   {
     id: 'joint-cartilage-consultation',
+    image: '/keyword-tiles/joint-cartilage-consultation.jpg',
     title: {
       zh: '关节·软骨咨询',
       ko: '관절·연골 상담',
@@ -220,6 +224,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   },
   {
     id: 'anti-aging-regenerative-consultation',
+    image: '/keyword-tiles/anti-aging-regenerative-consultation.jpg',
     title: {
       zh: '抗衰老再生咨询',
       ko: '항노화 재생상담',
@@ -245,41 +250,6 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { zh: '抗氧化和营养管理', ko: '항산화 및 영양관리', en: 'Antioxidant and nutritional management', ar: 'إدارة مضادات الأكسدة والتغذية' },
       { zh: '再生医学相关咨询范围', ko: '재생의학 관련 상담 범위', en: 'Scope of regenerative medicine consultation', ar: 'نطاق استشارة الطب التجديدي' },
       { zh: '医院可提供的合法咨询路径', ko: '병원에서 제공 가능한 합법 상담 경로', en: 'Legally consultable pathways available at the hospital', ar: 'المسارات القانونية للاستشارة المتاحة في المستشفى' },
-    ],
-    docKeys: ['functionalIntake'],
-  },
-  {
-    id: 'materials-preparation',
-    title: {
-      zh: '资料准备',
-      ko: '상담 전 자료 준비',
-      en: 'Preparing Materials Before Consultation',
-      ar: 'تحضير المواد قبل الاستشارة',
-    },
-    description: {
-      zh: '再生医学和细胞治疗相关咨询，需要尽量提供既往诊断、检查报告、影像资料、用药清单和咨询目的。资料越清楚，医院越容易判断是否可以进一步咨询。',
-      ko: '재생의학과 세포치료 관련 상담은 기존 진단, 검사결과지, 영상자료, 복용약 목록, 상담 목적을 가능한 한 준비하는 것이 좋습니다. 자료가 명확할수록 병원이 추가 상담 가능 여부를 판단하기 쉽습니다.',
-      en: 'For regenerative medicine and cell therapy related consultations, it is best to prepare your prior diagnosis, test results, imaging materials, medication list, and consultation purpose as thoroughly as possible. The clearer the materials, the easier it is for the hospital to determine whether further consultation is possible.',
-      ar: 'بالنسبة لاستشارات الطب التجديدي والعلاج الخلوي، من الأفضل تحضير تشخيصك السابق ونتائج فحوصاتك وموادك التصويرية وقائمة أدويتك والغرض من الاستشارة قدر الإمكان. فكلما كانت المواد أوضح، كان من الأسهل على المستشفى تحديد إمكانية إجراء استشارة إضافية.',
-    },
-    listLabel: {
-      zh: '准备资料',
-      ko: '준비자료',
-      en: 'Materials to Prepare',
-      ar: 'المواد الواجب تحضيرها',
-    },
-    list: [
-      { zh: '护照姓名和出生年月日', ko: '여권상 이름과 생년월일', en: 'Name and date of birth as shown on passport', ar: 'الاسم وتاريخ الميلاد كما هو مدون في جواز السفر' },
-      { zh: '主要咨询目的', ko: '주요 상담 목적', en: 'Main purpose of consultation', ar: 'الغرض الرئيسي من الاستشارة' },
-      { zh: '既往诊断名', ko: '기존 진단명', en: 'Prior diagnosis', ar: 'التشخيص السابق' },
-      { zh: '近期血液检查报告', ko: '최근 혈액검사 결과지', en: 'Recent blood test report', ar: 'تقرير فحص دم حديث' },
-      { zh: '目标疾病相关检查报告', ko: '목표 질환 관련 검사결과지', en: 'Test results related to the target condition', ar: 'نتائج الفحوصات المتعلقة بالحالة المستهدفة' },
-      { zh: '已有影像资料，如X光、MRI、CT、超声等', ko: '이미 보유한 영상자료, 예: X-ray, MRI, CT, 초음파 등', en: 'Existing imaging materials, such as X-ray, MRI, CT, or ultrasound', ar: 'المواد التصويرية الموجودة، مثل الأشعة السينية أو الرنين المغناطيسي أو الأشعة المقطعية أو الموجات فوق الصوتية' },
-      { zh: '医生意见书或诊断书', ko: '의사 소견서 또는 진단서', en: "Physician's opinion letter or diagnosis record", ar: 'تقرير رأي الطبيب أو سجل التشخيص' },
-      { zh: '既往治疗或手术记录', ko: '기존 치료 또는 수술 기록', en: 'Prior treatment or surgical records', ar: 'سجلات العلاج أو الجراحة السابقة' },
-      { zh: '正在服用的药物清单', ko: '현재 복용 중인 약 목록', en: 'List of current medications', ar: 'قائمة الأدوية الحالية' },
-      { zh: '过敏史和慢性疾病信息', ko: '알레르기 및 만성질환 정보', en: 'Allergy history and chronic illness information', ar: 'تاريخ الحساسية ومعلومات الأمراض المزمنة' },
-      { zh: '希望来韩国时间和可停留时间', ko: '한국 방문 희망 시기와 체류 가능 기간', en: 'Preferred visit timing and possible length of stay in Korea', ar: 'التوقيت المفضل للزيارة ومدة الإقامة الممكنة في كوريا' },
     ],
     docKeys: ['functionalIntake'],
   },

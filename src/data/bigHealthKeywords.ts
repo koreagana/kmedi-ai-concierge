@@ -180,6 +180,7 @@ export const BIG_HEALTH_SECTION = {
 export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   {
     id: 'chronic-fatigue',
+    image: '/keyword-tiles/chronic-fatigue.jpg',
     title: {
       zh: '慢性疲劳',
       ko: '만성피로',
@@ -219,6 +220,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'sleep-issue',
+    image: '/keyword-tiles/sleep-issue.jpg',
     title: {
       zh: '睡眠问题',
       ko: '수면 문제',
@@ -256,6 +258,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'gut-health',
+    image: '/keyword-tiles/gut-health.jpg',
     title: {
       zh: '肠道健康',
       ko: '장 건강',
@@ -293,6 +296,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'metabolic-management',
+    image: '/keyword-tiles/metabolic-management.jpg',
     title: {
       zh: '代谢管理',
       ko: '대사 관리',
@@ -334,6 +338,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'hormone-balance',
+    image: '/keyword-tiles/hormone-balance.jpg',
     title: {
       zh: '激素平衡',
       ko: '호르몬 균형',
@@ -368,113 +373,5 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       { zh: '功能医学检查咨询', ko: '기능의학 검사 상담', en: 'Functional medicine testing consultation', ar: 'استشارة فحوصات الطب الوظيفي' },
     ],
     docKeys: ['functionalIntake', 'healthCheckupPrep'],
-  },
-  {
-    id: 'regenerative-medicine-consult',
-    title: {
-      zh: '再生医学咨询',
-      ko: '재생의학 상담',
-      en: 'Regenerative Medicine Consultation',
-      ar: 'استشارة الطب التجديدي',
-    },
-    description: {
-      zh: '韩国再生医学咨询主要是帮助客户了解韩国已获批准的细胞治疗剂、再生医学相关咨询范围，以及可以向正规医疗机构咨询的方向。',
-      ko: '한국 재생의학 상담은 한국에서 허가된 세포치료제, 재생의학 관련 상담 범위, 그리고 정규 의료기관에 문의할 수 있는 방향을 이해하도록 돕는 과정입니다.',
-      en: 'Regenerative medicine consultation in Korea helps you understand the cell therapy products approved in Korea, the scope of regenerative medicine consultation available, and the directions in which you can consult a licensed medical institution.',
-      ar: 'تساعدك استشارة الطب التجديدي في كوريا على فهم منتجات العلاج الخلوي المعتمدة في كوريا، ونطاق استشارات الطب التجديدي المتاحة، والاتجاهات التي يمكنك من خلالها التواصل مع مؤسسة طبية مرخصة.',
-    },
-    note: {
-      zh: '这里不直接判断客户是否适合某种治疗，也不保证治疗效果。\n具体是否适合，需要由正规医疗机构和专业医生根据诊断、检查资料、适应症和韩国相关法规判断。',
-      ko: '이 페이지에서는 고객이 특정 치료에 적합한지 직접 판단하지 않으며 치료 효과를 보장하지 않습니다.\n구체적인 적합 여부는 진단, 검사자료, 적응증 및 한국 관련 법규에 따라 정규 의료기관과 전문의가 판단해야 합니다.',
-      en: 'This page does not directly determine whether you are suitable for a specific treatment, nor does it guarantee treatment outcomes.\nWhether it is specifically suitable must be determined by a licensed medical institution and a qualified physician, based on diagnosis, test records, indications, and relevant Korean regulations.',
-      ar: 'لا تحدد هذه الصفحة مباشرة مدى ملاءمتك لعلاج معين، ولا تضمن نتائج العلاج.\nيجب أن تحدد مدى الملاءمة الفعلية مؤسسة طبية مرخصة وطبيب مختص بناءً على التشخيص وسجلات الفحوصات ودواعي الاستعمال واللوائح الكورية ذات الصلة.',
-    },
-    approvedProducts: {
-      title: {
-        zh: '韩国已获批准的细胞治疗剂示例',
-        ko: '한국 허가 세포치료제 예시',
-        en: 'Examples of Cell Therapy Products Approved in Korea',
-        ar: 'أمثلة على منتجات العلاج الخلوي المعتمدة في كوريا',
-      },
-      items: [
-        {
-          name: { zh: 'Hearticellgram-AMI', ko: '하티셀그램-AMI', en: 'Hearticellgram-AMI', ar: 'Hearticellgram-AMI' },
-          desc: {
-            zh: '急性心肌梗死相关细胞治疗剂。',
-            ko: '급성 심근경색 관련 세포치료제.',
-            en: 'A cell therapy product related to acute myocardial infarction.',
-            ar: 'منتج علاج خلوي متعلق باحتشاء عضلة القلب الحاد.',
-          },
-        },
-        {
-          name: { zh: 'Cartistem', ko: '카티스템', en: 'Cartistem', ar: 'Cartistem' },
-          desc: {
-            zh: '膝关节软骨缺损及退行性关节炎相关细胞治疗剂。',
-            ko: '무릎 연골결손 및 퇴행성 관절염 관련 세포치료제.',
-            en: 'A cell therapy product related to knee cartilage defects and degenerative arthritis.',
-            ar: 'منتج علاج خلوي متعلق بتلف غضروف الركبة والتهاب المفاصل التنكسي.',
-          },
-        },
-        {
-          name: { zh: 'Cupistem', ko: '큐피스템', en: 'Cupistem', ar: 'Cupistem' },
-          desc: {
-            zh: '克罗恩病复杂性肛瘘相关细胞治疗剂。',
-            ko: '크론병 복잡성 누공 관련 세포치료제.',
-            en: "A cell therapy product related to complex perianal fistulas in Crohn's disease.",
-            ar: 'منتج علاج خلوي متعلق بالنواسير الشرجية المعقدة المصاحبة لداء كرون.',
-          },
-        },
-        {
-          name: { zh: 'Neuronata-R Inj.', ko: '뉴로나타-알주', en: 'Neuronata-R Inj.', ar: 'Neuronata-R Inj.' },
-          desc: {
-            zh: '肌萎缩侧索硬化症（ALS，卢伽雷氏病）相关细胞治疗剂。',
-            ko: '근위축성측삭경화증, ALS, 루게릭병 관련 세포치료제.',
-            en: "A cell therapy product related to amyotrophic lateral sclerosis (ALS, Lou Gehrig's disease).",
-            ar: 'منتج علاج خلوي متعلق بالتصلب الجانبي الضموري (ALS، مرض لو جيريغ).',
-          },
-        },
-      ],
-      caution: {
-        zh: '以上产品仅作为韩国已获批准细胞治疗剂的示例，不代表客户一定适用，也不代表汉江春天可以判断或安排相关治疗。\n是否可以咨询或使用相关治疗，需要由正规医疗机构根据韩国法规、适应症和医生判断确认。',
-        ko: '위 제품명은 한국에서 허가된 세포치료제 예시일 뿐이며, 고객에게 반드시 적용된다는 뜻이 아니고 한강애봄이 관련 치료 적합 여부를 판단하거나 확정한다는 의미도 아닙니다.\n관련 치료 상담 또는 사용 가능 여부는 정규 의료기관이 한국 법규, 적응증, 의사의 판단에 따라 확인해야 합니다.',
-        en: 'The products above are only examples of cell therapy products approved in Korea. They do not imply that any of them will necessarily apply to you, nor that K-Medi Spring can determine or arrange the related treatment.\nWhether a related treatment can be consulted on or used must be confirmed by a licensed medical institution, based on Korean regulations, indications, and the physician\'s judgment.',
-        ar: 'المنتجات المذكورة أعلاه هي مجرد أمثلة على منتجات العلاج الخلوي المعتمدة في كوريا، ولا تعني بالضرورة أن أياً منها سينطبق عليك، ولا تعني أن K-Medi يمكنه تحديد أو ترتيب العلاج المعني.\nيجب تأكيد إمكانية استشارة أو استخدام العلاج المعني من قبل مؤسسة طبية مرخصة، بناءً على اللوائح الكورية ودواعي الاستعمال وتقدير الطبيب.',
-      },
-    },
-    testsLabel: {
-      zh: '可能相关资料',
-      ko: '관련 가능 자료',
-      en: 'Possible Related Materials',
-      ar: 'المواد المحتملة ذات الصلة',
-    },
-    tests: [
-      { zh: '既往诊断名和咨询目的', ko: '기존 진단명과 상담 목적', en: 'Prior diagnosis and purpose of consultation', ar: 'التشخيص السابق والغرض من الاستشارة' },
-      { zh: '近期血液检查报告', ko: '최근 혈액검사 결과지', en: 'Recent blood test report', ar: 'تقرير فحص دم حديث' },
-      { zh: '与目标疾病相关的检查报告', ko: '목표 질환과 관련된 검사결과지', en: 'Test results related to the target condition', ar: 'نتائج الفحوصات المتعلقة بالحالة المستهدفة' },
-      { zh: '医生意见书或诊断书', ko: '의사 소견서 또는 진단서', en: "Physician's opinion letter or diagnosis record", ar: 'تقرير رأي الطبيب أو سجل التشخيص' },
-      { zh: '既往治疗或手术记录', ko: '기존 치료 또는 수술 기록', en: 'Prior treatment or surgical records', ar: 'سجلات علاج أو جراحة سابقة' },
-      { zh: '正在服用的药物清单', ko: '현재 복용 중인 약 목록', en: 'List of current medications', ar: 'قائمة الأدوية الحالية' },
-      { zh: '过敏史和慢性疾病信息', ko: '알레르기 및 만성질환 정보', en: 'Allergy history and chronic illness information', ar: 'تاريخ الحساسية ومعلومات الأمراض المزمنة' },
-      { zh: '如已有影像资料，可作为参考资料提交', ko: '이미 보유한 영상자료가 있다면 참고자료로 제출 가능', en: 'If you already have imaging materials, they may be submitted as reference', ar: 'إذا كانت لديك مسبقاً مواد تصويرية، يمكن تقديمها كمواد مرجعية' },
-    ],
-    directionLabel: DIRECTION_LABEL,
-    direction: [
-      { zh: '韩国已获批准细胞治疗剂相关信息整理', ko: '한국 허가 세포치료제 관련 정보 정리', en: 'Organizing information on cell therapy products approved in Korea', ar: 'تنظيم المعلومات المتعلقة بمنتجات العلاج الخلوي المعتمدة في كوريا' },
-      { zh: '干细胞和细胞治疗相关合法咨询范围整理', ko: '줄기세포 및 세포치료 관련 합법 상담 범위 정리', en: 'Organizing the legally consultable scope for stem cell and cell therapy', ar: 'تنظيم النطاق القانوني للاستشارة بشأن الخلايا الجذعية والعلاج الخلوي' },
-      { zh: '关节和疼痛相关再生医学咨询', ko: '관절 및 통증 관련 재생의학 상담', en: 'Regenerative medicine consultation related to joints and pain', ar: 'استشارة الطب التجديدي المتعلقة بالمفاصل والألم' },
-      { zh: '抗衰老相关再生医学咨询', ko: '항노화 관련 재생의학 상담', en: 'Regenerative medicine consultation related to anti-aging', ar: 'استشارة الطب التجديدي المتعلقة بمكافحة الشيخوخة' },
-      { zh: '自体血液基础再生管理咨询', ko: '자가혈 기반 재생관리 상담', en: 'Autologous blood-based regenerative management consultation', ar: 'استشارة إدارة التجديد القائمة على الدم الذاتي' },
-      { zh: '既往检查资料整理与医院转达', ko: '기존 검사자료 정리 및 병원 전달', en: 'Organizing prior test records and forwarding them to the hospital', ar: 'تنظيم سجلات الفحوصات السابقة وإرسالها إلى المستشفى' },
-      { zh: '韩国正规医疗机构咨询路径整理', ko: '한국 정규 의료기관 상담 경로 정리', en: 'Organizing a consultation path with licensed Korean medical institutions', ar: 'تنظيم مسار الاستشارة مع المؤسسات الطبية الكورية المرخصة' },
-    ],
-    // TODO: once the admin prep-documents page adds a "재생의학 상담 전 자료 준비 / 再生医学咨询前资料准备"
-    // entry (candidate path: /prep/regenerative-consultation-before), add its key to docKeys below.
-    docKeys: ['functionalIntake', 'bloodTestPrep'],
-    extraDisclaimer: {
-      zh: '再生医学、细胞治疗、关节或抗衰老相关项目，需根据韩国法律法规、医疗机构资质和医生判断进行咨询。\n汉江春天不进行诊断、治疗判断或效果保证。',
-      ko: '재생의학, 세포치료, 관절 또는 항노화 관련 항목은 한국의 법규, 의료기관 자격, 의사의 판단에 따라 상담되어야 합니다.\n한강애봄은 진단, 치료 판단 또는 효과 보장을 하지 않습니다.',
-      en: "Regenerative medicine, cell therapy, joint, and anti-aging related items must be consulted in accordance with Korean laws and regulations, the qualifications of the medical institution, and the physician's judgment.\nK-Medi Spring does not provide diagnosis, treatment decisions, or guarantee outcomes.",
-      ar: 'يجب استشارة العناصر المتعلقة بالطب التجديدي والعلاج الخلوي والمفاصل ومكافحة الشيخوخة وفقاً للقوانين واللوائح الكورية ومؤهلات المؤسسة الطبية وتقدير الطبيب.\nلا تقدم K-Medi تشخيصاً أو قرارات علاجية أو ضماناً للنتائج.',
-    },
   },
 ]
