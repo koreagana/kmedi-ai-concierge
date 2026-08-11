@@ -541,14 +541,9 @@ export function CategoryGridSection() {
             className="category-card"
             onClick={() => (cat.id === 'medical-tourism' ? goToPackage() : goToCategory(cat.id))}
           >
-            {cat.heroImage && (
-              <img className="category-card-media" src={cat.heroImage} alt="" loading="lazy" />
-            )}
             <span className="category-arrow">›</span>
-            <div className="category-card-body">
-              <p className="category-name">{getName(cat)}</p>
-              <p className="category-tag">{getTag(cat)}</p>
-            </div>
+            <p className="category-name">{getName(cat)}</p>
+            <p className="category-tag">{getTag(cat)}</p>
           </motion.div>
         ))}
       </div>
