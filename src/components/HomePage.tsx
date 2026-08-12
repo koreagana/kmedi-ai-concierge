@@ -244,21 +244,6 @@ export function HeroSection() {
           transition={{ delay: 0.35 }}
           style={{ width: '100%', maxWidth: 340, textAlign: 'center', marginBottom: 16 }}
         >
-          <p className="hero-pref-title">{t.heroPrefTitle}</p>
-
-          <div className="hero-chip-row">
-            {t.heroPrefChips.map((chip) => (
-              <span key={chip} className="hero-chip">{chip}</span>
-            ))}
-          </div>
-          <div className="hero-chip-row">
-            {t.heroRegionChips.map((chip) => (
-              <span key={chip} className="hero-chip hero-chip--region">{chip}</span>
-            ))}
-          </div>
-
-          <p className="hero-pref-note">{t.heroPrefNote}</p>
-
           <div className="hero-trust-card">
             <p className="hero-trust-title">{t.heroTrustTitle}</p>
             {t.heroTrustLines.split('\n').map((line, i) => (
@@ -528,6 +513,23 @@ export function CategoryGridSection() {
 
   return (
     <section id="categories" className="section-light2">
+      <motion.div {...fadeUp} style={{ marginBottom: 36 }}>
+        <p className="pref-title">{t.heroPrefTitle}</p>
+
+        <div className="pref-chip-row">
+          {t.heroPrefChips.map((chip) => (
+            <span key={chip} className="pref-chip">{chip}</span>
+          ))}
+        </div>
+        <div className="pref-chip-row">
+          {t.heroRegionChips.map((chip) => (
+            <span key={chip} className="pref-chip pref-chip--region">{chip}</span>
+          ))}
+        </div>
+
+        <p className="pref-note">{t.heroPrefNote}</p>
+      </motion.div>
+
       <motion.div {...fadeUp}>
         <p className="section-title">{t.categoryTitle}</p>
         <div className="section-accent-line" />
