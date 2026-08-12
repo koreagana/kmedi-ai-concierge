@@ -250,15 +250,15 @@
   <table class="party-table">
     <tr>
       <th>병원명 (医院名称)</th>
-      <td>도자기의원 (陶瓷医院)</td>
+      <td><input type="text" class="fill-input" id="hospName" placeholder="병원명 입력 / 医院名称"></td>
     </tr>
     <tr>
       <th>주소 (地址)</th>
-      <td>서울 서초구 강남대로 531, 2층</td>
+      <td><input type="text" class="fill-input" id="hospAddr" placeholder="주소 입력 / 地址"></td>
     </tr>
     <tr>
       <th>대표자 (法人代表)</th>
-      <td>박시현 (Park Sihyun)</td>
+      <td><input type="text" class="fill-input" id="hospRep" placeholder="대표자 입력 / 法人代表"></td>
     </tr>
   </table>
 
@@ -304,8 +304,8 @@
       <div class="sig-card">
         <div class="sig-card-header">수권인 — 병원</div>
         <div class="sig-card-body">
-          <div class="field"><span class="lbl">기관명</span><span class="val">도자기의원(陶瓷医院)</span></div>
-          <div class="field"><span class="lbl">대표자</span><span class="val">박시현 (Park Sihyun)</span></div>
+          <div class="field"><span class="lbl">기관명</span><span class="val" id="sigHospName"></span></div>
+          <div class="field"><span class="lbl">대표자</span><span class="val" id="sigHospRep"></span></div>
           <div class="sig-pad-wrap">
             <canvas class="sig-pad-canvas" data-sigpad="gap" width="501" height="108"></canvas>
             <span class="sig-pad-hint">서명 / 날인 (마우스·손가락으로 그려주세요)</span>
@@ -398,6 +398,18 @@
         if (pad) pad.clearPad();
       });
     });
+
+    // 병원명/대표자 입력값을 서명란에도 실시간으로 반영
+    function syncField(inputId, targetId) {
+      var input = document.getElementById(inputId);
+      var target = document.getElementById(targetId);
+      if (!input || !target) return;
+      input.addEventListener('input', function () {
+        target.textContent = input.value;
+      });
+    }
+    syncField('hospName', 'sigHospName');
+    syncField('hospRep', 'sigHospRep');
   })();
 </script>
 
