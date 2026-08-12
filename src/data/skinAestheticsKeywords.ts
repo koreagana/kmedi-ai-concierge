@@ -195,10 +195,10 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       ar: 'شد الجلد',
     },
     description: {
-      zh: '皮肤提升咨询主要针对面部松弛、下颌线不清晰、法令纹加深、脸部轮廓下垂、皮肤弹性下降等问题。短期访韩客户通常更适合咨询恢复期较短的非手术类提升项目。',
-      ko: '피부 리프팅 상담은 얼굴 처짐, 턱선 흐림, 팔자주름 깊어짐, 얼굴 윤곽 처짐, 피부 탄력 저하 등의 고민을 정리하는 과정입니다. 단기 방한 고객은 회복 기간이 비교적 짧은 비수술 리프팅 시술군을 상담하는 것이 현실적입니다.',
-      en: 'Skin lifting consultation mainly addresses concerns such as facial sagging, an unclear jawline, deepening nasolabial folds, drooping facial contours, and reduced skin elasticity. For customers visiting Korea for a short stay, non-surgical lifting procedures with shorter recovery times are generally more realistic to consult on.',
-      ar: 'تتناول استشارة شد الجلد بشكل أساسي مخاوف مثل ترهل الوجه وعدم وضوح خط الفك وتعمق خطوط الأنف والفم وترهل ملامح الوجه وانخفاض مرونة البشرة. بالنسبة للعملاء الذين يزورون كوريا لفترة قصيرة، تُعد إجراءات الشد غير الجراحية ذات فترة التعافي الأقصر أكثر واقعية للاستشارة بشأنها.',
+      zh: '皮肤提升咨询主要针对面部松弛、下颌线不清晰、法令纹加深、脸部轮廓下垂、皮肤弹性下降等问题。',
+      ko: '피부 리프팅 상담은 얼굴 처짐, 턱선 흐림, 팔자주름 깊어짐, 얼굴 윤곽 처짐, 피부 탄력 저하 등의 고민을 정리하는 과정입니다.',
+      en: 'Skin lifting consultation mainly addresses concerns such as facial sagging, an unclear jawline, deepening nasolabial folds, drooping facial contours, and reduced skin elasticity.',
+      ar: 'تتناول استشارة شد الجلد بشكل أساسي مخاوف مثل ترهل الوجه وعدم وضوح خط الفك وتعمق خطوط الأنف والفم وترهل ملامح الوجه وانخفاض مرونة البشرة.',
     },
     directionsLabel: {
       zh: '各提升术式适用部位',
