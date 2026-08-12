@@ -86,18 +86,39 @@ export default function SkinAestheticsKeywords() {
                 </ul>
               </div>
 
-              <div className="bh-card-section">
-                <p className="bh-card-label">{pick(active.audienceLabel, lang)}</p>
-                <ul className="bh-list">
-                  {active.audience.map((item, i) => (
-                    <li key={i}>{pick(item, lang)}</li>
-                  ))}
-                </ul>
-              </div>
+              {active.popularDevices && (
+                <div className="bh-card-section">
+                  <p className="bh-card-label bh-card-label--pink">{pick(active.popularDevices.title, lang)}</p>
+                  <ul className="bh-product-list bh-product-list--pink">
+                    {active.popularDevices.items.map((item, i) => (
+                      <li key={i}>
+                        <span className="bh-product-name">{pick(item.name, lang)}</span>
+                        <span className="bh-product-desc">{pick(item.desc, lang)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="bh-note">
+                    <p className="bh-card-text">{pick(active.popularDevices.caution, lang)}</p>
+                  </div>
+                </div>
+              )}
 
-              <div className={active.noteStyle === 'warning' ? 'bh-disclaimer' : 'bh-note'} style={{ marginTop: 14 }}>
-                <p className={active.noteStyle === 'warning' ? undefined : 'bh-card-text'}>{pick(active.note, lang)}</p>
-              </div>
+              {active.audienceLabel && active.audience && active.audience.length > 0 && (
+                <div className="bh-card-section">
+                  <p className="bh-card-label">{pick(active.audienceLabel, lang)}</p>
+                  <ul className="bh-list">
+                    {active.audience.map((item, i) => (
+                      <li key={i}>{pick(item, lang)}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {active.note && (
+                <div className={active.noteStyle === 'warning' ? 'bh-disclaimer' : 'bh-note'} style={{ marginTop: 14 }}>
+                  <p className={active.noteStyle === 'warning' ? undefined : 'bh-card-text'}>{pick(active.note, lang)}</p>
+                </div>
+              )}
             </div>
           </details>
         </motion.div>

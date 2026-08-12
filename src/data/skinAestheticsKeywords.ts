@@ -1,5 +1,5 @@
 import { WECHAT_BIZ_URL } from './contacts'
-import type { LocalizedText, BigHealthBullet } from './bigHealthKeywords'
+import type { LocalizedText, BigHealthBullet, BigHealthApprovedProductsBlock } from './bigHealthKeywords'
 
 export interface SkinAestheticsDocButton {
   label: LocalizedText
@@ -125,9 +125,11 @@ export interface SkinAestheticsKeyword {
   specialNote?: LocalizedText
   directionsLabel: LocalizedText
   directions: BigHealthBullet[]
-  audienceLabel: LocalizedText
-  audience: BigHealthBullet[]
-  note: LocalizedText
+  /** Optional "trending devices/brands" block, rendered with a distinct (pink) accent to set it apart from the standard treatment-direction list. */
+  popularDevices?: BigHealthApprovedProductsBlock
+  audienceLabel?: LocalizedText
+  audience?: BigHealthBullet[]
+  note?: LocalizedText
   /** 'warning' renders the note in the urgent/orange style instead of the neutral info style. */
   noteStyle?: 'info' | 'warning'
   docKeys: SkinAestheticsDocButtonKey[]
@@ -161,10 +163,10 @@ export const SKIN_AESTHETICS_SECTION = {
     ar: 'شد الجلد · المسام وملمس البشرة · العناية بمظهر مكافحة الشيخوخة',
   } as LocalizedText,
   desc: {
-    zh: '韩国皮肤医美咨询不是单纯选择一个项目，而是根据皮肤状态、恢复时间、预算和来韩停留时间，整理适合咨询的治疗方向。',
-    ko: '한국 피부미용 상담은 단순히 하나의 시술을 고르는 것이 아니라, 피부 상태, 회복 기간, 예산, 한국 체류 기간을 기준으로 상담 가능한 시술 방향을 정리하는 과정입니다.',
-    en: "Skin aesthetics consultation in Korea is not simply about choosing one procedure — it's a process of organizing consultable treatment directions based on your skin condition, recovery time, budget, and length of stay in Korea.",
-    ar: 'لا تقتصر استشارة التجميل الجلدي في كوريا على اختيار إجراء واحد، بل هي عملية لتنظيم اتجاهات العلاج القابلة للاستشارة بناءً على حالة بشرتك ووقت التعافي والميزانية ومدة إقامتك في كوريا.',
+    zh: '皮肤提升咨询主要针对面部下垂、下颌线模糊、法令纹加深、面部轮廓松弛、皮肤弹性下降等问题进行综合评估。非手术及微创提升可根据皮肤状态和不同部位，选择超声波、射频等能量类项目，以及注射类项目、线雕提升等多种方式。',
+    ko: '피부 리프팅 상담은 얼굴 처짐, 턱선 흐림, 팔자주름 깊어짐, 얼굴 윤곽 처짐, 피부 탄력 저하 등의 고민을 정리하는 과정입니다. 비수술 리프팅은 피부 상태와 부위에 따라 초음파·고주파 등 에너지 기반 시술, 주사 시술, 실리프팅 등 다양한 방법을 적용할 수 있습니다.',
+    en: "A skin lifting consultation is a process of organizing concerns such as facial sagging, a blurred jawline, deepening nasolabial folds, loss of facial contour, and reduced skin elasticity. Depending on your skin condition and the treatment area, non-surgical lifting can draw on a range of approaches — energy-based treatments like ultrasound and radiofrequency, injectable treatments, and thread lifting.",
+    ar: 'استشارة شد الجلد هي عملية لتنظيم المخاوف المتعلقة بترهل الوجه، وعدم وضوح خط الفك، وتعمّق خطوط الابتسامة، وترهل محيط الوجه، وانخفاض مرونة البشرة. ووفقاً لحالة بشرتك والمنطقة المستهدفة، يمكن أن يعتمد الشد غير الجراحي على طرق متعددة، منها الإجراءات القائمة على الطاقة مثل الموجات فوق الصوتية والترددات الراديوية، والحقن، وشد الخيوط.',
   } as LocalizedText,
   safety: [
     {
@@ -198,28 +200,58 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       en: 'Skin lifting consultation mainly addresses concerns such as facial sagging, an unclear jawline, deepening nasolabial folds, drooping facial contours, and reduced skin elasticity. For customers visiting Korea for a short stay, non-surgical lifting procedures with shorter recovery times are generally more realistic to consult on.',
       ar: 'تتناول استشارة شد الجلد بشكل أساسي مخاوف مثل ترهل الوجه وعدم وضوح خط الفك وتعمق خطوط الأنف والفم وترهل ملامح الوجه وانخفاض مرونة البشرة. بالنسبة للعملاء الذين يزورون كوريا لفترة قصيرة، تُعد إجراءات الشد غير الجراحية ذات فترة التعافي الأقصر أكثر واقعية للاستشارة بشأنها.',
     },
-    directionsLabel: DIRECTIONS_LABEL,
+    directionsLabel: {
+      zh: '各提升术式适用部位',
+      ko: '리프팅 시술별 주요 적용 부위',
+      en: 'Target Areas by Lifting Procedure',
+      ar: 'المناطق المستهدفة حسب نوع إجراء الشد',
+    },
     directions: [
-      { zh: '超声提升类治疗', ko: '초음파 리프팅 계열', en: 'Ultrasound-based lifting treatments', ar: 'علاجات الشد بالموجات فوق الصوتية' },
-      { zh: '高频提升类治疗', ko: '고주파 리프팅 계열', en: 'High-frequency lifting treatments', ar: 'علاجات الشد بالترددات العالية' },
-      { zh: '射频类紧致治疗', ko: 'RF 탄력관리 계열', en: 'RF (radiofrequency) firming treatments', ar: 'علاجات الشد بالترددات الراديوية (RF)' },
-      { zh: '面部轮廓线管理', ko: '얼굴 윤곽선 관리', en: 'Facial contour line management', ar: 'إدارة خطوط ملامح الوجه' },
-      { zh: '皮肤弹性改善相关治疗', ko: '피부 탄력 개선 관련 시술', en: 'Treatments related to improving skin elasticity', ar: 'علاجات متعلقة بتحسين مرونة البشرة' },
-      { zh: '可根据医生判断与水光、丽珠兰、Skin Booster等项目联合咨询', ko: '의료진 판단에 따라 물광, 리쥬란, 스킨부스터 등과 병합 상담 가능', en: "May be combined with skin boosters, Rejuran, or similar treatments for consultation, based on the physician's judgment", ar: 'يمكن دمجها مع معززات البشرة أو ريجوران أو علاجات مماثلة للاستشارة، بناءً على تقدير الطبيب' },
+      { zh: '超声提拉 — 下颌线、下面部松弛、面部轮廓', ko: '초음파 리프팅 — 턱선 · 턱밑 · 하안면 처짐 · 얼굴 윤곽', en: 'Ultrasound lifting — jawline · under-chin · lower-face sagging · facial contour', ar: 'الشد بالموجات فوق الصوتية — خط الفك · أسفل الذقن · ترهل الوجه السفلي · محيط الوجه' },
+      { zh: '射频紧肤 — 面颊松弛、皮肤弹性、细纹', ko: '고주파 리프팅 — 볼 처짐 · 하안면 탄력 · 턱선 · 잔주름', en: 'Radiofrequency (RF) lifting — cheek sagging · lower-face elasticity · jawline · fine lines', ar: 'الشد بالترددات الراديوية (RF) — ترهل الخدين · مرونة الوجه السفلي · خط الفك · الخطوط الدقيقة' },
+      { zh: 'RF射频紧致 — 皮肤弹性、肤质、毛孔', ko: '마이크로니들 RF — 피부 탄력 · 피부결 · 모공 · 잔주름', en: 'Microneedle RF — skin elasticity · skin texture · pores · fine lines', ar: 'الإبر الدقيقة بالترددات الراديوية (Microneedle RF) — مرونة البشرة · ملمس البشرة · المسام · الخطوط الدقيقة' },
+      { zh: '水光针 / 注射类 — 细纹、皮肤弹性、肌肤状态', ko: '스킨부스터·콜라겐 자극 주사 — 잔주름 · 피부결 · 수분 · 피부 탄력', en: 'Skin boosters & collagen-stimulating injections — fine lines · skin texture · hydration · skin elasticity', ar: 'معززات البشرة وحقن تحفيز الكولاجين — الخطوط الدقيقة · ملمس البشرة · الترطيب · مرونة البشرة' },
+      { zh: '线雕提升 — 面颊松弛、下颌线、面部轮廓', ko: '실리프팅 — 볼 처짐 · 중안면 처짐 · 턱선 · 얼굴 윤곽', en: 'Thread lifting — cheek sagging · midface sagging · jawline · facial contour', ar: 'شد الخيوط — ترهل الخدين · ترهل منتصف الوجه · خط الفك · محيط الوجه' },
     ],
-    audienceLabel: AUDIENCE_LABEL,
-    audience: [
-      { zh: '觉得脸部下垂', ko: '얼굴 처짐이 느껴지는 경우', en: 'Noticing facial sagging', ar: 'الشعور بترهل الوجه' },
-      { zh: '下颌线不清楚', ko: '턱선이 흐려진 경우', en: 'An unclear jawline', ar: 'عدم وضوح خط الفك' },
-      { zh: '想改善皮肤弹性', ko: '피부 탄력 저하가 고민인 경우', en: 'Concerned about reduced skin elasticity', ar: 'القلق بشأن انخفاض مرونة البشرة' },
-      { zh: '希望恢复期不要太长', ko: '회복 기간이 길지 않기를 원하는 경우', en: 'Wanting a shorter recovery period', ar: 'الرغبة في فترة تعافٍ أقصر' },
-      { zh: '不想直接做手术', ko: '바로 수술보다는 비수술 관리를 먼저 상담하고 싶은 경우', en: 'Preferring to consult on non-surgical options before surgery', ar: 'تفضيل استشارة الخيارات غير الجراحية قبل الجراحة' },
-    ],
-    note: {
-      zh: '提升效果、维持时间和恢复反应会因个人皮肤厚度、脂肪量、年龄、生活习惯和设备种类不同而不同。',
-      ko: '리프팅 효과, 유지 기간, 회복 반응은 개인의 피부 두께, 지방량, 나이, 생활습관, 장비 종류에 따라 달라질 수 있습니다.',
-      en: 'Lifting results, duration, and recovery response can vary depending on individual skin thickness, fat volume, age, lifestyle, and the type of device used.',
-      ar: 'قد تختلف نتائج الشد ومدتها واستجابة التعافي حسب سماكة الجلد الفردية وكمية الدهون والعمر ونمط الحياة ونوع الجهاز المستخدم.',
+    popularDevices: {
+      title: {
+        zh: '近期热门提升项目',
+        ko: '최근 인기 리프팅 시술',
+        en: 'Trending Lifting Treatments',
+        ar: 'إجراءات الشد الرائجة حالياً',
+      },
+      items: [
+        {
+          name: { zh: 'Ultherapy PRIME 超声刀', ko: '울쎄라 PRIME', en: 'Ulthera PRIME', ar: 'Ulthera PRIME' },
+          desc: { zh: '下颌线 · 下半脸 · 下巴下方提升', ko: '턱선 · 하안면 · 턱밑 리프팅', en: 'Jawline · lower face · under-chin lifting', ar: 'خط الفك · أسفل الوجه · شد أسفل الذقن' },
+        },
+        {
+          name: { zh: 'Thermage FLX 热玛吉', ko: '써마지 FLX', en: 'Thermage FLX', ar: 'Thermage FLX' },
+          desc: { zh: '紧致 · 弹性 · 细纹 · 面部轮廓', ko: '피부 타이트닝 · 탄력 · 잔주름 · 얼굴 윤곽', en: 'Skin tightening · elasticity · fine lines · facial contour', ar: 'شد الجلد · المرونة · الخطوط الدقيقة · محيط الوجه' },
+        },
+        {
+          name: { zh: 'Titanium Lifting 钛提升', ko: '티타늄 리프팅', en: 'Titanium Lifting', ar: 'Titanium Lifting' },
+          desc: { zh: '提拉 · 紧致 · 提亮 · 轮廓改善', ko: '리프팅 · 타이트닝 · 피부톤 개선 · 윤곽 개선', en: 'Lifting · tightening · skin tone improvement · contour refinement', ar: 'الشد · التوتير · تحسين لون البشرة · تحسين المحيط' },
+        },
+        {
+          name: { zh: 'XERF', ko: 'XERF', en: 'XERF', ar: 'XERF' },
+          desc: { zh: '双频单极射频 · 紧致 · 弹性 · 下颌线', ko: '이중주파수 모노폴라 RF · 타이트닝 · 탄력 · 턱선', en: 'Dual-frequency monopolar RF · tightening · elasticity · jawline', ar: 'ترددات راديوية أحادية القطب مزدوجة التردد · التوتير · المرونة · خط الفك' },
+        },
+        {
+          name: { zh: 'Oligio X', ko: '올리지오 X', en: 'Oligio X', ar: 'Oligio X' },
+          desc: { zh: '单极射频 · 弹性 · 皱纹 · 毛孔 · 肤质', ko: '모노폴라 RF · 탄력 · 주름 · 모공 · 피부결', en: 'Monopolar RF · elasticity · wrinkles · pores · skin texture', ar: 'ترددات راديوية أحادية القطب · المرونة · التجاعيد · المسام · ملمس البشرة' },
+        },
+        {
+          name: { zh: 'Density / Volnewmer', ko: '덴서티 / 볼뉴머', en: 'Density / Volnewmer', ar: 'Density / Volnewmer' },
+          desc: { zh: '射频紧致 · 弹性 · 轮廓管理', ko: '고주파 타이트닝 · 피부 탄력 · 얼굴 윤곽', en: 'RF tightening · skin elasticity · facial contour', ar: 'شد بالترددات الراديوية · مرونة البشرة · تحسين محيط الوجه' },
+        },
+      ],
+      caution: {
+        zh: '具体配备的设备型号因医院而异，实际可选设备需现场咨询确认。',
+        ko: '병원마다 보유 장비가 다르므로, 실제 상담 가능한 기종은 병원 확인이 필요합니다.',
+        en: 'Available devices vary by clinic — please confirm which specific equipment is offered during your consultation.',
+        ar: 'تختلف الأجهزة المتوفرة حسب المستشفى — يُرجى تأكيد الجهاز المحدد المتاح أثناء الاستشارة.',
+      },
     },
     docKeys: ['skinTreatmentAfter', 'deviceLiftingAfter'],
   },
