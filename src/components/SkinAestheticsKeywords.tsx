@@ -59,7 +59,7 @@ export default function SkinAestheticsKeywords() {
                 pick(active.title, lang),
                 pick(active.description, lang),
                 active.specialNote ? pick(active.specialNote, lang) : '',
-                pick(active.note, lang),
+                active.note ? pick(active.note, lang) : '',
               ].filter(Boolean).join('\n\n')}
               lang={lang}
             />
