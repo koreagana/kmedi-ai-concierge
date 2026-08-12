@@ -169,10 +169,11 @@ export default function FloatingChatButton() {
     setPos({ x, y })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* visibility — hidden while the page's hero section is on screen, revealed once
-     scrolled past it. Covers home (#hero), category pages (.cat-hero) and the
-     package page (.pkg-hero) with one rule so the button never sits over hero
-     video/image content. */
+  /* visibility — hidden while the page's hero section is on screen, revealed exactly
+     once scrolled past its bottom edge. Covers home (#hero), category pages (.cat-hero)
+     and the package page (.pkg-hero) with one rule so the button never sits over hero
+     video/image content, and appears immediately after — regardless of how much (or
+     how little) content the page places between the hero and the rest of the page. */
   useEffect(() => {
     setShown(false)
 
@@ -182,30 +183,29 @@ export default function FloatingChatButton() {
     // risks grabbing that stale node instead of waiting for the real one.
     const selector = page === 'home' ? '#hero' : page === 'package' ? '.pkg-hero' : '.cat-hero'
 
-    // Category hero images use aspect-ratio:16/9, so their rendered height scales with
-    // viewport *width* — on a wide/desktop window the hero can run to 600px+ tall, which
-    // would hide the consult button for a long scroll. Cap how long we wait regardless of
-    // how tall the hero renders, so the button always reappears within one screenful.
-    // Home's hero is intentionally exempt — its extra height/content is expected.
-    const REVEAL_CAP = page === 'home' ? Infinity : 640
-
-    let io: IntersectionObserver | null = null
+    let heroBottom = 0 // hero's bottom edge, in absolute document coordinates
     let mo: MutationObserver | null = null
 
-    const attach = (heroEl: Element) => {
-      io = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          setShown(false)
-        } else if (entry.boundingClientRect.top < 0) {
-          setShown(true)
-        }
-      }, { threshold: 0 })
-      io.observe(heroEl)
+    // Category/package hero media uses aspect-ratio, so its rendered height scales with
+    // viewport width — re-measure on resize/orientation change so the threshold stays
+    // pinned to the hero's actual bottom edge instead of a stale measurement.
+    const measure = (heroEl: Element) => {
+      heroBottom = heroEl.getBoundingClientRect().bottom + window.scrollY
+    }
+
+    const onScroll = () => setShown(window.scrollY > heroBottom)
+    const onResize = () => {
+      const el = document.querySelector(selector)
+      if (el) {
+        measure(el)
+        onScroll()
+      }
     }
 
     const existing = document.querySelector(selector)
     if (existing) {
-      attach(existing)
+      measure(existing)
+      onScroll()
     } else {
       // Hero not mounted yet (mid page-transition) — watch the DOM until it appears.
       mo = new MutationObserver(() => {
@@ -213,23 +213,20 @@ export default function FloatingChatButton() {
         if (el) {
           mo?.disconnect()
           mo = null
-          attach(el)
+          measure(el)
+          onScroll()
         }
       })
       mo.observe(document.body, { childList: true, subtree: true })
     }
 
-    const onScroll = () => {
-      if (window.scrollY > REVEAL_CAP) setShown(true)
-    }
-    if (Number.isFinite(REVEAL_CAP)) {
-      window.addEventListener('scroll', onScroll, { passive: true })
-    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize)
 
     return () => {
-      io?.disconnect()
       mo?.disconnect()
       window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
     }
   }, [page, categoryId])
 
