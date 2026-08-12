@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Check } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
@@ -72,10 +73,6 @@ export function HeroSection() {
   const playCountRef = useRef(0)
   const [videoFading, setVideoFading] = useState(false)
   const activeSrcRef = useRef(videoSrcMap[lang] ?? '/studio.mp4')
-
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   // 언어 변경 시 영상 페이드 전환 (imperative DOM 조작)
   useEffect(() => {
@@ -245,27 +242,34 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
-          style={{ width: '100%', maxWidth: 320, textAlign: 'center', marginBottom: 14 }}
+          style={{ width: '100%', maxWidth: 340, textAlign: 'center', marginBottom: 16 }}
         >
-          <p style={{
-            fontSize: 15,
-            fontWeight: 700,
-            color: 'white',
-            letterSpacing: '0.02em',
-            textShadow: '0 1px 8px rgba(0,0,0,0.55)',
-            lineHeight: 1.5,
-            marginBottom: 4,
-          }}>
-            {t.heroTagline}
-          </p>
-          <p style={{
-            fontSize: 12,
-            color: 'rgba(255,255,255,0.82)',
-            textShadow: '0 1px 6px rgba(0,0,0,0.5)',
-            lineHeight: 1.6,
-          }}>
-            {t.heroDesc}
-          </p>
+          <p className="hero-pref-title">{t.heroPrefTitle}</p>
+
+          <div className="hero-chip-row">
+            {t.heroPrefChips.map((chip) => (
+              <span key={chip} className="hero-chip">{chip}</span>
+            ))}
+          </div>
+          <div className="hero-chip-row">
+            {t.heroRegionChips.map((chip) => (
+              <span key={chip} className="hero-chip hero-chip--region">{chip}</span>
+            ))}
+          </div>
+
+          <p className="hero-pref-note">{t.heroPrefNote}</p>
+
+          <div className="hero-trust-card">
+            <p className="hero-trust-title">{t.heroTrustTitle}</p>
+            {t.heroTrustLines.split('\n').map((line, i) => (
+              <div key={i} className="hero-trust-item">
+                <span className="hero-trust-icon">
+                  <Check size={10} strokeWidth={3} color="#ffffff" />
+                </span>
+                <span>{line}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div
@@ -275,9 +279,6 @@ export function HeroSection() {
           transition={{ delay: 0.5 }}
           style={{ width: '100%', maxWidth: 320 }}
         >
-          <button className="btn-primary" onClick={() => scrollTo('categories')}>
-            {t.heroCta1}
-          </button>
           {/* 쇼핑몰 진입 버튼 - WeChat Pay 결제 + 중국 배송 전용이라 zh/ko만 노출 */}
           {(lang === 'zh' || lang === 'ko') && (
             <button className="btn-shop" onClick={() => navigate(`/shop?lang=${lang}`)}>

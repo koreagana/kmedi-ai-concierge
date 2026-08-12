@@ -5,9 +5,13 @@ interface Translations {
   brandName: string
   brandSub: string
   // hero
-  heroTagline: string
-  heroDesc: string
-  heroCta1: string
+  heroPrefTitle: string
+  heroPrefChips: string[]
+  heroRegionChips: string[]
+  heroPrefNote: string
+  heroTrustTitle: string
+  /** \n-separated lines — item count intentionally varies by language (e.g. ko merges two points into one sentence). */
+  heroTrustLines: string
   shopBtnTitle: string
   shopBtnSub: string
   // concierge section
@@ -107,9 +111,12 @@ export const translations: Record<LangCode, Translations> = {
   zh: {
     brandName: '汉江春天',
     brandSub: 'AI Concierge Medical Lounge',
-    heroTagline: '您的韩国医疗咨询入口',
-    heroDesc: '为您梳理需求，对接适合的韩国医疗咨询服务',
-    heroCta1: '选择咨询项目',
+    heroPrefTitle: '请您在推荐医院前告知我们',
+    heroPrefChips: ['价格优先', '私密环境', '高端服务', '从洁面到收尾全程护理'],
+    heroRegionChips: ['江南', '明洞', '弘大', '圣水', '济州', '釜山'],
+    heroPrefNote: '请告诉我们您的需求和希望就诊的地区，汉江春天将为您推荐更适合的医院。',
+    heroTrustTitle: '放心咨询',
+    heroTrustLines: '合法注册的国际医疗旅游服务机构\n合作医院实行韩外统一价格标准\n不额外收取服务费或咨询费',
     shopBtnTitle: '韩国医美恢复护理精选',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: '请选择您的 AI 医疗顾问',
@@ -194,9 +201,12 @@ export const translations: Record<LangCode, Translations> = {
   ko: {
     brandName: '한강애봄',
     brandSub: 'AI 컨시어지 메디컬 라운지',
-    heroTagline: '한국의료관광의 시작',
-    heroDesc: '내게 맞는 진료를 찾아보세요',
-    heroCta1: '진료항목 선택',
+    heroPrefTitle: '병원 추천 전에 알려주세요',
+    heroPrefChips: ['가격 우선', '프라이빗한 환경', '고급 서비스', '세안부터 마무리까지 관리해주는 곳'],
+    heroRegionChips: ['강남', '명동', '홍대', '성수', '제주', '부산'],
+    heroPrefNote: '원하는 조건과 지역을 알려주시면 한강애봄이 고객님에게 맞는 병원을 추천해드립니다.',
+    heroTrustTitle: '안심하고 상담하세요',
+    heroTrustLines: '한강애봄은 정식 외국인환자 유치업 등록업체입니다.\n한강애봄 협약 병원은 한국인과 외국인에게 동일한 가격 기준을 적용하며, 고객에게 별도의 유치·상담 서비스 비용을 추가로 청구하지 않습니다.',
     shopBtnTitle: '한국 뷰티 회복케어 셀렉션',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
@@ -281,9 +291,12 @@ export const translations: Record<LangCode, Translations> = {
   en: {
     brandName: 'K-MediSpring',
     brandSub: 'AI Concierge Medical Lounge',
-    heroTagline: 'Your Personal Gateway to Korean Healthcare',
-    heroDesc: 'From anti-aging and aesthetic medicine to comprehensive health management — K-MediSpring curates your needs and connects you with the right Korean medical specialists.',
-    heroCta1: 'Explore Our Services',
+    heroPrefTitle: 'Tell Us Before We Recommend a Hospital',
+    heroPrefChips: ['Price-Focused', 'Private Setting', 'Premium Service', 'Full Care from Cleansing to Finish'],
+    heroRegionChips: ['Gangnam', 'Myeongdong', 'Hongdae', 'Seongsu', 'Jeju', 'Busan'],
+    heroPrefNote: 'Tell us your preferences and preferred area, and K-MediSpring will recommend the hospital that best fits you.',
+    heroTrustTitle: 'Consult with Confidence',
+    heroTrustLines: 'A legally registered international medical tourism service provider\nPartner hospitals apply the same price standard to Korean and international patients\nNo additional service or consultation fees',
     shopBtnTitle: 'K-Beauty Recovery Care Selection',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'Meet Your AI Medical Concierge',
@@ -368,9 +381,12 @@ export const translations: Record<LangCode, Translations> = {
   ar: {
     brandName: 'كونسيرج كوريا الطبي',
     brandSub: 'ربيع نهر هان',
-    heroTagline: 'بوابتك الشخصية للرعاية الصحية الكورية',
-    heroDesc: 'نرتب احتياجاتك ونوصلك بخدمات الاستشارة الطبية الكورية المناسبة',
-    heroCta1: 'استعرض الخدمات',
+    heroPrefTitle: 'أخبرونا قبل أن نوصي بمستشفى',
+    heroPrefChips: ['الأولوية للسعر', 'بيئة خاصة', 'خدمة راقية', 'عناية كاملة من التنظيف حتى اللمسة الأخيرة'],
+    heroRegionChips: ['غانغنام', 'ميونغدونغ', 'هونغداي', 'سيونغسو', 'جيجو', 'بوسان'],
+    heroPrefNote: 'أخبرونا برغباتكم والمنطقة التي تفضلون العلاج فيها، وسيقوم كونسيرج كوريا الطبي بترشيح المستشفى الأنسب لكم.',
+    heroTrustTitle: 'استشيرونا بثقة واطمئنان',
+    heroTrustLines: 'جهة مسجلة رسمياً لتقديم خدمات السياحة العلاجية الدولية\nتطبق المستشفيات الشريكة معايير تسعير موحدة للمرضى الكوريين والأجانب\nلا رسوم خدمة أو استشارة إضافية',
     shopBtnTitle: 'مختارات العناية والتعافي الكورية',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'اختر كونسيرجك الطبي AI',
