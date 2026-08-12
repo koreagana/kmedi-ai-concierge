@@ -23,12 +23,6 @@ export default function SkinAestheticsKeywords() {
       <p className="bh-section-subcopy">{pick(SKIN_AESTHETICS_SECTION.subCopy, lang)}</p>
       <p className="bh-section-desc">{pick(SKIN_AESTHETICS_SECTION.desc, lang)}</p>
 
-      <div className="bh-safety">
-        {SKIN_AESTHETICS_SECTION.safety.map((line, i) => (
-          <p key={i} className="bh-safety-line">{pick(line, lang)}</p>
-        ))}
-      </div>
-
       <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
       <div className="bh-tiles bh-tiles--pink" role="tablist">
