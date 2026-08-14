@@ -127,8 +127,6 @@ export interface SkinAestheticsKeyword {
   directions: BigHealthBullet[]
   /** Optional "trending devices/brands" block, rendered with a distinct (pink) accent to set it apart from the standard treatment-direction list. */
   popularDevices?: BigHealthApprovedProductsBlock
-  audienceLabel?: LocalizedText
-  audience?: BigHealthBullet[]
   note?: LocalizedText
   /** 'warning' renders the note in the urgent/orange style instead of the neutral info style. */
   noteStyle?: 'info' | 'warning'
@@ -140,13 +138,6 @@ const DIRECTIONS_LABEL: LocalizedText = {
   ko: '관련 가능 시술 방향',
   en: 'Possible Related Treatment Directions',
   ar: 'اتجاهات العلاج المحتملة ذات الصلة',
-}
-
-const AUDIENCE_LABEL: LocalizedText = {
-  zh: '适合咨询的人群',
-  ko: '이런 경우 상담하기 좋습니다',
-  en: 'Who This Consultation May Suit',
-  ar: 'لمن تناسب هذه الاستشارة',
 }
 
 export const SKIN_AESTHETICS_SECTION = {
@@ -270,12 +261,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       en: 'Concerns such as enlarged pores, rough skin texture, fine lines, uneven skin texture, and makeup not applying smoothly usually need to be considered together with skin thickness, sebum production, inflammation status, and recovery time when organizing a consultation direction.',
       ar: 'عادةً ما تحتاج مخاوف مثل توسع المسام وخشونة ملمس البشرة والخطوط الدقيقة وعدم انتظام ملمس البشرة وعدم التصاق المكياج جيداً إلى مراعاة سماكة البشرة وإفراز الزهم وحالة الالتهاب وفترة التعافي عند تنظيم اتجاه الاستشارة.',
     },
-    specialNote: {
-      zh: '色斑、黄褐斑、色素沉着等问题通常需要多次治疗和长期防晒管理。短期访韩客户不建议作为主要项目安排，可根据医生判断作为辅助咨询项目。',
-      ko: '기미, 잡티, 색소침착 등은 보통 반복 치료와 장기적인 자외선 관리가 필요합니다. 단기 방한 고객에게는 주요 일정으로 권하지 않으며, 의사 판단에 따라 보조 상담 항목으로만 검토할 수 있습니다.',
-      en: 'Concerns such as melasma, dark spots, and pigmentation usually require repeated treatment and long-term sun protection management. These are not recommended as a primary treatment plan for customers visiting Korea for a short stay, and may only be considered as a supplementary consultation item based on the physician\'s judgment.',
-      ar: 'عادةً ما تتطلب مخاوف مثل الكلف والبقع الداكنة والتصبغ علاجاً متكرراً وإدارة طويلة الأمد للحماية من الشمس. لا يُنصح بها كخطة علاج أساسية للعملاء الذين يزورون كوريا لفترة قصيرة، ويمكن اعتبارها فقط كعنصر استشارة تكميلي بناءً على تقدير الطبيب.',
-    },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
       { zh: '射频微针类治疗', ko: 'RF 니들 계열', en: 'RF microneedling treatments', ar: 'علاجات الإبر الدقيقة بالترددات الراديوية (RF)' },
@@ -285,14 +270,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '水光针', ko: '물광주사', en: 'Water-glow injections (skin hydration boosters)', ar: 'حقن الترطيب المضيئة للبشرة' },
       { zh: '胶原再生类皮肤管理', ko: '콜라겐 재생 계열 피부관리', en: 'Collagen regeneration skin care', ar: 'العناية بالبشرة لتجديد الكولاجين' },
       { zh: '再生修复管理', ko: '재생·회복 관리', en: 'Regenerative recovery management', ar: 'إدارة التجديد والتعافي' },
-    ],
-    audienceLabel: AUDIENCE_LABEL,
-    audience: [
-      { zh: '毛孔明显', ko: '모공이 눈에 띄는 경우', en: 'Visible pores', ar: 'مسام ظاهرة' },
-      { zh: '皮肤摸起来粗糙', ko: '피부결이 거칠게 느껴지는 경우', en: 'Skin feels rough to the touch', ar: 'بشرة خشنة الملمس' },
-      { zh: '细纹增加', ko: '잔주름이 늘어난 경우', en: 'Increased fine lines', ar: 'زيادة الخطوط الدقيقة' },
-      { zh: '皮肤没有光泽', ko: '피부 광이 부족한 경우', en: 'Lack of skin radiance', ar: 'نقص إشراقة البشرة' },
-      { zh: '想改善肤质但不想恢复期太长', ko: '회복 기간이 너무 길지 않은 피부결 개선을 원할 경우', en: 'Wanting to improve skin texture without a long recovery period', ar: 'الرغبة في تحسين ملمس البشرة دون فترة تعافٍ طويلة' },
     ],
     note: {
       zh: '毛孔和肤质改善通常不是一次完成的项目，具体治疗次数和组合需要由医生根据皮肤状态判断。',
@@ -333,14 +310,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '胶原再生类皮肤管理', ko: '콜라겐 재생 계열 피부관리', en: 'Collagen regeneration skin care', ar: 'العناية بالبشرة لتجديد الكولاجين' },
       { zh: '自体血液基础皮肤再生管理', ko: '자가혈 기반 피부 재생관리', en: 'Autologous blood-based skin regeneration care', ar: 'العناية بتجديد البشرة القائمة على الدم الذاتي' },
     ],
-    audienceLabel: AUDIENCE_LABEL,
-    audience: [
-      { zh: '皮肤干燥', ko: '피부가 건조한 경우', en: 'Dry skin', ar: 'بشرة جافة' },
-      { zh: '细纹增加', ko: '잔주름이 늘어난 경우', en: 'Increased fine lines', ar: 'زيادة الخطوط الدقيقة' },
-      { zh: '皮肤没有光泽', ko: '피부 광채가 부족한 경우', en: 'Lack of skin radiance', ar: 'نقص إشراقة البشرة' },
-      { zh: '想改善肤质和恢复力', ko: '피부결과 회복력을 개선하고 싶은 경우', en: 'Wanting to improve skin texture and recovery capacity', ar: 'الرغبة في تحسين ملمس البشرة وقدرتها على التعافي' },
-      { zh: '想做轻恢复期抗衰外观管理', ko: '회복 부담이 비교적 적은 항노화 외관관리를 원하는 경우', en: 'Wanting anti-aging appearance care with a lighter recovery burden', ar: 'الرغبة في عناية بمظهر مكافحة الشيخوخة بعبء تعافٍ أخف' },
-    ],
     note: {
       zh: '水光、丽珠兰和Skin Booster类项目可能出现针眼、红肿、淤青、凸起感等短期反应，具体恢复时间因个人和产品不同而不同。',
       ko: '물광주사, 리쥬란, 스킨부스터 계열은 바늘자국, 붉음, 멍, 엠보싱처럼 볼록한 느낌 등의 일시적 반응이 있을 수 있으며, 회복 시간은 개인과 제품에 따라 달라질 수 있습니다.',
@@ -377,14 +346,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '法令纹填充', ko: '팔자필러', en: 'Nasolabial fold filler', ar: 'فيلر خطوط الأنف والفم' },
       { zh: '额头或太阳穴填充', ko: '이마 또는 관자 필러', en: 'Forehead or temple filler', ar: 'فيلر الجبهة أو الصدغ' },
     ],
-    audienceLabel: AUDIENCE_LABEL,
-    audience: [
-      { zh: '表情纹明显', ko: '표정주름이 눈에 띄는 경우', en: 'Noticeable expression wrinkles', ar: 'تجاعيد تعبيرية ظاهرة' },
-      { zh: '咬肌发达', ko: '사각턱이 고민인 경우', en: 'A prominent/square jawline from masseter muscle', ar: 'فك مربع بارز بسبب عضلة المضغ' },
-      { zh: '面部局部凹陷', ko: '얼굴 일부 꺼짐이 있는 경우', en: 'Localized facial hollowing', ar: 'تجويف موضعي في الوجه' },
-      { zh: '想改善唇部或下巴轮廓', ko: '입술 또는 턱끝 윤곽 개선을 상담하고 싶은 경우', en: 'Wanting to consult on improving lip or chin contour', ar: 'الرغبة في استشارة تحسين ملامح الشفاه أو الذقن' },
-      { zh: '想做恢复期较短的外观管理', ko: '회복 기간이 비교적 짧은 외관관리를 원하는 경우', en: 'Wanting appearance care with a relatively short recovery period', ar: 'الرغبة في عناية بالمظهر بفترة تعافٍ أقصر نسبياً' },
-    ],
     note: {
       zh: '玻尿酸填充后如果出现异常疼痛、皮肤变白或发紫、视力异常等情况，需要立即联系医院。',
       ko: '필러 후 비정상적인 통증, 피부가 하얗게 변하거나 보라색으로 변하는 경우, 시야 이상 등이 있으면 즉시 병원에 연락해야 합니다.',
@@ -419,14 +380,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '胶原再生类治疗', ko: '콜라겐 재생 계열', en: 'Collagen regeneration treatments', ar: 'علاجات تجديد الكولاجين' },
       { zh: '必要时结合药物治疗咨询', ko: '필요한 경우 약물치료 상담 병행', en: 'Combined with medication consultation when necessary', ar: 'بالاشتراك مع استشارة دوائية عند الضرورة' },
     ],
-    audienceLabel: AUDIENCE_LABEL,
-    audience: [
-      { zh: '反复长痘', ko: '여드름이 반복되는 경우', en: 'Recurring acne', ar: 'حب شباب متكرر' },
-      { zh: '痘印或痘坑明显', ko: '여드름 자국이나 패인 흉터가 눈에 띄는 경우', en: 'Noticeable acne marks or pitted scars', ar: 'آثار حب شباب أو ندبات غائرة ظاهرة' },
-      { zh: '皮脂分泌旺盛', ko: '피지 분비가 많은 경우', en: 'Excess sebum production', ar: 'إفراز زائد للزهم' },
-      { zh: '过去做过多次治疗但效果不稳定', ko: '과거 여러 치료를 받았지만 효과가 일정하지 않았던 경우', en: 'Having tried multiple treatments before with inconsistent results', ar: 'تجربة علاجات متعددة سابقاً بنتائج غير ثابتة' },
-      { zh: '能接受需要多次管理的过程', ko: '여러 차례 관리가 필요할 수 있음을 이해하는 경우', en: 'Understanding that multiple sessions of management may be needed', ar: 'تفهم أن الأمر قد يتطلب عدة جلسات إدارة' },
-    ],
     note: {
       zh: '痘痘和痘坑通常需要多次治疗和长期管理，短期访韩客户应先确认治疗目标和可停留时间。',
       ko: '여드름과 패인 흉터는 보통 반복 치료와 장기 관리가 필요하므로, 단기 방한 고객은 치료 목표와 체류 가능 기간을 먼저 확인해야 합니다.',
@@ -459,14 +412,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '腋下或身体色沉辅助咨询', ko: '겨드랑이 또는 바디 색소 보조 상담', en: 'Auxiliary consultation for underarm or body pigmentation', ar: 'استشارة مساعدة لتصبغ الإبط أو الجسم' },
       { zh: '术后疤痕管理', ko: '수술 후 흉터관리', en: 'Post-surgical scar management', ar: 'إدارة الندبات بعد الجراحة' },
       { zh: '皮肤屏障和再生管理', ko: '피부장벽 및 재생관리', en: 'Skin barrier and regeneration care', ar: 'العناية بحاجز البشرة وتجديدها' },
-    ],
-    audienceLabel: AUDIENCE_LABEL,
-    audience: [
-      { zh: '背部或胸部反复长痘', ko: '등드름이나 가슴 여드름이 반복되는 경우', en: 'Recurring acne on the back or chest', ar: 'حب شباب متكرر على الظهر أو الصدر' },
-      { zh: '手术疤痕或外伤疤痕明显', ko: '수술 흉터 또는 외상 흉터가 고민인 경우', en: 'Noticeable surgical or traumatic scars', ar: 'ندبات جراحية أو رضحية ظاهرة' },
-      { zh: '有妊娠纹困扰', ko: '튼살이 고민인 경우', en: 'Concerned about stretch marks', ar: 'القلق بشأن علامات التمدد' },
-      { zh: '手臂、腹部等身体部位皮肤松弛', ko: '팔뚝, 복부 등 바디 탄력이 고민인 경우', en: 'Skin laxity in areas such as the arms or abdomen', ar: 'ترهل الجلد في مناطق مثل الذراعين أو البطن' },
-      { zh: '想了解短期访韩行程内可行的管理范围', ko: '단기 일정 안에서 가능한 관리 범위를 알고 싶은 경우', en: 'Wanting to know what level of care is realistic within a short visit to Korea', ar: 'الرغبة في معرفة مستوى العناية الواقعي الممكن ضمن زيارة قصيرة لكوريا' },
     ],
     note: {
       zh: '身体皮肤管理中，色素、疤痕、妊娠纹等项目通常需要多次治疗，短期访韩时不宜承诺一次改善。',
