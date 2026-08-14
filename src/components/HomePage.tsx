@@ -597,7 +597,9 @@ export function CategoryGridSection() {
             onClick={() => (cat.id === 'medical-tourism' ? goToPackage() : goToCategory(cat.id))}
           >
             <span className="category-arrow">›</span>
-            <p className="category-name">{getName(cat)}</p>
+            <p className={`category-name${cat.id === 'skin-beauty' || cat.id === 'plastic-surgery' ? ' category-name--highlight' : ''}`}>
+              {getName(cat)}
+            </p>
             <p className="category-tag">{getTag(cat)}</p>
           </motion.div>
         ))}

@@ -35,6 +35,177 @@ export interface Category {
 
 export const categories: Category[] = [
   {
+    id: 'skin-beauty',
+    zh: '皮肤医美',
+    ko: '피부의료미용',
+    en: 'Skin & Aesthetics',
+    ar: 'الطب التجميلي للبشرة',
+    emoji: '✨',
+    heroImage: '/category-hero/skin-beauty.jpg',
+    heroVideo: '/category-hero/skin-beauty.mp4',
+    tagZh: '皮肤提升 · 毛孔色斑 · 抗衰外观',
+    tagKo: '피부 리프팅 · 모공색소 · 외모 항노화',
+    tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',
+    tagAr: 'رفع البشرة · المسام والتصبغ · مظهر مكافحة الشيخوخة',
+    scriptFullZh: `您好，欢迎进入皮肤医美咨询区。
+
+皮肤医美不是先选一个项目名称，而是先了解皮肤状态。
+
+松弛、下垂、毛孔、色斑、肤质粗糙、泛红、痘疤、恢复时间，都可能是您在意的方向。
+
+同样是"想变年轻"，每个人的原因并不一样。
+
+有的人需要提升和紧致，有的人更需要肤质和色素管理。
+
+您可以先告诉我们，最在意的是皮肤松弛、毛孔、色斑、痘疤，还是整体肤质和年轻感。
+
+如果您计划来韩国，我们也会一起考虑停留时间、恢复期、预算和是否需要翻译陪同。
+
+汉江春天不会在页面上替您判断具体治疗方案。
+
+具体的治疗方式，需要在了解皮肤状态并与医疗团队咨询后再决定。`,
+    scriptFullKo: `안녕하세요, 피부의료미용 상담 영역입니다.
+
+피부의료미용은 시술명 하나를 먼저 정하는 것이 아닙니다.
+
+처짐, 탄력, 모공, 색소, 칙칙한 피부결, 홍조, 여드름 자국, 회복기간까지 함께 보는 상담입니다.
+
+같은 "어려 보이고 싶다"는 고민도 사람마다 원인이 다릅니다.
+
+어떤 분은 리프팅이 필요하고, 어떤 분은 피부결이나 색소 관리가 먼저일 수 있습니다.
+
+가장 신경 쓰이는 부분이 피부 탄력, 모공, 색소, 여드름 자국인지, 전체적인 피부결과 젊어 보이는 인상인지 먼저 말씀해 주세요.
+
+한국 방문을 계획하신다면 체류 기간, 회복기간, 예산, 통역 동행 필요 여부도 함께 고려해 드립니다.
+
+한강애봄은 이 페이지에서 구체적인 시술을 정하지 않습니다.
+
+구체적인 시술 방법은 피부 상태 확인과 의료진 상담 후 결정됩니다.`,
+    scriptFullEn: `Hello, welcome to the Skin & Aesthetics consultation area.
+
+Skin & Aesthetics isn't about choosing a procedure name first.
+
+It's a consultation that looks at sagging, firmness, pores, pigmentation, dull texture, redness, acne scars, and recovery time together.
+
+Even the same wish to "look younger" can come from different causes for different people.
+
+Some need lifting, while others need texture or pigmentation care first.
+
+Please tell us first whether your main concern is firmness, pores, pigmentation, or acne scars — or your overall skin texture and youthful impression.
+
+If you're planning a visit to Korea, we'll also consider your stay duration, recovery time, budget, and whether you need an interpreter.
+
+K-Medi Spring does not determine a specific procedure on this page.
+
+The specific treatment method is decided after assessing your skin condition and consulting with the medical team.`,
+    scriptFullAr: `مرحباً بكم في قسم استشارات الطب التجميلي للبشرة.
+
+لا يبدأ الطب التجميلي للبشرة باختيار اسم إجراء معين.
+
+إنه استشارة تنظر إلى الترهل والمرونة والمسام والتصبغ وخشونة الملمس والاحمرار وآثار حب الشباب ومدة التعافي معاً.
+
+نفس الرغبة في "الظهور بمظهر أصغر سناً" قد يكون لها أسباب مختلفة لدى كل شخص.
+
+قد يحتاج بعض الأشخاص إلى الرفع، بينما يحتاج آخرون أولاً إلى عناية بالملمس أو التصبغ.
+
+يرجى إخبارنا أولاً إن كان أكبر همكم هو المرونة أو المسام أو التصبغ أو آثار حب الشباب، أو الملمس العام والمظهر الأصغر سناً.
+
+إذا كنتم تخططون لزيارة كوريا، سنأخذ بعين الاعتبار مدة الإقامة، ومدة التعافي، والميزانية، والحاجة لمرافق ترجمة.
+
+لا تحدد K-Medi إجراءً معيناً في هذه الصفحة.
+
+يتم تحديد طريقة العلاج المحددة بعد تقييم حالة بشرتكم واستشارة الفريق الطبي.`,
+    scriptSummaryZh: `皮肤医美适合关注皮肤松弛、提升、肤质、毛孔、色斑、痘疤与抗衰管理的人群。汉江春天可帮助您整理皮肤需求，并连接韩国皮肤医美咨询服务。`,
+    scriptSummaryKo: `피부의료미용은 피부 탄력, 리프팅, 피부결, 모공, 색소, 여드름 자국, 항노화 관리에 관심 있는 분께 적합합니다. 한강애봄이 피부 고민을 정리해 한국 피부의료미용 상담으로 연결해 드립니다.`,
+    scriptSummaryEn: `Skin & Aesthetics suits those interested in skin firmness, lifting, texture, pores, pigmentation, acne scars, or anti-aging care. K-Medi Spring organizes your skin concerns and connects you to skin and aesthetic consultations in Korea.`,
+    scriptSummaryAr: `يناسب الطب التجميلي للبشرة من يهتم بمرونة البشرة والرفع والملمس والمسام والتصبغ وآثار حب الشباب والعناية بمكافحة الشيخوخة. تنظم K-Medi اهتماماتكم وتربطكم باستشارات الطب التجميلي للبشرة في كوريا.`,
+  },
+  {
+    id: 'plastic-surgery',
+    zh: '整形医美',
+    ko: '성형의료미용',
+    en: 'Plastic Surgery',
+    ar: 'الجراحة التجميلية',
+    emoji: '🌸',
+    heroImage: '/category-hero/plastic-surgery.png',
+    tagZh: '眼鼻轮廓 · 面部比例 · 恢复计划',
+    tagKo: '눈코윤곽 · 얼굴비율 · 회복계획',
+    tagEn: 'Eyes/Nose/Contour · Facial Balance · Recovery Plan',
+    tagAr: 'العيون والأنف والملامح · توازن الوجه · خطة التعافي',
+    scriptFullZh: `您好，这里是整形医美咨询区。
+
+整形医美不是直接照着一张照片去做。
+
+需要先了解您的面部结构、皮肤厚度、骨骼条件、想要的感觉、恢复期和安全性。
+
+眼部、鼻部、面部轮廓、眼下凹陷、脂肪移植、松弛改善，都可以是关注的方向。
+
+不需要一开始就决定具体的手术名称。
+
+更重要的是先确认，您想要的是自然的变化还是明显的变化，能接受的恢复期有多长。
+
+您也可以告诉我们更重视自然感、恢复期、安全性、医生经验，还是预算控制。
+
+我们会把这些内容整理成咨询卡，方便后续由专业医疗机构进一步评估。
+
+是否能进行手术以及具体方式，必须以医生面诊和正规医疗评估为准。`,
+    scriptFullKo: `안녕하세요, 여기는 성형의료미용 상담 영역입니다.
+
+성형의료미용은 사진 한 장을 그대로 따라가는 과정이 아닙니다.
+
+얼굴 구조, 피부 두께, 골격, 원하는 분위기, 회복기간, 안전성을 함께 살펴봐야 합니다.
+
+눈, 코, 윤곽, 눈밑, 지방이식, 처짐 개선 등 관심 부위가 다양할 수 있습니다.
+
+처음부터 수술명을 정하지 않으셔도 됩니다.
+
+먼저 자연스러운 변화를 원하는지, 또렷한 변화를 원하는지, 회복기간을 짧게 원하는지 확인하는 것이 더 중요합니다.
+
+자연스러움, 회복기간, 안전성, 의료진 경험, 예산 중 무엇을 더 중요하게 생각하시는지도 말씀해 주세요.
+
+이 내용을 상담카드로 정리해 전문 의료기관 상담으로 연결해 드립니다.
+
+수술 가능 여부와 구체적인 방법은 반드시 전문의 면진을 통해 결정됩니다.`,
+    scriptFullEn: `Hello, welcome to the Plastic Surgery consultation area.
+
+Plastic surgery isn't about copying a single photo directly.
+
+It requires looking at your facial structure, skin thickness, bone structure, the look you want, recovery time, and safety together.
+
+Eyes, nose, facial contour, under-eye area, fat grafting, and sagging improvement can all be areas of interest.
+
+You don't need to decide on a specific procedure name from the start.
+
+What matters more first is confirming whether you want a natural change or a more noticeable one, and how short a recovery period you can accept.
+
+Please also tell us whether you value naturalness, recovery time, safety, the medical team's experience, or budget the most.
+
+We'll organize this into a consultation card and connect you with a specialized medical institution.
+
+Whether surgery is possible and the specific method must be determined through an in-person consultation with a specialist.`,
+    scriptFullAr: `مرحباً بكم في قسم استشارات الجراحة التجميلية.
+
+الجراحة التجميلية ليست عملية تقليد صورة واحدة بشكل مباشر.
+
+يجب النظر إلى بنية وجهكم وسماكة بشرتكم وبنية العظام والمظهر المطلوب ومدة التعافي والسلامة معاً.
+
+يمكن أن تشمل اهتماماتكم العيون والأنف وملامح الوجه ومنطقة تحت العين وزرع الدهون وتحسين الترهل.
+
+لا تحتاجون لتحديد اسم إجراء معين من البداية.
+
+الأهم أولاً هو تحديد إن كنتم تريدون تغييراً طبيعياً أو واضحاً، ومدة التعافي التي يمكنكم قبولها.
+
+يرجى أيضاً إخبارنا بما تقدّرونه أكثر: الطبيعية، مدة التعافي، السلامة، خبرة الفريق الطبي، أو الميزانية.
+
+سننظم ذلك في بطاقة استشارة ونربطكم بمؤسسة طبية متخصصة.
+
+يتم تحديد إمكانية إجراء الجراحة والطريقة المحددة فقط من خلال استشارة مباشرة مع طبيب متخصص.`,
+    scriptSummaryZh: `整形医美适合希望改善眼部、鼻部、面部轮廓、下垂、眼袋或整体年轻感的人群。汉江春天可协助整理需求，并连接后续专业整形咨询流程。`,
+    scriptSummaryKo: `성형의료미용은 눈, 코, 윤곽, 처짐, 눈밑 또는 전체적인 젊어 보이는 인상 개선에 관심 있는 분께 적합합니다. 한강애봄이 필요사항을 정리해 전문 성형 상담으로 연결해 드립니다.`,
+    scriptSummaryEn: `Plastic Surgery suits those interested in improving the eyes, nose, facial contour, sagging, under-eye area, or overall youthful impression. K-Medi Spring organizes your needs and connects you to specialized plastic surgery consultations.`,
+    scriptSummaryAr: `تناسب الجراحة التجميلية من يهتم بتحسين العيون أو الأنف أو ملامح الوجه أو الترهل أو منطقة تحت العين أو المظهر العام الأصغر سناً. تنظم K-Medi احتياجاتكم وتربطكم باستشارات تجميلية متخصصة.`,
+  },
+  {
     id: 'big-health',
     zh: '大健康',
     ko: '항노화·건강관리',
@@ -221,177 +392,6 @@ Final suitability must be determined by a licensed medical institution and physi
     scriptSummaryKo: `줄기세포 관련 상담은 재생의학, 관절 회복, 조직 회복 또는 항노화 관리에 관심 있는 분께 적합합니다. 본 페이지는 상담 정리와 연결 서비스만 제공하며, 구체적인 적응증과 치료 방법은 한국 정식 의료기관의 판단을 따릅니다.`,
     scriptSummaryEn: `Stem cell consultation suits those interested in regenerative medicine, joint recovery, tissue repair, or anti-aging management. This page only organizes inquiries and connects you onward — specific indications and treatment plans are determined by licensed medical institutions in Korea.`,
     scriptSummaryAr: `تناسب استشارة الخلايا الجذعية من يهتم بالطب التجديدي أو تعافي المفاصل أو إصلاح الأنسجة أو إدارة مكافحة الشيخوخة. تقدم هذه الصفحة فقط تنظيم الاستفسارات والربط بالجهات المختصة، وتُحدَّد دواعي الاستطباب وخطط العلاج النهائية من قبل المؤسسات الطبية المرخصة في كوريا.`,
-  },
-  {
-    id: 'skin-beauty',
-    zh: '皮肤医美',
-    ko: '피부의료미용',
-    en: 'Skin & Aesthetics',
-    ar: 'الطب التجميلي للبشرة',
-    emoji: '✨',
-    heroImage: '/category-hero/skin-beauty.jpg',
-    heroVideo: '/category-hero/skin-beauty.mp4',
-    tagZh: '皮肤提升 · 毛孔色斑 · 抗衰外观',
-    tagKo: '피부 리프팅 · 모공색소 · 외모 항노화',
-    tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',
-    tagAr: 'رفع البشرة · المسام والتصبغ · مظهر مكافحة الشيخوخة',
-    scriptFullZh: `您好，欢迎进入皮肤医美咨询区。
-
-皮肤医美不是先选一个项目名称，而是先了解皮肤状态。
-
-松弛、下垂、毛孔、色斑、肤质粗糙、泛红、痘疤、恢复时间，都可能是您在意的方向。
-
-同样是"想变年轻"，每个人的原因并不一样。
-
-有的人需要提升和紧致，有的人更需要肤质和色素管理。
-
-您可以先告诉我们，最在意的是皮肤松弛、毛孔、色斑、痘疤，还是整体肤质和年轻感。
-
-如果您计划来韩国，我们也会一起考虑停留时间、恢复期、预算和是否需要翻译陪同。
-
-汉江春天不会在页面上替您判断具体治疗方案。
-
-具体的治疗方式，需要在了解皮肤状态并与医疗团队咨询后再决定。`,
-    scriptFullKo: `안녕하세요, 피부의료미용 상담 영역입니다.
-
-피부의료미용은 시술명 하나를 먼저 정하는 것이 아닙니다.
-
-처짐, 탄력, 모공, 색소, 칙칙한 피부결, 홍조, 여드름 자국, 회복기간까지 함께 보는 상담입니다.
-
-같은 "어려 보이고 싶다"는 고민도 사람마다 원인이 다릅니다.
-
-어떤 분은 리프팅이 필요하고, 어떤 분은 피부결이나 색소 관리가 먼저일 수 있습니다.
-
-가장 신경 쓰이는 부분이 피부 탄력, 모공, 색소, 여드름 자국인지, 전체적인 피부결과 젊어 보이는 인상인지 먼저 말씀해 주세요.
-
-한국 방문을 계획하신다면 체류 기간, 회복기간, 예산, 통역 동행 필요 여부도 함께 고려해 드립니다.
-
-한강애봄은 이 페이지에서 구체적인 시술을 정하지 않습니다.
-
-구체적인 시술 방법은 피부 상태 확인과 의료진 상담 후 결정됩니다.`,
-    scriptFullEn: `Hello, welcome to the Skin & Aesthetics consultation area.
-
-Skin & Aesthetics isn't about choosing a procedure name first.
-
-It's a consultation that looks at sagging, firmness, pores, pigmentation, dull texture, redness, acne scars, and recovery time together.
-
-Even the same wish to "look younger" can come from different causes for different people.
-
-Some need lifting, while others need texture or pigmentation care first.
-
-Please tell us first whether your main concern is firmness, pores, pigmentation, or acne scars — or your overall skin texture and youthful impression.
-
-If you're planning a visit to Korea, we'll also consider your stay duration, recovery time, budget, and whether you need an interpreter.
-
-K-Medi Spring does not determine a specific procedure on this page.
-
-The specific treatment method is decided after assessing your skin condition and consulting with the medical team.`,
-    scriptFullAr: `مرحباً بكم في قسم استشارات الطب التجميلي للبشرة.
-
-لا يبدأ الطب التجميلي للبشرة باختيار اسم إجراء معين.
-
-إنه استشارة تنظر إلى الترهل والمرونة والمسام والتصبغ وخشونة الملمس والاحمرار وآثار حب الشباب ومدة التعافي معاً.
-
-نفس الرغبة في "الظهور بمظهر أصغر سناً" قد يكون لها أسباب مختلفة لدى كل شخص.
-
-قد يحتاج بعض الأشخاص إلى الرفع، بينما يحتاج آخرون أولاً إلى عناية بالملمس أو التصبغ.
-
-يرجى إخبارنا أولاً إن كان أكبر همكم هو المرونة أو المسام أو التصبغ أو آثار حب الشباب، أو الملمس العام والمظهر الأصغر سناً.
-
-إذا كنتم تخططون لزيارة كوريا، سنأخذ بعين الاعتبار مدة الإقامة، ومدة التعافي، والميزانية، والحاجة لمرافق ترجمة.
-
-لا تحدد K-Medi إجراءً معيناً في هذه الصفحة.
-
-يتم تحديد طريقة العلاج المحددة بعد تقييم حالة بشرتكم واستشارة الفريق الطبي.`,
-    scriptSummaryZh: `皮肤医美适合关注皮肤松弛、提升、肤质、毛孔、色斑、痘疤与抗衰管理的人群。汉江春天可帮助您整理皮肤需求，并连接韩国皮肤医美咨询服务。`,
-    scriptSummaryKo: `피부의료미용은 피부 탄력, 리프팅, 피부결, 모공, 색소, 여드름 자국, 항노화 관리에 관심 있는 분께 적합합니다. 한강애봄이 피부 고민을 정리해 한국 피부의료미용 상담으로 연결해 드립니다.`,
-    scriptSummaryEn: `Skin & Aesthetics suits those interested in skin firmness, lifting, texture, pores, pigmentation, acne scars, or anti-aging care. K-Medi Spring organizes your skin concerns and connects you to skin and aesthetic consultations in Korea.`,
-    scriptSummaryAr: `يناسب الطب التجميلي للبشرة من يهتم بمرونة البشرة والرفع والملمس والمسام والتصبغ وآثار حب الشباب والعناية بمكافحة الشيخوخة. تنظم K-Medi اهتماماتكم وتربطكم باستشارات الطب التجميلي للبشرة في كوريا.`,
-  },
-  {
-    id: 'plastic-surgery',
-    zh: '整形医美',
-    ko: '성형의료미용',
-    en: 'Plastic Surgery',
-    ar: 'الجراحة التجميلية',
-    emoji: '🌸',
-    heroImage: '/category-hero/plastic-surgery.png',
-    tagZh: '眼鼻轮廓 · 面部比例 · 恢复计划',
-    tagKo: '눈코윤곽 · 얼굴비율 · 회복계획',
-    tagEn: 'Eyes/Nose/Contour · Facial Balance · Recovery Plan',
-    tagAr: 'العيون والأنف والملامح · توازن الوجه · خطة التعافي',
-    scriptFullZh: `您好，这里是整形医美咨询区。
-
-整形医美不是直接照着一张照片去做。
-
-需要先了解您的面部结构、皮肤厚度、骨骼条件、想要的感觉、恢复期和安全性。
-
-眼部、鼻部、面部轮廓、眼下凹陷、脂肪移植、松弛改善，都可以是关注的方向。
-
-不需要一开始就决定具体的手术名称。
-
-更重要的是先确认，您想要的是自然的变化还是明显的变化，能接受的恢复期有多长。
-
-您也可以告诉我们更重视自然感、恢复期、安全性、医生经验，还是预算控制。
-
-我们会把这些内容整理成咨询卡，方便后续由专业医疗机构进一步评估。
-
-是否能进行手术以及具体方式，必须以医生面诊和正规医疗评估为准。`,
-    scriptFullKo: `안녕하세요, 여기는 성형의료미용 상담 영역입니다.
-
-성형의료미용은 사진 한 장을 그대로 따라가는 과정이 아닙니다.
-
-얼굴 구조, 피부 두께, 골격, 원하는 분위기, 회복기간, 안전성을 함께 살펴봐야 합니다.
-
-눈, 코, 윤곽, 눈밑, 지방이식, 처짐 개선 등 관심 부위가 다양할 수 있습니다.
-
-처음부터 수술명을 정하지 않으셔도 됩니다.
-
-먼저 자연스러운 변화를 원하는지, 또렷한 변화를 원하는지, 회복기간을 짧게 원하는지 확인하는 것이 더 중요합니다.
-
-자연스러움, 회복기간, 안전성, 의료진 경험, 예산 중 무엇을 더 중요하게 생각하시는지도 말씀해 주세요.
-
-이 내용을 상담카드로 정리해 전문 의료기관 상담으로 연결해 드립니다.
-
-수술 가능 여부와 구체적인 방법은 반드시 전문의 면진을 통해 결정됩니다.`,
-    scriptFullEn: `Hello, welcome to the Plastic Surgery consultation area.
-
-Plastic surgery isn't about copying a single photo directly.
-
-It requires looking at your facial structure, skin thickness, bone structure, the look you want, recovery time, and safety together.
-
-Eyes, nose, facial contour, under-eye area, fat grafting, and sagging improvement can all be areas of interest.
-
-You don't need to decide on a specific procedure name from the start.
-
-What matters more first is confirming whether you want a natural change or a more noticeable one, and how short a recovery period you can accept.
-
-Please also tell us whether you value naturalness, recovery time, safety, the medical team's experience, or budget the most.
-
-We'll organize this into a consultation card and connect you with a specialized medical institution.
-
-Whether surgery is possible and the specific method must be determined through an in-person consultation with a specialist.`,
-    scriptFullAr: `مرحباً بكم في قسم استشارات الجراحة التجميلية.
-
-الجراحة التجميلية ليست عملية تقليد صورة واحدة بشكل مباشر.
-
-يجب النظر إلى بنية وجهكم وسماكة بشرتكم وبنية العظام والمظهر المطلوب ومدة التعافي والسلامة معاً.
-
-يمكن أن تشمل اهتماماتكم العيون والأنف وملامح الوجه ومنطقة تحت العين وزرع الدهون وتحسين الترهل.
-
-لا تحتاجون لتحديد اسم إجراء معين من البداية.
-
-الأهم أولاً هو تحديد إن كنتم تريدون تغييراً طبيعياً أو واضحاً، ومدة التعافي التي يمكنكم قبولها.
-
-يرجى أيضاً إخبارنا بما تقدّرونه أكثر: الطبيعية، مدة التعافي، السلامة، خبرة الفريق الطبي، أو الميزانية.
-
-سننظم ذلك في بطاقة استشارة ونربطكم بمؤسسة طبية متخصصة.
-
-يتم تحديد إمكانية إجراء الجراحة والطريقة المحددة فقط من خلال استشارة مباشرة مع طبيب متخصص.`,
-    scriptSummaryZh: `整形医美适合希望改善眼部、鼻部、面部轮廓、下垂、眼袋或整体年轻感的人群。汉江春天可协助整理需求，并连接后续专业整形咨询流程。`,
-    scriptSummaryKo: `성형의료미용은 눈, 코, 윤곽, 처짐, 눈밑 또는 전체적인 젊어 보이는 인상 개선에 관심 있는 분께 적합합니다. 한강애봄이 필요사항을 정리해 전문 성형 상담으로 연결해 드립니다.`,
-    scriptSummaryEn: `Plastic Surgery suits those interested in improving the eyes, nose, facial contour, sagging, under-eye area, or overall youthful impression. K-Medi Spring organizes your needs and connects you to specialized plastic surgery consultations.`,
-    scriptSummaryAr: `تناسب الجراحة التجميلية من يهتم بتحسين العيون أو الأنف أو ملامح الوجه أو الترهل أو منطقة تحت العين أو المظهر العام الأصغر سناً. تنظم K-Medi احتياجاتكم وتربطكم باستشارات تجميلية متخصصة.`,
   },
   {
     id: 'womens-care',
