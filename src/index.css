@@ -500,8 +500,13 @@ body {
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  cursor: grab;
 }
 .hero-hot-scroll::-webkit-scrollbar { display: none; }
+.hero-hot-scroll--dragging {
+  cursor: grabbing;
+  user-select: none;
+}
 
 .hero-hot-chip {
   flex-shrink: 0;

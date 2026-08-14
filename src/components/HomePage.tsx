@@ -485,6 +485,49 @@ export function ConcernSection() {
 export function CategoryGridSection() {
   const { lang, goToCategory, goToPackage } = useApp()
   const t = translations[lang]
+  const hotScrollRef = useRef<HTMLDivElement>(null)
+  const dragRef = useRef({ dragging: false, startX: 0, startScrollLeft: 0, moved: false })
+  const [isDragging, setIsDragging] = useState(false)
+
+  // 마우스(비터치) 사용자를 위한 드래그 스크롤 — 터치는 브라우저 기본 스와이프로 이미 동작함.
+  useEffect(() => {
+    const el = hotScrollRef.current
+    if (!el) return
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.pointerType === 'touch') return
+      dragRef.current = { dragging: true, startX: e.clientX, startScrollLeft: el.scrollLeft, moved: false }
+      setIsDragging(true)
+    }
+    const onPointerMove = (e: PointerEvent) => {
+      if (!dragRef.current.dragging) return
+      const dx = e.clientX - dragRef.current.startX
+      if (Math.abs(dx) > 3) dragRef.current.moved = true
+      el.scrollLeft = dragRef.current.startScrollLeft - dx
+    }
+    const endDrag = () => {
+      dragRef.current.dragging = false
+      setIsDragging(false)
+    }
+    // 일반 마우스 휠(세로 스크롤)을 가로 스크롤로 변환.
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
+      if (el.scrollWidth <= el.clientWidth) return
+      el.scrollLeft += e.deltaY
+      e.preventDefault()
+    }
+
+    el.addEventListener('pointerdown', onPointerDown)
+    window.addEventListener('pointermove', onPointerMove)
+    window.addEventListener('pointerup', endDrag)
+    el.addEventListener('wheel', onWheel, { passive: false })
+    return () => {
+      el.removeEventListener('pointerdown', onPointerDown)
+      window.removeEventListener('pointermove', onPointerMove)
+      window.removeEventListener('pointerup', endDrag)
+      el.removeEventListener('wheel', onWheel)
+    }
+  }, [])
 
   const getTag = (c: typeof categories[0]) => {
     if (lang === 'ko') return c.tagKo
@@ -504,7 +547,10 @@ export function CategoryGridSection() {
     <section id="categories" className="section-light2">
       <motion.div {...fadeUp} className="hero-hot-picks" style={{ marginBottom: 36 }}>
         <span className="hero-hot-label">🔥 {t.heroHotLabel}</span>
-        <div className="hero-hot-scroll">
+        <div
+          ref={hotScrollRef}
+          className={`hero-hot-scroll${isDragging ? ' hero-hot-scroll--dragging' : ''}`}
+        >
           {t.heroTreatmentChips.map((chip) => (
             <span key={chip} className="hero-hot-chip">{chip}</span>
           ))}

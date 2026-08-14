@@ -122,7 +122,7 @@ export const translations: Record<LangCode, Translations> = {
     heroTrustLines: '合法注册的国际医疗旅游服务机构\n合作医院实行韩外统一价格标准\n不额外收取服务费或咨询费',
     heroHotLabel: '人气项目',
     heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸', '钛提升'],
-    heroCtaLabel: '韩国医疗服务',
+    heroCtaLabel: '韩国医疗项目',
     shopBtnTitle: '韩国医美恢复护理精选',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: '请选择您的 AI 医疗顾问',
