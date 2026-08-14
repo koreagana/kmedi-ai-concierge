@@ -74,6 +74,10 @@ export function HeroSection() {
   const [videoFading, setVideoFading] = useState(false)
   const activeSrcRef = useRef(videoSrcMap[lang] ?? '/studio.mp4')
 
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   // 언어 변경 시 영상 페이드 전환 (imperative DOM 조작)
   useEffect(() => {
     const newSrc = videoSrcMap[lang] ?? '/studio.mp4'
@@ -239,31 +243,16 @@ export function HeroSection() {
       {/* 하단 CTA 버튼 */}
       <div className="hero-content">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.35 }}
-          style={{ width: '100%', maxWidth: 340, textAlign: 'center', marginBottom: 16 }}
-        >
-          <div className="hero-trust-card">
-            <p className="hero-trust-title">{t.heroTrustTitle}</p>
-            {t.heroTrustLines.split('\n').map((line, i) => (
-              <div key={i} className="hero-trust-item">
-                <span className="hero-trust-icon">
-                  <Check size={10} strokeWidth={3} color="#ffffff" />
-                </span>
-                <span>{line}</span>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
           className="hero-btns"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           style={{ width: '100%', maxWidth: 320 }}
         >
+          <button className="btn-primary" onClick={() => scrollTo('categories')}>
+            {t.heroCtaLabel}
+          </button>
+
           {/* 쇼핑몰 진입 버튼 - WeChat Pay 결제 + 중국 배송 전용이라 zh/ko만 노출 */}
           {(lang === 'zh' || lang === 'ko') && (
             <button className="btn-shop" onClick={() => navigate(`/shop?lang=${lang}`)}>
@@ -513,21 +502,38 @@ export function CategoryGridSection() {
 
   return (
     <section id="categories" className="section-light2">
-      <motion.div {...fadeUp} style={{ marginBottom: 36 }}>
-        <p className="pref-title">{t.heroPrefTitle}</p>
-
-        <div className="pref-chip-row">
-          {t.heroPrefChips.map((chip) => (
-            <span key={chip} className="pref-chip">{chip}</span>
+      <motion.div {...fadeUp} className="hero-hot-picks" style={{ marginBottom: 36 }}>
+        <span className="hero-hot-label">🔥 {t.heroHotLabel}</span>
+        <div className="hero-hot-scroll">
+          {t.heroTreatmentChips.map((chip) => (
+            <span key={chip} className="hero-hot-chip">{chip}</span>
           ))}
         </div>
-        <div className="pref-chip-row">
-          {t.heroRegionChips.map((chip) => (
-            <span key={chip} className="pref-chip pref-chip--region">{chip}</span>
-          ))}
-        </div>
+      </motion.div>
 
-        <p className="pref-note">{t.heroPrefNote}</p>
+      <motion.div {...fadeUp} className="info-box" style={{ marginBottom: 36 }}>
+        <p className="info-box-title">{t.heroPrefTitle}</p>
+
+        <p className="info-tag-row">
+          {t.heroPrefChips.join('  ·  ')}
+        </p>
+        <p className="info-tag-row info-tag-row--region">
+          {t.heroRegionChips.join('  ·  ')}
+        </p>
+
+        <p className="info-note">{t.heroPrefNote}</p>
+
+        <div className="info-divider" />
+
+        <p className="info-trust-title">{t.heroTrustTitle}</p>
+        {t.heroTrustLines.split('\n').map((line, i) => (
+          <div key={i} className="info-trust-item">
+            <span className="info-trust-icon">
+              <Check size={10} strokeWidth={3} color="#ffffff" />
+            </span>
+            <span>{line}</span>
+          </div>
+        ))}
       </motion.div>
 
       <motion.div {...fadeUp}>

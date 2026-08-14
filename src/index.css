@@ -391,78 +391,69 @@ body {
   letter-spacing: 0.03em;
 }
 
-/* Hospital-preference chips + note — sits in the light section right above the
-   category grid title (not over the hero video). */
-.pref-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.02em;
-  margin-bottom: 14px;
+/* Merged pref/trust info box — white card sitting under the hot-picks strip,
+   above the category grid title. Combines the hospital-preference guidance
+   with the 放心咨询 trust checklist into one white/blue block. */
+.info-box {
+  background: #ffffff;
+  border: 1px solid rgba(0,119,182,0.14);
+  border-radius: 18px;
+  padding: 20px 20px 22px;
+  box-shadow: 0 4px 18px rgba(13,45,82,0.06);
 }
 
-.pref-chip-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 7px;
-  margin-bottom: 8px;
-}
-
-.pref-chip {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-blue);
-  color: var(--text);
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 13px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-.pref-chip--region {
-  background: rgba(0,119,182,0.08);
-  border-color: rgba(0,119,182,0.3);
+.info-box-title {
+  font-size: 16px;
+  font-weight: 800;
   color: var(--brand-dark);
+  letter-spacing: 0.01em;
+  margin-bottom: 12px;
 }
 
-.pref-note {
+.info-tag-row {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--brand);
+  line-height: 1.85;
+}
+
+.info-tag-row--region {
+  color: var(--teal);
+}
+
+.info-note {
   font-size: 12px;
+  font-weight: 400;
   color: var(--text-muted);
   line-height: 1.65;
-  margin: 12px 0 0;
+  margin-top: 10px;
 }
 
-/* Trust card — still sits over the hero video */
-.hero-trust-card {
-  background: rgba(10,28,46,0.4);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 14px;
-  padding: 13px 15px;
-  text-align: start;
+.info-divider {
+  height: 1px;
+  background: rgba(0,119,182,0.14);
+  margin: 18px 0 16px;
 }
 
-.hero-trust-title {
-  font-size: 11.5px;
-  font-weight: 700;
-  color: #ffffff;
+.info-trust-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brand-dark);
   letter-spacing: 0.02em;
-  margin-bottom: 8px;
-  text-align: center;
+  margin-bottom: 10px;
 }
 
-.hero-trust-item {
+.info-trust-item {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 11px;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.86);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text);
 }
-.hero-trust-item + .hero-trust-item { margin-top: 6px; }
+.info-trust-item + .info-trust-item { margin-top: 7px; }
 
-.hero-trust-icon {
+.info-trust-icon {
   flex-shrink: 0;
   width: 15px;
   height: 15px;
@@ -472,7 +463,57 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 1px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 4px rgba(0,119,182,0.3);
+}
+
+/* Popular-treatments strip — sits right below the hero, replaces the old
+   pref-chip + trust-card pair for now (to be merged into one card later). */
+.hero-hot-picks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(0,119,182,0.07), rgba(0,168,204,0.05));
+  border: 1px solid rgba(0,119,182,0.14);
+  border-radius: 16px;
+  padding: 10px 10px 10px 12px;
+}
+
+.hero-hot-label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--teal) 100%);
+  padding: 7px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(0,119,182,0.32);
+}
+
+.hero-hot-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hero-hot-scroll::-webkit-scrollbar { display: none; }
+
+.hero-hot-chip {
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand-dark);
+  background: #ffffff;
+  border: 1px solid rgba(0,119,182,0.16);
+  padding: 7px 13px;
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 0 1px 5px rgba(13,45,82,0.06);
 }
 
 .hero-scroll-hint {

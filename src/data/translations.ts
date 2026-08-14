@@ -12,6 +12,9 @@ interface Translations {
   heroTrustTitle: string
   /** \n-separated lines — item count intentionally varies by language (e.g. ko merges two points into one sentence). */
   heroTrustLines: string
+  heroHotLabel: string
+  heroTreatmentChips: string[]
+  heroCtaLabel: string
   shopBtnTitle: string
   shopBtnSub: string
   // concierge section
@@ -117,6 +120,9 @@ export const translations: Record<LangCode, Translations> = {
     heroPrefNote: '请告诉我们您的需求和希望就诊的地区，汉江春天将为您推荐更适合的医院。',
     heroTrustTitle: '放心咨询',
     heroTrustLines: '合法注册的国际医疗旅游服务机构\n合作医院实行韩外统一价格标准\n不额外收取服务费或咨询费',
+    heroHotLabel: '人气项目',
+    heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸', '钛提升'],
+    heroCtaLabel: '韩国医疗服务',
     shopBtnTitle: '韩国医美恢复护理精选',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: '请选择您的 AI 医疗顾问',
@@ -207,6 +213,9 @@ export const translations: Record<LangCode, Translations> = {
     heroPrefNote: '원하는 조건과 지역을 알려주시면 한강애봄이 고객님에게 맞는 병원을 추천해드립니다.',
     heroTrustTitle: '안심하고 상담하세요',
     heroTrustLines: '한강애봄은 정식 외국인환자 유치업 등록업체입니다.\n한강애봄 협약 병원은 한국인과 외국인에게 동일한 가격 기준을 적용하며, 고객에게 별도의 유치·상담 서비스 비용을 추가로 청구하지 않습니다.',
+    heroHotLabel: '요즘 인기',
+    heroTreatmentChips: ['리쥬란', '울쎄라', '온다', '물광주사', '써마지', '브이라인', '티타늄리프팅'],
+    heroCtaLabel: '한국 의료 서비스',
     shopBtnTitle: '한국 뷰티 회복케어 셀렉션',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
@@ -297,6 +306,9 @@ export const translations: Record<LangCode, Translations> = {
     heroPrefNote: 'Tell us your preferences and preferred area, and K-MediSpring will recommend the hospital that best fits you.',
     heroTrustTitle: 'Consult with Confidence',
     heroTrustLines: 'A legally registered international medical tourism service provider\nPartner hospitals apply the same price standard to Korean and international patients\nNo additional service or consultation fees',
+    heroHotLabel: 'Trending Now',
+    heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting'],
+    heroCtaLabel: 'Korean Medical Services',
     shopBtnTitle: 'K-Beauty Recovery Care Selection',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'Meet Your AI Medical Concierge',
@@ -387,6 +399,9 @@ export const translations: Record<LangCode, Translations> = {
     heroPrefNote: 'أخبرونا برغباتكم والمنطقة التي تفضلون العلاج فيها، وسيقوم كونسيرج كوريا الطبي بترشيح المستشفى الأنسب لكم.',
     heroTrustTitle: 'استشيرونا بثقة واطمئنان',
     heroTrustLines: 'جهة مسجلة رسمياً لتقديم خدمات السياحة العلاجية الدولية\nتطبق المستشفيات الشريكة معايير تسعير موحدة للمرضى الكوريين والأجانب\nلا رسوم خدمة أو استشارة إضافية',
+    heroHotLabel: 'الأكثر رواجاً',
+    heroTreatmentChips: ['ريجوران', 'أولثيرا', 'أوندا', 'حقن الترطيب المائي', 'ثيرماج', 'تحديد خط V', 'رفع التيتانيوم'],
+    heroCtaLabel: 'الخدمات الطبية الكورية',
     shopBtnTitle: 'مختارات العناية والتعافي الكورية',
     shopBtnSub: 'K-Beauty Recovery Shop',
     conciergeTitle: 'اختر كونسيرجك الطبي AI',
