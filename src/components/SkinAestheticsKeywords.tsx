@@ -79,7 +79,7 @@ export default function SkinAestheticsKeywords() {
 
               <div className="bh-card-section">
                 <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
-                {active.directionGroups ? (
+                {active.directionGroups && active.directionGroups.length > 0 && pick(active.directionGroups[0].label, lang) ? (
                   active.directionGroups.map((group, gi) => (
                     <div key={gi} style={{ marginTop: gi > 0 ? 10 : 4 }}>
                       <p className="bh-card-subtitle">{pick(group.label, lang)}</p>

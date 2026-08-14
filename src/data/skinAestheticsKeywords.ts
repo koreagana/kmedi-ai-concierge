@@ -470,13 +470,13 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     image: '/keyword-tiles/acne-scars.jpg',
     title: {
       zh: '黑斑·疤痕祛除',
-      ko: '흑자제거 및 흉터제거',
+      ko: '흑자 · 여드름 · 흉터 · 홍조',
       en: 'Dark Spot & Scar Removal',
       ar: 'إزالة البقع الداكنة والندبات',
     },
     description: {
       zh: '痘痘、痘印、痘坑、皮脂分泌过多、反复炎症等问题，通常需要根据炎症状态、皮肤屏障、既往治疗经历和可接受的恢复期来整理咨询方向。',
-      ko: '여드름, 여드름 자국, 패인 흉터, 과도한 피지, 반복되는 염증 등은 염증 상태, 피부장벽, 기존 치료 경험, 감당 가능한 회복 기간을 기준으로 상담 방향을 정리해야 합니다.',
+      ko: '흑자와 잡티, 반복되는 여드름, 붉은 여드름 자국, 패인 흉터는 각각 원인이 다릅니다. 색소의 깊이, 피지 분비, 염증과 혈관 반응, 흉터의 형태와 깊이를 확인한 후 피부 상태에 맞는 치료 방법을 선택합니다.',
       en: 'Concerns such as acne, acne marks, pitted scars, excess sebum, and recurring inflammation usually need a consultation direction organized based on inflammation status, skin barrier condition, prior treatment history, and an acceptable recovery period.',
       ar: 'عادةً ما تحتاج مخاوف مثل حب الشباب وآثاره والندبات الغائرة وإفراز الزهم الزائد والالتهاب المتكرر إلى تنظيم اتجاه الاستشارة بناءً على حالة الالتهاب وحاجز البشرة وتاريخ العلاج السابق وفترة التعافي المقبولة.',
     },
@@ -490,9 +490,97 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '胶原再生类治疗', ko: '콜라겐 재생 계열', en: 'Collagen regeneration treatments', ar: 'علاجات تجديد الكولاجين' },
       { zh: '必要时结合药物治疗咨询', ko: '필요한 경우 약물치료 상담 병행', en: 'Combined with medication consultation when necessary', ar: 'بالاشتراك مع استشارة دوائية عند الضرورة' },
     ],
+    directionGroups: [
+      {
+        label: { zh: '', ko: '흑자 · 잡티 · 색소', en: '', ar: '' },
+        items: [
+          { zh: '', ko: '흑자·검버섯 집중 제거', en: '', ar: '' },
+          { zh: '', ko: '피코 레이저 색소치료', en: '', ar: '' },
+          { zh: '', ko: '색소 토닝', en: '', ar: '' },
+          { zh: '', ko: '표피·진피 색소에 따른 맞춤 레이저', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '여드름 · 피지 · 염증', en: '', ar: '' },
+        items: [
+          { zh: '', ko: '피지선 타깃 여드름 레이저', en: '', ar: '' },
+          { zh: '', ko: '염증성 여드름 에너지 치료', en: '', ar: '' },
+          { zh: '', ko: '여드름 압출 및 피부관리', en: '', ar: '' },
+          { zh: '', ko: 'RF 기반 여드름 치료', en: '', ar: '' },
+          { zh: '', ko: '필요에 따른 약물치료 병행', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '홍조 · 여드름 붉은 자국', en: '', ar: '' },
+        items: [
+          { zh: '', ko: '혈관 레이저', en: '', ar: '' },
+          { zh: '', ko: '여드름 후 홍반(PIE) 치료', en: '', ar: '' },
+          { zh: '', ko: '반복되는 붉은 자국 개선', en: '', ar: '' },
+          { zh: '', ko: '피부 혈관 및 홍조 관리', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '패인 여드름 흉터', en: '', ar: '' },
+        items: [
+          { zh: '', ko: '자가진피재생', en: '', ar: '' },
+          { zh: '', ko: '서브시전', en: '', ar: '' },
+          { zh: '', ko: 'RF 마이크로니들', en: '', ar: '' },
+          { zh: '', ko: '프락셔널 CO₂ 레이저', en: '', ar: '' },
+          { zh: '', ko: '비박피 프락셔널 레이저', en: '', ar: '' },
+          { zh: '', ko: '피코 프락셔널', en: '', ar: '' },
+          { zh: '', ko: '콜라겐 재생 치료', en: '', ar: '' },
+        ],
+      },
+    ],
+    productGroupsLabel: {
+      zh: '',
+      ko: '관련 레이저 · 에너지 및 재생 기기',
+      en: '',
+      ar: '',
+    },
+    productGroups: [
+      {
+        label: { zh: '', ko: '흑자 · 색소', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'REEPOT 리팟', en: '', ar: '' },
+          { zh: '', ko: 'PicoSure Pro', en: '', ar: '' },
+          { zh: '', ko: 'PicoWay', en: '', ar: '' },
+          { zh: '', ko: 'Hollywood Spectra', en: '', ar: '' },
+          { zh: '', ko: 'RevLite SI', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '여드름 · 피지선', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'Accure Acne Laser', en: '', ar: '' },
+          { zh: '', ko: 'AviClear', en: '', ar: '' },
+          { zh: '', ko: 'NEOBEAM 1450', en: '', ar: '' },
+          { zh: '', ko: 'Hollywood Spectra', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '홍조 · 붉은 여드름 자국', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'Vbeam', en: '', ar: '' },
+          { zh: '', ko: 'excel V+', en: '', ar: '' },
+          { zh: '', ko: '혈관 레이저 PDL 계열', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '패인 흉터 · 피부 재생', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'JUVGEN 쥬브젠 자가진피재생', en: '', ar: '' },
+          { zh: '', ko: 'POTENZA', en: '', ar: '' },
+          { zh: '', ko: 'Secret RF', en: '', ar: '' },
+          { zh: '', ko: 'eCO2 3D', en: '', ar: '' },
+          { zh: '', ko: 'MOSAIC 3D', en: '', ar: '' },
+          { zh: '', ko: 'PicoSure Pro', en: '', ar: '' },
+        ],
+      },
+    ],
     note: {
       zh: '痘痘和痘坑通常需要多次治疗和长期管理，短期访韩客户应先确认治疗目标和可停留时间。',
-      ko: '여드름과 패인 흉터는 보통 반복 치료와 장기 관리가 필요하므로, 단기 방한 고객은 치료 목표와 체류 가능 기간을 먼저 확인해야 합니다.',
+      ko: '여드름 치료는 현재 올라온 염증을 줄이는 것뿐 아니라 피지 조절, 붉은 자국, 색소침착, 패인 흉터까지 피부 상태에 따라 단계적으로 접근할 수 있습니다.',
       en: 'Acne and pitted scars usually require repeated treatment and long-term management, so customers visiting Korea for a short stay should first confirm their treatment goals and available length of stay.',
       ar: 'عادةً ما يتطلب حب الشباب والندبات الغائرة علاجاً متكرراً وإدارة طويلة الأمد، لذا يجب على العملاء الذين يزورون كوريا لفترة قصيرة تأكيد أهداف العلاج ومدة الإقامة المتاحة أولاً.',
     },
