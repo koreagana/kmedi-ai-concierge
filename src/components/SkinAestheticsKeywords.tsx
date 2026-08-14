@@ -119,12 +119,12 @@ export default function SkinAestheticsKeywords() {
               {active.productGroups && active.productGroups.length > 0 && pick(active.productGroups[0].label, lang) && (
                 <div className="bh-card-section">
                   {active.productGroupsLabel && pick(active.productGroupsLabel, lang) && (
-                    <p className="bh-card-label">{pick(active.productGroupsLabel, lang)}</p>
+                    <p className="bh-card-label bh-card-label--pink">{pick(active.productGroupsLabel, lang)}</p>
                   )}
                   {active.productGroups.map((group, gi) => (
                     <div key={gi} style={{ marginTop: gi > 0 ? 12 : (active.productGroupsLabel ? 6 : 0) }}>
-                      <p className="bh-card-subtitle">{pick(group.label, lang)}</p>
-                      <ul className="bh-list">
+                      <p className="bh-card-subtitle bh-card-subtitle--pink">{pick(group.label, lang)}</p>
+                      <ul className="bh-list bh-list--pink">
                         {group.items.map((item, i) => (
                           <li key={i}>{pick(item, lang)}</li>
                         ))}

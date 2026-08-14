@@ -1311,6 +1311,10 @@ body {
   margin-bottom: 3px;
 }
 
+.bh-card-subtitle--pink { color: #b23368; }
+
+.bh-list--pink li { color: #9a3f6e; }
+
 .bh-list {
   margin: 0;
   padding-left: 18px;

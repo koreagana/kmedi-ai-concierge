@@ -456,13 +456,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         ],
       },
     ],
-    note: {
-      zh: '玻尿酸填充后如果出现异常疼痛、皮肤变白或发紫、视力异常等情况，需要立即联系医院。',
-      ko: '필러 후 비정상적인 통증, 피부가 하얗게 변하거나 보라색으로 변하는 경우, 시야 이상 등이 있으면 즉시 병원에 연락해야 합니다.',
-      en: 'If you experience unusual pain, skin turning white or purple, or vision abnormalities after filler treatment, contact the hospital immediately.',
-      ar: 'إذا شعرت بألم غير معتاد أو تحول لون الجلد إلى الأبيض أو الأرجواني أو حدثت اضطرابات في الرؤية بعد علاج الفيلر، تواصل مع المستشفى فوراً.',
-    },
-    noteStyle: 'warning',
     docKeys: ['botoxGuide', 'fillerGuide', 'fillerBotoxGuide'],
   },
   {
