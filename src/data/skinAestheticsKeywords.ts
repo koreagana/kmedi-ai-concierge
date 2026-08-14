@@ -114,6 +114,11 @@ export const SKIN_AESTHETICS_DOC_BUTTONS = {
 
 export type SkinAestheticsDocButtonKey = keyof typeof SKIN_AESTHETICS_DOC_BUTTONS
 
+export interface SkinAestheticsProductGroup {
+  label: LocalizedText
+  items: LocalizedText[]
+}
+
 export interface SkinAestheticsKeyword {
   id: string
   title: LocalizedText
@@ -124,9 +129,18 @@ export interface SkinAestheticsKeyword {
   /** Optional callout shown right under the description (used to clarify "skin stem cell" naming). */
   specialNote?: LocalizedText
   directionsLabel: LocalizedText
+  /** Flat list, rendered under directionsLabel. Ignored (may be []) when directionGroups is set instead. */
   directions: BigHealthBullet[]
+  /** When set, rendered instead of the flat `directions` list — e.g. "Botulinum Toxin" vs "Filler" sub-groups under one directionsLabel. */
+  directionGroups?: SkinAestheticsProductGroup[]
   /** Optional "trending devices/brands" block, rendered with a distinct (pink) accent to set it apart from the standard treatment-direction list. */
   popularDevices?: BigHealthApprovedProductsBlock
+  /** Optional label above a grouped product list (e.g. brand names clustered by ingredient family). */
+  productGroupsLabel?: LocalizedText
+  productGroups?: SkinAestheticsProductGroup[]
+  /** Optional Q&A-style explainer block (title + \n\n-separated paragraphs), shown after the product groups. */
+  explainerTitle?: LocalizedText
+  explainerBody?: LocalizedText
   note?: LocalizedText
   /** 'warning' renders the note in the urgent/orange style instead of the neutral info style. */
   noteStyle?: 'info' | 'warning'
@@ -297,50 +311,84 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         ar: 'عادةً لا يعتمد علاج المسام وملمس البشرة على جهاز واحد فقط، بل يتم اختيار الجهاز وطريقة العلاج المناسبة أو الجمع بينها عند الحاجة، بناءً على حالة البشرة وأهداف التحسين.',
       },
     },
-    note: {
-      zh: '毛孔和肤质改善通常不是一次完成的项目，具体治疗次数和组合需要由医生根据皮肤状态判断。',
-      ko: '모공과 피부결 개선은 보통 한 번에 완성되는 시술이 아니며, 구체적인 횟수와 조합은 의료진이 피부 상태에 따라 판단해야 합니다.',
-      en: 'Improving pores and skin texture is usually not completed in a single session — the specific number of sessions and combination of treatments must be determined by a physician based on skin condition.',
-      ar: 'عادةً لا يكتمل تحسين المسام وملمس البشرة في جلسة واحدة — يجب أن يحدد الطبيب عدد الجلسات المحدد ومجموعة العلاجات بناءً على حالة البشرة.',
-    },
     docKeys: ['skinTreatmentAfter', 'skinBoosterAfter'],
   },
   {
     id: 'skin-boosters-rejuran',
     image: '/keyword-tiles/skin-boosters-rejuran.jpg',
     title: {
-      zh: '水光·丽珠兰',
-      ko: '스킨부스터·리쥬란',
+      zh: '皮肤助推剂 · 皮肤再生',
+      ko: '스킨부스터 · 피부재생',
       en: 'Skin Boosters & Rejuran',
       ar: 'معززات البشرة وريجوران',
     },
     description: {
-      zh: '水光、丽珠兰和Skin Booster类项目，通常用于咨询皮肤干燥、细纹、肤质、光泽、皮肤恢复力和抗衰外观管理等问题。具体成分、注射方式和恢复反应因医院和产品不同而不同。',
-      ko: '물광주사, 리쥬란, 스킨부스터 계열은 피부 건조, 잔주름, 피부결, 광채, 피부 회복력, 항노화 외관관리 상담에 자주 포함되는 시술군입니다. 구체적인 성분, 주입 방식, 회복 반응은 병원과 제품에 따라 다를 수 있습니다.',
+      zh: '皮肤助推剂是一种以改善皮肤内部水分、肤质、弹性、细纹、光泽以及整体皮肤状态为目标的注射式治疗项目。根据产品不同，其成分和作用机制也有所差异，主要成分包括透明质酸、PN/PDRN、氨基酸、肽、胶原再生成分等。需根据个人皮肤状况及期望改善的方向，选择适合自己的产品。',
+      ko: '스킨부스터는 피부 속 수분, 피부결, 탄력, 잔주름, 광채와 전반적인 피부 컨디션 개선을 목적으로 하는 주사 시술입니다. 제품에 따라 히알루론산, PN/PDRN, 아미노산, 펩타이드, 콜라겐 재생 성분 등 구성과 작용 방식이 다르며, 피부 상태와 원하는 개선 방향에 따라 적합한 제품을 선택합니다.',
       en: 'Water-glow injections, Rejuran, and skin booster treatments are commonly included in consultations for skin dryness, fine lines, skin texture, radiance, skin recovery capacity, and anti-aging appearance care. The specific ingredients, injection method, and recovery response can vary by hospital and product.',
       ar: 'غالباً ما تُدرج حقن الترطيب المضيئة وريجوران ومعززات البشرة ضمن استشارات جفاف البشرة والخطوط الدقيقة وملمس البشرة والإشراقة وقدرة البشرة على التعافي والعناية بمظهر مكافحة الشيخوخة. قد تختلف المكونات المحددة وطريقة الحقن واستجابة التعافي حسب المستشفى والمنتج.',
     },
-    specialNote: {
-      zh: '客户常说的"皮肤干细胞"类项目，实际可能属于自体血液成分或再生管理类皮肤项目，需由医院确认具体名称、成分和适应范围。',
-      ko: "고객이 흔히 말하는 '피부 줄기세포'류 항목은 실제로는 자가혈 성분 또는 재생관리 계열 피부 시술일 수 있으며, 정확한 명칭, 성분, 적용 범위는 병원 확인이 필요합니다.",
-      en: 'Treatments customers often refer to as "skin stem cells" may actually be autologous blood-based or regenerative skin care treatments. The exact name, ingredients, and scope of application should be confirmed with the hospital.',
-      ar: 'قد تكون العلاجات التي يشير إليها العملاء غالباً باسم "الخلايا الجذعية للبشرة" في الواقع علاجات قائمة على الدم الذاتي أو علاجات تجديد للبشرة. يجب تأكيد الاسم الدقيق والمكونات ونطاق التطبيق مع المستشفى.',
-    },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '水光针', ko: '물광주사', en: 'Water-glow injections', ar: 'حقن الترطيب المضيئة' },
-      { zh: '丽珠兰', ko: '리쥬란', en: 'Rejuran', ar: 'ريجوران' },
-      { zh: 'Skin Booster', ko: '스킨부스터', en: 'Skin boosters', ar: 'معززات البشرة' },
-      { zh: 'PN/PDRN类皮肤管理', ko: 'PN/PDRN 계열 피부관리', en: 'PN/PDRN-based skin care', ar: 'العناية بالبشرة القائمة على PN/PDRN' },
-      { zh: '玻尿酸类保湿注射', ko: '히알루론산 기반 보습주사', en: 'Hyaluronic acid-based hydrating injections', ar: 'حقن الترطيب القائمة على حمض الهيالورونيك' },
-      { zh: '胶原再生类皮肤管理', ko: '콜라겐 재생 계열 피부관리', en: 'Collagen regeneration skin care', ar: 'العناية بالبشرة لتجديد الكولاجين' },
-      { zh: '自体血液基础皮肤再生管理', ko: '자가혈 기반 피부 재생관리', en: 'Autologous blood-based skin regeneration care', ar: 'العناية بتجديد البشرة القائمة على الدم الذاتي' },
+      { zh: 'PN/PDRN系列皮肤再生', ko: 'PN/PDRN 계열 피부재생', en: 'Water-glow injections', ar: 'حقن الترطيب المضيئة' },
+      { zh: '透明质酸补水·光泽助推剂', ko: '히알루론산 수분·광채 부스터', en: 'Rejuran', ar: 'ريجوران' },
+      { zh: '胶原再生型皮肤助推剂', ko: '콜라겐 재생형 스킨부스터', en: 'Skin boosters', ar: 'معززات البشرة' },
+      { zh: '氨基酸·肽类生物复活疗法', ko: '아미노산·펩타이드 바이오리바이탈라이제이션', en: 'PN/PDRN-based skin care', ar: 'العناية بالبشرة القائمة على PN/PDRN' },
+      { zh: '个性化定制水光针', ko: '맞춤형 물광주사', en: 'Hyaluronic acid-based hydrating injections', ar: 'حقن الترطيب القائمة على حمض الهيالورونيك' },
+      { zh: 'PRP/PRF自体血液基皮肤再生', ko: 'PRP/PRF 자가혈 기반 피부재생', en: 'Collagen regeneration skin care', ar: 'العناية بالبشرة لتجديد الكولاجين' },
+      { zh: '与激光·射频治疗联用的修复·恢复管理', ko: '레이저·RF 시술과 병행하는 재생·회복 관리', en: 'Autologous blood-based skin regeneration care', ar: 'العناية بتجديد البشرة القائمة على الدم الذاتي' },
     ],
-    note: {
-      zh: '水光、丽珠兰和Skin Booster类项目可能出现针眼、红肿、淤青、凸起感等短期反应，具体恢复时间因个人和产品不同而不同。',
-      ko: '물광주사, 리쥬란, 스킨부스터 계열은 바늘자국, 붉음, 멍, 엠보싱처럼 볼록한 느낌 등의 일시적 반응이 있을 수 있으며, 회복 시간은 개인과 제품에 따라 달라질 수 있습니다.',
-      en: 'Water-glow injections, Rejuran, and skin booster treatments may cause temporary reactions such as needle marks, redness, bruising, or a raised (embossed) feeling. Recovery time can vary by individual and by product.',
-      ar: 'قد تسبب حقن الترطيب المضيئة وريجوران ومعززات البشرة ردود فعل مؤقتة مثل آثار الإبر أو الاحمرار أو الكدمات أو الشعور بنتوءات. قد يختلف وقت التعافي حسب الفرد والمنتج.',
+    productGroupsLabel: {
+      zh: '代表性皮肤助推剂 · 皮肤再生产品',
+      ko: '대표 스킨부스터 · 피부재생 제품',
+      en: '',
+      ar: '',
+    },
+    productGroups: [
+      {
+        label: { zh: 'PN · PDRN系列', ko: 'PN · PDRN 계열', en: '', ar: '' },
+        items: [
+          { zh: 'REJURAN 丽珠兰（韩国）', ko: 'REJURAN 리쥬란 (한국)', en: '', ar: '' },
+          { zh: 'PLINEST 普丽斯特（意大利）', ko: 'PLINEST 플리네스트 (이탈리아)', en: '', ar: '' },
+          { zh: 'Placentex 胎盘素 · PDRN（意大利）', ko: 'Placentex 플라센텍스 · PDRN (이탈리아)', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '胶原再生系列', ko: '콜라겐 재생 계열', en: '', ar: '' },
+        items: [
+          { zh: 'JUVELOOK 珠维露 · PDLLA + HA（韩国）', ko: 'JUVELOOK 쥬베룩 · PDLLA + HA (한국)', en: '', ar: '' },
+          { zh: 'JUVELOOK Volume / LENISNA 珠维露容积 · 蕾妮丝娜（韩国）', ko: 'JUVELOOK Volume / LENISNA 쥬베룩 볼륨 · 레니스나 (한국)', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '透明质酸 · 补水助推剂系列', ko: '히알루론산 · 수분 부스터 계열', en: '', ar: '' },
+        items: [
+          { zh: 'Restylane Skinboosters 瑞蓝皮肤助推剂（瑞典）', ko: 'Restylane Skinboosters 레스틸렌 스킨부스터 (스웨덴)', en: '', ar: '' },
+          { zh: 'TEOSYAL Redensity 1 缇奥希 红密度1（瑞士）', ko: 'TEOSYAL Redensity 1 테오시알 레덴시티 1 (스위스)', en: '', ar: '' },
+          { zh: 'SKINVIVE by JUVÉDERM 乔雅登·肤活（美国）', ko: 'SKINVIVE by JUVÉDERM 스킨바이브 (미국)', en: '', ar: '' },
+          { zh: 'PROFHILO 菲洛（瑞士IBSA）', ko: 'PROFHILO 프로파일로 (스위스 IBSA)', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '复合 · 生物复活疗法系列', ko: '복합 · 바이오리바이탈라이제이션 계열', en: '', ar: '' },
+        items: [
+          { zh: 'NCTF 135 HA（法国）', ko: 'NCTF 135 HA (프랑스)', en: '', ar: '' },
+          { zh: 'JALUPRO / JALUPRO HMW / Super Hydro（瑞士）', ko: 'JALUPRO / JALUPRO HMW / Super Hydro (스위스)', en: '', ar: '' },
+          { zh: 'SUNEKOS 索妮蔻（意大利）', ko: 'SUNEKOS 수네코스 (이탈리아)', en: '', ar: '' },
+        ],
+      },
+    ],
+    explainerTitle: {
+      zh: '什么叫水光针？',
+      ko: '물광주사란?',
+      en: '',
+      ar: '',
+    },
+    explainerBody: {
+      zh: '在韩国常说的"水光针"，并非指某一特定产品名称，而往往泛指以提升皮肤水分和光泽度为目标的注射类项目。\n\n其基础成分多为透明质酸，同时可根据需要搭配PN/PDRN、氨基酸、维生素等多种成分。不同医院和医生所使用的产品、成分配比、注射深度及方式都可能存在差异。因此，即便都叫"水光针"，实际治疗内容也可能因机构不同而有所区别。\n\n皮肤助推剂因各产品的成分与特性迥异，务必在确认自身皮肤状态、改善目标、治疗部位等信息后，再选择合适的产品和治疗方案，这一点十分重要。',
+      ko: "한국에서 흔히 말하는 '물광주사'는 하나의 특정 제품명을 의미하기보다 피부 수분과 광채 개선을 목적으로 하는 주사 시술을 넓게 부르는 경우가 많습니다.\n\n히알루론산을 기본으로 PN/PDRN, 아미노산, 비타민 등 다양한 성분을 조합할 수 있으며, 병원과 의료진마다 사용하는 제품, 성분의 조합과 비율, 주입 깊이와 방식이 달라질 수 있습니다. 따라서 같은 '물광주사'라는 이름이라도 실제 시술 내용은 병원별로 다를 수 있습니다.\n\n스킨부스터는 제품의 성분과 특성이 서로 다르므로 피부 상태, 개선 목표, 시술 부위 등을 확인한 후 적합한 제품과 시술 방법을 선택하는 것이 중요합니다.",
+      en: '',
+      ar: '',
     },
     docKeys: ['skinBoosterAfter', 'skinTreatmentAfter'],
   },
@@ -348,29 +396,65 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     id: 'botox-fillers',
     image: '/keyword-tiles/botox-fillers.jpg',
     title: {
-      zh: '肉毒素·玻尿酸',
-      ko: '보톡스·필러',
-      en: 'Botox & Fillers',
-      ar: 'البوتوكس والفيلر',
+      zh: '肉毒杆菌毒素 · 玻尿酸填充剂',
+      ko: '보툴리눔 톡신 · 필러',
+      en: 'Botulinum Toxin & Fillers',
+      ar: 'توكسين البوتولينوم والفيلر',
     },
     description: {
-      zh: '肉毒素和玻尿酸填充咨询主要用于整理动态皱纹、咬肌、肩颈线条、面部凹陷、唇部、下巴、法令纹等需求。两者作用不同，是否适合联合治疗需要医生判断。',
-      ko: '보톡스와 필러 상담은 표정주름, 사각턱, 승모근·목선, 얼굴 꺼짐, 입술, 턱끝, 팔자주름 등의 고민을 정리하는 데 사용됩니다. 두 시술은 작용 방식이 다르며, 병합 가능 여부는 의료진 판단이 필요합니다.',
-      en: 'Botox and hyaluronic acid filler consultations are used to organize needs such as dynamic wrinkles, masseter muscle reduction, shoulder/neck line, facial hollowing, lips, chin, and nasolabial folds. The two work differently, and whether they can be combined must be determined by a physician.',
-      ar: 'تُستخدم استشارات البوتوكس وفيلر حمض الهيالورونيك لتنظيم احتياجات مثل التجاعيد الديناميكية وتقليل عضلة المضغ وخط الكتف والرقبة وتجويف الوجه والشفاه والذقن وخطوط الأنف والفم. يعمل الاثنان بطريقتين مختلفتين، ويجب أن يحدد الطبيب إمكانية الجمع بينهما.',
+      zh: '肉毒杆菌毒素与玻尿酸填充剂，是可用于改善表情纹、面部轮廓、容积流失、凹陷、唇部及下颌线条等多种部位的代表性注射类项目。根据治疗部位及期望的变化，选择适合的产品与注射方式，是取得理想效果的关键。',
+      ko: '보툴리눔 톡신과 필러는 표정주름, 얼굴 윤곽, 볼륨 감소, 꺼짐, 입술 및 턱 라인 등 다양한 부위에 적용할 수 있는 대표적인 주사 시술입니다. 시술 부위와 원하는 변화에 따라 적합한 제품과 주입 방법을 선택합니다.',
+      en: "Botulinum toxin and hyaluronic acid fillers are two of the most common injectable treatments, used across a wide range of areas — dynamic wrinkles, facial contour, volume loss, hollowing, lips, and the jawline. The right product and injection method are chosen based on the treatment area and the change you're hoping for.",
+      ar: 'يُعدّ توكسين البوتولينوم والفيلر من أكثر العلاجات الحقنية شيوعاً، ويمكن استخدامهما في مناطق متعددة مثل التجاعيد التعبيرية وملامح الوجه وفقدان الحجم والتجويف والشفاه وخط الفك. يتم اختيار المنتج المناسب وطريقة الحقن بناءً على منطقة العلاج والنتيجة المرغوبة.',
     },
     directionsLabel: DIRECTIONS_LABEL,
-    directions: [
-      { zh: '皱纹肉毒素', ko: '주름 보톡스', en: 'Wrinkle Botox', ar: 'بوتوكس التجاعيد' },
-      { zh: '咬肌肉毒素', ko: '사각턱 보톡스', en: 'Masseter (jaw) Botox', ar: 'بوتوكس عضلة المضغ (الفك)' },
-      { zh: '肩颈线条肉毒素', ko: '승모근·목선 보톡스', en: 'Trapezius/neckline Botox', ar: 'بوتوكس العضلة شبه المنحرفة وخط الرقبة' },
-      { zh: '小腿肉毒素', ko: '종아리 보톡스', en: 'Calf Botox', ar: 'بوتوكس الساق' },
-      { zh: 'Skin Botox', ko: '스킨보톡스', en: 'Skin Botox (micro-Botox)', ar: 'بوتوكس البشرة (البوتوكس الدقيق)' },
-      { zh: '玻尿酸填充', ko: '히알루론산 필러', en: 'Hyaluronic acid filler', ar: 'فيلر حمض الهيالورونيك' },
-      { zh: '唇部填充', ko: '입술필러', en: 'Lip filler', ar: 'فيلر الشفاه' },
-      { zh: '下巴填充', ko: '턱끝필러', en: 'Chin filler', ar: 'فيلر الذقن' },
-      { zh: '法令纹填充', ko: '팔자필러', en: 'Nasolabial fold filler', ar: 'فيلر خطوط الأنف والفم' },
-      { zh: '额头或太阳穴填充', ko: '이마 또는 관자 필러', en: 'Forehead or temple filler', ar: 'فيلر الجبهة أو الصدغ' },
+    directions: [],
+    directionGroups: [
+      {
+        label: { zh: '肉毒杆菌毒素', ko: '보툴리눔 톡신', en: 'Botulinum Toxin', ar: 'توكسين البوتولينوم' },
+        items: [
+          { zh: '额头 · 眉间 · 眼周等表情纹', ko: '이마 · 미간 · 눈가 등 표정주름', en: "Forehead · glabella · crow's feet (expression wrinkles)", ar: 'الجبهة · بين الحاجبين · محيط العينين (تجاعيد تعبيرية)' },
+          { zh: '方下颌 · 下颌线条', ko: '사각턱 · 턱라인', en: 'Masseter (jaw) · jawline', ar: 'الفك (تصغير عضلة المضغ) · خط الفك' },
+          { zh: '斜方肌', ko: '승모근', en: 'Trapezius', ar: 'العضلة شبه المنحرفة (الترابيزيوس)' },
+          { zh: '小腿', ko: '종아리', en: 'Calf', ar: 'الساق' },
+          { zh: '皮肤肉毒素（微滴肉毒）', ko: '스킨보톡스', en: 'Skin Botox (micro-Botox)', ar: 'بوتوكس البشرة (سكين بوتوكس)' },
+          { zh: '多汗症肉毒素', ko: '다한증 보톡스', en: 'Hyperhidrosis (excessive sweating) Botox', ar: 'بوتوكس فرط التعرق' },
+        ],
+      },
+      {
+        label: { zh: '玻尿酸填充剂', ko: '필러', en: 'Fillers', ar: 'الفيلر' },
+        items: [
+          { zh: '额头 · 太阳穴容积填充', ko: '이마 · 관자 볼륨', en: 'Forehead · temple volume', ar: 'حجم الجبهة · الصدغ' },
+          { zh: '眼底 · 苹果肌', ko: '눈밑 · 앞볼', en: 'Under-eye · midface (apple cheek)', ar: 'تحت العين · الخد الأمامي' },
+          { zh: '法令纹', ko: '팔자주름', en: 'Nasolabial folds', ar: 'خطوط الابتسامة' },
+          { zh: '唇部', ko: '입술', en: 'Lips', ar: 'الشفاه' },
+          { zh: '下巴尖 · 下颌线条', ko: '턱끝 · 턱라인', en: 'Chin tip · jawline', ar: 'طرف الذقن · خط الفك' },
+          { zh: '鼻部 · 面部轮廓', ko: '코 · 얼굴 윤곽', en: 'Nose · facial contour', ar: 'الأنف · ملامح الوجه' },
+          { zh: '各部位容积补充及不对称改善', ko: '부위별 볼륨 및 비대칭 개선', en: 'Volume restoration & asymmetry correction by area', ar: 'استعادة الحجم وتصحيح عدم التماثل حسب المنطقة' },
+        ],
+      },
+    ],
+    productGroups: [
+      {
+        label: { zh: '代表性肉毒杆菌毒素品牌', ko: '대표 보툴리눔 톡신 브랜드', en: 'Leading Botulinum Toxin Brands', ar: 'أبرز العلامات التجارية لتوكسين البوتولينوم' },
+        items: [
+          { zh: 'BOTOX® — 艾尔建美学 / 艾伯维（美国）【保妥适】', ko: 'BOTOX® — Allergan Aesthetics / AbbVie (미국)', en: 'BOTOX® — Allergan Aesthetics / AbbVie (USA)', ar: 'BOTOX® — Allergan Aesthetics / AbbVie (الولايات المتحدة)' },
+          { zh: 'XEOMIN® — 麦氏（德国）【吉适】', ko: 'XEOMIN® — Merz (독일)', en: 'XEOMIN® — Merz (Germany)', ar: 'XEOMIN® — Merz (ألمانيا)' },
+          { zh: 'NABOTA® — 大熊制药（韩国）【娜柏塔】', ko: 'NABOTA® — Daewoong Pharmaceutical (한국)', en: 'NABOTA® — Daewoong Pharmaceutical (Korea)', ar: 'NABOTA® — Daewoong Pharmaceutical (كوريا)' },
+          { zh: 'BOTULAX® / LETYBO® — 秀杰（韩国）【铂妥乐 / 乐提葆】', ko: 'BOTULAX® / LETYBO® — Hugel (한국)', en: 'BOTULAX® / LETYBO® — Hugel (Korea)', ar: 'BOTULAX® / LETYBO® — Hugel (كوريا)' },
+          { zh: 'CORETOX® — 美得妥（韩国）【科妥】', ko: 'CORETOX® — Medytox (한국)', en: 'CORETOX® — Medytox (Korea)', ar: 'CORETOX® — Medytox (كوريا)' },
+        ],
+      },
+      {
+        label: { zh: '代表性玻尿酸填充剂品牌', ko: '대표 히알루론산 필러 브랜드', en: 'Leading Hyaluronic Acid Filler Brands', ar: 'أبرز العلامات التجارية لفيلر حمض الهيالورونيك' },
+        items: [
+          { zh: 'JUVÉDERM® — 艾尔建美学 / 艾伯维（美国）【乔雅登】', ko: 'JUVÉDERM® — Allergan Aesthetics / AbbVie (미국)', en: 'JUVÉDERM® — Allergan Aesthetics / AbbVie (USA)', ar: 'JUVÉDERM® — Allergan Aesthetics / AbbVie (الولايات المتحدة)' },
+          { zh: 'Restylane® — 高德美（瑞士）【瑞蓝】', ko: 'Restylane® — Galderma (스위스)', en: 'Restylane® — Galderma (Switzerland)', ar: 'Restylane® — Galderma (سويسرا)' },
+          { zh: 'YVOIRE® — LG化学（韩国）【伊婉】', ko: 'YVOIRE® — LG Chem (한국)', en: 'YVOIRE® — LG Chem (Korea)', ar: 'YVOIRE® — LG Chem (كوريا)' },
+          { zh: 'NEURAMIS® — 美得妥（韩国）【纽拉美斯】', ko: 'NEURAMIS® — Medytox (한국)', en: 'NEURAMIS® — Medytox (Korea)', ar: 'NEURAMIS® — Medytox (كوريا)' },
+          { zh: 'REVOLAX® — 秀杰（韩国）【瑞芙拉】', ko: 'REVOLAX® — Hugel (한국)', en: 'REVOLAX® — Hugel (Korea)', ar: 'REVOLAX® — Hugel (كوريا)' },
+        ],
+      },
     ],
     note: {
       zh: '玻尿酸填充后如果出现异常疼痛、皮肤变白或发紫、视力异常等情况，需要立即联系医院。',

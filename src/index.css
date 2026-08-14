@@ -1304,6 +1304,13 @@ body {
   white-space: pre-line;
 }
 
+.bh-card-subtitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+
 .bh-list {
   margin: 0;
   padding-left: 18px;

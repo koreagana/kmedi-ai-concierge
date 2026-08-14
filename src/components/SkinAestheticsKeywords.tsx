@@ -79,11 +79,24 @@ export default function SkinAestheticsKeywords() {
 
               <div className="bh-card-section">
                 <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
-                <ul className="bh-list">
-                  {active.directions.map((item, i) => (
-                    <li key={i}>{pick(item, lang)}</li>
-                  ))}
-                </ul>
+                {active.directionGroups ? (
+                  active.directionGroups.map((group, gi) => (
+                    <div key={gi} style={{ marginTop: gi > 0 ? 10 : 4 }}>
+                      <p className="bh-card-subtitle">{pick(group.label, lang)}</p>
+                      <ul className="bh-list">
+                        {group.items.map((item, i) => (
+                          <li key={i}>{pick(item, lang)}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))
+                ) : (
+                  <ul className="bh-list">
+                    {active.directions.map((item, i) => (
+                      <li key={i}>{pick(item, lang)}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               {active.popularDevices && pick(active.popularDevices.title, lang) && (
@@ -100,6 +113,33 @@ export default function SkinAestheticsKeywords() {
                   <div className="bh-note">
                     <p className="bh-card-text">{pick(active.popularDevices.caution, lang)}</p>
                   </div>
+                </div>
+              )}
+
+              {active.productGroups && active.productGroups.length > 0 && pick(active.productGroups[0].label, lang) && (
+                <div className="bh-card-section">
+                  {active.productGroupsLabel && pick(active.productGroupsLabel, lang) && (
+                    <p className="bh-card-label">{pick(active.productGroupsLabel, lang)}</p>
+                  )}
+                  {active.productGroups.map((group, gi) => (
+                    <div key={gi} style={{ marginTop: gi > 0 ? 12 : (active.productGroupsLabel ? 6 : 0) }}>
+                      <p className="bh-card-subtitle">{pick(group.label, lang)}</p>
+                      <ul className="bh-list">
+                        {group.items.map((item, i) => (
+                          <li key={i}>{pick(item, lang)}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {active.explainerTitle && active.explainerBody && pick(active.explainerTitle, lang) && (
+                <div className="bh-card-section">
+                  <p className="bh-card-label">{pick(active.explainerTitle, lang)}</p>
+                  {pick(active.explainerBody, lang).split('\n\n').map((para, i) => (
+                    <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
+                  ))}
                 </div>
               )}
 
