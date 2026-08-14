@@ -597,7 +597,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     },
     description: {
       zh: '身体皮肤管理咨询主要包括身体部位的痘痘、疤痕、妊娠纹、肤色不均、腋下色沉、手臂或腹部皮肤松弛等问题。部分项目需要多次治疗和长期管理。',
-      ko: '바디 피부관리 상담은 몸 부위의 여드름, 흉터, 튼살, 피부톤 불균형, 겨드랑이 색소, 팔뚝 또는 복부 피부 처짐 등의 고민을 정리하는 과정입니다. 일부 항목은 여러 차례 치료와 장기 관리가 필요할 수 있습니다.',
+      ko: '등·가슴 여드름, 닭살 피부, 겨드랑이·팔꿈치·무릎·엉덩이 색소침착, 튼살과 흉터, 피부 탄력 저하 등 바디 부위별 피부 고민을 치료합니다.',
       en: 'Body skin care consultation mainly covers concerns such as body acne, scars, stretch marks, uneven skin tone, underarm pigmentation, and skin laxity in the arms or abdomen. Some of these may require repeated treatment and long-term management.',
       ar: 'تشمل استشارة العناية بجلد الجسم بشكل أساسي مخاوف مثل حب الشباب الجسدي والندبات وعلامات التمدد وعدم انتظام لون البشرة وتصبغ الإبط وترهل جلد الذراعين أو البطن. قد يتطلب بعضها علاجاً متكرراً وإدارة طويلة الأمد.',
     },
@@ -611,12 +611,99 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '术后疤痕管理', ko: '수술 후 흉터관리', en: 'Post-surgical scar management', ar: 'إدارة الندبات بعد الجراحة' },
       { zh: '皮肤屏障和再生管理', ko: '피부장벽 및 재생관리', en: 'Skin barrier and regeneration care', ar: 'العناية بحاجز البشرة وتجديدها' },
     ],
-    note: {
-      zh: '身体皮肤管理中，色素、疤痕、妊娠纹等项目通常需要多次治疗，短期访韩时不宜承诺一次改善。',
-      ko: '바디 피부관리 중 색소, 흉터, 튼살 등은 보통 반복 치료가 필요하므로, 단기 방한 시 한 번의 개선을 약속해서는 안 됩니다.',
-      en: 'For body skin care, items such as pigmentation, scars, and stretch marks usually require repeated treatment, so a single-session improvement should not be promised during a short visit to Korea.',
-      ar: 'بالنسبة للعناية بجلد الجسم، تتطلب عناصر مثل التصبغ والندبات وعلامات التمدد عادةً علاجاً متكرراً، لذا لا ينبغي الوعد بتحسن في جلسة واحدة خلال زيارة قصيرة لكوريا.',
+    directionGroups: [
+      {
+        label: { zh: '', ko: '등 · 가슴 여드름', en: '', ar: '' },
+        items: [
+          { zh: '', ko: '여드름·피지 관리', en: '', ar: '' },
+          { zh: '', ko: '압출 및 필링', en: '', ar: '' },
+          { zh: '', ko: '염증성 여드름 레이저', en: '', ar: '' },
+          { zh: '', ko: '여드름 자국·색소 치료', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '닭살 · 모공각화증', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'AHA · BHA · LHA 필링', en: '', ar: '' },
+          { zh: '', ko: '각질·피부결 개선', en: '', ar: '' },
+          { zh: '', ko: '색소 레이저', en: '', ar: '' },
+          { zh: '', ko: '레이저 제모 병행', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '바디 색소침착', en: '', ar: '' },
+        items: [
+          { zh: '', ko: '겨드랑이 · 팔꿈치 · 무릎', en: '', ar: '' },
+          { zh: '', ko: '엉덩이 · 비키니라인', en: '', ar: '' },
+          { zh: '', ko: '피코토닝', en: '', ar: '' },
+          { zh: '', ko: '색소 레이저', en: '', ar: '' },
+          { zh: '', ko: '브라이트닝 필링', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '튼살 · 흉터', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'RF 마이크로니들', en: '', ar: '' },
+          { zh: '', ko: '프락셔널 CO₂ 레이저', en: '', ar: '' },
+          { zh: '', ko: '비박피 프락셔널 레이저', en: '', ar: '' },
+          { zh: '', ko: '피코 프락셔널', en: '', ar: '' },
+          { zh: '', ko: '콜라겐 재생 치료', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '바디 탄력 · 셀룰라이트', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'RF 탄력 치료', en: '', ar: '' },
+          { zh: '', ko: '마이크로웨이브 바디 탄력 치료', en: '', ar: '' },
+          { zh: '', ko: '피부 타이트닝', en: '', ar: '' },
+          { zh: '', ko: '셀룰라이트 개선', en: '', ar: '' },
+        ],
+      },
+    ],
+    productGroupsLabel: {
+      zh: '',
+      ko: '관련 레이저 · 에너지 기기',
+      en: '',
+      ar: '',
     },
+    productGroups: [
+      {
+        label: { zh: '', ko: '여드름 · 피부결', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'POTENZA', en: '', ar: '' },
+          { zh: '', ko: 'Morpheus8', en: '', ar: '' },
+          { zh: '', ko: 'Hollywood Spectra', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '색소 · 바디토닝', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'PicoSure Pro', en: '', ar: '' },
+          { zh: '', ko: 'PicoWay', en: '', ar: '' },
+          { zh: '', ko: 'Hollywood Spectra', en: '', ar: '' },
+          { zh: '', ko: 'Clarity II', en: '', ar: '' },
+          { zh: '', ko: 'DermaV', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '튼살 · 흉터', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'eCO2 3D', en: '', ar: '' },
+          { zh: '', ko: 'UltraPulse CO₂', en: '', ar: '' },
+          { zh: '', ko: 'Morpheus8', en: '', ar: '' },
+          { zh: '', ko: 'POTENZA', en: '', ar: '' },
+          { zh: '', ko: 'PicoSure Pro', en: '', ar: '' },
+        ],
+      },
+      {
+        label: { zh: '', ko: '탄력 · 셀룰라이트', en: '', ar: '' },
+        items: [
+          { zh: '', ko: 'ONDA PRO', en: '', ar: '' },
+          { zh: '', ko: 'Thermage FLX', en: '', ar: '' },
+          { zh: '', ko: 'Morpheus8 Body', en: '', ar: '' },
+        ],
+      },
+    ],
     docKeys: ['skinTreatmentAfter', 'scarCareGuide'],
   },
 ]
