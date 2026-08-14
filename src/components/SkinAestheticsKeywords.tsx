@@ -86,7 +86,7 @@ export default function SkinAestheticsKeywords() {
                 </ul>
               </div>
 
-              {active.popularDevices && (
+              {active.popularDevices && pick(active.popularDevices.title, lang) && (
                 <div className="bh-card-section">
                   <p className="bh-card-label bh-card-label--pink">{pick(active.popularDevices.title, lang)}</p>
                   <ul className="bh-product-list bh-product-list--pink">
