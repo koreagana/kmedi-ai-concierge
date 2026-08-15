@@ -557,31 +557,6 @@ export function CategoryGridSection() {
         </div>
       </motion.div>
 
-      <motion.div {...fadeUp} className="info-box" style={{ marginBottom: 36 }}>
-        <p className="info-box-title">{t.heroPrefTitle}</p>
-
-        <p className="info-tag-row">
-          {t.heroPrefChips.join('  ·  ')}
-        </p>
-        <p className="info-tag-row info-tag-row--region">
-          {t.heroRegionChips.join('  ·  ')}
-        </p>
-
-        <p className="info-note">{t.heroPrefNote}</p>
-
-        <div className="info-divider" />
-
-        <p className="info-trust-title">{t.heroTrustTitle}</p>
-        {t.heroTrustLines.split('\n').map((line, i) => (
-          <div key={i} className="info-trust-item">
-            <span className="info-trust-icon">
-              <Check size={10} strokeWidth={3} color="#ffffff" />
-            </span>
-            <span>{line}</span>
-          </div>
-        ))}
-      </motion.div>
-
       <motion.div {...fadeUp}>
         <p className="section-title">{t.categoryTitle}</p>
         <div className="section-accent-line" />
@@ -916,15 +891,29 @@ export function MedicalNetworkSection() {
 
   return (
     <section id="network" className="section-white" style={{ paddingTop: 24 }}>
-      <motion.div {...fadeUp} style={{ marginBottom: 24 }}>
-        <p style={{ fontSize: 11, color: 'var(--blue-light)', letterSpacing: '0.18em', marginBottom: 6 }}>
-          {t.networkTitle}
+      <motion.div {...fadeUp} className="info-box" style={{ marginBottom: 36 }}>
+        <p className="info-box-title">{t.heroPrefTitle}</p>
+
+        <p className="info-tag-row">
+          {t.heroPrefChips.join('  ·  ')}
         </p>
-        <p className="section-title" style={{ textAlign: 'left' }}>{t.networkSub}</p>
-        <div style={{ width: 32, height: 2, background: 'var(--brand)', borderRadius: 1, margin: '10px 0 14px' }} />
-        <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.8 }}>
-          {t.networkDesc}
+        <p className="info-tag-row info-tag-row--region">
+          {t.heroRegionChips.join('  ·  ')}
         </p>
+
+        <p className="info-note">{t.heroPrefNote}</p>
+
+        <div className="info-divider" />
+
+        <p className="info-trust-title">{t.heroTrustTitle}</p>
+        {t.heroTrustLines.split('\n').map((line, i) => (
+          <div key={i} className="info-trust-item">
+            <span className="info-trust-icon">
+              <Check size={10} strokeWidth={3} color="#ffffff" />
+            </span>
+            <span>{line}</span>
+          </div>
+        ))}
       </motion.div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
