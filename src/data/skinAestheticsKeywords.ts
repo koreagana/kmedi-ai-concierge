@@ -584,43 +584,25 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     image: '/keyword-tiles/body-skin-care.jpg',
     title: {
       zh: '身体皮肤管理',
-      ko: '바디 피부관리',
+      ko: '바디관리',
       en: 'Body Skin Care',
       ar: 'العناية بجلد الجسم',
     },
     description: {
-      zh: '针对背部·胸部痤疮、鸡皮肤（毛周角化症）、腋下·手肘·膝盖·臀部色素沉着、妊娠纹与疤痕、皮肤弹性下降等身体各部位的不同皮肤困扰，提供定制化治疗。',
-      ko: '등·가슴 여드름, 닭살 피부, 겨드랑이·팔꿈치·무릎·엉덩이 색소침착, 튼살과 흉터, 피부 탄력 저하 등 바디 부위별 피부 고민을 치료합니다.',
-      en: 'Body skin care is tailored to a range of body-specific concerns — back and chest acne, keratosis pilaris ("chicken skin"), pigmentation on the underarms, elbows, knees, and buttocks, stretch marks and scars, and reduced skin elasticity.',
-      ar: 'توفر العناية بجلد الجسم علاجاً مخصصاً لمخاوف متعددة تخص مناطق الجسم المختلفة — حب الشباب في الظهر والصدر، والتقرن الشعري ("البشرة المتكتلة")، والتصبغ في الإبط والمرفقين والركبتين والأرداف، وعلامات التمدد والندبات، وانخفاض مرونة البشرة.',
+      zh: '针对腹部·手臂·大腿的松弛与橘皮组织、腋下·手肘·膝盖等部位的色素沉着、腹部与大腿的妊娠纹等身体各部位的皮肤问题进行管理。',
+      ko: '복부·팔뚝·허벅지의 탄력과 셀룰라이트, 겨드랑이·팔꿈치·무릎 등의 색소침착, 복부와 허벅지의 튼살 등 바디 부위별 피부 고민을 관리합니다.',
+      en: 'Body care addresses concerns by area — elasticity and cellulite in the abdomen, arms, and thighs; pigmentation on the underarms, elbows, and knees; and stretch marks on the abdomen and thighs.',
+      ar: 'تُعنى العناية بالجسم بمخاوف كل منطقة — مرونة الجلد والسيلوليت في البطن والذراعين والفخذين، والتصبغ في الإبط والمرفقين والركبتين، وعلامات التمدد في البطن والفخذين.',
     },
     directionsLabel: DIRECTIONS_LABEL,
-    directions: [
-      { zh: '身体痘痘管理', ko: '바디 여드름 관리', en: 'Body acne management', ar: 'إدارة حب الشباب الجسدي' },
-      { zh: '身体疤痕管理', ko: '바디 흉터 관리', en: 'Body scar management', ar: 'إدارة ندبات الجسم' },
-      { zh: '妊娠纹相关治疗咨询', ko: '튼살 관련 치료 상담', en: 'Consultation on stretch mark related treatments', ar: 'استشارة علاجات علامات التمدد' },
-      { zh: '身体紧致类治疗', ko: '바디 탄력관리', en: 'Body firming treatments', ar: 'علاجات شد الجسم' },
-      { zh: '腋下或身体色沉辅助咨询', ko: '겨드랑이 또는 바디 색소 보조 상담', en: 'Auxiliary consultation for underarm or body pigmentation', ar: 'استشارة مساعدة لتصبغ الإبط أو الجسم' },
-      { zh: '术后疤痕管理', ko: '수술 후 흉터관리', en: 'Post-surgical scar management', ar: 'إدارة الندبات بعد الجراحة' },
-      { zh: '皮肤屏障和再生管理', ko: '피부장벽 및 재생관리', en: 'Skin barrier and regeneration care', ar: 'العناية بحاجز البشرة وتجديدها' },
-    ],
+    directions: [],
     directionGroups: [
       {
-        label: { zh: '背部 · 胸部痤疮', ko: '등 · 가슴 여드름', en: 'Back · Chest Acne', ar: 'حب الشباب في الظهر والصدر' },
+        label: { zh: '身体紧致 · 橘皮组织', ko: '바디 탄력 · 셀룰라이트', en: 'Body Firming · Cellulite', ar: 'شد الجسم · السيلوليت' },
         items: [
-          { zh: '痤疮·皮脂管理', ko: '여드름·피지 관리', en: 'Acne & sebum management', ar: 'العناية بحب الشباب والزهم' },
-          { zh: '针清及化学焕肤', ko: '압출 및 필링', en: 'Extraction & chemical peels', ar: 'التنظيف والتقشير الكيميائي' },
-          { zh: '炎症性痤疮激光', ko: '염증성 여드름 레이저', en: 'Inflammatory acne laser', ar: 'ليزر حب الشباب الالتهابي' },
-          { zh: '痘印·色素治疗', ko: '여드름 자국·색소 치료', en: 'Acne mark & pigment treatment', ar: 'علاج آثار حب الشباب والتصبغ' },
-        ],
-      },
-      {
-        label: { zh: '鸡皮肤 · 毛周角化症', ko: '닭살 · 모공각화증', en: 'Keratosis Pilaris ("Chicken Skin")', ar: 'التقرن الشعري (البشرة المتكتلة)' },
-        items: [
-          { zh: 'AHA · BHA · LHA 焕肤', ko: 'AHA · BHA · LHA 필링', en: 'AHA · BHA · LHA peels', ar: 'تقشير AHA · BHA · LHA' },
-          { zh: '角质·肤质改善', ko: '각질·피부결 개선', en: 'Exfoliation & texture improvement', ar: 'تحسين التقشر وملمس البشرة' },
-          { zh: '色素激光', ko: '색소 레이저', en: 'Pigment laser', ar: 'ليزر التصبغ' },
-          { zh: '联合激光脱毛', ko: '레이저 제모 병행', en: 'Combined with laser hair removal', ar: 'بالاشتراك مع إزالة الشعر بالليزر' },
+          { zh: '射频紧致治疗', ko: 'RF 탄력 치료', en: 'RF firming treatment', ar: 'علاج الشد بالترددات الراديوية (RF)' },
+          { zh: '微波身体紧致提拉', ko: '마이크로웨이브 바디 리프팅', en: 'Microwave body lifting', ar: 'شد الجسم بالموجات الدقيقة' },
+          { zh: '皮肤紧致提拉', ko: '피부 타이트닝', en: 'Skin tightening', ar: 'شد الجلد' },
         ],
       },
       {
@@ -628,75 +610,45 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         items: [
           { zh: '腋下 · 手肘 · 膝盖', ko: '겨드랑이 · 팔꿈치 · 무릎', en: 'Underarms · elbows · knees', ar: 'الإبط · المرفقين · الركبتين' },
           { zh: '臀部 · 比基尼线', ko: '엉덩이 · 비키니라인', en: 'Buttocks · bikini line', ar: 'الأرداف · خط البكيني' },
-          { zh: '皮秒美白提亮（Toning）', ko: '피코토닝', en: 'Picosecond brightening (toning)', ar: 'تفتيح بالبيكوثانية (Toning)' },
-          { zh: '色素激光', ko: '색소 레이저', en: 'Pigment laser', ar: 'ليزر التصبغ' },
-          { zh: '亮白焕肤', ko: '브라이트닝 필링', en: 'Brightening peel', ar: 'تقشير تفتيحي' },
         ],
       },
       {
-        label: { zh: '妊娠纹 · 疤痕', ko: '튼살 · 흉터', en: 'Stretch Marks · Scars', ar: 'علامات التمدد · الندبات' },
+        label: { zh: '妊娠纹', ko: '튼살', en: 'Stretch Marks', ar: 'علامات التمدد' },
         items: [
+          { zh: '腹部 · 大腿', ko: '복부 · 허벅지', en: 'Abdomen · thighs', ar: 'البطن · الفخذين' },
+          { zh: '点阵激光', ko: '프락셔널 레이저', en: 'Fractional laser', ar: 'الليزر الجزئي (Fractional Laser)' },
           { zh: '射频微针', ko: 'RF 마이크로니들', en: 'RF microneedling', ar: 'الإبر الدقيقة بالترددات الراديوية (RF)' },
-          { zh: '点阵CO₂激光', ko: '프락셔널 CO₂ 레이저', en: 'Fractional CO2 laser', ar: 'ليزر CO2 الجزئي' },
-          { zh: '非剥脱点阵激光', ko: '비박피 프락셔널 레이저', en: 'Non-ablative fractional laser', ar: 'الليزر الجزئي غير التقشيري' },
           { zh: '皮秒点阵', ko: '피코 프락셔널', en: 'Picosecond fractional', ar: 'الليزر الجزئي بالبيكوثانية' },
-          { zh: '胶原再生治疗', ko: '콜라겐 재생 치료', en: 'Collagen regeneration treatment', ar: 'علاج تجديد الكولاجين' },
-        ],
-      },
-      {
-        label: { zh: '身体紧致 · 橘皮组织', ko: '바디 탄력 · 셀룰라이트', en: 'Body Firming · Cellulite', ar: 'شد الجسم · السيلوليت' },
-        items: [
-          { zh: '射频紧致治疗', ko: 'RF 탄력 치료', en: 'RF firming treatment', ar: 'علاج الشد بالترددات الراديوية (RF)' },
-          { zh: '微波身体紧致治疗', ko: '마이크로웨이브 바디 탄력 치료', en: 'Microwave body firming treatment', ar: 'علاج شد الجسم بالموجات الدقيقة' },
-          { zh: '皮肤紧实提拉', ko: '피부 타이트닝', en: 'Skin tightening & lifting', ar: 'شد ورفع البشرة' },
-          { zh: '橘皮组织改善', ko: '셀룰라이트 개선', en: 'Cellulite improvement', ar: 'تحسين السيلوليت' },
         ],
       },
     ],
-    productGroupsLabel: {
-      zh: '相关激光 · 能量设备',
-      ko: '관련 레이저 · 에너지 기기',
-      en: 'Related Laser & Energy Devices',
-      ar: 'أجهزة الليزر والطاقة ذات الصلة',
+    popularDevices: {
+      title: { zh: '近期热门身体紧致项目', ko: '최근 인기 바디 리프팅 시술', en: 'Trending Body Lifting Treatments', ar: 'إجراءات شد الجسم الرائجة حالياً' },
+      items: [
+        {
+          name: { zh: 'ONDA PRO', ko: 'ONDA PRO', en: 'ONDA PRO', ar: 'ONDA PRO' },
+          desc: { zh: '微波 · 身体紧致 · 橘皮组织 · 体线改善', ko: '마이크로웨이브 · 바디 타이트닝 · 셀룰라이트 · 바디라인 개선', en: 'Microwave · body tightening · cellulite · body-line improvement', ar: 'الموجات الدقيقة · شد الجسم · السيلوليت · تحسين خطوط الجسم' },
+        },
+        {
+          name: { zh: 'PTING BODY', ko: 'PTING BODY', en: 'PTING BODY', ar: 'PTING BODY' },
+          desc: { zh: '超高频微波 · 弹力 · 体线 · 腹部·手臂·大腿管理', ko: '극초단파 · 탄력 · 바디라인 · 복부·팔뚝·허벅지 관리', en: 'Ultra-high-frequency microwave · elasticity · body line · abdomen, arms & thighs care', ar: 'موجات دقيقة فائقة التردد · المرونة · خطوط الجسم · العناية بالبطن والذراعين والفخذين' },
+        },
+        {
+          name: { zh: 'INMODE BodyFX', ko: 'INMODE BodyFX', en: 'INMODE BodyFX', ar: 'INMODE BodyFX' },
+          desc: { zh: 'RF+真空吸引 · 皮肤紧致 · 橘皮组织 · 体线改善', ko: 'RF + 진공 · 피부 타이트닝 · 셀룰라이트 · 바디라인 개선', en: 'RF + vacuum · skin tightening · cellulite · body-line improvement', ar: 'ترددات راديوية + شفط بالفراغ · شد الجلد · السيلوليت · تحسين خطوط الجسم' },
+        },
+        {
+          name: { zh: 'SHURINK UNIVERSE BODY', ko: 'SHURINK UNIVERSE BODY', en: 'SHURINK UNIVERSE BODY', ar: 'SHURINK UNIVERSE BODY' },
+          desc: { zh: 'HIFU聚焦超声 · 腹部·大腿紧致 · 皮肤紧致', ko: 'HIFU · 복부·허벅지 탄력 · 피부 타이트닝', en: 'HIFU · abdomen & thigh firming · skin tightening', ar: 'الموجات فوق الصوتية المركزة عالية الكثافة (HIFU) · شد البطن والفخذين · شد الجلد' },
+        },
+      ],
+      caution: {
+        zh: '具体配备的设备型号因医院而异，实际可选设备需现场咨询确认。',
+        ko: '병원마다 보유 장비가 다르므로, 실제 상담 가능한 기종은 병원 확인이 필요합니다.',
+        en: 'Available devices vary by clinic — please confirm which specific equipment is offered during your consultation.',
+        ar: 'تختلف الأجهزة المتوفرة حسب المستشفى — يُرجى تأكيد الجهاز المحدد المتاح أثناء الاستشارة.',
+      },
     },
-    productGroups: [
-      {
-        label: { zh: '痤疮 · 肤质', ko: '여드름 · 피부결', en: 'Acne · Skin Texture', ar: 'حب الشباب · ملمس البشرة' },
-        items: [
-          { zh: 'POTENZA', ko: 'POTENZA', en: 'POTENZA', ar: 'POTENZA' },
-          { zh: 'Morpheus8', ko: 'Morpheus8', en: 'Morpheus8', ar: 'Morpheus8' },
-          { zh: 'Hollywood Spectra', ko: 'Hollywood Spectra', en: 'Hollywood Spectra', ar: 'Hollywood Spectra' },
-        ],
-      },
-      {
-        label: { zh: '色素 · 身体美白提亮', ko: '색소 · 바디토닝', en: 'Pigmentation · Body Brightening', ar: 'التصبغ · تفتيح الجسم' },
-        items: [
-          { zh: 'PicoSure Pro', ko: 'PicoSure Pro', en: 'PicoSure Pro', ar: 'PicoSure Pro' },
-          { zh: 'PicoWay', ko: 'PicoWay', en: 'PicoWay', ar: 'PicoWay' },
-          { zh: 'Hollywood Spectra', ko: 'Hollywood Spectra', en: 'Hollywood Spectra', ar: 'Hollywood Spectra' },
-          { zh: 'Clarity II', ko: 'Clarity II', en: 'Clarity II', ar: 'Clarity II' },
-          { zh: 'DermaV', ko: 'DermaV', en: 'DermaV', ar: 'DermaV' },
-        ],
-      },
-      {
-        label: { zh: '妊娠纹 · 疤痕', ko: '튼살 · 흉터', en: 'Stretch Marks · Scars', ar: 'علامات التمدد · الندبات' },
-        items: [
-          { zh: 'eCO2 3D', ko: 'eCO2 3D', en: 'eCO2 3D', ar: 'eCO2 3D' },
-          { zh: 'UltraPulse CO₂', ko: 'UltraPulse CO₂', en: 'UltraPulse CO₂', ar: 'UltraPulse CO₂' },
-          { zh: 'Morpheus8', ko: 'Morpheus8', en: 'Morpheus8', ar: 'Morpheus8' },
-          { zh: 'POTENZA', ko: 'POTENZA', en: 'POTENZA', ar: 'POTENZA' },
-          { zh: 'PicoSure Pro', ko: 'PicoSure Pro', en: 'PicoSure Pro', ar: 'PicoSure Pro' },
-        ],
-      },
-      {
-        label: { zh: '紧致 · 橘皮组织', ko: '탄력 · 셀룰라이트', en: 'Firming · Cellulite', ar: 'الشد · السيلوليت' },
-        items: [
-          { zh: 'ONDA PRO', ko: 'ONDA PRO', en: 'ONDA PRO', ar: 'ONDA PRO' },
-          { zh: 'Thermage FLX', ko: 'Thermage FLX', en: 'Thermage FLX', ar: 'Thermage FLX' },
-          { zh: 'Morpheus8 Body', ko: 'Morpheus8 Body', en: 'Morpheus8 Body', ar: 'Morpheus8 Body' },
-        ],
-      },
-    ],
     docKeys: ['skinTreatmentAfter', 'scarCareGuide'],
   },
 ]
