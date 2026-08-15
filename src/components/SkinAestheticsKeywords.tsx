@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { BIG_HEALTH_MORE_LABEL, BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
+import { BIG_HEALTH_MORE_LABEL, type LocalizedText } from '../data/bigHealthKeywords'
 import {
   SKIN_AESTHETICS_KEYWORDS,
+  SKIN_AESTHETICS_PILLS_PROMPT,
   SKIN_AESTHETICS_SECTION,
 } from '../data/skinAestheticsKeywords'
 import type { LangCode } from '../data/translations'
@@ -21,9 +22,8 @@ export default function SkinAestheticsKeywords() {
     <div className="bh-section">
       <p className="bh-section-title">{pick(SKIN_AESTHETICS_SECTION.title, lang)}</p>
       <p className="bh-section-subcopy">{pick(SKIN_AESTHETICS_SECTION.subCopy, lang)}</p>
-      <p className="bh-section-desc">{pick(SKIN_AESTHETICS_SECTION.desc, lang)}</p>
 
-      <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
+      <p className="bh-pills-prompt">{pick(SKIN_AESTHETICS_PILLS_PROMPT, lang)}</p>
 
       <div className="bh-tiles bh-tiles--pink" role="tablist">
         {SKIN_AESTHETICS_KEYWORDS.map((kw, i) => (

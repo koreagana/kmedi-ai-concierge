@@ -149,7 +149,7 @@ export interface SkinAestheticsKeyword {
 
 const DIRECTIONS_LABEL: LocalizedText = {
   zh: '可能相关治疗方向',
-  ko: '관련 가능 시술 방향',
+  ko: '관련시술',
   en: 'Possible Related Treatment Directions',
   ar: 'اتجاهات العلاج المحتملة ذات الصلة',
 }
@@ -187,6 +187,13 @@ export const SKIN_AESTHETICS_SECTION = {
       ar: 'يجب أن تحدد مؤسسة طبية مرخصة وطبيب مختص مدى ملاءمة علاج معين، وإمكانية الجمع بين العلاجات، وجدولة فترة التعافي.',
     },
   ] as LocalizedText[],
+}
+
+export const SKIN_AESTHETICS_PILLS_PROMPT: LocalizedText = {
+  zh: '请选择您关心的方向 — 可查看相关治疗方向及激光设备介绍。',
+  ko: '관심 있는 방향을 선택해 주세요 — 관련 시술 및 레이저 소개를 확인하실 수 있습니다.',
+  en: 'Please select the topic you are most interested in — you can view related treatments and laser device details.',
+  ar: 'يرجى اختيار الموضوع الذي يهمك — يمكنك الاطلاع على العلاجات ذات الصلة وتفاصيل أجهزة الليزر.',
 }
 
 export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
@@ -397,13 +404,13 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     image: '/keyword-tiles/botox-fillers.jpg',
     title: {
       zh: '肉毒杆菌毒素 · 玻尿酸填充剂',
-      ko: '보툴리눔 톡신 · 필러',
+      ko: '보톡스 · 필러',
       en: 'Botulinum Toxin & Fillers',
       ar: 'توكسين البوتولينوم والفيلر',
     },
     description: {
       zh: '肉毒杆菌毒素与玻尿酸填充剂，是可用于改善表情纹、面部轮廓、容积流失、凹陷、唇部及下颌线条等多种部位的代表性注射类项目。根据治疗部位及期望的变化，选择适合的产品与注射方式，是取得理想效果的关键。',
-      ko: '보툴리눔 톡신과 필러는 표정주름, 얼굴 윤곽, 볼륨 감소, 꺼짐, 입술 및 턱 라인 등 다양한 부위에 적용할 수 있는 대표적인 주사 시술입니다. 시술 부위와 원하는 변화에 따라 적합한 제품과 주입 방법을 선택합니다.',
+      ko: '보톡스와 필러는 표정주름, 얼굴 윤곽, 볼륨 감소, 꺼짐, 입술 및 턱 라인 등 다양한 부위에 적용할 수 있는 대표적인 주사 시술입니다. 시술 부위와 원하는 변화에 따라 적합한 제품과 주입 방법을 선택합니다.',
       en: "Botulinum toxin and hyaluronic acid fillers are two of the most common injectable treatments, used across a wide range of areas — dynamic wrinkles, facial contour, volume loss, hollowing, lips, and the jawline. The right product and injection method are chosen based on the treatment area and the change you're hoping for.",
       ar: 'يُعدّ توكسين البوتولينوم والفيلر من أكثر العلاجات الحقنية شيوعاً، ويمكن استخدامهما في مناطق متعددة مثل التجاعيد التعبيرية وملامح الوجه وفقدان الحجم والتجويف والشفاه وخط الفك. يتم اختيار المنتج المناسب وطريقة الحقن بناءً على منطقة العلاج والنتيجة المرغوبة.',
     },
@@ -411,7 +418,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     directions: [],
     directionGroups: [
       {
-        label: { zh: '肉毒杆菌毒素', ko: '보툴리눔 톡신', en: 'Botulinum Toxin', ar: 'توكسين البوتولينوم' },
+        label: { zh: '肉毒杆菌毒素', ko: '보톡스', en: 'Botulinum Toxin', ar: 'توكسين البوتولينوم' },
         items: [
           { zh: '额头 · 眉间 · 眼周等表情纹', ko: '이마 · 미간 · 눈가 등 표정주름', en: "Forehead · glabella · crow's feet (expression wrinkles)", ar: 'الجبهة · بين الحاجبين · محيط العينين (تجاعيد تعبيرية)' },
           { zh: '方下颌 · 下颌线条', ko: '사각턱 · 턱라인', en: 'Masseter (jaw) · jawline', ar: 'الفك (تصغير عضلة المضغ) · خط الفك' },
@@ -436,7 +443,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     ],
     productGroups: [
       {
-        label: { zh: '代表性肉毒杆菌毒素品牌', ko: '대표 보툴리눔 톡신 브랜드', en: 'Leading Botulinum Toxin Brands', ar: 'أبرز العلامات التجارية لتوكسين البوتولينوم' },
+        label: { zh: '代表性肉毒杆菌毒素品牌', ko: '대표 보톡스 브랜드', en: 'Leading Botulinum Toxin Brands', ar: 'أبرز العلامات التجارية لتوكسين البوتولينوم' },
         items: [
           { zh: 'BOTOX® — 艾尔建美学 / 艾伯维（美国）【保妥适】', ko: 'BOTOX® — Allergan Aesthetics / AbbVie (미국)', en: 'BOTOX® — Allergan Aesthetics / AbbVie (USA)', ar: 'BOTOX® — Allergan Aesthetics / AbbVie (الولايات المتحدة)' },
           { zh: 'XEOMIN® — 麦氏（德国）【吉适】', ko: 'XEOMIN® — Merz (독일)', en: 'XEOMIN® — Merz (Germany)', ar: 'XEOMIN® — Merz (ألمانيا)' },
@@ -456,6 +463,18 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         ],
       },
     ],
+    explainerTitle: {
+      zh: '什么是瘦脸针？',
+      ko: '',
+      en: '',
+      ar: '',
+    },
+    explainerBody: {
+      zh: '通过向发达的咬肌注射肉毒素，使肌肉逐渐放松、缩小，从而改善下颌轮廓，让脸部线条更加流畅自然。注射位置、剂量和医生的技术都会影响最终效果。\n\n在韩国，"轮廓针""雕刻针"也是常见说法，主要用于改善脸颊、双下巴等部位的局部脂肪，塑造更清晰立体的面部轮廓。不同医院使用的成分、配比和注射手法可能有所不同，每家医院往往都有各自的独家配方与操作方式。',
+      ko: '',
+      en: '',
+      ar: '',
+    },
     docKeys: ['botoxGuide', 'fillerGuide', 'fillerBotoxGuide'],
   },
   {
@@ -516,7 +535,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         label: { zh: '凹陷性痤疮疤痕', ko: '패인 여드름 흉터', en: 'Pitted Acne Scars', ar: 'ندبات حب الشباب الغائرة' },
         items: [
           { zh: '自体真皮再生', ko: '자가진피재생', en: 'Autologous dermal regeneration', ar: 'تجديد الأدمة الذاتي' },
-          { zh: '皮下分离术（Subcision）', ko: '서브시전', en: 'Subcision', ar: 'الفصل تحت الجلد (Subcision)' },
+          { zh: '瘢痕粘连松解术（Subcision）', ko: '흉터 유착 박리술(서브시전)', en: 'Subcision', ar: 'الفصل تحت الجلد (Subcision)' },
           { zh: '射频微针', ko: 'RF 마이크로니들', en: 'RF microneedling', ar: 'الإبر الدقيقة بالترددات الراديوية (RF)' },
           { zh: '点阵CO₂激光', ko: '프락셔널 CO₂ 레이저', en: 'Fractional CO2 laser', ar: 'ليزر CO2 الجزئي' },
           { zh: '非剥脱点阵激光', ko: '비박피 프락셔널 레이저', en: 'Non-ablative fractional laser', ar: 'الليزر الجزئي غير التقشيري' },
@@ -603,6 +622,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
           { zh: '射频紧致治疗', ko: 'RF 탄력 치료', en: 'RF firming treatment', ar: 'علاج الشد بالترددات الراديوية (RF)' },
           { zh: '微波身体紧致提拉', ko: '마이크로웨이브 바디 리프팅', en: 'Microwave body lifting', ar: 'شد الجسم بالموجات الدقيقة' },
           { zh: '皮肤紧致提拉', ko: '피부 타이트닝', en: 'Skin tightening', ar: 'شد الجلد' },
+          { zh: '橘皮组织改善', ko: '셀룰라이트 개선', en: 'Cellulite improvement', ar: 'تحسين السيلوليت' },
         ],
       },
       {
@@ -615,10 +635,9 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       {
         label: { zh: '妊娠纹', ko: '튼살', en: 'Stretch Marks', ar: 'علامات التمدد' },
         items: [
-          { zh: '腹部 · 大腿', ko: '복부 · 허벅지', en: 'Abdomen · thighs', ar: 'البطن · الفخذين' },
+          { zh: '腹部 · 大腿 · 臀部', ko: '복부 · 허벅지 · 엉덩이', en: 'Abdomen · thighs · buttocks', ar: 'البطن · الفخذين · الأرداف' },
           { zh: '点阵激光', ko: '프락셔널 레이저', en: 'Fractional laser', ar: 'الليزر الجزئي (Fractional Laser)' },
           { zh: '射频微针', ko: 'RF 마이크로니들', en: 'RF microneedling', ar: 'الإبر الدقيقة بالترددات الراديوية (RF)' },
-          { zh: '皮秒点阵', ko: '피코 프락셔널', en: 'Picosecond fractional', ar: 'الليزر الجزئي بالبيكوثانية' },
         ],
       },
     ],
