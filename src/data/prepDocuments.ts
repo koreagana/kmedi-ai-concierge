@@ -122,6 +122,16 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     description: '메이투안·따중디엔핑 의료미용 사업 소개 자료',
   },
   {
+    titleKo: '메이투안·따중디엔핑 입점 보충자료 요청서',
+    titleZh: '美团·大众点评 入驻补充资料请求表',
+    type: 'common_checklist',
+    category: 'admin_contract',
+    field: '美团 폴더',
+    link: '/meituan-form',
+    status: 'available',
+    description: '메이투안·따중디엔핑 입점 페이지 제작을 위한 병원 자료 요청 안내',
+  },
+  {
     titleKo: '예약확인증 생성기',
     titleZh: '预约确认书生成器',
     type: 'reservation',
