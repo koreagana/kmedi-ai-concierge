@@ -222,35 +222,4 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     ],
     docKeys: ['functionalIntake'],
   },
-  {
-    id: 'anti-aging-regenerative-consultation',
-    image: '/keyword-tiles/anti-aging-regenerative-consultation.jpg',
-    title: {
-      zh: '抗衰老再生咨询',
-      ko: '항노화 재생상담',
-      en: 'Anti-Aging Regenerative Consultation',
-      ar: 'استشارة التجديد لمكافحة الشيخوخة',
-    },
-    description: {
-      zh: '抗衰老相关再生医学咨询，主要是整理客户的身体状态、慢性疲劳、炎症状态、营养状态、皮肤状态和既往检查资料，了解可以向正规医疗机构咨询的方向。\n\n抗衰老并不等于一定需要细胞治疗。是否需要检查、营养管理、功能医学评估或其他医疗咨询，需要由医院根据客户情况判断。',
-      ko: '항노화 관련 재생의학 상담은 고객의 몸 상태, 만성피로, 염증 상태, 영양 상태, 피부 상태, 기존 검사자료를 정리해 정규 의료기관에 문의할 수 있는 방향을 확인하는 과정입니다.\n\n항노화가 반드시 세포치료를 의미하는 것은 아닙니다. 검사, 영양관리, 기능의학 평가 또는 다른 의료상담이 필요한지는 병원이 고객 상태에 따라 판단해야 합니다.',
-      en: 'Anti-aging related regenerative medicine consultation mainly organizes your physical condition, chronic fatigue, inflammation status, nutritional status, skin condition, and prior test records, to identify directions that can be consulted with a licensed medical institution.\n\nAnti-aging does not necessarily mean cell therapy is required. Whether tests, nutritional management, functional medicine evaluation, or other medical consultations are needed must be determined by the hospital based on your condition.',
-      ar: 'تُركّز استشارة الطب التجديدي المتعلقة بمكافحة الشيخوخة على تنظيم حالتك الجسدية والتعب المزمن وحالة الالتهاب والحالة الغذائية وحالة البشرة وسجلات الفحوصات السابقة، لتحديد الاتجاهات التي يمكن استشارتها مع مؤسسة طبية مرخصة.\n\nمكافحة الشيخوخة لا تعني بالضرورة الحاجة إلى العلاج الخلوي. يجب أن يحدد المستشفى ما إذا كانت هناك حاجة إلى فحوصات أو إدارة غذائية أو تقييم بالطب الوظيفي أو استشارات طبية أخرى بناءً على حالتك.',
-    },
-    listLabel: {
-      zh: '咨询方向',
-      ko: '상담 방향',
-      en: 'Consultation Directions',
-      ar: 'اتجاهات الاستشارة',
-    },
-    list: [
-      { zh: '慢性疲劳和恢复力下降', ko: '만성피로와 회복력 저하', en: 'Chronic fatigue and reduced recovery capacity', ar: 'التعب المزمن وانخفاض القدرة على التعافي' },
-      { zh: '炎症和营养状态', ko: '염증과 영양 상태', en: 'Inflammation and nutritional status', ar: 'الالتهاب والحالة الغذائية' },
-      { zh: '功能医学检查', ko: '기능의학 검사', en: 'Functional medicine testing', ar: 'فحوصات الطب الوظيفي' },
-      { zh: '抗氧化和营养管理', ko: '항산화 및 영양관리', en: 'Antioxidant and nutritional management', ar: 'إدارة مضادات الأكسدة والتغذية' },
-      { zh: '再生医学相关咨询范围', ko: '재생의학 관련 상담 범위', en: 'Scope of regenerative medicine consultation', ar: 'نطاق استشارة الطب التجديدي' },
-      { zh: '医院可提供的合法咨询路径', ko: '병원에서 제공 가능한 합법 상담 경로', en: 'Legally consultable pathways available at the hospital', ar: 'المسارات القانونية للاستشارة المتاحة في المستشفى' },
-    ],
-    docKeys: ['functionalIntake'],
-  },
 ]
