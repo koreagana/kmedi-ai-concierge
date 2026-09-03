@@ -6,8 +6,10 @@ import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
 import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR, getWhatsappUrl } from '../data/contacts'
 import { NETWORK_CITIES } from '../data/networkCities'
+import { getHeroTreatmentByChip, type HeroTreatmentInfo } from '../data/heroTreatments'
 import HalalMapButton from './HalalMapButton'
 import TtsButton from './TtsButton'
+import HeroTreatmentSheet from './HeroTreatmentSheet'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
 
@@ -253,19 +255,8 @@ export function HeroSection() {
 
           {/* 예상 견적 진입 버튼 - 가격표가 중국어 기준으로 준비되어 zh/ko만 노출 */}
           {(lang === 'zh' || lang === 'ko') && (
-            <button className="btn-quote" onClick={goToQuote}>
-              <span className="btn-quote-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="3"/>
-                  <path d="M7 9h10M7 13h5"/>
-                  <circle cx="16.5" cy="15.5" r="2.5"/>
-                  <path d="M16.5 14.3v2.4M15.4 15.5h2.4"/>
-                </svg>
-              </span>
-              <span className="btn-quote-text">
-                <span className="btn-quote-title">{t.quoteBtnTitle}</span>
-                <span className="btn-quote-sub">{t.quoteBtnSub}</span>
-              </span>
+            <button className="btn-quote" onClick={() => goToQuote()}>
+              <span className="btn-quote-title">{t.quoteBtnTitle}</span>
             </button>
           )}
         </motion.div>
@@ -496,6 +487,7 @@ export function CategoryGridSection() {
   const hotScrollRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef({ dragging: false, startX: 0, startScrollLeft: 0, moved: false })
   const [isDragging, setIsDragging] = useState(false)
+  const [activeSheet, setActiveSheet] = useState<HeroTreatmentInfo | null>(null)
 
   // 마우스(비터치) 사용자를 위한 드래그 스크롤 — 터치는 브라우저 기본 스와이프로 이미 동작함.
   useEffect(() => {
@@ -559,11 +551,24 @@ export function CategoryGridSection() {
           ref={hotScrollRef}
           className={`hero-hot-scroll${isDragging ? ' hero-hot-scroll--dragging' : ''}`}
         >
-          {t.heroTreatmentChips.map((chip) => (
-            <span key={chip} className="hero-hot-chip">{chip}</span>
-          ))}
+          {t.heroTreatmentChips.map((chip) => {
+            const info = lang === 'zh' ? getHeroTreatmentByChip(chip) : undefined
+            if (!info) return <span key={chip} className="hero-hot-chip">{chip}</span>
+            return (
+              <button
+                key={chip}
+                type="button"
+                className="hero-hot-chip hero-hot-chip--clickable"
+                onClick={() => { if (!dragRef.current.moved) setActiveSheet(info) }}
+              >
+                {chip}
+              </button>
+            )
+          })}
         </div>
       </motion.div>
+
+      <HeroTreatmentSheet info={activeSheet} onClose={() => setActiveSheet(null)} />
 
       <motion.div {...fadeUp}>
         <p className="section-title">{t.categoryTitle}</p>

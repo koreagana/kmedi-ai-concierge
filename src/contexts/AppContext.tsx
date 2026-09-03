@@ -25,10 +25,12 @@ interface AppState {
   setConcernId: (id: string | null) => void
   consultCard: ConsultCard | null
   setConsultCard: (c: ConsultCard | null) => void
+  /** goToQuote()로 전달된 카테고리 힌트 — QuotePage가 초기 활성 탭으로 사용 */
+  quoteCategoryHint: string | null
   // helpers
   goToCategory: (id: CategoryId, concernId?: string | null) => void
   goToPackage: () => void
-  goToQuote: () => void
+  goToQuote: (categoryId?: string) => void
   goHome: () => void
 }
 
@@ -43,6 +45,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
   const [categoryId, setCategoryId] = useState<CategoryId | null>(null)
   const [concernId, setConcernId] = useState<string | null>(null)
   const [consultCard, setConsultCard] = useState<ConsultCard | null>(null)
+  const [quoteCategoryHint, setQuoteCategoryHint] = useState<string | null>(null)
 
   // URL 파라미터로 초기 상태 복원 (링크 공유, 뒤로가기 지원)
   useEffect(() => {
@@ -58,6 +61,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       setPage('package')
     } else if (pageParam === 'quote') {
       setPage('quote')
+      setQuoteCategoryHint(searchParams.get('qcat'))
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -78,9 +82,10 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const goToQuote = () => {
+  const goToQuote = (categoryId?: string) => {
     setPage('quote')
-    navigate({ search: '?page=quote' })
+    setQuoteCategoryHint(categoryId ?? null)
+    navigate({ search: categoryId ? `?page=quote&qcat=${categoryId}` : '?page=quote' })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -99,6 +104,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       categoryId, setCategoryId,
       concernId, setConcernId,
       consultCard, setConsultCard,
+      quoteCategoryHint,
       goToCategory, goToPackage, goToQuote, goHome,
     }}>
       {children}

@@ -16,7 +16,6 @@ interface Translations {
   heroTreatmentChips: string[]
   heroCtaLabel: string
   quoteBtnTitle: string
-  quoteBtnSub: string
   // concierge section
   conciergeTitle: string
   concierge1Name: string
@@ -121,10 +120,9 @@ export const translations: Record<LangCode, Translations> = {
     heroTrustTitle: '放心咨询',
     heroTrustLines: '合法注册的国际医疗旅游服务机构\n合作医院实行韩外统一价格标准\n不额外收取服务费或咨询费',
     heroHotLabel: '人气项目',
-    heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸', '钛提升'],
+    heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸', '钛提升', '黄金微针', '乔雅露', '索夫波'],
     heroCtaLabel: '韩国医疗项目',
     quoteBtnTitle: '热门轻医美项目费用预估',
-    quoteBtnSub: '一键查看热门项目价格区间',
     conciergeTitle: '请选择您的 AI 医疗顾问',
     concierge1Name: '李静',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -217,7 +215,6 @@ export const translations: Record<LangCode, Translations> = {
     heroTreatmentChips: ['리쥬란', '울쎄라', '온다', '물광주사', '써마지', '브이라인', '티타늄리프팅'],
     heroCtaLabel: '한국 의료 서비스',
     quoteBtnTitle: '인기 시술 예상 비용',
-    quoteBtnSub: '한눈에 보는 인기 시술 가격대',
     conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
     concierge1Name: '이정',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -310,7 +307,6 @@ export const translations: Record<LangCode, Translations> = {
     heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting'],
     heroCtaLabel: 'Korean Medical Services',
     quoteBtnTitle: 'Popular Treatment Price Estimate',
-    quoteBtnSub: 'See price ranges for top treatments',
     conciergeTitle: 'Meet Your AI Medical Concierge',
     concierge1Name: 'Lee Jing',
     concierge1Title: "Beauty & Women's Care Concierge",
@@ -403,7 +399,6 @@ export const translations: Record<LangCode, Translations> = {
     heroTreatmentChips: ['ريجوران', 'أولثيرا', 'أوندا', 'حقن الترطيب المائي', 'ثيرماج', 'تحديد خط V', 'رفع التيتانيوم'],
     heroCtaLabel: 'الخدمات الطبية الكورية',
     quoteBtnTitle: 'تقدير أسعار العلاجات الأكثر طلباً',
-    quoteBtnSub: 'اطّلع على نطاقات أسعار العلاجات الرائجة',
     conciergeTitle: 'اختر كونسيرجك الطبي AI',
     concierge1Name: 'لي جينغ',
     concierge1Title: 'كونسيرج التجميل والعناية بالمرأة',

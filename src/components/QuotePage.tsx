@@ -96,12 +96,13 @@ function formatPrice(low: number, high: number, unit: string) {
 interface Selection { categoryId: string; procedureId: string; optionIndex: number }
 
 export default function QuotePage() {
-  const { lang, goHome } = useApp()
+  const { lang, goHome, quoteCategoryHint } = useApp()
   const quoteLang: QuoteLang = lang === 'ko' ? 'ko' : 'zh'
   const c = COPY[quoteLang]
+  const initialCategory = QUOTE_CATEGORIES.find(cat => cat.id === quoteCategoryHint)?.id ?? QUOTE_CATEGORIES[0].id
 
   const [view, setView] = useState<'select' | 'result'>('select')
-  const [activeCategory, setActiveCategory] = useState(QUOTE_CATEGORIES[0].id)
+  const [activeCategory, setActiveCategory] = useState(initialCategory)
   const [selected, setSelected] = useState<Record<string, Selection>>({})
   const [showLimitMsg, setShowLimitMsg] = useState(false)
 
