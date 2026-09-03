@@ -61,6 +61,7 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
                     <div className="hts-field">
                       <span className="hts-field-label">参考价格</span>
                       <p className="hts-field-value">{info.referencePrice}</p>
+                      <p className="hts-device-note">各医院每月促销方案不同，实际费用会有所差异</p>
                     </div>
                   )}
                   <div className="hts-field">
