@@ -89,9 +89,26 @@ function categorySectionId(categoryId: PrepCategoryId): string {
   return `prep-category-${categoryId}`
 }
 
+// Consecutive documents that share the same `field` collapse into one visual
+// "folder" block (e.g. the 美团 documents inside 사무·계약·예약). A field with
+// only one document renders as a plain card, unchanged from before.
+function groupByField(docs: PrepDocument[]): { field: string; docs: PrepDocument[] }[] {
+  const groups: { field: string; docs: PrepDocument[] }[] = []
+  for (const doc of docs) {
+    const last = groups[groups.length - 1]
+    if (last && last.field === doc.field) {
+      last.docs.push(doc)
+    } else {
+      groups.push({ field: doc.field, docs: [doc] })
+    }
+  }
+  return groups
+}
+
 function CategorySection({ categoryId }: { categoryId: PrepCategoryId }) {
   const category = PREP_CATEGORIES.find((c) => c.id === categoryId)!
   const docs = docsByCategory(categoryId)
+  const groups = groupByField(docs)
 
   return (
     <section className="admin-prep-category" id={categorySectionId(categoryId)}>
@@ -106,9 +123,22 @@ function CategorySection({ categoryId }: { categoryId: PrepCategoryId }) {
 
       {docs.length > 0 ? (
         <div className="admin-prep-list">
-          {docs.map((doc) => (
-            <PrepDocCard key={doc.link} doc={doc} />
-          ))}
+          {groups.map((group, gi) =>
+            group.docs.length > 1 ? (
+              <div className="admin-prep-folder" key={`${group.field}-${gi}`}>
+                <p className="admin-prep-folder-header">
+                  📁 {group.field} <span className="admin-prep-folder-count">{group.docs.length}개</span>
+                </p>
+                <div className="admin-prep-folder-list">
+                  {group.docs.map((doc) => (
+                    <PrepDocCard key={doc.link} doc={doc} />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <PrepDocCard key={group.docs[0].link} doc={group.docs[0]} />
+            )
+          )}
         </div>
       ) : (
         <p className="admin-prep-empty">아직 등록된 문서가 없습니다. 준비 중인 분야입니다.</p>

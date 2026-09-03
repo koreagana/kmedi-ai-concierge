@@ -1,5 +1,5 @@
 import { WECHAT_BIZ_URL } from './contacts'
-import type { LocalizedText, BigHealthBullet } from './bigHealthKeywords'
+import type { LocalizedText, BigHealthBullet, BigHealthApprovedProductsBlock } from './bigHealthKeywords'
 
 export interface PlasticSurgeryDocButton {
   label: LocalizedText
@@ -207,6 +207,11 @@ export interface PlasticSurgeryKeyword {
   /** Only used by facial-contour/two-jaw — a checklist of what to confirm, not a claim of guaranteed safety. */
   safetyChecklistLabel?: LocalizedText
   safetyChecklist?: BigHealthBullet[]
+  /** Optional "trending devices/implants" block, rendered with the pink chip-card accent (mirrors SkinAestheticsKeyword). */
+  popularDevices?: BigHealthApprovedProductsBlock
+  /** Optional supplementary explainer shown after popularDevices — a short title + paragraph. */
+  explainerTitle?: LocalizedText
+  explainerBody?: LocalizedText
   note: LocalizedText
   docKeys: PlasticSurgeryDocButtonKey[]
 }
@@ -269,20 +274,26 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       en: 'Eye surgery consultation may include double eyelid surgery, ptosis correction, epicanthoplasty or lateral canthoplasty, under-eye fat repositioning, upper eyelid drooping, and revision eye surgery. Because small changes around the eyes can affect the overall impression, previous surgery history, eyelid muscle strength, skin thickness, and scar condition should be organized before consultation.',
       ar: 'تشمل استشارة تجميل العيون عادةً عملية الجفن المزدوج، وتصحيح الجفن، وتوسيع زاوية العين، وإعادة توزيع دهون تحت العين، وترهل الجفن العلوي، وجراحات التصحيح السابقة. ونظرًا لأن التغييرات الصغيرة حول العين قد تؤثر على ملامح الوجه بالكامل، من المهم تنظيم تاريخ العمليات السابقة، وقوة عضلات الجفن، وسماكة الجلد، وحالة الندبات قبل الاستشارة.',
     },
-    directionsLabel: DIRECTIONS_LABEL,
+    directionsLabel: {
+      zh: '可能相关咨询方向',
+      ko: '눈성형 수술 종류',
+      en: 'Possible Consultation Areas',
+      ar: 'مجالات الاستشارة المحتملة',
+    },
     directions: [
       { zh: '双眼皮手术', ko: '쌍꺼풀 수술', en: 'Double eyelid surgery', ar: 'عملية الجفن المزدوج' },
       { zh: '眼部矫正', ko: '눈매교정', en: 'Ptosis or eyelid correction', ar: 'تصحيح الجفن' },
       { zh: '开眼角', ko: '트임수술', en: 'Epicanthoplasty or lateral canthoplasty', ar: 'توسيع زاوية العين' },
       { zh: '眼袋脂肪重置', ko: '눈밑지방재배치', en: 'Under-eye fat repositioning', ar: 'إعادة توزيع دهون تحت العين' },
-      { zh: '上眼睑下垂咨询', ko: '윗눈꺼풀 처짐 상담', en: 'Upper eyelid drooping consultation', ar: 'استشارة ترهل الجفن العلوي' },
-      { zh: '眼部修复手术咨询', ko: '눈 재수술 상담', en: 'Revision eye surgery consultation', ar: 'استشارة جراحة تصحيح العيون' },
+      { zh: '上眼睑手术', ko: '상안검 수술', en: 'Upper eyelid surgery', ar: 'جراحة الجفن العلوي' },
+      { zh: '下眼睑手术', ko: '하안검 수술', en: 'Lower eyelid surgery', ar: 'جراحة الجفن السفلي' },
+      { zh: '眼部修复手术', ko: '눈 재수술', en: 'Revision eye surgery', ar: 'جراحة تصحيح العينين' },
     ],
     note: {
-      zh: '眼部手术即使是小范围手术，也可能影响整体印象。是否适合手术、是否需要矫正功能问题，需要医生面诊后判断。',
-      ko: '눈성형은 비교적 작은 범위의 수술이라도 전체 인상에 영향을 줄 수 있습니다. 수술 적합 여부와 기능적 교정 필요 여부는 의사 면담 후 판단해야 합니다.',
-      en: "Even small eye procedures can affect facial impression. Surgical suitability and the need for functional correction must be determined after a doctor's consultation.",
-      ar: 'حتى العمليات الصغيرة حول العين قد تؤثر على الانطباع العام للوجه. مدى مناسبة الجراحة والحاجة إلى تصحيح وظيفي يجب أن يحدده الطبيب بعد الفحص.',
+      zh: '',
+      ko: '',
+      en: '',
+      ar: '',
     },
     docKeys: ['photoGuide', 'doubleEyelidAfter', 'epicanthoplastyAfter', 'lowerEyelidFatAfter'],
   },
@@ -312,10 +323,10 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '功能性鼻部问题确认', ko: '기능적 코 문제 확인', en: 'Functional nasal issue assessment', ar: 'تقييم المشكلات الوظيفية في الأنف' },
     ],
     note: {
-      zh: '鼻部整形的手术方式、材料选择和恢复期会因个人鼻部结构和既往手术情况而不同。是否适合手术以及是否需要功能性评估，需要医院判断。',
-      ko: '코성형의 수술 방법, 재료 선택, 회복 기간은 개인 코 구조와 기존 수술 이력에 따라 달라질 수 있습니다. 수술 적합 여부와 기능적 평가 필요 여부는 병원 판단이 필요합니다.',
-      en: 'Surgical method, material choice, and recovery period vary depending on nasal structure and previous surgery history. Suitability and the need for functional assessment must be determined by the hospital.',
-      ar: 'طريقة الجراحة، واختيار المواد، وفترة التعافي تختلف حسب بنية الأنف وتاريخ العمليات السابقة. مدى مناسبة العملية والحاجة إلى تقييم وظيفي يجب أن يحدده المستشفى.',
+      zh: '',
+      ko: '',
+      en: '',
+      ar: '',
     },
     docKeys: ['photoGuide', 'rhinoplastyAfter'],
   },
@@ -344,10 +355,10 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '疤痕管理咨询', ko: '흉터관리 상담', en: 'Scar care consultation', ar: 'استشارة العناية بالندبات' },
     ],
     note: {
-      zh: '面部提升手术需要根据松弛程度、皮肤状态、切口范围、麻醉方式和恢复时间来判断。是否需要手术、适合哪种提升方式，需要医生面诊后决定。',
-      ko: '거상수술은 처짐 정도, 피부 상태, 절개 범위, 마취 방식, 회복 기간을 기준으로 판단해야 합니다. 수술 필요 여부와 적합한 리프팅 방식은 의사 면담 후 결정해야 합니다.',
-      en: 'Facelift surgery must be considered based on the degree of sagging, skin condition, incision range, anesthesia method, and recovery time. Whether surgery is needed and which lifting method is suitable must be determined after a doctor\'s consultation.',
-      ar: 'يجب تقييم جراحة شد الوجه بناءً على درجة الترهل، وحالة الجلد، ونطاق الشق، وطريقة التخدير، وفترة التعافي. الحاجة إلى الجراحة والطريقة المناسبة يجب أن يحددها الطبيب بعد الفحص.',
+      zh: '',
+      ko: '',
+      en: '',
+      ar: '',
     },
     docKeys: ['facelistAfter', 'necklistAfter', 'scarCareGuide'],
   },
@@ -392,10 +403,10 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '回国前是否需要复诊确认', ko: '귀국 전 재내원 확인 필요 여부', en: 'Whether a follow-up check before returning home is needed', ar: 'الحاجة إلى مراجعة قبل العودة إلى البلد' },
     ],
     note: {
-      zh: '面部轮廓和双颚手术不是简单的外观改善项目。是否适合手术、是否需要牙科或颌面评估、麻醉方式和恢复计划，都需要正规医疗机构和专业医生判断。',
-      ko: '안면윤곽과 양악수술은 단순한 외모 개선 시술이 아닙니다. 수술 적합 여부, 치과 또는 악안면 평가 필요 여부, 마취 방식, 회복 계획은 정규 의료기관과 전문의가 판단해야 합니다.',
-      en: 'Facial contouring and two-jaw surgery are not simple appearance-enhancing procedures. Suitability, the need for dental or maxillofacial evaluation, anesthesia method, and recovery planning must be determined by licensed medical institutions and qualified doctors.',
-      ar: 'تحديد الوجه وجراحة الفكين ليستا إجراءات بسيطة لتحسين المظهر فقط. مدى مناسبة العملية، والحاجة إلى تقييم الأسنان أو عظام الفك، وطريقة التخدير، وخطة التعافي يجب أن يحددها مستشفى مرخص وأطباء مختصون.',
+      zh: '',
+      ko: '',
+      en: '',
+      ar: '',
     },
     // TODO: once the admin prep-documents page publishes "麻醉前确认问诊表 / 마취 전 확인 문진표"
     // (currently status: 'draft' at /prep/anesthesia-check in prepDocuments.ts), add its key here.
@@ -457,7 +468,63 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '胸部不对称咨询', ko: '가슴 비대칭 상담', en: 'Breast asymmetry consultation', ar: 'استشارة عدم تناسق الثدي' },
       { zh: '假体更换咨询', ko: '보형물 교체 상담', en: 'Implant replacement consultation', ar: 'استشارة تغيير الزرعات' },
       { zh: '隆胸修复咨询', ko: '가슴 재수술 상담', en: 'Revision breast surgery consultation', ar: 'استشارة تصحيح جراحة الثدي' },
+      { zh: '乳头缩小咨询', ko: '유두 축소 상담', en: 'Nipple reduction consultation', ar: 'استشارة تصغير الحلمة' },
     ],
+    popularDevices: {
+      title: {
+        zh: '代表性假体 3 种',
+        ko: '가슴성형 대표 보형물 3종',
+        en: 'Top 3 Breast Implant Types',
+        ar: 'أبرز 3 أنواع لزرعات الثدي',
+      },
+      items: [
+        {
+          name: { zh: 'Motiva Ergonomix（魔滴）', ko: '모티바 Ergonomix', en: 'Motiva Ergonomix', ar: 'Motiva Ergonomix' },
+          desc: {
+            zh: '触感和动态效果比较自然。如果更强调上胸饱满度，可能需要考虑其他类型。',
+            ko: '자연스러운 촉감과 움직임이 특징. 풍성한 윗가슴 볼륨을 강하게 원하는 경우에는 다른 타입이 더 적합할 수 있습니다.',
+            en: 'Natural feel and movement. If you want a fuller, more prominent upper pole, another type may suit you better.',
+            ar: 'ملمس وحركة طبيعية. إذا كنتِ تفضلين امتلاءً أكبر في الجزء العلوي من الثدي، فقد يكون نوع آخر أنسب.',
+          },
+        },
+        {
+          name: { zh: 'MENTOR BOOST', ko: '멘토 BOOST', en: 'Mentor BOOST', ar: 'Mentor BOOST' },
+          desc: {
+            zh: '支撑力较强，上胸轮廓和饱满感更明显。如果更偏好非常柔软的触感，可能会觉得相对偏挺。',
+            ko: '탄탄한 형태 유지와 윗가슴 볼륨 표현에 강점. 매우 부드러운 촉감을 선호하는 경우에는 다소 탄탄하게 느껴질 수 있습니다.',
+            en: 'Strong shape retention with a fuller upper pole. If you prefer a very soft feel, it may seem somewhat firm.',
+            ar: 'يحافظ على شكله جيدًا مع امتلاء أوضح في الجزء العلوي. إذا كنتِ تفضلين ملمسًا ناعمًا جدًا، فقد يبدو أكثر صلابة نسبيًا.',
+          },
+        },
+        {
+          name: { zh: 'MENTOR MemoryGel Xtra', ko: '멘토 MemoryGel Xtra', en: 'Mentor MemoryGel Xtra', ar: 'Mentor MemoryGel Xtra' },
+          desc: {
+            zh: '在饱满度和形态维持之间比较均衡。更适合希望胸型更饱满、轮廓更明显的人群。',
+            ko: '볼륨감과 형태 유지의 균형이 좋은 보형물. 자연스럽게 흐르는 촉감보다는 볼륨 표현을 원하는 경우에 적합합니다.',
+            en: 'A good balance of volume and shape retention. Better suited to those who want more defined volume rather than a very soft, natural flow.',
+            ar: 'يوازن جيدًا بين الامتلاء والحفاظ على الشكل. مناسب لمن يفضلن امتلاءً أوضح بدلاً من ملمس طبيعي ناعم جدًا.',
+          },
+        },
+      ],
+      caution: {
+        zh: '假体选择需根据体型、皮肤厚度及期望的胸型和轮廓而定，具体是否适合需通过医生咨询确定。',
+        ko: '보형물 선택은 체형, 피부 두께, 원하는 볼륨과 라인에 따라 달라지며, 실제 적합 여부는 의사와의 상담을 통해 결정해야 합니다.',
+        en: 'Implant choice depends on body type, skin thickness, and the volume and shape you want — the right option should be confirmed through a doctor consultation.',
+        ar: 'يعتمد اختيار الزرعة على شكل الجسم وسماكة الجلد والامتلاء والخط المرغوب، ويجب تأكيد الخيار المناسب من خلال استشارة الطبيب.',
+      },
+    },
+    explainerTitle: {
+      zh: '乳头缩小咨询',
+      ko: '유두 축소 상담',
+      en: 'Nipple Reduction Consultation',
+      ar: 'استشارة تصغير الحلمة',
+    },
+    explainerBody: {
+      zh: '针对乳头过大、过长或突出明显的情况，调整乳头的大小和形态，使其与整体胸型更加协调。',
+      ko: '유두가 크거나 길거나 두드러지는 경우, 유두의 크기와 모양을 조정하여 전체적인 가슴 라인과 더 조화롭게 만드는 시술입니다.',
+      en: 'For nipples that are enlarged, elongated, or noticeably protruding, this procedure adjusts nipple size and shape for a look that is more in proportion with the overall breast line.',
+      ar: 'لحالات الحلمات الكبيرة أو الطويلة أو البارزة بشكل ملحوظ، يُعدَّل حجم الحلمة وشكلها لتتناسق أكثر مع خط الصدر العام.',
+    },
     note: {
       zh: '胸部整形需要确认假体种类、切口位置、麻醉方式、恢复期、内衣或胸带使用、按摩或长期追踪管理是否需要。具体方案需由医生判断。',
       ko: '가슴성형은 보형물 종류, 절개 위치, 마취 방식, 회복 기간, 보정브라 또는 흉대 사용, 마사지나 장기 추적 관리 필요 여부를 확인해야 합니다. 구체적인 수술 계획은 의사가 판단해야 합니다.',

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>메이투안 · 따중디엔핑 입점 보충자료 요청서 | 한강애봄</title>
+<link rel="icon" href="https://koreagana.github.io/K-medispring/images/favicon.ico">
+<meta name="description" content="메이투안·따중디엔핑 입점 페이지 제작을 위한 병원 자료 요청 안내">
+<style>
+  :root{
+    --bg:#FFFFFF; --ink:#2B2B2B; --title:#1A1A1A; --accent:#FF6600;
+    --sub:#C2410C; --line:#E8E8E8; --mute:#6B6B6B; --mute2:#8A8A8A;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Pretendard","Noto Sans KR","Malgun Gothic","맑은 고딕",
+                "Apple SD Gothic Neo","Noto Sans CJK KR",sans-serif;
+    font-size:16px; line-height:1.78; letter-spacing:-.1px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px; margin:0 auto; padding:56px 28px 90px;}
+
+  /* ── 병원명 입력 패널 (관리자용 · 인쇄 제외) ───────────── */
+  .builder{
+    border:1px solid var(--line); border-radius:4px; padding:18px 20px;
+    margin-bottom:44px; font-size:14px;
+  }
+  .builder.hide{display:none;}
+  .builder h2{
+    margin:0 0 4px; font-size:12px; font-weight:800; letter-spacing:1.6px;
+    color:var(--sub); text-transform:uppercase;
+  }
+  .builder p{margin:0 0 14px; font-size:13px; color:var(--mute);}
+  .builder .row{display:flex; flex-wrap:wrap; gap:8px;}
+  .builder .namefield{flex:1 1 260px; min-width:0; position:relative;}
+  .builder input{
+    width:100%; min-width:0; padding:10px 13px; font:inherit; font-size:14px;
+    color:var(--title); border:1px solid var(--line); border-radius:3px;
+    background:#fff; outline:none;
+  }
+  .builder input:focus{border-color:var(--accent);}
+  .name-dropdown{
+    display:none; position:absolute; left:0; right:0; top:100%; margin-top:4px;
+    max-height:240px; overflow-y:auto; background:#fff; border:1px solid var(--line);
+    border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,0.12); z-index:20;
+  }
+  .name-dropdown.open{display:block;}
+  .name-option{padding:10px 13px; font-size:14px; color:var(--title); cursor:pointer; border-bottom:1px solid var(--line);}
+  .name-option:last-child{border-bottom:none;}
+  .name-option:hover, .name-option.active{background:#FFF3EB;}
+  .name-empty{padding:12px; font-size:12.5px; color:var(--mute); text-align:center;}
+  .builder button{
+    padding:10px 18px; font:inherit; font-size:14px; font-weight:700;
+    border:1px solid var(--accent); border-radius:3px; cursor:pointer;
+    background:#fff; color:var(--accent);
+  }
+  .builder button.solid{background:var(--accent); color:#fff;}
+  .builder .out{
+    margin-top:12px; font-size:12.5px; color:var(--mute2); word-break:break-all;
+    line-height:1.6;
+  }
+  .builder .out b{color:var(--sub); font-weight:700;}
+  .editbtn{
+    position:fixed; right:16px; bottom:16px; z-index:9;
+    padding:9px 14px; font:inherit; font-size:13px; font-weight:700;
+    border:1px solid var(--line); border-radius:3px; background:#fff;
+    color:var(--mute2); cursor:pointer;
+  }
+  .editbtn.hide{display:none;}
+
+  /* ── 헤더 ─────────────────────────────────────────── */
+  .kicker{font-size:12px; font-weight:800; letter-spacing:2.6px;
+          color:var(--accent); margin-bottom:14px;}
+  h1{font-size:38px; line-height:1.32; font-weight:800; color:var(--title);
+     margin:0 0 10px; letter-spacing:-1.2px;}
+  h1 em{font-style:normal; color:var(--accent);}
+  .subtitle{font-size:15px; color:var(--mute); margin:0 0 34px;}
+
+  .meta{width:100%; border-collapse:collapse; margin:0 0 34px;
+        border-top:2px solid var(--title);}
+  .meta th,.meta td{padding:12px 0; font-size:14px; text-align:left;
+                    border-bottom:1px solid var(--line); vertical-align:top;}
+  .meta th{width:88px; font-weight:700; color:var(--mute2); letter-spacing:.5px;}
+
+  .lead{font-size:16px; margin:0 0 10px;}
+  .lead strong{font-weight:700; color:var(--title);}
+  .lead-sub{font-size:14px; color:var(--mute); margin:0 0 12px;}
+
+  /* ── 섹션 ─────────────────────────────────────────── */
+  section{margin-top:52px;}
+  .sec-head{display:flex; align-items:baseline; gap:12px;
+            border-bottom:1.5px solid var(--accent); padding-bottom:9px; margin-bottom:26px;}
+  .sec-mark{font-size:19px; font-weight:800; color:var(--accent);}
+  .sec-title{font-size:21px; font-weight:800; color:var(--title); letter-spacing:-.5px;}
+  .sec-tag{margin-left:auto; font-size:11px; font-weight:700; letter-spacing:1.6px;
+           color:var(--sub); white-space:nowrap;}
+  .sec-tag.opt{color:#9A9A9A;}
+  .sec-note{margin:-12px 0 22px; font-size:14px; color:var(--mute);}
+  .sec-note strong{color:var(--ink);}
+
+  .item{margin-bottom:30px;}
+  .item:last-child{margin-bottom:0;}
+  .item-head{display:flex; align-items:baseline; gap:11px; flex-wrap:wrap; margin-bottom:7px;}
+  .item-no{font-size:13px; font-weight:700; color:var(--sub); min-width:34px;}
+  .item-title{font-size:17px; font-weight:700; color:var(--title); letter-spacing:-.3px;}
+  .item-qty{font-size:12.5px; font-weight:600; color:var(--mute2);}
+  .item-body{margin-left:45px;}
+  .item-body p{margin:0 0 8px;}
+
+  .spec{border:1px solid var(--line); border-radius:3px; padding:14px 18px;
+        margin:12px 0; font-size:14.5px;}
+  .spec .r{display:flex; gap:16px; padding:4px 0;}
+  .spec .r + .r{border-top:1px solid var(--line); margin-top:4px; padding-top:8px;}
+  .spec .k{flex:0 0 92px; font-weight:700; color:var(--sub);}
+  .spec .v{flex:1;}
+
+  ul.plain{margin:8px 0; padding-left:18px;}
+  ul.plain li{margin-bottom:4px;}
+  ul.plain li::marker{color:var(--accent);}
+
+  .note{font-size:13.5px; color:var(--mute); border-left:2px solid var(--line);
+        padding:2px 0 2px 14px; margin:10px 0 0;}
+  .note strong{color:var(--sub); font-weight:700;}
+  .hl{color:var(--accent); font-weight:700;}
+
+  /* ── 마무리 ────────────────────────────────────────── */
+  .closing{border-top:2px solid var(--title); padding-top:26px; margin-top:64px;}
+  .closing p{margin:0 0 10px; font-size:16px;}
+  .sign{margin-top:34px; padding-top:18px; border-top:1px solid var(--line);
+        display:flex; justify-content:space-between; align-items:flex-end; gap:16px;}
+  .sign .brand{font-size:20px; font-weight:800; color:var(--title); letter-spacing:-.5px;}
+  .sign .role{font-size:12.5px; color:var(--mute2); margin-top:4px; letter-spacing:.6px;}
+  .sign .mt{font-size:16px; font-weight:800; color:var(--accent); letter-spacing:.4px;}
+
+  .toolbar{margin-top:40px; display:flex; gap:8px;}
+  .toolbar button{
+    padding:11px 20px; font:inherit; font-size:14px; font-weight:700;
+    border:1px solid var(--line); border-radius:3px; background:#fff;
+    color:var(--mute); cursor:pointer;
+  }
+  .toolbar button:hover{border-color:var(--accent); color:var(--accent);}
+
+  @media (max-width:600px){
+    .wrap{padding:36px 20px 70px;}
+    h1{font-size:27px; letter-spacing:-.8px;}
+    .sec-title{font-size:18px;}
+    .item-body{margin-left:0;}
+    .item-no{min-width:auto;}
+    .spec .r{flex-direction:column; gap:2px;}
+    .spec .k{flex:none;}
+    .sign{flex-direction:column; align-items:flex-start;}
+  }
+
+  @media print{
+    @page{size:A4; margin:15mm 13mm;}
+    body{font-size:10.5pt; line-height:1.7;}
+    .wrap{max-width:none; padding:0;}
+    .builder,.editbtn,.toolbar{display:none !important;}
+    h1{font-size:22pt;} .sec-title{font-size:14pt;} .item-title{font-size:11.5pt;}
+    section{margin-top:26px; page-break-inside:avoid;}
+    .sec-head{page-break-after:avoid;}
+    .item{page-break-inside:avoid;}
+    .closing{margin-top:30px; page-break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 병원명 입력 패널 : 발송 링크 만들 때만 사용, 인쇄·병원 열람 시 자동 숨김 -->
+  <div class="builder" id="builder">
+    <h2>병원명 입력</h2>
+    <p>병원명을 넣으면 문서 전체에 자동 반영됩니다. 링크를 복사해 병원에 보내세요.</p>
+    <div class="row">
+      <div class="namefield">
+        <input id="nameInput" type="text" placeholder="예: ○○성형외과 & 피부과 / ○○의원 명동점 — 탭하면 저장된 병원 목록이 열립니다" autocomplete="off">
+        <div id="nameDropdown" class="name-dropdown"></div>
+      </div>
+      <button class="solid" id="applyBtn">적용</button>
+      <button id="copyBtn">링크 복사</button>
+    </div>
+    <div class="out" id="linkOut"></div>
+  </div>
+
+  <div class="kicker">MEITUAN · DIANPING KOREA</div>
+  <h1>메이투안 · 따중디엔핑<br><em>입점 보충자료</em> 요청서</h1>
+  <p class="subtitle"><span class="hosp">○○○</span> 전용 페이지 제작 자료</p>
+
+  <table class="meta">
+    <tr><th>수 신</th><td><span class="hosp">○○○</span> 담당자님</td></tr>
+    <tr><th>발 신</th><td>한강애봄 이가나</td></tr>
+    <tr><th>제 목</th><td>메이투안(美团) · 따중디엔핑 입점 페이지 제작을 위한 자료 요청</td></tr>
+  </table>
+
+  <p class="lead">
+    안녕하십니까. 한강애봄입니다.<br>
+    <strong class="hosp">○○○</strong>의 메이투안 · 따중디엔핑 입점 페이지 제작을 위해
+    아래 자료를 요청드립니다. 보내주신 자료는 저희가 메이투안 규격에 맞게 정리하여
+    중국어 번역과 업로드까지 진행해 드립니다.
+  </p>
+  <p class="lead-sub">가능하신 항목부터 순차적으로 보내주셔도 괜찮습니다.</p>
+
+  <!-- A -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-mark">A</span>
+      <span class="sec-title">병원 · 의료진 소개 자료</span>
+      <span class="sec-tag">필수</span>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">A-1</span>
+        <span class="item-title">병원 상세 소개글</span>
+        <span class="item-qty">200~500자</span></div>
+      <div class="item-body">
+        <p>병원의 역사 · 규모 · 진료 철학 · 특화 분야가 한 번에 전달되는 소개글이 필요합니다.
+           <span class="hl">"왜 이 병원인가"</span>가 느껴지도록 작성 부탁드립니다.</p>
+        <p>다른 병원과 구별되는 진료 시스템이나 대표 시술이 있다면
+           그 부분을 가장 앞에 배치해 주시면 좋겠습니다.</p>
+        <p class="note"><strong>※</strong> 한글 원문만 주셔도 됩니다. 중국어 번역은 저희가 진행합니다.
+           병원에 공식 중문 소개본이 있으시면 함께 주시면 가장 좋습니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">A-2</span>
+        <span class="item-title">의료진 개별 프로필</span>
+        <span class="item-qty">의사별 각 1부</span></div>
+      <div class="item-body">
+        <p>중국 소비자가 병원 선택 시 가장 먼저 확인하는 항목입니다.
+           대표원장님 프로필은 페이지 최상단에 단독 배치됩니다.</p>
+        <div class="spec">
+          <div class="r"><div class="k">포함 항목</div>
+            <div class="v">성명 / 직급 / 학력 / 주요 경력 / 전공 분야 / 보유 자격증 / 시술 가능 항목</div></div>
+        </div>
+        <p class="note"><strong>※</strong> 진료과가 나뉘어 있는 경우 소속 과목을 함께 표기해 주시면
+           진료 체계를 그대로 페이지에 반영하겠습니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">A-3</span>
+        <span class="item-title">시술 · 서비스 메뉴 리스트</span></div>
+      <div class="item-body">
+        <p>병원에서 제공하는 전 항목을 카테고리별로 정리해 주시면 됩니다.</p>
+        <div class="spec">
+          <div class="r"><div class="k">포함 항목</div>
+            <div class="v">시술명 / 설명 / 소요 시간 / 권장 횟수 / 주의사항 / 가격</div></div>
+        </div>
+        <p class="note"><strong>※</strong> 가격 정보는 메이투안 상품 등록에 직접 사용됩니다.
+           시그니처 시술은 별도로 표시해 주시면 상단 노출 상품으로 구성하겠습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-mark">B</span>
+      <span class="sec-title">사진 자료</span>
+      <span class="sec-tag">필수</span>
+    </div>
+    <p class="sec-note">압축 없이 <strong>원본 고화질</strong>로 부탁드립니다.</p>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">B-1</span>
+        <span class="item-title">의료진 사진</span></div>
+      <div class="item-body">
+        <p>흰 가운 착용 개인 사진 / 상담 장면 / 진료진 단체 사진</p>
+        <p class="note"><strong>※</strong> 병원 내부에서 촬영된 사진이면 더욱 좋습니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">B-2</span>
+        <span class="item-title">병원 환경 사진</span>
+        <span class="item-qty">10장 이상</span></div>
+      <div class="item-body">
+        <div class="spec">
+          <div class="r"><div class="k">외 관</div>
+            <div class="v">건물 전면, 간판이 잘 보이는 각도 (주간 · 야간 각 1장)</div></div>
+          <div class="r"><div class="k">내 부</div>
+            <div class="v">로비, 접수처, 상담실, 시술실, 대기실, 복도</div></div>
+          <div class="r"><div class="k">장 비</div>
+            <div class="v">보유 장비가 놓인 시술실 전경 (장비명이 보이는 각도)</div></div>
+        </div>
+        <p class="note"><strong>※</strong> 건물 입구에서 병원까지 찾아오는 동선 사진(엘리베이터 · 층 안내판 등)을
+           함께 주시면 중국 고객의 방문 이탈을 크게 줄일 수 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">B-3</span>
+        <span class="item-title">시술 전 · 후 사진</span>
+        <span class="item-qty">환자 동의 확보분</span></div>
+      <div class="item-body">
+        <p>중국 소비자가 가장 민감하게 반응하는 콘텐츠입니다.
+           시술별로 대표 케이스를 1~2건씩 주시면 충분합니다.</p>
+        <p class="note"><strong>※</strong> 눈 가림 등 프라이버시 처리 가능합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-mark">C</span>
+      <span class="sec-title">신뢰도 자료</span>
+      <span class="sec-tag opt">보유 시</span>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">C-1</span>
+        <span class="item-title">정품 · 안전 인증 자료</span></div>
+      <div class="item-body">
+        <p>사용 의약품 및 시술 장비의 정품 인증 내역 / 관련 허가 · 인증 자료</p>
+        <p class="note"><strong>※</strong> 메이투안은 '정품 · 투명성'을 핵심 평가 항목으로 봅니다.
+           특히 리프팅 · 스킨부스터 · 필러 계열은 중국 내 모조품 이슈가 있어,
+           정품 인증 자료가 있으면 페이지 신뢰도가 크게 올라갑니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">C-2</span>
+        <span class="item-title">차별화 강점 자료</span></div>
+      <div class="item-body">
+        <ul class="plain">
+          <li>보유 장비 목록 및 도입 시기</li>
+          <li>특수 시설 · 진단 시스템</li>
+          <li>수상 내역 / 언론 · 방송 노출 / 협력 기관</li>
+          <li>병원 · 대표원장님 SNS · 유튜브 채널 운영 현황</li>
+        </ul>
+        <p class="note"><strong>※</strong> 이미 운영 중이신 영상 콘텐츠는 중국 플랫폼에서도
+           그대로 활용 가치가 높습니다. 타 병원과 구별되는 요소라면 어떤 것이든 좋습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- D -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-mark">D</span>
+      <span class="sec-title">운영 · 프로모션 협의</span>
+      <span class="sec-tag opt">협의</span>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">D-1</span>
+        <span class="item-title">메이투안 전용 프로모션 기획안</span></div>
+      <div class="item-body">
+        <p>신규 고객 유입용 체험단 할인, 첫 방문 특가, 패키지 상품 등</p>
+        <div class="spec">
+          <div class="r"><div class="k">예 시</div>
+            <div class="v">"스킨부스터 1회 체험 50% 할인" / "리프팅 + 보톡스 패키지"</div></div>
+        </div>
+        <p class="note"><strong>※</strong> 병원에서 가능한 범위로 자유롭게 제안 주시면 함께 다듬겠습니다.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="item-head"><span class="item-no">D-2</span>
+        <span class="item-title">운영 일정 및 정기 업데이트 방식</span></div>
+      <div class="item-body">
+        <p>의사별 진료 일정 / 휴진일 / 점심시간 / 야간진료 운영 / 신규 서비스 오픈 계획</p>
+        <p class="note"><strong>※</strong> 메이투안 페이지는 주 2~3회 업데이트되는 병원이
+           검색 상위에 노출됩니다. 앞으로 정보를 정기적으로 받을 수 있는 방법(주간 공유 등)을
+           함께 정하고 싶습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="closing">
+    <p>위 자료는 <strong class="hosp">○○○</strong>만의 차별화된
+       메이투안 · 따중디엔핑 페이지를 만드는 데 직접 사용됩니다.</p>
+    <p>문의사항 있으시면 언제든 편하게 연락 주십시오.</p>
+
+    <div class="sign">
+      <div>
+        <div class="brand">한강애봄</div>
+        <div class="role">메이투안 한국 협력 파트너</div>
+      </div>
+      <div class="mt">Meituan · Dianping</div>
+    </div>
+
+    <div class="toolbar">
+      <button onclick="window.print()">인쇄 · PDF 저장</button>
+    </div>
+  </div>
+</div>
+
+<button class="editbtn hide" id="editBtn">병원명 편집</button>
+
+<script>
+(function(){
+  var PLACEHOLDER = "○○○";
+  var builder  = document.getElementById('builder');
+  var editBtn  = document.getElementById('editBtn');
+  var input    = document.getElementById('nameInput');
+  var linkOut  = document.getElementById('linkOut');
+  var dropdown = document.getElementById('nameDropdown');
+  var baseTitle = "메이투안 · 따중디엔핑 입점 보충자료 요청서 | 한강애봄";
+
+  /* 저장된 파트너 병의원 목록(한국어명) — reservation-confirm/index.html의
+     HOSPITALS 배열과 동일한 목록에서 이름만 뽑아온 것. 새 병원이 생기면
+     두 파일 모두에 추가해야 함. */
+  var HOSPITAL_NAMES = ["녹십자의료재단", "분당서울대학교병원", "삼성서울병원", "서울대학교병원 강남센터", "연세대학교 세브란스병원", "부민병원 서울", "차병원 서울 (강남차병원)", "대구차여성병원", "가톨릭대학교 성심병원", "중앙대학교의료원 현대병원", "허쉬성형외과", "바노바기성형외과", "디에이 DA 성형외과", "에이비성형외과", "아이콘성형외과", "루비성형외과", "드립성형외과", "마인성형외과", "맹경룡성형외과", "바노바기피부과", "아름다운나라피부과", "블랑드비의원", "벤스의원 강남", "리베리의원 강남", "리베리의원 명동점", "바로그의원 강남", "살롱드닥터튜즈", "신소애의원", "리클리닉", "운선미원장", "유캔비성형외과", "제주와인피부과", "더미인 제주", "셀러블153강남의원", "더클리닉", "서래마을병원", "양성자치료", "리앤장성형외과피부과", "도자기의원", "심다치과의원", "JDH피부성형센터"];
+
+  function renderDropdown(filterText){
+    var q = (filterText || '').trim();
+    var matches = q ? HOSPITAL_NAMES.filter(function(n){ return n.indexOf(q) !== -1; }) : HOSPITAL_NAMES;
+    if (matches.length === 0) {
+      dropdown.innerHTML = '<div class="name-empty">일치하는 저장된 병원이 없습니다</div>';
+    } else {
+      dropdown.innerHTML = matches.map(function(n){ return '<div class="name-option">' + n + '</div>'; }).join('');
+    }
+    dropdown.classList.add('open');
+  }
+
+  dropdown.addEventListener('mousedown', function(e){
+    var opt = e.target.closest('.name-option');
+    if (!opt) return;
+    input.value = opt.textContent;
+    setName(input.value);
+    dropdown.classList.remove('open');
+    linkOut.innerHTML = '<b>발송 링크</b> &nbsp;' + buildLink(input.value);
+  });
+
+  input.addEventListener('focus', function(){ renderDropdown(input.value); });
+  document.addEventListener('click', function(e){
+    if (e.target !== input && !dropdown.contains(e.target)) dropdown.classList.remove('open');
+  });
+
+  function setName(name){
+    var v = (name && name.trim()) ? name.trim() : PLACEHOLDER;
+    var nodes = document.querySelectorAll('.hosp');
+    for (var i=0; i<nodes.length; i++) nodes[i].textContent = v;
+    document.title = (v === PLACEHOLDER) ? baseTitle : (v + " | " + baseTitle);
+  }
+
+  function buildLink(name){
+    var url = location.origin + location.pathname;
+    return url + "?h=" + encodeURIComponent(name.trim());
+  }
+
+  function getParam(){
+    try {
+      var m = location.search.match(/[?&]h=([^&]*)/);
+      return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : "";
+    } catch(e){ return ""; }
+  }
+
+  var initial = getParam();
+  if (initial) {
+    setName(initial);
+    builder.classList.add('hide');
+    editBtn.classList.remove('hide');
+    input.value = initial;
+  }
+
+  editBtn.addEventListener('click', function(){
+    builder.classList.remove('hide');
+    editBtn.classList.add('hide');
+    input.focus();
+  });
+
+  document.getElementById('applyBtn').addEventListener('click', function(){
+    setName(input.value);
+    if (input.value.trim()) {
+      linkOut.innerHTML = '<b>발송 링크</b> &nbsp;' + buildLink(input.value);
+    }
+  });
+
+  input.addEventListener('input', function(){ setName(input.value); renderDropdown(input.value); });
+  input.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') document.getElementById('applyBtn').click();
+    if (e.key === 'Escape') dropdown.classList.remove('open');
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    if (!input.value.trim()) { input.focus(); return; }
+    var link = buildLink(input.value);
+    var done = function(){ linkOut.innerHTML = '<b>복사 완료</b> &nbsp;' + link; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(link).then(done, function(){
+        linkOut.innerHTML = '<b>발송 링크</b> &nbsp;' + link;
+      });
+    } else {
+      var t = document.createElement('textarea');
+      t.value = link; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); done(); }
+      catch(e){ linkOut.innerHTML = '<b>발송 링크</b> &nbsp;' + link; }
+      document.body.removeChild(t);
+    }
+  });
+})();
+</script>
+</body>
+</html>
