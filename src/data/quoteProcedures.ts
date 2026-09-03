@@ -132,13 +132,13 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
     labelZh: '填充 · 除皱',
     procedures: [
       { id: 'filler-juvederm', nameKo: '필러 쥬비덤', nameZh: '乔雅登 Juvederm', options: [
-        { unit: '1cc', priceLow: 55, priceHigh: 99, note: '부위별 상이' },
+        { unit: '1cc', priceLow: 55, priceHigh: 99, note: '美国品牌，质地紧实，适合塑形（下巴、鼻部等）' },
       ] },
       { id: 'filler-belotero', nameKo: '필러 벨로테로', nameZh: '保柔缇 Belotero', options: [
-        { unit: '1cc', priceLow: 49.5, priceHigh: 88, note: '부위별 상이' },
+        { unit: '1cc', priceLow: 49.5, priceHigh: 88, note: '德国品牌，质地柔软，适合薄皮肤部位（眼下、唇纹等）' },
       ] },
       { id: 'filler-restylane', nameKo: '필러 레스틸렌', nameZh: '瑞蓝 Restylane', options: [
-        { unit: '1cc', priceLow: 46.2, priceHigh: 55 },
+        { unit: '1cc', priceLow: 46.2, priceHigh: 55, note: '瑞典品牌，弹性适中，应用范围广泛' },
       ] },
       { id: 'wrinkle-botox-domestic', nameKo: '주름보톡스 (국산)', nameZh: '国产除皱肉毒素', options: [
         { unit: '单部位', priceLow: 5.5, priceHigh: 6.6 },
