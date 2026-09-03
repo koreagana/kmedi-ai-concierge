@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { QUOTE_CATEGORIES, QUOTE_MAX_SELECTION, type QuoteOption } from '../data/quoteProcedures'
@@ -96,7 +96,7 @@ function formatPrice(low: number, high: number, unit: string) {
 interface Selection { categoryId: string; procedureId: string; optionIndex: number }
 
 export default function QuotePage() {
-  const { lang, goHome, quoteCategoryHint } = useApp()
+  const { lang, goHome, quoteCategoryHint, quoteProcedureHint } = useApp()
   const quoteLang: QuoteLang = lang === 'ko' ? 'ko' : 'zh'
   const c = COPY[quoteLang]
   const initialCategory = QUOTE_CATEGORIES.find(cat => cat.id === quoteCategoryHint)?.id ?? QUOTE_CATEGORIES[0].id
@@ -105,6 +105,19 @@ export default function QuotePage() {
   const [activeCategory, setActiveCategory] = useState(initialCategory)
   const [selected, setSelected] = useState<Record<string, Selection>>({})
   const [showLimitMsg, setShowLimitMsg] = useState(false)
+  const [highlightedProcedure, setHighlightedProcedure] = useState(quoteProcedureHint)
+
+  // 태그 시트 등에서 특정 시술로 딥링크된 경우, 카드로 스크롤 + 잠시 하이라이트
+  useEffect(() => {
+    if (!quoteProcedureHint) return
+    const timer = setTimeout(() => {
+      document.querySelector(`[data-procedure-id="${quoteProcedureHint}"]`)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 350)
+    const clearHighlight = setTimeout(() => setHighlightedProcedure(null), 2400)
+    return () => { clearTimeout(timer); clearTimeout(clearHighlight) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const selectedList = Object.values(selected)
   const selectedCount = selectedList.length
@@ -196,7 +209,11 @@ export default function QuotePage() {
                 const isSelected = !!selected[proc.id]
                 const notes = [...new Set(proc.options.map(o => o.note).filter(Boolean))] as string[]
                 return (
-                  <div key={proc.id} className={`quote-proc-card${isSelected ? ' selected' : ''}`}>
+                  <div
+                    key={proc.id}
+                    data-procedure-id={proc.id}
+                    className={`quote-proc-card${isSelected ? ' selected' : ''}${highlightedProcedure === proc.id ? ' highlight' : ''}`}
+                  >
                     <div className="quote-proc-name">
                       <span className="quote-proc-main">{names.main}</span>
                       <span className="quote-proc-sub">{names.sub}</span>

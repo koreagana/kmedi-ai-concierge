@@ -47,6 +47,7 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     difference: '与超声刀、热玛吉不同，同时作用于脂肪层',
     recovery: '立即恢复日常',
     quoteCategoryId: 'lifting',
+    quoteProcedureId: 'onda',
   },
   {
     chip: '水光针',

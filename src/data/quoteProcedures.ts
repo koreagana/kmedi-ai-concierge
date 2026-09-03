@@ -78,6 +78,12 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
       { id: 'xref-lifting', nameKo: 'XREF 리프팅', nameZh: 'XREF提升', options: [
         { unit: '600发', priceLow: 330, priceHigh: 330 },
       ] },
+      { id: 'onda', nameKo: '온다', nameZh: 'ONDA 溶脂提拉', options: [
+        { unit: '面部10kJ', priceLow: 12, priceHigh: 12 },
+        { unit: '面部80kJ', priceLow: 79, priceHigh: 79, note: '含面膜' },
+        { unit: '身体40kJ', priceLow: 36, priceHigh: 36, note: '含1英寸注射' },
+        { unit: '身体100kJ', priceLow: 99, priceHigh: 99, note: '含身体塑形术后处理' },
+      ] },
     ],
   },
   {

@@ -136,6 +136,10 @@
   background: var(--bg-light);
   box-shadow: 0 2px 12px rgba(0,119,182,0.12);
 }
+.quote-proc-card.highlight {
+  border-color: var(--qw-gold);
+  box-shadow: 0 0 0 4px rgba(201,147,46,0.18), 0 2px 14px rgba(201,147,46,0.25);
+}
 .quote-proc-name {
   display: flex;
   align-items: baseline;

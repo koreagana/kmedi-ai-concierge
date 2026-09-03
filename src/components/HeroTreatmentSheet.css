@@ -118,6 +118,19 @@
   margin-bottom: 14px;
 }
 
+.hts-noprice-note {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px dashed var(--border-blue);
+  border-radius: 14px;
+  padding: 13px 16px;
+  margin-bottom: 14px;
+}
+
 .hts-footer-note {
   text-align: center;
   font-size: 10.5px;

@@ -14,7 +14,7 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
   const handleQuote = () => {
     if (!info) return
     onClose()
-    goToQuote(info.quoteCategoryId)
+    goToQuote(info.quoteCategoryId, info.quoteProcedureId)
   }
 
   return (
@@ -65,7 +65,11 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
               )}
 
               {!info.isException && (
-                <button className="hts-cta" onClick={handleQuote}>查看该项目预估费用</button>
+                info.quoteProcedureId ? (
+                  <button className="hts-cta" onClick={handleQuote}>查看该项目预估费用</button>
+                ) : (
+                  <p className="hts-noprice-note">该项目暂无固定报价，具体费用请通过咨询确认</p>
+                )
               )}
 
               <p className="hts-footer-note">准确诊断请通过咨询确认</p>
