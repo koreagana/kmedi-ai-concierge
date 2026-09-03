@@ -140,19 +140,19 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
       { id: 'filler-restylane', nameKo: '필러 레스틸렌', nameZh: '瑞蓝 Restylane', options: [
         { unit: '1cc', priceLow: 46.2, priceHigh: 55, note: '瑞典品牌，弹性适中，应用范围广泛' },
       ] },
-      { id: 'wrinkle-botox-domestic', nameKo: '주름보톡스 (국산)', nameZh: '国产除皱肉毒素', options: [
+      { id: 'wrinkle-botox-domestic', nameKo: '주름보톡스 (국산)', nameZh: '韩版除皱肉毒素', options: [
         { unit: '单部位', priceLow: 5.5, priceHigh: 6.6 },
       ] },
       { id: 'wrinkle-botox-xeomin', nameKo: '주름보톡스 (제오민)', nameZh: 'Xeomin 除皱肉毒素', options: [
         { unit: '单部位', priceLow: 9.9, priceHigh: 27.5 },
       ] },
-      { id: 'jaw-botox-domestic', nameKo: '사각턱보톡스 (국산)', nameZh: '国产瘦脸针', options: [
+      { id: 'jaw-botox-domestic', nameKo: '사각턱보톡스 (국산)', nameZh: '韩版瘦脸针', options: [
         { unit: '50U', priceLow: 11, priceHigh: 13.2 },
       ] },
       { id: 'jaw-botox-xeomin', nameKo: '사각턱보톡스 (제오민)', nameZh: 'Xeomin 瘦脸针', options: [
         { unit: '50U', priceLow: 22, priceHigh: 44 },
       ] },
-      { id: 'skin-botox-domestic', nameKo: '스킨보톡스 (국산)', nameZh: '国产水光肉毒素', options: [
+      { id: 'skin-botox-domestic', nameKo: '스킨보톡스 (국산)', nameZh: '韩版水光肉毒素', options: [
         { unit: '全脸', priceLow: 27.5, priceHigh: 66 },
       ] },
     ],
