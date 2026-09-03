@@ -57,6 +57,12 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
                     <p className="hts-field-value">{info.difference}</p>
                     {info.deviceNote && <p className="hts-device-note">{info.deviceNote}</p>}
                   </div>
+                  {info.referencePrice && (
+                    <div className="hts-field">
+                      <span className="hts-field-label">参考价格</span>
+                      <p className="hts-field-value">{info.referencePrice}</p>
+                    </div>
+                  )}
                   <div className="hts-field">
                     <span className="hts-field-label">恢复期</span>
                     <p className="hts-field-value">{info.recovery}</p>
