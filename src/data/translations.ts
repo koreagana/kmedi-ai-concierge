@@ -15,8 +15,8 @@ interface Translations {
   heroHotLabel: string
   heroTreatmentChips: string[]
   heroCtaLabel: string
-  shopBtnTitle: string
-  shopBtnSub: string
+  quoteBtnTitle: string
+  quoteBtnSub: string
   // concierge section
   conciergeTitle: string
   concierge1Name: string
@@ -123,8 +123,8 @@ export const translations: Record<LangCode, Translations> = {
     heroHotLabel: '人气项目',
     heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸', '钛提升'],
     heroCtaLabel: '韩国医疗项目',
-    shopBtnTitle: '韩国医美恢复护理精选',
-    shopBtnSub: 'K-Beauty Recovery Shop',
+    quoteBtnTitle: '热门轻医美项目费用预估',
+    quoteBtnSub: '一键查看热门项目价格区间',
     conciergeTitle: '请选择您的 AI 医疗顾问',
     concierge1Name: '李静',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -216,8 +216,8 @@ export const translations: Record<LangCode, Translations> = {
     heroHotLabel: '요즘 인기',
     heroTreatmentChips: ['리쥬란', '울쎄라', '온다', '물광주사', '써마지', '브이라인', '티타늄리프팅'],
     heroCtaLabel: '한국 의료 서비스',
-    shopBtnTitle: '한국 뷰티 회복케어 셀렉션',
-    shopBtnSub: 'K-Beauty Recovery Shop',
+    quoteBtnTitle: '인기 시술 예상 비용',
+    quoteBtnSub: '한눈에 보는 인기 시술 가격대',
     conciergeTitle: 'AI 의료 컨시어지를 선택하세요',
     concierge1Name: '이정',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -309,8 +309,8 @@ export const translations: Record<LangCode, Translations> = {
     heroHotLabel: 'Trending Now',
     heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting'],
     heroCtaLabel: 'Korean Medical Services',
-    shopBtnTitle: 'K-Beauty Recovery Care Selection',
-    shopBtnSub: 'K-Beauty Recovery Shop',
+    quoteBtnTitle: 'Popular Treatment Price Estimate',
+    quoteBtnSub: 'See price ranges for top treatments',
     conciergeTitle: 'Meet Your AI Medical Concierge',
     concierge1Name: 'Lee Jing',
     concierge1Title: "Beauty & Women's Care Concierge",
@@ -402,8 +402,8 @@ export const translations: Record<LangCode, Translations> = {
     heroHotLabel: 'الأكثر رواجاً',
     heroTreatmentChips: ['ريجوران', 'أولثيرا', 'أوندا', 'حقن الترطيب المائي', 'ثيرماج', 'تحديد خط V', 'رفع التيتانيوم'],
     heroCtaLabel: 'الخدمات الطبية الكورية',
-    shopBtnTitle: 'مختارات العناية والتعافي الكورية',
-    shopBtnSub: 'K-Beauty Recovery Shop',
+    quoteBtnTitle: 'تقدير أسعار العلاجات الأكثر طلباً',
+    quoteBtnSub: 'اطّلع على نطاقات أسعار العلاجات الرائجة',
     conciergeTitle: 'اختر كونسيرجك الطبي AI',
     concierge1Name: 'لي جينغ',
     concierge1Title: 'كونسيرج التجميل والعناية بالمرأة',

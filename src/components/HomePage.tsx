@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
@@ -63,9 +62,8 @@ const fadeUp = {
    1. HERO
    ═══════════════════════════════════════════════════════════════════ */
 export function HeroSection() {
-  const { lang } = useApp()
+  const { lang, goToQuote } = useApp()
   const t = translations[lang]
-  const navigate = useNavigate()
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const [soundOn, setSoundOn] = useState(false)
@@ -253,11 +251,21 @@ export function HeroSection() {
             {t.heroCtaLabel}
           </button>
 
-          {/* 쇼핑몰 진입 버튼 - WeChat Pay 결제 + 중국 배송 전용이라 zh/ko만 노출 */}
+          {/* 예상 견적 진입 버튼 - 가격표가 중국어 기준으로 준비되어 zh/ko만 노출 */}
           {(lang === 'zh' || lang === 'ko') && (
-            <button className="btn-shop" onClick={() => navigate(`/shop?lang=${lang}`)}>
-              <span className="btn-shop-title">{t.shopBtnTitle}</span>
-              <span className="btn-shop-sub">{t.shopBtnSub}</span>
+            <button className="btn-quote" onClick={goToQuote}>
+              <span className="btn-quote-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="16" rx="3"/>
+                  <path d="M7 9h10M7 13h5"/>
+                  <circle cx="16.5" cy="15.5" r="2.5"/>
+                  <path d="M16.5 14.3v2.4M15.4 15.5h2.4"/>
+                </svg>
+              </span>
+              <span className="btn-quote-text">
+                <span className="btn-quote-title">{t.quoteBtnTitle}</span>
+                <span className="btn-quote-sub">{t.quoteBtnSub}</span>
+              </span>
             </button>
           )}
         </motion.div>

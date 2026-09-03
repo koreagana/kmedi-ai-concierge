@@ -358,37 +358,51 @@ body {
   border-color: rgba(255,255,255,0.8);
 }
 
-/* Shop entry CTA — white bg + brand blue text, same size/radius as btn-secondary */
-.btn-shop {
+/* 견적 진입 CTA — white bg + brand blue text, same size/radius as btn-secondary */
+.btn-quote {
   background: #ffffff;
   color: #0077b6;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 13px 24px;
+  padding: 11px 18px;
   border-radius: 14px;
   border: 1.5px solid rgba(255,255,255,0.55);
   cursor: pointer;
-  letter-spacing: 0.02em;
-  text-align: center;
+  text-align: left;
   transition: all 0.22s ease;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 12px;
 }
-.btn-shop:hover {
+.btn-quote:hover {
   background: #f0f8ff;
   transform: translateY(-2px);
 }
-.btn-shop-title {
+.btn-quote-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-mid) 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0,119,182,0.35);
+}
+.btn-quote-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.btn-quote-title {
   font-size: 13px;
   font-weight: 700;
+  letter-spacing: 0.02em;
 }
-.btn-shop-sub {
+.btn-quote-sub {
   font-size: 10.5px;
   font-weight: 500;
   color: #4e97d1;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
 }
 
 /* Merged pref/trust info box — white card sitting under the hot-picks strip,

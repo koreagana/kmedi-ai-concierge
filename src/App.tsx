@@ -3,6 +3,7 @@ import NavBar from './components/NavBar'
 import HomePage from './components/HomePage'
 import CategoryPage from './components/CategoryPage'
 import PackagePage from './components/PackagePage'
+import QuotePage from './components/QuotePage'
 import FloatingChatButton from './components/FloatingChatButton'
 import { AnimatePresence, motion } from 'framer-motion'
 import { translations, type LangCode } from './data/translations'
@@ -15,6 +16,13 @@ const PACKAGE_TITLE: Record<LangCode, string> = {
   ko: '한강애봄 의료관광 프리미엄',
   en: 'Premium Medical Tourism',
   ar: 'السياحة الطبية المميزة',
+}
+
+const QUOTE_TITLE: Record<LangCode, string> = {
+  zh: '热门轻医美项目费用预估',
+  ko: '인기 시술 예상 비용',
+  en: 'Popular Treatment Price Estimate',
+  ar: 'تقدير أسعار العلاجات الأكثر طلباً',
 }
 
 /** document.title / og:title / twitter:title / (og·twitter·기본) description meta를
@@ -54,6 +62,10 @@ function PageRouter() {
       updateMeta(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'], lang)
       return
     }
+    if (page === 'quote') {
+      updateMeta(QUOTE_TITLE[lang] ?? QUOTE_TITLE['zh'], lang)
+      return
+    }
     if (page === 'category' && categoryId) {
       const cat = categories.find((c) => c.id === categoryId)
       if (cat) {
@@ -86,6 +98,16 @@ function PageRouter() {
             transition={{ duration: 0.3, ease: 'easeOut' }}
           >
             <PackagePage />
+          </motion.div>
+        ) : page === 'quote' ? (
+          <motion.div
+            key="quote"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            <QuotePage />
           </motion.div>
         ) : (
           <motion.div

@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import type { LangCode } from '../data/translations'
 import type { CategoryId } from '../data/categories'
 
-export type PageView = 'home' | 'category' | 'package'
+export type PageView = 'home' | 'category' | 'package' | 'quote'
 
 export interface ConsultCard {
   interests: string[]
@@ -28,6 +28,7 @@ interface AppState {
   // helpers
   goToCategory: (id: CategoryId, concernId?: string | null) => void
   goToPackage: () => void
+  goToQuote: () => void
   goHome: () => void
 }
 
@@ -55,6 +56,8 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       setPage('category')
     } else if (pageParam === 'package') {
       setPage('package')
+    } else if (pageParam === 'quote') {
+      setPage('quote')
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -75,6 +78,12 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const goToQuote = () => {
+    setPage('quote')
+    navigate({ search: '?page=quote' })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   const goHome = () => {
     setPage('home')
     setCategoryId(null)
@@ -90,7 +99,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       categoryId, setCategoryId,
       concernId, setConcernId,
       consultCard, setConsultCard,
-      goToCategory, goToPackage, goHome,
+      goToCategory, goToPackage, goToQuote, goHome,
     }}>
       {children}
     </AppContext.Provider>
