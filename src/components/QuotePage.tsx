@@ -36,6 +36,7 @@ interface Copy {
   consultBtn: string
   unit: string
   won: string
+  askConsult: string
 }
 
 const COPY: Record<QuoteLang, Copy> = {
@@ -62,6 +63,7 @@ const COPY: Record<QuoteLang, Copy> = {
     consultBtn: '免费咨询 · 获取精准报价',
     unit: '万',
     won: '万韩元',
+    askConsult: '咨询后告知',
   },
   ko: {
     backHome: '← 홈으로',
@@ -86,11 +88,17 @@ const COPY: Record<QuoteLang, Copy> = {
     consultBtn: '무료 상담 · 정확한 견적 받기',
     unit: '만원',
     won: '만원',
+    askConsult: '상담 후 안내',
   },
 }
 
 function formatPrice(low: number, high: number, unit: string) {
   return low === high ? `${low}${unit}` : `${low}~${high}${unit}`
+}
+
+/** grade B(단일 병원 출처) 항목은 개별 금액을 숨기고 상담 유도 문구로 대체 — 합산 총액에는 그대로 반영 */
+function optionPriceLabel(opt: QuoteOption, c: Copy) {
+  return opt.grade === 'B' ? c.askConsult : formatPrice(opt.priceLow, opt.priceHigh, c.unit)
 }
 
 interface Selection { categoryId: string; procedureId: string; optionIndex: number }
@@ -228,7 +236,7 @@ export default function QuotePage() {
                             onClick={() => toggleOption(activeCat.id, proc.id, i)}
                           >
                             <span className="quote-opt-unit">{opt.unit}</span>
-                            <span className="quote-opt-price">{formatPrice(opt.priceLow, opt.priceHigh, c.unit)}</span>
+                            <span className="quote-opt-price">{optionPriceLabel(opt, c)}</span>
                           </button>
                         )
                       })}
@@ -287,7 +295,9 @@ export default function QuotePage() {
             <p className="quote-result-title">{c.resultTitle}</p>
 
             <div className="quote-total-card">
-              <span className="quote-total-badge">{c.badgeText}</span>
+              {totals.low > 0 && (totals.high - totals.low) / totals.low > 0.5 && (
+                <span className="quote-total-badge">{c.badgeText}</span>
+              )}
               <div className="quote-total-amount">
                 <span className="quote-total-label">{c.resultSumLabel}</span>
                 <span className="quote-total-value">{formatPrice(totals.low, totals.high, '')}</span>
@@ -310,7 +320,7 @@ export default function QuotePage() {
                       <span>{names.main}</span>
                       <span className="quote-item-unit">{opt.unit}</span>
                     </div>
-                    <span className="quote-item-price">{formatPrice(opt.priceLow, opt.priceHigh, c.unit)}</span>
+                    <span className="quote-item-price">{optionPriceLabel(opt, c)}</span>
                   </div>
                 )
               })}

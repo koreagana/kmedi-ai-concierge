@@ -82,10 +82,10 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
                 </div>
               )}
 
-              {!info.isException && (
-                info.quoteProcedureId ? (
-                  <button className="hts-cta" onClick={handleQuote}>查看该项目预估费用</button>
-                ) : (
+              {info.quoteCategoryId ? (
+                <button className="hts-cta" onClick={handleQuote}>查看该项目预估费用</button>
+              ) : (
+                !info.isException && (
                   <p className="hts-noprice-note">该项目暂无固定报价，具体费用请通过咨询确认</p>
                 )
               )}

@@ -83,6 +83,7 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     exceptionNote: '每位院长都有自己独到的配比方案。若下颌脂肪较多，可搭配溶脂针与提拉激光。',
     recommend: '咬肌型、脂肪型、松弛型',
     recovery: '几乎无恢复期。建议术后一周内避免桑拿、汗蒸及剧烈运动。',
+    quoteCategoryId: 'filler-botox',
   },
   {
     chip: '钛提升',
@@ -118,6 +119,7 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     difference: '改善细纹和皮肤松弛，促进胶原及弹性纤维重塑，提升皮肤紧致度。作用层次比超声刀更浅，主要针对真皮层紧致与肤质改善；对于需要改善较深层SMAS松弛的人群，通常超声刀更适合',
     recovery: '通常可立即恢复日常生活，少数人可能出现短暂泛红或轻微肿胀',
     quoteCategoryId: 'lifting',
+    quoteProcedureId: 'sofwave',
   },
   {
     chip: 'InMode FX',
