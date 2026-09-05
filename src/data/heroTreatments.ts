@@ -14,8 +14,6 @@ export interface HeroTreatmentInfo {
   deviceNote?: string
   recovery?: string
   exceptionNote?: string
-  /** 참고 정가 — 병원명 비노출, VAT 10% 포함가로 환산해 표기 */
-  referencePrice?: string
   /** CTA 클릭 시 이동할 견적 페이지 카테고리 (QUOTE_CATEGORIES id) */
   quoteCategoryId?: string
   /** 해당 시술이 견적 데이터에 있을 경우, 시트를 열 때 그 시술로 스크롤 포커스 */
@@ -29,7 +27,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '肤色暗沉、有细纹或需要皮肤再生时',
     difference: '比乔雅露更专注于再生和补水',
     recovery: '立即恢复日常（可能有1~2天泛红）',
-    referencePrice: '丽珠兰 Eye 1cc 约35.2万韩元 / 丽珠兰 Healer 2cc 约52.8万韩元 / 丽珠兰 HB 1cc 约35.2万韩元（含增值税）',
     quoteCategoryId: 'skinbooster',
     quoteProcedureId: 'rejuran-healer',
   },
@@ -40,7 +37,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     difference: '比热玛吉更专注于松弛提拉',
     deviceNote: '正品（美国FDA认证）维持时间比韩版设备更长——韩版设备通常不足6个月。韩版HIFU设备名称：10SERA、Shurink Universe（舒林克）、Liftera2、Volnewmer等（说明：这些设备并非超声刀的仿制品，而是各自获得独立认证的韩国设备）',
     recovery: '立即恢复日常',
-    referencePrice: '定制超声刀Prime：100发约104.5万韩元 / 300发约213.4万韩元 / 600发约394.9万韩元 / 900发约576.4万韩元（含增值税）',
     quoteCategoryId: 'lifting',
     quoteProcedureId: 'ulthera-prime',
   },
@@ -50,7 +46,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '脸颊、下颌线松弛且同时需要溶脂时',
     difference: '与超声刀、热玛吉不同，同时作用于脂肪层',
     recovery: '立即恢复日常',
-    referencePrice: '面部10kJ约22万韩元 / 面部80kJ（含面膜2种）约139.7万韩元 / 身体40kJ（含1英寸注射40cc）约63.8万韩元 / 身体100kJ（含身体塑形术后处理）约174.9万韩元（含增值税）',
     quoteCategoryId: 'lifting',
     quoteProcedureId: 'onda',
   },
@@ -60,7 +55,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '皮肤干燥或希望立即获得光泽感、补水效果时',
     difference: '比丽珠兰效果更即时，但维持时间相对较短',
     recovery: '立即恢复日常（可能有半天~1天肿胀）',
-    referencePrice: '2cc 约13.2万韩元（含增值税）',
     quoteCategoryId: 'skinbooster',
     quoteProcedureId: 'water-injection',
   },
@@ -71,7 +65,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     difference: '比超声刀更专注于肤质改善',
     deviceNote: '正品维持时间比韩版设备更长——韩版设备通常不足6个月。韩版RF设备名称：10THERMA、Ultight（欧邦特）等（说明：并非热玛吉的仿制品，而是获得独立认证的射频设备）',
     recovery: '立即恢复日常',
-    referencePrice: '定制热玛吉（含术后护理）：300发约246.4万韩元 / 600发约411.4万韩元 / 900发约576.4万韩元（含增值税）',
     quoteCategoryId: 'lifting',
     quoteProcedureId: 'thermage-flx',
   },
@@ -87,7 +80,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '希望同时改善提升紧致与毛孔、肤质时',
     difference: '强度比超声刀、热玛吉弱，但几乎没有恢复期',
     recovery: '立即恢复日常',
-    referencePrice: '40KJ+面膜(1盒) 约79.2万韩元（含增值税）',
     quoteCategoryId: 'lifting',
     quoteProcedureId: 'titanium-toning',
   },
@@ -97,7 +89,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '毛孔、疤痕、痘印是主要困扰时',
     difference: '比丽珠兰、乔雅露更专注于皮肤表层再生（毛孔、疤痕）',
     recovery: '1~2天泛红、轻微结痂',
-    referencePrice: '定制Potenza全脸（含探头费）约35.2万韩元 / 多探头全脸(25pin)约61.6万韩元（含增值税）',
     quoteCategoryId: 'acne-pore',
     quoteProcedureId: 'potenza',
   },
@@ -107,7 +98,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '希望获得饱满度和自然弹性改善时',
     difference: '比丽珠兰更专注于饱满度和胶原蛋白生成，效果逐渐显现',
     recovery: '立即恢复日常（可能有1~2天肿胀）',
-    referencePrice: '少女针Skin 1cc 约22万韩元 / 少女针Volume 1cc 约26.4万韩元（含增值税）',
     quoteCategoryId: 'skinbooster',
     quoteProcedureId: 'juvelook-skin',
   },
@@ -117,7 +107,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '以改善细纹、肤质为主，希望减少疼痛和恢复期负担时',
     difference: '作用层比超声刀、热玛吉更浅，对需要达到SMAS层的深度松弛可能效果不足',
     recovery: '立即恢复日常',
-    referencePrice: '1发约3.3万韩元起；90发仅以套餐形式提供（含Dermatoxin 2cc+LDM术后护理）约174.9万韩元（含增值税）',
     quoteCategoryId: 'lifting',
   },
   {
@@ -126,7 +115,6 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '下颌线松弛且同时有脂肪困扰时，希望搭配轮廓针获得V-Line效果时',
     difference: '溶脂力比ONDA弱，但搭配轮廓针可获得相近效果；脂肪较多部位单独使用效果有限，通常与轮廓针联合使用',
     recovery: '立即恢复日常',
-    referencePrice: '全脸约17.6万韩元 / V-Line套餐1（InMode FX+轮廓针2cc）约17.6万韩元（含增值税）',
     quoteCategoryId: 'lifting',
     quoteProcedureId: 'inmode-fx-forma',
   },
