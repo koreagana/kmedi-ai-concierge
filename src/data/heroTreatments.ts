@@ -84,6 +84,7 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recommend: '咬肌型、脂肪型、松弛型',
     recovery: '几乎无恢复期。建议术后一周内避免桑拿、汗蒸及剧烈运动。',
     quoteCategoryId: 'filler-botox',
+    quoteProcedureId: 'vline-combo',
   },
   {
     chip: '钛提升',

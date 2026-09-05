@@ -134,6 +134,9 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
     nameZh: '填充除皱',
     labelZh: '填充 · 除皱',
     procedures: [
+      { id: 'vline-combo', nameKo: '브이라인 콤보 (사각턱보톡스+윤곽주사+지방분해)', nameZh: 'V脸针 · 轮廓针 · 溶脂针 的组合施术', options: [
+        { unit: '全套', priceLow: 28, priceHigh: 35 },
+      ] },
       { id: 'filler-juvederm', nameKo: '필러 쥬비덤', nameZh: '乔雅登 Juvederm', options: [
         { unit: '1cc', priceLow: 42.9, priceHigh: 69.3, note: '美国品牌，质地紧实，适合塑形（下巴、鼻部等）', grade: 'A' },
       ] },
