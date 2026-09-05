@@ -86,6 +86,7 @@
   font-size: 13px;
   color: var(--text);
   line-height: 1.65;
+  white-space: pre-line;
   background: var(--bg-surface);
   border: 1px solid var(--border-blue);
   padding: 9px 11px;

@@ -45,15 +45,33 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
               <p className="hts-definition">{info.definition}</p>
 
               {info.isException ? (
-                <p className="hts-exception-note">{info.exceptionNote}</p>
+                <>
+                  <p className="hts-exception-note">{info.exceptionNote}</p>
+                  {(info.recommend || info.recovery) && (
+                    <div className="hts-fields">
+                      {info.recommend && (
+                        <div className="hts-field">
+                          <span className="hts-field-label">适用情况</span>
+                          <p className="hts-field-value">{info.recommend}</p>
+                        </div>
+                      )}
+                      {info.recovery && (
+                        <div className="hts-field">
+                          <span className="hts-field-label">恢复期</span>
+                          <p className="hts-field-value">{info.recovery}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
               ) : (
                 <div className="hts-fields">
                   <div className="hts-field">
-                    <span className="hts-field-label">推荐情况</span>
+                    <span className="hts-field-label">适用情况</span>
                     <p className="hts-field-value">{info.recommend}</p>
                   </div>
                   <div className="hts-field">
-                    <span className="hts-field-label">与其他项目的区别</span>
+                    <span className="hts-field-label">项目区别</span>
                     <p className="hts-field-value">{info.difference}</p>
                     {info.deviceNote && <p className="hts-device-note">{info.deviceNote}</p>}
                   </div>
@@ -72,7 +90,7 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
                 )
               )}
 
-              <p className="hts-footer-note">准确诊断请通过咨询确认</p>
+              <p className="hts-footer-note">准确诊断请通过院内咨询确认。</p>
             </div>
           </motion.div>
         </>
