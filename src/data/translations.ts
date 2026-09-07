@@ -15,8 +15,7 @@ interface Translations {
   heroHotLabel: string
   heroTreatmentChips: string[]
   heroCtaLabel: string
-  shopBtnTitle: string
-  shopBtnSub: string
+  quoteBtnTitle: string
   // concierge section
   conciergeTitle: string
   concierge1Name: string
@@ -119,10 +118,9 @@ export const translations: Record<LangCode, Translations> = {
     heroTrustTitle: '放心咨询',
     heroTrustLines: '合法注册的国际医疗旅游服务机构\n合作医院实行韩外统一价格标准\n不额外收取服务费或咨询费',
     heroHotLabel: '人气项目',
-    heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸', '钛提升'],
+    heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸针', '钛提升', '黄金微针', '乔雅露', '索夫波', 'InMode FX'],
     heroCtaLabel: '韩国医疗项目',
-    shopBtnTitle: '韩国医美恢复护理精选',
-    shopBtnSub: 'K-Beauty Recovery Shop',
+    quoteBtnTitle: '热门轻医美项目费用预估',
     conciergeTitle: '请选择您的 AI 医疗顾问',
     concierge1Name: '李静',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -212,8 +210,7 @@ export const translations: Record<LangCode, Translations> = {
     heroHotLabel: 'Trending Now',
     heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting'],
     heroCtaLabel: 'Korean Medical Services',
-    shopBtnTitle: 'K-Beauty Recovery Care Selection',
-    shopBtnSub: 'K-Beauty Recovery Shop',
+    quoteBtnTitle: 'Popular Treatment Price Estimate',
     conciergeTitle: 'Meet Your AI Medical Concierge',
     concierge1Name: 'Lee Jing',
     concierge1Title: "Beauty & Women's Care Concierge",

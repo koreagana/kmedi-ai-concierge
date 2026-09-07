@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import type { LangCode } from '../data/translations'
 import type { CategoryId } from '../data/categories'
 
-export type PageView = 'home' | 'category' | 'package'
+export type PageView = 'home' | 'category' | 'package' | 'quote'
 
 export interface ConsultCard {
   interests: string[]
@@ -25,9 +25,13 @@ interface AppState {
   setConcernId: (id: string | null) => void
   consultCard: ConsultCard | null
   setConsultCard: (c: ConsultCard | null) => void
+  /** goToQuote()로 전달된 카테고리/시술 힌트 — QuotePage가 초기 활성 탭·스크롤 대상으로 사용 */
+  quoteCategoryHint: string | null
+  quoteProcedureHint: string | null
   // helpers
   goToCategory: (id: CategoryId, concernId?: string | null) => void
   goToPackage: () => void
+  goToQuote: (categoryId?: string, procedureId?: string) => void
   goHome: () => void
 }
 
@@ -42,6 +46,8 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
   const [categoryId, setCategoryId] = useState<CategoryId | null>(null)
   const [concernId, setConcernId] = useState<string | null>(null)
   const [consultCard, setConsultCard] = useState<ConsultCard | null>(null)
+  const [quoteCategoryHint, setQuoteCategoryHint] = useState<string | null>(null)
+  const [quoteProcedureHint, setQuoteProcedureHint] = useState<string | null>(null)
 
   // URL 파라미터로 초기 상태 복원 (링크 공유, 뒤로가기 지원)
   useEffect(() => {
@@ -55,6 +61,10 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       setPage('category')
     } else if (pageParam === 'package') {
       setPage('package')
+    } else if (pageParam === 'quote') {
+      setPage('quote')
+      setQuoteCategoryHint(searchParams.get('qcat'))
+      setQuoteProcedureHint(searchParams.get('qproc'))
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -75,6 +85,17 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  const goToQuote = (categoryId?: string, procedureId?: string) => {
+    setPage('quote')
+    setQuoteCategoryHint(categoryId ?? null)
+    setQuoteProcedureHint(procedureId ?? null)
+    const params = new URLSearchParams({ page: 'quote' })
+    if (categoryId) params.set('qcat', categoryId)
+    if (procedureId) params.set('qproc', procedureId)
+    navigate({ search: '?' + params.toString() })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   const goHome = () => {
     setPage('home')
     setCategoryId(null)
@@ -90,7 +111,8 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       categoryId, setCategoryId,
       concernId, setConcernId,
       consultCard, setConsultCard,
-      goToCategory, goToPackage, goHome,
+      quoteCategoryHint, quoteProcedureHint,
+      goToCategory, goToPackage, goToQuote, goHome,
     }}>
       {children}
     </AppContext.Provider>

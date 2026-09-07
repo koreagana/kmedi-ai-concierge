@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Check, Mail } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
 import { WECHAT_BIZ_URL, EMAIL_GENERAL, getWhatsappUrl } from '../data/contacts'
 import { NETWORK_CITIES } from '../data/networkCities'
+import { getHeroTreatmentByChip, type HeroTreatmentInfo } from '../data/heroTreatments'
 import TtsButton from './TtsButton'
+import HeroTreatmentSheet from './HeroTreatmentSheet'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
 
@@ -60,9 +61,8 @@ const fadeUp = {
    1. HERO
    ═══════════════════════════════════════════════════════════════════ */
 export function HeroSection() {
-  const { lang } = useApp()
+  const { lang, goToQuote } = useApp()
   const t = translations[lang]
-  const navigate = useNavigate()
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const [soundOn, setSoundOn] = useState(false)
@@ -250,11 +250,10 @@ export function HeroSection() {
             {t.heroCtaLabel}
           </button>
 
-          {/* 쇼핑몰 진입 버튼 - WeChat Pay 결제 + 중국 배송 전용이라 zh만 노출 */}
+          {/* 예상 견적 진입 버튼 - 가격표가 중국어 기준으로 준비되어 zh만 노출 */}
           {lang === 'zh' && (
-            <button className="btn-shop" onClick={() => navigate(`/shop?lang=${lang}`)}>
-              <span className="btn-shop-title">{t.shopBtnTitle}</span>
-              <span className="btn-shop-sub">{t.shopBtnSub}</span>
+            <button className="btn-quote" onClick={() => goToQuote()}>
+              <span className="btn-quote-title">{t.quoteBtnTitle}</span>
             </button>
           )}
         </motion.div>
@@ -485,6 +484,7 @@ export function CategoryGridSection() {
   const hotScrollRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef({ dragging: false, startX: 0, startScrollLeft: 0, moved: false })
   const [isDragging, setIsDragging] = useState(false)
+  const [activeSheet, setActiveSheet] = useState<HeroTreatmentInfo | null>(null)
 
   // 마우스(비터치) 사용자를 위한 드래그 스크롤 — 터치는 브라우저 기본 스와이프로 이미 동작함.
   useEffect(() => {
@@ -544,11 +544,24 @@ export function CategoryGridSection() {
           ref={hotScrollRef}
           className={`hero-hot-scroll${isDragging ? ' hero-hot-scroll--dragging' : ''}`}
         >
-          {t.heroTreatmentChips.map((chip) => (
-            <span key={chip} className="hero-hot-chip">{chip}</span>
-          ))}
+          {t.heroTreatmentChips.map((chip) => {
+            const info = lang === 'zh' ? getHeroTreatmentByChip(chip) : undefined
+            if (!info) return <span key={chip} className="hero-hot-chip">{chip}</span>
+            return (
+              <button
+                key={chip}
+                type="button"
+                className="hero-hot-chip hero-hot-chip--clickable"
+                onClick={() => { if (!dragRef.current.moved) setActiveSheet(info) }}
+              >
+                {chip}
+              </button>
+            )
+          })}
         </div>
       </motion.div>
+
+      <HeroTreatmentSheet info={activeSheet} onClose={() => setActiveSheet(null)} />
 
       <motion.div {...fadeUp}>
         <p className="section-title">{t.categoryTitle}</p>

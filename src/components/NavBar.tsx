@@ -14,12 +14,10 @@ export default function NavBar() {
   const t = translations[lang]
   const navigate = useNavigate()
   const location = useLocation()
-  // /shop, /shop/order, /terms etc. are standalone routes outside the /zh|en
-  // nested router, so the usual goHome() (which just clears the search
-  // params on the current route) can't get back to the real homepage here.
-  const isShopPage = location.pathname.startsWith('/shop')
+  // /terms 등은 /zh|en 중첩 라우터 밖의 독립 라우트라, 평소의
+  // goHome()(현재 라우트의 검색 파라미터만 지우는 방식)으론 홈으로 못 돌아감.
   const isTermsPage = location.pathname.startsWith('/terms')
-  const isStandalonePage = isShopPage || isTermsPage
+  const isStandalonePage = isTermsPage
   const handleBrandClick = () => {
     if (isStandalonePage) navigate(langPaths[lang])
     else goHome()
@@ -77,7 +75,7 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* /shop, /terms 페이지: 없음 / 그 외: 상담 버튼 */}
+        {/* /terms 페이지: 없음 / 그 외: 상담 버튼 */}
         {page === 'home' && !isStandalonePage && (
           <button
             onClick={scrollToContact}

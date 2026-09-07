@@ -1,0 +1,688 @@
+{
+  "version": "2026-09-05",
+  "basis": "overseas_patient",
+  "vat_included": true,
+  "currency_unit": "10k_KRW",
+  "source_count": 2,
+  "notice_zh": [
+    "以上为外国患者适用价格区间，仅供参考。",
+    "各医院每月促销方案不同，实际费用会根据个人皮肤状态、施术范围与用量而有所差异。",
+    "最终费用以面诊后的正式报价为准。"
+  ],
+  "max_select": 5,
+  "categories": [
+    {
+      "id": "lifting",
+      "label_zh": "提拉紧致 · 抗衰",
+      "label_ko": "리프팅·탄력",
+      "items": [
+        {
+          "name_ko": "울쎄라피 프라임",
+          "name_zh": "超声刀 Ulthera",
+          "options": [
+            {
+              "id": "ulthera_100",
+              "unit": "100发",
+              "min": 46.0,
+              "max": 91.3,
+              "grade": "A",
+              "sources": 2
+            },
+            {
+              "id": "ulthera_300",
+              "unit": "300发",
+              "min": 125.0,
+              "max": 184.8,
+              "grade": "A",
+              "sources": 2
+            },
+            {
+              "id": "ulthera_400",
+              "unit": "400发",
+              "min": 160.0,
+              "max": 176.0,
+              "grade": "B",
+              "sources": 1
+            },
+            {
+              "id": "ulthera_600",
+              "unit": "600发",
+              "min": 240.0,
+              "max": 342.1,
+              "grade": "A",
+              "sources": 2
+            },
+            {
+              "id": "ulthera_900",
+              "unit": "900发",
+              "min": 499.4,
+              "max": 499.4,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "아이 울쎄라피 프라임",
+          "name_zh": "眼部超声刀",
+          "options": [
+            {
+              "id": "ulthera_eye_200",
+              "unit": "200发",
+              "min": 99.0,
+              "max": 152.9,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "써마지 FLX",
+          "name_zh": "热玛吉FLX",
+          "options": [
+            {
+              "id": "thermage_300",
+              "unit": "300发",
+              "min": 149.0,
+              "max": 213.4,
+              "grade": "A",
+              "sources": 2
+            },
+            {
+              "id": "thermage_600",
+              "unit": "600发",
+              "min": 240.0,
+              "max": 356.4,
+              "grade": "A",
+              "sources": 2
+            },
+            {
+              "id": "thermage_900",
+              "unit": "900发",
+              "min": 279.0,
+              "max": 499.4,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "아이써마지 FLX",
+          "name_zh": "眼部热玛吉FLX",
+          "options": [
+            {
+              "id": "thermage_eye_225",
+              "unit": "225发",
+              "min": 119.0,
+              "max": 170.5,
+              "grade": "A",
+              "sources": 2
+            },
+            {
+              "id": "thermage_eye_450",
+              "unit": "450发",
+              "min": 179.0,
+              "max": 270.6,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "티타늄 리프팅",
+          "name_zh": "钛提升 Titanium",
+          "options": [
+            {
+              "id": "titanium_40",
+              "unit": "40kJ",
+              "min": 69.0,
+              "max": 75.9,
+              "grade": "A",
+              "sources": 2
+            },
+            {
+              "id": "titanium_80",
+              "unit": "80kJ",
+              "min": 89.0,
+              "max": 130.9,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "슈링크 유니버스",
+          "name_zh": "Shurink 聚焦超声",
+          "options": [
+            {
+              "id": "shurink_100",
+              "unit": "100发",
+              "min": 6.6,
+              "max": 6.6,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "인모드 FX",
+          "name_zh": "InMode FX",
+          "options": [
+            {
+              "id": "inmode_fx",
+              "unit": "全脸",
+              "min": 15.4,
+              "max": 15.4,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "인모드 FX+FORMA",
+          "name_zh": "InMode FX+FORMA",
+          "options": [
+            {
+              "id": "inmode_fx_forma",
+              "unit": "全脸",
+              "min": 28.6,
+              "max": 28.6,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "올리지오",
+          "name_zh": "Oligio",
+          "options": [
+            {
+              "id": "oligio_300",
+              "unit": "300发",
+              "min": 84.7,
+              "max": 84.7,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "볼뉴머",
+          "name_zh": "Volnewmer",
+          "options": [
+            {
+              "id": "volnewmer_100",
+              "unit": "100发",
+              "min": 30.8,
+              "max": 30.8,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "소프웨이브",
+          "name_zh": "Sofwave",
+          "options": [
+            {
+              "id": "sofwave_10",
+              "unit": "10发",
+              "min": 23.1,
+              "max": 23.1,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "booster",
+      "label_zh": "水光 · 养肤",
+      "label_ko": "스킨부스터",
+      "items": [
+        {
+          "name_ko": "리쥬란 힐러",
+          "name_zh": "丽珠兰 Healer",
+          "options": [
+            {
+              "id": "rejuran_healer_2",
+              "unit": "2cc",
+              "min": 29.0,
+              "max": 46.2,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "리쥬란 아이",
+          "name_zh": "丽珠兰 Eye",
+          "options": [
+            {
+              "id": "rejuran_eye_1",
+              "unit": "1cc",
+              "min": 19.0,
+              "max": 30.8,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "리쥬란 HB",
+          "name_zh": "丽珠兰 HB",
+          "options": [
+            {
+              "id": "rejuran_hb_1",
+              "unit": "1cc",
+              "min": 20.9,
+              "max": 30.8,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "쥬베룩 스킨",
+          "name_zh": "少女针 Juvelook",
+          "options": [
+            {
+              "id": "juvelook_skin_1",
+              "unit": "1cc",
+              "min": 10.0,
+              "max": 18.7,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "쥬베룩 볼륨",
+          "name_zh": "少女针 Volume",
+          "options": [
+            {
+              "id": "juvelook_volume_1",
+              "unit": "1cc",
+              "min": 10.0,
+              "max": 23.1,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "물광주사 (하이주)",
+          "name_zh": "水光针",
+          "options": [
+            {
+              "id": "hyaluron_water_2",
+              "unit": "2cc",
+              "min": 11.0,
+              "max": 11.0,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "쥬비덤 스킨바이브",
+          "name_zh": "Skinvive 水光",
+          "options": [
+            {
+              "id": "skinvive_1",
+              "unit": "1cc",
+              "min": 45.1,
+              "max": 45.1,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "벨로테로 리바이브",
+          "name_zh": "保柔缇 Revive",
+          "options": [
+            {
+              "id": "revive_1",
+              "unit": "1cc",
+              "min": 75.9,
+              "max": 75.9,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "리투오",
+          "name_zh": "Rituo",
+          "options": [
+            {
+              "id": "rituo_6",
+              "unit": "6cc",
+              "min": 84.7,
+              "max": 84.7,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "filler_botox",
+      "label_zh": "填充 · 除皱",
+      "label_ko": "필러·보톡스",
+      "items": [
+        {
+          "name_ko": "국산 필러",
+          "name_zh": "国产玻尿酸",
+          "options": [
+            {
+              "id": "filler_dom_1",
+              "unit": "1cc",
+              "min": 9.9,
+              "max": 18.7,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "벨로테로 필러",
+          "name_zh": "保柔缇 Belotero",
+          "options": [
+            {
+              "id": "filler_belotero_1",
+              "unit": "1cc",
+              "min": 42.9,
+              "max": 61.6,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "쥬비덤 필러",
+          "name_zh": "乔雅登 Juvederm",
+          "options": [
+            {
+              "id": "filler_juvederm_1",
+              "unit": "1cc",
+              "min": 42.9,
+              "max": 69.3,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "주름보톡스 (국산)",
+          "name_zh": "国产除皱肉毒素",
+          "options": [
+            {
+              "id": "botox_wrinkle_dom",
+              "unit": "单部位",
+              "min": 3.5,
+              "max": 4.4,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "주름보톡스 (제오민)",
+          "name_zh": "Xeomin 除皱肉毒素",
+          "options": [
+            {
+              "id": "botox_wrinkle_xeomin",
+              "unit": "单部位",
+              "min": 7.0,
+              "max": 13.2,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "사각턱보톡스 (국산)",
+          "name_zh": "国产瘦脸针",
+          "options": [
+            {
+              "id": "botox_jaw_dom",
+              "unit": "50U",
+              "min": 5.5,
+              "max": 6.1,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "사각턱보톡스 (제오민)",
+          "name_zh": "Xeomin 瘦脸针",
+          "options": [
+            {
+              "id": "botox_jaw_xeomin",
+              "unit": "50U",
+              "min": 12.9,
+              "max": 30.8,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "다한증·침샘보톡스 (국산)",
+          "name_zh": "国产多汗症肉毒素",
+          "options": [
+            {
+              "id": "botox_hyper_dom",
+              "unit": "50U",
+              "min": 10.0,
+              "max": 11.0,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "바디보톡스 (국산)",
+          "name_zh": "国产身体肉毒素",
+          "options": [
+            {
+              "id": "botox_body_dom",
+              "unit": "100U",
+              "min": 9.9,
+              "max": 17.1,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "히알라제 (필러 용해)",
+          "name_zh": "溶解酶",
+          "options": [
+            {
+              "id": "hyaluronidase",
+              "unit": "单部位",
+              "min": 15.4,
+              "max": 15.4,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pigment",
+      "label_zh": "祛斑 · 美白",
+      "label_ko": "색소·미백",
+      "items": [
+        {
+          "name_ko": "피코 토닝",
+          "name_zh": "皮秒祛斑 Toning",
+          "options": [
+            {
+              "id": "pico_toning",
+              "unit": "1次",
+              "min": 18.7,
+              "max": 22.0,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "점 제거 (2mm 이하)",
+          "name_zh": "点痣 2mm以下",
+          "options": [
+            {
+              "id": "co2_mole_small",
+              "unit": "1颗",
+              "min": 2.0,
+              "max": 3.3,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "점 제거 (2~5mm)",
+          "name_zh": "点痣 2~5mm",
+          "options": [
+            {
+              "id": "co2_mole_mid",
+              "unit": "1颗",
+              "min": 3.0,
+              "max": 5.5,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "문신 제거 (무채색·명함크기)",
+          "name_zh": "洗纹身 黑白/名片大小",
+          "options": [
+            {
+              "id": "tattoo_bw_card",
+              "unit": "1次",
+              "min": 8.0,
+              "max": 23.1,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "백옥주사",
+          "name_zh": "美白针",
+          "options": [
+            {
+              "id": "whitening_iv",
+              "unit": "1次",
+              "min": 9.2,
+              "max": 10.1,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acne",
+      "label_zh": "祛痘 · 毛孔",
+      "label_ko": "여드름·모공",
+      "items": [
+        {
+          "name_ko": "포텐자 (팁 포함)",
+          "name_zh": "黄金微针 Potenza",
+          "options": [
+            {
+              "id": "potenza_full",
+              "unit": "全脸",
+              "min": 30.8,
+              "max": 37.4,
+              "grade": "A",
+              "sources": 2
+            }
+          ]
+        },
+        {
+          "name_ko": "아쿠아필",
+          "name_zh": "小气泡 AquaPeel",
+          "options": [
+            {
+              "id": "aquapeel",
+              "unit": "1次",
+              "min": 6.0,
+              "max": 6.6,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "LDM",
+          "name_zh": "LDM 水滴提升",
+          "options": [
+            {
+              "id": "ldm_12",
+              "unit": "12分钟",
+              "min": 9.9,
+              "max": 10.9,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "여드름 압출 (얼굴전체)",
+          "name_zh": "清痘 全脸",
+          "options": [
+            {
+              "id": "acne_extraction",
+              "unit": "1次",
+              "min": 10.0,
+              "max": 11.0,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "염증주사 (얼굴전체)",
+          "name_zh": "消炎针 全脸",
+          "options": [
+            {
+              "id": "acne_inject_full",
+              "unit": "1次",
+              "min": 5.0,
+              "max": 5.5,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        },
+        {
+          "name_ko": "카프리 여드름레이저",
+          "name_zh": "Capri 祛痘激光",
+          "options": [
+            {
+              "id": "capri_laser",
+              "unit": "1次",
+              "min": 23.1,
+              "max": 23.1,
+              "grade": "B",
+              "sources": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
