@@ -4,10 +4,9 @@ import { Check, Mail } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
-import { WECHAT_BIZ_URL, EMAIL_GENERAL, getWhatsappUrl } from '../data/contacts'
+import { WECHAT_BIZ_URL, getWhatsappUrl } from '../data/contacts'
 import { NETWORK_CITIES } from '../data/networkCities'
 import { getHeroTreatmentByChip, type HeroTreatmentInfo } from '../data/heroTreatments'
-import TtsButton from './TtsButton'
 import HeroTreatmentSheet from './HeroTreatmentSheet'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
@@ -583,149 +582,6 @@ export function CategoryGridSection() {
           </motion.div>
         ))}
       </div>
-    </section>
-  )
-}
-
-
-/* ═══════════════════════════════════════════════════════════════════
-   6. CONTACT SECTION
-   ═══════════════════════════════════════════════════════════════════ */
-type ContactModal = 'form' | null
-
-export function ContactSection() {
-  const { lang } = useApp()
-  const t = translations[lang]
-  const [modal, setModal] = useState<ContactModal>(null)
-  const [formName, setFormName] = useState('')
-  const [formMsg, setFormMsg] = useState('')
-  const [formSent, setFormSent] = useState(false)
-
-  /* "在线留言/문의 남기기" 제출 - 서버나 DB가 없으므로 자체 백엔드로 보내지 않고,
-     이미 푸터에 공개된 실제 이메일로 제목/본문을 채운 mailto: 링크를 열어
-     방문자의 메일 앱에서 직접 "보내기"를 누르게 함. (서버 저장 없음) */
-  const handleFormSend = () => {
-    if (!formName.trim() || !formMsg.trim()) return
-    const subject = lang === 'zh' ? '韩国医疗咨询 - 在线留言' : 'Korea Medical Consultation - Message'
-    const body = `${formName}\n\n${formMsg}`
-    window.location.href = `mailto:${EMAIL_GENERAL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    setFormSent(true)
-  }
-
-  return (
-    <section id="contact" className="section-white" style={{ paddingBottom: 16 }}>
-      <motion.div {...fadeUp}>
-        <p className="section-title">{t.contactTitle}</p>
-        <div className="section-accent-line" />
-      </motion.div>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}>
-          <div className="contact-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="white"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
-          </div>
-          <div>
-            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatBiz}</p>
-            <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '企业账号咨询' : 'Enterprise account'}</p>
-          </div>
-        </motion.button>
-
-        <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(getWhatsappUrl(lang), '_blank')}>
-          <div className="contact-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
-          </div>
-          <div>
-            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWhatsapp}</p>
-            <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '国际用户推荐' : 'Recommended for international users'}</p>
-          </div>
-        </motion.button>
-
-        <motion.button {...fadeUp} transition={{ delay: 0.2 }} className="contact-btn contact-btn-form" onClick={() => setModal('form')}>
-          <div className="contact-icon" style={{ background: 'rgba(255,255,255,0.12)' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
-          </div>
-          <div>
-            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactForm}</p>
-            <p style={{ fontSize: 11, opacity: 0.7, marginTop: 2 }}>{lang === 'zh' ? '留下联系方式，顾问会主动联系您' : 'Leave your info and we\'ll reach out'}</p>
-          </div>
-        </motion.button>
-      </div>
-
-      {/* ── Modal ── */}
-      <AnimatePresence>
-        {modal && (
-          <motion.div
-            className="modal-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => { setModal(null); setFormSent(false) }}
-          >
-            <motion.div
-              className="modal-sheet"
-              initial={{ y: 60, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 60, opacity: 0 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="modal-handle" />
-
-              {/* Form modal */}
-              {modal === 'form' && (
-                <>
-                  <p className="modal-title">{t.contactFormTitle}</p>
-                  {!formSent ? (
-                    <>
-                      <input
-                        className="form-input"
-                        placeholder={t.contactFormName}
-                        value={formName}
-                        onChange={e => setFormName(e.target.value)}
-                      />
-                      <textarea
-                        className="form-input form-textarea"
-                        placeholder={t.contactFormMsg}
-                        value={formMsg}
-                        onChange={e => setFormMsg(e.target.value)}
-                      />
-                      <button
-                        className="btn-card-submit"
-                        onClick={handleFormSend}
-                        disabled={!formName.trim() || !formMsg.trim()}
-                        style={{
-                          opacity: formName.trim() && formMsg.trim() ? 1 : 0.4,
-                          cursor: formName.trim() && formMsg.trim() ? 'pointer' : 'not-allowed',
-                        }}
-                      >
-                        {t.contactFormSend}
-                      </button>
-                    </>
-                  ) : (
-                    <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                      <span style={{ fontSize: 48 }}>📧</span>
-                      <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--text)', marginTop: 12 }}>
-                        {lang === 'zh' ? '邮件应用已打开' : 'Your email app has opened'}
-                      </p>
-                      <p style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 8, lineHeight: 1.7 }}>
-                        {lang === 'zh' ? '请在邮件应用中点击"发送"以完成提交。我们会尽快与您联系。' :
-                         'Tap "Send" in your email app to complete it. We will contact you shortly after receiving it.'}
-                      </p>
-                      <button
-                        className="btn-primary"
-                        style={{ marginTop: 20, width: '100%' }}
-                        onClick={() => { setModal(null); setFormSent(false); setFormName(''); setFormMsg('') }}
-                      >
-                        {t.contactClose}
-                      </button>
-                    </div>
-                  )}
-                </>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }

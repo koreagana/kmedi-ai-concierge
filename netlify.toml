@@ -15,17 +15,7 @@
     Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
-  for = "/studio_arb.mp4"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
   for = "/studio_eng.mp4"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/studio_kr.mp4"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
