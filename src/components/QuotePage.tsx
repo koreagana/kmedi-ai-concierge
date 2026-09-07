@@ -11,7 +11,7 @@ const fadeUp = {
   transition: { duration: 0.4, ease: 'easeOut' },
 }
 
-type QuoteLang = 'zh'
+type QuoteLang = 'zh' | 'en'
 
 interface Copy {
   backHome: string
@@ -34,9 +34,17 @@ interface Copy {
   disclaimer2: string
   disclaimer3: string
   consultBtn: string
-  unit: string
+  /** 데이터의 만원 단위 값을 화면 표기로 변환 — zh는 「46~91.3万」, en은 실제 원화 금액(₩460,000–913,000) */
+  formatRange: (low: number, high: number) => string
+  /** 결과 카드 합계 — 숫자 부분만 반환하고 단위는 won에서 따로 붙임 */
+  formatTotal: (low: number, high: number) => string
   won: string
   askConsult: string
+}
+
+/** 만원 단위 → 원화 실금액 표기. 46 → ₩460,000 */
+function toWon(manwon: number) {
+  return Math.round(manwon * 10000).toLocaleString('en-US')
 }
 
 const COPY: Record<QuoteLang, Copy> = {
@@ -61,26 +69,49 @@ const COPY: Record<QuoteLang, Copy> = {
     disclaimer2: '各医院每月促销方案不同，实际费用会根据个人皮肤状态、施术范围与用量而有所差异。',
     disclaimer3: '最终费用以面诊后的正式报价为准。',
     consultBtn: '免费咨询 · 获取精准报价',
-    unit: '万',
+    formatRange: (low, high) => (low === high ? `${low}万` : `${low}~${high}万`),
+    formatTotal: (low, high) => (low === high ? `${low}` : `${low}~${high}`),
     won: '万韩元',
     askConsult: '咨询后告知',
   },
-}
-
-function formatPrice(low: number, high: number, unit: string) {
-  return low === high ? `${low}${unit}` : `${low}~${high}${unit}`
+  en: {
+    backHome: '← Back to Home',
+    heroTitle: 'Popular Treatment Price Estimate',
+    heroSub: "Price ranges for Korea's most requested treatments, at a glance.",
+    selectGuide: 'Select the treatments you have in mind',
+    selectLimit: `Up to ${QUOTE_MAX_SELECTION} treatments`,
+    selectedCount: n => (n === 1 ? '1 selected' : `${n} selected`),
+    limitReachedMsg: 'For a plan this size, a concierge can put the full course together and quote it properly.',
+    nextBtn: 'See my estimate',
+    nextBtnEmpty: 'Select a treatment first',
+    resultTitle: 'Your estimated cost',
+    resultSumLabel: 'Estimated total',
+    resultSumVat: '(10% VAT included)',
+    badgeText: 'Package pricing may apply',
+    itemsTitle: 'Your selection',
+    changeSelectionBtn: '← Edit selection',
+    disclaimerTitle: 'Please note',
+    disclaimer1: 'These ranges are the rates our partner clinics apply to international patients, shown for reference.',
+    disclaimer2: 'Clinics run different promotions each month, and the final cost shifts with your skin condition, the area treated, and the amount used.',
+    disclaimer3: 'Your price is confirmed in the formal quote issued after an in-person consultation.',
+    consultBtn: 'Get an exact quote · Free consultation',
+    formatRange: (low, high) => (low === high ? `₩${toWon(low)}` : `₩${toWon(low)}–${toWon(high)}`),
+    formatTotal: (low, high) => (low === high ? `₩${toWon(low)}` : `₩${toWon(low)}–${toWon(high)}`),
+    won: '',
+    askConsult: 'Quoted on request',
+  },
 }
 
 /** grade B(단일 병원 출처) 항목은 개별 금액을 숨기고 상담 유도 문구로 대체 — 합산 총액에는 그대로 반영 */
 function optionPriceLabel(opt: QuoteOption, c: Copy) {
-  return opt.grade === 'B' ? c.askConsult : formatPrice(opt.priceLow, opt.priceHigh, c.unit)
+  return opt.grade === 'B' ? c.askConsult : c.formatRange(opt.priceLow, opt.priceHigh)
 }
 
 interface Selection { categoryId: string; procedureId: string; optionIndex: number }
 
 export default function QuotePage() {
   const { lang, goHome, quoteCategoryHint, quoteProcedureHint } = useApp()
-  const quoteLang: QuoteLang = 'zh'
+  const quoteLang: QuoteLang = lang === 'en' ? 'en' : 'zh'
   const c = COPY[quoteLang]
   const initialCategory = QUOTE_CATEGORIES.find(cat => cat.id === quoteCategoryHint)?.id ?? QUOTE_CATEGORIES[0].id
 
@@ -143,11 +174,14 @@ export default function QuotePage() {
   }
 
   const activeCat = QUOTE_CATEGORIES.find(cat => cat.id === activeCategory) ?? QUOTE_CATEGORIES[0]
-  const nameOf = (proc: { nameKo: string; nameZh: string }) =>
-    quoteLang === 'zh' ? { main: proc.nameZh, sub: proc.nameKo } : { main: proc.nameKo, sub: proc.nameZh }
+  /* 시술명은 「해당 언어 이름 + 한국어 원어명」으로 보여줌 — 고객이 병원에서 실제로 마주치는 이름이 한국어라서 */
+  const nameOf = (proc: { nameKo: string; nameZh: string; nameEn: string }) =>
+    quoteLang === 'zh' ? { main: proc.nameZh, sub: proc.nameKo } : { main: proc.nameEn, sub: proc.nameKo }
+  const unitOf = (opt: QuoteOption) => (quoteLang === 'zh' ? opt.unit : opt.unitEn)
+  const noteOf = (opt: QuoteOption) => (quoteLang === 'zh' ? opt.note : opt.noteEn)
 
   return (
-    <div className="quote-widget">
+    <div className="quote-widget" data-lang={quoteLang}>
       {/* ══ Hero ══ */}
       <div className="quote-hero">
         <div className="quote-hero-topbar">
@@ -180,7 +214,7 @@ export default function QuotePage() {
                   className={`quote-tab${cat.id === activeCategory ? ' active' : ''}`}
                   onClick={() => setActiveCategory(cat.id)}
                 >
-                  {quoteLang === 'zh' ? cat.labelZh : cat.nameKo}
+                  {quoteLang === 'zh' ? cat.labelZh : cat.labelEn}
                 </button>
               ))}
             </div>
@@ -190,7 +224,7 @@ export default function QuotePage() {
               {activeCat.procedures.map(proc => {
                 const names = nameOf(proc)
                 const isSelected = !!selected[proc.id]
-                const notes = [...new Set(proc.options.map(o => o.note).filter(Boolean))] as string[]
+                const notes = [...new Set(proc.options.map(noteOf).filter(Boolean))] as string[]
                 return (
                   <div
                     key={proc.id}
@@ -210,7 +244,7 @@ export default function QuotePage() {
                             className={`quote-opt-chip${chosen ? ' chosen' : ''}`}
                             onClick={() => toggleOption(activeCat.id, proc.id, i)}
                           >
-                            <span className="quote-opt-unit">{opt.unit}</span>
+                            <span className="quote-opt-unit">{unitOf(opt)}</span>
                             <span className="quote-opt-price">{optionPriceLabel(opt, c)}</span>
                           </button>
                         )
@@ -244,7 +278,7 @@ export default function QuotePage() {
               <div className="quote-sticky-info">
                 <span className="quote-sticky-count">{c.selectedCount(selectedCount)}</span>
                 {selectedCount > 0 && (
-                  <span className="quote-sticky-total">{formatPrice(totals.low, totals.high, c.unit)}</span>
+                  <span className="quote-sticky-total">{c.formatRange(totals.low, totals.high)}</span>
                 )}
               </div>
               <button
@@ -275,7 +309,7 @@ export default function QuotePage() {
               )}
               <div className="quote-total-amount">
                 <span className="quote-total-label">{c.resultSumLabel}</span>
-                <span className="quote-total-value">{formatPrice(totals.low, totals.high, '')}</span>
+                <span className="quote-total-value">{c.formatTotal(totals.low, totals.high)}</span>
                 <span className="quote-total-unit">{c.won}</span>
               </div>
               <span className="quote-total-vat">{c.resultSumVat}</span>
@@ -293,7 +327,7 @@ export default function QuotePage() {
                   <div className="quote-item-row" key={sel.procedureId}>
                     <div className="quote-item-name">
                       <span>{names.main}</span>
-                      <span className="quote-item-unit">{opt.unit}</span>
+                      <span className="quote-item-unit">{unitOf(opt)}</span>
                     </div>
                     <span className="quote-item-price">{optionPriceLabel(opt, c)}</span>
                   </div>

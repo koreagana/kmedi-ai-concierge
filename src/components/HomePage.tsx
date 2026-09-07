@@ -250,12 +250,10 @@ export function HeroSection() {
             {t.heroCtaLabel}
           </button>
 
-          {/* 예상 견적 진입 버튼 - 가격표가 중국어 기준으로 준비되어 zh만 노출 */}
-          {lang === 'zh' && (
-            <button className="btn-quote" onClick={() => goToQuote()}>
-              <span className="btn-quote-title">{t.quoteBtnTitle}</span>
-            </button>
-          )}
+          {/* 예상 견적 진입 버튼 — zh·en 양쪽 가격표/카피가 준비되어 두 언어 모두 노출 */}
+          <button className="btn-quote" onClick={() => goToQuote()}>
+            <span className="btn-quote-title">{t.quoteBtnTitle}</span>
+          </button>
         </motion.div>
       </div>
     </section>

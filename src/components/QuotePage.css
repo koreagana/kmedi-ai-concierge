@@ -417,3 +417,12 @@
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(0,119,182,0.35);
 }
+
+/* ── 영문 전용 조정 ──────────────────────────────────────────────
+   영문 페이지는 금액을 만원 단위(46万)가 아니라 실제 원화 금액
+   (₩460,000–913,000)으로 적어서 문자열이 훨씬 길다. 같은 폰트 크기로는
+   칩·합계 금액이 좁은 화면에서 넘치므로 해당 요소만 살짝 줄여준다. */
+.quote-widget[data-lang="en"] .quote-opt-price { font-size: 11px; }
+.quote-widget[data-lang="en"] .quote-sticky-total { font-size: 12.5px; }
+.quote-widget[data-lang="en"] .quote-total-value { font-size: 20px; }
+.quote-widget[data-lang="en"] .quote-item-price { font-size: 11px; }
