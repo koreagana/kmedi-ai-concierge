@@ -272,7 +272,7 @@ export const translations: Record<LangCode, Translations> = {
     aboutDesc: 'K-MediSpring (ai-kmedi.com) is a concierge medical coordination service designed for international clients seeking quality healthcare in Korea.\nWe are not a hospital. We are not a doctor.\nWe are your dedicated liaison — helping you navigate the Korean medical system with clarity, translating your needs into the right connections, and supporting you at every step of your journey.',
     companyIntro: 'K-MediSpring is a professional medical tourism concierge company for international patients in Korea.',
     termsLink: 'Terms of Use',
-    navConsult: 'Get Started',
+    navConsult: 'Talk to us',
     langZh: '中文',
     langEn: 'English',
     backHome: '← Back to Home',
