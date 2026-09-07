@@ -15,9 +15,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   photoGuide: {
     label: {
       zh: '查看整形咨询照片拍摄指南',
-      ko: '성형 상담 사진 촬영 가이드 보기',
       en: 'View Consultation Photo Guide',
-      ar: 'عرض دليل تصوير الاستشارة',
     },
     kind: 'route',
     target: '/prep/plastic-photo-guide/',
@@ -25,9 +23,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   surgeryBefore: {
     label: {
       zh: '查看整形手术前通用注意事项',
-      ko: '성형수술 전 공통 주의사항 보기',
       en: 'View General Pre-Surgery Guide',
-      ar: 'عرض الإرشادات العامة قبل الجراحة',
     },
     kind: 'route',
     target: '/prep/plastic-surgery-before/',
@@ -35,9 +31,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   medicationAllergyCheck: {
     label: {
       zh: '查看用药与过敏确认表',
-      ko: '복용약·알레르기 확인표 보기',
       en: 'View Medication & Allergy Checklist',
-      ar: 'عرض قائمة الأدوية والحساسية',
     },
     kind: 'route',
     target: '/prep/medication-allergy-check/',
@@ -45,9 +39,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   surgeryAfter: {
     label: {
       zh: '查看术后通用注意事项',
-      ko: '수술 후 공통 주의사항 보기',
       en: 'View General Post-Surgery Guide',
-      ar: 'عرض الإرشادات العامة بعد الجراحة',
     },
     kind: 'route',
     target: '/prep/surgery-after/',
@@ -55,9 +47,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   anesthesiaAfterCare: {
     label: {
       zh: '查看麻醉后回家注意事项',
-      ko: '마취 후 귀가 주의사항 보기',
       en: 'View Post-Anesthesia Discharge Guide',
-      ar: 'عرض إرشادات المغادرة بعد التخدير',
     },
     kind: 'route',
     target: '/prep/anesthesia-after-care/',
@@ -65,9 +55,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   sutureRemovalGuide: {
     label: {
       zh: '查看拆线与复诊说明',
-      ko: '실밥 제거·재내원 안내 보기',
       en: 'View Suture Removal & Follow-Up Guide',
-      ar: 'عرض دليل إزالة الغرز والمتابعة',
     },
     kind: 'route',
     target: '/prep/suture-removal-guide/',
@@ -75,9 +63,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   scarCareGuide: {
     label: {
       zh: '查看疤痕管理说明',
-      ko: '흉터관리 안내 보기',
       en: 'View Scar Care Guide',
-      ar: 'عرض دليل العناية بالندبات',
     },
     kind: 'route',
     target: '/prep/scar-care-guide/',
@@ -85,9 +71,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   doubleEyelidAfter: {
     label: {
       zh: '查看双眼皮术后注意事项',
-      ko: '쌍꺼풀 수술 후 주의사항 보기',
       en: 'View Double Eyelid Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد جراحة الجفن المزدوج',
     },
     kind: 'route',
     target: '/prep/double-eyelid-after/',
@@ -95,9 +79,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   epicanthoplastyAfter: {
     label: {
       zh: '查看开眼角术后注意事项',
-      ko: '트임수술 후 주의사항 보기',
       en: 'View Epicanthoplasty Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد جراحة توسيع زاوية العين',
     },
     kind: 'route',
     target: '/prep/epicanthoplasty-after/',
@@ -105,9 +87,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   lowerEyelidFatAfter: {
     label: {
       zh: '查看眼袋脂肪重置术后注意事项',
-      ko: '눈밑지방재배치 후 주의사항 보기',
       en: 'View Under-Eye Fat Repositioning Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد إعادة توزيع دهون تحت العين',
     },
     kind: 'route',
     target: '/prep/lower-eyelid-fat-after/',
@@ -115,9 +95,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   rhinoplastyAfter: {
     label: {
       zh: '查看鼻整形术后注意事项',
-      ko: '코성형 후 주의사항 보기',
       en: 'View Rhinoplasty Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد تجميل الأنف',
     },
     kind: 'route',
     target: '/prep/rhinoplasty-after/',
@@ -125,9 +103,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   facialContouringAfter: {
     label: {
       zh: '查看面部轮廓术后注意事项',
-      ko: '안면윤곽 후 주의사항 보기',
       en: 'View Facial Contouring Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد تحديد الوجه',
     },
     kind: 'route',
     target: '/prep/facial-contouring-after/',
@@ -135,9 +111,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   facelistAfter: {
     label: {
       zh: '查看拉皮提升术后注意事项',
-      ko: '거상수술 후 주의사항 보기',
       en: 'View Facelift Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد شد الوجه',
     },
     kind: 'route',
     target: '/prep/facelift-after/',
@@ -145,9 +119,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   necklistAfter: {
     label: {
       zh: '查看颈部提升术后注意事项',
-      ko: '목거상 후 주의사항 보기',
       en: 'View Neck Lift Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد شد الرقبة',
     },
     kind: 'route',
     target: '/prep/necklift-after/',
@@ -155,9 +127,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   liposuctionAfter: {
     label: {
       zh: '查看吸脂术后注意事项',
-      ko: '지방흡입 후 주의사항 보기',
       en: 'View Liposuction Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد شفط الدهون',
     },
     kind: 'route',
     target: '/prep/liposuction-after/',
@@ -165,9 +135,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   fatGraftAfter: {
     label: {
       zh: '查看脂肪填充术后注意事项',
-      ko: '지방이식 후 주의사항 보기',
       en: 'View Fat Grafting Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد حقن الدهون',
     },
     kind: 'route',
     target: '/prep/fat-graft-after/',
@@ -175,9 +143,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   breastSurgeryAfter: {
     label: {
       zh: '查看胸部整形术后注意事项',
-      ko: '가슴성형 후 주의사항 보기',
       en: 'View Breast Surgery Aftercare Guide',
-      ar: 'عرض إرشادات العناية بعد تجميل الثدي',
     },
     kind: 'route',
     target: '/prep/breast-surgery-after/',
@@ -185,9 +151,7 @@ export const PLASTIC_SURGERY_DOC_BUTTONS = {
   wechatConsult: {
     label: {
       zh: '打开企业微信咨询',
-      ko: '기업위챗 상담하기',
       en: 'Open WeCom Consultation',
-      ar: 'فتح استشارة ويكوم',
     },
     kind: 'external',
     target: WECHAT_BIZ_URL,
@@ -218,42 +182,30 @@ export interface PlasticSurgeryKeyword {
 
 const DIRECTIONS_LABEL: LocalizedText = {
   zh: '可能相关咨询方向',
-  ko: '관련 상담 방향',
   en: 'Possible Consultation Areas',
-  ar: 'مجالات الاستشارة المحتملة',
 }
 
 export const PLASTIC_SURGERY_SECTION = {
   title: {
     zh: '整形医美',
-    ko: '성형미용',
     en: 'Plastic Surgery & Aesthetic Surgery',
-    ar: 'جراحة التجميل',
   } as LocalizedText,
   subCopy: {
     zh: '眼鼻轮廓 · 面部比例 · 恢复计划',
-    ko: '눈·코·윤곽 · 얼굴 비율 · 회복 계획',
     en: 'Eyes, Nose, Facial Contour · Facial Balance · Recovery Planning',
-    ar: 'العيون والأنف وتناسق الوجه · خطة التعافي',
   } as LocalizedText,
   desc: {
     zh: '韩国整形咨询不是简单选择一个手术名称，而是根据面部比例、既往手术经历、恢复时间、预算和来韩停留时间，整理适合咨询的方向。',
-    ko: '한국 성형상담은 단순히 수술명을 고르는 것이 아니라, 얼굴 비율, 기존 수술 이력, 회복 기간, 예산, 한국 체류 기간을 기준으로 상담 가능한 방향을 정리하는 과정입니다.',
     en: 'Korean plastic surgery consultation is not simply about choosing a procedure name. It is a process of organizing consultation directions based on facial balance, previous surgery history, recovery time, budget, and length of stay in Korea.',
-    ar: 'استشارة جراحة التجميل في كوريا لا تعني مجرد اختيار اسم العملية، بل هي عملية تنظيم اتجاه الاستشارة بناءً على تناسق الوجه، وتاريخ العمليات السابقة، وفترة التعافي، والميزانية، ومدة الإقامة في كوريا.',
   } as LocalizedText,
   safety: [
     {
       zh: '本页内容仅用于韩国整形咨询前的信息整理，不代替医生诊断或手术判断。',
-      ko: '본 페이지는 한국 성형상담 전 정보 정리를 위한 참고 안내이며 의사의 진단이나 수술 판단을 대신하지 않습니다.',
       en: "This page is for organizing information before a Korean plastic surgery consultation and does not replace a doctor's diagnosis or surgical judgment.",
-      ar: 'هذه الصفحة مخصصة لتنظيم المعلومات قبل استشارة جراحة التجميل في كوريا، ولا تحل محل تشخيص الطبيب أو قراره الجراحي.',
     },
     {
       zh: '具体是否适合手术、是否需要检查、麻醉方式、恢复期和术后管理，需要由正规医疗机构和专业医生判断。',
-      ko: '수술 적합 여부, 검사 필요 여부, 마취 방식, 회복 기간, 수술 후 관리는 정규 의료기관과 전문의가 판단해야 합니다.',
       en: 'Surgical suitability, required tests, anesthesia method, recovery period, and postoperative care must be determined by a licensed medical institution and qualified doctors.',
-      ar: 'مدى مناسبة العملية، والفحوصات المطلوبة، وطريقة التخدير، وفترة التعافي، والرعاية بعد العملية يجب أن يحددها المستشفى والطبيب المختص.',
     },
   ] as LocalizedText[],
 }
@@ -264,36 +216,28 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     image: '/keyword-tiles/eye-surgery.jpg',
     title: {
       zh: '眼部整形',
-      ko: '눈성형',
       en: 'Eye Surgery',
-      ar: 'تجميل العيون',
     },
     description: {
       zh: '眼部整形咨询主要针对双眼皮、眼部矫正、开眼角、眼袋脂肪重置、上眼睑下垂和眼部修复手术等需求。眼部手术对细节要求高，既往手术经历、眼部肌肉力量、皮肤厚度和疤痕状态都需要在咨询前整理。',
-      ko: '눈성형 상담은 쌍꺼풀, 눈매교정, 트임수술, 눈밑지방재배치, 윗눈꺼풀 처짐, 눈 재수술 등의 고민을 정리하는 과정입니다. 눈성형은 작은 차이에도 인상이 크게 달라질 수 있어 기존 수술 이력, 눈뜨는 힘, 피부 두께, 흉터 상태를 상담 전에 정리하는 것이 중요합니다.',
       en: 'Eye surgery consultation may include double eyelid surgery, ptosis correction, epicanthoplasty or lateral canthoplasty, under-eye fat repositioning, upper eyelid drooping, and revision eye surgery. Because small changes around the eyes can affect the overall impression, previous surgery history, eyelid muscle strength, skin thickness, and scar condition should be organized before consultation.',
-      ar: 'تشمل استشارة تجميل العيون عادةً عملية الجفن المزدوج، وتصحيح الجفن، وتوسيع زاوية العين، وإعادة توزيع دهون تحت العين، وترهل الجفن العلوي، وجراحات التصحيح السابقة. ونظرًا لأن التغييرات الصغيرة حول العين قد تؤثر على ملامح الوجه بالكامل، من المهم تنظيم تاريخ العمليات السابقة، وقوة عضلات الجفن، وسماكة الجلد، وحالة الندبات قبل الاستشارة.',
     },
     directionsLabel: {
       zh: '可能相关咨询方向',
-      ko: '눈성형 수술 종류',
       en: 'Possible Consultation Areas',
-      ar: 'مجالات الاستشارة المحتملة',
     },
     directions: [
-      { zh: '双眼皮手术', ko: '쌍꺼풀 수술', en: 'Double eyelid surgery', ar: 'عملية الجفن المزدوج' },
-      { zh: '眼部矫正', ko: '눈매교정', en: 'Ptosis or eyelid correction', ar: 'تصحيح الجفن' },
-      { zh: '开眼角', ko: '트임수술', en: 'Epicanthoplasty or lateral canthoplasty', ar: 'توسيع زاوية العين' },
-      { zh: '眼袋脂肪重置', ko: '눈밑지방재배치', en: 'Under-eye fat repositioning', ar: 'إعادة توزيع دهون تحت العين' },
-      { zh: '上眼睑手术', ko: '상안검 수술', en: 'Upper eyelid surgery', ar: 'جراحة الجفن العلوي' },
-      { zh: '下眼睑手术', ko: '하안검 수술', en: 'Lower eyelid surgery', ar: 'جراحة الجفن السفلي' },
-      { zh: '眼部修复手术', ko: '눈 재수술', en: 'Revision eye surgery', ar: 'جراحة تصحيح العينين' },
+      { zh: '双眼皮手术', en: 'Double eyelid surgery' },
+      { zh: '眼部矫正', en: 'Ptosis or eyelid correction' },
+      { zh: '开眼角', en: 'Epicanthoplasty or lateral canthoplasty' },
+      { zh: '眼袋脂肪重置', en: 'Under-eye fat repositioning' },
+      { zh: '上眼睑手术', en: 'Upper eyelid surgery' },
+      { zh: '下眼睑手术', en: 'Lower eyelid surgery' },
+      { zh: '眼部修复手术', en: 'Revision eye surgery' },
     ],
     note: {
       zh: '',
-      ko: '',
       en: '',
-      ar: '',
     },
     docKeys: ['photoGuide', 'doubleEyelidAfter', 'epicanthoplastyAfter', 'lowerEyelidFatAfter'],
   },
@@ -302,31 +246,25 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     image: '/keyword-tiles/nose-surgery.jpg',
     title: {
       zh: '鼻部整形',
-      ko: '코성형',
       en: 'Nose Surgery',
-      ar: 'تجميل الأنف',
     },
     description: {
       zh: '鼻部整形咨询主要针对鼻梁、鼻尖、鼻翼、鹰钩鼻、歪鼻、鼻修复和既往假体相关问题。鼻部整形可能同时涉及外观和呼吸功能，因此既往手术经历、假体使用情况、炎症经历和呼吸不适都需要提前告知。',
-      ko: '코성형 상담은 콧대, 코끝, 콧볼, 매부리코, 휜코, 코 재수술, 기존 보형물 관련 문제 등을 정리하는 과정입니다. 코성형은 외형뿐 아니라 호흡 기능과도 관련될 수 있으므로 기존 수술 이력, 보형물 여부, 염증 경험, 호흡 불편 여부를 미리 알려야 합니다.',
       en: 'Nose surgery consultation may include the nasal bridge, nasal tip, nostril width, hump nose, deviated nose, revision rhinoplasty, and concerns related to previous implants. Nose surgery may involve both appearance and breathing function, so previous surgery history, implant history, inflammation history, and breathing discomfort should be shared in advance.',
-      ar: 'قد تشمل استشارة تجميل الأنف جسر الأنف، وطرف الأنف، وتصغير فتحات الأنف، والأنف المحدب، وانحراف الأنف، وجراحة تصحيح الأنف، والمشكلات المتعلقة بالزرعات السابقة. وقد يرتبط تجميل الأنف بالمظهر والتنفس معًا، لذلك يجب إبلاغ المستشفى بتاريخ العمليات السابقة، ووجود زرعات، وتجارب الالتهاب، وأي صعوبة في التنفس.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '鼻梁改善', ko: '콧대 개선', en: 'Nasal bridge improvement', ar: 'تحسين جسر الأنف' },
-      { zh: '鼻尖整形', ko: '코끝성형', en: 'Nasal tip surgery', ar: 'تجميل طرف الأنف' },
-      { zh: '鼻翼缩小', ko: '콧볼축소', en: 'Nostril reduction', ar: 'تصغير فتحات الأنف' },
-      { zh: '鹰钩鼻咨询', ko: '매부리코 상담', en: 'Hump nose consultation', ar: 'استشارة الأنف المحدب' },
-      { zh: '歪鼻咨询', ko: '휜코 상담', en: 'Deviated nose consultation', ar: 'استشارة انحراف الأنف' },
-      { zh: '鼻修复手术咨询', ko: '코 재수술 상담', en: 'Revision rhinoplasty consultation', ar: 'استشارة تصحيح الأنف' },
-      { zh: '功能性鼻部问题确认', ko: '기능적 코 문제 확인', en: 'Functional nasal issue assessment', ar: 'تقييم المشكلات الوظيفية في الأنف' },
+      { zh: '鼻梁改善', en: 'Nasal bridge improvement' },
+      { zh: '鼻尖整形', en: 'Nasal tip surgery' },
+      { zh: '鼻翼缩小', en: 'Nostril reduction' },
+      { zh: '鹰钩鼻咨询', en: 'Hump nose consultation' },
+      { zh: '歪鼻咨询', en: 'Deviated nose consultation' },
+      { zh: '鼻修复手术咨询', en: 'Revision rhinoplasty consultation' },
+      { zh: '功能性鼻部问题确认', en: 'Functional nasal issue assessment' },
     ],
     note: {
       zh: '',
-      ko: '',
       en: '',
-      ar: '',
     },
     docKeys: ['photoGuide', 'rhinoplastyAfter'],
   },
@@ -335,30 +273,24 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     image: '/keyword-tiles/facelift-lifting.jpg',
     title: {
       zh: '面部提升',
-      ko: '거상·리프팅',
       en: 'Facelift & Lifting',
-      ar: 'شد الوجه',
     },
     description: {
       zh: '面部提升咨询主要针对面部松弛、下颌线模糊、法令纹加深、中下面部下垂、颈部松弛等问题。这里主要指手术类提升咨询，与皮肤医美中的非手术提升项目不同。',
-      ko: '거상·리프팅 상담은 얼굴 처짐, 턱선 흐림, 팔자주름 깊어짐, 중·하안면 처짐, 목 처짐 등의 고민을 정리하는 과정입니다. 여기서는 피부미용의 비수술 장비 리프팅과 구분되는 수술적 리프팅 상담을 중심으로 합니다.',
       en: 'Facelift consultation may include facial sagging, blurred jawline, deeper nasolabial folds, mid-to-lower face sagging, and neck laxity. This section focuses on surgical lifting consultation and is different from non-surgical device-based lifting in skin aesthetics.',
-      ar: 'تشمل استشارة شد الوجه ترهل الوجه، وضعف خط الفك، وازدياد عمق خطوط الابتسامة، وترهل منتصف وأسفل الوجه، وترهل الرقبة. يركز هذا القسم على الاستشارة الخاصة بالشد الجراحي، وهو مختلف عن أجهزة الشد غير الجراحية في قسم الجلدية التجميلية.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '小切口提升咨询', ko: '미니거상 상담', en: 'Mini facelift consultation', ar: 'استشارة شد الوجه المصغر' },
-      { zh: '面部拉皮咨询', ko: '안면거상 상담', en: 'Facelift consultation', ar: 'استشارة شد الوجه' },
-      { zh: '颈部提升咨询', ko: '목거상 상담', en: 'Neck lift consultation', ar: 'استشارة شد الرقبة' },
-      { zh: '中下面部提升咨询', ko: '중·하안면 리프팅 상담', en: 'Mid-to-lower face lifting consultation', ar: 'استشارة شد منتصف وأسفل الوجه' },
-      { zh: '术后恢复计划', ko: '수술 후 회복 계획', en: 'Postoperative recovery planning', ar: 'خطة التعافي بعد العملية' },
-      { zh: '疤痕管理咨询', ko: '흉터관리 상담', en: 'Scar care consultation', ar: 'استشارة العناية بالندبات' },
+      { zh: '小切口提升咨询', en: 'Mini facelift consultation' },
+      { zh: '面部拉皮咨询', en: 'Facelift consultation' },
+      { zh: '颈部提升咨询', en: 'Neck lift consultation' },
+      { zh: '中下面部提升咨询', en: 'Mid-to-lower face lifting consultation' },
+      { zh: '术后恢复计划', en: 'Postoperative recovery planning' },
+      { zh: '疤痕管理咨询', en: 'Scar care consultation' },
     ],
     note: {
       zh: '',
-      ko: '',
       en: '',
-      ar: '',
     },
     docKeys: ['facelistAfter', 'necklistAfter', 'scarCareGuide'],
   },
@@ -367,46 +299,38 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     image: '/keyword-tiles/facial-contour-two-jaw.jpg',
     title: {
       zh: '面部轮廓·双颚',
-      ko: '안면윤곽·양악',
       en: 'Facial Contour & Two-Jaw Surgery',
-      ar: 'تحديد الوجه وجراحة الفكين',
     },
     description: {
       zh: '面部轮廓和双颚咨询主要针对颧骨、下颌角、下巴、面部不对称、长脸、宽脸、咬合或颌面比例相关问题。此类手术属于高复杂度手术，必须重点确认麻醉、安全系统、术前检查、住院或恢复管理安排。',
-      ko: '안면윤곽과 양악 상담은 광대, 사각턱, 턱끝, 얼굴 비대칭, 긴 얼굴, 넓은 얼굴, 교합 또는 악안면 비율 관련 고민을 정리하는 과정입니다. 이 수술군은 고난도 수술에 해당하므로 마취, 안전시스템, 수술 전 검사, 입원 또는 회복관리 계획을 반드시 중요하게 확인해야 합니다.',
       en: 'Facial contouring and two-jaw surgery consultation may include cheekbone reduction, jaw angle surgery, chin surgery, facial asymmetry, long face, wide face, bite issues, and jaw-facial proportion concerns. These are highly complex surgeries, so anesthesia, safety systems, preoperative tests, hospitalization, and recovery management must be carefully reviewed.',
-      ar: 'تشمل استشارة تحديد الوجه وجراحة الفكين عظام الوجنتين، وزاوية الفك، والذقن، وعدم تناسق الوجه، والوجه الطويل أو العريض، ومشكلات الإطباق أو تناسب عظام الوجه والفك. وتُعد هذه العمليات عالية التعقيد، لذلك يجب التحقق بعناية من التخدير، ونظام السلامة، والفحوصات قبل العملية، والحاجة إلى الإقامة أو خطة التعافي.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '颧骨手术咨询', ko: '광대수술 상담', en: 'Cheekbone surgery consultation', ar: 'استشارة جراحة عظام الوجنتين' },
-      { zh: '下颌角手术咨询', ko: '사각턱수술 상담', en: 'Jaw angle surgery consultation', ar: 'استشارة جراحة زاوية الفك' },
-      { zh: '下巴手术咨询', ko: '턱끝수술 상담', en: 'Chin surgery consultation', ar: 'استشارة جراحة الذقن' },
-      { zh: '面部不对称咨询', ko: '얼굴 비대칭 상담', en: 'Facial asymmetry consultation', ar: 'استشارة عدم تناسق الوجه' },
-      { zh: '轮廓修复咨询', ko: '윤곽 재수술 상담', en: 'Facial contour revision consultation', ar: 'استشارة تصحيح تحديد الوجه' },
-      { zh: '双颚手术咨询', ko: '양악수술 상담', en: 'Two-jaw surgery consultation', ar: 'استشارة جراحة الفكين' },
-      { zh: '咬合与颌面比例相关咨询', ko: '교합 및 악안면 비율 관련 상담', en: 'Bite and jaw-facial proportion consultation', ar: 'استشارة الإطباق وتناسب عظام الوجه والفك' },
+      { zh: '颧骨手术咨询', en: 'Cheekbone surgery consultation' },
+      { zh: '下颌角手术咨询', en: 'Jaw angle surgery consultation' },
+      { zh: '下巴手术咨询', en: 'Chin surgery consultation' },
+      { zh: '面部不对称咨询', en: 'Facial asymmetry consultation' },
+      { zh: '轮廓修复咨询', en: 'Facial contour revision consultation' },
+      { zh: '双颚手术咨询', en: 'Two-jaw surgery consultation' },
+      { zh: '咬合与颌面比例相关咨询', en: 'Bite and jaw-facial proportion consultation' },
     ],
     safetyChecklistLabel: {
       zh: '安全系统确认重点',
-      ko: '안전시스템 확인 포인트',
       en: 'Safety System Points to Check',
-      ar: 'نقاط نظام السلامة الواجب التحقق منها',
     },
     safetyChecklist: [
-      { zh: '是否有麻醉科专业医生参与', ko: '마취통증의학과 전문의 참여 여부', en: 'Whether an anesthesiology specialist is involved', ar: 'مشاركة طبيب متخصص في التخدير' },
-      { zh: '是否进行术前血液检查、影像检查和全身状态评估', ko: '수술 전 혈액검사, 영상검사, 전신 상태 평가 여부', en: 'Whether blood tests, imaging tests, and general health evaluation are performed before surgery', ar: 'إجراء فحوصات الدم والتصوير وتقييم الحالة العامة قبل العملية' },
-      { zh: '是否具备手术中监测系统', ko: '수술 중 모니터링 시스템 여부', en: 'Whether intraoperative monitoring systems are available', ar: 'وجود نظام مراقبة أثناء العملية' },
-      { zh: '是否有术后恢复室和观察流程', ko: '수술 후 회복실 및 관찰 프로세스 여부', en: 'Whether there is a recovery room and postoperative observation process', ar: 'وجود غرفة إفاقة وعملية متابعة بعد العملية' },
-      { zh: '是否有出血、呼吸不适等异常情况的应对流程', ko: '출혈, 호흡 불편 등 이상 상황 대응 프로세스 여부', en: 'Whether there is a response process for bleeding, breathing discomfort, or other abnormal situations', ar: 'وجود خطة للتعامل مع النزيف أو صعوبة التنفس أو أي أعراض غير طبيعية' },
-      { zh: '是否需要住院或保护人陪同', ko: '입원 또는 보호자 동행 필요 여부', en: 'Whether hospitalization or a guardian is required', ar: 'الحاجة إلى الإقامة في المستشفى أو وجود مرافق' },
-      { zh: '回国前是否需要复诊确认', ko: '귀국 전 재내원 확인 필요 여부', en: 'Whether a follow-up check before returning home is needed', ar: 'الحاجة إلى مراجعة قبل العودة إلى البلد' },
+      { zh: '是否有麻醉科专业医生参与', en: 'Whether an anesthesiology specialist is involved' },
+      { zh: '是否进行术前血液检查、影像检查和全身状态评估', en: 'Whether blood tests, imaging tests, and general health evaluation are performed before surgery' },
+      { zh: '是否具备手术中监测系统', en: 'Whether intraoperative monitoring systems are available' },
+      { zh: '是否有术后恢复室和观察流程', en: 'Whether there is a recovery room and postoperative observation process' },
+      { zh: '是否有出血、呼吸不适等异常情况的应对流程', en: 'Whether there is a response process for bleeding, breathing discomfort, or other abnormal situations' },
+      { zh: '是否需要住院或保护人陪同', en: 'Whether hospitalization or a guardian is required' },
+      { zh: '回国前是否需要复诊确认', en: 'Whether a follow-up check before returning home is needed' },
     ],
     note: {
       zh: '',
-      ko: '',
       en: '',
-      ar: '',
     },
     // TODO: once the admin prep-documents page publishes "麻醉前确认问诊表 / 마취 전 확인 문진표"
     // (currently status: 'draft' at /prep/anesthesia-check in prepDocuments.ts), add its key here.
@@ -417,31 +341,25 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     image: '/keyword-tiles/fat-grafting-liposuction.jpg',
     title: {
       zh: '脂肪移植·吸脂',
-      ko: '지방이식·지방흡입',
       en: 'Fat Grafting & Liposuction',
-      ar: 'حقن الدهون وشفط الدهون',
     },
     description: {
       zh: '脂肪移植和吸脂咨询主要针对面部凹陷、额头或太阳穴容量不足、法令纹周围凹陷，以及腹部、手臂、大腿等身体部位的脂肪管理需求。脂肪移植和吸脂的恢复方式不同，需要分别咨询。',
-      ko: '지방이식과 지방흡입 상담은 얼굴 꺼짐, 이마나 관자 부위 볼륨 부족, 팔자 주변 꺼짐, 복부·팔뚝·허벅지 등 바디 지방관리 고민을 정리하는 과정입니다. 지방이식과 지방흡입은 회복 방식이 다르므로 각각 구분해 상담해야 합니다.',
       en: 'Fat grafting and liposuction consultation may include facial volume loss, forehead or temple volume deficiency, nasolabial area volume concerns, and fat management for the abdomen, arms, or thighs. Fat grafting and liposuction have different recovery processes and should be discussed separately.',
-      ar: 'تشمل استشارة حقن الدهون وشفط الدهون نقص حجم الوجه، ونقص الحجم في الجبهة أو الصدغين، والمنطقة حول خطوط الابتسامة، وإدارة الدهون في البطن أو الذراعين أو الفخذين. تختلف عملية التعافي بين حقن الدهون وشفط الدهون، لذلك يجب مناقشتهما بشكل منفصل.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '面部脂肪填充', ko: '얼굴 지방이식', en: 'Facial fat grafting', ar: 'حقن الدهون في الوجه' },
-      { zh: '额头和太阳穴填充', ko: '이마·관자 지방이식', en: 'Forehead and temple fat grafting', ar: 'حقن الدهون في الجبهة والصدغين' },
-      { zh: '法令纹周围容量咨询', ko: '팔자 주변 볼륨 상담', en: 'Volume consultation around nasolabial folds', ar: 'استشارة الحجم حول خطوط الابتسامة' },
-      { zh: '腹部吸脂', ko: '복부 지방흡입', en: 'Abdominal liposuction', ar: 'شفط دهون البطن' },
-      { zh: '手臂吸脂', ko: '팔 지방흡입', en: 'Arm liposuction', ar: 'شفط دهون الذراعين' },
-      { zh: '大腿吸脂', ko: '허벅지 지방흡입', en: 'Thigh liposuction', ar: 'شفط دهون الفخذين' },
-      { zh: '身体线条管理咨询', ko: '바디라인 관리 상담', en: 'Body contour consultation', ar: 'استشارة تنسيق الجسم' },
+      { zh: '面部脂肪填充', en: 'Facial fat grafting' },
+      { zh: '额头和太阳穴填充', en: 'Forehead and temple fat grafting' },
+      { zh: '法令纹周围容量咨询', en: 'Volume consultation around nasolabial folds' },
+      { zh: '腹部吸脂', en: 'Abdominal liposuction' },
+      { zh: '手臂吸脂', en: 'Arm liposuction' },
+      { zh: '大腿吸脂', en: 'Thigh liposuction' },
+      { zh: '身体线条管理咨询', en: 'Body contour consultation' },
     ],
     note: {
       zh: '脂肪移植的生着率存在个人差异，吸脂后也需要压迫服、肿胀、淤青和皮肤紧绷感管理。是否适合、可以做哪些部位，需要医生判断。',
-      ko: '지방이식은 생착률에 개인차가 있고, 지방흡입 후에는 압박복, 붓기, 멍, 피부 당김감 관리가 필요할 수 있습니다. 적합 여부와 가능 부위는 의료진 판단이 필요합니다.',
       en: 'Fat graft survival varies by individual, and liposuction may require compression garments, swelling care, bruise management, and skin tightness care. Suitability and possible treatment areas must be determined by doctors.',
-      ar: 'معدل بقاء الدهون يختلف من شخص لآخر، وبعد شفط الدهون قد تكون هناك حاجة إلى ملابس ضاغطة وإدارة التورم والكدمات وشد الجلد. مدى المناسبة والمناطق الممكنة يجب أن يحددها الطبيب.',
     },
     docKeys: ['liposuctionAfter', 'fatGraftAfter'],
   },
@@ -450,86 +368,66 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     image: '/keyword-tiles/breast-surgery.jpg',
     title: {
       zh: '胸部整形',
-      ko: '가슴성형',
       en: 'Breast Surgery',
-      ar: 'تجميل الثدي',
     },
     description: {
       zh: '胸部整形咨询主要包括假体隆胸、自体脂肪隆胸、胸部下垂、胸部不对称、假体更换和隆胸修复等方向。胸部整形需要考虑体型、皮肤状态、恢复时间和长期管理。',
-      ko: '가슴성형 상담은 보형물 가슴성형, 자가 지방이식 가슴성형, 가슴 처짐, 가슴 비대칭, 보형물 교체, 가슴 재수술 등의 방향을 포함합니다. 가슴성형은 체형, 피부 상태, 회복 기간, 장기 관리까지 함께 고려해야 합니다.',
       en: 'Breast surgery consultation may include breast augmentation with implants, autologous fat transfer, breast sagging, breast asymmetry, implant replacement, and revision breast surgery. Breast surgery should consider body shape, skin condition, recovery time, and long-term management.',
-      ar: 'تشمل استشارة تجميل الثدي تكبير الثدي بالزرعات، أو بحقن الدهون الذاتية، وترهل الثدي، وعدم التناسق، وتغيير الزرعات، وجراحة التصحيح. ويجب النظر إلى شكل الجسم، وحالة الجلد، وفترة التعافي، والمتابعة طويلة المدى.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '假体隆胸咨询', ko: '보형물 가슴성형 상담', en: 'Implant breast augmentation consultation', ar: 'استشارة تكبير الثدي بالزرعات' },
-      { zh: '自体脂肪隆胸咨询', ko: '자가 지방이식 가슴성형 상담', en: 'Fat transfer breast augmentation consultation', ar: 'استشارة تكبير الثدي بحقن الدهون الذاتية' },
-      { zh: '胸部下垂咨询', ko: '가슴 처짐 상담', en: 'Breast sagging consultation', ar: 'استشارة ترهل الثدي' },
-      { zh: '胸部不对称咨询', ko: '가슴 비대칭 상담', en: 'Breast asymmetry consultation', ar: 'استشارة عدم تناسق الثدي' },
-      { zh: '假体更换咨询', ko: '보형물 교체 상담', en: 'Implant replacement consultation', ar: 'استشارة تغيير الزرعات' },
-      { zh: '隆胸修复咨询', ko: '가슴 재수술 상담', en: 'Revision breast surgery consultation', ar: 'استشارة تصحيح جراحة الثدي' },
-      { zh: '乳头缩小咨询', ko: '유두 축소 상담', en: 'Nipple reduction consultation', ar: 'استشارة تصغير الحلمة' },
+      { zh: '假体隆胸咨询', en: 'Implant breast augmentation consultation' },
+      { zh: '自体脂肪隆胸咨询', en: 'Fat transfer breast augmentation consultation' },
+      { zh: '胸部下垂咨询', en: 'Breast sagging consultation' },
+      { zh: '胸部不对称咨询', en: 'Breast asymmetry consultation' },
+      { zh: '假体更换咨询', en: 'Implant replacement consultation' },
+      { zh: '隆胸修复咨询', en: 'Revision breast surgery consultation' },
+      { zh: '乳头缩小咨询', en: 'Nipple reduction consultation' },
     ],
     popularDevices: {
       title: {
         zh: '代表性假体 3 种',
-        ko: '가슴성형 대표 보형물 3종',
         en: 'Top 3 Breast Implant Types',
-        ar: 'أبرز 3 أنواع لزرعات الثدي',
       },
       items: [
         {
-          name: { zh: 'Motiva Ergonomix（魔滴）', ko: '모티바 Ergonomix', en: 'Motiva Ergonomix', ar: 'Motiva Ergonomix' },
+          name: { zh: 'Motiva Ergonomix（魔滴）', en: 'Motiva Ergonomix' },
           desc: {
             zh: '触感和动态效果比较自然。如果更强调上胸饱满度，可能需要考虑其他类型。',
-            ko: '자연스러운 촉감과 움직임이 특징. 풍성한 윗가슴 볼륨을 강하게 원하는 경우에는 다른 타입이 더 적합할 수 있습니다.',
             en: 'Natural feel and movement. If you want a fuller, more prominent upper pole, another type may suit you better.',
-            ar: 'ملمس وحركة طبيعية. إذا كنتِ تفضلين امتلاءً أكبر في الجزء العلوي من الثدي، فقد يكون نوع آخر أنسب.',
           },
         },
         {
-          name: { zh: 'MENTOR BOOST', ko: '멘토 BOOST', en: 'Mentor BOOST', ar: 'Mentor BOOST' },
+          name: { zh: 'MENTOR BOOST', en: 'Mentor BOOST' },
           desc: {
             zh: '支撑力较强，上胸轮廓和饱满感更明显。如果更偏好非常柔软的触感，可能会觉得相对偏挺。',
-            ko: '탄탄한 형태 유지와 윗가슴 볼륨 표현에 강점. 매우 부드러운 촉감을 선호하는 경우에는 다소 탄탄하게 느껴질 수 있습니다.',
             en: 'Strong shape retention with a fuller upper pole. If you prefer a very soft feel, it may seem somewhat firm.',
-            ar: 'يحافظ على شكله جيدًا مع امتلاء أوضح في الجزء العلوي. إذا كنتِ تفضلين ملمسًا ناعمًا جدًا، فقد يبدو أكثر صلابة نسبيًا.',
           },
         },
         {
-          name: { zh: 'MENTOR MemoryGel Xtra', ko: '멘토 MemoryGel Xtra', en: 'Mentor MemoryGel Xtra', ar: 'Mentor MemoryGel Xtra' },
+          name: { zh: 'MENTOR MemoryGel Xtra', en: 'Mentor MemoryGel Xtra' },
           desc: {
             zh: '在饱满度和形态维持之间比较均衡。更适合希望胸型更饱满、轮廓更明显的人群。',
-            ko: '볼륨감과 형태 유지의 균형이 좋은 보형물. 자연스럽게 흐르는 촉감보다는 볼륨 표현을 원하는 경우에 적합합니다.',
             en: 'A good balance of volume and shape retention. Better suited to those who want more defined volume rather than a very soft, natural flow.',
-            ar: 'يوازن جيدًا بين الامتلاء والحفاظ على الشكل. مناسب لمن يفضلن امتلاءً أوضح بدلاً من ملمس طبيعي ناعم جدًا.',
           },
         },
       ],
       caution: {
         zh: '假体选择需根据体型、皮肤厚度及期望的胸型和轮廓而定，具体是否适合需通过医生咨询确定。',
-        ko: '보형물 선택은 체형, 피부 두께, 원하는 볼륨과 라인에 따라 달라지며, 실제 적합 여부는 의사와의 상담을 통해 결정해야 합니다.',
         en: 'Implant choice depends on body type, skin thickness, and the volume and shape you want — the right option should be confirmed through a doctor consultation.',
-        ar: 'يعتمد اختيار الزرعة على شكل الجسم وسماكة الجلد والامتلاء والخط المرغوب، ويجب تأكيد الخيار المناسب من خلال استشارة الطبيب.',
       },
     },
     explainerTitle: {
       zh: '乳头缩小咨询',
-      ko: '유두 축소 상담',
       en: 'Nipple Reduction Consultation',
-      ar: 'استشارة تصغير الحلمة',
     },
     explainerBody: {
       zh: '针对乳头过大、过长或突出明显的情况，调整乳头的大小和形态，使其与整体胸型更加协调。',
-      ko: '유두가 크거나 길거나 두드러지는 경우, 유두의 크기와 모양을 조정하여 전체적인 가슴 라인과 더 조화롭게 만드는 시술입니다.',
       en: 'For nipples that are enlarged, elongated, or noticeably protruding, this procedure adjusts nipple size and shape for a look that is more in proportion with the overall breast line.',
-      ar: 'لحالات الحلمات الكبيرة أو الطويلة أو البارزة بشكل ملحوظ، يُعدَّل حجم الحلمة وشكلها لتتناسق أكثر مع خط الصدر العام.',
     },
     note: {
       zh: '胸部整形需要确认假体种类、切口位置、麻醉方式、恢复期、内衣或胸带使用、按摩或长期追踪管理是否需要。具体方案需由医生判断。',
-      ko: '가슴성형은 보형물 종류, 절개 위치, 마취 방식, 회복 기간, 보정브라 또는 흉대 사용, 마사지나 장기 추적 관리 필요 여부를 확인해야 합니다. 구체적인 수술 계획은 의사가 판단해야 합니다.',
       en: 'Breast surgery requires confirmation of implant type, incision site, anesthesia method, recovery period, compression bra or breast band use, massage, and long-term follow-up needs. The specific plan must be determined by the doctor.',
-      ar: 'تجميل الثدي يتطلب التأكد من نوع الزرعة، ومكان الشق، وطريقة التخدير، وفترة التعافي، واستخدام حمالة أو رباط ضاغط، والحاجة إلى التدليك أو المتابعة طويلة المدى. الخطة المحددة يجب أن يقررها الطبيب.',
     },
     docKeys: ['breastSurgeryAfter', 'surgeryBefore'],
   },

@@ -25,7 +25,7 @@ export interface NetworkCity {
 export const NETWORK_CITIES: NetworkCity[] = [
   {
     id: 'seoul',
-    name: { zh: '首尔', ko: '서울', en: 'Seoul', ar: 'سيول' },
+    name: { zh: '首尔', en: 'Seoul' },
     x: 195,
     y: 168,
     dots: [
@@ -36,14 +36,14 @@ export const NETWORK_CITIES: NetworkCity[] = [
   },
   {
     id: 'daegu',
-    name: { zh: '大邱', ko: '대구', en: 'Daegu', ar: 'دايغو' },
+    name: { zh: '大邱', en: 'Daegu' },
     x: 305,
     y: 460,
     dots: [[322.5, 430.7], [302.6, 444.5], [292.7, 413.8]],
   },
   {
     id: 'busan',
-    name: { zh: '釜山', ko: '부산', en: 'Busan', ar: 'بوسان' },
+    name: { zh: '釜山', en: 'Busan' },
     x: 345,
     y: 512,
     dots: [
@@ -53,7 +53,7 @@ export const NETWORK_CITIES: NetworkCity[] = [
   },
   {
     id: 'jeju',
-    name: { zh: '济州', ko: '제주', en: 'Jeju', ar: 'جيجو' },
+    name: { zh: '济州', en: 'Jeju' },
     x: 40,
     y: 670,
     dots: [[47.5, 697.2], [46.6, 702.7], [31.2, 694.9], [35.0, 708.0], [46.3, 696.6], [48.3, 684.9]],

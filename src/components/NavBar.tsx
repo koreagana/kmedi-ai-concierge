@@ -7,8 +7,6 @@ import { translations, type LangCode } from '../data/translations'
 const langPaths: Record<LangCode, string> = {
   zh: '/zh',
   en: '/en',
-  ar: '/ar',
-  ko: '/ko',
 }
 
 export default function NavBar() {
@@ -16,8 +14,7 @@ export default function NavBar() {
   const t = translations[lang]
   const navigate = useNavigate()
   const location = useLocation()
-  const isArPage = location.pathname.startsWith('/ar')
-  // /shop, /shop/order, /terms etc. are standalone routes outside the /zh|ko|en|ar
+  // /shop, /shop/order, /terms etc. are standalone routes outside the /zh|en
   // nested router, so the usual goHome() (which just clears the search
   // params on the current route) can't get back to the real homepage here.
   const isShopPage = location.pathname.startsWith('/shop')
@@ -60,8 +57,6 @@ export default function NavBar() {
   const langs: { code: LangCode; label: string }[] = [
     { code: 'zh', label: '中文' },
     { code: 'en', label: 'English' },
-    { code: 'ar', label: 'العربية' },
-    { code: 'ko', label: '한국어' },
   ]
 
   const scrollToContact = () => {
@@ -82,8 +77,8 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* /ar 페이지, /shop, /terms 페이지: 없음 / 그 외: 상담 버튼 */}
-        {page === 'home' && !isArPage && !isStandalonePage && (
+        {/* /shop, /terms 페이지: 없음 / 그 외: 상담 버튼 */}
+        {page === 'home' && !isStandalonePage && (
           <button
             onClick={scrollToContact}
             style={{
@@ -100,20 +95,6 @@ export default function NavBar() {
             }}
           >
             {t.navConsult}
-          </button>
-        )}
-
-        {/* /ar 페이지 로고 이미지 */}
-        {isArPage && (
-          <button
-            onClick={handleBrandClick}
-            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex' }}
-          >
-            <img
-              src="/kmedi_logo.png"
-              alt="K-Medi"
-              style={{ height: 28, width: 'auto', objectFit: 'contain', display: 'block' }}
-            />
           </button>
         )}
 

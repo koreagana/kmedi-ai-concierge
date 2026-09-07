@@ -3,9 +3,7 @@ import type { LangCode } from '../data/translations'
 
 const SPEECH_LANG: Record<LangCode, string> = {
   zh: 'zh-CN',
-  ko: 'ko-KR',
   en: 'en-US',
-  ar: 'ar-SA',
 }
 
 // Ordered best → acceptable. Matched case-insensitively against each
@@ -14,16 +12,12 @@ const SPEECH_LANG: Record<LangCode, string> = {
 // the browser would otherwise fall back to.
 const PREFERRED_VOICE_NAMES: Record<LangCode, string[]> = {
   zh: ['Google 普通话', 'Xiaoxiao', 'Yunxi', 'Yunyang', 'Tingting (Enhanced)', 'Tingting', 'Ting-Ting'],
-  ko: ['Google 한국의', 'SunHi', 'InJoon', 'Yuna (Enhanced)', 'Yuna'],
   en: ['Google US English', 'Aria', 'Ava (Enhanced)', 'Ava', 'Samantha (Enhanced)', 'Samantha'],
-  ar: ['Google العربية', 'Hamed', 'Salma', 'Maged (Enhanced)', 'Maged'],
 }
 
 const LABEL: Record<LangCode, { play: string; stop: string }> = {
   zh: { play: '朗读本文', stop: '停止朗读' },
-  ko: { play: '본문 읽어주기', stop: '읽기 중지' },
   en: { play: 'Read aloud', stop: 'Stop reading' },
-  ar: { play: 'قراءة النص', stop: 'إيقاف القراءة' },
 }
 
 function pickVoice(voices: SpeechSynthesisVoice[], lang: LangCode): SpeechSynthesisVoice | null {

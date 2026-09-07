@@ -1,4 +1,4 @@
-import { WECHAT_BIZ_URL, WHATSAPP_URL } from '../data/contacts'
+import { WECHAT_BIZ_URL } from '../data/contacts'
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
@@ -64,12 +64,8 @@ interface PackageLang {
 
 const SPOT_ZH = ['北村韩屋村', '仁寺洞', '南山首尔塔', '汉江公园', '清溪川', '广藏市场', '益善洞', '昌德宫', '德寿宫', '东大门设计广场 DDP', 'COEX 星光图书馆', '圣水洞', '弘大步行街', '林荫道', '梨泰院', '西村', '首尔天空观景台']
 const SHOP_ZH = ['现代百货 The Hyundai Seoul', '明洞', '乐天百货总店', '新世界百货总店', '现代百货狎鸥亭总店', 'Starfield COEX Mall', '乐天世界购物城', 'IFC Mall', '时代广场 Times Square', '现代百货贸易中心店', 'Galeria 名品馆', '狎鸥亭罗德奥', '林荫道', '圣水洞买手店街区', '弘大购物街', '东大门时尚城', '高速巴士地下商街 GOTO Mall', 'Common Ground']
-const SPOT_KO = ['북촌한옥마을', '인사동', '남산서울타워', '한강공원', '청계천', '광장시장', '익선동', '창덕궁', '덕수궁', '동대문디자인플라자 DDP', 'COEX 별마당도서관', '성수동', '홍대 거리', '가로수길', '이태원', '서촌', '서울스카이 전망대']
-const SHOP_KO = ['현대백화점 The Hyundai Seoul', '명동', '롯데백화점 본점', '신세계백화점 본점', '현대백화점 압구정 본점', 'Starfield COEX Mall', '롯데월드몰', 'IFC Mall', '타임스퀘어', '현대백화점 무역센터점', 'Galeria 명품관', '압구정 로데오', '가로수길', '성수동 편집샵 거리', '홍대 쇼핑거리', '동대문 패션타운', '고속터미널 지하상가 GOTO Mall', 'Common Ground']
 const SPOT_EN = ['Bukchon Hanok Village', 'Insadong', 'Namsan Seoul Tower', 'Hangang Park', 'Cheonggyecheon', 'Gwangjang Market', 'Ikseon-dong', 'Changdeokgung Palace', 'Deoksugung Palace', 'DDP (Dongdaemun Design Plaza)', 'COEX Starfield Library', 'Seongsu-dong', 'Hongdae Street', 'Garosu-gil', 'Itaewon', 'Seochon', 'Seoul Sky Observatory']
 const SHOP_EN = ['The Hyundai Seoul', 'Myeongdong', 'Lotte Dept. Main', 'Shinsegae Dept. Main', 'Hyundai Apgujeong Main', 'Starfield COEX Mall', 'Lotte World Mall', 'IFC Mall', 'Times Square', 'Hyundai COEX', 'Galeria Luxury Hall', 'Apgujeong Rodeo', 'Garosu-gil', 'Seongsu Select Shops', 'Hongdae Shopping St.', 'Dongdaemun Fashion Town', 'GOTO Mall', 'Common Ground']
-const SPOT_AR = ['قرية بوكتشون هانوك', 'إنسادونغ', 'برج سيول نامسان', 'حديقة هانغانغ', 'تشيونغيتشيون', 'سوق غوانجانغ', 'إيكسيون-دونغ', 'قصر تشانغديوك', 'قصر ديوكسو', 'DDP دونغداي مون', 'مكتبة ستارفيلد COEX', 'سيونغسو-دونغ', 'شارع هونغداي', 'غاروسو-غيل', 'إيتايون', 'سيوتشون', 'مرصد سيول سكاي']
-const SHOP_AR = ['The Hyundai Seoul', 'ميونغدونغ', 'لوتي الرئيسي', 'شينسيغي الرئيسي', 'هيونداي أبغوجيونغ', 'Starfield COEX Mall', 'لوتي وورلد مول', 'IFC Mall', 'تايمز سكوير', 'هيونداي COEX', 'غالاريا لوكس', 'أبغوجيونغ رودييو', 'غاروسو-غيل', 'محلات سيونغسو', 'هونغداي للتسوق', 'دونغداي مون للأزياء', 'GOTO Mall', 'Common Ground']
 
 const ZH: PackageLang = {
   backHome: '← 返回首页',
@@ -133,70 +129,6 @@ const ZH: PackageLang = {
   footNote: '以上为标准行程模板，具体医疗项目及时间将由专属顾问与您确认后调整。',
   summaryEmpty: '尚未选择行程项目',
   consultBtn: '联系顾问咨询',
-}
-
-const KO: PackageLang = {
-  backHome: '← 홈으로',
-  heroEyebrow: '✦ 고객님의 취향에 맞게 구성 가능',
-  heroTitle: '한강애봄 3박4일 패키지',
-  heroSub: '의료상담·관광·쇼핑 일정은 고정되어 있으며, 구체적인 장소와 식사 메뉴는 자유롭게 선택하실 수 있습니다.',
-  heroNote: '의료비는 본 패키지에 포함되지 않으며, 구체적인 의료 항목은 별도 확인이 필요합니다.',
-  countLabels: ['병원 방문 (고정)', '관광지 (선택)', '쇼핑 장소 (선택)'],
-  glanceTitle: '일정 한눈에 보기',
-  glanceSub: '전체 일정을 확인한 후, 매일 세부 시간과 선택 항목을 확인하실 수 있습니다',
-  glanceDays: [
-    { title: '서울 도착', sub: '인천공항 출발', items: [{ text: '인천공항 픽업', fixed: true }, { text: '호텔 체크인', fixed: true }, { text: '환영 만찬', fixed: false }] },
-    { title: '병원 상담①', sub: '병원 1곳 · 상담 1회', items: [{ text: '병원 상담①', fixed: true }, { text: '점심', fixed: false }, { text: '관광지①', fixed: false }, { text: '저녁', fixed: false }] },
-    { title: '병원 재진②', sub: '병원 1곳 · 자유 쇼핑', items: [{ text: '병원 재진②', fixed: true }, { text: '점심', fixed: false }, { text: '쇼핑', fixed: false }, { text: '저녁', fixed: false }] },
-    { title: '병원 재진③', sub: '출국 준비', items: [{ text: '병원 재진③', fixed: true }, { text: '점심', fixed: false }, { text: '관광지②', fixed: false }, { text: '출국', fixed: true }] },
-  ],
-  legendFixed: '고정 일정', legendSelect: '선택 가능',
-  selectCtaText: '관광지와 쇼핑 장소를 선택해 주세요',
-  badgeFixed: '고정', badgeSelect: '선택',
-  days: [
-    { num: 1, title: '서울 도착', dateLabel: 'DAY 1 · 입국', slots: [
-      { kind: 'fixed', time: '14:00', label: '인천공항 픽업', detail: '전용 차량으로 호텔까지 안내' },
-      { kind: 'fixed', time: '16:00', label: '호텔 체크인 · 휴식' },
-      { kind: 'select', time: '19:00', label: '환영 만찬', slotKey: 'meal1', optionsKind: 'meal' },
-    ] },
-    { num: 2, title: '병원 상담①', dateLabel: 'DAY 2 · 의료상담', slots: [
-      { kind: 'fixed', time: '09:30', label: '병원 상담①', detail: '전문 통역 동행' },
-      { kind: 'select', time: '12:30', label: '점심', slotKey: 'meal2', optionsKind: 'meal' },
-      { kind: 'select', time: '14:00', label: '관광지①', slotKey: 'sight1', optionsKind: 'spot' },
-      { kind: 'select', time: '19:00', label: '저녁', slotKey: 'meal3', optionsKind: 'meal' },
-    ] },
-    { num: 3, title: '병원 재진②', dateLabel: 'DAY 3 · 회복 및 쇼핑', slots: [
-      { kind: 'fixed', time: '09:30', label: '병원 재진②' },
-      { kind: 'select', time: '12:30', label: '점심', slotKey: 'meal4', optionsKind: 'meal' },
-      { kind: 'select', time: '14:00', label: '쇼핑', slotKey: 'shop', optionsKind: 'shop' },
-      { kind: 'select', time: '19:00', label: '저녁', slotKey: 'meal5', optionsKind: 'meal' },
-    ] },
-    { num: 4, title: '병원 재진③ & 출국', dateLabel: 'DAY 4 · 재진 및 출국', slots: [
-      { kind: 'fixed', time: '09:30', label: '병원 재진③' },
-      { kind: 'select', time: '12:30', label: '점심', slotKey: 'meal6', optionsKind: 'meal' },
-      { kind: 'select', time: '14:00', label: '관광지②', slotKey: 'sight2', optionsKind: 'spot' },
-      { kind: 'fixed', time: '18:30', label: '출국 · 공항 이동' },
-    ] },
-  ],
-  mealOptions: ['한정식', '숯불구이', '삼계탕', '전골정식'],
-  spotOptions: SPOT_KO,
-  shopOptions: SHOP_KO,
-  slotSummaryLabels: { meal1: '환영 만찬', meal2: '2일차 점심', meal3: '2일차 저녁', meal4: '3일차 점심', meal5: '3일차 저녁', meal6: '4일차 점심', sight1: '관광지①', sight2: '관광지②', shop: '쇼핑 장소' },
-  priceTitle: '비용 안내',
-  priceSub: '가격은 환율에 따라 변동되며, 숨겨진 비용은 없습니다.',
-  priceMainLabel: '패키지 서비스 비용',
-  priceMainSub: '전용 차량(공항 픽업 + 전 일정 이용) · 식사 6회 · 통역 코디네이터 전 일정 동행',
-  priceAmount: 'USD 1,350',
-  priceUnit: '/ 1~2인 기준',
-  priceMainNote: '3인 이상은 차량 등급이 상향되며 비용은 별도 안내해 드립니다. 컨시어지에게 문의해 주세요.',
-  priceItems: [
-    { title: '의료 항목 비용', desc: '고객님이 선택하시는 구체적인 의료 항목은 별도로 산정되며, 패키지 비용에는 의료비가 포함되지 않습니다.', tag: '별도 안내', tagKind: 'apart' },
-    { title: '숙박', desc: '패키지에 포함되지 않으며 직접 예약하시면 됩니다. 필요하실 경우 제휴 호텔을 무료로 추천 및 예약 지원해 드립니다(수수료 없음).', tag: '무료 지원', tagKind: 'free' },
-  ],
-  priceFx: '가격은 실시간 환율로 환산되며, 환율 변동이 클 경우 최종 금액은 다시 확인해 드립니다.',
-  footNote: '위 일정은 표준 템플릿이며, 구체적인 의료 항목과 시간은 전담 컨시어지와 상담 후 조정됩니다.',
-  summaryEmpty: '아직 선택한 일정 항목이 없습니다',
-  consultBtn: '컨시어지에게 문의',
 }
 
 const EN: PackageLang = {
@@ -263,76 +195,10 @@ const EN: PackageLang = {
   consultBtn: 'Contact a Concierge',
 }
 
-const AR: PackageLang = {
-  backHome: '← العودة للرئيسية',
-  heroEyebrow: '✦ قابل للتخصيص حسب رغبتك',
-  heroTitle: 'باقة كيميديسبرينغ 3 ليالٍ و4 أيام',
-  heroSub: 'مواعيد الاستشارة الطبية والجولات السياحية والتسوق ثابتة، ويمكنك اختيار الأماكن والوجبات المحددة بحرية.',
-  heroNote: 'التكاليف الطبية غير مشمولة في هذه الباقة ويجب تأكيدها بشكل منفصل.',
-  countLabels: ['زيارات المستشفى (ثابتة)', 'معالم سياحية (اختياري)', 'موقع تسوق (اختياري)'],
-  glanceTitle: 'نظرة عامة على البرنامج',
-  glanceSub: 'بعد تأكيد الخطة الكاملة، يمكنك مراجعة الوقت التفصيلي والخيارات لكل يوم',
-  glanceDays: [
-    { title: 'الوصول إلى سيول', sub: 'المغادرة من مطار إنتشون', items: [{ text: 'استقبال المطار', fixed: true }, { text: 'تسجيل الوصول', fixed: true }, { text: 'عشاء ترحيبي', fixed: false }] },
-    { title: 'استشارة طبية ①', sub: 'مستشفى واحد · استشارة واحدة', items: [{ text: 'استشارة طبية ①', fixed: true }, { text: 'غداء', fixed: false }, { text: 'معلم سياحي ①', fixed: false }, { text: 'عشاء', fixed: false }] },
-    { title: 'متابعة طبية ②', sub: 'مستشفى واحد · تسوق حر', items: [{ text: 'متابعة طبية ②', fixed: true }, { text: 'غداء', fixed: false }, { text: 'تسوق', fixed: false }, { text: 'عشاء', fixed: false }] },
-    { title: 'متابعة طبية ③', sub: 'الاستعداد للمغادرة', items: [{ text: 'متابعة طبية ③', fixed: true }, { text: 'غداء', fixed: false }, { text: 'معلم سياحي ②', fixed: false }, { text: 'مغادرة', fixed: true }] },
-  ],
-  legendFixed: 'ثابت', legendSelect: 'اختياري',
-  selectCtaText: 'يرجى اختيار المعالم السياحية وموقع التسوق',
-  badgeFixed: 'ثابت', badgeSelect: 'اختياري',
-  days: [
-    { num: 1, title: 'الوصول إلى سيول', dateLabel: 'اليوم 1 · الوصول', slots: [
-      { kind: 'fixed', time: '14:00', label: 'استقبال من مطار إنتشون', detail: 'نقل خاص مباشرة إلى الفندق' },
-      { kind: 'fixed', time: '16:00', label: 'تسجيل الوصول بالفندق · راحة' },
-      { kind: 'select', time: '19:00', label: 'عشاء ترحيبي', slotKey: 'meal1', optionsKind: 'meal' },
-    ] },
-    { num: 2, title: 'استشارة طبية ①', dateLabel: 'اليوم 2 · الاستشارة', slots: [
-      { kind: 'fixed', time: '09:30', label: 'استشارة طبية ①', detail: 'برفقة مترجم محترف' },
-      { kind: 'select', time: '12:30', label: 'غداء', slotKey: 'meal2', optionsKind: 'meal' },
-      { kind: 'select', time: '14:00', label: 'معلم سياحي ①', slotKey: 'sight1', optionsKind: 'spot' },
-      { kind: 'select', time: '19:00', label: 'عشاء', slotKey: 'meal3', optionsKind: 'meal' },
-    ] },
-    { num: 3, title: 'متابعة طبية ②', dateLabel: 'اليوم 3 · التعافي والتسوق', slots: [
-      { kind: 'fixed', time: '09:30', label: 'متابعة طبية ②' },
-      { kind: 'select', time: '12:30', label: 'غداء', slotKey: 'meal4', optionsKind: 'meal' },
-      { kind: 'select', time: '14:00', label: 'تسوق', slotKey: 'shop', optionsKind: 'shop' },
-      { kind: 'select', time: '19:00', label: 'عشاء', slotKey: 'meal5', optionsKind: 'meal' },
-    ] },
-    { num: 4, title: 'متابعة طبية ③ والمغادرة', dateLabel: 'اليوم 4 · المتابعة والمغادرة', slots: [
-      { kind: 'fixed', time: '09:30', label: 'متابعة طبية ③' },
-      { kind: 'select', time: '12:30', label: 'غداء', slotKey: 'meal6', optionsKind: 'meal' },
-      { kind: 'select', time: '14:00', label: 'معلم سياحي ②', slotKey: 'sight2', optionsKind: 'spot' },
-      { kind: 'fixed', time: '18:30', label: 'المغادرة · التوجه للمطار' },
-    ] },
-  ],
-  mealOptions: ['وجبة كورية تقليدية', 'شواء كوري', 'سامغيتانغ (حساء دجاج بالجينسنغ)', 'وجبة حساء حار'],
-  spotOptions: SPOT_AR,
-  shopOptions: SHOP_AR,
-  slotSummaryLabels: { meal1: 'عشاء ترحيبي', meal2: 'غداء اليوم 2', meal3: 'عشاء اليوم 2', meal4: 'غداء اليوم 3', meal5: 'عشاء اليوم 3', meal6: 'غداء اليوم 4', sight1: 'معلم سياحي ①', sight2: 'معلم سياحي ②', shop: 'موقع التسوق' },
-  priceTitle: 'تفاصيل السعر',
-  priceSub: 'يتغير السعر حسب سعر الصرف، ولا توجد رسوم خفية.',
-  priceMainLabel: 'رسوم خدمة الباقة',
-  priceMainSub: 'سيارة خاصة (استقبال المطار + الاستخدام طوال الرحلة) · 6 وجبات · مرافقة مترجم/منسق طوال الرحلة',
-  priceAmount: 'USD 1,350',
-  priceUnit: '/ لـ 1-2 شخص',
-  priceMainNote: 'لـ 3 أشخاص أو أكثر يتم ترقية السيارة ويُقدَّم السعر بشكل منفصل — يرجى التواصل مع كونسيرج.',
-  priceItems: [
-    { title: 'تكاليف العلاجات الطبية', desc: 'يتم احتساب العلاجات الطبية المحددة التي تختارها بشكل منفصل، ولا تشمل رسوم الباقة التكاليف الطبية.', tag: 'يُقدَّم بشكل منفصل', tagKind: 'apart' },
-    { title: 'الإقامة', desc: 'غير مشمولة في الباقة، ويمكنك الحجز بنفسك. عند الحاجة، يمكننا التوصية بفندق شريك ومساعدتك في الحجز مجاناً (بدون رسوم خدمة).', tag: 'مساعدة مجانية', tagKind: 'free' },
-  ],
-  priceFx: 'يتم تحويل الأسعار حسب سعر الصرف الحالي. في حال حدوث تقلبات كبيرة، سيتم تأكيد المبلغ النهائي معك مجدداً.',
-  footNote: 'ما ورد أعلاه هو نموذج قياسي للبرنامج. سيتم تأكيد العلاجات الطبية المحددة والتوقيت مع كونسيرج مخصص لك.',
-  summaryEmpty: 'لم يتم اختيار أي عناصر من البرنامج بعد',
-  consultBtn: 'تواصل مع كونسيرج',
-}
-
 /* ── component ─────────────────────────────────────────────── */
 export default function PackagePage() {
   const { lang, goHome } = useApp()
-  const p = lang === 'ko' ? KO : lang === 'en' ? EN : lang === 'ar' ? AR : ZH
-  const isAr = lang === 'ar'
-  const contactUrl = isAr ? WHATSAPP_URL : WECHAT_BIZ_URL
+  const p = lang === 'en' ? EN : ZH
 
   const [selections, setSelections] = useState<Selections>({ meal1: '', meal2: '', meal3: '', meal4: '', meal5: '', meal6: '', sight1: '', sight2: '', shop: '' })
   const [openSlot, setOpenSlot] = useState<SlotKey | null>(null)
@@ -426,7 +292,7 @@ export default function PackagePage() {
 
   return (
     <div>
-      <div className="pkg-widget" dir={isAr ? 'rtl' : 'ltr'}>
+      <div className="pkg-widget" dir="ltr">
         {/* ══ Hero ══════════════════════════════════════════════ */}
         <div className="pkg-hero">
           <div className="pkg-hero-topbar">
@@ -548,7 +414,7 @@ export default function PackagePage() {
                 chips.map(c => <span className="pkg-chip" key={c.key}>{c.label}：{c.value}</span>)
               )}
             </div>
-            <button className="pkg-consult-btn" onClick={() => window.open(contactUrl, '_blank')}>{p.consultBtn}</button>
+            <button className="pkg-consult-btn" onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}>{p.consultBtn}</button>
           </div>
         </div>
       </div>

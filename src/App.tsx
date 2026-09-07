@@ -12,9 +12,7 @@ import { useEffect } from 'react'
 
 const PACKAGE_TITLE: Record<LangCode, string> = {
   zh: '汉江春天 医疗旅游精品',
-  ko: '한강애봄 의료관광 프리미엄',
   en: 'Premium Medical Tourism',
-  ar: 'السياحة الطبية المميزة',
 }
 
 /** document.title / og:title / twitter:title / (og·twitter·기본) description meta를
@@ -64,7 +62,7 @@ function PageRouter() {
   }, [page, lang, categoryId])
 
   return (
-    <div className="page-container" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="page-container" dir="ltr">
       <NavBar />
       <AnimatePresence mode="wait">
         {page === 'home' ? (

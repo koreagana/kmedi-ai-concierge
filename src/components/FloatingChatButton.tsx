@@ -91,7 +91,7 @@ function resolveInitialPos(isRTL: boolean): { x: number; y: number } {
 export default function FloatingChatButton() {
   const { lang, page, categoryId } = useApp()
   const t = translations[lang]
-  const isRTL = lang === 'ar'
+  const isRTL = false
 
   const [shown, setShown] = useState(false)
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null)

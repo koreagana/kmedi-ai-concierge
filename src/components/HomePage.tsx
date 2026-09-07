@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
-import { WECHAT_BIZ_URL, WHATSAPP_URL, EMAIL_GENERAL, EMAIL_AR, getWhatsappUrl } from '../data/contacts'
+import { WECHAT_BIZ_URL, EMAIL_GENERAL, getWhatsappUrl } from '../data/contacts'
 import { NETWORK_CITIES } from '../data/networkCities'
-import HalalMapButton from './HalalMapButton'
 import TtsButton from './TtsButton'
 
 /* ─────────────────────────────── helpers ─────────────────────────── */
@@ -15,8 +14,6 @@ import TtsButton from './TtsButton'
 const videoSrcMap: Record<string, string> = {
   zh: '/studio.mp4',
   en: '/studio_eng.mp4',
-  ko: '/studio_kr.mp4',
-  ar: '/studio_arb.mp4',
 }
 
 function WechatIdBox({ id, lang }: { id: string; lang: string }) {
@@ -30,7 +27,7 @@ function WechatIdBox({ id, lang }: { id: string; lang: string }) {
   return (
     <div style={{ textAlign: 'center', marginBottom: 16 }}>
       <p style={{ fontSize: 11, color: 'var(--text-muted)', marginBottom: 10 }}>
-        {lang === 'zh' ? '微信号' : lang === 'ko' ? '위챗 ID' : 'WeChat ID'}
+        {lang === 'zh' ? '微信号' : 'WeChat ID'}
       </p>
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
@@ -42,11 +39,11 @@ function WechatIdBox({ id, lang }: { id: string; lang: string }) {
           onClick={copy}
           style={{ background: copied ? 'var(--brand)' : 'var(--bg-light)', border: '1px solid var(--border-blue)', borderRadius: 8, padding: '4px 12px', fontSize: 11, color: copied ? 'white' : 'var(--brand)', cursor: 'pointer', transition: 'all 0.2s', fontFamily: 'inherit' }}
         >
-          {copied ? (lang === 'zh' ? '已复制' : lang === 'ko' ? '복사됨' : 'Copied!') : (lang === 'zh' ? '复制' : lang === 'ko' ? '복사' : 'Copy')}
+          {copied ? (lang === 'zh' ? '已复制' : 'Copied!') : (lang === 'zh' ? '复制' : 'Copy')}
         </button>
       </div>
       <p style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.7 }}>
-        {lang === 'zh' ? '打开微信 → 添加朋友 → 搜索以上微信号\n添加后请备注「韩国医疗咨询」' : lang === 'ko' ? '위챗 앱 → 친구 추가 → 위 ID 검색\n추가 후 「한국의료상담」으로 메모' : 'Open WeChat → Add Friends → Search the ID above'}
+        {lang === 'zh' ? '打开微信 → 添加朋友 → 搜索以上微信号\n添加后请备注「韩国医疗咨询」' : 'Open WeChat → Add Friends → Search the ID above'}
       </p>
     </div>
   )
@@ -192,8 +189,8 @@ export function HeroSection() {
         transition={{ delay: 1.2, duration: 0.4 }}
         onClick={toggleSound}
         title={soundOn
-          ? (lang === 'zh' ? '点击静音' : lang === 'ko' ? '소리 끄기' : 'Mute')
-          : (lang === 'zh' ? '点击开启声音' : lang === 'ko' ? '소리 켜기' : 'Enable sound')}
+          ? (lang === 'zh' ? '点击静音' : 'Mute')
+          : (lang === 'zh' ? '点击开启声音' : 'Enable sound')}
         style={{
           position: 'absolute',
           right: 18,
@@ -253,8 +250,8 @@ export function HeroSection() {
             {t.heroCtaLabel}
           </button>
 
-          {/* 쇼핑몰 진입 버튼 - WeChat Pay 결제 + 중국 배송 전용이라 zh/ko만 노출 */}
-          {(lang === 'zh' || lang === 'ko') && (
+          {/* 쇼핑몰 진입 버튼 - WeChat Pay 결제 + 중국 배송 전용이라 zh만 노출 */}
+          {lang === 'zh' && (
             <button className="btn-shop" onClick={() => navigate(`/shop?lang=${lang}`)}>
               <span className="btn-shop-title">{t.shopBtnTitle}</span>
               <span className="btn-shop-sub">{t.shopBtnSub}</span>
@@ -410,11 +407,11 @@ function ConciergeSection() {
               onClick={e => e.stopPropagation()}
             >
               <div className="modal-handle" />
-              <p className="modal-title">{t.concierge2Name} · {lang === 'zh' ? '个人微信' : lang === 'ko' ? '개인위챗' : 'Personal WeChat'}</p>
+              <p className="modal-title">{t.concierge2Name} · {lang === 'zh' ? '个人微信' : 'Personal WeChat'}</p>
               {/* QR 이미지 준비되면 → <img src="/wechat-personal-qr.png" style={{width:160,height:160,borderRadius:12}} /> 로 교체 */}
               <WechatIdBox id="e-gana" lang={lang} />
               <button className="btn-primary" style={{ marginTop: 20 }} onClick={() => setShowWxModal(false)}>
-                {lang === 'zh' ? '关闭' : lang === 'ko' ? '닫기' : 'Close'}
+                {lang === 'zh' ? '关闭' : 'Close'}
               </button>
             </motion.div>
           </motion.div>
@@ -530,16 +527,12 @@ export function CategoryGridSection() {
   }, [])
 
   const getTag = (c: typeof categories[0]) => {
-    if (lang === 'ko') return c.tagKo
     if (lang === 'en') return c.tagEn
-    if (lang === 'ar') return c.tagAr
     return c.tagZh
   }
 
   const getName = (c: typeof categories[0]) => {
-    if (lang === 'ko') return c.ko
     if (lang === 'en') return c.en
-    if (lang === 'ar') return c.ar
     return c.zh
   }
 
@@ -596,20 +589,15 @@ export function ContactSection() {
   const [formName, setFormName] = useState('')
   const [formMsg, setFormMsg] = useState('')
   const [formSent, setFormSent] = useState(false)
-  const isAr = lang === 'ar'
 
   /* "在线留言/문의 남기기" 제출 - 서버나 DB가 없으므로 자체 백엔드로 보내지 않고,
      이미 푸터에 공개된 실제 이메일로 제목/본문을 채운 mailto: 링크를 열어
      방문자의 메일 앱에서 직접 "보내기"를 누르게 함. (서버 저장 없음) */
   const handleFormSend = () => {
     if (!formName.trim() || !formMsg.trim()) return
-    const to = isAr ? EMAIL_AR : EMAIL_GENERAL
-    const subject = lang === 'zh' ? '韩国医疗咨询 - 在线留言'
-      : lang === 'ko' ? '한국 의료 상담 - 문의 남기기'
-      : lang === 'ar' ? 'استشارة طبية كورية - رسالة'
-      : 'Korea Medical Consultation - Message'
+    const subject = lang === 'zh' ? '韩国医疗咨询 - 在线留言' : 'Korea Medical Consultation - Message'
     const body = `${formName}\n\n${formMsg}`
-    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.location.href = `mailto:${EMAIL_GENERAL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
     setFormSent(true)
   }
 
@@ -621,49 +609,25 @@ export function ContactSection() {
       </motion.div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {isAr ? (
-          /* ── Arabic: WhatsApp + Halal Map button ── */
-          <>
-            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(WHATSAPP_URL, '_blank')}>
-              <div className="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
-              </div>
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700 }}>واتساب</p>
-                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>Dr. Alaa Eldin Elastel</p>
-              </div>
-            </motion.button>
-            <motion.div {...fadeUp} transition={{ delay: 0.12 }}>
-              <HalalMapButton
-                dir="rtl"
-                onClick={() => document.getElementById('halal-map-section')?.scrollIntoView({ behavior: 'smooth' })}
-              />
-            </motion.div>
-          </>
-        ) : (
-          /* ── Non-Arabic: WeChat buttons ── */
-          <>
-            <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}>
-              <div className="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="white"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
-              </div>
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatBiz}</p>
-                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '企业账号咨询' : lang === 'ko' ? '기업 계정 상담' : 'Enterprise account'}</p>
-              </div>
-            </motion.button>
+        <motion.button {...fadeUp} transition={{ delay: 0.05 }} className="contact-btn contact-btn-wechat-biz" onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}>
+          <div className="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="white"/><circle cx="13" cy="11" r="1" fill="white"/></svg>
+          </div>
+          <div>
+            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWechatBiz}</p>
+            <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '企业账号咨询' : 'Enterprise account'}</p>
+          </div>
+        </motion.button>
 
-            <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(getWhatsappUrl(lang), '_blank')}>
-              <div className="contact-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
-              </div>
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWhatsapp}</p>
-                <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '国际用户推荐' : lang === 'ko' ? '국제 사용자 추천' : 'Recommended for international users'}</p>
-              </div>
-            </motion.button>
-          </>
-        )}
+        <motion.button {...fadeUp} transition={{ delay: 0.15 }} className="contact-btn contact-btn-whatsapp" onClick={() => window.open(getWhatsappUrl(lang), '_blank')}>
+          <div className="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.11 12 19.79 19.79 0 011.12 3.4 2 2 0 013.11 1.22h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6z"/></svg>
+          </div>
+          <div>
+            <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactWhatsapp}</p>
+            <p style={{ fontSize: 11, opacity: 0.8, marginTop: 2 }}>{lang === 'zh' ? '国际用户推荐' : 'Recommended for international users'}</p>
+          </div>
+        </motion.button>
 
         <motion.button {...fadeUp} transition={{ delay: 0.2 }} className="contact-btn contact-btn-form" onClick={() => setModal('form')}>
           <div className="contact-icon" style={{ background: 'rgba(255,255,255,0.12)' }}>
@@ -671,7 +635,7 @@ export function ContactSection() {
           </div>
           <div>
             <p style={{ fontSize: 14, fontWeight: 700 }}>{t.contactForm}</p>
-            <p style={{ fontSize: 11, opacity: 0.7, marginTop: 2 }}>{lang === 'zh' ? '留下联系方式，顾问会主动联系您' : lang === 'ko' ? '연락처를 남기면 먼저 연락드립니다' : 'Leave your info and we\'ll reach out'}</p>
+            <p style={{ fontSize: 11, opacity: 0.7, marginTop: 2 }}>{lang === 'zh' ? '留下联系方式，顾问会主动联系您' : 'Leave your info and we\'ll reach out'}</p>
           </div>
         </motion.button>
       </div>
@@ -730,12 +694,10 @@ export function ContactSection() {
                     <div style={{ textAlign: 'center', padding: '20px 0' }}>
                       <span style={{ fontSize: 48 }}>📧</span>
                       <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--text)', marginTop: 12 }}>
-                        {lang === 'zh' ? '邮件应用已打开' : lang === 'ko' ? '메일 앱이 열렸습니다' : lang === 'ar' ? 'تم فتح تطبيق البريد' : 'Your email app has opened'}
+                        {lang === 'zh' ? '邮件应用已打开' : 'Your email app has opened'}
                       </p>
                       <p style={{ fontSize: 13, color: 'var(--text-muted)', marginTop: 8, lineHeight: 1.7 }}>
                         {lang === 'zh' ? '请在邮件应用中点击"发送"以完成提交。我们会尽快与您联系。' :
-                         lang === 'ko' ? '메일 앱에서 "보내기"를 눌러야 실제로 전송됩니다. 받는 즉시 빠르게 연락 드리겠습니다.' :
-                         lang === 'ar' ? 'يرجى الضغط على "إرسال" في تطبيق البريد لإكمال الإرسال. سنتواصل معك في أقرب وقت.' :
                          'Tap "Send" in your email app to complete it. We will contact you shortly after receiving it.'}
                       </p>
                       <button
@@ -980,7 +942,7 @@ export function MedicalNetworkSection() {
                 display: 'inline-block',
                 alignSelf: 'flex-start',
               }}>
-                {lang === 'ko' ? '자세히 보기 ›' : lang === 'en' ? 'View Details ›' : lang === 'ar' ? 'عرض التفاصيل ›' : '查看详情 ›'}
+                {lang === 'en' ? 'View Details ›' : '查看详情 ›'}
               </span>
             )}
             {card.badgeType === 'expand' && (
@@ -997,7 +959,7 @@ export function MedicalNetworkSection() {
                 gap: 4,
                 alignSelf: 'flex-start',
               }}>
-                {lang === 'ko' ? '의료 네트워크' : lang === 'en' ? 'Medical Network' : lang === 'ar' ? 'الشبكة الطبية' : '医疗网络'}
+                {lang === 'en' ? 'Medical Network' : '医疗网络'}
                 <span style={{ display: 'inline-block', transition: 'transform 0.25s ease', transform: networkExpanded ? 'rotate(180deg)' : 'none' }}>▾</span>
               </span>
             )}
@@ -1037,7 +999,7 @@ export function FooterSection() {
   const [emailCopied, setEmailCopied] = useState(false)
 
   const emailAddress = t.contactEmail.match(/[\w.+-]+@[\w-]+\.[\w.-]+/)?.[0] ?? ''
-  const copiedLabel = lang === 'zh' ? '已复制' : lang === 'ko' ? '복사됨' : lang === 'ar' ? 'تم النسخ' : 'Copied'
+  const copiedLabel = lang === 'zh' ? '已复制' : 'Copied'
 
   const handleCopyEmail = async () => {
     if (!emailAddress) return
@@ -1070,7 +1032,7 @@ export function FooterSection() {
           href={WECHAT_BIZ_URL}
           target="_blank"
           rel="noopener noreferrer"
-          title={lang === 'zh' ? '微信咨询' : lang === 'ko' ? '위챗 상담' : 'WeChat'}
+          title={lang === 'zh' ? '微信咨询' : 'WeChat'}
           style={{
             width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -1085,7 +1047,7 @@ export function FooterSection() {
           href={getWhatsappUrl(lang)}
           target="_blank"
           rel="noopener noreferrer"
-          title={lang === 'zh' || lang === 'ko' ? 'WhatsApp' : 'WhatsApp · Dr. Alaa Eldin Elastel'}
+          title="WhatsApp"
           style={{
             width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -1099,7 +1061,7 @@ export function FooterSection() {
         <button
           type="button"
           onClick={() => setShowMiniProgram(true)}
-          title={lang === 'zh' ? '微信小程序' : lang === 'ko' ? '위챗 샤오청쉬' : 'WeChat Mini Program'}
+          title={lang === 'zh' ? '微信小程序' : 'WeChat Mini Program'}
           style={{
             width: 34, height: 34, borderRadius: '50%', overflow: 'hidden',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -1139,7 +1101,7 @@ export function FooterSection() {
             >
               <div className="modal-handle" />
               <p className="modal-title">
-                {lang === 'zh' ? '汉江春天 · 微信小程序' : lang === 'ko' ? '한강애봄 · 위챗 샤오청쉬' : lang === 'ar' ? 'هانغانغ آيبوم · برنامج ويتشات المصغر' : 'K-MediSpring · WeChat Mini Program'}
+                {lang === 'zh' ? '汉江春天 · 微信小程序' : 'K-MediSpring · WeChat Mini Program'}
               </p>
               <img
                 src="/icons/xiaochengxu.jpg"
@@ -1148,8 +1110,6 @@ export function FooterSection() {
               />
               <p style={{ fontSize: 12, color: 'var(--text-muted)', textAlign: 'center', lineHeight: 1.7 }}>
                 {lang === 'zh' ? '长按或扫描上方二维码，在微信中打开「汉江春天」小程序。' :
-                 lang === 'ko' ? '위 QR 코드를 길게 누르거나 스캔하면 위챗에서 「汉江春天」샤오청쉬가 열립니다.' :
-                 lang === 'ar' ? 'اضغط مطولاً أو امسح رمز QR أعلاه لفتح برنامج "汉江春天" المصغر في WeChat.' :
                  'Press and hold or scan the QR code above to open the "汉江春天" mini program in WeChat.'}
               </p>
               <button

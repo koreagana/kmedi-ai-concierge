@@ -30,7 +30,7 @@ const SVC_B = [
 ] as const
 
 export default function CustomPlanSystemDiagram({ lang }: { lang: LangCode }) {
-  const dir = lang === 'ar' ? 'rtl' : 'ltr'
+  const dir = 'ltr'
 
   return (
     <div style={{ padding: '8px 12px 12px' }}>
