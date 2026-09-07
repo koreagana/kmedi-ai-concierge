@@ -208,7 +208,7 @@ export const translations: Record<LangCode, Translations> = {
     heroTrustTitle: 'Consult with Confidence',
     heroTrustLines: 'A legally registered international medical tourism service provider\nPartner hospitals apply the same price standard to Korean and international patients\nNo additional service or consultation fees',
     heroHotLabel: 'Trending Now',
-    heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting'],
+    heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting', 'Potenza', 'Juvelook', 'Sofwave', 'InMode FX'],
     heroCtaLabel: 'Korean Medical Services',
     quoteBtnTitle: 'Popular Treatment Price Estimate',
     conciergeTitle: 'Meet Your AI Medical Concierge',
