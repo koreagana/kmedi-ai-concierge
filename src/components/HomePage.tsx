@@ -543,7 +543,7 @@ export function CategoryGridSection() {
           className={`hero-hot-scroll${isDragging ? ' hero-hot-scroll--dragging' : ''}`}
         >
           {t.heroTreatmentChips.map((chip) => {
-            const info = lang === 'zh' ? getHeroTreatmentByChip(chip) : undefined
+            const info = getHeroTreatmentByChip(chip)
             if (!info) return <span key={chip} className="hero-hot-chip">{chip}</span>
             return (
               <button

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
+import { WECHAT_BIZ_URL, WHATSAPP_URL_OWNER } from '../data/contacts'
 
 const langPaths: Record<LangCode, string> = {
   zh: '/zh',
@@ -57,9 +58,11 @@ export default function NavBar() {
     { code: 'en', label: 'English' },
   ]
 
-  const scrollToContact = () => {
-    const el = document.getElementById('contact')
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  /* 상담 버튼은 예전엔 홈의 #contact 섹션으로 스크롤했지만, 현재 홈 구성에는
+     해당 섹션이 없어 클릭해도 아무 일이 일어나지 않았음. 언어별로 실제 고객이
+     쓰는 채널로 바로 연결한다 — 중문은 기업위챗, 영문은 왓츠앱(대표 번호). */
+  const openConsult = () => {
+    window.open(lang === 'zh' ? WECHAT_BIZ_URL : WHATSAPP_URL_OWNER, '_blank')
   }
 
   return (
@@ -78,7 +81,7 @@ export default function NavBar() {
         {/* /terms 페이지: 없음 / 그 외: 상담 버튼 */}
         {page === 'home' && !isStandalonePage && (
           <button
-            onClick={scrollToContact}
+            onClick={openConsult}
             style={{
               background: 'rgba(255,255,255,0.18)',
               border: '1px solid rgba(255,255,255,0.4)',

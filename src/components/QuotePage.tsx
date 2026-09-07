@@ -34,17 +34,43 @@ interface Copy {
   disclaimer2: string
   disclaimer3: string
   consultBtn: string
-  /** 데이터의 만원 단위 값을 화면 표기로 변환 — zh는 「46~91.3万」, en은 실제 원화 금액(₩460,000–913,000) */
+  /** 주 표기 통화 금액 — zh는 위안화(¥), en은 달러($). 데이터의 만원 단위를 환산·반올림해서 반환 */
   formatRange: (low: number, high: number) => string
-  /** 결과 카드 합계 — 숫자 부분만 반환하고 단위는 won에서 따로 붙임 */
-  formatTotal: (low: number, high: number) => string
-  won: string
+  /** 병기용 원화 금액 — 실제 결제 통화라 함께 노출 */
+  formatKrw: (low: number, high: number) => string
+  /** 기준 환율 고지 문구 */
+  fxNote: string
   askConsult: string
 }
 
-/** 만원 단위 → 원화 실금액 표기. 46 → ₩460,000 */
-function toWon(manwon: number) {
-  return Math.round(manwon * 10000).toLocaleString('en-US')
+/* ── 환율 ───────────────────────────────────────────────────────────
+   견적 데이터는 원화(만원 단위)가 원본이고, 화면에는 고객의 통화로 환산해
+   보여준다. 서버리스 없이 정적으로 배포하는 구조라 실시간 환율 API 대신
+   상수로 관리하며, 화면에도 기준 시점을 명시한다.
+   환율이 크게 움직이면 아래 두 값과 FX_ASOF만 갱신하면 됨.
+   기준: 2026-09-07 (1 USD = 1,343.77 KRW / 1 CNY = 204.46 KRW) */
+const KRW_PER_USD = 1344
+const KRW_PER_CNY = 204
+const FX_ASOF_ZH = '2026年9月'
+const FX_ASOF_EN = 'September 2026'
+
+/** 만원 단위 → 원화 실금액. 46 → 460000 */
+const toKrw = (manwon: number) => Math.round(manwon * 10000)
+
+/** 견적 숫자는 정확한 청구액이 아니라 어림값이라, 자릿수에 맞춰 둥근 수로 끊어준다. */
+function roundNice(value: number, smallStep: number, bigStep: number, threshold: number) {
+  const step = value < threshold ? smallStep : bigStep
+  return Math.max(step, Math.round(value / step) * step)
+}
+const toUsd = (manwon: number) => roundNice(toKrw(manwon) / KRW_PER_USD, 5, 10, 100)
+const toCny = (manwon: number) => roundNice(toKrw(manwon) / KRW_PER_CNY, 10, 50, 1000)
+
+const money = (symbol: string, low: number, high: number, conv: (v: number) => number) => {
+  const l = conv(low)
+  const h = conv(high)
+  return l === h
+    ? `${symbol}${l.toLocaleString('en-US')}`
+    : `${symbol}${l.toLocaleString('en-US')}~${h.toLocaleString('en-US')}`
 }
 
 const COPY: Record<QuoteLang, Copy> = {
@@ -60,7 +86,7 @@ const COPY: Record<QuoteLang, Copy> = {
     nextBtnEmpty: '请先选择项目',
     resultTitle: '您的预估费用区间',
     resultSumLabel: '合计 约',
-    resultSumVat: '（含10%增值税）',
+    resultSumVat: '（含10%增值税 · 实际结算以韩元为准）',
     badgeText: '可能适用套餐优惠',
     itemsTitle: '已选项目明细',
     changeSelectionBtn: '← 重新选择',
@@ -69,9 +95,9 @@ const COPY: Record<QuoteLang, Copy> = {
     disclaimer2: '各医院每月促销方案不同，实际费用会根据个人皮肤状态、施术范围与用量而有所差异。',
     disclaimer3: '最终费用以面诊后的正式报价为准。',
     consultBtn: '免费咨询 · 获取精准报价',
-    formatRange: (low, high) => (low === high ? `${low}万` : `${low}~${high}万`),
-    formatTotal: (low, high) => (low === high ? `${low}` : `${low}~${high}`),
-    won: '万韩元',
+    formatRange: (low, high) => money('¥', low, high, toCny),
+    formatKrw: (low, high) => money('₩', low, high, toKrw),
+    fxNote: `参考汇率 ${FX_ASOF_ZH}`,
     askConsult: '咨询后告知',
   },
   en: {
@@ -86,7 +112,7 @@ const COPY: Record<QuoteLang, Copy> = {
     nextBtnEmpty: 'Select a treatment first',
     resultTitle: 'Your estimated cost',
     resultSumLabel: 'Estimated total',
-    resultSumVat: '(10% VAT included)',
+    resultSumVat: '(10% VAT included · settled in Korean won)',
     badgeText: 'Package pricing may apply',
     itemsTitle: 'Your selection',
     changeSelectionBtn: '← Edit selection',
@@ -95,9 +121,9 @@ const COPY: Record<QuoteLang, Copy> = {
     disclaimer2: 'Clinics run different promotions each month, and the final cost shifts with your skin condition, the area treated, and the amount used.',
     disclaimer3: 'Your price is confirmed in the formal quote issued after an in-person consultation.',
     consultBtn: 'Get an exact quote · Free consultation',
-    formatRange: (low, high) => (low === high ? `₩${toWon(low)}` : `₩${toWon(low)}–${toWon(high)}`),
-    formatTotal: (low, high) => (low === high ? `₩${toWon(low)}` : `₩${toWon(low)}–${toWon(high)}`),
-    won: '',
+    formatRange: (low, high) => money('$', low, high, toUsd),
+    formatKrw: (low, high) => money('₩', low, high, toKrw),
+    fxNote: `Rate as of ${FX_ASOF_EN}`,
     askConsult: 'Quoted on request',
   },
 }
@@ -246,6 +272,9 @@ export default function QuotePage() {
                           >
                             <span className="quote-opt-unit">{unitOf(opt)}</span>
                             <span className="quote-opt-price">{optionPriceLabel(opt, c)}</span>
+                            {opt.grade !== 'B' && (
+                              <span className="quote-opt-krw">{c.formatKrw(opt.priceLow, opt.priceHigh)}</span>
+                            )}
                           </button>
                         )
                       })}
@@ -309,10 +338,11 @@ export default function QuotePage() {
               )}
               <div className="quote-total-amount">
                 <span className="quote-total-label">{c.resultSumLabel}</span>
-                <span className="quote-total-value">{c.formatTotal(totals.low, totals.high)}</span>
-                <span className="quote-total-unit">{c.won}</span>
+                <span className="quote-total-value">{c.formatRange(totals.low, totals.high)}</span>
               </div>
+              <span className="quote-total-krw">{c.formatKrw(totals.low, totals.high)}</span>
               <span className="quote-total-vat">{c.resultSumVat}</span>
+              <span className="quote-total-fx">{c.fxNote}</span>
             </div>
 
             <p className="quote-items-title">{c.itemsTitle}</p>
@@ -329,7 +359,12 @@ export default function QuotePage() {
                       <span>{names.main}</span>
                       <span className="quote-item-unit">{unitOf(opt)}</span>
                     </div>
-                    <span className="quote-item-price">{optionPriceLabel(opt, c)}</span>
+                    <div className="quote-item-price-col">
+                      <span className="quote-item-price">{optionPriceLabel(opt, c)}</span>
+                      {opt.grade !== 'B' && (
+                        <span className="quote-item-krw">{c.formatKrw(opt.priceLow, opt.priceHigh)}</span>
+                      )}
+                    </div>
                   </div>
                 )
               })}
