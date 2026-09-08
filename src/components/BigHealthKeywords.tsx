@@ -23,12 +23,6 @@ export default function BigHealthKeywords() {
       <p className="bh-section-title">{pick(BIG_HEALTH_SECTION.title, lang)}</p>
       <p className="bh-section-desc">{pick(BIG_HEALTH_SECTION.desc, lang)}</p>
 
-      <div className="bh-safety">
-        {BIG_HEALTH_SECTION.safety.map((line, i) => (
-          <p key={i} className="bh-safety-line">{pick(line, lang)}</p>
-        ))}
-      </div>
-
       <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
       <div className="bh-tiles" role="tablist">

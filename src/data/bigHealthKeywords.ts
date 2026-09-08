@@ -127,16 +127,6 @@ export const BIG_HEALTH_SECTION = {
     zh: '不是单一项目，而是从疲劳、睡眠、肠道、代谢、激素和再生医学咨询等方向，了解身体状态并整理适合的韩国医疗咨询路径。',
     en: 'Not a single procedure, but a way to understand your body through fatigue, sleep, gut health, metabolism, hormones, and regenerative medicine consultation — and map out the right path for medical consultation in Korea.',
   } as LocalizedText,
-  safety: [
-    {
-      zh: '以下内容仅用于韩国医疗咨询前的信息整理，不代替医生诊断。',
-      en: 'The following information is for organizing your thoughts before a medical consultation in Korea, and does not replace a physician\'s diagnosis.',
-    },
-    {
-      zh: '具体检查项目和治疗方向，需要由正规医疗机构和专业医生判断。',
-      en: 'Specific tests and treatment directions must be determined by a licensed medical institution and a qualified physician.',
-    },
-  ] as LocalizedText[],
 }
 
 export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [

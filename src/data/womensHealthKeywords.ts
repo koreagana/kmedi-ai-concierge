@@ -78,16 +78,6 @@ export const WOMENS_HEALTH_SECTION = {
     zh: '韩国女性健康咨询不只是单一检查，而是根据年龄、症状、月经情况、怀孕计划、既往病史和来韩停留时间，整理适合咨询的妇科与女性健康方向。',
     en: "Women's health consultation in Korea is not just a single test. It is a process of organizing consultation directions based on age, symptoms, menstrual history, pregnancy plans, previous medical history, and length of stay in Korea.",
   } as LocalizedText,
-  safety: [
-    {
-      zh: '本页内容仅用于韩国女性健康咨询前的信息整理，不代替医生诊断或治疗判断。',
-      en: "This page is for organizing information before a women's health consultation in Korea and does not replace a doctor's diagnosis or treatment decision.",
-    },
-    {
-      zh: '具体是否需要检查、治疗、手术或辅助生殖相关咨询，需要由正规医疗机构和专业医生判断。',
-      en: 'Whether tests, treatment, surgery, or assisted reproduction consultation is needed must be determined by a licensed medical institution and qualified doctors.',
-    },
-  ] as LocalizedText[],
 }
 
 export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [

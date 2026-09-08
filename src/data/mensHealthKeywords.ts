@@ -80,16 +80,6 @@ export const MENS_HEALTH_SECTION = {
     zh: '韩国男性健康咨询不是单纯处理某一个症状，而是根据年龄、生活习惯、排尿情况、激素状态、性功能、生育计划和既往检查资料，整理适合咨询的泌尿医学与男性健康方向。',
     en: "Men's health consultation in Korea is not about addressing only one symptom. It is a process of organizing urology and men's health consultation directions based on age, lifestyle, urination status, hormone status, sexual function, fertility plans, and previous medical reports.",
   } as LocalizedText,
-  safety: [
-    {
-      zh: '本页内容仅用于韩国男性健康咨询前的信息整理，不代替医生诊断或治疗判断。',
-      en: "This page is for organizing information before a men's health consultation in Korea and does not replace a doctor's diagnosis or treatment decision.",
-    },
-    {
-      zh: '具体是否需要检查、药物治疗、手术或进一步评估，需要由正规医疗机构和泌尿医学专业医生判断。',
-      en: 'Whether tests, medication, surgery, or further evaluation is needed must be determined by a licensed medical institution and qualified urology specialists.',
-    },
-  ] as LocalizedText[],
 }
 
 export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
