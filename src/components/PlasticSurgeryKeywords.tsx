@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { BIG_HEALTH_MORE_LABEL, BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
+import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
 import {
   PLASTIC_SURGERY_KEYWORDS,
   PLASTIC_SURGERY_SECTION,
@@ -66,62 +66,59 @@ export default function PlasticSurgeryKeywords() {
             <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
           ))}
 
-          <details className="bh-more">
-            <summary>{pick(BIG_HEALTH_MORE_LABEL, lang)}</summary>
-            <div className="bh-more-body">
-              <div className="bh-card-section" style={{ marginTop: 0 }}>
-                <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
+          <div className="bh-more-body">
+            <div className="bh-card-section" style={{ marginTop: 0 }}>
+              <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
+              <ul className="bh-list">
+                {active.directions.map((item, i) => (
+                  <li key={i}>{pick(item, lang)}</li>
+                ))}
+              </ul>
+            </div>
+
+            {active.safetyChecklistLabel && active.safetyChecklist && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.safetyChecklistLabel, lang)}</p>
                 <ul className="bh-list">
-                  {active.directions.map((item, i) => (
+                  {active.safetyChecklist.map((item, i) => (
                     <li key={i}>{pick(item, lang)}</li>
                   ))}
                 </ul>
               </div>
+            )}
 
-              {active.safetyChecklistLabel && active.safetyChecklist && (
-                <div className="bh-card-section">
-                  <p className="bh-card-label">{pick(active.safetyChecklistLabel, lang)}</p>
-                  <ul className="bh-list">
-                    {active.safetyChecklist.map((item, i) => (
-                      <li key={i}>{pick(item, lang)}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {active.popularDevices && pick(active.popularDevices.title, lang) && (
-                <div className="bh-card-section">
-                  <p className="bh-card-label bh-card-label--pink">{pick(active.popularDevices.title, lang)}</p>
-                  <ul className="bh-product-list bh-product-list--pink">
-                    {active.popularDevices.items.map((item, i) => (
-                      <li key={i}>
-                        <span className="bh-product-name">{pick(item.name, lang)}</span>
-                        <span className="bh-product-desc">{pick(item.desc, lang)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="bh-note">
-                    <p className="bh-card-text">{pick(active.popularDevices.caution, lang)}</p>
-                  </div>
-                </div>
-              )}
-
-              {active.explainerTitle && active.explainerBody && pick(active.explainerTitle, lang) && (
-                <div className="bh-card-section">
-                  <p className="bh-card-label">{pick(active.explainerTitle, lang)}</p>
-                  {pick(active.explainerBody, lang).split('\n\n').map((para, i) => (
-                    <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
+            {active.popularDevices && pick(active.popularDevices.title, lang) && (
+              <div className="bh-card-section">
+                <p className="bh-card-label bh-card-label--pink">{pick(active.popularDevices.title, lang)}</p>
+                <ul className="bh-product-list bh-product-list--pink">
+                  {active.popularDevices.items.map((item, i) => (
+                    <li key={i}>
+                      <span className="bh-product-name">{pick(item.name, lang)}</span>
+                      <span className="bh-product-desc">{pick(item.desc, lang)}</span>
+                    </li>
                   ))}
+                </ul>
+                <div className="bh-note">
+                  <p className="bh-card-text">{pick(active.popularDevices.caution, lang)}</p>
                 </div>
-              )}
+              </div>
+            )}
 
-              {pick(active.note, lang) && (
-                <div className="bh-note" style={{ marginTop: 14 }}>
-                  <p className="bh-card-text">{pick(active.note, lang)}</p>
-                </div>
-              )}
-            </div>
-          </details>
+            {active.explainerTitle && active.explainerBody && pick(active.explainerTitle, lang) && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.explainerTitle, lang)}</p>
+                {pick(active.explainerBody, lang).split('\n\n').map((para, i) => (
+                  <p key={i} className="bh-card-text" style={{ marginTop: i > 0 ? 10 : 0 }}>{para}</p>
+                ))}
+              </div>
+            )}
+
+            {pick(active.note, lang) && (
+              <div className="bh-note" style={{ marginTop: 14 }}>
+                <p className="bh-card-text">{pick(active.note, lang)}</p>
+              </div>
+            )}
+          </div>
         </motion.div>
       </div>
     </div>

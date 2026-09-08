@@ -118,12 +118,6 @@ export const BIG_HEALTH_PILLS_PROMPT: LocalizedText = {
   en: 'Please select the topic you are most interested in',
 }
 
-/** Shared "read more" toggle label for the collapsible detail section under each keyword card. */
-export const BIG_HEALTH_MORE_LABEL: LocalizedText = {
-  zh: '查看详细内容',
-  en: 'View details',
-}
-
 export const BIG_HEALTH_SECTION = {
   title: {
     zh: '大健康 · 抗衰老管理',

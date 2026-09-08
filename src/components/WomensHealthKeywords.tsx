@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { BIG_HEALTH_MORE_LABEL, BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
+import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
 import {
   WOMENS_HEALTH_KEYWORDS,
   WOMENS_HEALTH_SECTION,
@@ -71,23 +71,20 @@ export default function WomensHealthKeywords() {
           </div>
           <p className="bh-card-text">{pick(active.description, lang)}</p>
 
-          <details className="bh-more">
-            <summary>{pick(BIG_HEALTH_MORE_LABEL, lang)}</summary>
-            <div className="bh-more-body">
-              <div className="bh-card-section" style={{ marginTop: 0 }}>
-                <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
-                <ul className="bh-list">
-                  {active.directions.map((item, i) => (
-                    <li key={i}>{pick(item, lang)}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bh-note" style={{ marginTop: 14 }}>
-                <p className="bh-card-text">{pick(active.note, lang)}</p>
-              </div>
+          <div className="bh-more-body">
+            <div className="bh-card-section" style={{ marginTop: 0 }}>
+              <p className="bh-card-label">{pick(active.directionsLabel, lang)}</p>
+              <ul className="bh-list">
+                {active.directions.map((item, i) => (
+                  <li key={i}>{pick(item, lang)}</li>
+                ))}
+              </ul>
             </div>
-          </details>
+
+            <div className="bh-note" style={{ marginTop: 14 }}>
+              <p className="bh-card-text">{pick(active.note, lang)}</p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>

@@ -32,16 +32,14 @@
 | `hormone-balance.jpg` | 부드러운 황금빛 조명 아래 편안히 요가/명상을 하는 여성, 균형과 평온함 |
 | `regenerative-medicine-consult.jpg` | 부드러운 블루 톤의 빛나는 DNA 나선/세포 재생 추상 이미지, 미래적인 의료 과학 느낌 (재생의학 히어로 영상과 톤 통일) |
 
-## 2. 재생의학센터 (stem-cell)
+## 2. 干细胞与再生医学 (stem-cell)
 
 | 파일명 | 프롬프트 |
 |---|---|
-| `approved-cell-therapies.jpg` | 부드러운 핑크 톤 액체 속에 떠 있는 투명한 세포들의 매크로 촬영, 깨끗한 과학적 추상 이미지 |
-| `what-is-stem-cell-consultation.jpg` | 밝은 현대적 상담실에서 의사와 환자가 태블릿의 신체/세포 홀로그램을 함께 보는 모습, 차분하고 전문적인 분위기 |
-| `legal-consultation-scope.jpg` | 밝은 블루 톤 사무실에서 의사가 환자에게 체크리스트/문서를 짚어가며 설명하는 모습 (법률 상징물 없이 '안내·기준' 느낌) |
-| `joint-cartilage-consultation.jpg` | 밝은 물리치료실에서 무릎/손을 부드럽게 스트레칭하는 모습 클로즈업, 관절 움직임에 초점 |
-| `anti-aging-regenerative-consultation.jpg` | 은은하게 빛나는 조명 아래 거울을 보는 우아한 중년 아시아 여성, 화사하고 생기 있는 피부, 항노화 뷰티 무드 |
-| `materials-preparation.jpg` | 깨끗한 책상 위에 단정히 정리된 의료 서류, 여권, 폴더, 부드러운 조명, 상담 준비/여행 계획 무드 |
+| `skin-regeneration-cell-activation-tile.png` | 皮肤再生 타일 — 제공됨 |
+| `approved-cell-therapies.jpg` | 韩国获批细胞治疗 타일 — 부드러운 핑크 톤 액체 속에 떠 있는 투명한 세포들의 매크로 촬영, 깨끗한 과학적 추상 이미지 |
+| `joint-cartilage-consultation.jpg` | 膝关节·软骨修复 타일 — 밝은 물리치료실에서 무릎/손을 부드럽게 스트레칭하는 모습 클로즈업, 관절 움직임에 초점 |
+| (필요) 自体血液·抗衰IV 타일 | 원심분리기로 분리된 혈액(붉은색 하단·투명 혈장 상단 레이어)이 담긴 튜브 클로즈업, 또는 채혈 후 튜브를 부드럽게 들고 있는 손, 밝고 임상적으로 깨끗한 톤, PRP/PRF 재생성분을 연상시키는 이미지 |
 
 ## 3. 피부의료미용 (skin-beauty)
 

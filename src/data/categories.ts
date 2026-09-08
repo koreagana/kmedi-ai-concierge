@@ -174,13 +174,13 @@ Final testing direction and medical judgment remain with licensed medical instit
   },
   {
     id: 'stem-cell',
-    zh: '再生医学中心',
-    en: 'Regenerative Medicine Center',
+    zh: '韩国干细胞与再生医学',
+    en: 'Korean Stem Cell & Regenerative Medicine',
     emoji: '🧬',
     heroImage: '/category-hero/zaishengyiliao.jpg',
     heroVideo: '/category-hero/zaishengyiliao.mp4',
-    tagZh: '干细胞疗法 · NAD+抗衰老 · 免疫细胞疗法',
-    tagEn: 'Stem Cell Therapy · NAD+ Anti-Aging · Immune Cell Therapy',
+    tagZh: '从皮肤年轻化，到关节修复与细胞治疗',
+    tagEn: 'From skin rejuvenation to joint repair and cell therapy',
     scriptFullZh: `您好，这里是干细胞与再生医学相关咨询入口。
 
 干细胞和再生医学是很多人关心的领域，但也容易被误解。

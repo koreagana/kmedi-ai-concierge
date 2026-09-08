@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import {
   BIG_HEALTH_KEYWORDS,
-  BIG_HEALTH_MORE_LABEL,
   BIG_HEALTH_PILLS_PROMPT,
   BIG_HEALTH_SECTION,
   type LocalizedText,
@@ -74,63 +73,60 @@ export default function BigHealthKeywords() {
           </div>
           <p className="bh-card-text">{pick(active.description, lang)}</p>
 
-          <details className="bh-more">
-            <summary>{pick(BIG_HEALTH_MORE_LABEL, lang)}</summary>
-            <div className="bh-more-body">
-              {active.note && (
-                <div className="bh-note" style={{ marginTop: 0 }}>
-                  {pick(active.note, lang).split('\n').map((line, i) => (
+          <div className="bh-more-body">
+            {active.note && (
+              <div className="bh-note" style={{ marginTop: 0 }}>
+                {pick(active.note, lang).split('\n').map((line, i) => (
+                  <p key={i} className="bh-card-text">{line}</p>
+                ))}
+              </div>
+            )}
+
+            {active.approvedProducts && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.approvedProducts.title, lang)}</p>
+                <ul className="bh-product-list">
+                  {active.approvedProducts.items.map((item, i) => (
+                    <li key={i}>
+                      <span className="bh-product-name">{pick(item.name, lang)}</span>
+                      <span className="bh-product-desc">{pick(item.desc, lang)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="bh-note">
+                  {pick(active.approvedProducts.caution, lang).split('\n').map((line, i) => (
                     <p key={i} className="bh-card-text">{line}</p>
                   ))}
                 </div>
-              )}
-
-              {active.approvedProducts && (
-                <div className="bh-card-section">
-                  <p className="bh-card-label">{pick(active.approvedProducts.title, lang)}</p>
-                  <ul className="bh-product-list">
-                    {active.approvedProducts.items.map((item, i) => (
-                      <li key={i}>
-                        <span className="bh-product-name">{pick(item.name, lang)}</span>
-                        <span className="bh-product-desc">{pick(item.desc, lang)}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="bh-note">
-                    {pick(active.approvedProducts.caution, lang).split('\n').map((line, i) => (
-                      <p key={i} className="bh-card-text">{line}</p>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div className="bh-card-section">
-                <p className="bh-card-label">{pick(active.testsLabel, lang)}</p>
-                <ul className="bh-list">
-                  {active.tests.map((item, i) => (
-                    <li key={i}>{pick(item, lang)}</li>
-                  ))}
-                </ul>
               </div>
+            )}
 
-              <div className="bh-card-section">
-                <p className="bh-card-label">{pick(active.directionLabel, lang)}</p>
-                <ul className="bh-list">
-                  {active.direction.map((item, i) => (
-                    <li key={i}>{pick(item, lang)}</li>
-                  ))}
-                </ul>
-              </div>
-
-              {active.extraDisclaimer && (
-                <div className="bh-disclaimer">
-                  {pick(active.extraDisclaimer, lang).split('\n').map((line, i) => (
-                    <p key={i}>{line}</p>
-                  ))}
-                </div>
-              )}
+            <div className="bh-card-section">
+              <p className="bh-card-label">{pick(active.testsLabel, lang)}</p>
+              <ul className="bh-list">
+                {active.tests.map((item, i) => (
+                  <li key={i}>{pick(item, lang)}</li>
+                ))}
+              </ul>
             </div>
-          </details>
+
+            <div className="bh-card-section">
+              <p className="bh-card-label">{pick(active.directionLabel, lang)}</p>
+              <ul className="bh-list">
+                {active.direction.map((item, i) => (
+                  <li key={i}>{pick(item, lang)}</li>
+                ))}
+              </ul>
+            </div>
+
+            {active.extraDisclaimer && (
+              <div className="bh-disclaimer">
+                {pick(active.extraDisclaimer, lang).split('\n').map((line, i) => (
+                  <p key={i}>{line}</p>
+                ))}
+              </div>
+            )}
+          </div>
         </motion.div>
       </div>
     </div>

@@ -1,120 +1,97 @@
-import type { LocalizedText, BigHealthBullet, BigHealthApprovedProductsBlock, BigHealthDocButtonKey } from './bigHealthKeywords'
+import type { LocalizedText } from './bigHealthKeywords'
+
+export interface StemCellProductItem {
+  /** Brand/product name — not localized */
+  name: string
+  desc: LocalizedText
+}
 
 export interface StemCellKeyword {
   id: string
   title: LocalizedText
-  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  /** Short line shown on the tile itself, under the title */
+  tileSubtitle: LocalizedText
+  /** Optional photo for the tile (public/ path). Falls back to a CSS gradient when omitted. */
   image?: string
-  /** May contain \n\n to separate multiple paragraphs. */
-  description: LocalizedText
-  /** Optional secondary note shown right under the description (used by the approved-products item). */
-  note?: LocalizedText
-  approvedProducts?: BigHealthApprovedProductsBlock
-  listLabel?: LocalizedText
-  list?: BigHealthBullet[]
-  docKeys: BigHealthDocButtonKey[]
+  /** 1-2 short lines. May contain \n for a line break. */
+  body: LocalizedText
+  /** Short tag-style keywords, rendered as pills */
+  pills?: LocalizedText[]
+  /** Grouped pills (a blank line between each group) */
+  pillGroups?: LocalizedText[][]
+  /** Plain closing line shown after the pill groups, e.g. "Local Treatment / IV Treatment" */
+  footerLine?: LocalizedText
+  /** Simple bullet list */
+  list?: LocalizedText[]
+  /** Product cards */
+  products?: StemCellProductItem[]
+  /** Small link-style caption at the end of the card, e.g. "See indications →" */
+  hint?: LocalizedText
 }
 
-export const STEM_CELL_SECTION = {
-  title: {
-    zh: '再生医学中心',
-    en: 'Regenerative Medicine Center',
-  } as LocalizedText,
-  subCopy: {
-    zh: '韩国许可细胞治疗剂 · 关节与再生医学咨询',
-    en: 'Licensed Cell Therapy Products in Korea · Joint & Regenerative Medicine Consultation',
-  } as LocalizedText,
-  desc: {
-    zh: '韩国干细胞与再生医学咨询，不是简单判断"能不能治疗"，而是整理客户的诊断名、检查资料、咨询目的和韩国正规医疗机构可以确认的方向。',
-    en: 'Stem cell and regenerative medicine consultation in Korea is not simply about determining whether treatment is possible — it is a process of organizing your diagnosis, test records, consultation purpose, and the directions that a licensed Korean medical institution can confirm.',
-  } as LocalizedText,
-}
-
-const PRODUCT_EXAMPLES_LABEL: LocalizedText = {
-  zh: '产品示例',
-  en: 'Product Examples',
-}
-
-// TODO: once the admin prep-documents page adds a "재생의학 상담 전 자료 준비 / 再生医学咨询前资料准备"
-// entry (candidate path: /prep/regenerative-consultation-before), add its key to docKeys on each item below.
 export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   {
-    id: 'approved-cell-therapies',
-    image: '/keyword-tiles/approved-cell-therapies.jpg',
-    title: {
-      zh: '韩国许可细胞治疗剂',
-      en: 'Licensed Cell Therapy Products in Korea',
+    id: 'skin-regeneration',
+    title: { zh: '皮肤再生', en: 'Skin Regeneration' },
+    tileSubtitle: { zh: '肤质 · 弹性 · 组织修复', en: 'Texture · Elasticity · Tissue Repair' },
+    image: '/keyword-tiles/skin-regeneration-cell-activation-tile.png',
+    body: {
+      zh: '利用自体血液中的再生相关成分，\n用于皮肤与组织修复相关治疗。',
+      en: 'Uses regenerative components drawn from your own blood\nfor skin and tissue repair treatments.',
     },
-    description: {
-      zh: '韩国已有部分细胞治疗剂在特定适应症范围内获批。它们并不是普通的抗衰老项目，也不代表所有人都适用。',
-      en: 'Korea has approved a number of cell therapy products within specific indication ranges. These are not general anti-aging procedures, and they do not apply to everyone.',
-    },
-    note: {
-      zh: '以下产品仅作为韩国已获批准细胞治疗剂的示例。是否可以咨询或使用，需要由正规医疗机构根据适应症、检查资料和医生判断确认。',
-      en: "The products below are examples of cell therapy products approved in Korea. Whether they can be consulted on or used must be confirmed by a licensed medical institution, based on indications, test records, and the physician's judgment.",
-    },
-    approvedProducts: {
-      title: PRODUCT_EXAMPLES_LABEL,
-      items: [
-        {
-          name: { zh: 'Hearticellgram-AMI', en: 'Hearticellgram-AMI' },
-          desc: {
-            zh: '急性心肌梗死相关细胞治疗剂。',
-            en: 'A cell therapy product related to acute myocardial infarction.',
-          },
-        },
-        {
-          name: { zh: 'Cartistem', en: 'Cartistem' },
-          desc: {
-            zh: '膝关节软骨缺损及退行性关节炎相关细胞治疗剂。',
-            en: 'A cell therapy product related to knee cartilage defects and degenerative arthritis.',
-          },
-        },
-        {
-          name: { zh: 'Cupistem', en: 'Cupistem' },
-          desc: {
-            zh: '克罗恩病复杂性肛瘘相关细胞治疗剂。',
-            en: "A cell therapy product related to complex perianal fistulas in Crohn's disease.",
-          },
-        },
-        {
-          name: { zh: 'Neuronata-R Inj.', en: 'Neuronata-R Inj.' },
-          desc: {
-            zh: '肌萎缩侧索硬化症（ALS，卢伽雷氏病）相关细胞治疗剂。',
-            en: "A cell therapy product related to amyotrophic lateral sclerosis (ALS, Lou Gehrig's disease).",
-          },
-        },
-      ],
-      caution: {
-        zh: '这些产品有明确的适应症和使用条件，并不代表所有抗衰老、疼痛或关节问题都可以使用。',
-        en: 'These products have clearly defined indications and conditions of use, and do not apply to every anti-aging, pain, or joint issue.',
-      },
-    },
-    docKeys: ['functionalIntake'],
+    pills: [
+      { zh: '肤质 · 弹性', en: 'Texture · Elasticity' },
+      { zh: '红敏 · 受损肌肤', en: 'Redness · Damaged Skin' },
+      { zh: '术后恢复 · 组织修复', en: 'Post-Procedure Recovery · Tissue Repair' },
+      { zh: '头皮 · 脱发', en: 'Scalp · Hair Loss' },
+    ],
   },
   {
-    id: 'joint-cartilage-consultation',
-    image: '/keyword-tiles/joint-cartilage-consultation.jpg',
-    title: {
-      zh: '关节·软骨咨询',
-      en: 'Joint & Cartilage Consultation',
-    },
-    description: {
-      zh: '膝关节软骨损伤、退行性关节炎、关节疼痛等问题，在咨询前通常需要整理诊断名、疼痛部位、疼痛程度、影像资料和既往治疗记录。\n\nCartistem是韩国已获批准的细胞治疗剂示例之一，但是否适合客户本人，需要由医生根据适应症和检查资料判断。',
-      en: 'For issues such as knee cartilage damage, degenerative arthritis, or joint pain, it is generally helpful to organize the diagnosis, pain location, pain severity, imaging materials, and prior treatment history before a consultation.\n\nCartistem is one example of a cell therapy product approved in Korea, but whether it is suitable for you must be determined by a physician based on indications and test records.',
-    },
-    listLabel: {
-      zh: '建议在咨询前准备的资料',
-      en: 'Materials Helpful to Prepare Before Consultation',
+    id: 'joint-cartilage',
+    title: { zh: '膝关节 · 软骨修复', en: 'Knee & Cartilage Repair' },
+    tileSubtitle: { zh: '软骨损伤 · 退行性膝关节问题', en: 'Cartilage Damage · Degenerative Knee Issues' },
+    image: '/keyword-tiles/joint-cartilage-consultation.png',
+    body: {
+      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。',
+      en: 'Regenerative treatments for cartilage damage and degenerative knee conditions.',
     },
     list: [
-      { zh: '关节部位和疼痛时间', en: 'Joint location and duration of pain' },
-      { zh: '诊断名，如退行性关节炎、软骨损伤等', en: 'Diagnosis, such as degenerative arthritis or cartilage damage' },
-      { zh: 'X光、MRI等已有影像资料', en: 'Existing imaging materials, such as X-ray or MRI' },
-      { zh: '医生意见书或诊断书', en: "Physician's opinion letter or diagnosis record" },
-      { zh: '既往注射、手术或康复治疗记录', en: 'Records of prior injection therapy, surgery, or rehabilitation' },
-      { zh: '正在服用的药物', en: 'Current medications' },
+      { zh: '干细胞治疗', en: 'Stem Cell Therapy' },
+      { zh: '骨髓来源治疗', en: 'Bone Marrow-Derived Therapy' },
+      { zh: 'PRP / PRF', en: 'PRP / PRF' },
+      { zh: '软骨再生治疗', en: 'Cartilage Regeneration Therapy' },
     ],
-    docKeys: ['functionalIntake'],
+  },
+  {
+    id: 'approved-cell-therapy',
+    title: { zh: '韩国获批细胞治疗', en: 'Korea-Approved Cell Therapy' },
+    tileSubtitle: { zh: '针对特定疾病的正规细胞治疗', en: 'Licensed Therapy for Specific Conditions' },
+    image: '/keyword-tiles/approved-cell-therapies.jpg',
+    body: {
+      zh: '韩国已有针对特定疾病正式获批的细胞治疗药物。',
+      en: 'Korea has cell therapy products formally approved for specific diseases.',
+    },
+    products: [
+      { name: 'Hearticellgram-AMI', desc: { zh: '急性心肌梗死相关治疗', en: 'For acute myocardial infarction' } },
+      { name: 'Cartistem', desc: { zh: '膝关节软骨损伤相关治疗', en: 'For knee cartilage damage' } },
+      { name: 'Cupistem', desc: { zh: '克罗恩病瘘管相关治疗', en: "For Crohn's disease fistulas" } },
+      { name: 'Neuronata-R Inj.', desc: { zh: '肌萎缩侧索硬化症（ALS）相关治疗', en: 'For ALS (Lou Gehrig\'s disease)' } },
+    ],
+    hint: { zh: '查看适应症 →', en: 'See indications →' },
+  },
+  {
+    id: 'autologous-blood-iv',
+    title: { zh: '自体血液 · 抗衰IV', en: 'Autologous Blood · Anti-Aging IV' },
+    tileSubtitle: { zh: 'PRP · PRF · PMF · 生长因子', en: 'PRP · PRF · PMF · Growth Factors' },
+    image: '/keyword-tiles/autologous-blood-antiaging-iv-tile.png',
+    body: {
+      zh: '抽取自己的血液，\n分离并浓缩其中的活性成分。',
+      en: 'Your own blood is drawn,\nthen separated and concentrated for its active components.',
+    },
+    pillGroups: [
+      [{ zh: 'PRP', en: 'PRP' }, { zh: 'PRF', en: 'PRF' }, { zh: 'PMF', en: 'PMF' }],
+      [{ zh: '生长因子', en: 'Growth Factors' }, { zh: '血小板', en: 'Platelets' }, { zh: '细胞外囊泡', en: 'Extracellular Vesicles' }],
+    ],
+    footerLine: { zh: '局部治疗 / IV静脉治疗', en: 'Local Treatment / IV Treatment' },
   },
 ]

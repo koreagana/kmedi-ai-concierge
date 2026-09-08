@@ -1138,6 +1138,10 @@ body {
   background: linear-gradient(to top, rgba(8,25,45,0.42) 0%, rgba(8,25,45,0.08) 32%, rgba(8,25,45,0) 55%);
 }
 
+/* Tiles whose photo already carries its own title text — no CSS label,
+   so skip the darkening scrim that exists to keep overlay text legible. */
+.bh-tile--photo-label::before { display: none; }
+
 /* Wraps the detail card below the tile grid; scroll-margin-top keeps the card
    title clear of the sticky navbar when a tile click scrolls it into view. */
 .bh-card-anchor {
@@ -1153,6 +1157,15 @@ body {
   color: #fff;
   letter-spacing: 0.01em;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6), 0 1px 10px rgba(0,0,0,0.4);
+}
+
+.bh-tile-sublabel {
+  display: block;
+  margin-top: 3px;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 1px 8px rgba(0,0,0,0.35);
 }
 
 .bh-tile-active {
@@ -1204,38 +1217,9 @@ body {
 .bh-tiles--steel .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#8a95b8,#333f6b); }
 .bh-tiles--steel .bh-tile:nth-child(6n+4) { background: linear-gradient(150deg,#7ba3a8,#2a5a52); }
 
-/* Collapsible "read more" wrapper for secondary detail content (test lists,
-   direction lists, disclaimers) — keeps every word intact but off-screen
-   by default so the tile grid + short summary are what visitors see first. */
-.bh-more {
-  margin-top: 14px;
-  border-radius: 12px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-blue);
-  overflow: hidden;
-}
-.bh-more > summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 12px 14px;
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--brand);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-.bh-more > summary::-webkit-details-marker { display: none; }
-.bh-more > summary::after {
-  content: '+';
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--text-muted);
-}
-.bh-more[open] > summary::after { content: '−'; }
-.bh-more[open] > summary { border-bottom: 1px solid var(--border-blue); }
-.bh-more-body { padding: 4px 14px 14px; }
+/* Detail content sits directly under the description now — no click-to-expand
+   toggle. Kept as a plain block (not a box) so nothing nests inside .bh-card. */
+.bh-more-body { margin-top: 12px; }
 .bh-more-body .bh-card-section:first-child { margin-top: 10px; }
 
 .bh-card {
@@ -1356,12 +1340,10 @@ body {
 
 .bh-note {
   margin-top: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  background: var(--bg-light);
-  border: 1px solid var(--border-blue);
+  padding-top: 8px;
+  border-top: 1px solid var(--border-blue);
 }
-.bh-note .bh-card-text { font-size: 12px; }
+.bh-note .bh-card-text { font-size: 12px; color: var(--text-muted); }
 .bh-note .bh-card-text + .bh-card-text { margin-top: 4px; }
 
 .bh-disclaimer {
@@ -1375,6 +1357,66 @@ body {
   color: #8a5a00;
 }
 .bh-disclaimer p + p { margin-top: 4px; }
+
+/* Short keyword pills for image-forward detail cards (no long paragraphs) */
+.bh-keyword-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.bh-keyword-pill {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand-dark, var(--brand));
+  background: var(--bg-light);
+  border: 1px solid var(--border-blue);
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+.bh-keyword-pill--lg {
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 9px 16px;
+}
+
+.bh-hint-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+/* Minimal bottom CTA — replaces long consultation-flow copy */
+.bh-cta {
+  margin: 30px 20px 0;
+  text-align: center;
+}
+.bh-cta-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+.bh-cta-sub {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.bh-cta-btn {
+  margin-top: 14px;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-mid) 100%);
+  border: none;
+  border-radius: 14px;
+  padding: 14px 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,119,182,0.3);
+}
 
 .bh-doc-buttons {
   display: flex;
