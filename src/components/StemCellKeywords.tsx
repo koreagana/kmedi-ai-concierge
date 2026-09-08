@@ -36,14 +36,24 @@ export default function StemCellKeywords() {
             type="button"
             role="tab"
             aria-selected={i === activeIndex}
-            aria-label={pick(kw.title, lang)}
-            className={`bh-tile bh-tile--photo-label ${i === activeIndex ? 'bh-tile-active' : ''}`}
+            aria-label={lang === 'zh' ? undefined : pick(kw.title, lang)}
+            className={`bh-tile ${lang === 'zh' ? 'bh-tile--photo-label' : ''} ${i === activeIndex ? 'bh-tile-active' : ''}`}
             style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'left center' } : undefined}
             onClick={() => {
               setActiveIndex(i)
               cardAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
             }}
-          />
+          >
+            {/* 타일 이미지 자체에 중문 제목이 인쇄돼 있어, 중문 화면에서는 CSS 라벨을 끄고
+                이미지에 맡긴다. 영문 화면은 이미지 속 한자를 대체할 수 없으니 기존처럼
+                하단에 영문 라벨을 오버레이한다. */}
+            {lang !== 'zh' && (
+              <span className="bh-tile-label">
+                {pick(kw.title, lang)}
+                <span className="bh-tile-sublabel">{pick(kw.tileSubtitle, lang)}</span>
+              </span>
+            )}
+          </button>
         ))}
       </div>
 
