@@ -103,7 +103,7 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
       ] },
       { id: 'xerf', nameKo: '세르프', nameZh: 'XERF 泽弗', nameEn: 'XERF', options: [
         { unit: '600发', unitEn: '600 shots', economy: { low: 1590000, high: 1590000 }, standard: null, premium: null },
-        { unit: '明洞套餐', unitEn: 'Myeongdong package', note: '含300发＋ONDA或钛提升80kJ＋下颌线肉毒素4cc，明洞店限定，不可单独购买', noteEn: 'Includes 300 shots + ONDA or Titanium 80kJ + jawline botox 4cc — Myeongdong-only bundle, not sold as XERF alone', economy: { low: 1690000, high: 1690000 }, standard: { low: 1690000, high: 1690000 }, premium: { low: 1690000, high: 1690000 }, uniform: true },
+        { unit: '组合套餐', unitEn: 'Combo package', note: '含300发＋ONDA或钛提升80kJ＋下颌线肉毒素4cc，不可单独购买', noteEn: 'Includes 300 shots + ONDA or Titanium 80kJ + jawline botox 4cc — not sold as XERF alone', economy: { low: 1690000, high: 1690000 }, standard: { low: 1690000, high: 1690000 }, premium: { low: 1690000, high: 1690000 }, uniform: true },
       ] },
     ],
   },
