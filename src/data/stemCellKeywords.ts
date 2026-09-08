@@ -66,7 +66,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     id: 'approved-cell-therapy',
     title: { zh: '韩国获批细胞治疗', en: 'Korea-Approved Cell Therapy' },
     tileSubtitle: { zh: '针对特定疾病的正规细胞治疗', en: 'Licensed Therapy for Specific Conditions' },
-    image: '/keyword-tiles/approved-cell-therapies.jpg',
+    image: '/keyword-tiles/approved-cell-therapies.png',
     body: {
       zh: '韩国已有针对特定疾病正式获批的细胞治疗药物。',
       en: 'Korea has cell therapy products formally approved for specific diseases.',
