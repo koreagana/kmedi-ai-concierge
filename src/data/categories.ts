@@ -12,6 +12,10 @@ export interface Category {
   id: CategoryId
   zh: string
   en: string
+  /** 홈 화면 카테고리 그리드 카드용 짧은 이름 — 없으면 zh/en을 그대로 씀.
+      상세페이지 히어로 제목(zh/en)은 더 길어도 되는 카테고리에 사용. */
+  gridNameZh?: string
+  gridNameEn?: string
   emoji: string
   /** 카테고리 히어로 영역에 표시할 실사 이미지 경로 (public/ 기준). 없으면 기존 그라디언트만 표시. */
   heroImage?: string
@@ -176,6 +180,8 @@ Final testing direction and medical judgment remain with licensed medical instit
     id: 'stem-cell',
     zh: '韩国干细胞与再生医学',
     en: 'Korean Stem Cell & Regenerative Medicine',
+    gridNameZh: '干细胞治疗',
+    gridNameEn: 'Stem Cell Therapy',
     emoji: '🧬',
     heroImage: '/category-hero/zaishengyiliao.jpg',
     heroVideo: '/category-hero/zaishengyiliao.mp4',

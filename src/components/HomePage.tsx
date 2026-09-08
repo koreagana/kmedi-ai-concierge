@@ -529,8 +529,8 @@ export function CategoryGridSection() {
   }
 
   const getName = (c: typeof categories[0]) => {
-    if (lang === 'en') return c.en
-    return c.zh
+    if (lang === 'en') return c.gridNameEn ?? c.en
+    return c.gridNameZh ?? c.zh
   }
 
   return (
