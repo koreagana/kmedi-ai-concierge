@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한강애봄 제휴 의료기관 수가 비교표</title>
+<style>
+  :root{
+    --ink:#17171A; --ink-2:#5B5B62; --ink-3:#9B9BA3;
+    --line:#E8E6E1; --line-2:#F2F0EC; --bg:#FFFFFF;
+    --t-low:#2F6F4E; --t-mid:#B3782A; --t-priv:#6E4A72;
+    --best:#F2F8F4;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);
+    font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",-apple-system,sans-serif;
+    font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1240px;margin:0 auto;padding:44px 22px 90px;}
+
+  header{border-bottom:2px solid var(--ink);padding-bottom:20px;}
+  .brand{display:inline-block;border:1.5px solid var(--ink);padding:5px 14px;font-weight:700;font-size:15px;letter-spacing:.02em;}
+  h1{font-size:27px;font-weight:700;margin:18px 0 6px;letter-spacing:-.02em;}
+  .sub{color:var(--ink-2);font-size:14px;margin:0;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:22px;padding:16px 0 20px;border-bottom:1px solid var(--line);}
+  .lg{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--ink-2);}
+  .swatch{width:22px;height:4px;border-radius:2px;flex:none;transform:translateY(-2px);}
+  .lg b{color:var(--ink);font-weight:600;}
+
+  nav{display:flex;gap:4px;margin:22px 0 0;flex-wrap:wrap;}
+  nav button{font:inherit;font-size:13.5px;font-weight:500;background:none;border:1px solid var(--line);
+    padding:7px 15px;border-radius:999px;color:var(--ink-2);cursor:pointer;
+    transition:background .12s,color .12s,border-color .12s;}
+  nav button:hover{border-color:var(--ink-3);}
+  nav button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff;}
+  nav button:focus-visible{outline:2px solid var(--t-low);outline-offset:2px;}
+
+  .tools{display:flex;align-items:center;gap:16px;margin:18px 0 10px;font-size:13px;color:var(--ink-2);flex-wrap:wrap;}
+  .tools label{display:flex;align-items:center;gap:7px;cursor:pointer;}
+  .tools input[type=checkbox]{width:15px;height:15px;accent-color:var(--t-low);}
+  .tools input[type=search]{font:inherit;font-size:13px;padding:6px 11px;border:1px solid var(--line);
+    border-radius:999px;width:200px;color:var(--ink);}
+  .tools input[type=search]:focus{outline:none;border-color:var(--ink-3);}
+  .count{margin-left:auto;color:var(--ink-3);font-size:12.5px;}
+
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:3px;}
+  table{border-collapse:separate;border-spacing:0;width:100%;min-width:1000px;font-variant-numeric:tabular-nums;}
+  caption{text-align:left;padding:13px 16px 11px;font-size:12.5px;color:var(--ink-2);border-bottom:1px solid var(--line-2);}
+
+  thead th{position:sticky;top:0;z-index:3;background:#fff;text-align:right;vertical-align:bottom;
+    padding:13px 14px 10px;font-size:13.5px;font-weight:600;border-bottom:1px solid var(--ink);white-space:nowrap;}
+  thead th:first-child{text-align:left;left:0;z-index:4;min-width:268px;}
+  .hosp{display:block;line-height:1.3;}
+  .tier-chip{display:block;font-size:10.5px;font-weight:600;letter-spacing:.03em;margin-bottom:4px;}
+  .vat{display:block;font-size:10.5px;font-weight:400;color:var(--ink-3);margin-top:3px;}
+  th[data-tier="low"] .tier-chip{color:var(--t-low);}
+  th[data-tier="mid"] .tier-chip{color:var(--t-mid);}
+  th[data-tier="priv"] .tier-chip{color:var(--t-priv);}
+  th[data-tier] .bar{display:block;height:3px;border-radius:2px;margin-bottom:8px;}
+  th[data-tier="low"] .bar{background:var(--t-low);}
+  th[data-tier="mid"] .bar{background:var(--t-mid);}
+  th[data-tier="priv"] .bar{background:var(--t-priv);}
+
+  tbody th{position:sticky;left:0;background:#fff;z-index:2;text-align:left;font-weight:500;font-size:14px;
+    padding:11px 16px 11px 0;border-bottom:1px solid var(--line-2);min-width:268px;}
+  tbody th .unit{display:block;font-size:11.5px;color:var(--ink-3);font-weight:400;margin-top:1px;line-height:1.35;}
+  tbody td{text-align:right;padding:11px 14px;font-size:14.5px;border-bottom:1px solid var(--line-2);white-space:nowrap;}
+  tbody td .note{display:block;font-size:11px;color:var(--ink-3);font-weight:400;margin-top:2px;
+    white-space:normal;max-width:190px;margin-left:auto;line-height:1.35;}
+  .none{color:#D8D6D1;}
+  tr.grp th{background:#FAFAF8;font-weight:700;font-size:12.5px;color:var(--ink-2);
+    letter-spacing:.03em;padding:8px 16px 8px 0;border-bottom:1px solid var(--line);}
+  tr.grp td{background:#FAFAF8;border-bottom:1px solid var(--line);}
+  tbody tr:not(.grp):hover th,tbody tr:not(.grp):hover td{background:#FCFCFA;}
+  td.best{font-weight:700;color:var(--t-low);}
+  body.mark-best td.best{background:var(--best);}
+  body.mark-best tbody tr:not(.grp):hover td.best{background:var(--best);}
+  .empty{padding:40px 16px;text-align:center;color:var(--ink-3);font-size:14px;}
+
+  footer{margin-top:32px;font-size:12.5px;color:var(--ink-2);line-height:1.75;}
+  footer h2{font-size:13px;margin:22px 0 7px;color:var(--ink);}
+  footer h2:first-child{margin-top:0;}
+  footer ul{margin:0;padding-left:17px;}
+  footer li{margin-bottom:3px;}
+  .srcbox{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-top:10px;}
+  .src{border-left:3px solid var(--line);padding-left:11px;}
+  .src b{display:block;color:var(--ink);font-size:12.5px;font-weight:600;}
+  .src span{display:block;font-size:11.5px;color:var(--ink-3);}
+  .stamp{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);}
+
+  @media (max-width:640px){
+    .wrap{padding:30px 13px 60px;}
+    h1{font-size:21px;}
+    thead th:first-child,tbody th{min-width:186px;}
+    .tools input[type=search]{width:100%;}
+    .count{margin-left:0;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+  @media print{
+    nav,.tools{display:none;}
+    .scroll{overflow:visible;border:none;}
+    thead th{position:static;}
+    tbody th{position:static;}
+  }
+</style>
+</head>
+<body class="mark-best">
+<div class="wrap">
+
+<header>
+  <span class="brand">한강애봄</span>
+  <h1>제휴 의료기관 수가 비교표</h1>
+  <p class="sub">리베리 강남점 · 리베리 명동점 · 원셀의원 · 리앤장 · 셀온</p>
+</header>
+
+<div class="legend">
+  <div class="lg"><span class="swatch" style="background:var(--t-low)"></span><b>流水线</b> 리베리 강남점 · 명동점</div>
+  <div class="lg"><span class="swatch" style="background:var(--t-mid)"></span><b>중가</b> 원셀의원</div>
+  <div class="lg"><span class="swatch" style="background:var(--t-priv)"></span><b>프라이빗</b> 리앤장 · 셀온 (자가세안 불필요)</div>
+</div>
+
+<nav role="tablist" aria-label="시술 분류">
+  <button role="tab" aria-selected="true" data-cat="all">전체</button>
+  <button role="tab" aria-selected="false" data-cat="botox">보톡스</button>
+  <button role="tab" aria-selected="false" data-cat="filler">필러·볼륨</button>
+  <button role="tab" aria-selected="false" data-cat="booster">스킨부스터</button>
+  <button role="tab" aria-selected="false" data-cat="lifting">리프팅</button>
+  <button role="tab" aria-selected="false" data-cat="thread">실리프팅</button>
+  <button role="tab" aria-selected="false" data-cat="laser">레이저·색소</button>
+  <button role="tab" aria-selected="false" data-cat="acne">여드름·모공·흉터</button>
+  <button role="tab" aria-selected="false" data-cat="care">피부관리</button>
+  <button role="tab" aria-selected="false" data-cat="hair">제모</button>
+  <button role="tab" aria-selected="false" data-cat="iv">수액·주사</button>
+  <button role="tab" aria-selected="false" data-cat="stem">줄기세포·재생</button>
+  <button role="tab" aria-selected="false" data-cat="body">체형·바디</button>
+  <button role="tab" aria-selected="false" data-cat="surgery">성형수술</button>
+</nav>
+
+<div class="tools">
+  <input type="search" id="q" placeholder="항목 검색 (예: 울쎄라, 제오민)" aria-label="항목 검색">
+  <label><input type="checkbox" id="toggleBest" checked> 행별 최저가 강조</label>
+  <label><input type="checkbox" id="toggleGap"> 3곳 미만 취급 항목 숨기기</label>
+  <span class="count" id="count"></span>
+</div>
+
+<div class="scroll">
+<table>
+  <caption>단위: 원 · 전체 VAT 별도 기준 통일 · 빈칸(—)은 해당 병원 수가표에서 확인되지 않은 항목</caption>
+  <thead>
+    <tr>
+      <th scope="col">항목</th>
+      <th scope="col" data-tier="low"><span class="bar"></span><span class="tier-chip">流水线</span><span class="hosp">리베리 강남점</span><span class="vat">VAT 별도 · 3회 시 10% 할인</span></th>
+      <th scope="col" data-tier="low"><span class="bar"></span><span class="tier-chip">流水线</span><span class="hosp">리베리 명동점</span><span class="vat">VAT 별도 · 9월 이벤트가</span></th>
+      <th scope="col" data-tier="mid"><span class="bar"></span><span class="tier-chip">중가</span><span class="hosp">원셀의원</span><span class="vat">VAT 미확인 · 정가</span></th>
+      <th scope="col" data-tier="priv"><span class="bar"></span><span class="tier-chip">프라이빗</span><span class="hosp">리앤장</span><span class="vat">VAT 별도 · 수수료 20%<br>성형 성형3(정가)</span></th>
+      <th scope="col" data-tier="priv"><span class="bar"></span><span class="tier-chip">프라이빗</span><span class="hosp">셀온</span><span class="vat">VAT 별도</span></th>
+    </tr>
+  </thead>
+  <tbody id="tb"></tbody>
+</table>
+</div>
+<div class="empty" id="empty" hidden>검색 결과가 없습니다.</div>
+
+<footer>
+  <h2>읽는 법</h2>
+  <ul>
+    <li>가로 스크롤 시 항목명과 병원명은 화면에 고정됩니다.</li>
+    <li>브랜드(국산·코어톡스·나보타·제오민·엘러간 등)가 다르면 행을 나눴습니다. 같은 행 안의 금액만 직접 비교됩니다.</li>
+    <li>회색 작은 글씨는 그 병원의 구성·조건이 다른 경우입니다. 금액만 보고 판단하지 말고 구성을 함께 보세요.</li>
+    <li>리베리 명동점은 패키지 중심 이벤트 구성이라 단품 비교란이 대부분 비어 있습니다.</li>
+    <li>원셀의원 성형수술은 성형외과 해외수가표(VAT 포함) 기준으로, 피부시술 정가와 산정 기준이 다릅니다.</li>
+    <li>성형수술 탭은 원셀(VAT 포함)과 리앤장(VAT 별도)의 기준이 서로 다릅니다. 두 금액을 그대로 빼서 비교하지 마세요.</li>
+  </ul>
+
+  <h2>기준 자료</h2>
+  <div class="srcbox">
+    <div class="src"><b>리베리 강남점</b><span>기본패키지 수가표 (국문) 10종</span><span>VAT 10% 별도</span></div>
+    <div class="src"><b>리베리 명동점</b><span>9월 이벤트 랜딩 (국문)</span><span>2026.09.01 ~ 09.30</span></div>
+    <div class="src"><b>원셀의원</b><span>피부과 수가표 260506 (정가)</span><span>성형외과 해외수가 260511 (VAT 포함)</span></div>
+    <div class="src"><b>리앤장</b><span>9월 비용표 강남점</span><span>쁘띠2 시트 · 수수료 20% · VAT 별도 환산(÷1.1)</span><span>강남_성형 시트 · 성형3(정가) · VAT 별도</span></div>
+    <div class="src"><b>셀온</b><span>피부성형외과 시술표 2026.03</span><span>줄기세포 260418 · 시그니처 수액</span></div>
+  </div>
+
+  <h2>확인이 필요한 사항</h2>
+  <ul>
+    <li>리베리 명동점 VAT 별도 확인됨. 원셀의원 피부과 수가표만 VAT 표기가 없어 미확인 상태입니다. 포함이면 실제 금액이 약 9% 낮아집니다.</li>
+    <li>모든 금액은 VAT 별도 기준으로 통일했습니다. 리앤장 쁘띠 원본은 VAT 포함이라 ÷1.1 처리했습니다.</li>
+    <li>리앤장 성형수술은 성형3(정가) 열 기준이며 시트에 VAT 비포함으로 명시돼 있습니다. 같은 시트의 성형2(상시할인가)는 정가의 약 55~70% 수준입니다.</li>
+    <li>리앤장 성형 재수술은 첫수술 정가에 난이도별 배수(1 / 1.25 / 1.5 / 2배)를 적용하는 방식이라 개별 금액을 넣지 않았습니다.</li>
+    <li>셀온 피부과 시술표는 2026년 3월, 원셀 피부과는 5월 6일, 원셀 성형외과는 5월 11일 기준입니다. 리베리·리앤장 9월 자료와 시점 차이가 있습니다.</li>
+  </ul>
+
+  <div class="stamp">한강애봄 (K-MediSpring) · 이가나 · 원본 수가표 기준 정리</div>
+</footer>
+
+</div>
+
+<script>
+// 열 순서: [리베리 강남, 리베리 명동, 원셀의원, 리앤장, 셀온]
+// null = 해당 병원 수가표에서 확인되지 않음
+// [금액,"주석"] = 조건/구성이 다른 경우
+const ROWS = [
+
+/* ══════════ 보톡스 ══════════ */
+["botox","GRP","주름보톡스 1부위"],
+["botox","주름보톡스 (국산)","1부위", 19000, null, 35000, [36000,"원더톡스"], 100000],
+["botox","주름보톡스 (코어톡스)","1부위", null, null, 55000, 45000, null],
+["botox","주름보톡스 (나보타)","1부위", 39000, null, null, null, null],
+["botox","주름보톡스 (이노톡스)","1부위", null, null, null, 73000, null],
+["botox","주름보톡스 (제오민)","1부위", 79000, null, 70000, 109000, 150000],
+["botox","주름보톡스 (엘러간)","1부위", 120000, null, 89000, 173000, null],
+
+["botox","GRP","주름보톡스 다부위"],
+["botox","주름보톡스 3부위 (국산)","", 49000, null, null, null, null],
+["botox","주름보톡스 3부위 (나보타)","", 99000, null, null, null, null],
+["botox","주름보톡스 3부위 (제오민)","", 190000, null, null, [155000,"2부위"], null],
+["botox","주름보톡스 3부위 (엘러간)","", 300000, null, null, null, null],
+["botox","주름보톡스 올인원 (국산)","얼굴 전체", 99000, null, null, null, null],
+["botox","주름보톡스 올인원 (제오민)","얼굴 전체", 380000, null, null, null, null],
+["botox","주름보톡스 올인원 (엘러간)","얼굴 전체", 600000, null, null, null, null],
+
+["botox","GRP","사각턱 · 저작근 50U"],
+["botox","사각턱보톡스 (국산)","50U", [29000,"턱·턱관절·관자"], null, [55000,"사각턱·관자"], [45000,"원더톡스"], [200000,"사각턱·침샘·관자"]],
+["botox","사각턱보톡스 (코어톡스)","50U", null, null, 75000, 91000, null],
+["botox","사각턱보톡스 (나보타)","50U", 59000, null, null, null, null],
+["botox","사각턱보톡스 (이노톡스)","50U", null, null, null, 173000, null],
+["botox","사각턱보톡스 (제오민)","50U", 150000, null, 129000, 255000, [300000,"사각턱·침샘·관자"]],
+["botox","사각턱보톡스 (엘러간)","50U", 240000, null, 199000, 445000, null],
+
+["botox","GRP","관자보톡스"],
+["botox","관자보톡스 (국산)","", [29000,"저작근에 포함"], null, [55000,"사각턱·관자"], 91000, [200000,"사각턱·침샘·관자"]],
+["botox","관자보톡스 (코어톡스)","", null, null, null, 127000, null],
+["botox","관자보톡스 (제오민)","", [150000,"저작근에 포함"], null, [129000,"사각턱·관자"], 318000, [300000,"사각턱·침샘·관자"]],
+["botox","관자보톡스 (엘러간)","", [240000,"저작근에 포함"], null, null, 509000, null],
+
+["botox","GRP","침샘 · 다한증 50U"],
+["botox","침샘·다한증보톡스 (국산)","50U", 69000, null, 100000, [91000,"원더톡스"], [200000,"사각턱·침샘·관자"]],
+["botox","침샘·다한증보톡스 (코어톡스)","50U", null, null, 120000, 127000, null],
+["botox","침샘·다한증보톡스 (나보타)","50U", 140000, null, null, null, null],
+["botox","침샘·다한증보톡스 (이노톡스)","50U", null, null, null, 236000, null],
+["botox","침샘·다한증보톡스 (제오민)","50U", 280000, null, 150000, 318000, [300000,"사각턱·침샘·관자"]],
+["botox","침샘·다한증보톡스 (엘러간)","50U", 420000, null, 250000, 509000, null],
+
+["botox","GRP","특수부위 (팔자 · 콧볼 · 입꼬리)"],
+["botox","특수부위보톡스 (국산)","1부위", [29000,"팔자·콧볼·광대·윗입술·목주름"], [460000,"입술필러+입꼬리보톡스 패키지"], [59000,"입꼬리·잇몸·콧볼·자갈턱"], [91000,"팔자·입꼬리 각각"], null],
+["botox","특수부위보톡스 (코어톡스)","1부위", null, null, 69000, 127000, null],
+["botox","특수부위보톡스 (나보타)","1부위", 59000, null, null, null, null],
+["botox","특수부위보톡스 (이노톡스)","1부위", null, null, null, 236000, null],
+["botox","특수부위보톡스 (제오민)","1부위", 89000, null, 79000, 318000, null],
+["botox","특수부위보톡스 (엘러간)","1부위", 180000, null, 99000, 509000, null],
+
+["botox","GRP","스킨보톡스 1부위"],
+["botox","스킨보톡스 1부위 (국산)","", 59000, null, 75000, [36000,"더마톡신 1cc"], [300000,"하관만"]],
+["botox","스킨보톡스 1부위 (코어톡스)","", null, null, 95000, 45000, null],
+["botox","스킨보톡스 1부위 (나보타)","", 120000, null, null, null, null],
+["botox","스킨보톡스 1부위 (이노톡스)","", null, null, null, 64000, null],
+["botox","스킨보톡스 1부위 (제오민)","", 240000, null, 125000, 82000, [500000,"하관만"]],
+["botox","스킨보톡스 1부위 (엘러간)","", 360000, null, 175000, 127000, null],
+
+["botox","GRP","스킨보톡스 얼굴전체"],
+["botox","스킨보톡스 얼굴전체 (국산)","강남 전체 / 원셀 50U / 리앤장 4cc", 90000, [1690000,"세르프300샷+온다or티타늄80kJ+턱라인4cc 패키지"], 150000, 127000, [500000,"1회"]],
+["botox","스킨보톡스 얼굴전체 (코어톡스)","", null, null, 190000, 155000, null],
+["botox","스킨보톡스 얼굴전체 (나보타)","", 180000, null, null, null, null],
+["botox","스킨보톡스 얼굴전체 (이노톡스)","", null, null, null, 191000, null],
+["botox","스킨보톡스 얼굴전체 (제오민)","", 360000, null, 250000, 236000, [800000,"1회"]],
+["botox","스킨보톡스 얼굴전체 (엘러간)","", 540000, null, 350000, 318000, null],
+
+["botox","GRP","바디보톡스 100U (종아리 · 승모근)"],
+["botox","바디보톡스 (국산)","100U", [79000,"종아리·허벅지·승모근"], null, [155000,"종아리·승모근"], [82000,"원더톡스"], [400000,"승모근 / 종아리 500,000"]],
+["botox","바디보톡스 (코어톡스)","100U", null, null, 205000, 173000, null],
+["botox","바디보톡스 (나보타)","100U", 160000, null, null, null, null],
+["botox","바디보톡스 (이노톡스)","100U", null, null, null, 309000, null],
+["botox","바디보톡스 (제오민)","100U", 320000, null, 390000, 445000, [600000,"승모근 / 종아리 800,000"]],
+["botox","바디보톡스 (엘러간)","100U", 480000, null, 490000, 827000, null],
+
+["botox","GRP","기타 부위"],
+["botox","턱라인보톡스 (국산)","리앤장 16unit", null, null, null, 91000, null],
+["botox","목주름보톡스 (국산)","리앤장 8unit", null, null, null, 91000, null],
+["botox","코조각주사 (국산)","", null, null, null, 64000, null],
+
+/* ══════════ 필러 · 볼륨 ══════════ */
+["filler","GRP","볼륨필러 1cc"],
+["filler","볼륨필러 (국산)","1cc", [200000,"국산 프리미엄"], null, [99000,"턱·팔자·옆볼·앞볼"], [155000,"뉴라미스"], [400000,"일반필러"]],
+["filler","볼륨필러 (벨로테로)","1cc", 350000, null, 429000, 509000, null],
+["filler","볼륨필러 (레스틸렌)","1cc", 400000, null, [429000,"레스틸렌 키스·입술"], 618000, 800000],
+["filler","볼륨필러 (쥬비덤)","1cc", 450000, null, 429000, 573000, 800000],
+["filler","볼륨필러 (엘란쎄)","1cc", null, null, null, null, 800000],
+["filler","뉴라미스 하트필러","1cc", null, null, null, 373000, null],
+
+["filler","GRP","특수부위 필러 1cc"],
+["filler","특수필러 (국산)","주름·애교·눈밑·코", 250000, null, [120000,"이마·관자·입술"], null, null],
+["filler","특수필러 (벨로테로)","1cc", 400000, null, null, 764000, null],
+["filler","특수필러 (레스틸렌)","1cc", 450000, null, null, 764000, null],
+["filler","특수필러 (쥬비덤)","1cc", 500000, null, [450000,"요정귀"], 764000, null],
+["filler","애교필러 (국산)","1회", null, null, null, 155000, null],
+["filler","애교필러 (벨로테로)","1회", null, null, null, 509000, null],
+["filler","애교필러 (쥬비덤)","1회", null, null, null, 573000, null],
+["filler","코필러 (쥬비덤)","1cc", null, [790000,"엘스코2줄+콧등보톡스 패키지"], null, 764000, null],
+["filler","MD코드 (쥬비덤)","1cc", null, null, null, 891000, null],
+["filler","흉터필러 (벨로테로 소프트)","1cc", null, null, null, 509000, null],
+
+["filler","GRP","목주름"],
+["filler","목주름필러 (국산)","1cc", null, null, 149000, null, null],
+["filler","목주름필러 (벨로테로)","1cc", null, [359000,"9월 이벤트가"], null, [1145000,"Basic 패키지"], null],
+["filler","목주름 무제한 패키지 (국산)","필러+스킨보톡스", null, null, 299000, null, null],
+["filler","목주름 무제한 패키지 (벨로테로)","필러+스킨보톡스", null, null, 990000, [1891000,"Premium 패키지"], null],
+
+["filler","GRP","콜라겐 부스터"],
+["filler","스컬트라","1vial", 990000, null, 890000, null, 1000000],
+["filler","스컬트라 3회","3vial", null, null, 2490000, null, null],
+["filler","레디어스","1시린지", 990000, null, 790000, null, null],
+["filler","디클래시","1시린지", 990000, null, null, null, null],
+["filler","쥬베룩 볼륨","1vial", [590000,"10cc"], null, 790000, null, [800000,"1병 / 반병 500,000"]],
+["filler","쥬베룩 볼륨","1cc", null, null, 100000, 191000, null],
+["filler","리베리 볼륨부스터","1vial 6cc", 1000000, null, null, null, null],
+
+["filler","GRP","기타"],
+["filler","히알라제","1회 / 1부위", null, null, 100000, [127000,"본원 1년 이후 / 타원 280,000"], [200000,"1앰플"]],
+["filler","자가혈필러 (PRP)","1부위", null, null, null, null, [600000,"3부위 2,000,000"]],
+["filler","리커버 주사","1회 10cc", 990000, null, null, null, null],
+
+/* ══════════ 스킨부스터 ══════════ */
+["booster","GRP","리쥬란"],
+["booster","리쥬란 힐러","2cc", 240000, null, 290000, 382000, null],
+["booster","리쥬란","1cc", null, null, null, null, [200000,"미라젯 추가시 +200,000"]],
+["booster","리쥬란 아이","1cc", 200000, [1190000,"아이올리지오400샷+리쥬란2cc+제오민 눈가보톡스 패키지"], 190000, 255000, null],
+["booster","리쥬란 HB","1cc", 230000, null, 209000, 255000, null],
+["booster","립쥬란 (입술 HB)","1cc", null, null, null, 382000, null],
+["booster","올인원 리쥬란","원셀 6cc", null, null, 449000, [573000,"리쥬베룩패키지"], null],
+
+["booster","GRP","히알루론산 물광"],
+["booster","무통 수분옵션","1cc당", 30000, null, null, null, null],
+["booster","물광주사 (하이주)","2cc", null, null, null, 91000, null],
+["booster","스킨인핸서","1cc", null, null, null, 318000, null],
+["booster","스킨바이브","강남 2cc / 원셀 1cc", 670000, null, 290000, 373000, null],
+["booster","리바이브","1cc", 420000, null, 450000, [627000,"벨로테로 리바이브"], null],
+["booster","리바이브","2cc", null, null, null, null, 1000000],
+["booster","힐로웨이브","1cc", null, null, 149000, null, null],
+["booster","원셀힐러 (PDRN+물광)","5cc", null, null, 149000, null, null],
+["booster","레스틸렌 비탈 라이트","2cc", null, null, null, 627000, null],
+
+["booster","GRP","기타 부스터"],
+["booster","리투오","강남 1시린지 / 리앤장 6cc", 800000, null, 770000, 700000, [800000,"1통 6cc"]],
+["booster","리투오 3회","", null, null, null, 1882000, null],
+["booster","고우리","1cc", null, null, null, [309000,"체험가 210,000"], [800000,"1통"]],
+["booster","고우리 풀페이스","5cc+LED+시트팩", null, null, null, 700000, null],
+["booster","릴리이드","2cc / 4cc", [130000,"4cc 230,000"], null, null, null, null],
+["booster","레티젠","2cc", 650000, null, null, null, null],
+["booster","쥬브아셀","1시린지", 800000, null, null, null, null],
+["booster","셀르디엠","1시린지", 800000, null, null, null, null],
+["booster","리본느","강남 1시린지", 800000, [790000,"6cc, 9월 이벤트가"], null, null, null],
+["booster","쥬베룩 스킨","강남 4cc / 원셀·리앤장 1cc", 340000, null, 100000, 155000, null],
+["booster","쥬베리","4cc", 510000, null, null, null, null],
+["booster","리즈네","2cc", null, null, null, 255000, null],
+["booster","P5","5cc", null, null, null, 509000, null],
+["booster","P5 브라이트닝","5cc", null, null, null, 509000, null],
+["booster","P5 아이","1cc", null, null, null, 255000, null],
+
+/* ══════════ 리프팅 (HIFU · RF) ══════════ */
+["lifting","GRP","울쎄라피 프라임"],
+["lifting","울쎄라 프라임 100샷","", 430000, null, 460000, 755000, [600000,"대표원장 700,000"]],
+["lifting","울쎄라 프라임 300샷","", null, [2350000,"울쎄라300+소프웨이브100+인모드 패키지"], 1250000, [1527000,"+시트팩·LED"], [1500000,"대표원장 1,700,000"]],
+["lifting","울쎄라 프라임 400샷","", null, null, 1600000, null, null],
+["lifting","울쎄라 프라임 600샷","", null, null, 2400000, [2827000,"+시트팩·LED"], [2700000,"대표원장 3,000,000"]],
+["lifting","울쎄라 프라임 900샷","", null, null, null, [4127000,"+시트팩·LED"], null],
+["lifting","아이 울쎄라","원셀·리앤장 200샷", null, null, 990000, 1527000, null],
+["lifting","바디 울쎄라 300샷","", null, null, null, 1809000, [2700000,"바디 500"]],
+
+["lifting","GRP","써마지 FLX"],
+["lifting","써마지 300샷","", null, null, 1490000, [1764000,"+LDM"], [1500000,"대표원장 1,700,000"]],
+["lifting","써마지 600샷","", [1990000,"기본 600샷"], null, 2400000, [2945000,"+LDM"], [2700000,"대표원장 3,000,000"]],
+["lifting","써마지 900샷","", null, null, 2790000, [4127000,"+LDM"], [3900000,"대표원장 4,300,000"]],
+["lifting","아이써마지 225샷","", null, null, 1190000, 1409000, null],
+["lifting","아이써마지 450샷","", [2500000,"아이 450샷"], null, 1790000, 2236000, [2000000,"대표원장 2,200,000"]],
+
+["lifting","GRP","울써마지 조합 (리앤장 전용)"],
+["lifting","울쎄라300+써마지300","", null, null, null, 3291000, null],
+["lifting","울쎄라600+써마지600","", null, null, null, 5773000, null],
+["lifting","울쎄라900+써마지900","", null, null, null, 8255000, null],
+
+["lifting","GRP","고주파 (온다 · 티타늄)"],
+["lifting","온다 20kJ","", null, null, 490000, null, null],
+["lifting","온다 40kJ","", 360000, null, 590000, null, null],
+["lifting","온다 60kJ","", null, null, 690000, null, null],
+["lifting","온다 80kJ","", null, [1550000,"티타늄80kJ+온다80kJ+인모드 패키지"], 790000, null, null],
+["lifting","온다 페이스 1만줄","", null, null, null, 155000, null],
+["lifting","바디 온다","강남 160kJ / 원셀 100kJ", null, [890000,"바디온다 120kJ, 9월 이벤트가"], 950000, null, null],
+["lifting","티타늄 40kJ","", 390000, null, 690000, [573000,"+마스크팩"], null],
+["lifting","티타늄 80kJ","", null, null, 890000, [1082000,"2회 분할 가능"], null],
+["lifting","피팅 (K-onda) 90kJ","", null, null, null, null, [800000,"관리사 300,000"]],
+
+["lifting","GRP","기타 리프팅 장비"],
+["lifting","슈링크 300샷","", 150000, [399000,"인모드Forma+FX+슈링크300샷 패키지"], null, null, [400000,"슈가페이스x3 1,600,000"]],
+["lifting","슈링크 400샷","", null, null, null, null, [600000,"슈가페이스x3 2,100,000"]],
+["lifting","슈링크 유니버스 100샷","", null, null, null, [55000,"울트라F"], null],
+["lifting","인모드 FX + Forma","풀페이스", [190000,"Fx 10분 · Forma 8k"], null, null, 236000, null],
+["lifting","인모드 FX","풀페이스", null, null, null, 127000, null],
+["lifting","리프테라2 100샷","", null, null, null, 55000, null],
+["lifting","볼뉴머 300샷","", 490000, null, null, 727000, null],
+["lifting","올리지오 100샷","", null, null, null, 255000, null],
+["lifting","올리지오 300샷","", null, null, null, 700000, null],
+["lifting","올타이트 400샷","", null, null, null, 764000, null],
+["lifting","리니어지 100샷","", null, null, null, 127000, null],
+["lifting","쿨페이즈 300샷","", null, null, null, 891000, null],
+["lifting","소프웨이브 100샷","", 990000, null, null, null, null],
+["lifting","소프웨이브 10샷","", null, null, null, 191000, null],
+["lifting","소프웨이브 90샷 패키지","+더마톡신2cc+LDM", null, null, null, 1264000, null],
+["lifting","브이로","바타입 300샷 / 펜타입 3,000샷", 390000, null, null, null, null],
+["lifting","레비나스 6,000샷","", 990000, [1580000,"레비나스3,000샷+온다120kJ+인모드FX 패키지"], null, null, null],
+["lifting","세르프 600샷","", 1590000, null, null, null, null],
+["lifting","셀레이브 (SEL+피팅)","", null, null, null, null, 1300000],
+["lifting","시크릿 / 실펌","", null, null, null, null, 500000],
+
+/* ══════════ 실리프팅 ══════════ */
+["thread","GRP","실리프팅"],
+["thread","실리프팅 2줄","", [400000,"숏코그"], null, null, [127000,"바비코·캐번실 2개"], null],
+["thread","실리프팅 4줄","", [800000,"롱코그"], null, null, [255000,"오메가 4개"], null],
+["thread","V365 4줄","", null, null, null, 318000, null],
+["thread","LUX_M 4줄","", null, null, null, 382000, null],
+["thread","민트실 (오리지널 FINE) 4줄","", null, null, null, 700000, null],
+["thread","민트실 8줄","", null, null, 800000, null, null],
+["thread","실리프팅 1부위","", null, null, null, null, 900000],
+["thread","실리프팅 4부위","수면 포함", null, null, null, null, 2500000],
+["thread","실루엣소프트","1줄당", null, null, null, null, 800000],
+["thread","실 릴리즈","", null, null, null, null, 150000],
+["thread","3D 라이트","LUX_M 8EA + V365 8EA", null, null, null, 1409000, null],
+["thread","4D 라이트","LUX_M 8 + V365 8 + 오메가 8", null, null, null, 1645000, null],
+
+/* ══════════ 레이저 · 색소 ══════════ */
+["laser","GRP","토닝"],
+["laser","레이저 토닝 1회","", 100000, [159000,"원데이 피코슈어 토닝, 9월 이벤트가"], 200000, [155000,"피코알렉스 17F"], 250000],
+["laser","듀얼 토닝","", null, null, null, null, 300000],
+["laser","셀토닝","Genesis+LT+SEL", null, null, null, null, 400000],
+["laser","색소레이저","토닝 + 맞춤레이저", 300000, null, null, null, null],
+["laser","피코슈어 토닝 (12F)","1회", null, null, null, 382000, null],
+["laser","피코 프락셀","", null, null, 290000, null, null],
+["laser","피코슈어 올인원","", null, null, null, 636000, null],
+["laser","토닝 프로그램 5회","리앤장 New1 / 17F", null, null, null, 882000, null],
+["laser","색소 올인원 패키지","원셀 12주 과정", null, null, 1900000, null, null],
+
+["laser","GRP","홍조 · 혈관"],
+["laser","홍조레이저","혈관레이저 · 제네시스", 300000, null, [200000,"제네시스토닝+미백관리"], null, null],
+["laser","IPL","", null, null, null, null, 400000],
+
+["laser","GRP","점 · 검버섯 (CO2)"],
+["laser","CO2 소 (2mm 이하)","1개", [10000,"1mm 이하"], null, 20000, 27000, [20000,"개당/크기당"]],
+["laser","CO2 중 (2~5mm)","1개", [30000,"5mm 이하"], null, 30000, 45000, null],
+["laser","CO2 대 (5mm~1cm)","1개", [50000,"5mm 이상"], null, 40000, 55000, null],
+["laser","CO2 부위 전체","손바닥 두 개 면적", 450000, null, null, [509000,"2~5mm 50개 이하"], null],
+["laser","흑자 (피코) 5mm 이하","1회", null, null, 30000, null, null],
+["laser","흑자·주근깨 얼굴전체","", null, null, 399000, null, null],
+
+["laser","GRP","문신 제거"],
+["laser","무채색 문신제거","명함 크기", null, null, 80000, [191000,"17F"], null],
+["laser","컬러 문신제거","명함 크기", null, null, 140000, [318000,"17F"], null],
+["laser","아이라인 문신제거","1회", null, null, 120000, [191000,"17F"], null],
+["laser","눈썹 문신제거","1회", null, null, 100000, null, null],
+
+/* ══════════ 여드름 · 모공 · 흉터 ══════════ */
+["acne","GRP","염증 · 흉터 주사"],
+["acne","염증주사 1개","", 10000, null, 10000, 18000, null],
+["acne","염증주사 얼굴전체","", 50000, null, 50000, 64000, null],
+["acne","켈로이드주사","강남 소 / 리앤장 2cm 미만", 30000, null, null, 45000, null],
+["acne","여드름 압출 얼굴전체","", null, null, 100000, [127000,"20개 미만"], null],
+
+["acne","GRP","포텐자 · 니들 RF"],
+["acne","포텐자 풀페이스","팁 포함", 300000, null, [340000,"N25 모공·흉터·여드름"], 255000, null],
+["acne","포텐자 + 쥬베룩 or 엑소좀","", 490000, null, [510000,"펌핑팁+엑소좀+팩"], null, null],
+["acne","포텐자 + 쥬베리","", 690000, null, null, null, null],
+["acne","포텐자 + 쥬베룩스킨 4cc","", null, null, 510000, null, null],
+["acne","포텐자 + 리쥬란 2cc","", null, null, 510000, null, null],
+["acne","포텐자 + 원셀힐러 3cc","", null, null, 460000, null, null],
+["acne","포텐자 + ASCE엑소좀","", null, null, null, 636000, null],
+["acne","아그네스","1개", null, null, null, 18000, null],
+["acne","트윈픽셀 부스터팁","풀페이스", null, null, null, 255000, null],
+["acne","트윈픽셀 멀티팁","풀페이스", null, null, null, 445000, null],
+["acne","에토좀 PTT","", 300000, null, null, null, null],
+["acne","CO2 프락셀","", 300000, null, null, null, null],
+["acne","카프리","1회", null, null, null, 191000, null],
+["acne","DDR 전체","1회", null, null, null, 318000, null],
+["acne","서브시전","편측 볼", null, [1750000,"서브시전+ECM부스터+피코프락셀+크라이오 패키지"], null, 382000, null],
+["acne","여드름 흉터 4회 프로그램","", null, null, null, 1264000, null],
+["acne","결프로그램","DDR2+카프리2+크라이오2 등", null, null, null, 882000, null],
+
+/* ══════════ 피부관리 ══════════ */
+["care","GRP","기본 관리"],
+["care","아쿠아필","1회", 49000, null, [60000,"1/2/3제+프리미엄 시트팩"], [91000,"3단계"], null],
+["care","압출 1부위","", 39000, null, null, [64000,"10개 미만"], null],
+["care","압출 전체","", 59000, null, 100000, [127000,"20개 미만"], null],
+["care","블랙헤드 집중관리","", 120000, null, null, [64000,"블랙헤드관리"], null],
+["care","쫀쫀모공 집중관리","압출+아쿠아필", 99000, null, null, null, null],
+["care","스케일링","1회", null, null, null, 64000, null],
+["care","필링","블랙필/예스필/라라필/밀크필", 99000, null, null, [82000,"블랙필"], null],
+["care","라라필","1회", null, null, null, 91000, null],
+["care","산소필","1회", null, null, null, 91000, null],
+["care","크라이오","1회", null, null, 55000, 64000, null],
+["care","LED + 모델링팩","1회", null, null, 49000, null, null],
+
+["care","GRP","리프팅 · 재생 관리"],
+["care","LDM 12분","", 80000, null, 99000, 91000, 200000],
+["care","LDM 24분","", null, null, 198000, null, 300000],
+["care","LDM 6분","", null, null, null, 64000, null],
+["care","멀티마스터 관리","이온토/재생관리/크라이오 10분", 59000, null, null, null, null],
+["care","더미오케어","20분 + LDM 6분", 200000, null, null, null, null],
+["care","바쿠메드","30분", 490000, null, null, null, null],
+["care","하이드라페이셜","", 390000, null, null, null, null],
+["care","맞춤관리","", null, null, null, null, [200000,"O2플러스·산소테라피 300,000"]],
+["care","핑크필","1회", null, null, null, 91000, null],
+["care","물톡스","1회", null, null, null, 127000, null],
+["care","인텐스울트라 Level1","", null, null, null, 118000, null],
+["care","탄력EMS 관리 (페이스)","12분", null, null, null, 173000, null],
+["care","고주파관리 A+B","10분", null, null, null, 127000, null],
+["care","미백케어","", null, null, 70000, [82000,"이온자임"], null],
+["care","수분케어","", null, null, 70000, null, null],
+
+/* ══════════ 제모 ══════════ */
+["hair","GRP","얼굴 제모"],
+["hair","얼굴 1부위","1회", 50000, null, null, null, null],
+["hair","인중","1회", null, null, 42000, null, null],
+["hair","인중 + 앞턱","1회", 100000, null, 84000, null, null],
+["hair","하관 전체 + 목","1회", 150000, null, [126000,"하관"], null, null],
+["hair","얼굴 전체 + 목","1회", 200000, null, [168000,"얼굴전체"], null, null],
+["hair","이마","1회", null, null, 84000, null, null],
+["hair","마취 연고 마무리","1회", 10000, null, null, null, null],
+["hair","제모 진정 관리","1회", 40000, null, null, null, null],
+
+["hair","GRP","상체 제모"],
+["hair","겨드랑이 · 상체 소부위","1회", 50000, null, [58000,"겨드랑이"], null, null],
+["hair","팔 · 상체 중부위","1회", 100000, null, [126000,"팔"], null, null],
+["hair","상체 대부위","1회", 150000, null, null, null, null],
+["hair","상체 특대부위","등 전체 · 복부 전체", 200000, null, null, null, null],
+["hair","손등·손가락 / 발등·발가락","1회", null, null, 42000, null, null],
+
+["hair","GRP","하체 제모"],
+["hair","하체 소부위 (발목·발등)","1회", 50000, null, null, null, null],
+["hair","종아리 · 하체 중부위","1회", 100000, null, [168000,"종아리"], null, null],
+["hair","허벅지 · 하체 대부위","1회", 150000, null, [210000,"허벅지"], null, null],
+["hair","브라질리언","1회", [150000,"하체 대부위에 포함"], null, 210000, null, null],
+["hair","하체 특대부위","다리 전체 · 사타구니 전체", 200000, null, null, null, null],
+
+/* ══════════ 수액 · 주사 ══════════ */
+["iv","GRP","기본 수액"],
+["iv","백옥 / 신데렐라 / 비타민주사","1회", 70000, null, 92000, 82000, null],
+["iv","안티에이징주사","백옥+신데렐라+비타민", 90000, null, null, null, null],
+["iv","항산화 비타민수액","1회", null, null, 115000, null, null],
+["iv","시그니처 영양수액","1회", null, null, null, null, 300000],
+["iv","비타민홀 종합수액","1회", null, null, 225000, null, null],
+["iv","슈퍼플러스","1회", null, null, null, 127000, null],
+["iv","태반주사","1회", null, null, null, 82000, null],
+["iv","NAD 주사","1회", null, null, null, 409000, null],
+["iv","NAD 주사 5회","", null, null, null, 1455000, null],
+
+["iv","GRP","프리미엄 수액 (리앤장) · 셀 리차지 10회 (셀온)"],
+["iv","면역 수액 Level1","", null, null, null, 636000, [2500000,"시그니처 이뮨 10회 (정가 3,000,000)"]],
+["iv","화이트닝 수액 Level1","", null, null, null, 382000, [2500000,"시그니처 글로우 10회 (정가 3,000,000)"]],
+["iv","재생 수액 Level1","", null, null, null, 382000, [2500000,"시그니처 안티옥시던트 10회 (정가 3,000,000)"]],
+["iv","디톡스 수액","", null, null, null, null, [2500000,"시그니처 디톡스 10회 (정가 3,000,000)"]],
+["iv","NAD 수액 프로그램","", null, null, null, null, [2500000,"시그니처 NAD 10회 (정가 3,000,000)"]],
+["iv","다이어트 수액 Level1","", null, null, null, 382000, null],
+["iv","피로회복 수액 Level1","", null, null, null, 382000, null],
+
+["iv","GRP","고압산소"],
+["iv","고압산소 30분","1회", null, null, 225000, null, 300000],
+["iv","고압산소 5회","", null, null, null, null, 1300000],
+["iv","고압산소 10회","", null, null, null, null, 2500000],
+
+/* ══════════ 줄기세포 · 재생 ══════════ */
+["stem","GRP","혈액 줄기세포"],
+["stem","혈액 줄기세포 피부주사 1회","셀온 30cc", 1500000, null, 1300000, [1009000,"리엔셀 30cc 패키지"], [1500000,"Oncell-B 30cc"]],
+["stem","혈액 줄기세포 피부주사 3회","", null, null, null, null, [3000000,"Oncell-B 30cc×3"]],
+["stem","혈액 줄기세포 60cc","", null, null, null, [1636000,"리엔셀 60cc 패키지"], [2200000,"Oncell-B 60cc"]],
+["stem","혈액 줄기세포 정맥주사 1회","셀온 120cc", null, null, 1300000, [2473000,"리엔셀 정맥 60cc"], [3000000,"Oncell-B 120cc"]],
+["stem","혈액 줄기세포 정맥 3회","", null, null, null, null, [8000000,"Oncell-B 120cc×3"]],
+["stem","혈액 줄기세포 정맥 240cc","", null, null, null, [4245000,"리엔셀 정맥 120cc"], [5000000,"Oncell-B 240cc"]],
+
+["stem","GRP","지방 줄기세포 · SVF"],
+["stem","SVF 1회","", null, null, null, null, [8000000,"Oncell-S 기본"]],
+["stem","SVF 3회","", null, null, null, null, [20000000,"Oncell-S 프리미엄"]],
+["stem","SVF 5회","", null, null, null, null, [30000000,"Oncell-S VIP"]],
+["stem","배양 지방줄기세포 1회","", null, null, null, null, [20000000,"Oncell-F 기본"]],
+["stem","배양 지방줄기세포 3회","", null, null, null, null, [50000000,"Oncell-F 프리미엄"]],
+["stem","배양 지방줄기세포 5회","", null, null, null, null, [80000000,"Oncell-F VIP"]],
+
+["stem","GRP","면역세포 (NK)"],
+["stem","NK 면역치료 1회","", null, null, null, null, [10000000,"Oncell-NK 기본"]],
+["stem","NK 면역치료 5회","", null, null, null, null, [45000000,"Oncell-NK 프리미엄"]],
+["stem","NK 면역치료 10회","", null, null, null, null, [80000000,"Oncell-NK VIP"]],
+
+["stem","GRP","줄기세포 패키지 · 기타"],
+["stem","줄기세포 일반 1kit","3cc", 1500000, null, null, null, null],
+["stem","ETERNAL YOUTH","하이드라페이셜+재생레이저2x+줄기세포4kit+부스터+더미오케어", 7000000, null, null, null, null],
+["stem","SRE Stemcell","ETERNAL YOUTH 3회", 19000000, null, null, null, null],
+["stem","MCT 피부주사 30cc","", null, null, null, 2355000, null],
+["stem","MCT 피부주사 60cc","", null, null, null, 4236000, null],
+["stem","MCT 정맥주사 60cc","", null, null, null, 8264000, null],
+["stem","MCT 정맥주사 120cc","", null, null, null, 11809000, null],
+["stem","줄기세포 두피","", null, null, null, 2664000, null],
+
+["stem","GRP","검사"],
+["stem","유전자 검사 5종","", null, null, null, null, 120000],
+["stem","유전자 검사 10종","", null, null, null, null, 200000],
+["stem","텔로미어 검사","", null, null, null, null, 250000],
+["stem","NK 활성도 검사","", null, null, null, null, 250000],
+["stem","메타뷰 촬영·분석","1회", null, null, null, 136000, null],
+
+/* ══════════ 체형 · 바디 ══════════ */
+["body","GRP","지방분해주사"],
+["body","윤곽주사 얼굴 1부위","리앤장 2cc / 원셀 3cc", null, null, [79000,"라인컷 1부위 3cc"], [36000,"윤곽주사 기본 2cc"], [200000,"슬림핏주사 얼굴"]],
+["body","파워 윤곽주사","4cc", null, null, null, 64000, null],
+["body","브이핏밴딩주사","9cc", null, null, null, 118000, null],
+["body","1인치 얼굴주사","10cc", null, null, null, 173000, null],
+["body","브이올렛주사","1바이알", null, null, null, 382000, 500000],
+["body","바디 지방분해주사","원셀 6cc / 리앤장 40cc", null, null, [158000,"팔 or 종아리 6cc"], [82000,"살빼주사 40cc"], [500000,"슬림핏 바디"]],
+["body","바디 지방분해주사 (대)","원셀 12cc / 리앤장 40cc", null, null, [316000,"허벅지 or 복부 12cc"], [127000,"프리미엄 살빼주사 40cc"], null],
+["body","배리슬림","10cc", 90000, null, null, null, null],
+
+["body","GRP","바디 필러 · 슬리밍"],
+["body","글램업 필러","50cc당", 1500000, null, null, null, null],
+["body","애플힙 필러","50cc당", 1500000, null, null, null, null],
+["body","바디 슬리밍 Entry","브이로1,000샷+온다160kJ+인모드FX15분+베리슬림100cc", 2990000, null, null, null, null],
+["body","바디 슬리밍 Signature","브이로1,500샷+온다320kJ+인모드FX30분+베리슬림150cc", 3990000, null, null, null, null],
+["body","바디 슬리밍 Premium","브이로2,000샷+온다480kJ+인모드FX45분+베리슬림300cc", 5990000, null, null, null, null],
+["body","울트라인 1세트","+바디컷다운 1BOX", null, null, null, 500000, null],
+["body","젤틱","", null, null, null, null, 1300000],
+
+["body","GRP","비만 주사제"],
+["body","위고비 0.25","1EA", null, null, null, 700000, null],
+["body","위고비 1.0","1EA", null, null, null, 809000, null],
+["body","위고비 2.4","1EA", null, null, null, 1018000, null],
+
+["body","GRP","마취 · 기타"],
+["body","국소마취","1회", null, null, null, 45000, null],
+["body","수면마취","1회", null, null, null, 255000, null],
+
+/* ══════════ 성형수술 ══════════ */
+["surgery","GRP","눈성형 — 쌍꺼풀"],
+["surgery","비절개 (매몰·자연유착)","", null, null, [2200000,"매몰법 · 회복 3일"], [1800000,"자연유착법"], null],
+["surgery","비절개 + 눈매교정","", null, null, null, 2000000, null],
+["surgery","비절개 + 지방제거","", null, null, [1100000,"눈두덩이 Fat 제거"], 500000, null],
+["surgery","부분절개법","", null, null, null, 2000000, null],
+["surgery","부분절개 + 눈매교정","", null, null, null, 2500000, null],
+["surgery","절개법","", null, null, [3300000,"회복 7일"], 2800000, null],
+["surgery","눈매교정 추가","", null, null, [1650000,"회복 7일"], [3500000,"절개 + 눈매교정 1단계"], null],
+["surgery","눈매교정 2단계","심한 하수 · 비대칭", null, null, null, 5500000, null],
+["surgery","쌍꺼풀 재수술","", null, null, [3300000,"3,300,000~ 난이도별"], null, null],
+
+["surgery","GRP","눈성형 — 트임 · 복원"],
+["surgery","트임 1부위","", null, null, [1650000,"앞트임 / 복잡 2,200,000"], [1500000,"트임 한부위"], null],
+["surgery","듀얼 트임","", null, null, [2200000,"뒷트임·밑트임 각"], 2500000, null],
+["surgery","앞트임 복원","", null, null, [2500000,"2,500,000~4,400,000"], 3000000, null],
+["surgery","뒤트임 복원","", null, null, [2500000,"2,500,000~4,400,000"], 3000000, null],
+
+["surgery","GRP","상안검 · 하안검 · 눈썹거상"],
+["surgery","상안검","", null, null, [3300000,"회복 7일"], 3000000, null],
+["surgery","비절개 상안검","", null, null, null, 1800000, null],
+["surgery","하안검","", null, null, [3300000,"+ectropion 1,100,000"], 3000000, null],
+["surgery","하안검 재수술","", null, null, [4400000,"4,400,000~ 난이도별"], null, null],
+["surgery","눈밑 지방재배치","", null, null, [2200000,"경결막"], [2000000,"+격막강화"], [2500000,"2차 지방이식 포함"]],
+["surgery","눈밑 지방재배치 + 지방이식","", null, null, null, 2500000, [3100000,"지방이식 1부위 추가"]],
+["surgery","눈썹거상 (눈썹 아래)","", null, null, [4400000,"+지방제거 1,000,000"], [3000000,"눈썹하거상"], null],
+["surgery","눈썹거상 (눈썹 위)","", null, null, 5500000, [4000000,"눈썹상거상"], null],
+["surgery","안륜근 고정","눈썹하수 예방", null, null, null, 700000, null],
+
+["surgery","GRP","코성형"],
+["surgery","코 기본 (콧대+코끝)","회복 7일", null, null, 4800000, null, null],
+["surgery","맞춤 보형물 (3D)","", null, null, 6600000, null, null],
+["surgery","코끝만","", null, null, 4400000, null, null],
+["surgery","코 재수술","난이도에 따라", null, null, [7700000,"7,700,000~11,000,000"], null, null],
+["surgery","기증 늑연골","", null, null, 6600000, null, null],
+["surgery","콧볼 축소 (비절개)","추가 1,200,000", null, null, 1500000, null, null],
+["surgery","매부리 축소술","", null, null, 2200000, null, null],
+["surgery","비중격만곡증 교정","", null, null, 4400000, null, null],
+["surgery","귀족수술","", null, null, [2000000,"추가 시 1,250,000"], [2500000,"귀족보형물"], null],
+
+["surgery","GRP","이마 · 안면거상"],
+["surgery","내시경 이마거상","", null, null, [6600000,"엔도타인"], [6000000,"본터널링·픽스타인 2ea"], null],
+["surgery","내시경 이마거상 (엔도타인)","", null, null, 6600000, [6700000,"엔도타인 2ea"], null],
+["surgery","이마 축소술","", null, null, 8800000, [7000000,"본터널링·픽스타인"], null],
+["surgery","이마 축소거상","", null, null, null, [9000000,"본터널링·픽스타인 2ea"], null],
+["surgery","미니 페이스 리프팅","", null, null, 6600000, [7000000,"중안부 내시경미니거상"], null],
+["surgery","측두부 거상 (상안부)","", null, null, null, 7000000, null],
+["surgery","턱라인 미니거상 (하안부)","", null, null, null, 7500000, null],
+["surgery","안면거상","리앤장 귀 뒤 절개까지", null, null, null, 11000000, null],
+["surgery","안면거상 + 목거상","", null, null, [15400000,"SMAS 안면+목"], [17000000,"외측목거상"], null],
+["surgery","안면거상 + 목거상 + 전방목거상","", null, null, null, 21000000, null],
+["surgery","이중턱 근육묶기","", null, null, 3500000, 3000000, null],
+["surgery","미니리프팅 (절개 실리프팅)","리앤장 측두부절개+고정형돌기실 8", null, null, null, 2500000, null],
+["surgery","미니 목 리프팅","귀 뒤 절개 + Elasticum", null, null, null, 3000000, null],
+
+["surgery","GRP","안면윤곽"],
+["surgery","윤곽 1종","", null, null, [7700000,"부위별"], 6000000, null],
+["surgery","윤곽 2종 (브이라인)","앞턱+사각턱", null, null, 15000000, 11000000, null],
+["surgery","윤곽 3종","광대+사각턱+앞턱", null, null, 22000000, 17000000, null],
+["surgery","양악 + 윤곽 3종","", null, null, 26000000, null, null],
+["surgery","양악 + 윤곽 2종","", null, null, 24000000, null, null],
+["surgery","돌출입","", null, null, 15000000, null, null],
+["surgery","윤곽 재수술","", null, null, null, 3000000, null],
+["surgery","심부볼 제거","", null, null, [2000000,"지방흡입 심부볼"], 2500000, null],
+["surgery","침샘 절제","", null, null, null, 2300000, null],
+["surgery","플레이트 제거 (본원)","", null, null, null, 3000000, null],
+["surgery","플레이트 제거 (타원)","", null, null, null, 4500000, null],
+
+["surgery","GRP","보형물"],
+["surgery","앞턱 · 턱끝 보형물","", null, null, [2650000,"앞턱 보형물"], [2500000,"턱끝보형물"], null],
+["surgery","이마 보형물","", null, null, 4500000, null, null],
+["surgery","앞광대 보형물","", null, null, 4000000, null, null],
+["surgery","광대 3D 맞춤보형물","", null, null, 8800000, null, null],
+["surgery","사각턱 3D 맞춤보형물","", null, null, 8800000, null, null],
+["surgery","보형물 제거","", null, null, [1650000,"코 보형물 제거"], 2500000, null],
+
+["surgery","GRP","인중 · 입매"],
+["surgery","인중 축소 (코밑절개)","", null, null, [3800000,"인중축소"], [4000000,"내측인중축소"], null],
+["surgery","인중 축소 (코안절개)","", null, null, null, 4800000, null],
+["surgery","외측 인중축소","", null, null, null, 4000000, null],
+["surgery","입꼬리 올림술","", null, null, [2750000,"입꼬리성형"], 4000000, null],
+["surgery","입술 축소","", null, null, [3300000,"한쪽 / 양쪽 5,500,000"], 3000000, null],
+["surgery","인중 오목술","", null, null, null, 3000000, null],
+
+["surgery","GRP","가슴"],
+["surgery","가슴 확대 (세빈)","회복 14일", null, null, 9900000, null, null],
+["surgery","가슴 확대 (멘토)","", null, null, 11000000, null, null],
+["surgery","가슴 확대 (모티바 칩X)","", null, null, 13200000, null, null],
+["surgery","가슴 확대 (모티바 칩O)","", null, null, 19800000, null, null],
+["surgery","가슴 재수술","", null, null, [13200000,"13,200,000~"], null, null],
+["surgery","지방이식 가슴","", null, null, [11450000,"11,450,000~"], null, [5000000,"가슴 지방이식"]],
+["surgery","가슴 축소","", null, null, [11450000,"11,450,000~"], null, null],
+["surgery","가슴 성형","", null, null, null, null, [2500000,"여유증+가슴성형 4,500,000"]],
+["surgery","여유증","", null, null, null, null, 2500000],
+["surgery","함몰유두 (양쪽)","", null, null, 1320000, null, null],
+["surgery","보형물 제거 (본원 / 타원)","", null, null, [4400000,"본원 / 타원 6,600,000"], null, null],
+
+["surgery","GRP","지방흡입"],
+["surgery","지방흡입 — 팔","+브라라인 2,000,000", null, null, 2600000, null, [2500000,"팔·종아리·엉덩이"]],
+["surgery","지방흡입 — 복부","+옆구리·뒷구리 각 2,000,000", null, null, 3000000, null, [5000000,"복부전체·허벅지"]],
+["surgery","지방흡입 — 허벅지","안쪽/바깥쪽/앞면", null, null, 6000000, null, [5000000,"복부전체·허벅지"]],
+["surgery","지방흡입 — 엉덩이","", null, null, 3900000, null, [2500000,"팔·종아리·엉덩이"]],
+["surgery","지방흡입 — 등","", null, null, null, null, 1300000],
+["surgery","지방흡입 — 부유방 · 날개살","", null, null, [1100000,"부유방 추가"], null, 1300000],
+["surgery","얼굴 지방흡입 1부위","이중턱 or 볼", null, null, [1600000,"각 부위"], [3000000,"아큐스컬프 Jowl or 이중턱"], 1300000],
+["surgery","얼굴 지방흡입 2부위","", null, null, null, [3500000,"Jowl + 이중턱"], 1800000],
+["surgery","얼굴 지방흡입 3부위","", null, null, null, null, 2200000],
+["surgery","얼굴 지방흡입 4부위","", null, null, null, null, 2500000],
+["surgery","복근성형","", null, null, null, null, [5000000,"흡입+성형 9,000,000"]],
+["surgery","복부절제술","", null, null, 15400000, null, null],
+
+["surgery","GRP","지방이식"],
+["surgery","얼굴 지방이식 1부위","", null, null, [2000000,"2차 포함"], 1500000, [1300000,"수면 별도 150,000"]],
+["surgery","얼굴 지방이식 2부위","", null, null, null, null, [1900000,"수면 포함"]],
+["surgery","얼굴 전체 지방이식","", null, null, [2650000,"1차만 / 2차 포함 3,300,000"], [3000000,"눈위·눈밑 불포함"], [2200000,"F/F 3부위 이상, 수면·PRP 포함"]],
+["surgery","얼굴 전체 지방이식 2차","", null, null, null, 3500000, null],
+["surgery","눈두덩이 지방이식","", null, null, [1500000,"눈 지방이식 추가시 1,250,000"], [1500000,"마이크로펫"], 1300000],
+["surgery","눈밑 지방이식","", null, null, null, [1500000,"마이크로펫"], null],
+["surgery","엉덩이 지방이식","", null, null, [8000000,"1차 / 2차 11,000,000"], null, 5000000],
+["surgery","PRP","", null, null, 660000, 750000, 500000],
+["surgery","나노펫","잔주름·색소 개선", null, null, null, 750000, null],
+["surgery","지방 재채취 비용","", null, null, null, null, 600000],
+
+["surgery","GRP","이물질 제거 · 기타"],
+["surgery","이물질 단순 제거","", null, null, [2200000,"코 이물질 제거"], 1500000, null],
+["surgery","이물반응조직 흡입형태 제거","", null, null, null, 3000000, null],
+["surgery","이물반응조직 절제형태 제거","", null, null, null, 6000000, null],
+["surgery","윤곽 유착 박리","", null, null, null, 800000, null],
+["surgery","실 제거","", null, null, null, 800000, null],
+["surgery","귀성형 (양쪽)","", null, null, 4400000, null, null],
+["surgery","보조개 (한쪽 / 양쪽)","", null, null, [600000,"한쪽 / 양쪽 1,100,000"], null, null],
+["surgery","배꼽성형","", null, null, 3500000, null, null],
+["surgery","흉터성형","cm당", null, null, 330000, null, null],
+["surgery","젤틱","", null, null, null, null, 1300000],
+
+["surgery","GRP","수술 부대비용"],
+["surgery","전신마취 추가","", null, null, 1100000, [200000,"마취비"], null],
+["surgery","수술 전 검사비","리앤장 수술 1군/2군/3군", null, null, [150000,"CT Scan · 수술 시 차감"], [20000,"1군 / 2군 100,000 / 3군 200,000"], null],
+["surgery","입원비","", null, null, null, 150000, null],
+["surgery","회복주사","", null, null, null, [100000,"기본 / 프리미엄 150,000"], null],
+["surgery","무통주사","", null, null, null, [50000,"기본 / 프리미엄 150,000"], null],
+["surgery","수면마취","", null, null, null, [280000,"쁘띠 기준"], [150000,"지방이식 1부위 기준"]],
+
+["surgery","GRP","모발이식"],
+["surgery","절개 3,000모","최대할인 4,400,000", null, null, 5500000, null, null],
+["surgery","절개 4,000모","최대할인 5,500,000", null, null, 6600000, null, null],
+["surgery","비절개 3,000모","최대할인 5,500,000", null, null, 6600000, null, null],
+["surgery","비절개 4,000모","최대할인 6,600,000", null, null, 7700000, null, null],
+["surgery","하이브리드","절개 4,000 + 비절개 1,000", null, null, 8800000, null, null],
+];
+
+const tb=document.getElementById("tb");
+const emptyBox=document.getElementById("empty");
+const countBox=document.getElementById("count");
+
+const val=v=>Array.isArray(v)?v[0]:v;
+const won=n=>n.toLocaleString("ko-KR");
+
+let curCat="all", curQ="", hideGap=false;
+
+function render(){
+  tb.innerHTML="";
+  const q=curQ.trim().toLowerCase();
+  let pendingGrp=null, list=[], n=0;
+
+  ROWS.forEach(r=>{
+    if(curCat!=="all" && r[0]!==curCat) return;
+    if(r[1]==="GRP"){pendingGrp=r[2];return;}
+    const vals=r.slice(3);
+    if(hideGap && vals.filter(v=>val(v)!==null).length<3) return;
+    if(q){
+      const hay=(r[1]+" "+(r[2]||"")+" "+vals.map(v=>Array.isArray(v)?v[1]:"").join(" ")).toLowerCase();
+      if(!hay.includes(q)) return;
+    }
+    if(pendingGrp){list.push({grp:pendingGrp});pendingGrp=null;}
+    list.push({row:r}); n++;
+  });
+
+  list.forEach(item=>{
+    const tr=document.createElement("tr");
+    if(item.grp){
+      tr.className="grp";
+      tr.innerHTML='<th scope="rowgroup">'+item.grp+'</th><td colspan="5"></td>';
+      tb.appendChild(tr);return;
+    }
+    const r=item.row, vals=r.slice(3);
+    const nums=vals.map(val).filter(v=>v!==null);
+    const min=nums.length>1?Math.min.apply(null,nums):null;
+    let html='<th scope="row">'+r[1]+(r[2]?'<span class="unit">'+r[2]+'</span>':'')+'</th>';
+    vals.forEach(v=>{
+      const num=val(v);
+      if(num===null){html+='<td class="none">—</td>';return;}
+      const note=Array.isArray(v)?'<span class="note">'+v[1]+'</span>':'';
+      const cls=(min!==null&&num===min)?' class="best"':'';
+      html+='<td'+cls+'>'+won(num)+note+'</td>';
+    });
+    tr.innerHTML=html;
+    tb.appendChild(tr);
+  });
+
+  emptyBox.hidden = n>0;
+  countBox.textContent = n+"개 항목";
+}
+
+document.querySelectorAll('nav button').forEach(b=>{
+  b.addEventListener("click",()=>{
+    document.querySelectorAll('nav button').forEach(x=>x.setAttribute("aria-selected","false"));
+    b.setAttribute("aria-selected","true");
+    curCat=b.dataset.cat;
+    render();
+  });
+});
+document.getElementById("toggleBest").addEventListener("change",e=>{
+  document.body.classList.toggle("mark-best",e.target.checked);
+});
+document.getElementById("toggleGap").addEventListener("change",e=>{
+  hideGap=e.target.checked; render();
+});
+let t;
+document.getElementById("q").addEventListener("input",e=>{
+  clearTimeout(t); t=setTimeout(()=>{curQ=e.target.value; render();},140);
+});
+
+render();
+</script>
+</body>
+</html>

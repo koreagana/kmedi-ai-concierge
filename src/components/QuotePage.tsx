@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { QUOTE_CATEGORIES, QUOTE_MAX_SELECTION, type QuoteOption } from '../data/quoteProcedures'
+import { QUOTE_CATEGORIES, QUOTE_MAX_SELECTION, type QuoteOption, type TierRange } from '../data/quoteProcedures'
 import { WECHAT_BIZ_URL, getWhatsappUrl } from '../data/contacts'
 import './QuotePage.css'
 
@@ -12,6 +12,8 @@ const fadeUp = {
 }
 
 type QuoteLang = 'zh' | 'en'
+type TierKey = 'economy' | 'standard' | 'premium'
+const TIER_KEYS: TierKey[] = ['economy', 'standard', 'premium']
 
 interface Copy {
   backHome: string
@@ -24,9 +26,7 @@ interface Copy {
   nextBtn: string
   nextBtnEmpty: string
   resultTitle: string
-  resultSumLabel: string
-  resultSumVat: string
-  badgeText: string
+  resultSub: string
   itemsTitle: string
   changeSelectionBtn: string
   disclaimerTitle: string
@@ -34,19 +34,23 @@ interface Copy {
   disclaimer2: string
   disclaimer3: string
   consultBtn: string
-  /** 주 표기 통화 금액 — zh는 위안화(¥), en은 달러($). 데이터의 만원 단위를 환산·반올림해서 반환 */
+  tierName: Record<TierKey, string>
+  tierRecommended: string
+  /** 주 표기 통화 금액 — zh는 위안화(¥), en은 달러($). 원화를 환산·반올림해서 반환 */
   formatRange: (low: number, high: number) => string
   /** 병기용 원화 금액 — 실제 결제 통화라 함께 노출 */
   formatKrw: (low: number, high: number) => string
   /** 기준 환율 고지 문구 */
   fxNote: string
   askConsult: string
+  uniformNote: string
+  missingNote: (n: number) => string
 }
 
 /* ── 환율 ───────────────────────────────────────────────────────────
-   견적 데이터는 원화(만원 단위)가 원본이고, 화면에는 고객의 통화로 환산해
-   보여준다. 서버리스 없이 정적으로 배포하는 구조라 실시간 환율 API 대신
-   상수로 관리하며, 화면에도 기준 시점을 명시한다.
+   견적 데이터는 원화가 원본이고, 화면에는 고객의 통화로 환산해 보여준다.
+   서버리스 없이 정적으로 배포하는 구조라 실시간 환율 API 대신 상수로
+   관리하며, 화면에도 기준 시점을 명시한다.
    환율이 크게 움직이면 아래 두 값과 FX_ASOF만 갱신하면 됨.
    기준: 2026-09-07 (1 USD = 1,343.77 KRW / 1 CNY = 204.46 KRW) */
 const KRW_PER_USD = 1344
@@ -54,16 +58,13 @@ const KRW_PER_CNY = 204
 const FX_ASOF_ZH = '2026年9月'
 const FX_ASOF_EN = 'September 2026'
 
-/** 만원 단위 → 원화 실금액. 46 → 460000 */
-const toKrw = (manwon: number) => Math.round(manwon * 10000)
-
 /** 견적 숫자는 정확한 청구액이 아니라 어림값이라, 자릿수에 맞춰 둥근 수로 끊어준다. */
 function roundNice(value: number, smallStep: number, bigStep: number, threshold: number) {
   const step = value < threshold ? smallStep : bigStep
   return Math.max(step, Math.round(value / step) * step)
 }
-const toUsd = (manwon: number) => roundNice(toKrw(manwon) / KRW_PER_USD, 5, 10, 100)
-const toCny = (manwon: number) => roundNice(toKrw(manwon) / KRW_PER_CNY, 10, 50, 1000)
+const toUsd = (won: number) => roundNice(won / KRW_PER_USD, 5, 10, 100)
+const toCny = (won: number) => roundNice(won / KRW_PER_CNY, 10, 50, 1000)
 
 const money = (symbol: string, low: number, high: number, conv: (v: number) => number) => {
   const l = conv(low)
@@ -85,9 +86,7 @@ const COPY: Record<QuoteLang, Copy> = {
     nextBtn: '查看预估费用',
     nextBtnEmpty: '请先选择项目',
     resultTitle: '您的预估费用区间',
-    resultSumLabel: '合计 约',
-    resultSumVat: '（含10%增值税 · 实际结算以韩元为准）',
-    badgeText: '可能适用套餐优惠',
+    resultSub: '按经济型 / 标准型 / 高端型三档比较，均为VAT别外加收',
     itemsTitle: '已选项目明细',
     changeSelectionBtn: '← 重新选择',
     disclaimerTitle: '重要说明',
@@ -95,10 +94,14 @@ const COPY: Record<QuoteLang, Copy> = {
     disclaimer2: '各医院每月促销方案不同，实际费用会根据个人皮肤状态、施术范围与用量而有所差异。',
     disclaimer3: '最终费用以面诊后的正式报价为准。',
     consultBtn: '免费咨询 · 获取精准报价',
+    tierName: { economy: '经济型', standard: '标准型', premium: '高端型' },
+    tierRecommended: '推荐',
     formatRange: (low, high) => money('¥', low, high, toCny),
-    formatKrw: (low, high) => money('₩', low, high, toKrw),
+    formatKrw: (low, high) => money('₩', low, high, v => v),
     fxNote: `参考汇率 ${FX_ASOF_ZH}`,
     askConsult: '咨询后告知',
+    uniformNote: '该项目暂未按档位区分，价格供参考',
+    missingNote: n => `${n}项该档位暂无报价`,
   },
   en: {
     backHome: '← Back to Home',
@@ -111,9 +114,7 @@ const COPY: Record<QuoteLang, Copy> = {
     nextBtn: 'See my estimate',
     nextBtnEmpty: 'Select a treatment first',
     resultTitle: 'Your estimated cost',
-    resultSumLabel: 'Estimated total',
-    resultSumVat: '(10% VAT included · settled in Korean won)',
-    badgeText: 'Package pricing may apply',
+    resultSub: 'Compared across Value / Standard / Premium tiers, all before VAT',
     itemsTitle: 'Your selection',
     changeSelectionBtn: '← Edit selection',
     disclaimerTitle: 'Please note',
@@ -121,19 +122,27 @@ const COPY: Record<QuoteLang, Copy> = {
     disclaimer2: 'Clinics run different promotions each month, and the final cost shifts with your skin condition, the area treated, and the amount used.',
     disclaimer3: 'Your price is confirmed in the formal quote issued after an in-person consultation.',
     consultBtn: 'Get an exact quote · Free consultation',
+    tierName: { economy: 'Value', standard: 'Standard', premium: 'Premium' },
+    tierRecommended: 'Recommended',
     formatRange: (low, high) => money('$', low, high, toUsd),
-    formatKrw: (low, high) => money('₩', low, high, toKrw),
+    formatKrw: (low, high) => money('₩', low, high, v => v),
     fxNote: `Rate as of ${FX_ASOF_EN}`,
     askConsult: 'Quoted on request',
+    uniformNote: 'Not tier-specific — this price applies across the board.',
+    missingNote: n => `${n} item(s) not offered at this tier`,
   },
 }
 
-/** grade B(단일 병원 출처) 항목은 개별 금액을 숨기고 상담 유도 문구로 대체 — 합산 총액에는 그대로 반영 */
-function optionPriceLabel(opt: QuoteOption, c: Copy) {
-  return opt.grade === 'B' ? c.askConsult : c.formatRange(opt.priceLow, opt.priceHigh)
+/** 옵션의 economy/standard/premium 중 값이 있는 것만 모아 대략적인 표시 범위를 만든다 (선택 화면용) */
+function overallRange(opt: QuoteOption): TierRange | null {
+  const tiers = TIER_KEYS.map(k => opt[k]).filter((t): t is TierRange => !!t)
+  if (tiers.length === 0) return null
+  return { low: Math.min(...tiers.map(t => t.low)), high: Math.max(...tiers.map(t => t.high)) }
 }
 
 interface Selection { categoryId: string; procedureId: string; optionIndex: number }
+interface TierTotal { low: number; high: number; missing: number }
+const emptyTotal = (): TierTotal => ({ low: 0, high: 0, missing: 0 })
 
 export default function QuotePage() {
   const { lang, goHome, quoteCategoryHint, quoteProcedureHint } = useApp()
@@ -162,20 +171,33 @@ export default function QuotePage() {
   const selectedList = Object.values(selected)
   const selectedCount = selectedList.length
 
+  const resolveOption = (sel: Selection) => {
+    const cat = QUOTE_CATEGORIES.find(cc => cc.id === sel.categoryId)
+    const proc = cat?.procedures.find(p => p.id === sel.procedureId)
+    return proc?.options[sel.optionIndex] ?? null
+  }
+
   const totals = useMemo(() => {
-    let low = 0
-    let high = 0
+    const t: Record<TierKey, TierTotal> = { economy: emptyTotal(), standard: emptyTotal(), premium: emptyTotal() }
     for (const sel of selectedList) {
-      const cat = QUOTE_CATEGORIES.find(cc => cc.id === sel.categoryId)
-      const proc = cat?.procedures.find(p => p.id === sel.procedureId)
-      const opt = proc?.options[sel.optionIndex]
-      if (opt) {
-        low += opt.priceLow
-        high += opt.priceHigh
+      const opt = resolveOption(sel)
+      if (!opt) continue
+      for (const key of TIER_KEYS) {
+        const tier = opt[key]
+        if (tier) { t[key].low += tier.low; t[key].high += tier.high }
+        else { t[key].missing += 1 }
       }
     }
-    return { low: Math.round(low * 10) / 10, high: Math.round(high * 10) / 10 }
+    return t
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected])
+
+  /** 상단 sticky bar용 — 3단 값 중 존재하는 것들을 모두 아울러 대략적인 범위만 보여줌 */
+  const stickyRange = useMemo(() => {
+    const known = TIER_KEYS.map(k => totals[k]).filter(t => t.low > 0 || t.high > 0)
+    if (known.length === 0) return null
+    return { low: Math.min(...known.map(t => t.low)), high: Math.max(...known.map(t => t.high)) }
+  }, [totals])
 
   const toggleOption = (categoryId: string, procedureId: string, optionIndex: number) => {
     setSelected(prev => {
@@ -205,6 +227,9 @@ export default function QuotePage() {
     quoteLang === 'zh' ? { main: proc.nameZh, sub: proc.nameKo } : { main: proc.nameEn, sub: proc.nameKo }
   const unitOf = (opt: QuoteOption) => (quoteLang === 'zh' ? opt.unit : opt.unitEn)
   const noteOf = (opt: QuoteOption) => (quoteLang === 'zh' ? opt.note : opt.noteEn)
+
+  const tierCell = (tier: TierRange | null) => (tier ? c.formatRange(tier.low, tier.high) : c.askConsult)
+  const tierKrw = (tier: TierRange | null) => (tier ? c.formatKrw(tier.low, tier.high) : null)
 
   return (
     <div className="quote-widget" data-lang={quoteLang}>
@@ -264,6 +289,7 @@ export default function QuotePage() {
                     <div className="quote-opt-row">
                       {proc.options.map((opt: QuoteOption, i: number) => {
                         const chosen = selected[proc.id]?.optionIndex === i
+                        const range = overallRange(opt)
                         return (
                           <button
                             key={opt.unit + i}
@@ -271,9 +297,11 @@ export default function QuotePage() {
                             onClick={() => toggleOption(activeCat.id, proc.id, i)}
                           >
                             <span className="quote-opt-unit">{unitOf(opt)}</span>
-                            <span className="quote-opt-price">{optionPriceLabel(opt, c)}</span>
-                            {opt.grade !== 'B' && (
-                              <span className="quote-opt-krw">{c.formatKrw(opt.priceLow, opt.priceHigh)}</span>
+                            <span className="quote-opt-price">
+                              {range ? c.formatRange(range.low, range.high) : c.askConsult}
+                            </span>
+                            {range && (
+                              <span className="quote-opt-krw">{c.formatKrw(range.low, range.high)}</span>
                             )}
                           </button>
                         )
@@ -306,8 +334,8 @@ export default function QuotePage() {
             <div className="quote-sticky-bar">
               <div className="quote-sticky-info">
                 <span className="quote-sticky-count">{c.selectedCount(selectedCount)}</span>
-                {selectedCount > 0 && (
-                  <span className="quote-sticky-total">{c.formatRange(totals.low, totals.high)}</span>
+                {selectedCount > 0 && stickyRange && (
+                  <span className="quote-sticky-total">{c.formatRange(stickyRange.low, stickyRange.high)}</span>
                 )}
               </div>
               <button
@@ -331,19 +359,27 @@ export default function QuotePage() {
             <button className="quote-change-btn" onClick={() => setView('select')}>{c.changeSelectionBtn}</button>
 
             <p className="quote-result-title">{c.resultTitle}</p>
+            <p className="quote-result-sub">{c.resultSub}</p>
 
-            <div className="quote-total-card">
-              {totals.low > 0 && (totals.high - totals.low) / totals.low > 0.5 && (
-                <span className="quote-total-badge">{c.badgeText}</span>
-              )}
-              <div className="quote-total-amount">
-                <span className="quote-total-label">{c.resultSumLabel}</span>
-                <span className="quote-total-value">{c.formatRange(totals.low, totals.high)}</span>
-              </div>
-              <span className="quote-total-krw">{c.formatKrw(totals.low, totals.high)}</span>
-              <span className="quote-total-vat">{c.resultSumVat}</span>
-              <span className="quote-total-fx">{c.fxNote}</span>
+            {/* ── 3단 합계 비교 ── */}
+            <div className="quote-tier-totals">
+              {TIER_KEYS.map(key => {
+                const t = totals[key]
+                const hasAmount = t.low > 0 || t.high > 0
+                return (
+                  <div key={key} className={`quote-tier-total-card${key === 'standard' ? ' recommended' : ''}`}>
+                    {key === 'standard' && <span className="quote-tier-badge">{c.tierRecommended}</span>}
+                    <span className="quote-tier-total-name">{c.tierName[key]}</span>
+                    <span className="quote-tier-total-amount">
+                      {hasAmount ? c.formatRange(t.low, t.high) : c.askConsult}
+                    </span>
+                    {hasAmount && <span className="quote-tier-total-krw">{c.formatKrw(t.low, t.high)}</span>}
+                    {t.missing > 0 && <span className="quote-tier-total-missing">{c.missingNote(t.missing)}</span>}
+                  </div>
+                )
+              })}
             </div>
+            <span className="quote-total-fx">{c.fxNote}</span>
 
             <p className="quote-items-title">{c.itemsTitle}</p>
             <div className="quote-item-list">
@@ -354,17 +390,21 @@ export default function QuotePage() {
                 if (!proc || !opt) return null
                 const names = nameOf(proc)
                 return (
-                  <div className="quote-item-row" key={sel.procedureId}>
+                  <div className="quote-item-card" key={sel.procedureId}>
                     <div className="quote-item-name">
                       <span>{names.main}</span>
                       <span className="quote-item-unit">{unitOf(opt)}</span>
                     </div>
-                    <div className="quote-item-price-col">
-                      <span className="quote-item-price">{optionPriceLabel(opt, c)}</span>
-                      {opt.grade !== 'B' && (
-                        <span className="quote-item-krw">{c.formatKrw(opt.priceLow, opt.priceHigh)}</span>
-                      )}
+                    <div className="quote-item-tiers">
+                      {TIER_KEYS.map(key => (
+                        <div key={key} className="quote-item-tier">
+                          <span className="quote-item-tier-label">{c.tierName[key]}</span>
+                          <span className="quote-item-tier-price">{tierCell(opt[key])}</span>
+                          {tierKrw(opt[key]) && <span className="quote-item-tier-krw">{tierKrw(opt[key])}</span>}
+                        </div>
+                      ))}
                     </div>
+                    {opt.uniform && <p className="quote-item-uniform-note">{c.uniformNote}</p>}
                   </div>
                 )
               })}

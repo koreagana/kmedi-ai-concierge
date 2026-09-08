@@ -93,6 +93,17 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
   {
+    titleKo: '제휴 의료기관 수가 비교표',
+    titleZh: '合作医院价格比较表',
+    type: 'common_checklist',
+    category: 'admin_contract',
+    field: '병원 협약 / 공통',
+    link: '/docs/한강애봄_수가비교표.html',
+    status: 'available',
+    description: '리베리 강남·명동, 원셀의원, 리앤장, 셀온 5개 병원 수가 비교 — 코디네이터 내부용',
+    internal: true,
+  },
+  {
     titleKo: '메이투안·따중디엔핑 계정 운영 수권서',
     titleZh: '美团·大众点评 授权书',
     type: 'agreement',
