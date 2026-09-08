@@ -143,9 +143,6 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
       { id: 'water-injection', nameKo: '물광주사', nameZh: '水光针', nameEn: 'Water Glow Injection', options: [
         { unit: '2cc', unitEn: '2cc', economy: null, standard: null, premium: { low: 91000, high: 91000 } },
       ] },
-      { id: 'prp-water', nameKo: 'PRP 물광', nameZh: 'PRP 水光', nameEn: 'PRP Skin Booster', options: [
-        { unit: '1次', unitEn: '1 session', economy: null, standard: null, premium: null },
-      ] },
     ],
   },
   {
