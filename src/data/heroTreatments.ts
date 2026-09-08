@@ -85,6 +85,7 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
     recovery: '通常无需恢复期，治疗后可正常生活，部分人可能出现短暂泛红或热感',
     recoveryEn: 'Usually no downtime. Some people notice brief redness or a warm sensation.',
     quoteCategoryId: 'lifting',
+    quoteProcedureId: 'xerf',
   },
   {
     chip: '水光针',

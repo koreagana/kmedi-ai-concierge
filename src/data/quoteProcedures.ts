@@ -101,6 +101,9 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
         { unit: '身体40kJ', unitEn: 'Body 40kJ', note: '含1英寸注射40cc', noteEn: 'Includes 40cc body-contouring injection', economy: null, standard: null, premium: null },
         { unit: '身体100kJ', unitEn: 'Body 100kJ', note: '含身体塑形术后处理', noteEn: 'Includes post-treatment body contouring care', economy: null, standard: { low: 950000, high: 950000 }, premium: null },
       ] },
+      { id: 'xerf', nameKo: '세르프', nameZh: 'XERF 泽弗', nameEn: 'XERF', options: [
+        { unit: '600发', unitEn: '600 shots', note: '丽拜芮明洞店不单独出售，仅包含在皮肤肉毒素全脸套餐（含300发＋ONDA或钛提升80kJ＋下颌线肉毒素4cc）中', noteEn: 'Not sold on its own at Riberi Myeongdong — included only in the full-face skin botox package (300 shots + ONDA or Titanium 80kJ + jawline botox 4cc)', economy: { low: 1590000, high: 1590000 }, standard: null, premium: null },
+      ] },
     ],
   },
   {
