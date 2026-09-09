@@ -83,6 +83,12 @@ export interface BigHealthKeyword {
   title: LocalizedText
   /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
   image?: string
+  /** Gradient tone to use when `image` is omitted (stem-cell page palette). Defaults to 'pink'. */
+  tileGradient?: 'pink' | 'purple' | 'mint'
+  /** Renders the tile as a full-width banner (stem-cell page style) instead of the square photo tile. */
+  tileBanner?: boolean
+  /** Short line shown under the title when `tileBanner` is set. */
+  tileSubtitle?: LocalizedText
   description: LocalizedText
   /** Optional secondary note shown right under the description (used by regenerative medicine consult). */
   note?: LocalizedText
@@ -274,7 +280,12 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'hormone-balance',
-    image: '/keyword-tiles/hormone-balance.jpg',
+    tileGradient: 'mint',
+    tileBanner: true,
+    tileSubtitle: {
+      zh: '甲状腺 · 女性激素 · 男性激素 · 压力激素',
+      en: 'Thyroid · Female Hormones · Male Hormones · Stress Hormones',
+    },
     title: {
       zh: '激素平衡',
       en: 'Hormone Balance',

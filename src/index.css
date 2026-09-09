@@ -1186,6 +1186,21 @@ body {
   font-size: 12px;
 }
 
+/* Lets a single tile span the full width of a 2-col grid — used for a banner
+   tile mixed into an otherwise square-tile grid (e.g. a trailing odd tile). */
+.bh-tile--full {
+  grid-column: 1 / -1;
+}
+
+/* Unlike the stem-cell page's static accordion banners, a banner tile mixed
+   into a selectable tab grid still needs to read as clickable. */
+.bh-tile--banner.bh-tile--full {
+  cursor: pointer;
+}
+.bh-tile--banner.bh-tile--full:active {
+  transform: scale(0.97);
+}
+
 .bh-tile-active {
   box-shadow: 0 6px 22px rgba(10,30,55,0.28);
 }

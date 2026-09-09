@@ -32,14 +32,22 @@ export default function BigHealthKeywords() {
             type="button"
             role="tab"
             aria-selected={i === activeIndex}
-            className={`bh-tile ${i === activeIndex ? 'bh-tile-active' : ''}`}
+            className={[
+              'bh-tile',
+              kw.tileBanner ? 'bh-tile--banner bh-tile--full' : '',
+              !kw.image ? `bh-tile--grad-${kw.tileGradient ?? 'pink'}` : '',
+              i === activeIndex ? 'bh-tile-active' : '',
+            ].filter(Boolean).join(' ')}
             style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
             onClick={() => {
               setActiveIndex(i)
               cardAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
             }}
           >
-            <span className="bh-tile-label">{pick(kw.title, lang)}</span>
+            <span className="bh-tile-label">
+              {pick(kw.title, lang)}
+              {kw.tileSubtitle && <span className="bh-tile-sublabel">{pick(kw.tileSubtitle, lang)}</span>}
+            </span>
           </button>
         ))}
       </div>
