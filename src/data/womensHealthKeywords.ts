@@ -53,6 +53,8 @@ export interface WomensHealthKeyword {
   title: LocalizedText
   /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
   image?: string
+  /** Gradient tone to use when `image` is omitted (stem-cell page palette). Defaults to 'pink'. */
+  tileGradient?: 'pink' | 'purple' | 'mint'
   description: LocalizedText
   directionsLabel: LocalizedText
   directions: BigHealthBullet[]
@@ -111,6 +113,7 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'cervix-hpv',
+    tileGradient: 'pink',
     title: {
       zh: '宫颈健康・HPV咨询',
       en: 'Cervix & HPV Consultation',
@@ -135,7 +138,7 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'fertility-infertility',
-    image: '/keyword-tiles/fertility-infertility.jpg',
+    tileGradient: 'purple',
     title: {
       zh: '生育力・不孕不育咨询',
       en: 'Fertility Planning & Infertility',
@@ -162,6 +165,7 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'egg-freezing',
+    image: '/keyword-tiles/egg-freezing.jpg',
     title: {
       zh: '卵子冷冻・生育力保存',
       en: 'Egg Freezing & Fertility Preservation',
@@ -214,6 +218,7 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'menopause-hormones',
+    tileGradient: 'mint',
     title: {
       zh: '更年期・激素管理',
       en: 'Menopause & Hormone Management',

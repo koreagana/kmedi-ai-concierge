@@ -1219,6 +1219,13 @@ body {
 .bh-tiles--stemcell .bh-tile:nth-child(4n+3) { background: linear-gradient(150deg,#6f93e0,#2d3a8f); }
 .bh-tiles--stemcell .bh-tile:nth-child(4n+4) { background: linear-gradient(150deg,#5fcdd9,#166b7a); }
 
+/* Explicit per-tile gradient tones (stem-cell palette), used when a specific
+   tile in the grid needs a fixed color regardless of its position — e.g. so a
+   photo/gradient mix can be arranged deliberately rather than by nth-child. */
+.bh-tile--grad-pink { background: linear-gradient(150deg,#eea6c4,#9c3f72); }
+.bh-tile--grad-purple { background: linear-gradient(150deg,#af8ee0,#5c3aa0); }
+.bh-tile--grad-mint { background: linear-gradient(150deg,#5fcdd9,#166b7a); }
+
 .bh-tiles--rose .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#e0a3b0,#95425a); }
 .bh-tiles--rose .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#d9a98f,#8a5738); }
 .bh-tiles--rose .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#dbb0d1,#7d4b8e); }

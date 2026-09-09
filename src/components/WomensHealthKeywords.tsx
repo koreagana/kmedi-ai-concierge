@@ -25,14 +25,14 @@ export default function WomensHealthKeywords() {
 
       <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
-      <div className="bh-tiles bh-tiles--pink" role="tablist">
+      <div className="bh-tiles" role="tablist">
         {WOMENS_HEALTH_KEYWORDS.map((kw, i) => (
           <button
             key={kw.id}
             type="button"
             role="tab"
             aria-selected={i === activeIndex}
-            className={`bh-tile ${i === activeIndex ? 'bh-tile-active' : ''}`}
+            className={`bh-tile ${kw.image ? '' : `bh-tile--grad-${kw.tileGradient ?? 'pink'}`} ${i === activeIndex ? 'bh-tile-active' : ''}`}
             style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
             onClick={() => {
               setActiveIndex(i)
