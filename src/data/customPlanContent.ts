@@ -55,16 +55,6 @@ export const CUSTOM_PLAN_SECTION = {
     zh: '从医院预约到术后恢复，为外国客户设计更安心的韩国医疗行程。\n\n汉江春天是一家完成韩国保健福祉部外国人患者招徕业登记的医疗观光公司。我们不仅帮助客户预约医院，也协助整理诊疗资料、安排翻译陪同、车辆住宿、复诊提醒和回国前确认。',
     en: 'From hospital appointments to postoperative recovery, we design a more reassuring Korean medical journey for international clients.\n\nK-Medi Spring is a medical tourism company registered for foreign patient attraction under the Korean Ministry of Health and Welfare. We assist not only with hospital appointments but also with medical document organization, interpretation support, transportation, accommodation, follow-up reminders, and pre-departure checks.',
   } as LocalizedText,
-  safety: [
-    {
-      zh: '汉江春天不是医疗机构，不进行诊断、治疗或手术判断。医疗判断始终由韩国正规医疗机构和专业医生负责。',
-      en: 'K-Medi Spring is not a medical institution and does not make diagnosis, treatment, or surgical decisions. Medical judgment is always the responsibility of a licensed Korean medical institution and qualified physicians.',
-    },
-    {
-      zh: '本页介绍的是汉江春天可以协调和协助的服务范围，具体安排会根据个人情况、医院回复和预约可能性调整。',
-      en: 'This page introduces the scope of services K-Medi Spring can coordinate and assist with. Specific arrangements may be adjusted based on individual circumstances, hospital responses, and appointment availability.',
-    },
-  ] as LocalizedText[],
   closing: {
     zh: '无论您是需要专业医院转诊，还是希望以合理预算获得优质的皮肤医美与整形咨询，汉江春天都会根据您的具体情况，设计专属的韩国医疗行程。',
     en: 'Whether you need specialized hospital referral or want quality skin and plastic surgery consultation within a reasonable budget, K-Medi Spring designs a dedicated Korean medical itinerary tailored to your specific situation.',

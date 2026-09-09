@@ -63,13 +63,6 @@ export default function CustomPlanContent() {
         <p key={i} className="bh-section-desc">{para}</p>
       ))}
 
-      {/* ── Safety disclaimer ── */}
-      <div className="bh-safety">
-        {CUSTOM_PLAN_SECTION.safety.map((line, i) => (
-          <p key={i} className="bh-safety-line">{pick(line, lang)}</p>
-        ))}
-      </div>
-
       {/* ── [작업 1] SVG system diagram ── */}
       <CustomPlanSystemDiagram lang={lang} />
 
