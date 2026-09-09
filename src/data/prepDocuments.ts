@@ -98,7 +98,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'common_checklist',
     category: 'admin_contract',
     field: '병원 협약 / 공통',
-    link: '/docs/한강애봄_수가비교표.html',
+    link: '/docs/pricing.html',
     status: 'available',
     description: '리베리 강남·명동, 원셀의원, 리앤장, 셀온 5개 병원 수가 비교 — 코디네이터 내부용',
     internal: true,

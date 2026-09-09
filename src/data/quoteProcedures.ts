@@ -2,7 +2,7 @@
    견적 시술 마스터 데이터 — 5개 병원 수가 비교 기준 (2026-09 개편)
    단위: 원(KRW) · 전체 VAT 별도 기준
    经济型 = 리베리 강남점 · 标准型 = 원셀의원 · 高端型 = 리앤장·셀온
-   근거 문서: 한강애봄_수가비교표.html / pricing_tiers.json
+   근거 문서: public/docs/pricing.html (구 한강애봄_수가비교표.html) / pricing_tiers.json
    ══════════════════════════════════════════════════════════════════ */
 
 export interface TierRange { low: number; high: number }
