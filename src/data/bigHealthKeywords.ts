@@ -87,6 +87,8 @@ export interface BigHealthKeyword {
   tileGradient?: 'pink' | 'purple' | 'mint'
   /** Renders the tile as a full-width banner (stem-cell page style) instead of the square photo tile. */
   tileBanner?: boolean
+  /** Adds a looping diagonal light-sweep highlight over the tile. */
+  tileShine?: boolean
   /** Short line shown under the title when `tileBanner` is set. */
   tileSubtitle?: LocalizedText
   description: LocalizedText
@@ -282,6 +284,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
     id: 'hormone-balance',
     tileGradient: 'mint',
     tileBanner: true,
+    tileShine: true,
     tileSubtitle: {
       zh: '甲状腺 · 女性激素 · 男性激素 · 压力激素',
       en: 'Thyroid · Female Hormones · Male Hormones · Stress Hormones',

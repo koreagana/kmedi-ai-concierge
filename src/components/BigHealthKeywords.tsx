@@ -44,6 +44,7 @@ export default function BigHealthKeywords() {
               cardAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
             }}
           >
+            {kw.tileShine && <span className="bh-tile-shine" aria-hidden="true" />}
             <span className="bh-tile-label">
               {pick(kw.title, lang)}
               {kw.tileSubtitle && <span className="bh-tile-sublabel">{pick(kw.tileSubtitle, lang)}</span>}

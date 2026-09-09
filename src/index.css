@@ -1138,6 +1138,31 @@ body {
   background: linear-gradient(to top, rgba(8,25,45,0.42) 0%, rgba(8,25,45,0.08) 32%, rgba(8,25,45,0) 55%);
 }
 
+/* Diagonal light sweep — a soft highlight band that glides across the tile
+   and pauses, repeating on a loop, to read as more "alive" than a flat
+   gradient. Opt-in via `tileShine` in the data so it stays intentional.
+   A real element (not ::after) because ::after is already the active-state
+   checkmark badge on .bh-tile-active. */
+.bh-tile-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.7) 50%, transparent 70%);
+  background-size: 260% 100%;
+  background-position: -160% 0;
+  mix-blend-mode: overlay;
+  animation: bh-tile-shine 4.2s ease-in-out infinite;
+}
+@keyframes bh-tile-shine {
+  0%, 30% { background-position: -160% 0; }
+  62% { background-position: 160% 0; }
+  100% { background-position: 160% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bh-tile-shine { animation: none; }
+}
+
 /* Wraps the detail card below the tile grid; scroll-margin-top keeps the card
    title clear of the sticky navbar when a tile click scrolls it into view. */
 .bh-card-anchor {
@@ -1146,7 +1171,7 @@ body {
 
 .bh-tile-label {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   font-size: 13px;
   font-weight: 700;
   line-height: 1.32;
@@ -1207,6 +1232,7 @@ body {
 .bh-tile-active::after {
   content: '✓';
   position: absolute;
+  z-index: 4;
   top: 9px; right: 9px;
   width: 20px; height: 20px;
   border-radius: 50%;
@@ -1237,9 +1263,12 @@ body {
 /* Explicit per-tile gradient tones (stem-cell palette), used when a specific
    tile in the grid needs a fixed color regardless of its position — e.g. so a
    photo/gradient mix can be arranged deliberately rather than by nth-child. */
-.bh-tile--grad-pink { background: linear-gradient(150deg,#eea6c4,#9c3f72); }
-.bh-tile--grad-purple { background: linear-gradient(150deg,#af8ee0,#5c3aa0); }
-.bh-tile--grad-mint { background: linear-gradient(150deg,#5fcdd9,#166b7a); }
+/* !important: these are deliberate per-tile pins that must beat the
+   `.bh-tiles(--palette) .bh-tile:nth-child()` position-based cycling rules
+   below, which match on the same 3-class-level specificity. */
+.bh-tile--grad-pink { background: linear-gradient(150deg,#eea6c4,#9c3f72) !important; }
+.bh-tile--grad-purple { background: linear-gradient(150deg,#af8ee0,#5c3aa0) !important; }
+.bh-tile--grad-mint { background: linear-gradient(150deg,#5fcdd9,#166b7a) !important; }
 
 .bh-tiles--rose .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#e0a3b0,#95425a); }
 .bh-tiles--rose .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#d9a98f,#8a5738); }
