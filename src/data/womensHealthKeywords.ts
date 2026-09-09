@@ -82,34 +82,35 @@ export const WOMENS_HEALTH_SECTION = {
 
 export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   {
-    id: 'basic-gynecologic',
+    id: 'gynecologic-uterus-ovary',
     image: '/keyword-tiles/basic-gynecologic.jpg',
     title: {
-      zh: '妇科基础检查与咨询',
-      en: 'Basic Gynecologic Consultation',
+      zh: '妇科检查・子宫卵巢',
+      en: 'Gynecologic Exam · Uterus & Ovary',
     },
     description: {
-      zh: '妇科基础咨询主要用于整理分泌物变化、异味、瘙痒、下腹部不适、月经变化、性交后不适或反复炎症等女性健康问题。具体需要哪些检查，需要由妇科医生根据症状和既往病史判断。',
-      en: "Basic gynecologic consultation helps organize concerns such as changes in discharge, odor, itching, lower abdominal discomfort, menstrual changes, discomfort after intercourse, or recurrent inflammation. The specific tests needed must be determined by a gynecologist based on symptoms and medical history.",
+      zh: '妇科检查与子宫卵巢咨询用于整理分泌物变化、异味、瘙痒、下腹部不适、月经变化或反复炎症等基础妇科问题，也包括子宫肌瘤、子宫腺肌症、卵巢囊肿、月经量变化、严重痛经或异常出血等子宫卵巢相关问题。具体需要哪些检查，需要由妇科医生根据症状和既往病史判断。',
+      en: "Gynecologic and uterus/ovary consultation covers basic concerns such as changes in discharge, odor, itching, lower abdominal discomfort, menstrual changes, or recurrent inflammation, as well as uterus- and ovary-related concerns such as fibroids, adenomyosis, ovarian cysts, changes in menstrual volume, severe menstrual pain, or abnormal bleeding. The specific tests needed must be determined by a gynecologist based on symptoms and medical history.",
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
       { zh: '分泌物或异味相关咨询', en: 'Discharge or odor-related consultation' },
-      { zh: '瘙痒或不适相关咨询', en: 'Itching or discomfort consultation' },
-      { zh: '月经周期变化咨询', en: 'Menstrual cycle change consultation' },
-      { zh: '下腹部或骨盆不适咨询', en: 'Lower abdominal or pelvic discomfort consultation' },
+      { zh: '瘙痒或下腹部不适咨询', en: 'Itching or lower abdominal discomfort consultation' },
+      { zh: '月经周期或经量变化咨询', en: 'Menstrual cycle or volume change consultation' },
       { zh: '反复炎症相关咨询', en: 'Recurrent inflammation consultation' },
-      { zh: '既往检查结果整理', en: 'Review of previous test results' },
+      { zh: '子宫肌瘤・子宫腺肌症咨询', en: 'Uterine fibroid & adenomyosis consultation' },
+      { zh: '卵巢囊肿相关咨询', en: 'Ovarian cyst consultation' },
+      { zh: '严重痛经或异常出血咨询', en: 'Severe menstrual pain or abnormal bleeding consultation' },
+      { zh: '既往检查或影像资料整理', en: 'Review of previous test or imaging results' },
     ],
     note: {
-      zh: '这些症状可能由多种原因引起，不能仅凭描述判断。是否需要检查或治疗，需要医生面诊后决定。',
-      en: "These symptoms can have various causes and cannot be judged by description alone. Whether tests or treatment are needed must be determined after a doctor's consultation.",
+      zh: '这些症状可能由多种原因引起，不能仅凭描述判断。是否需要观察、检查、药物治疗或手术，需要由妇科医生面诊后根据检查结果判断。',
+      en: "These symptoms can have various causes and cannot be judged by description alone. Whether observation, testing, medication, or surgery is needed must be determined by a gynecologist after consultation and based on test results.",
     },
     docKeys: ['functionalIntake', 'healthCheckupPrep'],
   },
   {
     id: 'cervix-hpv',
-    image: '/keyword-tiles/cervix-hpv.jpg',
     title: {
       zh: '宫颈健康・HPV咨询',
       en: 'Cervix & HPV Consultation',
@@ -129,32 +130,6 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
     note: {
       zh: 'HPV感染或宫颈检查异常并不等于一定患有癌症。具体判断、复查和治疗方向需要由妇科医生确认。',
       en: 'HPV infection or an abnormal cervical test does not necessarily mean cancer. Diagnosis, follow-up, and treatment direction must be confirmed by a gynecologist.',
-    },
-    docKeys: ['functionalIntake', 'healthCheckupPrep'],
-  },
-  {
-    id: 'ovary-uterus',
-    image: '/keyword-tiles/ovary-uterus.jpg',
-    title: {
-      zh: '卵巢・子宫健康咨询',
-      en: 'Ovary & Uterus Consultation',
-    },
-    description: {
-      zh: '卵巢和子宫相关咨询主要用于整理子宫肌瘤、子宫腺肌症、卵巢囊肿、月经量变化、严重痛经、下腹部不适或异常出血等问题。既往检查报告对医生判断非常有帮助。',
-      en: 'Ovary and uterus consultation helps organize concerns such as uterine fibroids, adenomyosis, ovarian cysts, changes in menstrual volume, severe menstrual pain, lower abdominal discomfort, or abnormal bleeding. Previous reports are helpful for the doctor\'s evaluation.',
-    },
-    directionsLabel: DIRECTIONS_LABEL,
-    directions: [
-      { zh: '子宫肌瘤相关咨询', en: 'Uterine fibroid consultation' },
-      { zh: '卵巢囊肿相关咨询', en: 'Ovarian cyst consultation' },
-      { zh: '月经量变化咨询', en: 'Menstrual volume change consultation' },
-      { zh: '严重痛经咨询', en: 'Severe menstrual pain consultation' },
-      { zh: '异常出血咨询', en: 'Abnormal bleeding consultation' },
-      { zh: '既往影像或检查资料整理', en: 'Review of previous imaging or test reports' },
-    ],
-    note: {
-      zh: '是否需要观察、药物治疗、手术或进一步检查，需要由妇科医生根据检查结果判断。',
-      en: 'Whether observation, medication, surgery, or further tests are needed must be determined by a gynecologist based on test results.',
     },
     docKeys: ['functionalIntake', 'healthCheckupPrep'],
   },
@@ -187,10 +162,9 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'egg-freezing',
-    image: '/keyword-tiles/egg-freezing.jpg',
     title: {
-      zh: '卵子冷冻咨询',
-      en: 'Egg Freezing',
+      zh: '卵子冷冻・生育力保存',
+      en: 'Egg Freezing & Fertility Preservation',
     },
     description: {
       zh: '卵子冷冻咨询适合目前没有立即怀孕计划，但希望了解未来生育选择的客户。咨询时通常需要结合年龄、卵巢功能、身体状态、可来韩时间和未来使用计划进行整理。',
@@ -240,7 +214,6 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'menopause-hormones',
-    image: '/keyword-tiles/menopause-hormones.jpg',
     title: {
       zh: '更年期・激素管理',
       en: 'Menopause & Hormone Management',

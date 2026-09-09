@@ -1229,6 +1229,8 @@ body {
 .bh-tiles--pink .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#d9a3c9,#7a3f8a); }
 .bh-tiles--pink .bh-tile:nth-child(6n+3) { background: linear-gradient(150deg,#eab3a8,#a04f3f); }
 .bh-tiles--pink .bh-tile:nth-child(6n+4) { background: linear-gradient(150deg,#c9a3d6,#5c3f8a); }
+.bh-tiles--pink .bh-tile:nth-child(6n+5) { background: linear-gradient(150deg,#e0aeb0,#8a4a52); }
+.bh-tiles--pink .bh-tile:nth-child(6n+6) { background: linear-gradient(150deg,#d6a8c0,#6e3f6a); }
 
 .bh-tiles--steel .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#7d95b0,#233a52); }
 .bh-tiles--steel .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#6f9098,#1f4a4f); }
