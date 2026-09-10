@@ -179,10 +179,19 @@
             color: #4E97D1;
             text-decoration: none;
             border-bottom: 1px dotted #4E97D1;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .reference a:after {
+            content: "🔗";
+            font-size: 11px;
         }
         
         .reference a:hover {
             color: #2E77B1;
+            border-bottom-color: #2E77B1;
         }
         
         .footer {
@@ -211,23 +220,102 @@
             background: #2E77B1;
         }
         
+        .doc-link {
+            background: #F5F8FA;
+            border-left: 3px solid #4E97D1;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .doc-link a {
+            color: #4E97D1;
+            text-decoration: none;
+            font-weight: 600;
+            word-break: break-all;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .doc-link a:after {
+            content: "🔗";
+            font-size: 11px;
+        }
+        
+        .doc-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+            line-height: 1.4;
+            background: white;
+        }
+        
+        .summary-table td {
+            border: 1px solid #D0DDE8;
+            padding: 10px;
+        }
+        
+        .summary-table td:nth-child(1) {
+            background: #EEF6FD;
+            font-weight: 700;
+            color: #333;
+            width: 18%;
+        }
+        
+        .summary-table td:nth-child(2) {
+            background: #FAFBFC;
+            color: #333;
+            width: 35%;
+            font-size: 11px;
+        }
+        
+        .summary-table td:nth-child(3) {
+            background: white;
+            color: #4E97D1;
+            word-break: break-word;
+        }
+        
+        .summary-table td:nth-child(3) a {
+            color: #4E97D1;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .summary-table td:nth-child(3) a:after {
+            content: "🔗";
+            font-size: 10px;
+        }
+        
+        .summary-table td:nth-child(3) a:hover {
+            text-decoration: underline;
+        }
+        
         @media (max-width: 600px) {
             body {
                 padding: 20px 16px;
             }
-
+            
             .title {
                 font-size: 24px;
             }
-
+            
             .overview {
                 grid-template-columns: 1fr;
             }
-
+            
             .impact-table {
                 font-size: 12px;
             }
-
+            
             .impact-table td {
                 padding: 10px 8px;
             }
@@ -308,6 +396,10 @@
     <div class="section">
         <div class="section-title">① AI 콘텐츠 표기 의무</div>
         <div class="section-content">
+            <div class="doc-link">
+                <strong>공식 문서:</strong> 《AI 内容治理规则公告》 (2026년 4월 27일 발표)<br/>
+                <strong>확인 방법:</strong> <a href="https://school.xiaohongshu.com" target="_blank">규칙 센터</a>에서 "AI治理" 또는 "AI内容" 검색
+            </div>
             <div class="subsection">
                 <div class="subsection-title">핵심 요구사항 (2026년 4월 27일 발표)</div>
                 <ul class="bullet-list">
@@ -336,6 +428,10 @@
     <div class="section">
         <div class="section-title">② 광고 표시 기준 엄격화</div>
         <div class="section-content">
+            <div class="doc-link">
+                <strong>공식 문서:</strong> 《「虚假宣传：广告禁用词」实施细则》 (2026년 3월 20일 시행)<br/>
+                <strong>링크:</strong> <a href="https://school.xiaohongshu.com/rule/detail/115/2737" target="_blank">https://school.xiaohongshu.com/rule/detail/115/2737</a>
+            </div>
             <div class="subsection">
                 <div class="subsection-title">금지 광고 표현 (2026년 3월 20일 시행)</div>
                 <ul class="bullet-list">
@@ -359,6 +455,10 @@
     <div class="section">
         <div class="section-title">③ 위규 적분 시스템</div>
         <div class="section-content">
+            <div class="doc-link">
+                <strong>공식 문서:</strong> 《小红书第三方商家违规积分管理规则》 (2025년 2월 6일 시행)<br/>
+                <strong>링크:</strong> <a href="https://school.xiaohongshu.com/rule/detail/5dd6a3190000000000000000/5dd6a3190000000000000000" target="_blank">규칙 센터에서 확인</a>
+            </div>
             <div class="subsection">
                 <div class="subsection-title">적용 대상</div>
                 <p style="font-size: 13px; color: #555;">전자상거래 판매자, 바이어 (커뮤니티 창작자는 별도 처벌)</p>
@@ -379,6 +479,13 @@
     <div class="section">
         <div class="section-title">④ 의료·성형 콘텐츠 강화 관리</div>
         <div class="section-content">
+            <div class="doc-link">
+                <strong>관련 공식 문서 (4가지):</strong><br/>
+                • 《社区公约2.0》 (2026년 1월 19일) — <a href="https://school.xiaohongshu.com" target="_blank">규칙 센터에서 "社区公约" 검색</a><br/>
+                • 《小红书禁止分享商品及服务规则》 (2026년 2월 10일) — <a href="https://school.xiaohongshu.com/rule/detail/40/1349" target="_blank">규칙 센터 링크</a><br/>
+                • 《小红书禁发商品及信息管理规范》 (2026년 2월 5일) — <a href="https://school.xiaohongshu.com/rule/detail/40/1349" target="_blank">규칙 센터 링크</a><br/>
+                • 《关于蒲公英加强对医疗医药领域内容管控的公告》 (2026년 1월 30일) — <a href="https://school.xiaohongshu.com" target="_blank">규칙 센터에서 "蒲公英 医疗" 검색</a>
+            </div>
             <div class="subsection">
                 <div class="subsection-title">주요 규칙 (2026년 1월~2월)</div>
                 <ul class="bullet-list">
@@ -451,15 +558,50 @@
         </div>
     </div>
     
-    <div class="reference">
-        <div class="reference-title">공식 정책 확인 경로</div>
-        <ul style="list-style: none; padding-left: 0;">
-            <li>📌 샤오홍슈 규칙 센터: <a href="https://school.xiaohongshu.com" target="_blank">school.xiaohongshu.com</a></li>
-            <li>📌 App 내 규칙: 나 → 크리에이터 센터 → 안전 센터 → 규칙 백과</li>
-            <li>📌 공식 공고: <strong>@小红书薯管家</strong> 계정</li>
-            <li>📌 광고 금지어 규칙: <a href="https://school.xiaohongshu.com/rule/detail/115/2737" target="_blank">《虚假宣传：广告禁用词》실시세칙</a></li>
-            <li>📌 검색 키워드: "AI 표기", "의료", "의료미용", "광고 금지어" 등</li>
-        </ul>
+    <div class="section">
+        <div class="section-title">종합 링크 정리 (공식 정책 확인 경로)</div>
+        <table class="summary-table">
+            <tr>
+                <td><strong>정책</strong></td>
+                <td><strong>공식 문서</strong></td>
+                <td><strong>링크</strong></td>
+            </tr>
+            <tr>
+                <td>AI 콘텐츠<br/>식별</td>
+                <td>《AI 内容治理<br/>规则公告》</td>
+                <td><a href="https://school.xiaohongshu.com" target="_blank">규칙 센터 내<br/>"AI治理" 검색</a></td>
+            </tr>
+            <tr>
+                <td>광고 식별<br/>강화</td>
+                <td>《「虚假宣传：<br/>广告禁用词」<br/>实施细则》</td>
+                <td><a href="https://school.xiaohongshu.com/rule/detail/115/2737" target="_blank">school.xiaohongshu.com<br/>/rule/detail/115/2737</a></td>
+            </tr>
+            <tr>
+                <td>위규 적분<br/>시스템</td>
+                <td>《小红书第三方<br/>商家违规积分<br/>管理规则》</td>
+                <td><a href="https://school.xiaohongshu.com/rule/detail/5dd6a3190000000000000000/5dd6a3190000000000000000" target="_blank">school.xiaohongshu.com<br/>/rule/detail/5dd6a319...</a></td>
+            </tr>
+            <tr>
+                <td>커뮤니티<br/>규약</td>
+                <td>《社区公约2.0》</td>
+                <td><a href="https://school.xiaohongshu.com" target="_blank">규칙 센터 내<br/>"社区公约" 검색</a></td>
+            </tr>
+            <tr>
+                <td>의료·성형<br/>강화 관리<br/>(공유 금지)</td>
+                <td>《小红书禁止<br/>分享商品及<br/>服务规则》</td>
+                <td><a href="https://school.xiaohongshu.com/rule/detail/40/1349" target="_blank">school.xiaohongshu.com<br/>/rule/detail/40/1349</a></td>
+            </tr>
+            <tr>
+                <td>의료·성형<br/>강화 관리<br/>(금지 목록)</td>
+                <td>《小红书禁发<br/>商品及信息<br/>管理规范》</td>
+                <td><a href="https://school.xiaohongshu.com/rule/detail/40/1349" target="_blank">school.xiaohongshu.com<br/>/rule/detail/40/1349</a></td>
+            </tr>
+            <tr>
+                <td>蒲公英<br/>의료 관리</td>
+                <td>《关于蒲公英<br/>加强对医疗<br/>医药领域内容<br/>管控的公告》</td>
+                <td><a href="https://school.xiaohongshu.com" target="_blank">규칙 센터 내<br/>"蒲公英 医疗" 검색</a></td>
+            </tr>
+        </table>
     </div>
     
     <div class="footer">
