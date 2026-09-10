@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>샤오홍슈 의료·성형 콘텐츠 관리 강화 안내</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans CJK KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        body {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4E97D1;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 13px;
+            color: #999;
+        }
+        
+        .overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .overview-item {
+            background: #EEF6FD;
+            border-left: 3px solid #4E97D1;
+            padding: 16px;
+            border-radius: 4px;
+        }
+        
+        .overview-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #4E97D1;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .overview-value {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .section {
+            margin-bottom: 36px;
+        }
+        
+        .section-title {
+            background: #4E97D1;
+            color: white;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            border-radius: 4px;
+        }
+        
+        .section-content {
+            padding: 0 8px;
+        }
+        
+        .subsection {
+            margin-bottom: 16px;
+        }
+        
+        .subsection-title {
+            font-weight: 700;
+            color: #4E97D1;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .bullet-list {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .bullet-list li {
+            padding: 6px 0 6px 20px;
+            position: relative;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
+        }
+        
+        .bullet-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #4E97D1;
+            font-weight: bold;
+        }
+        
+        .impact-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .impact-table td {
+            border: 1px solid #E8EEF5;
+            padding: 12px;
+        }
+        
+        .impact-table td:first-child {
+            background: #D97AA6;
+            color: white;
+            font-weight: 700;
+            width: 25%;
+        }
+        
+        .impact-table td:last-child {
+            background: #FAFBFC;
+            color: #333;
+        }
+        
+        .highlight {
+            background: #FFF9E6;
+            border-left: 3px solid #FFD700;
+            padding: 12px 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .reference {
+            background: #F5F8FA;
+            border: 1px solid #D0DDE8;
+            padding: 16px;
+            margin: 24px 0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .reference-title {
+            font-weight: 700;
+            color: #4E97D1;
+            margin-bottom: 10px;
+        }
+        
+        .reference li {
+            margin-bottom: 6px;
+        }
+        
+        .reference a {
+            color: #4E97D1;
+            text-decoration: none;
+            border-bottom: 1px dotted #4E97D1;
+        }
+        
+        .reference a:hover {
+            color: #2E77B1;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #E8EEF5;
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            background: #4E97D1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 16px;
+            transition: background 0.2s;
+        }
+        
+        .cta-btn:hover {
+            background: #2E77B1;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 16px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .overview {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-table {
+                font-size: 12px;
+            }
+
+            .impact-table td {
+                padding: 10px 8px;
+            }
+        }
+
+        .save-pdf-btn {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #4E97D1;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(78, 151, 209, 0.35);
+            z-index: 100;
+        }
+
+        .save-pdf-btn:hover {
+            background: #2E77B1;
+        }
+
+        @media (max-width: 600px) {
+            .save-pdf-btn {
+                top: auto;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        @media print {
+            .save-pdf-btn {
+                display: none;
+            }
+
+            body {
+                padding: 0;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="save-pdf-btn" onclick="window.print()" aria-label="PDF로 저장">
+        📄 PDF로 저장
+    </button>
+
+    <div class="header">
+        <div class="title">샤오홍슈 의료·성형 콘텐츠<br/>관리 강화 안내</div>
+        <div class="subtitle">2026년 1월~9월 정책 강화 요약</div>
+    </div>
+    
+    <div class="overview">
+        <div class="overview-item">
+            <div class="overview-label">공지 기간</div>
+            <div class="overview-value">2026년 1월~9월<br/>단계적 업데이트</div>
+        </div>
+        <div class="overview-item">
+            <div class="overview-label">영향범위</div>
+            <div class="overview-value">샤오홍슈 의료·미용·AI 콘텐츠 전반</div>
+        </div>
+        <div class="overview-item">
+            <div class="overview-label">병원 영향도</div>
+            <div class="overview-value"><strong style="color: #D97AA6;">높음</strong><br/>마케팅 경로 제한</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">① AI 콘텐츠 표기 의무</div>
+        <div class="section-content">
+            <div class="subsection">
+                <div class="subsection-title">핵심 요구사항 (2026년 4월 27일 발표)</div>
+                <ul class="bullet-list">
+                    <li><strong>자발적 표기:</strong> AI 생성·윤색 콘텐츠는 발표 시 자발적으로 선언 권장</li>
+                    <li><strong>플랫폼 자동 추가:</strong> 미표기 콘텐츠는 플랫폼이 식별 후 자동 AI 식별자 추가</li>
+                    <li><strong>이의신청 채널:</strong> 부정확한 표기에 대해 이의 제기 가능</li>
+                </ul>
+            </div>
+            
+            <div class="subsection">
+                <div class="subsection-title">금지되는 AI 행위</div>
+                <ul class="bullet-list">
+                    <li><strong>AI 위규 운영:</strong> 자동 계정 운영, 실제 사람 사칭</li>
+                    <li><strong>AI 조작:</strong> 타인 음성/얼굴 복제, 허위 경험담·스크린샷 위조</li>
+                    <li><strong>AI 권리침해:</strong> 타인 초상권 무단 생성, 저작권 작품 모방</li>
+                    <li><strong>AI 저품질:</strong> 템플릿으로 동질화 콘텐츠 대량 생산</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <strong>2026년 7월 업데이트:</strong> AI 자동 운영 계정 42만 개 처리 중
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">② 광고 표시 기준 엄격화</div>
+        <div class="section-content">
+            <div class="subsection">
+                <div class="subsection-title">금지 광고 표현 (2026년 3월 20일 시행)</div>
+                <ul class="bullet-list">
+                    <li><strong>최상급 표현:</strong> "최고", "최우수", "최적", "최대" 등</li>
+                    <li><strong>유일성 표현:</strong> "첫 번째", "유일한", "유일", "전 세계 첫 공개" 등</li>
+                    <li><strong>권위성 표현:</strong> "국가급", "세계급", "극치", "최고급" 등</li>
+                </ul>
+            </div>
+            
+            <div class="subsection">
+                <div class="subsection-title">필수 라벨링 (2026년 5월)</div>
+                <ul class="bullet-list">
+                    <li>"마케팅 정보 포함" 태그 필수 표시</li>
+                    <li>"AI 생성 콘텐츠 포함" 태그 필수 표시</li>
+                    <li>샤오홍슈는 선행 시범 플랫폼</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">③ 위규 적분 시스템</div>
+        <div class="section-content">
+            <div class="subsection">
+                <div class="subsection-title">적용 대상</div>
+                <p style="font-size: 13px; color: #555;">전자상거래 판매자, 바이어 (커뮤니티 창작자는 별도 처벌)</p>
+            </div>
+            
+            <div class="subsection">
+                <div class="subsection-title">처벌 단계</div>
+                <ul class="bullet-list">
+                    <li><strong>3점 이상:</strong> 위규 콘텐츠 삭제, 계정 경고, 광고 불가</li>
+                    <li><strong>6점 이상:</strong> 계정 14일 동결, 광고 불가</li>
+                    <li><strong>추가 누적:</strong> 계정 30일 동결</li>
+                    <li><strong>연간 41점:</strong> 최대 100% 보증금 몰수, 핵심 기능 동결</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">④ 의료·성형 콘텐츠 강화 관리</div>
+        <div class="section-content">
+            <div class="subsection">
+                <div class="subsection-title">주요 규칙 (2026년 1월~2월)</div>
+                <ul class="bullet-list">
+                    <li>의약품·보건식품·의료기기 판촉 전면 금지</li>
+                    <li>OTC 의약품, 처방약, 의료기기, 콘택트렌즈 등 확대 금지</li>
+                    <li>의료 블로거와 브랜드 완전 분리 (자동 주문 차단)</li>
+                    <li>상업 콘텐츠 자격 이중 검증 필수: 의료기관 허가증 + 의사 자격증</li>
+                </ul>
+            </div>
+            
+            <div class="subsection">
+                <div class="subsection-title">AI 허위 의료미용 콘텐츠 단속 (2026년 6~8월)</div>
+                <ul class="bullet-list">
+                    <li>AI 이미지로 실제 장면 위조: 단속 대상</li>
+                    <li>AI 대량 생성 동질화 체험기: 단속 대상</li>
+                    <li>직접 경험 거짓 주장: 단속 대상</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <strong>단속 결과:</strong> 12만 건 이상 삭제, 일평균 4,000건 게시 중단, 계정 4,200개 봉인
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">병원·의료관광 유치업체 영향</div>
+        <table class="impact-table">
+            <tr>
+                <td>체험단/후기 마케팅</td>
+                <td>플랫폼 규칙상 차단됨 (인플루언서 판촉 금지)</td>
+            </tr>
+            <tr>
+                <td>AI 콘텐츠 활용</td>
+                <td>자동 표기 및 엄격한 검수 (위조 이미지 위험)</td>
+            </tr>
+            <tr>
+                <td>광고 문구</td>
+                <td>기존 마케팅 문구 대부분 금지 표현 포함</td>
+            </tr>
+            <tr>
+                <td>계정 운영</td>
+                <td>자동 게시 및 대량 생성 콘텐츠 차단 대상</td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">병원·유치업체 권고</div>
+        <div class="section-content">
+            <div class="subsection">
+                <div class="subsection-title">즉시 확인 항목</div>
+                <ul class="bullet-list">
+                    <li>기존 샤오홍슈 콘텐츠 중 "최고", "최우수", "최적", "유일" 등 금지 표현 확인 및 수정</li>
+                    <li>AI 생성 이미지·영상 사용 여부 확인 (표기 필수)</li>
+                    <li>인플루언서 협력 또는 "체험단" 형식 운영 여부 (현재 금지)</li>
+                    <li>자동 게시 도구 사용 여부 (현재 금지)</li>
+                </ul>
+            </div>
+            
+            <div class="subsection">
+                <div class="subsection-title">대안 운영 전략</div>
+                <ul class="bullet-list">
+                    <li>공식 계정만 운영 (의료기관 허가증 + 의사 자격증 인증)</li>
+                    <li>광고·마케팅 표현 엄격히 통제</li>
+                    <li>한국 의료광고 규정 + 샤오홍슈 규칙 이중 검증</li>
+                    <li>정기적인 규정 업데이트 모니터링 (매월 변경)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="reference">
+        <div class="reference-title">공식 정책 확인 경로</div>
+        <ul style="list-style: none; padding-left: 0;">
+            <li>📌 샤오홍슈 규칙 센터: <a href="https://school.xiaohongshu.com" target="_blank">school.xiaohongshu.com</a></li>
+            <li>📌 App 내 규칙: 나 → 크리에이터 센터 → 안전 센터 → 규칙 백과</li>
+            <li>📌 공식 공고: <strong>@小红书薯管家</strong> 계정</li>
+            <li>📌 광고 금지어 규칙: <a href="https://school.xiaohongshu.com/rule/detail/115/2737" target="_blank">《虚假宣传：广告禁用词》실시세칙</a></li>
+            <li>📌 검색 키워드: "AI 표기", "의료", "의료미용", "광고 금지어" 등</li>
+        </ul>
+    </div>
+    
+    <div class="footer">
+        본 자료는 샤오홍슈 공식 정책을 한강애봄(K-MediSpring)에서 정리한 것입니다.<br/>
+        정확한 내용은 공식 규칙 센터에서 확인하시기 바랍니다.<br/>
+        <br/>
+        <small>최종 업데이트: 2026년 9월 | 이 페이지는 정기적으로 업데이트됩니다.</small>
+    </div>
+</body>
+</html>
