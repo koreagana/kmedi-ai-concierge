@@ -60,7 +60,7 @@ const fadeUp = {
    1. HERO
    ═══════════════════════════════════════════════════════════════════ */
 export function HeroSection() {
-  const { lang, goToQuote } = useApp()
+  const { lang, goToQuote, goToSurgery } = useApp()
   const t = translations[lang]
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -252,6 +252,11 @@ export function HeroSection() {
           {/* 예상 견적 진입 버튼 — zh·en 양쪽 가격표/카피가 준비되어 두 언어 모두 노출 */}
           <button className="btn-quote" onClick={() => goToQuote()}>
             <span className="btn-quote-title">{t.quoteBtnTitle}</span>
+          </button>
+
+          {/* 성형수술 가격표 — 경증 미용 견적과 기준(VAT·단위·병원)이 달라 별도 페이지 */}
+          <button className="btn-quote btn-quote--surgery" onClick={() => goToSurgery()}>
+            <span className="btn-quote-title">{t.surgeryBtnTitle}</span>
           </button>
         </motion.div>
       </div>

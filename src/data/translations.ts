@@ -16,6 +16,7 @@ interface Translations {
   heroTreatmentChips: string[]
   heroCtaLabel: string
   quoteBtnTitle: string
+  surgeryBtnTitle: string
   // concierge section
   conciergeTitle: string
   concierge1Name: string
@@ -121,6 +122,7 @@ export const translations: Record<LangCode, Translations> = {
     heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸针', '钛提升', '黄金微针', '乔雅露', '索夫波', 'InMode FX', 'XERF 泽弗'],
     heroCtaLabel: '韩国医疗项目',
     quoteBtnTitle: '热门轻医美项目费用预估',
+    surgeryBtnTitle: '韩国整形手术价格表',
     conciergeTitle: '请选择您的 AI 医疗顾问',
     concierge1Name: '李静',
     concierge1Title: 'Beauty & Women Care Concierge',
@@ -211,6 +213,7 @@ export const translations: Record<LangCode, Translations> = {
     heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting', 'Potenza', 'Juvelook', 'Sofwave', 'InMode FX', 'XERF'],
     heroCtaLabel: 'Korean Medical Services',
     quoteBtnTitle: 'Popular Treatment Price Estimate',
+    surgeryBtnTitle: 'Surgery Price List',
     conciergeTitle: 'Meet Your AI Medical Concierge',
     concierge1Name: 'Lee Jing',
     concierge1Title: "Beauty & Women's Care Concierge",

@@ -381,6 +381,17 @@ body {
   font-weight: 700;
   letter-spacing: 0.02em;
 }
+/* 성형수술 가격표 버튼 — 경증 미용 견적 버튼과 구분되도록 반투명 처리.
+   수술은 결심 단계가 다른 고객이라 1순위 CTA를 가리지 않게 한 단계 낮춘다. */
+.btn-quote--surgery {
+  background: rgba(255,255,255,0.14);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.45);
+  margin-top: 8px;
+}
+.btn-quote--surgery:hover {
+  background: rgba(255,255,255,0.22);
+}
 
 /* Merged pref/trust info box — white card sitting under the hot-picks strip,
    above the category grid title. Combines the hospital-preference guidance

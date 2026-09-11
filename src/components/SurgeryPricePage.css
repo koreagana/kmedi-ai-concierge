@@ -1,0 +1,181 @@
+/* ══════════════════════════════════════════════════════════════════
+   성형수술 가격표 — 원셀성형외과 단독 기준
+   인기시술 견적(QuotePage)은 3개 병원 비교라 '선택 → 합산' 구조지만,
+   성형은 비교 대상이 없어 읽는 가격표로 만든다.
+   ══════════════════════════════════════════════════════════════════ */
+.sg-widget {
+  background: var(--bg-surface);
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+.sg-hero {
+  background: linear-gradient(135deg, #0d2d52 0%, #1f4e79 55%, #0077b6 100%);
+  padding: 16px 20px 26px;
+  text-align: center;
+  color: #fff;
+}
+.sg-back {
+  display: block;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: inherit;
+  font-size: 12.5px;
+  padding: 4px 0;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.sg-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+.sg-sub {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 10px;
+}
+.sg-basis {
+  display: inline-block;
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+/* 카테고리 탭 — 가로 스크롤 */
+.sg-tabs {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 16px 20px 4px;
+  scrollbar-width: none;
+}
+.sg-tabs::-webkit-scrollbar { display: none; }
+.sg-tab {
+  flex-shrink: 0;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+  background: #fff;
+  border: 1.5px solid rgba(0, 119, 182, 0.18);
+  border-radius: 999px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+.sg-tab.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-mid) 100%);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.3);
+}
+
+/* 항목 목록 */
+.sg-list {
+  margin: 14px 16px 0;
+  background: #fff;
+  border: 1px solid rgba(0, 119, 182, 0.14);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.sg-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 15px;
+}
+.sg-row + .sg-row { border-top: 1px solid rgba(0, 119, 182, 0.09); }
+
+.sg-name { min-width: 0; flex: 1; }
+.sg-name b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.45;
+}
+/* 중국어 아래 한국어 병기 — 병원에서 실제로 마주치는 이름 */
+.sg-name-ko {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.sg-note {
+  display: block;
+  font-size: 10.5px;
+  color: #c2701f;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.sg-price {
+  flex-shrink: 0;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+.sg-price b {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--brand);
+  letter-spacing: -0.01em;
+}
+.sg-krw {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.sg-rec {
+  font-size: 9.5px;
+  color: #2f9e6e;
+  background: rgba(47, 158, 110, 0.1);
+  border-radius: 5px;
+  padding: 1px 6px;
+  margin-top: 3px;
+}
+
+/* 하단 고지 + 상담 */
+.sg-foot { margin: 18px 16px 0; }
+.sg-foot ul {
+  background: #fff;
+  border: 1px solid rgba(0, 119, 182, 0.14);
+  border-radius: 12px;
+  padding: 14px 16px 14px 30px;
+  margin-bottom: 8px;
+}
+.sg-foot li {
+  font-size: 10.5px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.sg-fx {
+  display: block;
+  text-align: right;
+  font-size: 9.5px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.sg-consult {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-mid) 100%);
+  border: none;
+  border-radius: 14px;
+  padding: 15px 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 119, 182, 0.35);
+}
