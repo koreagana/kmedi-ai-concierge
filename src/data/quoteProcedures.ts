@@ -3,6 +3,15 @@
    단위: 원(KRW) · 전체 VAT 별도 기준
    经济型 = 리베리 강남점 · 标准型 = 원셀의원 · 高端型 = 리앤장·셀온
    근거 문서: public/docs/pricing.html (구 한강애봄_수가비교표.html) / pricing_tiers.json
+
+   [2026-09-11 보완] 5개 병원 비교표에 대응 단위가 없던 항목을 협력병원 원본
+   수가표에서 보완. 3단 구분이 불가한 값은 uniform: true 로 표시해 세 칸에
+   동일 노출하고, 화면에는 "档位未区分" 안내가 붙는다.
+     · 도자기피부과 2026.07 — 리쥬란 힐러 4cc 65만 / HB 4cc 95만 / 엑소좀 5cc 50만
+     · 온테나의원 2606 정가 — 엑소좀 5cc 45만 / 쥬베룩2cc+물광1cc 53.8만
+       (온테나는 이벤트가·정가 2단 표기 → 운영규칙대로 정가만 채택)
+   출처를 찾지 못한 단위(리쥬란 힐러 1cc·HB 2cc, ONDA 면부10kJ·신체40kJ)는
+   빈칸 노출 대신 옵션 자체를 제거함. 값을 임의로 추정하지 않는다.
    ══════════════════════════════════════════════════════════════════ */
 
 export interface TierRange { low: number; high: number }
@@ -96,9 +105,7 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
         { unit: '10发', unitEn: '10 shots', economy: null, standard: null, premium: { low: 191000, high: 191000 } },
       ] },
       { id: 'onda', nameKo: '온다', nameZh: 'ONDA 溶脂提拉', nameEn: 'ONDA', options: [
-        { unit: '面部10kJ', unitEn: 'Face 10kJ', economy: null, standard: null, premium: null },
         { unit: '面部80kJ', unitEn: 'Face 80kJ', note: '含面膜2种', noteEn: 'Includes two mask treatments', economy: null, standard: { low: 790000, high: 790000 }, premium: null },
-        { unit: '身体40kJ', unitEn: 'Body 40kJ', note: '含1英寸注射40cc', noteEn: 'Includes 40cc body-contouring injection', economy: null, standard: null, premium: null },
         { unit: '身体100kJ', unitEn: 'Body 100kJ', note: '含身体塑形术后处理', noteEn: 'Includes post-treatment body contouring care', economy: null, standard: { low: 950000, high: 950000 }, premium: null },
       ] },
       { id: 'xerf', nameKo: '세르프', nameZh: 'XERF 泽弗', nameEn: 'XERF', options: [
@@ -116,26 +123,24 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
     labelEn: 'Skin Boosters · Glow',
     procedures: [
       { id: 'rejuran-healer', nameKo: '리쥬란 힐러', nameZh: '丽珠兰 Healer', nameEn: 'Rejuran Healer', options: [
-        { unit: '1cc', unitEn: '1cc', economy: null, standard: null, premium: null },
         { unit: '2cc', unitEn: '2cc', economy: { low: 240000, high: 240000 }, standard: { low: 290000, high: 290000 }, premium: { low: 382000, high: 382000 } },
-        { unit: '4cc', unitEn: '4cc', economy: null, standard: null, premium: null },
+        { unit: '4cc', unitEn: '4cc', economy: { low: 650000, high: 650000 }, standard: { low: 650000, high: 650000 }, premium: { low: 650000, high: 650000 }, uniform: true },
       ] },
       { id: 'rejuran-eye', nameKo: '리쥬란 아이', nameZh: '丽珠兰 Eye', nameEn: 'Rejuran Eye', options: [
         { unit: '1cc', unitEn: '1cc', economy: { low: 200000, high: 200000 }, standard: { low: 190000, high: 190000 }, premium: { low: 255000, high: 255000 } },
       ] },
       { id: 'rejuran-hb', nameKo: '리쥬란 HB', nameZh: '丽珠兰 HB', nameEn: 'Rejuran HB', options: [
         { unit: '1cc', unitEn: '1cc', economy: { low: 230000, high: 230000 }, standard: { low: 209000, high: 209000 }, premium: { low: 255000, high: 255000 } },
-        { unit: '2cc', unitEn: '2cc', economy: null, standard: null, premium: null },
-        { unit: '4cc', unitEn: '4cc', economy: null, standard: null, premium: null },
+        { unit: '4cc', unitEn: '4cc', economy: { low: 950000, high: 950000 }, standard: { low: 950000, high: 950000 }, premium: { low: 950000, high: 950000 }, uniform: true },
       ] },
       { id: 'juvelook-skin', nameKo: '쥬베룩 스킨', nameZh: '少女针 Juvelook', nameEn: 'Juvelook Skin', options: [
         { unit: '1cc', unitEn: '1cc', economy: null, standard: { low: 100000, high: 100000 }, premium: { low: 155000, high: 155000 } },
       ] },
       { id: 'juvelook-water', nameKo: '쥬베룩 물광', nameZh: '少女针水光', nameEn: 'Juvelook Water Glow', options: [
-        { unit: '2.5~3cc', unitEn: '2.5–3cc', economy: null, standard: null, premium: null },
+        { unit: '3cc', unitEn: '3cc', note: '少女针2cc＋水光针1cc 组合', noteEn: 'Juvelook 2cc + water glow 1cc, combined', economy: { low: 538000, high: 538000 }, standard: { low: 538000, high: 538000 }, premium: { low: 538000, high: 538000 }, uniform: true },
       ] },
       { id: 'exosome', nameKo: '엑소좀', nameZh: '外泌体 Exosome', nameEn: 'Exosome Therapy', options: [
-        { unit: '5cc', unitEn: '5cc', economy: null, standard: null, premium: null },
+        { unit: '5cc', unitEn: '5cc', economy: { low: 450000, high: 500000 }, standard: { low: 450000, high: 500000 }, premium: { low: 450000, high: 500000 }, uniform: true },
       ] },
       { id: 'hilowave', nameKo: '힐로웨이브', nameZh: 'HiloWave', nameEn: 'HiloWave', options: [
         { unit: '2cc', unitEn: '2cc', economy: null, standard: { low: 149000, high: 149000 }, premium: null },
@@ -217,22 +222,22 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
     labelEn: 'Acne · Pores',
     procedures: [
       { id: 'potenza', nameKo: '포텐자', nameZh: '黄金微针 Potenza', nameEn: 'Potenza', options: [
-        { unit: '全脸', unitEn: 'Full face', note: '팁 비용 별도인 병원 있음', noteEn: 'Some clinics charge for the tip separately', economy: null, standard: null, premium: null },
+        { unit: '全脸', unitEn: 'Full face', note: '含针头费用', noteEn: 'Tip included', economy: { low: 300000, high: 300000 }, standard: { low: 340000, high: 340000 }, premium: { low: 255000, high: 255000 } },
       ] },
       { id: 'sylfirm-x', nameKo: '실펌 X', nameZh: 'Sylfirm X', nameEn: 'Sylfirm X', options: [
-        { unit: '1次', unitEn: '1 session', economy: null, standard: null, premium: null },
+        { unit: '1次', unitEn: '1 session', economy: null, standard: null, premium: { low: 500000, high: 500000 } },
       ] },
       { id: 'aquapeel', nameKo: '아쿠아필', nameZh: '小气泡 AquaPeel', nameEn: 'Aqua Peel', options: [
-        { unit: '1次', unitEn: '1 session', economy: null, standard: null, premium: null },
+        { unit: '1次', unitEn: '1 session', economy: { low: 49000, high: 49000 }, standard: { low: 60000, high: 60000 }, premium: { low: 91000, high: 91000 } },
       ] },
       { id: 'lhala-peel', nameKo: '라라필', nameZh: 'LHALA 换肤', nameEn: 'LaLa Peel', options: [
-        { unit: '1次', unitEn: '1 session', economy: null, standard: null, premium: null },
+        { unit: '1次', unitEn: '1 session', note: '经济型为焕肤套餐价（含黑面膜等）', noteEn: 'Value tier is a peel-package rate (black peel and others included)', economy: { low: 99000, high: 99000 }, standard: null, premium: { low: 91000, high: 91000 } },
       ] },
       { id: 'acne-care', nameKo: '여드름 관리', nameZh: '祛痘管理', nameEn: 'Acne Care Program', options: [
-        { unit: '1次', unitEn: '1 session', economy: null, standard: null, premium: null },
+        { unit: '1次', unitEn: '1 session', note: '以面部全区挤压护理为准', noteEn: 'Based on full-face extraction care', economy: null, standard: { low: 100000, high: 100000 }, premium: { low: 127000, high: 127000 } },
       ] },
       { id: 'ldm-lifting', nameKo: 'LDM 물방울리프팅', nameZh: 'LDM 水滴提升', nameEn: 'LDM Water Drop Lifting', options: [
-        { unit: '12分钟', unitEn: '12 min', economy: null, standard: null, premium: null },
+        { unit: '12分钟', unitEn: '12 min', economy: { low: 80000, high: 80000 }, standard: { low: 99000, high: 99000 }, premium: { low: 91000, high: 200000 } },
       ] },
     ],
   },

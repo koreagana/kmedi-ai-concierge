@@ -21,3 +21,10 @@ concierge_image/
 .env
 .env.local
 .env.production
+
+# 병원 원본 수가표 — 절대 커밋 금지 (수수료 구조·병원별 단가 노출)
+# 가공된 결과값은 price/price-ranges.json 과 src/data/quoteProcedures.ts 에만 둔다
+수가표/
+수가표*
+비용표*
+*.xls
