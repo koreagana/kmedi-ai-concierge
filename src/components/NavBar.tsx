@@ -11,7 +11,7 @@ const langPaths: Record<LangCode, string> = {
 }
 
 export default function NavBar() {
-  const { lang, page, goHome } = useApp()
+  const { lang, goHome } = useApp()
   const t = translations[lang]
   const navigate = useNavigate()
   const location = useLocation()
@@ -78,26 +78,25 @@ export default function NavBar() {
 
       {/* Right side */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {/* /terms 페이지: 없음 / 그 외: 상담 버튼 */}
-        {page === 'home' && !isStandalonePage && (
-          <button
-            onClick={openConsult}
-            style={{
-              background: 'rgba(255,255,255,0.18)',
-              border: '1px solid rgba(255,255,255,0.4)',
-              borderRadius: 10,
-              color: '#ffffff',
-              fontSize: 11,
-              fontWeight: 600,
-              padding: '5px 12px',
-              cursor: 'pointer',
-              letterSpacing: '0.04em',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {t.navConsult}
-          </button>
-        )}
+        {/* 상담 버튼은 모든 페이지에 노출한다 — 카테고리·패키지·견적 등
+            홈이 아닌 페이지에서 상담으로 넘어가려는 고객이 더 많기 때문. */}
+        <button
+          onClick={openConsult}
+          style={{
+            background: 'rgba(255,255,255,0.18)',
+            border: '1px solid rgba(255,255,255,0.4)',
+            borderRadius: 10,
+            color: '#ffffff',
+            fontSize: 11,
+            fontWeight: 600,
+            padding: '5px 12px',
+            cursor: 'pointer',
+            letterSpacing: '0.04em',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {t.navConsult}
+        </button>
 
         {/* Language picker */}
         <div ref={langRef} style={{ position: 'relative' }}>
