@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { useApp } from '../contexts/AppContext'
 import { type LocalizedText } from '../data/bigHealthKeywords'
 import {
@@ -12,8 +13,42 @@ import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
+/* 흐르는 빛과 점 반짝임의 타이밍 — CSS의 .jy-pulse 값과 반드시 같아야 함 */
+const BEAM_CYCLE_S = 4
+const BEAM_HEIGHT = 110
+const BEAM_START = 120
+
 export default function CustomPlanContent() {
   const { lang } = useApp()
+  const lineRef = useRef<HTMLDivElement>(null)
+
+  /* 빛줄기가 각 점을 지나는 순간에 맞춰 점이 반짝이도록 지연시간을 계산한다.
+     카드 높이가 언어·화면폭에 따라 달라지므로 값을 고정하지 않고 실제 위치를 재서 맞춘다. */
+  useEffect(() => {
+    const root = lineRef.current
+    if (!root) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const sync = () => {
+      const track = root.querySelector<HTMLElement>('.jy-track')
+      if (!track) return
+      const trackTop = track.getBoundingClientRect().top
+      const travel = track.offsetHeight + BEAM_START
+      root.querySelectorAll<HTMLElement>('.jy-dot').forEach((dot) => {
+        const r = dot.getBoundingClientRect()
+        const centerY = r.top + r.height / 2 - trackTop
+        // 빛 중심이 이 점에 닿는 시각 (jy-run 키프레임 기준)
+        const t = (BEAM_CYCLE_S * (centerY + BEAM_START - BEAM_HEIGHT / 2)) / travel
+        dot.style.animationDelay = `${((t % BEAM_CYCLE_S) + BEAM_CYCLE_S) % BEAM_CYCLE_S}s`
+      })
+    }
+
+    sync()
+    // 웹폰트가 늦게 올라오면 높이가 바뀌므로 한 번 더 맞춘다
+    document.fonts?.ready?.then(sync).catch(() => {})
+    window.addEventListener('resize', sync)
+    return () => window.removeEventListener('resize', sync)
+  }, [lang])
 
   return (
     <div className="bh-section">
@@ -38,7 +73,7 @@ export default function CustomPlanContent() {
         <p className="jy-title">{pick(JOURNEY_HEADING, lang)}</p>
         <p className="jy-sub">{pick(JOURNEY_SUBHEADING, lang)}</p>
 
-        <div className="jy-line">
+        <div className="jy-line" ref={lineRef}>
           <div className="jy-track"><span className="jy-pulse" /></div>
 
           {JOURNEY_ACTS.map((act) => (

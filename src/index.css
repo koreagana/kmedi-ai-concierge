@@ -1893,6 +1893,16 @@ body {
   border-radius: 50%;
   background: #ffffff;
   border: 3px solid rgba(0, 119, 182, 0.2);
+  /* 빛줄기가 이 점을 지나는 순간에 반짝인다. 지연시간은 각 점의 실제
+     위치를 재서 CustomPlanContent에서 넣어준다 (카드 높이가 언어·화면폭에
+     따라 달라지므로 고정값으로는 빛과 어긋남). */
+  animation: jy-dot-hit 4s linear infinite;
+}
+@keyframes jy-dot-hit {
+  0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(87, 198, 238, 0); }
+  4%   { transform: scale(1.45); box-shadow: 0 0 0 6px rgba(87, 198, 238, 0.34); }
+  13%  { transform: scale(1);    box-shadow: 0 0 0 0 rgba(87, 198, 238, 0); }
+  100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(87, 198, 238, 0); }
 }
 .jy-act--pre  .jy-dot { border-color: #0077b6; }
 .jy-act--stay .jy-dot { border-color: #ef6c2f; }
@@ -1936,4 +1946,5 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .jy-pulse { display: none; }
+  .jy-dot { animation: none; }
 }
