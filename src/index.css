@@ -1817,3 +1817,123 @@ body {
   color: var(--text-muted);
   letter-spacing: 0.01em;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   定制医疗观光方案 — 환자 여정 타임라인
+   빛줄기가 굵은 선을 따라 위에서 아래로 흐르며 시선을 이끈다.
+   3막(来韩前·在韩国·回国后)으로 묶어 읽을 단위를 셋으로 줄였고,
+   단계 수가 많지 않아 내부 스크롤 없이 전체가 한 번에 보인다.
+   ══════════════════════════════════════════════════════════════════ */
+.jy {
+  margin: 22px 16px 4px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 119, 182, 0.14);
+  border-radius: 18px;
+  padding: 22px 18px 26px;
+  box-shadow: 0 1px 2px rgba(12,52,92,.05), 0 10px 28px rgba(12,52,92,.06);
+}
+.jy-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+.jy-sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+/* 흐르는 선 — 굵게 잡아 얇은 선일 때보다 눈에 확실히 들어오게 */
+.jy-line { position: relative; padding-left: 44px; }
+.jy-track {
+  position: absolute;
+  left: 14px; top: 4px; bottom: 4px;
+  width: 6px;
+  background: rgba(0, 119, 182, 0.14);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.jy-pulse {
+  position: absolute;
+  left: 0; width: 100%; height: 110px; top: -120px;
+  background: linear-gradient(180deg,
+    rgba(87,198,238,0) 0%,
+    rgba(87,198,238,0.45) 30%,
+    rgba(87,198,238,1) 55%,
+    rgba(87,198,238,0.45) 76%,
+    rgba(87,198,238,0) 100%);
+  animation: jy-run 4s linear infinite;
+}
+@keyframes jy-run { to { top: 100%; } }
+
+/* 3막 라벨 — 본문 제목과 같은 크기, 넉넉한 박스 */
+.jy-label {
+  display: inline-block;
+  min-width: 150px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 7px 18px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+.jy-act + .jy-act { margin-top: 26px; }
+.jy-act--pre  .jy-label { color: #0077b6; background: rgba(0, 119, 182, 0.12); }
+.jy-act--stay .jy-label { color: #d1541c; background: rgba(239, 108, 47, 0.13); }
+.jy-act--post .jy-label { color: #2f9e6e; background: rgba(47, 158, 110, 0.13); }
+
+.jy-step { position: relative; padding-bottom: 16px; }
+.jy-dot {
+  position: absolute;
+  left: -34px; top: 7px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid rgba(0, 119, 182, 0.2);
+}
+.jy-act--pre  .jy-dot { border-color: #0077b6; }
+.jy-act--stay .jy-dot { border-color: #ef6c2f; }
+.jy-act--post .jy-dot { border-color: #2f9e6e; }
+
+.jy-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 119, 182, 0.14);
+  border-radius: 12px;
+  padding: 11px 14px;
+}
+.jy-card b {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.45;
+}
+.jy-card span {
+  display: block;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  line-height: 1.55;
+}
+
+/* 여정의 마지막 — 예전 흐름도 하단에 있던 신뢰 배지 두 줄 */
+.jy-trust {
+  margin-top: 22px;
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: rgba(217, 119, 6, 0.09);
+  border: 1px solid rgba(217, 119, 6, 0.32);
+}
+.jy-trust p {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #92400e;
+  line-height: 1.9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jy-pulse { display: none; }
+}

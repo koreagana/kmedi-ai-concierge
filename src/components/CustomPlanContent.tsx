@@ -1,22 +1,16 @@
-import { motion } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { type LocalizedText } from '../data/bigHealthKeywords'
 import {
   CUSTOM_PLAN_SECTION,
-  CUSTOM_PLAN_CLIENT_TYPES_TITLE,
-  CUSTOM_PLAN_CLIENT_CARDS,
+  JOURNEY_HEADING,
+  JOURNEY_SUBHEADING,
+  JOURNEY_ACTS,
+  JOURNEY_TRUST,
 } from '../data/customPlanContent'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
-import CustomPlanSystemDiagram from './CustomPlanSystemDiagram'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
-
-const fadeUp = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.4, ease: 'easeOut' as const },
-}
 
 export default function CustomPlanContent() {
   const { lang } = useApp()
@@ -37,20 +31,38 @@ export default function CustomPlanContent() {
         <p key={i} className="bh-section-desc">{para}</p>
       ))}
 
-      <CustomPlanSystemDiagram lang={lang} />
+      {/* ── 환자 여정 타임라인 ──
+          빛줄기가 선을 따라 위에서 아래로 흐르며 시선을 이끈다.
+          단계 수가 많지 않아 전체가 한 번에 보이므로 내부 스크롤은 두지 않음. */}
+      <div className="jy">
+        <p className="jy-title">{pick(JOURNEY_HEADING, lang)}</p>
+        <p className="jy-sub">{pick(JOURNEY_SUBHEADING, lang)}</p>
 
-      <p className="bh-subsection-title">{pick(CUSTOM_PLAN_CLIENT_TYPES_TITLE, lang)}</p>
-      <div className="bh-mini-cards">
-        {CUSTOM_PLAN_CLIENT_CARDS.map((card, i) => (
-          <motion.div key={i} {...fadeUp} className="bh-mini-card">
-            <p className="bh-mini-card-title">{pick(card.title, lang)}</p>
-            <p className="bh-client-card-audience">{pick(card.audience, lang)}</p>
-            <p className="bh-client-card-focus">{pick(card.serviceFocus, lang)}</p>
-          </motion.div>
-        ))}
+        <div className="jy-line">
+          <div className="jy-track"><span className="jy-pulse" /></div>
+
+          {JOURNEY_ACTS.map((act) => (
+            <div className={`jy-act jy-act--${act.tone}`} key={act.tone}>
+              <span className="jy-label">{pick(act.label, lang)}</span>
+              {act.steps.map((step, i) => (
+                <div className="jy-step" key={i}>
+                  <span className="jy-dot" />
+                  <div className="jy-card">
+                    <b>{pick(step.title, lang)}</b>
+                    <span>{pick(step.desc, lang)}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <div className="jy-trust">
+          {JOURNEY_TRUST.map((line, i) => (
+            <p key={i}>✓ {pick(line, lang)}</p>
+          ))}
+        </div>
       </div>
-
-      {/* wechat consult button removed — FloatingChatButton covers this */}
     </div>
   )
 }
