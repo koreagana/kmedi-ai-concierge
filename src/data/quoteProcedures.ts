@@ -105,6 +105,10 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
         { unit: '10发', unitEn: '10 shots', economy: null, standard: null, premium: { low: 191000, high: 191000 } },
       ] },
       { id: 'onda', nameKo: '온다', nameZh: 'ONDA 溶脂提拉', nameEn: 'ONDA', options: [
+        { unit: '面部1万发', unitEn: 'Face 10,000 lines', note: '按发数计价，与kJ机型标准不同', noteEn: 'Priced by lines — a different scale from kJ machines', economy: null, standard: null, premium: { low: 155000, high: 155000 } },
+        { unit: '面部20kJ', unitEn: 'Face 20kJ', economy: null, standard: { low: 490000, high: 490000 }, premium: null },
+        { unit: '面部40kJ', unitEn: 'Face 40kJ', economy: { low: 360000, high: 360000 }, standard: { low: 590000, high: 590000 }, premium: null },
+        { unit: '面部60kJ', unitEn: 'Face 60kJ', economy: null, standard: { low: 690000, high: 690000 }, premium: null },
         { unit: '面部80kJ', unitEn: 'Face 80kJ', note: '含面膜2种', noteEn: 'Includes two mask treatments', economy: null, standard: { low: 790000, high: 790000 }, premium: null },
         { unit: '身体100kJ', unitEn: 'Body 100kJ', note: '含身体塑形术后处理', noteEn: 'Includes post-treatment body contouring care', economy: null, standard: { low: 950000, high: 950000 }, premium: null },
       ] },
