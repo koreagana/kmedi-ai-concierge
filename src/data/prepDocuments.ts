@@ -109,7 +109,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'agreement',
     category: 'admin_contract',
     field: '美团 폴더',
-    link: '/docs/meituan_Letter_of_Authorization.html',
+    link: '/docs/meituan-auth.html',
     status: 'available',
   },
   {
@@ -118,7 +118,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'agreement',
     category: 'admin_contract',
     field: '美团 폴더',
-    link: '/docs/meituan_cpc_ad_guide.html',
+    link: '/docs/meituan-ads.html',
     status: 'available',
     description: '파트너 병원에 전달하는 광고 집행 준비 안내서',
   },
