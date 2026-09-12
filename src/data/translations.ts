@@ -5,6 +5,8 @@ interface Translations {
   brandName: string
   brandSub: string
   // hero
+  /** 화면에 실제로 보이는 H1 SEO 헤드라인 (핵심 키워드 포함) */
+  heroSeoHeadline: string
   heroPrefTitle: string
   heroPrefChips: string[]
   heroRegionChips: string[]
@@ -112,6 +114,7 @@ export const translations: Record<LangCode, Translations> = {
   zh: {
     brandName: '汉江春天',
     brandSub: 'AI Concierge Medical Lounge',
+    heroSeoHeadline: '韩国医疗旅游 · 医美整形咨询',
     heroPrefTitle: '请您在推荐医院前告知我们',
     heroPrefChips: ['价格优先', '私密环境', '高端服务', '从洁面到收尾全程护理'],
     heroRegionChips: ['江南', '明洞', '弘大', '圣水', '济州', '釜山'],
@@ -203,6 +206,7 @@ export const translations: Record<LangCode, Translations> = {
   en: {
     brandName: 'K-MediSpring',
     brandSub: 'AI Concierge Medical Lounge',
+    heroSeoHeadline: 'Korea Medical Tourism & Cosmetic Surgery',
     heroPrefTitle: 'Tell Us Before We Recommend a Hospital',
     heroPrefChips: ['Price-Focused', 'Private Setting', 'Premium Service', 'Full Care from Cleansing to Finish'],
     heroRegionChips: ['Gangnam', 'Myeongdong', 'Hongdae', 'Seongsu', 'Jeju', 'Busan'],

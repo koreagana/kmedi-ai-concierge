@@ -9,6 +9,7 @@ import FloatingChatButton from './components/FloatingChatButton'
 import { AnimatePresence, motion } from 'framer-motion'
 import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
+import { seoMeta } from './data/seoMeta'
 import { updateCanonical } from './seo'
 import { useEffect } from 'react'
 
@@ -28,13 +29,14 @@ const SURGERY_TITLE: Record<LangCode, string> = {
 }
 
 /** document.title / og:title / twitter:title / (og·twitter·기본) description meta를
-    현재 언어(lang)에 맞게 동적으로 업데이트. title이 없으면(홈) 브랜드명만 표시.
-    description은 translations의 aboutDesc를 재사용해 150자로 잘라서 씀. */
+    현재 언어(lang)에 맞게 동적으로 업데이트. title이 없으면(홈) SEO 전용 문구(seoMeta)를 그대로 씀.
+    그 외 페이지는 브랜드 접미사를 붙이고, description은 translations의 aboutDesc를 150자로 잘라서 씀. */
 function updateMeta(title: string | null, lang: LangCode) {
   updateCanonical(lang)
 
+  const isHome = title === null
   const brand = `${translations[lang].brandName} · AI Medical Concierge`
-  const fullTitle = title ? `${title} · ${brand}` : brand
+  const fullTitle = isHome ? seoMeta[lang].title : `${title} · ${brand}`
   document.title = fullTitle
 
   const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
@@ -42,7 +44,9 @@ function updateMeta(title: string | null, lang: LangCode) {
   const twTitle = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
   if (twTitle) twTitle.content = fullTitle
 
-  const desc = translations[lang].aboutDesc.replace(/\n/g, ' ').slice(0, 150)
+  const desc = isHome
+    ? seoMeta[lang].description
+    : translations[lang].aboutDesc.replace(/\n/g, ' ').slice(0, 150)
   const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]')
   if (metaDesc) metaDesc.content = desc
   const ogDesc = document.querySelector<HTMLMetaElement>('meta[property="og:description"]')

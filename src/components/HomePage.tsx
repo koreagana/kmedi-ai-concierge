@@ -238,6 +238,7 @@ export function HeroSection() {
 
       {/* 하단 CTA 버튼 */}
       <div className="hero-content">
+        <h1 className="hero-seo-headline">{t.heroSeoHeadline}</h1>
         <motion.div
           className="hero-btns"
           initial={{ opacity: 0, y: 16 }}

@@ -166,6 +166,17 @@ body {
   align-items: center;
 }
 
+/* SEO용 실제 텍스트 H1 — 영상 중심 히어로 디자인을 해치지 않도록 작고 절제된 한 줄 */
+.hero-seo-headline {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
 @keyframes heroGlow {
   0%, 100% { opacity: 0.8; }
   50% { opacity: 1; }
