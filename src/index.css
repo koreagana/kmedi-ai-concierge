@@ -728,36 +728,21 @@ body {
 .concern-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
 .concern-sub   { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
 
-/* ══════════════════════════════════════════
-   이미지 placeholder — 실제 사진 넣기 전 자리 표시용
-   ══════════════════════════════════════════ */
-.img-placeholder {
+/* 실제 전후사진 카드 — before/after 합성 이미지가 잘리지 않도록 contain으로 표시 */
+/* 카테고리 상세페이지 "真实案例" 섹션 — 피부미용·성형외과에서만 사용 */
+.real-case-section {
+  padding: 28px 20px 32px;
+  background: var(--bg-surface, #f4f8fd);
+  border-top: 1px solid var(--border-blue);
+}
+.real-case-section .section-title { margin-bottom: 4px; }
+.real-case-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  background: var(--bg-light);
-  border: 2px dashed rgba(0, 119, 182, 0.3);
-  border-radius: 14px;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 10px;
-}
-.img-placeholder-icon { opacity: 0.45; }
-.img-placeholder-label {
-  font-size: 11.5px;
-  font-weight: 700;
-  color: var(--brand);
-  letter-spacing: 0.01em;
-}
-.img-placeholder-hint {
-  font-size: 9.5px;
-  color: var(--text-muted);
+  gap: 12px;
+  margin-top: 18px;
 }
 
-/* 실제 전후사진 카드 — before/after 합성 이미지가 잘리지 않도록 contain으로 표시 */
 .case-photo-card {
   width: 100%;
   border-radius: 14px;
@@ -771,39 +756,6 @@ body {
   max-height: 220px;
   object-fit: contain;
   background: #f4f4f4;
-}
-.case-photo-credit {
-  margin: 0;
-  padding: 6px 10px;
-  font-size: 9px;
-  color: var(--text-muted);
-  text-align: right;
-  background: var(--bg-light);
-}
-
-/* 병원 시설 사진 — 가로 스크롤 갤러리 */
-.hospital-photo-scroll {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  border-radius: 14px;
-}
-.hospital-photo-scroll::-webkit-scrollbar { display: none; }
-.hospital-photo-item {
-  flex-shrink: 0;
-  width: 78%;
-  max-width: 260px;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-}
-.hospital-photo-caption {
-  margin: 8px 2px 0;
-  font-size: 11px;
-  color: var(--text-muted);
-  text-align: center;
 }
 
 /* ══════════════════════════════════════════

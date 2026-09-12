@@ -10,10 +10,29 @@ import PlasticSurgeryKeywords from './PlasticSurgeryKeywords'
 import WomensHealthKeywords from './WomensHealthKeywords'
 import MensHealthKeywords from './MensHealthKeywords'
 import CustomPlanContent from './CustomPlanContent'
+import CasePhoto from './CasePhoto'
 import {
   CategoryGridSection,
   FooterSection,
 } from './HomePage'
+
+/** 피부미용·성형외과 상세페이지 전용 "실제 사례" 섹션. 홈페이지에는 안 넣는다 —
+    첫 화면부터 전후사진이 보이면 "병원 광고"처럼 읽혀서, 사용자가 이미 그 카테고리를
+    선택해서 들어온 상세페이지 쪽으로만 옮겼다. 출처 캡션은 사용자 요청으로 빼고 사진만. */
+function RealCaseSection({ photos }: { photos: { src: string; alt: string }[] }) {
+  const { lang } = useApp()
+  return (
+    <div className="real-case-section">
+      <p className="section-title">{lang === 'en' ? 'Real Cases' : '真实案例'}</p>
+      <div className="section-accent-line" />
+      <div className="real-case-list">
+        {photos.map((p) => (
+          <CasePhoto key={p.src} src={p.src} alt={p.alt} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
@@ -102,9 +121,20 @@ export default function CategoryPage() {
 
       {/* ── Skin aesthetics keyword pills (only for the skin-beauty category) ── */}
       {cat.id === 'skin-beauty' && <SkinAestheticsKeywords />}
+      {cat.id === 'skin-beauty' && (
+        <RealCaseSection photos={[
+          { src: '/case-photos/skin-before-after-1.png', alt: '피부 시술 전후 사례' },
+        ]} />
+      )}
 
       {/* ── Plastic surgery keyword pills (only for the plastic-surgery category) ── */}
       {cat.id === 'plastic-surgery' && <PlasticSurgeryKeywords />}
+      {cat.id === 'plastic-surgery' && (
+        <RealCaseSection photos={[
+          { src: '/case-photos/contour-before-after-1.png', alt: '윤곽 수술 전후 사례 1' },
+          { src: '/case-photos/contour-before-after-2.jpeg', alt: '윤곽 수술 전후 사례 2' },
+        ]} />
+      )}
 
       {/* ── Women's health keyword pills (only for the womens-care category) ── */}
       {cat.id === 'womens-care' && <WomensHealthKeywords />}
