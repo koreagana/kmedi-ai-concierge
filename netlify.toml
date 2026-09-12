@@ -9,6 +9,25 @@
   to = "/reservation-confirm/"
   status = 301
 
+# 성형수가표 페이지가 쿼리 파라미터(?page=surgery)에서 고유 경로(/surgery-price)로
+# 옮겨감에 따라, 검색엔진·외부 링크가 구 URL로 들어와도 서버 단에서 301로 보낸다
+# (클라이언트 사이드 이동만으로는 크롤러가 새 URL을 못 찾음).
+# force=true 필수: /zh, /en에 대응하는 정적 파일(zh.html, en.html)이 실제로 있어서,
+# force 없이는 쿼리스트링 무시하고 그 정적 파일이 먼저 서빙돼 리다이렉트가 무시된다.
+[[redirects]]
+  from = "/zh"
+  to = "/zh/surgery-price"
+  status = 301
+  force = true
+  query = { page = "surgery" }
+
+[[redirects]]
+  from = "/en"
+  to = "/en/surgery-price"
+  status = 301
+  force = true
+  query = { page = "surgery" }
+
 [[headers]]
   for = "/studio.mp4"
   [headers.values]
