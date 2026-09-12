@@ -56,6 +56,34 @@ const fadeUp = {
   transition: { duration: 0.5, ease: 'easeOut' },
 }
 
+/** 실제 이미지 넣기 전 자리만 표시하는 점선 박스. `name`이 나중에 실제 이미지를
+    끼워 넣을 때 찾는 라벨(예: "피부-전후1") — 실제 방문자에게 보여줄 문구가 아니라
+    운영자가 자리를 확인·전달하기 위한 임시 표시. */
+function ImagePlaceholder({ name, hint, aspectRatio = '1 / 1' }: { name: string; hint: string; aspectRatio?: string }) {
+  return (
+    <div className="img-placeholder" style={{ aspectRatio }}>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="img-placeholder-icon">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <circle cx="8.5" cy="8.5" r="1.5" />
+        <path d="M21 15l-5-5L5 21" />
+      </svg>
+      <span className="img-placeholder-label">{name}</span>
+      <span className="img-placeholder-hint">{hint}</span>
+    </div>
+  )
+}
+
+/** 실제 전후사진 1장 + (있으면) 출처 캡션. 사진 자체는 원본 비율 그대로 보이도록
+    object-fit: contain을 쓴다 — before/after 합성 이미지는 잘리면 비교가 깨짐. */
+function CasePhoto({ src, alt, credit }: { src: string; alt: string; credit?: string }) {
+  return (
+    <div className="case-photo-card">
+      <img src={src} alt={alt} className="case-photo-img" />
+      {credit && <p className="case-photo-credit">{credit}</p>}
+    </div>
+  )
+}
+
 /* ═══════════════════════════════════════════════════════════════════
    1. HERO
    ═══════════════════════════════════════════════════════════════════ */
@@ -566,6 +594,30 @@ export function CategoryGridSection() {
 
       <HeroTreatmentSheet info={activeSheet} onClose={() => setActiveSheet(null)} />
 
+      {/* 전후사진 자리 — 카테고리 고르기 직전에 "실제 사례가 있다"는 신호를 주는 자리.
+          피부미용·성형외과 두 카테고리만(카드에서도 강조 표시되는 두 개) 대표로 넣는다 —
+          전 카테고리에 다 넣으면 산만해지므로 최소한으로.
+          성형(윤곽) 쪽은 양윤돌 구강악안면외과에서 실제 케이스 사진 2장을 받아 반영,
+          출처 문구를 사용자가 지정한 그대로 표기(광고법상 시술 병원 명시 요건).
+          피부(여드름) 전후사진은 AI로 생성한 이미지 — 사용자 요청으로 별도 표시 없이 사용.
+          실제 병원 사진이 아니므로 출처(credit) 없이 렌더링. */}
+      <motion.div {...fadeUp} style={{ marginBottom: 28, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <CasePhoto
+          src="/case-photos/skin-before-after-1.png"
+          alt="피부 시술 전후 사례"
+        />
+        <CasePhoto
+          src="/case-photos/contour-before-after-1.png"
+          alt="윤곽 수술 전후 사례 1"
+          credit="图片提供：双·轮·突口腔颌面外科（YangYoonDol Oral & Maxillofacial Surgery）"
+        />
+        <CasePhoto
+          src="/case-photos/contour-before-after-2.jpeg"
+          alt="윤곽 수술 전후 사례 2"
+          credit="图片提供：双·轮·突口腔颌面外科（YangYoonDol Oral & Maxillofacial Surgery）"
+        />
+      </motion.div>
+
       <motion.div {...fadeUp}>
         <p className="section-title">{t.categoryTitle}</p>
         <div className="section-accent-line" />
@@ -749,6 +801,21 @@ export function MedicalNetworkSection() {
             <span>{line}</span>
           </div>
         ))}
+      </motion.div>
+
+      {/* 병원 사진 자리 — 바로 아래 자격증 카드들과 이어지는 "실제 협력병원이 있다"는
+          신뢰 신호. 전후사진이 아니라 시설 사진이라 광고법 부담도 적다.
+          3장을 받아서 가로 스크롤 갤러리로 — 세로로 3장 쌓으면 무거워지므로.
+          실제로 호텔처럼 설계된 프라이빗 병원이라 캡션으로 그 컨셉을 짚어준다. */}
+      <motion.div {...fadeUp} style={{ marginBottom: 20 }}>
+        <div className="hospital-photo-scroll">
+          <img src="/case-photos/hospital-1.jpg" alt="협력병원 시설 1" className="hospital-photo-item" />
+          <img src="/case-photos/hospital-2.jpg" alt="협력병원 시설 2" className="hospital-photo-item" />
+          <img src="/case-photos/hospital-3.jpg" alt="협력병원 시설 3" className="hospital-photo-item" />
+        </div>
+        <p className="hospital-photo-caption">
+          {lang === 'en' ? 'A private hospital designed to feel like a boutique hotel' : '如酒店般舒适的私人医院环境'}
+        </p>
       </motion.div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
