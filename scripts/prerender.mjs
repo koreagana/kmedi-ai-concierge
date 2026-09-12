@@ -11,7 +11,7 @@
  * 클라이언트 사이드 meta 갱신)로 정상 배포되므로 사이트 자체는 영향 없다.
  */
 import { execFileSync, spawn } from 'node:child_process'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -80,10 +80,12 @@ async function main() {
         await page.locator('h1').first().waitFor({ state: 'attached', timeout: 10000 })
 
         const html = `<!doctype html>\n${await page.content()}`
-        const outDir = resolve(distDir, route.replace(/^\//, ''))
-        mkdirSync(outDir, { recursive: true })
-        writeFileSync(resolve(outDir, 'index.html'), html, 'utf-8')
-        console.log(`[prerender] wrote dist${route}/index.html`)
+        // "<route>/index.html"이 아니라 "<route>.html"로 저장 — Netlify가 디렉터리
+        // index를 서빙할 때 자동으로 붙이는 301(/zh → /zh/) 없이, canonical과
+        // 정확히 같은 URL(무슬래시)로 바로 200을 받게 하기 위함.
+        const outFile = resolve(distDir, `${route.replace(/^\//, '')}.html`)
+        writeFileSync(outFile, html, 'utf-8')
+        console.log(`[prerender] wrote dist${route}.html`)
 
         await page.close()
       }
