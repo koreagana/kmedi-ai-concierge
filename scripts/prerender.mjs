@@ -21,6 +21,16 @@ const distDir = resolve(root, 'dist')
 const port = 4174
 const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price']
 
+// 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price는
+// 마운트 시 page==='home'으로 시작했다가 pathname을 보고 'surgery'로 전환된다
+// (AnimatePresence mode="wait"로 홈→성형수가표 전환 애니메이션까지 거침).
+// 그래서 범용 "h1" 셀렉터로만 기다리면 홈의 h1(.hero-seo-headline)이 이미
+// 존재한다는 이유로 전환이 끝나기 전에 캡처해버려 홈 내용이 찍힐 수 있다.
+// 페이지마다 고유한 셀렉터로 "그 페이지가 진짜 마운트됐는지"를 확인한다.
+function waitSelectorFor(route) {
+  return route.endsWith('/surgery-price') ? '.sg-title' : '.hero-seo-headline'
+}
+
 // Netlify 등 CI 빌드 컨테이너가 root로 실행되는 경우 --no-sandbox 없이는
 // chromium이 아예 뜨지 않는 경우가 흔해서 기본으로 넣어둔다(빌드 타임 전용, 사이트 런타임과 무관).
 const LAUNCH_OPTS = { args: ['--no-sandbox', '--disable-setuid-sandbox'] }
@@ -77,7 +87,7 @@ async function main() {
       for (const route of routes) {
         const page = await browser.newPage()
         await page.goto(`http://localhost:${port}${route}`, { waitUntil: 'networkidle' })
-        await page.locator('h1').first().waitFor({ state: 'attached', timeout: 10000 })
+        await page.locator(waitSelectorFor(route)).first().waitFor({ state: 'attached', timeout: 10000 })
 
         const html = `<!doctype html>\n${await page.content()}`
         // "<route>/index.html"이 아니라 "<route>.html"로 저장 — Netlify가 디렉터리
