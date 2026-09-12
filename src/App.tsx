@@ -9,8 +9,8 @@ import FloatingChatButton from './components/FloatingChatButton'
 import { AnimatePresence, motion } from 'framer-motion'
 import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
-import { seoMeta } from './data/seoMeta'
-import { updateCanonical } from './seo'
+import { seoMeta, surgeryMeta } from './data/seoMeta'
+import { updatePageSeo } from './seo'
 import { useEffect } from 'react'
 
 const PACKAGE_TITLE: Record<LangCode, string> = {
@@ -23,36 +23,34 @@ const QUOTE_TITLE: Record<LangCode, string> = {
   en: 'Popular Treatment Price Estimate',
 }
 
-const SURGERY_TITLE: Record<LangCode, string> = {
-  zh: '韩国整形手术价格',
-  en: 'Surgery Price List',
+/** document.title / og:title / twitter:title / description meta 및 canonical·hreflang을
+    한 번에 갱신. zhPath/enPath는 이 페이지의 언어별 실제 경로 — 페이지마다 canonical이
+    달라지므로(홈은 /zh·/en, 성형수가표는 /zh/surgery-price·/en/surgery-price) 호출부에서 넘긴다. */
+function updateMeta({
+  lang, zhPath, enPath, title, description,
+}: { lang: LangCode; zhPath: string; enPath: string; title: string; description: string }) {
+  updatePageSeo({ lang, zhPath, enPath })
+
+  document.title = title
+  const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
+  if (ogTitle) ogTitle.content = title
+  const twTitle = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
+  if (twTitle) twTitle.content = title
+
+  const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]')
+  if (metaDesc) metaDesc.content = description
+  const ogDesc = document.querySelector<HTMLMetaElement>('meta[property="og:description"]')
+  if (ogDesc) ogDesc.content = description
+  const twDesc = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
+  if (twDesc) twDesc.content = description
 }
 
-/** document.title / og:title / twitter:title / (og·twitter·기본) description meta를
-    현재 언어(lang)에 맞게 동적으로 업데이트. title이 없으면(홈) SEO 전용 문구(seoMeta)를 그대로 씀.
-    그 외 페이지는 브랜드 접미사를 붙이고, description은 translations의 aboutDesc를 150자로 잘라서 씀. */
-function updateMeta(title: string | null, lang: LangCode) {
-  updateCanonical(lang)
-
-  const isHome = title === null
+/** 고유 URL이 없는 페이지(package/quote/category)용 — canonical은 언어 루트를 가리키고,
+    title은 브랜드 접미사를 붙이고 description은 aboutDesc를 150자로 잘라 씀. */
+function updateMetaGeneric(title: string, lang: LangCode) {
   const brand = `${translations[lang].brandName} · AI Medical Concierge`
-  const fullTitle = isHome ? seoMeta[lang].title : `${title} · ${brand}`
-  document.title = fullTitle
-
-  const ogTitle = document.querySelector<HTMLMetaElement>('meta[property="og:title"]')
-  if (ogTitle) ogTitle.content = fullTitle
-  const twTitle = document.querySelector<HTMLMetaElement>('meta[name="twitter:title"]')
-  if (twTitle) twTitle.content = fullTitle
-
-  const desc = isHome
-    ? seoMeta[lang].description
-    : translations[lang].aboutDesc.replace(/\n/g, ' ').slice(0, 150)
-  const metaDesc = document.querySelector<HTMLMetaElement>('meta[name="description"]')
-  if (metaDesc) metaDesc.content = desc
-  const ogDesc = document.querySelector<HTMLMetaElement>('meta[property="og:description"]')
-  if (ogDesc) ogDesc.content = desc
-  const twDesc = document.querySelector<HTMLMetaElement>('meta[name="twitter:description"]')
-  if (twDesc) twDesc.content = desc
+  const description = translations[lang].aboutDesc.replace(/\n/g, ' ').slice(0, 150)
+  updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: `${title} · ${brand}`, description })
 }
 
 function PageRouter() {
@@ -61,26 +59,29 @@ function PageRouter() {
   // 페이지/카테고리/언어 변경 시 title·description meta 업데이트
   useEffect(() => {
     if (page === 'home') {
-      updateMeta(null, lang)
-      return
-    }
-    if (page === 'package') {
-      updateMeta(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'], lang)
-      return
-    }
-    if (page === 'quote') {
-      updateMeta(QUOTE_TITLE[lang] ?? QUOTE_TITLE['zh'], lang)
+      updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: seoMeta[lang].title, description: seoMeta[lang].description })
       return
     }
     if (page === 'surgery') {
-      updateMeta(SURGERY_TITLE[lang] ?? SURGERY_TITLE['zh'], lang)
+      updateMeta({
+        lang, zhPath: '/zh/surgery-price', enPath: '/en/surgery-price',
+        title: surgeryMeta[lang].title, description: surgeryMeta[lang].description,
+      })
+      return
+    }
+    if (page === 'package') {
+      updateMetaGeneric(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'], lang)
+      return
+    }
+    if (page === 'quote') {
+      updateMetaGeneric(QUOTE_TITLE[lang] ?? QUOTE_TITLE['zh'], lang)
       return
     }
     if (page === 'category' && categoryId) {
       const cat = categories.find((c) => c.id === categoryId)
       if (cat) {
         const name = (cat as unknown as Record<string, string>)[lang] ?? cat.zh
-        updateMeta(name, lang)
+        updateMetaGeneric(name, lang)
       }
     }
   }, [page, lang, categoryId])

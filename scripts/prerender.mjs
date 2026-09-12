@@ -11,7 +11,7 @@
  * 클라이언트 사이드 meta 갱신)로 정상 배포되므로 사이트 자체는 영향 없다.
  */
 import { execFileSync, spawn } from 'node:child_process'
-import { writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -19,7 +19,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
 const distDir = resolve(root, 'dist')
 const port = 4174
-const routes = ['/zh', '/en']
+const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price']
 
 // Netlify 등 CI 빌드 컨테이너가 root로 실행되는 경우 --no-sandbox 없이는
 // chromium이 아예 뜨지 않는 경우가 흔해서 기본으로 넣어둔다(빌드 타임 전용, 사이트 런타임과 무관).
@@ -84,6 +84,7 @@ async function main() {
         // index를 서빙할 때 자동으로 붙이는 301(/zh → /zh/) 없이, canonical과
         // 정확히 같은 URL(무슬래시)로 바로 200을 받게 하기 위함.
         const outFile = resolve(distDir, `${route.replace(/^\//, '')}.html`)
+        mkdirSync(dirname(outFile), { recursive: true })
         writeFileSync(outFile, html, 'utf-8')
         console.log(`[prerender] wrote dist${route}.html`)
 

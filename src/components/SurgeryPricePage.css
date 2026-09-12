@@ -84,6 +84,14 @@
   border-radius: 16px;
   overflow: hidden;
 }
+/* 그룹별 SEO 헤딩 — 시각적으로는 기존 리스트 상단 여백 정도의 존재감만 갖게 절제 */
+.sg-group-heading {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 12px 15px 0;
+  margin: 0;
+}
 .sg-row {
   display: flex;
   align-items: flex-start;

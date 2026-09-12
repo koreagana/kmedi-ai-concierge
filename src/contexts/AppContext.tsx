@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import type { LangCode } from '../data/translations'
 import type { CategoryId } from '../data/categories'
 
@@ -40,6 +40,7 @@ const AppContext = createContext<AppState>({} as AppState)
 
 export function AppProvider({ children, initialLang = 'zh' }: { children: ReactNode; initialLang?: LangCode }) {
   const navigate = useNavigate()
+  const location = useLocation()
   const [searchParams] = useSearchParams()
 
   const [lang, setLang] = useState<LangCode>(initialLang)
@@ -56,13 +57,17 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     const concern = searchParams.get('concern')
     const pageParam = searchParams.get('page')
 
-    if (cat) {
+    // /zh/surgery-price, /en/surgery-price — 고유 경로로 직접 진입한 경우
+    if (location.pathname.endsWith('/surgery-price')) {
+      setPage('surgery')
+    } else if (cat) {
       setCategoryId(cat)
       setConcernId(concern)
       setPage('category')
     } else if (pageParam === 'package') {
       setPage('package')
     } else if (pageParam === 'surgery') {
+      // 구 방식(?page=surgery) 공유 링크 하위호환
       setPage('surgery')
     } else if (pageParam === 'quote') {
       setPage('quote')
@@ -72,19 +77,21 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // surgery-price는 고유 경로를 쓰므로, 거기서 다른 페이지로 옮길 때 경로도
+  // 항상 /zh 또는 /en으로 되돌려야 URL과 실제 내용이 어긋나지 않는다.
   const goToCategory = (id: CategoryId, cId?: string | null) => {
     setCategoryId(id)
     setConcernId(cId ?? null)
     setPage('category')
     const params = new URLSearchParams({ cat: id })
     if (cId) params.set('concern', cId)
-    navigate({ search: '?' + params.toString() })
+    navigate(`/${lang}?${params.toString()}`)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const goToPackage = () => {
     setPage('package')
-    navigate({ search: '?page=package' })
+    navigate(`/${lang}?page=package`)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -95,13 +102,13 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     const params = new URLSearchParams({ page: 'quote' })
     if (categoryId) params.set('qcat', categoryId)
     if (procedureId) params.set('qproc', procedureId)
-    navigate({ search: '?' + params.toString() })
+    navigate(`/${lang}?${params.toString()}`)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const goToSurgery = () => {
     setPage('surgery')
-    navigate({ search: '?page=surgery' })
+    navigate(`/${lang}/surgery-price`)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -109,7 +116,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     setPage('home')
     setCategoryId(null)
     setConcernId(null)
-    navigate({ search: '' })
+    navigate(`/${lang}`)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 

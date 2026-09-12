@@ -43,8 +43,8 @@ export const SURGERY_SOURCE = {
   hospitalZh: '元细胞整形外科',
   basisKo: 'VAT 포함 · 해외 환자 적용가 · 단위 만원',
   basisZh: '含增值税 · 外国患者适用价 · 单位：万韩元',
-  asOfKo: '2026.05 기준',
-  asOfZh: '2026年5月 基准',
+  asOfKo: '2026년 최신 기준가',
+  asOfZh: '2026年最新参考价格',
 }
 
 export const SURGERY_GROUPS: SurgeryGroup[] = [
