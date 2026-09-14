@@ -22,9 +22,6 @@ export type PrepCategoryId =
   | 'plastic_before'
   | 'plastic_after'
   | 'post_op_care'
-  | 'womens_health'
-  | 'mens_health'
-  | 'ortho_pain'
 
 export interface PrepCategory {
   id: PrepCategoryId
@@ -42,9 +39,6 @@ export const PREP_CATEGORIES: PrepCategory[] = [
   { id: 'plastic_before', titleKo: '성형외과 상담·수술 전 준비', titleZh: '整形外科咨询·术前准备', navLabel: '성형 전 준비' },
   { id: 'plastic_after', titleKo: '성형수술 후 주의사항', titleZh: '整形术后注意事项', navLabel: '성형 후 주의사항' },
   { id: 'post_op_care', titleKo: '수술후관리', titleZh: '术后管理', navLabel: '수술후관리' },
-  { id: 'womens_health', titleKo: '여성의학', titleZh: '女性健康', navLabel: '여성' },
-  { id: 'mens_health', titleKo: '남성의학', titleZh: '男性健康', navLabel: '남성' },
-  { id: 'ortho_pain', titleKo: '정형외과·통증·재생상담', titleZh: '骨科·疼痛·再生咨询', navLabel: '정형·통증·재생' },
 ]
 
 export interface PrepDocument {
@@ -553,9 +547,6 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     link: '/prep/post-op-day30-survey-guide',
     status: 'available',
   },
-
-  // ── 8. 여성의학 / 9. 남성의학 / 10. 정형외과·통증·재생상담 ──────
-  // 아직 등록된 문서 없음 — 관리자페이지에는 "준비 예정" 섹션으로 표시됨
 ]
 
 /* ────────────────────────────────────────────────────────────────
