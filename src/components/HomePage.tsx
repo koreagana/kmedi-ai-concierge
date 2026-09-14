@@ -390,6 +390,13 @@ function ConciergeSection() {
         </motion.div>
       </div>
 
+      <p style={{ fontSize: 11, color: 'var(--text-muted)', textAlign: 'center', marginTop: 14, lineHeight: 1.7 }}>
+        {t.conciergePrivacyNotice}{' '}
+        <a href={isZh ? '/zh/privacy' : '/en/privacy'} style={{ color: 'var(--brand-blue, #1f4e79)', textDecoration: 'underline' }}>
+          {t.conciergePrivacyLink}
+        </a>
+      </p>
+
       {/* 개인위챗 QR 모달 */}
       <AnimatePresence>
         {showWxModal && (
@@ -997,8 +1004,18 @@ export function FooterSection() {
         )}
       </AnimatePresence>
 
+      {/* Privacy policy link */}
+      <p style={{ textAlign: 'center', marginTop: 18 }}>
+        <a
+          href={lang === 'zh' ? '/zh/privacy' : '/en/privacy'}
+          style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', textDecoration: 'underline' }}
+        >
+          {t.footerPrivacyLink}
+        </a>
+      </p>
+
       {/* Copyright */}
-      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.75)', textAlign: 'center', marginTop: 18, lineHeight: 1.9 }}>
+      <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.75)', textAlign: 'center', marginTop: 10, lineHeight: 1.9 }}>
         © 2026 K-MediSpring. All rights reserved.<br />
         상호: 한강애봄 | 대표: 이가나 | 사업자등록번호: 829-21-01856<br />
         주소: 서울특별시 성북구 삼양로 29, 3층 11호

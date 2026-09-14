@@ -15,10 +15,11 @@ export default function NavBar() {
   const t = translations[lang]
   const navigate = useNavigate()
   const location = useLocation()
-  // /terms 등은 /zh|en 중첩 라우터 밖의 독립 라우트라, 평소의
+  // /terms, /privacy 등은 /zh|en 중첩 라우터 밖의 독립 라우트라, 평소의
   // goHome()(현재 라우트의 검색 파라미터만 지우는 방식)으론 홈으로 못 돌아감.
   const isTermsPage = location.pathname.startsWith('/terms')
-  const isStandalonePage = isTermsPage
+  const isPrivacyPage = location.pathname.endsWith('/privacy')
+  const isStandalonePage = isTermsPage || isPrivacyPage
   const handleBrandClick = () => {
     if (isStandalonePage) navigate(langPaths[lang])
     else goHome()

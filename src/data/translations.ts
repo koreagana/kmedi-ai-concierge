@@ -29,6 +29,8 @@ interface Translations {
   concierge2Title: string
   concierge2Specialty: string
   concierge2Btn: string
+  conciergePrivacyNotice: string
+  conciergePrivacyLink: string
   // concern section
   concernTitle: string
   concern1: string; concern1Sub: string
@@ -89,6 +91,7 @@ interface Translations {
   // footer
   companyIntro: string
   termsLink: string
+  footerPrivacyLink: string
   // nav
   navConsult: string
   langZh: string
@@ -135,6 +138,8 @@ export const translations: Record<LangCode, Translations> = {
     concierge2Title: 'Health & Medical Concierge',
     concierge2Specialty: '大健康 · 男性健康 · 再生医学 · 医疗旅游',
     concierge2Btn: '和金贤宇咨询',
+    conciergePrivacyNotice: '通过微信咨询时，我们仅收集医疗咨询所需的必要信息。涉及健康信息、照片或检查资料时，将另行取得相关同意。',
+    conciergePrivacyLink: '查看个人信息处理方针 ›',
     concernTitle: '请选择您最关心的方向',
     concern1: '想看起来更年轻、更有精神', concern1Sub: '抗衰外观 · 皮肤提升 · 年轻感管理',
     concern2: '想从身体内部延缓衰老速度', concern2Sub: '功能医学 · 代谢管理 · 睡眠与激素 · 生活方式',
@@ -187,6 +192,7 @@ export const translations: Record<LangCode, Translations> = {
     aboutDesc: '汉江春天（ai-kmedi.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
     companyIntro: '汉江春天是韩国外国患者医疗观光服务专业提供商。',
     termsLink: '使用条款',
+    footerPrivacyLink: '个人信息处理方针',
     navConsult: '立即咨询',
     langZh: '中文',
     langEn: 'English',
@@ -227,6 +233,8 @@ export const translations: Record<LangCode, Translations> = {
     concierge2Title: 'Health & Medical Concierge',
     concierge2Specialty: "Anti-aging & Health Management · Men's Wellness · Regenerative Medicine · Medical Travel",
     concierge2Btn: 'Connect with Kim Hyunwoo',
+    conciergePrivacyNotice: 'When you consult with us on WeChat, we collect only the information necessary for medical consultation. If health information, photos, or examination records are involved, we will separately obtain your consent.',
+    conciergePrivacyLink: 'View Privacy Policy ›',
     concernTitle: 'What Brings You Here Today?',
     concern1: 'I want to look younger and more refreshed', concern1Sub: 'Anti-Aging Look · Skin Lifting · Youthful Impression',
     concern2: 'I want to slow aging from the inside', concern2Sub: 'Functional Medicine · Metabolism · Sleep & Hormones · Lifestyle',
@@ -279,6 +287,7 @@ export const translations: Record<LangCode, Translations> = {
     aboutDesc: 'K-MediSpring (ai-kmedi.com) is a concierge medical coordination service designed for international clients seeking quality healthcare in Korea.\nWe are not a hospital. We are not a doctor.\nWe are your dedicated liaison — helping you navigate the Korean medical system with clarity, translating your needs into the right connections, and supporting you at every step of your journey.',
     companyIntro: 'K-MediSpring is a professional medical tourism concierge company for international patients in Korea.',
     termsLink: 'Terms of Use',
+    footerPrivacyLink: 'Privacy Policy',
     navConsult: 'Talk to us',
     langZh: '中文',
     langEn: 'English',
