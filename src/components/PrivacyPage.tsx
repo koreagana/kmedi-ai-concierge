@@ -7,6 +7,8 @@ interface PrivacySection {
   heading: string
   paragraphs: string[]
   contactList?: { label: string; value: string }[]
+  transferItems?: { title: string; lines: string[] }[]
+  closingParagraphs?: string[]
 }
 
 interface PrivacyContent {
@@ -63,7 +65,32 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '5. 微信等外部平台咨询',
+        heading: '5. 个人信息国外转移',
+        paragraphs: [
+          '本机构为了提供更好的患者协调服务，将患者信息转移至以下国外服务器存储和处理：',
+        ],
+        transferItems: [
+          {
+            title: '(1) 微信（WeChat）— 中国',
+            lines: [
+              '用途：实时咨询消息、患者相关交互记录自动保存',
+              '保存期限：按照微信服务条款',
+            ],
+          },
+          {
+            title: '(2) 概念（Notion）— 美国',
+            lines: [
+              '用途：患者医疗信息、咨询记录的整理与管理',
+              '保存期限：服务结束后1年',
+            ],
+          },
+        ],
+        closingParagraphs: [
+          '患者信息在上述国外服务器上的处理将接受该服务提供商隐私政策的约束。如您对个人信息国外转移有疑问，可通过本机构联系方式咨询。',
+        ],
+      },
+      {
+        heading: '6. 微信等外部平台咨询',
         paragraphs: [
           '顾客可通过本机构网站所连接的微信（WeChat）等外部服务进行咨询。',
           '仅进行一般咨询时，无需预先提供详细的医疗资料。',
@@ -72,14 +99,14 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '6. 个人信息的删除及销毁',
+        heading: '7. 个人信息的删除及销毁',
         paragraphs: [
           '达到处理目的或保存期限届满后，本机构将及时销毁不再需要的个人信息。',
           '电子文件将以无法恢复的方式删除，纸质文件将通过碎纸或其他安全方式销毁。',
         ],
       },
       {
-        heading: '7. 用户的权利',
+        heading: '8. 用户的权利',
         paragraphs: [
           '用户可以依法请求查询、更正、删除个人信息，要求停止处理或撤回同意。',
           '希望行使上述权利时，可通过电子邮件或电话联系本机构。',
@@ -87,19 +114,19 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '8. 个人信息安全保护措施',
+        heading: '9. 个人信息安全保护措施',
         paragraphs: [
           '本机构采取必要的管理和技术措施保护个人信息，包括限制个人信息访问权限、仅允许业务所需人员访问、管理电子资料及账号密码、定期整理不再需要的资料，以及发生异常情况时及时采取应对措施。',
         ],
       },
       {
-        heading: '9. 14岁以下用户',
+        heading: '10. 14岁以下用户',
         paragraphs: [
           '如需处理14岁以下儿童的个人信息，本机构将依法确认其法定代理人，并在需要时取得法定代理人的同意。',
         ],
       },
       {
-        heading: '10. 个人信息保护负责人及联系方式',
+        heading: '11. 个人信息保护负责人及联系方式',
         paragraphs: [
           '有关个人信息处理、查询、更正、删除、投诉或其他个人信息保护事项，可通过上述联系方式与我们联系。',
         ],
@@ -112,7 +139,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '11. 个人信息处理方针的变更',
+        heading: '12. 个人信息处理方针的变更',
         paragraphs: [
           '如因法律法规、服务内容或个人信息处理方式发生变化而修改本方针，本机构将在网站上公布变更内容及生效日期。',
         ],
@@ -164,7 +191,32 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '5. Consultations Through WeChat and Other External Platforms',
+        heading: '5. International Transfer of Personal Information',
+        paragraphs: [
+          'To provide enhanced patient coordination services, K-MediSpring transfers patient information to the following international servers for storage and processing:',
+        ],
+        transferItems: [
+          {
+            title: '(1) WeChat — China',
+            lines: [
+              'Purpose: Real-time consultation messages and automatic preservation of patient interaction records',
+              "Retention Period: In accordance with WeChat's service terms",
+            ],
+          },
+          {
+            title: '(2) Notion — United States',
+            lines: [
+              'Purpose: Organization and management of patient medical information and consultation records',
+              'Retention Period: One year following completion of the relevant service',
+            ],
+          },
+        ],
+        closingParagraphs: [
+          'Patient information processed on these international servers will be subject to the privacy policies of the respective service providers. If you have questions regarding international transfer of your personal information, please contact K-MediSpring using the contact information provided below.',
+        ],
+      },
+      {
+        heading: '6. Consultations Through WeChat and Other External Platforms',
         paragraphs: [
           'Users may contact us through external services such as WeChat linked from our website.',
           'Detailed medical information is not required for a general inquiry.',
@@ -173,14 +225,14 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '6. Deletion and Destruction of Personal Information',
+        heading: '7. Deletion and Destruction of Personal Information',
         paragraphs: [
           'Personal information that is no longer required after the processing purpose has been fulfilled or the retention period has expired will be securely deleted or destroyed without undue delay.',
           'Electronic records are deleted using methods designed to prevent recovery, and paper documents are destroyed by shredding or another secure method.',
         ],
       },
       {
-        heading: '7. Your Rights',
+        heading: '8. Your Rights',
         paragraphs: [
           'You may request access to, correction of, deletion of, or restriction of processing of your personal information, and may withdraw consent where applicable.',
           'Requests may be submitted by email or telephone using the contact information below.',
@@ -188,19 +240,19 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '8. Security Measures',
+        heading: '9. Security Measures',
         paragraphs: [
           'We implement reasonable administrative and technical safeguards to protect personal information, including limiting access to personnel who require it for their work, controlling access to electronic files and accounts, managing passwords and access rights, regularly removing unnecessary information, and maintaining procedures for responding to privacy incidents.',
         ],
       },
       {
-        heading: '9. Children Under the Age of 14',
+        heading: '10. Children Under the Age of 14',
         paragraphs: [
           "Where personal information of a child under the age of 14 must be processed, we will verify the child's legal representative and obtain the representative's consent where required by applicable law.",
         ],
       },
       {
-        heading: '10. Privacy Contact',
+        heading: '11. Privacy Contact',
         paragraphs: [
           'For questions, requests, complaints, or other matters concerning your personal information, please contact us using the information above.',
         ],
@@ -213,7 +265,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '11. Changes to This Privacy Policy',
+        heading: '12. Changes to This Privacy Policy',
         paragraphs: [
           'If this Privacy Policy is revised due to changes in applicable law, our services, or our personal information processing practices, the revised policy and its effective date will be posted on our website.',
         ],
@@ -248,6 +300,21 @@ export default function PrivacyPage({ lang }: { lang: LangCode }) {
                 </p>
                 {s.paragraphs.map((p, i) => (
                   <p key={i} style={{ marginBottom: 8 }}>{p}</p>
+                ))}
+                {s.transferItems && (
+                  <div style={{ margin: '8px 0' }}>
+                    {s.transferItems.map((item) => (
+                      <div key={item.title} style={{ marginBottom: 10 }}>
+                        <p style={{ fontWeight: 600, marginBottom: 4 }}>{item.title}</p>
+                        {item.lines.map((line, i) => (
+                          <p key={i} style={{ marginBottom: 2 }}>{line}</p>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {s.closingParagraphs?.map((p, i) => (
+                  <p key={`closing-${i}`} style={{ marginBottom: 8 }}>{p}</p>
                 ))}
                 {s.contactList && (
                   <ul style={{ listStyle: 'none', padding: 0, margin: '8px 0' }}>
