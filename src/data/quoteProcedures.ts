@@ -74,7 +74,7 @@ export const QUOTE_CATEGORIES: QuoteCategory[] = [
       ] },
       { id: 'eye-thermage-flx', nameKo: '아이써마지 FLX', nameZh: '眼部热玛吉FLX', nameEn: 'Thermage FLX (Eye Area)', options: [
         { unit: '225发', unitEn: '225 shots', economy: null, standard: { low: 1190000, high: 1190000 }, premium: { low: 1409000, high: 1409000 } },
-        { unit: '450发', unitEn: '450 shots', economy: null, standard: { low: 1790000, high: 1790000 }, premium: { low: 2236000, high: 2236000 } },
+        { unit: '450发', unitEn: '450 shots', economy: { low: 2500000, high: 2500000 }, standard: { low: 1790000, high: 1790000 }, premium: { low: 2236000, high: 2236000 } },
       ] },
       { id: 'shurink-universe', nameKo: '슈링크 유니버스', nameZh: 'Shurink 聚焦超声', nameEn: 'Shurink Universe', options: [
         { unit: '100发', unitEn: '100 shots', economy: null, standard: null, premium: { low: 55000, high: 55000 } },
