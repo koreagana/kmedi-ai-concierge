@@ -65,28 +65,38 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '5. 个人信息国外转移',
+        heading: '5. 个人信息跨境传输',
         paragraphs: [
-          '本机构为了提供更好的患者协调服务，将患者信息转移至以下国外服务器存储和处理：',
+          '为提供医疗咨询、患者协调及相关服务，本机构可能通过境外服务提供商处理或存储部分个人信息。',
         ],
         transferItems: [
           {
-            title: '(1) 微信（WeChat）— 中国',
+            title: '(1) WeChat（微信）',
             lines: [
-              '用途：实时咨询消息、患者相关交互记录自动保存',
-              '保存期限：按照微信服务条款',
+              '接收方： WeChat / Tencent相关服务提供商',
+              '可能涉及的国家或地区： 根据WeChat服务的实际数据处理架构而定',
+              '传输的信息： 姓名或称呼、联系方式、咨询内容，以及用户主动提供的照片、检查资料或其他相关信息',
+              '传输时间及方式： 用户通过WeChat进行咨询或发送资料时，通过网络实时传输',
+              '使用目的： 医疗咨询、沟通、预约及患者协调',
+              '保存期限： 依据本机构实际业务需要及相关服务提供商的隐私政策处理',
+              '拒绝方式及影响： 用户可选择不通过WeChat提供个人信息；但部分在线咨询、资料传递或预约协调服务可能受到限制',
             ],
           },
           {
-            title: '(2) 概念（Notion）— 美国',
+            title: '(2) Notion',
             lines: [
-              '用途：患者医疗信息、咨询记录的整理与管理',
-              '保存期限：服务结束后1年',
+              '接收方： Notion Labs, Inc.',
+              '传输国家： 美国',
+              '传输的信息： 患者姓名、联系方式、咨询及预约信息，以及业务管理所需的其他必要信息',
+              '传输时间及方式： 本机构将患者协调信息录入Notion时，通过网络传输并存储',
+              '使用目的： 患者咨询、预约及业务记录管理',
+              '保存期限： 原则上至相关服务结束后1年',
+              '拒绝方式及影响： 用户可拒绝相关境外处理，但可能导致部分患者协调或记录管理服务受到限制',
             ],
           },
         ],
         closingParagraphs: [
-          '患者信息在上述国外服务器上的处理将接受该服务提供商隐私政策的约束。如您对个人信息国外转移有疑问，可通过本机构联系方式咨询。',
+          '对于涉及健康信息、医疗照片、检查资料等敏感信息的跨境处理，本机构将在必要时另行告知并取得相应同意。',
         ],
       },
       {
@@ -191,28 +201,38 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
       {
-        heading: '5. International Transfer of Personal Information',
+        heading: '5. Cross-Border Transfer of Personal Information',
         paragraphs: [
-          'To provide enhanced patient coordination services, K-MediSpring transfers patient information to the following international servers for storage and processing:',
+          'To provide medical consultation, patient coordination, and related services, K-MediSpring may process or store certain personal information through overseas service providers.',
         ],
         transferItems: [
           {
-            title: '(1) WeChat — China',
+            title: '(1) WeChat',
             lines: [
-              'Purpose: Real-time consultation messages and automatic preservation of patient interaction records',
-              "Retention Period: In accordance with WeChat's service terms",
+              'Recipient: WeChat / related Tencent service providers',
+              "Country or region involved: Determined by WeChat's actual data processing architecture",
+              'Information transferred: Name or preferred name, contact information, consultation content, and any photographs, examination materials, or other information voluntarily provided by the user',
+              'Timing and method of transfer: Transmitted in real time over the network when the user consults or sends materials via WeChat',
+              'Purpose of use: Medical consultation, communication, appointment coordination, and patient coordination',
+              "Retention period: Processed according to K-MediSpring's actual business needs and the relevant service provider's privacy policy",
+              'Method and effect of refusal: Users may choose not to provide personal information through WeChat; however, this may limit certain online consultation, material transfer, or appointment coordination services',
             ],
           },
           {
-            title: '(2) Notion — United States',
+            title: '(2) Notion',
             lines: [
-              'Purpose: Organization and management of patient medical information and consultation records',
-              'Retention Period: One year following completion of the relevant service',
+              'Recipient: Notion Labs, Inc.',
+              'Country of transfer: United States',
+              'Information transferred: Patient name, contact information, consultation and appointment information, and other information necessary for business management',
+              'Timing and method of transfer: Transmitted over the network and stored when K-MediSpring enters patient coordination information into Notion',
+              'Purpose of use: Patient consultation, appointment, and business record management',
+              'Retention period: In principle, one year after completion of the relevant service',
+              'Method and effect of refusal: Users may refuse this overseas processing, but doing so may limit certain patient coordination or record management services',
             ],
           },
         ],
         closingParagraphs: [
-          'Patient information processed on these international servers will be subject to the privacy policies of the respective service providers. If you have questions regarding international transfer of your personal information, please contact K-MediSpring using the contact information provided below.',
+          'For cross-border processing involving health information, medical photographs, examination records, or other sensitive information, we will provide separate notice and obtain consent where required.',
         ],
       },
       {
