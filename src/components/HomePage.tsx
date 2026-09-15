@@ -70,10 +70,6 @@ export function HeroSection() {
   const [videoFading, setVideoFading] = useState(false)
   const activeSrcRef = useRef(videoSrcMap[lang] ?? '/studio.mp4')
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   // 언어 변경 시 영상 페이드 전환 (imperative DOM 조작)
   useEffect(() => {
     const newSrc = videoSrcMap[lang] ?? '/studio.mp4'
@@ -246,19 +242,17 @@ export function HeroSection() {
           transition={{ delay: 0.5 }}
           style={{ width: '100%', maxWidth: 320 }}
         >
-          <button className="btn-primary" onClick={() => scrollTo('categories')}>
-            {t.heroCtaLabel}
-          </button>
-
           {/* 예상 견적 진입 버튼 — zh·en 양쪽 가격표/카피가 준비되어 두 언어 모두 노출 */}
-          <button className="btn-quote" onClick={() => goToQuote()}>
-            <span className="btn-quote-title">{t.quoteBtnTitle}</span>
+          <button className="btn-primary" onClick={() => goToQuote()}>
+            {t.quoteBtnTitle}
           </button>
 
           {/* 성형수술 가격표 — 경증 미용 견적과 기준(VAT·단위·병원)이 달라 별도 페이지 */}
-          <button className="btn-quote btn-quote--surgery" onClick={() => goToSurgery()}>
+          <button className="btn-quote" onClick={() => goToSurgery()}>
             <span className="btn-quote-title">{t.surgeryBtnTitle}</span>
           </button>
+
+          {/* 투명 버튼 자리 — 스타일은 유지하되 목적지는 아직 미정, 추후 결정 후 연결 예정 */}
         </motion.div>
       </div>
     </section>

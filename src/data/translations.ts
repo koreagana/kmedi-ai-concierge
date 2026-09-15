@@ -128,7 +128,7 @@ export const translations: Record<LangCode, Translations> = {
     heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸针', '钛提升', '黄金微针', '乔雅露', '索夫波', 'InMode FX', 'XERF 泽弗'],
     heroCtaLabel: '韩国医疗项目',
     quoteBtnTitle: '热门轻医美项目费用预估',
-    surgeryBtnTitle: '韩国整形手术价格表',
+    surgeryBtnTitle: '整形手术费用参考',
     conciergeTitle: '请选择您的 AI 医疗顾问',
     concierge1Name: '李静',
     concierge1Title: 'Beauty & Women Care Concierge',
