@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Check } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 import { type LocalizedText } from '../data/bigHealthKeywords'
 import {
@@ -8,7 +9,7 @@ import {
   JOURNEY_ACTS,
   JOURNEY_TRUST,
 } from '../data/customPlanContent'
-import type { LangCode } from '../data/translations'
+import { translations, type LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
@@ -20,6 +21,7 @@ const BEAM_START = 120
 
 export default function CustomPlanContent() {
   const { lang } = useApp()
+  const t = translations[lang]
   const lineRef = useRef<HTMLDivElement>(null)
 
   /* 빛줄기가 각 점을 지나는 순간에 맞춰 점이 반짝이도록 지연시간을 계산한다.
@@ -97,6 +99,32 @@ export default function CustomPlanContent() {
             <p key={i}>✓ {pick(line, lang)}</p>
           ))}
         </div>
+      </div>
+
+      {/* ── 병원 추천 전 확인 사항 (홈에서 이전됨) ── */}
+      <div className="info-box" style={{ margin: '20px 16px 28px' }}>
+        <p className="info-box-title">{t.heroPrefTitle}</p>
+
+        <p className="info-tag-row">
+          {t.heroPrefChips.join('  ·  ')}
+        </p>
+        <p className="info-tag-row info-tag-row--region">
+          {t.heroRegionChips.join('  ·  ')}
+        </p>
+
+        <p className="info-note">{t.heroPrefNote}</p>
+
+        <div className="info-divider" />
+
+        <p className="info-trust-title">{t.heroTrustTitle}</p>
+        {t.heroTrustLines.split('\n').map((line, i) => (
+          <div key={i} className="info-trust-item">
+            <span className="info-trust-icon">
+              <Check size={10} strokeWidth={3} color="#ffffff" />
+            </span>
+            <span>{line}</span>
+          </div>
+        ))}
       </div>
     </div>
   )

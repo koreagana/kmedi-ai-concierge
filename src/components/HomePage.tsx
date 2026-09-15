@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
@@ -733,31 +733,6 @@ export function MedicalNetworkSection() {
 
   return (
     <section id="network" className="section-white" style={{ paddingTop: 24 }}>
-      <motion.div {...fadeUp} className="info-box" style={{ marginBottom: 36 }}>
-        <p className="info-box-title">{t.heroPrefTitle}</p>
-
-        <p className="info-tag-row">
-          {t.heroPrefChips.join('  ·  ')}
-        </p>
-        <p className="info-tag-row info-tag-row--region">
-          {t.heroRegionChips.join('  ·  ')}
-        </p>
-
-        <p className="info-note">{t.heroPrefNote}</p>
-
-        <div className="info-divider" />
-
-        <p className="info-trust-title">{t.heroTrustTitle}</p>
-        {t.heroTrustLines.split('\n').map((line, i) => (
-          <div key={i} className="info-trust-item">
-            <span className="info-trust-icon">
-              <Check size={10} strokeWidth={3} color="#ffffff" />
-            </span>
-            <span>{line}</span>
-          </div>
-        ))}
-      </motion.div>
-
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         {cards.map((card, i) => (
           <motion.div
