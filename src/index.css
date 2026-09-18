@@ -742,6 +742,12 @@ body {
   gap: 12px;
   margin-top: 18px;
 }
+.real-case-credit {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+}
 
 .case-photo-card {
   width: 100%;

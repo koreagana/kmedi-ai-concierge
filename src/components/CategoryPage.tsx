@@ -18,8 +18,9 @@ import {
 
 /** 피부미용·성형외과 상세페이지 전용 "실제 사례" 섹션. 홈페이지에는 안 넣는다 —
     첫 화면부터 전후사진이 보이면 "병원 광고"처럼 읽혀서, 사용자가 이미 그 카테고리를
-    선택해서 들어온 상세페이지 쪽으로만 옮겼다. 출처 캡션은 사용자 요청으로 빼고 사진만. */
-function RealCaseSection({ photos }: { photos: { src: string; alt: string }[] }) {
+    선택해서 들어온 상세페이지 쪽으로만 옮겼다. credit이 주어지면 사진 제공 병원을
+    한국 의료법상 전후사진 표기 요건에 맞춰 캡션으로 함께 표시한다. */
+function RealCaseSection({ photos, credit }: { photos: { src: string; alt: string }[]; credit?: string }) {
   const { lang } = useApp()
   return (
     <div className="real-case-section">
@@ -30,6 +31,7 @@ function RealCaseSection({ photos }: { photos: { src: string; alt: string }[] })
           <CasePhoto key={p.src} src={p.src} alt={p.alt} />
         ))}
       </div>
+      {credit && <p className="real-case-credit">{credit}</p>}
     </div>
   )
 }
@@ -130,10 +132,14 @@ export default function CategoryPage() {
       {/* ── Plastic surgery keyword pills (only for the plastic-surgery category) ── */}
       {cat.id === 'plastic-surgery' && <PlasticSurgeryKeywords />}
       {cat.id === 'plastic-surgery' && (
-        <RealCaseSection photos={[
-          { src: '/case-photos/contour-before-after-1.png', alt: '윤곽 수술 전후 사례 1' },
-          { src: '/case-photos/contour-before-after-2.jpeg', alt: '윤곽 수술 전후 사례 2' },
-        ]} />
+        <RealCaseSection
+          photos={[
+            { src: '/case-photos/contour-before-after-1.png', alt: '윤곽 수술 전후 사례 1' },
+            { src: '/case-photos/contour-before-after-2.png', alt: '윤곽 수술 전후 사례 2' },
+            { src: '/case-photos/contour-before-after-3.png', alt: '윤곽 수술 전후 사례 3' },
+          ]}
+          credit="图片提供：双·轮·突口腔颌面外科（YangYoonDol Oral & Maxillofacial Surgery）"
+        />
       )}
 
       {/* ── Women's health keyword pills (only for the womens-care category) ── */}
