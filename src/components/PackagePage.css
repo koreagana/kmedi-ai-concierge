@@ -255,9 +255,6 @@
 
 .pkg-price-fx { margin-top: 14px; display: flex; align-items: flex-start; gap: 8px; font-size: 11.5px; color: var(--pw-muted); background: var(--pw-fixed-bg); padding: 10px 14px; border-radius: 10px; }
 
-/* ── foot note ─────────────────────────────────────── */
-.pkg-footnote { max-width: 640px; margin: 20px auto 0; padding: 0 20px; font-size: 11.5px; color: var(--pw-muted); text-align: center; line-height: 1.6; }
-
 /* ── sticky summary bar ────────────────────────────── */
 .pkg-summary-bar {
   position: sticky; bottom: 0; left: 0; right: 0;

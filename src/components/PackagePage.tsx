@@ -55,7 +55,6 @@ interface PackageLang {
   priceMainNote: string
   priceItems: PriceItem[]
   priceFx: string
-  footNote: string
   summaryEmpty: string
   consultBtn: string
 }
@@ -123,8 +122,7 @@ const ZH: PackageLang = {
     { title: '医疗项目费用', desc: '由您选择的具体医疗项目将单独核算，套餐费用不含医疗费', tag: '另行报价', tagKind: 'apart' },
     { title: '住宿', desc: '不含在套餐内，由您自行预订。如需要，可为您免费推荐合作酒店并协助预订（不收取任何手续费）', tag: '免费协助', tagKind: 'free' },
   ],
-  priceFx: '价格按实时汇率换算，如汇率波动较大，最终金额将与您重新确认',
-  footNote: '以上为标准行程模板，具体医疗项目及时间将由专属顾问与您确认后调整。',
+  priceFx: '价格按实时汇率计算。具体项目及时间由顾问确认后调整。',
   summaryEmpty: '尚未选择行程项目',
   consultBtn: '联系顾问咨询',
 }
@@ -187,8 +185,7 @@ const EN: PackageLang = {
     { title: 'Medical Treatment Fees', desc: 'The specific medical treatments you choose are calculated separately; medical costs are not included in the package fee.', tag: 'Quoted separately', tagKind: 'apart' },
     { title: 'Accommodation', desc: 'Not included in the package — you may book it yourself. If needed, we can recommend and help book a partner hotel free of charge (no service fee).', tag: 'Free assistance', tagKind: 'free' },
   ],
-  priceFx: 'Prices are converted at the current exchange rate. If the rate fluctuates significantly, the final amount will be reconfirmed with you.',
-  footNote: 'The above is a standard itinerary template. Specific medical treatments and timing will be confirmed and adjusted with your dedicated concierge.',
+  priceFx: 'Prices are converted at the current exchange rate. Specific treatments and timing will be confirmed with your concierge.',
   summaryEmpty: 'No itinerary items selected yet',
   consultBtn: 'Contact a Concierge',
 }
@@ -406,8 +403,6 @@ export default function PackagePage() {
             <span>{p.priceFx}</span>
           </motion.div>
         </div>
-
-        <p className="pkg-footnote">{p.footNote}</p>
 
         {/* ══ Sticky summary bar ════════════════════════════════ */}
         <div className="pkg-summary-bar">
