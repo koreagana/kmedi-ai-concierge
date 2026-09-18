@@ -51,7 +51,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         heading: '3. 个人信息的保存及使用期限',
         paragraphs: [
           '本机构原则上仅在达到个人信息处理目的所需的期间内保存个人信息，并在目的达成后及时删除或销毁。',
-          '医疗咨询及患者协调业务相关资料原则上可保存至相关服务结束后1年。',
+          '医疗咨询及患者协调业务相关资料，为妥善处理可能发生的纠纷及回应客户咨询，原则上可保存至相关服务结束后1年。',
           '但法律法规规定必须保存一定期间的，将按照相关法律规定的期限保存。',
         ],
       },
@@ -155,7 +155,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
     ],
-    lastUpdated: '最后更新：2026年9月14日',
+    lastUpdated: '最后更新：2026年9月18日',
   },
   en: {
     pageTitle: 'Privacy Policy · K-MediSpring',
@@ -187,7 +187,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         heading: '3. Retention Period',
         paragraphs: [
           'We retain personal information only for as long as necessary to fulfill the purposes for which it was processed.',
-          'Information related to medical consultation and patient coordination may generally be retained for one year after completion of the relevant service.',
+          'Information related to medical consultation and patient coordination may generally be retained for one year after completion of the relevant service, for the purpose of resolving potential disputes and responding to customer inquiries.',
           'Where applicable law requires a longer retention period, the information will be retained for the period required by law.',
         ],
       },
@@ -291,7 +291,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         ],
       },
     ],
-    lastUpdated: 'Last Updated: September 14, 2026',
+    lastUpdated: 'Last Updated: September 18, 2026',
   },
 }
 
