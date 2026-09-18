@@ -320,7 +320,7 @@ Diagnosis and treatment must follow the judgment of a medical institution and ph
     en: 'Premium Medical Tourism',
     emoji: '✈️',
     heroImage: '/category-hero/medical-tourism.png',
-    tagZh: '预约翻译 · 车辆陪同 · 3晚4天行程',
+    tagZh: '仁川机场接送 · 预约翻译 · 车辆陪同 · 3晚4天行程',
     tagEn: 'Booking/Interpretation · Vehicle Escort · 3N4D Itinerary',
     scriptFullZh: `您好，欢迎了解汉江春天医疗旅游精品服务。
 
@@ -362,7 +362,7 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
     emoji: '🗺️',
     heroImage: '/category-hero/custom-plan.jpg',
     heroVideo: '/category-hero/custom-plan.mp4',
-    tagZh: '多项目组合 · 预算行程 · 全程协调',
+    tagZh: '定制组合疗程 · 预算行程 · 全程协调 · 机场接送',
     tagEn: 'Multi-Service Plan · Budget/Itinerary · Full Coordination',
     scriptFullZh: `您好，这里是定制医疗观光方案入口。
 
