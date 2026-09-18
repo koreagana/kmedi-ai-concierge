@@ -25,8 +25,6 @@ interface GlanceItem { text: string; fixed: boolean }
 interface GlanceDay { title: string; sub: string; items: GlanceItem[] }
 interface PriceItem { title: string; desc: string; tag: string; tagKind: 'apart' | 'free' }
 
-const ALL_SLOT_KEYS: SlotKey[] = ['meal1', 'meal2', 'sight1', 'meal3', 'meal4', 'shop', 'meal5', 'meal6', 'sight2']
-
 /* ── i18n ──────────────────────────────────────────────── */
 interface PackageLang {
   backHome: string
@@ -247,7 +245,14 @@ export default function PackagePage() {
     return () => observer.disconnect()
   }, [p.selectCtaText])
 
-  const chips = ALL_SLOT_KEYS.filter(k => selections[k]).map(k => ({ key: k, label: p.slotSummaryLabels[k], value: selections[k] }))
+  const selectedByDay = p.days
+    .map(d => ({
+      num: d.num,
+      items: d.slots
+        .filter((s): s is SelectSlotDef => s.kind === 'select' && !!selections[s.slotKey])
+        .map(s => ({ key: s.slotKey, label: p.slotSummaryLabels[s.slotKey], value: selections[s.slotKey] })),
+    }))
+    .filter(d => d.items.length > 0)
 
   const renderSlot = (slot: SlotDef, dayIdx: number, slotIdx: number) => {
     if (slot.kind === 'fixed') {
@@ -407,11 +412,18 @@ export default function PackagePage() {
         {/* ══ Sticky summary bar ════════════════════════════════ */}
         <div className="pkg-summary-bar">
           <div className="pkg-summary-inner">
-            <div className="pkg-summary-chips">
-              {chips.length === 0 ? (
+            <div className="pkg-summary-table">
+              {selectedByDay.length === 0 ? (
                 <span className="pkg-chip empty">{p.summaryEmpty}</span>
               ) : (
-                chips.map(c => <span className="pkg-chip" key={c.key}>{c.label}：{c.value}</span>)
+                selectedByDay.map(d => (
+                  <div className="pkg-summary-day" key={d.num}>
+                    <span className="pkg-summary-day-badge">DAY {d.num}</span>
+                    <div className="pkg-summary-day-chips">
+                      {d.items.map(c => <span className="pkg-chip" key={c.key}>{c.label}：{c.value}</span>)}
+                    </div>
+                  </div>
+                ))
               )}
             </div>
             <button className="pkg-consult-btn" onClick={() => window.open(WECHAT_BIZ_URL, '_blank')}>{p.consultBtn}</button>
