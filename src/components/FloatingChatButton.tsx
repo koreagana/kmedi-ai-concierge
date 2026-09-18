@@ -24,6 +24,16 @@ const STYLES = `
 }
 .fcb-btn { animation: fcbPulse 2.5s ease-out infinite; }
 
+/* tiny spring-settle pop, played once right after the button is dropped in a new spot */
+@keyframes fcbDropBounce {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.16); }
+  60%  { transform: scale(0.94); }
+  80%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+.fcb-btn.fcb-drop-bounce { animation: fcbPulse 2.5s ease-out infinite, fcbDropBounce 0.38s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
 /*
  * Antenna labels alternate every 2.5s: left first, then right.
  * Each label has a 5s period:  appear 0–50% of cycle, hidden 50–100%.
@@ -96,6 +106,16 @@ export default function FloatingChatButton() {
   const [shown, setShown] = useState(false)
   const [pos, setPos] = useState<{ x: number; y: number } | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [dropBounce, setDropBounce] = useState(false)
+  const dropBounceTimer = useRef<number | null>(null)
+
+  /* plays the little spring-settle pop once the button has actually come to rest
+     in its new spot — after a plain drop, or once the momentum glide decays to zero */
+  const playDropBounce = () => {
+    if (dropBounceTimer.current !== null) window.clearTimeout(dropBounceTimer.current)
+    setDropBounce(true)
+    dropBounceTimer.current = window.setTimeout(() => setDropBounce(false), 400)
+  }
 
   const wasLastActionDrag = useRef(false)
   const drag = useRef<{
@@ -146,12 +166,16 @@ export default function FloatingChatButton() {
       } else {
         glideFrame.current = null
         savePos(x, y)
+        playDropBounce()
       }
     }
     glideFrame.current = requestAnimationFrame(step)
   }
 
-  useEffect(() => () => cancelGlide(), [])
+  useEffect(() => () => {
+    cancelGlide()
+    if (dropBounceTimer.current !== null) window.clearTimeout(dropBounceTimer.current)
+  }, [])
 
   /* inject CSS once */
   useEffect(() => {
@@ -169,13 +193,18 @@ export default function FloatingChatButton() {
     setPos({ x, y })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* visibility — hidden while the page's hero section is on screen, revealed exactly
-     once scrolled past its bottom edge. Covers home (#hero), category pages (.cat-hero)
-     and the package page (.pkg-hero) with one rule so the button never sits over hero
-     video/image content, and appears immediately after — regardless of how much (or
-     how little) content the page places between the hero and the rest of the page. */
+  /* visibility — on mobile, the hero can run tall (its media scales with viewport
+     width via aspect-ratio), which pushed the button's reveal too far down the page;
+     there we just reveal it once the user has scrolled MOBILE_SCROLL_THRESHOLD past
+     the top, hero or not. On desktop we keep the original rule: hidden while the
+     page's hero section is on screen, revealed exactly once scrolled past its bottom
+     edge, so the button never sits over hero video/image content. Covers home (#hero),
+     category pages (.cat-hero) and the package page (.pkg-hero). */
   useEffect(() => {
     setShown(false)
+
+    const MOBILE_SCROLL_THRESHOLD = 200
+    const isMobile = () => window.innerWidth <= 768
 
     // Pick the selector for *this* page's hero specifically — with AnimatePresence's
     // exit-then-enter transition, the previous page's hero element can still be sitting
@@ -193,7 +222,9 @@ export default function FloatingChatButton() {
       heroBottom = heroEl.getBoundingClientRect().bottom + window.scrollY
     }
 
-    const onScroll = () => setShown(window.scrollY > heroBottom)
+    const onScroll = () => {
+      setShown(isMobile() ? window.scrollY >= MOBILE_SCROLL_THRESHOLD : window.scrollY > heroBottom)
+    }
     const onResize = () => {
       const el = document.querySelector(selector)
       if (el) {
@@ -305,6 +336,7 @@ export default function FloatingChatButton() {
       startGlide(finalX, finalY, vx, vy)
     } else {
       savePos(finalX, finalY)
+      playDropBounce()
     }
   }
 
@@ -425,7 +457,7 @@ export default function FloatingChatButton() {
         </>
       ) : (
         <button
-          className="fcb-btn"
+          className={`fcb-btn${dropBounce ? ' fcb-drop-bounce' : ''}`}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
