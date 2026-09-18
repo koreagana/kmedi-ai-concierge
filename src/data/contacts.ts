@@ -26,4 +26,4 @@ export function getWhatsappUrl(lang: string) {
 }
 
 /** 이가나 원장 이메일 (문의폼 일반) */
-export const EMAIL_GENERAL = 'care@k-medispring.cn'
+export const EMAIL_GENERAL = 'care@kmedispring.com'

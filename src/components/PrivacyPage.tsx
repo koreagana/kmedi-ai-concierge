@@ -143,7 +143,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         contactList: [
           { label: '机构名称', value: '汉江春天（K-MediSpring）' },
           { label: '负责人', value: 'LEE GANA' },
-          { label: '电子邮箱', value: 'care@k-medispring.cn' },
+          { label: '电子邮箱', value: 'care@kmedispring.com' },
           { label: '电话', value: '+82-70-8880-3123' },
           { label: '地址', value: '韩国首尔特别市城北区三阳路29号 3层11室' },
         ],
@@ -279,7 +279,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
         contactList: [
           { label: 'Organization', value: 'K-MediSpring' },
           { label: 'Representative', value: 'LEE GANA' },
-          { label: 'Email', value: 'care@k-medispring.cn' },
+          { label: 'Email', value: 'care@kmedispring.com' },
           { label: 'Telephone', value: '+82-70-8880-3123' },
           { label: 'Address', value: '3F, Room 11, 29 Samyang-ro, Seongbuk-gu, Seoul, Republic of Korea' },
         ],
