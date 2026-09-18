@@ -871,7 +871,7 @@ export function FooterSection() {
         </p>
         {/* Email — click to copy */}
         <button type="button" className="contact-email" onClick={handleCopyEmail} style={{ width: 'auto', display: 'inline-block', color: 'rgba(255,255,255,0.8)' }}>
-          {emailCopied ? copiedLabel : 'Email: care@k-medispring.cn'}
+          {emailCopied ? copiedLabel : 'Email: care@kmedispring.com'}
         </button>
       </div>
 
