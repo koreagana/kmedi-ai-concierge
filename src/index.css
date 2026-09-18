@@ -746,7 +746,7 @@ body {
   margin-top: 10px;
   font-size: 11px;
   color: var(--text-muted);
-  text-align: right;
+  text-align: center;
 }
 
 .case-photo-card {
@@ -763,6 +763,10 @@ body {
   height: 100%;
   object-fit: cover;
   background: #f4f4f4;
+  -webkit-touch-callout: none; /* iOS: 길게 눌러 저장 메뉴 차단 */
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none; /* 우클릭 컨텍스트 메뉴에 "이미지로 저장"이 뜨지 않도록 */
 }
 
 @media (max-width: 420px) {
