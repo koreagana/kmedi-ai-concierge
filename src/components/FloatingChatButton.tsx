@@ -193,72 +193,21 @@ export default function FloatingChatButton() {
     setPos({ x, y })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  /* visibility — on mobile, the hero can run tall (its media scales with viewport
-     width via aspect-ratio), which pushed the button's reveal too far down the page;
-     there we just reveal it once the user has scrolled MOBILE_SCROLL_THRESHOLD past
-     the top, hero or not. On desktop we keep the original rule: hidden while the
-     page's hero section is on screen, revealed exactly once scrolled past its bottom
-     edge, so the button never sits over hero video/image content. Covers home (#hero),
-     category pages (.cat-hero) and the package page (.pkg-hero). */
+  /* visibility — hidden right at the top, revealed as soon as the page scrolls past
+     the sticky header (.navbar is 52px, see index.css). This used to wait for each
+     page's hero section to scroll fully past, but hero height varies a lot page to
+     page (home/#hero vs category/.cat-hero vs package/.pkg-hero), so the reveal point
+     felt inconsistent across the site. Anchoring to the header instead makes it the
+     same fixed, predictable point everywhere. */
   useEffect(() => {
     setShown(false)
 
-    const MOBILE_SCROLL_THRESHOLD = 200
-    const isMobile = () => window.innerWidth <= 768
-
-    // Pick the selector for *this* page's hero specifically — with AnimatePresence's
-    // exit-then-enter transition, the previous page's hero element can still be sitting
-    // in the DOM for a moment after `page` has already updated, so a generic selector
-    // risks grabbing that stale node instead of waiting for the real one.
-    const selector = page === 'home' ? '#hero' : page === 'package' ? '.pkg-hero' : '.cat-hero'
-
-    let heroBottom = 0 // hero's bottom edge, in absolute document coordinates
-    let mo: MutationObserver | null = null
-
-    // Category/package hero media uses aspect-ratio, so its rendered height scales with
-    // viewport width — re-measure on resize/orientation change so the threshold stays
-    // pinned to the hero's actual bottom edge instead of a stale measurement.
-    const measure = (heroEl: Element) => {
-      heroBottom = heroEl.getBoundingClientRect().bottom + window.scrollY
-    }
-
-    const onScroll = () => {
-      setShown(isMobile() ? window.scrollY >= MOBILE_SCROLL_THRESHOLD : window.scrollY > heroBottom)
-    }
-    const onResize = () => {
-      const el = document.querySelector(selector)
-      if (el) {
-        measure(el)
-        onScroll()
-      }
-    }
-
-    const existing = document.querySelector(selector)
-    if (existing) {
-      measure(existing)
-      onScroll()
-    } else {
-      // Hero not mounted yet (mid page-transition) — watch the DOM until it appears.
-      mo = new MutationObserver(() => {
-        const el = document.querySelector(selector)
-        if (el) {
-          mo?.disconnect()
-          mo = null
-          measure(el)
-          onScroll()
-        }
-      })
-      mo.observe(document.body, { childList: true, subtree: true })
-    }
+    const HEADER_H = 52
+    const onScroll = () => setShown(window.scrollY > HEADER_H)
+    onScroll()
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onResize)
-
-    return () => {
-      mo?.disconnect()
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onResize)
-    }
+    return () => window.removeEventListener('scroll', onScroll)
   }, [page, categoryId])
 
   /* ── drag handlers ─────────────────────────────────────────────────── */
