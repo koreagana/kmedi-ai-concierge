@@ -107,8 +107,8 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
       { zh: '来韩时间和停留时间整理', en: 'Travel and length-of-stay planning' },
     ],
     note: {
-      zh: '不孕咨询需要结合年龄、卵巢功能、月经周期、既往病史和伴侣因素综合判断。卵子冷冻也不等于保证未来一定怀孕，成功可能性与年龄、卵子数量与质量、健康状态和未来使用方式有关。具体治疗方向和成功可能性，需要由生殖医学专业医生判断。',
-      en: 'Infertility consultation requires comprehensive evaluation of age, ovarian function, menstrual cycle, medical history, and partner factors. Egg freezing also does not guarantee future pregnancy — success depends on age, egg number and quality, health condition, and future use method. Treatment direction and success possibility must be determined by a reproductive medicine specialist.',
+      zh: '卵子冷冻并不代表一定能够成功怀孕，具体方案需根据年龄、卵巢功能及身体状况由生殖医学专业医生评估。',
+      en: 'Egg freezing does not guarantee future pregnancy — the specific plan is assessed by a reproductive medicine specialist based on age, ovarian function, and overall health.',
     },
     docKeys: ['functionalIntake', 'healthCheckupPrep', 'bloodTestPrep'],
   },
