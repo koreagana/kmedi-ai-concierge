@@ -1268,6 +1268,13 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 1px 8px rgba(0,0,0,0.35);
 }
 
+/* 大健康 tiles use short 4-character titles (慢性疲劳, 睡眠问题…), so the label
+   can safely run larger than the shared 13px default without wrapping. */
+.bh-tiles--antiaging .bh-tile-label {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
 /* Stem-cell: single-column stack of short, wide banner tiles — no photo,
    just color + a large title, so height can be much shorter than the 2-col grid. */
 .bh-tiles--stemcell {

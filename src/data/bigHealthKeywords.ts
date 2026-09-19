@@ -140,7 +140,7 @@ export const BIG_HEALTH_SECTION = {
 export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   {
     id: 'chronic-fatigue',
-    image: '/keyword-tiles/chronic-fatigue.jpg',
+    image: '/category-tiles/antiaging/chronic-fatigue.png',
     title: {
       zh: '慢性疲劳',
       en: 'Chronic Fatigue',
@@ -176,7 +176,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'sleep-issue',
-    image: '/keyword-tiles/sleep-issue.jpg',
+    image: '/category-tiles/antiaging/sleep-issue.png',
     title: {
       zh: '睡眠问题',
       en: 'Sleep Issues',
@@ -210,7 +210,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'gut-health',
-    image: '/keyword-tiles/gut-health.jpg',
+    image: '/category-tiles/antiaging/gut-health.png',
     title: {
       zh: '肠道健康',
       en: 'Gut Health',
@@ -244,7 +244,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'metabolic-management',
-    image: '/keyword-tiles/metabolic-management.jpg',
+    image: '/category-tiles/antiaging/metabolic-management.png',
     title: {
       zh: '代谢管理',
       en: 'Metabolic Management',

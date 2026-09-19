@@ -25,7 +25,7 @@ export default function BigHealthKeywords() {
 
       <p className="bh-pills-prompt">{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
-      <div className="bh-tiles" role="tablist">
+      <div className="bh-tiles bh-tiles--antiaging" role="tablist">
         {BIG_HEALTH_KEYWORDS.map((kw, i) => (
           <button
             key={kw.id}
