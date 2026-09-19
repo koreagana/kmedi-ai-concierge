@@ -68,8 +68,8 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     title: { zh: '膝关节 · 软骨修复', en: 'Knee & Cartilage Repair' },
     tileSubtitle: { zh: '膝关节软骨再生 · CARTISTEM®', en: 'Knee Cartilage Regeneration · CARTISTEM®' },
     body: {
-      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为CARTISTEM——韩国美迪波斯特（Medipost）研发的同种异体脐带血间充质干细胞治疗药物，通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n荷兰名帅希丁克（Guus Hiddink）也在韩国接受了膝关节干细胞治疗，术后重新恢复运动能力。',
-      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nFormer Dutch national coach Guus Hiddink also received knee stem cell treatment in Korea, regaining his mobility afterward.',
+      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为CARTISTEM——韩国美迪波斯特（Medipost）研发的同种异体脐带血间充质干细胞治疗药物，通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n该治疗也是不少名人及贵宾（VIP）患者的选择。',
+      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nThis treatment has also been chosen by a number of celebrities and VIP patients.',
     },
     image: '/category-tiles/stem-cell/joint-cartilage.png',
     imageCaption: { zh: '韩国膝关节软骨再生治疗案例 · 医疗团队实景', en: 'Korea Knee Cartilage Regeneration Case · Real Medical Team' },
