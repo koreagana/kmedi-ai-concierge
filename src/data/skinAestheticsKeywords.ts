@@ -240,7 +240,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '点阵激光', en: 'Fractional Laser' },
       { zh: '皮秒点阵', en: 'Picosecond Fractional' },
       { zh: 'CO₂ · Er:YAG 激光焕肤', en: 'CO₂ · Er:YAG Laser Resurfacing' },
-      { zh: '水光／Skin Booster', en: 'Water-Glow Injections / Skin Booster' },
+      { zh: '水光针', en: 'Water-Glow Injections / Skin Booster' },
       { zh: '胶原再生治疗', en: 'Collagen Regeneration Treatment' },
       { zh: '舒缓 · 修复管理', en: 'Soothing & Recovery Care' },
     ],
@@ -274,25 +274,25 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     id: 'skin-boosters-rejuran',
     image: '/keyword-tiles/skin-boosters-rejuran.jpg',
     title: {
-      zh: '皮肤助推剂 · 皮肤再生',
+      zh: '水光针 · 皮肤再生',
       en: 'Skin Boosters & Rejuran',
     },
     description: {
-      zh: '皮肤助推剂是一种以改善皮肤内部水分、肤质、弹性、细纹、光泽以及整体皮肤状态为目标的注射式治疗项目。根据产品不同，其成分和作用机制也有所差异，主要成分包括透明质酸、PN/PDRN、氨基酸、肽、胶原再生成分等。需根据个人皮肤状况及期望改善的方向，选择适合自己的产品。',
+      zh: '水光针（Skin Booster）是一种以改善皮肤内部水分、肤质、弹性、细纹、光泽以及整体皮肤状态为目标的注射式治疗项目。根据产品不同，其成分和作用机制也有所差异，主要成分包括透明质酸、PN/PDRN、氨基酸、肽、胶原再生成分等。需根据个人皮肤状况及期望改善的方向，选择适合自己的产品。',
       en: 'Water-glow injections, Rejuran, and skin booster treatments are commonly included in consultations for skin dryness, fine lines, skin texture, radiance, skin recovery capacity, and anti-aging appearance care. The specific ingredients, injection method, and recovery response can vary by hospital and product.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
       { zh: 'PN/PDRN系列皮肤再生', en: 'Water-glow injections' },
-      { zh: '透明质酸补水·光泽助推剂', en: 'Rejuran' },
-      { zh: '胶原再生型皮肤助推剂', en: 'Skin boosters' },
+      { zh: '透明质酸补水·光泽水光针', en: 'Rejuran' },
+      { zh: '胶原再生型水光针', en: 'Skin boosters' },
       { zh: '氨基酸·肽类生物复活疗法', en: 'PN/PDRN-based skin care' },
       { zh: '个性化定制水光针', en: 'Hyaluronic acid-based hydrating injections' },
       { zh: 'PRP/PRF自体血液基皮肤再生', en: 'Collagen regeneration skin care' },
       { zh: '与激光·射频治疗联用的修复·恢复管理', en: 'Autologous blood-based skin regeneration care' },
     ],
     productGroupsLabel: {
-      zh: '代表性皮肤助推剂 · 皮肤再生产品',
+      zh: '代表性水光针 · 皮肤再生产品',
       en: '',
     },
     productGroups: [
@@ -312,9 +312,9 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         ],
       },
       {
-        label: { zh: '透明质酸 · 补水助推剂系列', en: '' },
+        label: { zh: '透明质酸 · 补水水光针系列', en: '' },
         items: [
-          { zh: 'Restylane Skinboosters 瑞蓝皮肤助推剂（瑞典）', en: '' },
+          { zh: 'Restylane Skinboosters 瑞蓝水光针（瑞典）', en: '' },
           { zh: 'TEOSYAL Redensity 1 缇奥希 红密度1（瑞士）', en: '' },
           { zh: 'SKINVIVE by JUVÉDERM 乔雅登·肤活（美国）', en: '' },
           { zh: 'PROFHILO 菲洛（瑞士IBSA）', en: '' },
@@ -334,7 +334,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       en: '',
     },
     explainerBody: {
-      zh: '在韩国常说的"水光针"，并非指某一特定产品名称，而往往泛指以提升皮肤水分和光泽度为目标的注射类项目。\n\n其基础成分多为透明质酸，同时可根据需要搭配PN/PDRN、氨基酸、维生素等多种成分。不同医院和医生所使用的产品、成分配比、注射深度及方式都可能存在差异。因此，即便都叫"水光针"，实际治疗内容也可能因机构不同而有所区别。\n\n皮肤助推剂因各产品的成分与特性迥异，务必在确认自身皮肤状态、改善目标、治疗部位等信息后，再选择合适的产品和治疗方案，这一点十分重要。',
+      zh: '在韩国常说的"水光针"，并非指某一特定产品名称，而往往泛指以提升皮肤水分和光泽度为目标的注射类项目。\n\n其基础成分多为透明质酸，同时可根据需要搭配PN/PDRN、氨基酸、维生素等多种成分。不同医院和医生所使用的产品、成分配比、注射深度及方式都可能存在差异。因此，即便都叫"水光针"，实际治疗内容也可能因机构不同而有所区别。\n\n水光针因各产品的成分与特性迥异，务必在确认自身皮肤状态、改善目标、治疗部位等信息后，再选择合适的产品和治疗方案，这一点十分重要。',
       en: '',
     },
     docKeys: ['skinBoosterAfter', 'skinTreatmentAfter'],
