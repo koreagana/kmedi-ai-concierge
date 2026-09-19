@@ -102,8 +102,11 @@ export interface SkinAestheticsProductGroup {
 export interface SkinAestheticsKeyword {
   id: string
   title: LocalizedText
-  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted.
+      Also used as the <video> poster frame when `video` is set. */
   image?: string
+  /** Optional looping video for the selector tile (public/ path) — plays muted/autoplay in place of the static image. */
+  video?: string
   /** May contain \n\n to separate multiple paragraphs. */
   description: LocalizedText
   /** Optional callout shown right under the description (used to clarify "skin stem cell" naming). */
@@ -342,6 +345,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   {
     id: 'botox-fillers',
     image: '/category-tiles/Petit/botox-fillers.png',
+    video: '/category-tiles/Petit/botox-fillers.mp4',
     title: {
       zh: '肉毒素 玻尿酸',
       en: 'Botulinum Toxin & Fillers',
