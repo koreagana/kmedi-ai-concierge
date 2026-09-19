@@ -98,22 +98,6 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     ],
   },
   {
-    id: 'approved-cell-therapy',
-    title: { zh: '韩国获批细胞治疗', en: 'Korea-Approved Cell Therapy' },
-    tileSubtitle: { zh: '针对特定疾病的正规细胞治疗', en: 'Licensed Therapy for Specific Conditions' },
-    body: {
-      zh: '韩国已有针对特定疾病正式获批的细胞治疗药物，其中部分产品是全球范围内最早获得监管批准的干细胞治疗药物。',
-      en: 'Korea already has cell therapy products formally approved for specific diseases — some of which were among the first stem cell therapies in the world to receive regulatory approval.',
-    },
-    products: [
-      { name: 'Hearticellgram-AMI', desc: { zh: '急性心肌梗死相关治疗（韩国食品药品安全处MFDS批准的全球首个干细胞治疗药物）', en: "For acute myocardial infarction (the world's first stem cell therapy drug approved by Korea's MFDS)" } },
-      { name: 'Cartistem', desc: { zh: '膝关节软骨损伤相关治疗', en: 'For knee cartilage damage' } },
-      { name: 'Cupistem', desc: { zh: '克罗恩病瘘管相关治疗', en: "For Crohn's disease fistulas" } },
-      { name: 'Neuronata-R Inj.', desc: { zh: '肌萎缩侧索硬化症（ALS）相关治疗', en: 'For ALS (Lou Gehrig\'s disease)' } },
-    ],
-    hint: { zh: '查看适应症 →', en: 'See indications →' },
-  },
-  {
     id: 'autologous-blood-iv',
     title: { zh: '自体血液 · 抗衰IV', en: 'Autologous Blood · Anti-Aging IV' },
     tileSubtitle: { zh: 'PRP · PRF · PMF · 生长因子', en: 'PRP · PRF · PMF · Growth Factors' },
@@ -126,5 +110,21 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       [{ zh: '生长因子', en: 'Growth Factors' }, { zh: '血小板', en: 'Platelets' }, { zh: '细胞外囊泡', en: 'Extracellular Vesicles' }],
     ],
     footerLine: { zh: '局部治疗 / IV静脉治疗', en: 'Local Treatment / IV Treatment' },
+  },
+  {
+    id: 'approved-cell-therapy',
+    title: { zh: '韩国获批细胞治疗剂', en: 'Korea-Approved Cell Therapy Drugs' },
+    tileSubtitle: { zh: '针对特定疾病的正规细胞治疗', en: 'Licensed Therapy for Specific Conditions' },
+    body: {
+      zh: '韩国已有针对特定疾病正式获批的细胞治疗药物，其中部分产品是全球范围内最早获得监管批准的干细胞治疗药物。',
+      en: 'Korea already has cell therapy products formally approved for specific diseases — some of which were among the first stem cell therapies in the world to receive regulatory approval.',
+    },
+    products: [
+      { name: 'Hearticellgram-AMI', desc: { zh: '急性心肌梗死相关治疗（韩国食品药品安全处MFDS批准的全球首个干细胞治疗药物）', en: "For acute myocardial infarction (the world's first stem cell therapy drug approved by Korea's MFDS)" } },
+      { name: 'Cartistem', desc: { zh: '膝关节软骨损伤相关治疗', en: 'For knee cartilage damage' } },
+      { name: 'Cupistem', desc: { zh: '克罗恩病瘘管相关治疗', en: "For Crohn's disease fistulas" } },
+      { name: 'Neuronata-R Inj.', desc: { zh: '肌萎缩侧索硬化症（ALS）相关治疗', en: 'For ALS (Lou Gehrig\'s disease)' } },
+    ],
+    hint: { zh: '查看适应症 →', en: 'See indications →' },
   },
 ]
