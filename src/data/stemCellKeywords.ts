@@ -68,8 +68,8 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     title: { zh: '膝关节 · 软骨修复', en: 'Knee & Cartilage Repair' },
     tileSubtitle: { zh: '膝关节软骨再生 · CARTISTEM®', en: 'Knee Cartilage Regeneration · CARTISTEM®' },
     body: {
-      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为CARTISTEM——韩国美迪波斯特（Medipost）研发的同种异体脐带血间充质干细胞治疗药物，通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n该治疗也是不少名人及贵宾（VIP）患者的选择。',
-      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nThis treatment has also been chosen by a number of celebrities and VIP patients.',
+      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为CARTISTEM——韩国美迪波斯特（Medipost）研发的同种异体脐带血间充质干细胞治疗药物，通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n相比之下，传统人工关节置换手术因假体使用寿命有限，一般终生只能进行一次；软骨再生治疗常被用于在真正需要置换之前，尽可能延缓病情进展、保留自身关节。\n该治疗也是不少名人及贵宾（VIP）患者的选择。',
+      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nBy comparison, traditional artificial joint replacement can typically only be performed once in a lifetime due to the limited lifespan of the implant — cartilage regeneration therapy is often used to slow disease progression and preserve the natural joint for as long as possible before replacement becomes necessary.\nThis treatment has also been chosen by a number of celebrities and VIP patients.',
     },
     image: '/category-tiles/stem-cell/joint-cartilage.png',
     imageCaption: { zh: '韩国膝关节软骨再生治疗案例 · 医疗团队实景', en: 'Korea Knee Cartilage Regeneration Case · Real Medical Team' },
