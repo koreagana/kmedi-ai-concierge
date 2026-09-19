@@ -343,7 +343,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     id: 'botox-fillers',
     image: '/category-tiles/Petit/botox-fillers.png',
     title: {
-      zh: '肉毒杆菌毒素 · 玻尿酸填充剂',
+      zh: '肉毒素 玻尿酸',
       en: 'Botulinum Toxin & Fillers',
     },
     description: {
