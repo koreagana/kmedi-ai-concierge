@@ -66,17 +66,18 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   {
     id: 'joint-cartilage',
     title: { zh: '膝关节 · 软骨修复', en: 'Knee & Cartilage Repair' },
-    tileSubtitle: { zh: '膝关节软骨再生 · CARTISTEM', en: 'Knee Cartilage Regeneration · CARTISTEM' },
+    tileSubtitle: { zh: '膝关节软骨再生 · CARTISTEM®', en: 'Knee Cartilage Regeneration · CARTISTEM®' },
     body: {
-      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为韩国正式获批的干细胞治疗药物 Cartistem——通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n荷兰名帅希丁克（Guus Hiddink）也在韩国接受了膝关节干细胞治疗，术后重新恢复运动能力。',
-      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is Cartistem, a cell therapy drug formally approved in Korea — implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nFormer Dutch national coach Guus Hiddink also received knee stem cell treatment in Korea, regaining his mobility afterward.',
+      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为CARTISTEM——韩国美迪波斯特（Medipost）研发的同种异体脐带血间充质干细胞治疗药物，通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n荷兰名帅希丁克（Guus Hiddink）也在韩国接受了膝关节干细胞治疗，术后重新恢复运动能力。',
+      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nFormer Dutch national coach Guus Hiddink also received knee stem cell treatment in Korea, regaining his mobility afterward.',
     },
     image: '/category-tiles/stem-cell/joint-cartilage.png',
     imageCaption: { zh: '韩国膝关节软骨再生治疗案例 · 医疗团队实景', en: 'Korea Knee Cartilage Regeneration Case · Real Medical Team' },
     credit: '图片提供：JS医院',
     list: [
-      { zh: 'Cartistem 软骨再生治疗（韩国获批治疗药物）', en: 'Cartistem cartilage regeneration therapy (Korea-approved product)' },
+      { zh: 'CARTISTEM® · 韩国MFDS批准的干细胞治疗产品', en: 'CARTISTEM® · MFDS Approved Stem Cell Therapy' },
       { zh: '关节内微创钻孔植入', en: 'Minimally invasive intra-articular drilling & implantation' },
+      { zh: 'JS医院单院已完成3,000例以上CARTISTEM软骨修复手术（截至2026年）', en: 'JS Hospital alone has performed 3,000+ CARTISTEM cartilage repair procedures (as of 2026)' },
       { zh: '骨髓来源治疗', en: 'Bone Marrow-Derived Therapy' },
       { zh: 'PRP / PRF', en: 'PRP / PRF' },
     ],
