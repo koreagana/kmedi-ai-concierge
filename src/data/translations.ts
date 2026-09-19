@@ -190,7 +190,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard4Caption: '覆盖首尔・釜山・大邱・济州，医疗资源持续扩展中',
     aboutTitle: '关于汉江春天',
     aboutDesc: '汉江春天（ai-kmedi.com）是面向海外客户的韩国医疗咨询与协调服务平台。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
-    companyIntro: '汉江春天是韩国外国患者医疗观光服务专业提供商。',
+    companyIntro: '汉江春天是韩国外国患者医疗旅游服务专业提供商。',
     termsLink: '使用条款',
     footerPrivacyLink: '个人信息处理方针',
     navConsult: '立即咨询',

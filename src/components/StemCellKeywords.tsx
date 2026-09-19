@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
 import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
-import { STEM_CELL_KEYWORDS } from '../data/stemCellKeywords'
+import { STEM_CELL_KEYWORDS, STEM_CELL_INTRO } from '../data/stemCellKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
 
@@ -14,7 +14,12 @@ export default function StemCellKeywords() {
 
   return (
     <div className="bh-section">
-      <p className="bh-pills-prompt" style={{ paddingTop: 22, paddingBottom: 14 }}>{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
+      <div className="bh-intro-statement">
+        <p className="bh-intro-statement-line1">{pick(STEM_CELL_INTRO.line1, lang)}</p>
+        <p className="bh-intro-statement-line2">{pick(STEM_CELL_INTRO.line2, lang)}</p>
+      </div>
+
+      <p className="bh-pills-prompt" style={{ paddingTop: 8, paddingBottom: 14 }}>{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
 
       <div className="bh-tiles bh-tiles--stemcell">
         {STEM_CELL_KEYWORDS.map((kw, i) => {

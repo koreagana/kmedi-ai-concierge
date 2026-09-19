@@ -316,7 +316,7 @@ Diagnosis and treatment must follow the judgment of a medical institution and ph
   },
   {
     id: 'medical-tourism',
-    zh: '汉江春天 医疗旅游精品',
+    zh: '汉江春天 3晚4天方案',
     en: 'Premium Medical Tourism',
     emoji: '✈️',
     heroImage: '/category-hero/medical-tourism.png',
@@ -357,14 +357,14 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
   },
   {
     id: 'custom-plan',
-    zh: '定制医疗观光方案',
+    zh: '定制医疗旅游方案',
     en: 'Custom Medical Travel Plan',
     emoji: '🗺️',
     heroImage: '/category-hero/custom-plan.jpg',
     heroVideo: '/category-hero/custom-plan.mp4',
     tagZh: '定制组合疗程 · 预算行程 · 全程协调 · 机场接送',
     tagEn: 'Multi-Service Plan · Budget/Itinerary · Full Coordination',
-    scriptFullZh: `您好，这里是定制医疗观光方案入口。
+    scriptFullZh: `您好，这里是定制医疗旅游方案入口。
 
 如果您还不确定该选哪个项目，可以从这里开始。
 
@@ -376,7 +376,7 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
 
 汉江春天会先帮您整理目的、年龄、同行人数、停留天数和预算方向。
 
-之后，我们会把多个方向组合起来，设计韩国医疗观光的咨询路径。
+之后，我们会把多个方向组合起来，设计韩国医疗旅游的咨询路径。
 
 最终的医疗判断和治疗可行性，仍以医疗机构和专业医生的判断为准。`,
     scriptFullEn: `Hello, welcome to the Custom Medical Travel Plan.
@@ -394,7 +394,7 @@ We'll first organize your purpose, age, companions, length of stay, budget direc
 We'll then combine multiple areas to design your Korean medical tourism consultation direction.
 
 Final medical decisions and treatment feasibility remain with medical institutions and physicians.`,
-    scriptSummaryZh: `如果您还不确定选择哪个项目，可以先提交定制需求。汉江春天会根据您的目的、时间、预算与停留计划，为您整理韩国医疗观光咨询方向。`,
+    scriptSummaryZh: `如果您还不确定选择哪个项目，可以先提交定制需求。汉江春天会根据您的目的、时间、预算与停留计划，为您整理韩国医疗旅游咨询方向。`,
     scriptSummaryEn: `If you're not sure which category to choose, you can start with a custom plan. K-Medi Spring organizes your Korean medical tourism consultation direction based on your purpose, schedule, budget, and stay plan.`,
   },
 ]

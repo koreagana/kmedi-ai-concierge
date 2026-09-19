@@ -22,7 +22,7 @@ export type CustomPlanDocButtonKey = keyof typeof CUSTOM_PLAN_DOC_BUTTONS
 
 export const CUSTOM_PLAN_SECTION = {
   title: {
-    zh: '定制医疗观光方案',
+    zh: '定制医疗旅游方案',
     en: 'Customized Medical Tourism Plan',
   } as LocalizedText,
   subCopy: {
@@ -30,7 +30,7 @@ export const CUSTOM_PLAN_SECTION = {
     en: 'Korean Medical Care · Hospital Appointments · Interpretation · Transport & Stay · Recovery Care · Lifestyle Support',
   } as LocalizedText,
   desc: {
-    zh: '从医院预约到术后恢复，为外国客户设计更安心的韩国医疗行程。\n\n汉江春天是一家完成韩国保健福祉部外国人患者招徕业登记的医疗观光公司。我们不仅帮助客户预约医院，也协助整理诊疗资料、安排翻译陪同、车辆住宿、复诊提醒和回国前确认。',
+    zh: '从医院预约到术后恢复，为外国客户设计更安心的韩国医疗行程。\n\n汉江春天是一家完成韩国保健福祉部外国人患者招徕业登记的医疗旅游公司。我们不仅帮助客户预约医院，也协助整理诊疗资料、安排翻译陪同、车辆住宿、复诊提醒和回国前确认。',
     en: 'From hospital appointments to postoperative recovery, we design a more reassuring Korean medical journey for international clients.\n\nK-MediSpring is a medical tourism company registered for foreign patient attraction under the Korean Ministry of Health and Welfare. We assist not only with hospital appointments but also with medical document organization, interpretation support, transportation, accommodation, follow-up reminders, and pre-departure checks.',
   } as LocalizedText,
 }

@@ -31,7 +31,6 @@ interface PackageLang {
   heroEyebrow: string
   heroTitle: string
   heroSub: string
-  heroNote: string
   countLabels: [string, string, string]
   glanceTitle: string
   glanceSub: string
@@ -69,7 +68,6 @@ const ZH: PackageLang = {
   heroEyebrow: '✦ 可根据您的喜好定制',
   heroTitle: '汉江春天 3晚4天方案',
   heroSub: '医疗咨询、观光、购物时间固定，地点与餐饮可自由选。',
-  heroNote: '医疗费用不包含在本方案内，具体医疗项目需另行咨询确认。',
   countLabels: ['医院问诊（固定）', '旅游地点（可选）', '购物地点（可选）'],
   glanceTitle: '行程一览',
   glanceSub: '确认整体行程后，可查看每日详细时间与可选项目',
@@ -132,7 +130,6 @@ const EN: PackageLang = {
   heroEyebrow: '✦ Customizable to your preference',
   heroTitle: 'K-MediSpring 3 Nights 4 Days Package',
   heroSub: 'Medical consultation, sightseeing and shopping times are fixed — you can freely choose the specific locations and meals.',
-  heroNote: 'Medical costs are not included in this package and must be confirmed separately.',
   countLabels: ['Hospital Visits (Fixed)', 'Attractions (Optional)', 'Shopping Spot (Optional)'],
   glanceTitle: 'Itinerary at a Glance',
   glanceSub: 'Once the overall plan is confirmed, you can check the detailed time and optional items for each day',
@@ -303,7 +300,6 @@ export default function PackagePage() {
           <motion.span className="pkg-eyebrow" {...fadeUp} transition={{ delay: 0.05 }}>{p.heroEyebrow}</motion.span>
           <motion.h1 className="pkg-hero-title" {...fadeUp} transition={{ delay: 0.1 }}>{p.heroTitle}</motion.h1>
           <motion.p className="pkg-hero-sub" {...fadeUp} transition={{ delay: 0.15 }}>{p.heroSub}</motion.p>
-          <motion.p className="pkg-hero-note" {...fadeUp} transition={{ delay: 0.2 }}>{p.heroNote}</motion.p>
         </div>
 
         {/* ══ Counts strip ══════════════════════════════════════ */}

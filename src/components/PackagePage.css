@@ -78,14 +78,6 @@
   margin: 0 auto 18px;
   line-height: 1.7;
 }
-.pkg-hero-note {
-  font-size: 10px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.7;
-  max-width: 420px;
-  margin: 0 auto;
-}
-
 /* ── counts strip ─────────────────────────────────── */
 .pkg-counts {
   max-width: 640px;
