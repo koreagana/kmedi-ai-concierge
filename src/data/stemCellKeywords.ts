@@ -13,6 +13,12 @@ export interface StemCellKeyword {
   tileSubtitle: LocalizedText
   /** 1-2 short lines. May contain \n for a line break. */
   body: LocalizedText
+  /** Optional real case photo shown inside the expanded card (public/ path). */
+  image?: string
+  /** Short caption shown above the photo describing what it is. */
+  imageCaption?: LocalizedText
+  /** Source credit shown under the photo, e.g. hospital name. Not localized (usually a proper noun). */
+  credit?: string
   /** Short tag-style keywords, rendered as pills */
   pills?: LocalizedText[]
   /** Grouped pills (a blank line between each group) */
@@ -60,11 +66,14 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   {
     id: 'joint-cartilage',
     title: { zh: '膝关节 · 软骨修复', en: 'Knee & Cartilage Repair' },
-    tileSubtitle: { zh: '软骨损伤 · 退行性膝关节问题', en: 'Cartilage Damage · Degenerative Knee Issues' },
+    tileSubtitle: { zh: '膝关节软骨再生 · CARTISTEM', en: 'Knee Cartilage Regeneration · CARTISTEM' },
     body: {
-      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为韩国正式获批的干细胞治疗药物 Cartistem——通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。',
-      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is Cartistem, a cell therapy drug formally approved in Korea — implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.',
+      zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为韩国正式获批的干细胞治疗药物 Cartistem——通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n荷兰名帅希丁克（Guus Hiddink）也在韩国接受了膝关节干细胞治疗，术后重新恢复运动能力。',
+      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is Cartistem, a cell therapy drug formally approved in Korea — implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nFormer Dutch national coach Guus Hiddink also received knee stem cell treatment in Korea, regaining his mobility afterward.',
     },
+    image: '/category-tiles/stem-cell/joint-cartilage.png',
+    imageCaption: { zh: '韩国膝关节软骨再生治疗案例 · 医疗团队实景', en: 'Korea Knee Cartilage Regeneration Case · Real Medical Team' },
+    credit: '图片提供：JS医院',
     list: [
       { zh: 'Cartistem 软骨再生治疗（韩国获批治疗药物）', en: 'Cartistem cartilage regeneration therapy (Korea-approved product)' },
       { zh: '关节内微创钻孔植入', en: 'Minimally invasive intra-articular drilling & implantation' },

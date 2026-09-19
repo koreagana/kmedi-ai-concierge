@@ -1,10 +1,11 @@
 import { Fragment, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useApp } from '../contexts/AppContext'
-import { BIG_HEALTH_PILLS_PROMPT, type LocalizedText } from '../data/bigHealthKeywords'
+import type { LocalizedText } from '../data/bigHealthKeywords'
 import { STEM_CELL_KEYWORDS, STEM_CELL_INTRO } from '../data/stemCellKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
+import CasePhoto from './CasePhoto'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -19,9 +20,7 @@ export default function StemCellKeywords() {
         <p className="bh-intro-statement-line2">{pick(STEM_CELL_INTRO.line2, lang)}</p>
       </div>
 
-      <p className="bh-pills-prompt" style={{ paddingTop: 8, paddingBottom: 14 }}>{pick(BIG_HEALTH_PILLS_PROMPT, lang)}</p>
-
-      <div className="bh-tiles bh-tiles--stemcell">
+      <div className="bh-tiles bh-tiles--stemcell" style={{ marginTop: 8 }}>
         {STEM_CELL_KEYWORDS.map((kw, i) => {
           const isActive = activeIndex === i
           return (
@@ -56,6 +55,16 @@ export default function StemCellKeywords() {
                       {pick(kw.body, lang).split('\n').map((line, li) => (
                         <p key={li} className="bh-card-text">{line}</p>
                       ))}
+
+                      {kw.image && (
+                        <div style={{ marginTop: 12 }}>
+                          {kw.imageCaption && (
+                            <p className="bh-card-label" style={{ marginBottom: 8 }}>{pick(kw.imageCaption, lang)}</p>
+                          )}
+                          <CasePhoto src={kw.image} alt={kw.imageCaption ? pick(kw.imageCaption, lang) : pick(kw.title, lang)} />
+                          {kw.credit && <p className="real-case-credit">{kw.credit}</p>}
+                        </div>
+                      )}
 
                       {kw.pills && (
                         <div className="bh-keyword-pills">
