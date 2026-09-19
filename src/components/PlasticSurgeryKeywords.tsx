@@ -32,12 +32,20 @@ export default function PlasticSurgeryKeywords() {
             role="tab"
             aria-selected={i === activeIndex}
             className={`bh-tile ${i === activeIndex ? 'bh-tile-active' : ''}`}
-            style={kw.image ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+            style={(kw.image && !kw.video) ? { backgroundImage: `url(${kw.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
             onClick={() => {
               setActiveIndex(i)
               cardAnchorRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
             }}
           >
+            {kw.video && (
+              <video
+                autoPlay muted loop playsInline
+                src={kw.video}
+                poster={kw.image}
+                className="bh-tile-video"
+              />
+            )}
             <span className="bh-tile-label">{pick(kw.title, lang)}</span>
           </button>
         ))}

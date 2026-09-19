@@ -14,6 +14,7 @@ concierge_image/
 !public/category-hero/dajiankang.mp4
 !public/category-hero/zaishengyiliao.mp4
 !public/category-hero/skin-beauty.mp4
+!public/category-tiles/surgery/eye-surgery.mp4
 *.xlsx
 # Local Netlify folder
 .netlify

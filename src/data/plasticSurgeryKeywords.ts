@@ -163,8 +163,11 @@ export type PlasticSurgeryDocButtonKey = keyof typeof PLASTIC_SURGERY_DOC_BUTTON
 export interface PlasticSurgeryKeyword {
   id: string
   title: LocalizedText
-  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
+  /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted.
+      Also used as the <video> poster frame when `video` is set. */
   image?: string
+  /** Optional looping video for the selector tile (public/ path) — plays muted/autoplay in place of the static image. */
+  video?: string
   description: LocalizedText
   directionsLabel: LocalizedText
   directions: BigHealthBullet[]
@@ -213,7 +216,8 @@ export const PLASTIC_SURGERY_SECTION = {
 export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   {
     id: 'eye-surgery',
-    image: '/keyword-tiles/eye-surgery.jpg',
+    image: '/category-tiles/surgery/eye-surgery.png',
+    video: '/category-tiles/surgery/eye-surgery.mp4',
     title: {
       zh: '眼部整形',
       en: 'Eye Surgery',
@@ -243,7 +247,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'nose-surgery',
-    image: '/keyword-tiles/nose-surgery.jpg',
+    image: '/category-tiles/surgery/nose-surgery.png',
     title: {
       zh: '鼻部整形',
       en: 'Nose Surgery',
@@ -270,7 +274,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'facelift-lifting',
-    image: '/keyword-tiles/facelift-lifting.jpg',
+    image: '/category-tiles/surgery/facelift-lifting.png',
     title: {
       zh: '面部提升',
       en: 'Facelift & Lifting',
@@ -296,7 +300,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'facial-contour-two-jaw',
-    image: '/keyword-tiles/facial-contour-two-jaw.jpg',
+    image: '/category-tiles/surgery/facial-contour-two-jaw.png',
     title: {
       zh: '面部轮廓·双颚',
       en: 'Facial Contour & Two-Jaw Surgery',
@@ -338,7 +342,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'fat-grafting-liposuction',
-    image: '/keyword-tiles/fat-grafting-liposuction.jpg',
+    image: '/category-tiles/surgery/fat-grafting-liposuction.png',
     title: {
       zh: '脂肪移植·吸脂',
       en: 'Fat Grafting & Liposuction',
@@ -365,7 +369,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'breast-surgery',
-    image: '/keyword-tiles/breast-surgery.jpg',
+    image: '/category-tiles/surgery/breast-surgery.png',
     title: {
       zh: '胸部整形',
       en: 'Breast Surgery',

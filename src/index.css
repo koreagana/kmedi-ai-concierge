@@ -1205,6 +1205,18 @@ body {
   background: linear-gradient(to top, rgba(8,25,45,0.42) 0%, rgba(8,25,45,0.08) 32%, rgba(8,25,45,0) 55%);
 }
 
+/* Looping muted video in place of a static bh-tile background image (e.g. eye-surgery).
+   Sits behind the ::before darkening gradient and the label, same as the image tiles. */
+.bh-tile-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
 /* Diagonal light sweep — a soft highlight band that glides across the tile
    and pauses, repeating on a loop, to read as more "alive" than a flat
    gradient. Opt-in via `tileShine` in the data so it stays intentional.
