@@ -79,7 +79,22 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { zh: '关节内微创钻孔植入', en: 'Minimally invasive intra-articular drilling & implantation' },
       { zh: 'JS医院单院已完成3,000例以上CARTISTEM软骨修复手术（截至2026年）', en: 'JS Hospital alone has performed 3,000+ CARTISTEM cartilage repair procedures (as of 2026)' },
       { zh: '骨髓来源治疗', en: 'Bone Marrow-Derived Therapy' },
-      { zh: 'PRP / PRF', en: 'PRP / PRF' },
+    ],
+    products: [
+      {
+        name: 'PRF',
+        desc: {
+          zh: '富血小板纤维蛋白注射——抽血后不加抗凝剂直接离心，血小板与生长因子随纤维网络缓慢释放，作用时间较长',
+          en: 'PRF (Platelet-Rich Fibrin) injection — blood is centrifuged without an anticoagulant, so platelets and growth factors are released gradually from the fibrin network over a longer period',
+        },
+      },
+      {
+        name: 'PRP',
+        desc: {
+          zh: '富血小板血浆注射——抽血后加入抗凝剂离心分离出高浓度血小板，生长因子释放较快',
+          en: 'PRP (Platelet-Rich Plasma) injection — blood is centrifuged with an anticoagulant to isolate concentrated platelets, releasing growth factors more quickly',
+        },
+      },
     ],
   },
   {
