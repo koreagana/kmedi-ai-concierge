@@ -84,15 +84,15 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       {
         name: 'PRF',
         desc: {
-          zh: '富血小板纤维蛋白注射——抽血后不加抗凝剂直接离心，血小板与生长因子随纤维网络缓慢释放，作用时间较长',
-          en: 'PRF (Platelet-Rich Fibrin) injection — blood is centrifuged without an anticoagulant, so platelets and growth factors are released gradually from the fibrin network over a longer period',
+          zh: '利用自体血液中浓缩的血小板与纤维蛋白成分，帮助组织再生的注射治疗。常用于牙龈·牙科手术、皮肤再生、伤口恢复等需要长时间持续组织再生的情况。',
+          en: "An injectable treatment using concentrated platelet and fibrin components from your own blood to support tissue regeneration. Commonly used for gum and dental surgery, skin regeneration, and wound healing — situations where long-lasting tissue regeneration is needed.",
         },
       },
       {
         name: 'PRP',
         desc: {
-          zh: '富血小板血浆注射——抽血后加入抗凝剂离心分离出高浓度血小板，生长因子释放较快',
-          en: 'PRP (Platelet-Rich Plasma) injection — blood is centrifuged with an anticoagulant to isolate concentrated platelets, releasing growth factors more quickly',
+          zh: '利用自体血液中浓缩的血小板与生长因子，帮助恢复与组织再生的注射治疗。常用于关节·肌腱疼痛、运动损伤、脱发及皮肤再生等需要消炎与加速恢复的情况。',
+          en: "An injectable treatment using concentrated platelets and growth factors from your own blood to support recovery and tissue regeneration. Commonly used for joint and tendon pain, sports injuries, hair loss, and skin regeneration — situations where inflammation relief and faster recovery are needed.",
         },
       },
     ],
