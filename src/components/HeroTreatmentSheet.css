@@ -14,7 +14,7 @@
   bottom: 0;
   left: 50%;
   width: 100%;
-  max-width: 480px;
+  max-width: var(--shell-w, 480px);
   max-height: 84vh;
   overflow-y: auto;
   background: #ffffff;

@@ -217,7 +217,7 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 480px;
+  max-width: var(--shell-w, 480px);
   background: #fff;
   border-top: 1px solid var(--qw-line);
   box-shadow: 0 -6px 24px rgba(0,40,90,0.1);

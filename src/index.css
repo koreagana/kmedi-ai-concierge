@@ -39,6 +39,13 @@
 
   /* Status */
   --green:      #00cc66;
+
+  /* Mobile shell width — widened on tablet+ via media query below */
+  --shell-w: 480px;
+}
+
+@media (min-width: 600px) {
+  :root { --shell-w: 680px; }
 }
 
 /* ══════════════════════════════════════════
@@ -74,7 +81,7 @@ body {
 
 .page-container {
   width: 100%;
-  max-width: 480px;
+  max-width: var(--shell-w);
   min-height: 100vh;
   background: var(--bg-white);
   position: relative;
@@ -933,7 +940,7 @@ body {
 
 .modal-sheet {
   width: 100%;
-  max-width: 480px;
+  max-width: var(--shell-w);
   background: var(--bg-white);
   border-radius: 24px 24px 0 0;
   padding: 28px 24px 44px;
