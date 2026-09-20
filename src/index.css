@@ -781,12 +781,12 @@ body {
 }
 
 /* 效果参考 — method/technique illustration (diagram, not a real patient photo).
-   object-fit: contain so labeled parts of the diagram never get cropped. */
+   No max-height/object-fit clamp: width fills the card edge-to-edge and height
+   follows the image's own aspect ratio, so nothing gets cropped or pillarboxed. */
 .ref-illustration-img {
   display: block;
   width: 100%;
-  max-height: 320px;
-  object-fit: contain;
+  height: auto;
   border-radius: 14px;
   background: var(--bg-light);
   border: 1px solid var(--border);
