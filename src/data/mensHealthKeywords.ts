@@ -92,7 +92,7 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     id: 'male-hormone-vitality',
     image: '/category-tiles/man/male-hormone-vitality.png',
     title: {
-      zh: '男性激素 · 活力管理',
+      zh: '激素·活力',
       en: 'Male Hormones & Vitality Management',
     },
     description: {
@@ -116,7 +116,7 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     id: 'immunity-anti-aging',
     image: '/category-tiles/man/immunity-anti-aging.png',
     title: {
-      zh: '免疫力 · 抗衰老管理',
+      zh: '免疫·抗衰',
       en: 'Immunity & Anti-Aging Management',
     },
     description: {
@@ -143,7 +143,7 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     id: 'male-fertility-sperm-health',
     image: '/category-tiles/man/male-fertility-sperm-health.png',
     title: {
-      zh: '男性生育力 · 精子健康',
+      zh: '男性生育力',
       en: 'Male Fertility & Sperm Health',
     },
     description: {
@@ -167,7 +167,7 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     id: 'prostate-urology-intimate-health',
     image: '/category-tiles/man/prostate-urology-intimate-health.png',
     title: {
-      zh: '前列腺 · 泌尿私密健康管理',
+      zh: '前列腺·泌尿',
       en: 'Prostate & Urological Intimate Health Management',
     },
     description: {

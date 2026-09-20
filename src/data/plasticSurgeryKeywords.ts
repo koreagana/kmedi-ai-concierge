@@ -179,6 +179,14 @@ export interface PlasticSurgeryKeyword {
   /** Optional supplementary explainer shown after popularDevices — a short title + paragraph. */
   explainerTitle?: LocalizedText
   explainerBody?: LocalizedText
+  /** "效果参考" block — one or more method/technique diagrams (not real patient photos) shown in
+      place of a real before/after case for tiles without partner-hospital case photos. Each item's
+      `image` is added once that illustration is ready; the title/body can go live before that. */
+  referenceIllustration?: {
+    title: LocalizedText
+    body: LocalizedText
+    image?: string
+  }[]
   note: LocalizedText
   docKeys: PlasticSurgeryDocButtonKey[]
 }
@@ -344,22 +352,56 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     id: 'fat-grafting-liposuction',
     image: '/category-tiles/surgery/fat-grafting-liposuction.png',
     title: {
-      zh: '脂肪移植·吸脂',
-      en: 'Fat Grafting & Liposuction',
+      zh: '吸脂·腹部提拉',
+      en: 'Liposuction & Abdominoplasty',
     },
     description: {
-      zh: '脂肪移植和吸脂咨询主要针对面部凹陷、额头或太阳穴容量不足、法令纹周围凹陷，以及腹部、手臂、大腿等身体部位的脂肪管理需求。脂肪移植和吸脂的恢复方式不同，需要分别咨询。',
-      en: 'Fat grafting and liposuction consultation may include facial volume loss, forehead or temple volume deficiency, nasolabial area volume concerns, and fat management for the abdomen, arms, or thighs. Fat grafting and liposuction have different recovery processes and should be discussed separately.',
+      zh: '吸脂咨询主要针对腹部、手臂、大腿等部位的局部脂肪堆积；腹部提拉手术则针对腹部皮肤松弛、妊娠纹及肌肉分离等问题，通过切除多余皮肤并收紧腹部肌肉改善轮廓。吸脂抽出的脂肪经处理后，也可用于臀部等部位的自体脂肪填充。',
+      en: 'Liposuction consultation mainly addresses localized fat in areas such as the abdomen, arms, and thighs, while abdominoplasty (tummy tuck) targets abdominal skin laxity, stretch marks, and muscle separation by removing excess skin and tightening the abdominal muscles. Fat removed through liposuction can also be processed and used for autologous fat grafting to areas such as the buttocks.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '面部脂肪填充', en: 'Facial fat grafting' },
-      { zh: '额头和太阳穴填充', en: 'Forehead and temple fat grafting' },
-      { zh: '法令纹周围容量咨询', en: 'Volume consultation around nasolabial folds' },
+      { zh: '腹部提拉（腹壁整形）咨询', en: 'Abdominoplasty (tummy tuck) consultation' },
       { zh: '腹部吸脂', en: 'Abdominal liposuction' },
       { zh: '手臂吸脂', en: 'Arm liposuction' },
       { zh: '大腿吸脂', en: 'Thigh liposuction' },
+      { zh: '臀部脂肪填充咨询', en: 'Buttock fat grafting consultation' },
       { zh: '身体线条管理咨询', en: 'Body contour consultation' },
+    ],
+    referenceIllustration: [
+      {
+        title: {
+          zh: '腹部提拉手术方式',
+          en: 'Abdominoplasty (Tummy Tuck) Technique',
+        },
+        body: {
+          zh: '腹部提拉手术会切除松弛皮肤及妊娠纹部位，同时收紧腹部肌肉，改善腹部轮廓。部分术式采用皮内缝合等方式，无需另行拆线，具体切口位置和缝合方式需由医生根据腹部皮肤状态判断。',
+          en: 'Abdominoplasty removes loose, stretch-marked skin and tightens the abdominal muscles to improve the abdominal contour. Some techniques use a subcuticular (buried) suture that does not require stitch removal; the exact incision placement and suturing method should be determined by the doctor based on the condition of the abdominal skin.',
+        },
+        image: '/effect-illustration/fat-grafting-liposuction1.png',
+      },
+      {
+        title: {
+          zh: '手臂吸脂',
+          en: 'Arm Liposuction',
+        },
+        body: {
+          zh: '手臂吸脂主要针对上臂内侧脂肪堆积进行塑形，通过抽吸多余脂肪改善手臂线条。术后通常需穿戴加压袖套帮助消肿定型，具体吸脂范围和效果因个人皮肤弹性及脂肪分布而异。',
+          en: 'Arm liposuction targets fat buildup on the inner upper arm to refine its shape by removing excess fat. A compression sleeve is typically worn afterward to help reduce swelling and support the new contour; the treatment area and outcome vary by individual skin elasticity and fat distribution.',
+        },
+        image: '/effect-illustration/fat-grafting-liposuction2.png',
+      },
+      {
+        title: {
+          zh: '大腿吸脂 · 臀部脂肪填充',
+          en: 'Thigh Liposuction & Buttock Fat Grafting',
+        },
+        body: {
+          zh: '大腿内外侧吸脂常与臀部脂肪填充搭配进行——将抽出的自体脂肪经过处理后注入臀部，在改善大腿线条的同时提升臀部饱满度。脂肪存活率存在个人差异，具体方案需由医生评估决定。',
+          en: "Inner and outer thigh liposuction is often combined with buttock fat grafting — fat removed from the thighs is processed and re-injected into the buttocks, refining the thigh line while adding buttock volume. Fat graft survival varies by individual, and the specific plan should be determined by the doctor's evaluation.",
+        },
+        image: '/effect-illustration/fat-grafting-liposuction3.png',
+      },
     ],
     note: {
       zh: '脂肪移植的生着率存在个人差异，吸脂后也需要压迫服、肿胀、淤青和皮肤紧绷感管理。是否适合、可以做哪些部位，需要医生判断。',
@@ -429,6 +471,19 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       zh: '针对乳头过大、过长或突出明显的情况，调整乳头的大小和形态，使其与整体胸型更加协调。',
       en: 'For nipples that are enlarged, elongated, or noticeably protruding, this procedure adjusts nipple size and shape for a look that is more in proportion with the overall breast line.',
     },
+    referenceIllustration: [
+      {
+        title: {
+          zh: '隆胸假体常见切口方式',
+          en: 'Common Incision Approaches for Breast Implant Surgery',
+        },
+        body: {
+          zh: '隆胸假体可通过乳房下皱襞、腋下或乳晕周围切口植入。不同切口在疤痕位置、手术操作及恢复方面各有特点，具体方式需根据胸部条件、假体类型及医生评估决定。',
+          en: 'Breast implants can be placed through an incision in the inframammary fold, the armpit, or around the areola. Each approach differs in scar location, surgical technique, and recovery, and the specific method should be decided based on breast condition, implant type, and the doctor\'s evaluation.',
+        },
+        image: '/effect-illustration/breast-surgery.png',
+      },
+    ],
     note: {
       zh: '胸部整形需要确认假体种类、切口位置、麻醉方式、恢复期、内衣或胸带使用、按摩或长期追踪管理是否需要。具体方案需由医生判断。',
       en: 'Breast surgery requires confirmation of implant type, incision site, anesthesia method, recovery period, compression bra or breast band use, massage, and long-term follow-up needs. The specific plan must be determined by the doctor.',

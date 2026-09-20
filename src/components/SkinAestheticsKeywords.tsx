@@ -149,6 +149,22 @@ export default function SkinAestheticsKeywords() {
               </div>
             )}
 
+            {active.referenceIllustration && active.referenceIllustration.map((ref, i) => (
+              <div className="bh-card-section" key={i}>
+                <p className="bh-card-label">{pick(ref.title, lang)}</p>
+                {ref.image && (
+                  <img
+                    src={ref.image}
+                    alt={pick(ref.title, lang)}
+                    className="ref-illustration-img"
+                  />
+                )}
+                <p className="bh-card-text" style={{ marginTop: ref.image ? 10 : 4 }}>
+                  {pick(ref.body, lang)}
+                </p>
+              </div>
+            ))}
+
             {active.note && (
               <div className={active.noteStyle === 'warning' ? 'bh-disclaimer' : 'bh-note'} style={{ marginTop: 14 }}>
                 <p className={active.noteStyle === 'warning' ? undefined : 'bh-card-text'}>{pick(active.note, lang)}</p>

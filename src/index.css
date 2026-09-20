@@ -780,6 +780,18 @@ body {
   .case-photo-card { height: 180px; }
 }
 
+/* 效果参考 — method/technique illustration (diagram, not a real patient photo).
+   object-fit: contain so labeled parts of the diagram never get cropped. */
+.ref-illustration-img {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+}
+
 /* ══════════════════════════════════════════
    CATEGORY GRID
    ══════════════════════════════════════════ */
@@ -1278,9 +1290,9 @@ body {
 .bh-tile-label {
   position: relative;
   z-index: 3;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 1.32;
+  line-height: 1.2;
   color: #fff;
   letter-spacing: 0.01em;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6), 0 1px 10px rgba(0,0,0,0.4);
@@ -1293,13 +1305,6 @@ body {
   font-weight: 500;
   color: rgba(255,255,255,0.85);
   text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 1px 8px rgba(0,0,0,0.35);
-}
-
-/* 大健康 tiles use short 4-character titles (慢性疲劳, 睡眠问题…), so the label
-   can safely run larger than the shared 13px default without wrapping. */
-.bh-tiles--antiaging .bh-tile-label {
-  font-size: 20px;
-  line-height: 1.2;
 }
 
 /* Stem-cell: single-column stack of short, wide banner tiles — no photo,

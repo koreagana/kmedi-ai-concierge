@@ -124,6 +124,14 @@ export interface SkinAestheticsKeyword {
   /** Optional Q&A-style explainer block (title + \n\n-separated paragraphs), shown after the product groups. */
   explainerTitle?: LocalizedText
   explainerBody?: LocalizedText
+  /** "效果参考" block — one or more method/technique diagrams (not real patient photos) shown in
+      place of a real before/after case for tiles without partner-hospital case photos. Each item's
+      `image` is added once that illustration is ready; the title/body can go live before that. */
+  referenceIllustration?: {
+    title: LocalizedText
+    body: LocalizedText
+    image?: string
+  }[]
   note?: LocalizedText
   /** 'warning' renders the note in the urgent/orange style instead of the neutral info style. */
   noteStyle?: 'info' | 'warning'
@@ -224,6 +232,16 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         en: 'Available devices vary by clinic — please confirm which specific equipment is offered during your consultation.',
       },
     },
+    referenceIllustration: [
+      {
+        title: { zh: '皮肤提升设备参考', en: 'Skin Lifting Device Reference' },
+        body: {
+          zh: '皮肤提升可选择的能量设备较多，不同设备作用的皮肤层次和适合部位有所不同，具体选择需由医生根据皮肤状态评估决定。',
+          en: 'Various energy-based devices are available for skin lifting, each targeting a different skin layer or area. The right choice should be evaluated and decided by a doctor based on skin condition.',
+        },
+        image: '/effect-illustration/skin-lifting.png',
+      },
+    ],
     docKeys: ['skinTreatmentAfter', 'deviceLiftingAfter'],
   },
   {
@@ -271,6 +289,16 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         en: "Pore and skin-texture treatment usually isn't limited to a single device — the appropriate device and treatment method are chosen, or combined when needed, based on skin condition and treatment goals.",
       },
     },
+    referenceIllustration: [
+      {
+        title: { zh: '毛孔 · 肤质设备参考', en: 'Pores & Texture Device Reference' },
+        body: {
+          zh: '毛孔及肤质问题可选择的激光与能量设备较多，不同设备的作用深度和改善方向有所不同，需由医生根据肤质及问题类型评估选择。',
+          en: 'A range of lasers and energy-based devices can address pore and texture concerns, each working at a different depth and improvement focus. The choice should be evaluated by a doctor based on skin type and concern.',
+        },
+        image: '/effect-illustration/pores-texture.png',
+      },
+    ],
     docKeys: ['skinTreatmentAfter', 'skinBoosterAfter'],
   },
   {
@@ -340,6 +368,24 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       zh: '在韩国常说的"水光针"，并非指某一特定产品名称，而往往泛指以提升皮肤水分和光泽度为目标的注射类项目。\n\n其基础成分多为透明质酸，同时可根据需要搭配PN/PDRN、氨基酸、维生素等多种成分。不同医院和医生所使用的产品、成分配比、注射深度及方式都可能存在差异。因此，即便都叫"水光针"，实际治疗内容也可能因机构不同而有所区别。\n\n水光针因各产品的成分与特性迥异，务必在确认自身皮肤状态、改善目标、治疗部位等信息后，再选择合适的产品和治疗方案，这一点十分重要。',
       en: '',
     },
+    referenceIllustration: [
+      {
+        title: { zh: '水光针 · 皮肤再生代表性产品', en: 'Representative Skin Booster & Regeneration Products' },
+        body: {
+          zh: '水光针及皮肤再生类注射产品种类较多，成分及作用机制各有差异，具体产品选择需由医生根据皮肤状态及改善目标确认。',
+          en: 'There are many types of skin booster and skin regeneration injectables, each with different ingredients and mechanisms. The specific product should be confirmed with a doctor based on skin condition and treatment goals.',
+        },
+        image: '/effect-illustration/skin-boosters-rejuran.png',
+      },
+      {
+        title: { zh: '常见水光针类型对比', en: 'Common Skin Booster Type Comparison' },
+        body: {
+          zh: '不同类型水光针在主要成分、适合改善的肌肤问题、疼痛感及恢复期上有所差异，实际感受因人而异，具体选择需经医生面诊确认。',
+          en: 'Different skin booster types vary in main ingredients, suitable skin concerns, discomfort level, and recovery time. Individual experience varies, and the specific choice should be confirmed through an in-person doctor consultation.',
+        },
+        image: '/effect-illustration/skin-boosters-rejuran2.png',
+      },
+    ],
     docKeys: ['skinBoosterAfter', 'skinTreatmentAfter'],
   },
   {
@@ -411,13 +457,23 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       zh: '通过向发达的咬肌注射肉毒素，使肌肉逐渐放松、缩小，从而改善下颌轮廓，让脸部线条更加流畅自然。注射位置、剂量和医生的技术都会影响最终效果。\n\n在韩国，"轮廓针""雕刻针"也是常见说法，主要用于改善脸颊、双下巴等部位的局部脂肪，塑造更清晰立体的面部轮廓。不同医院使用的成分、配比和注射手法可能有所不同，每家医院往往都有各自的独家配方与操作方式。',
       en: '',
     },
+    referenceIllustration: [
+      {
+        title: { zh: '肉毒素 · 玻尿酸常见注射部位', en: 'Common Botox & Filler Injection Areas' },
+        body: {
+          zh: '肉毒素与玻尿酸可应用于不同部位，改善方向及产品选择需根据个人面部状态及期望效果，由医生评估决定。',
+          en: 'Botulinum toxin and hyaluronic acid fillers can be applied to different facial areas. The treatment focus and product choice should be evaluated and decided by a doctor based on individual facial condition and desired outcome.',
+        },
+        image: '/effect-illustration/botox-fillers.png',
+      },
+    ],
     docKeys: ['botoxGuide', 'fillerGuide', 'fillerBotoxGuide'],
   },
   {
     id: 'acne-scars',
     image: '/category-tiles/Petit/acne-scars.png',
     title: {
-      zh: '色斑 · 痤疮 · 疤痕 · 潮红',
+      zh: '色斑·痘疤·泛红',
       en: 'Dark Spots · Acne · Scars · Redness',
     },
     description: {
@@ -530,59 +586,57 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     id: 'body-skin-care',
     image: '/category-tiles/Petit/body-skin-care.png',
     title: {
-      zh: '身体皮肤管理',
-      en: 'Body Skin Care',
+      zh: '身体紧致塑形',
+      en: 'Body Firming & Contouring',
     },
     description: {
-      zh: '针对腹部·手臂·大腿的松弛与橘皮组织、腋下·手肘·膝盖等部位的色素沉着、腹部与大腿的妊娠纹等身体各部位的皮肤问题进行管理。',
-      en: 'Body care addresses concerns by area — elasticity and cellulite in the abdomen, arms, and thighs; pigmentation on the underarms, elbows, and knees; and stretch marks on the abdomen and thighs.',
+      zh: '针对腹部、手臂、大腿、腰侧等部位的局部脂肪、皮肤松弛与橘皮组织，通过不同能量设备进行非手术身体轮廓管理。',
+      en: 'Addresses localized fat, skin laxity, and cellulite in areas such as the abdomen, arms, thighs, and flanks through non-surgical body contouring with a range of energy-based devices.',
     },
-    directionsLabel: DIRECTIONS_LABEL,
+    directionsLabel: {
+      zh: '常见治疗方向',
+      en: 'Common Treatment Directions',
+    },
     directions: [],
     directionGroups: [
       {
-        label: { zh: '身体紧致 · 橘皮组织', en: 'Body Firming · Cellulite' },
+        label: { zh: '局部脂肪 · 身体线条', en: 'Localized Fat · Body Line' },
         items: [
-          { zh: '射频紧致治疗', en: 'RF firming treatment' },
-          { zh: '微波身体紧致提拉', en: 'Microwave body lifting' },
-          { zh: '皮肤紧致提拉', en: 'Skin tightening' },
-          { zh: '橘皮组织改善', en: 'Cellulite improvement' },
+          { zh: '腹部 · 腰侧', en: 'Abdomen · flanks' },
+          { zh: '手臂', en: 'Arms' },
+          { zh: '大腿 · 臀部周围', en: 'Thighs · around the buttocks' },
         ],
       },
       {
-        label: { zh: '身体色素沉着', en: 'Body Pigmentation' },
+        label: { zh: '皮肤松弛 · 紧致提升', en: 'Skin Laxity · Firming & Lifting' },
         items: [
-          { zh: '腋下 · 手肘 · 膝盖', en: 'Underarms · elbows · knees' },
-          { zh: '臀部 · 比基尼线', en: 'Buttocks · bikini line' },
+          { zh: '改善皮肤松弛', en: 'Improve skin laxity' },
+          { zh: '提升身体轮廓紧致度', en: 'Enhance body contour firmness' },
+          { zh: '改善脂肪堆积后的线条不平整', en: 'Smooth uneven contours after fat reduction' },
         ],
       },
       {
-        label: { zh: '妊娠纹', en: 'Stretch Marks' },
+        label: { zh: '橘皮组织', en: 'Cellulite' },
         items: [
-          { zh: '腹部 · 大腿 · 臀部', en: 'Abdomen · thighs · buttocks' },
-          { zh: '点阵激光', en: 'Fractional laser' },
-          { zh: '射频微针', en: 'RF microneedling' },
+          { zh: '改善大腿、臀部等部位的橘皮外观', en: 'Improve the appearance of cellulite on the thighs, buttocks, and other areas' },
+          { zh: '结合脂肪管理与皮肤紧致治疗', en: 'Combined with fat management and skin-firming treatment' },
         ],
       },
     ],
     popularDevices: {
-      title: { zh: '近期热门身体紧致项目', en: 'Trending Body Lifting Treatments' },
+      title: { zh: '常用设备', en: 'Commonly Used Devices' },
       items: [
         {
           name: { zh: 'ONDA PRO', en: 'ONDA PRO' },
-          desc: { zh: '微波 · 身体紧致 · 橘皮组织 · 体线改善', en: 'Microwave · body tightening · cellulite · body-line improvement' },
-        },
-        {
-          name: { zh: 'PTING BODY', en: 'PTING BODY' },
-          desc: { zh: '超高频微波 · 弹力 · 体线 · 腹部·手臂·大腿管理', en: 'Ultra-high-frequency microwave · elasticity · body line · abdomen, arms & thighs care' },
+          desc: { zh: '局部脂肪 · 橘皮组织 · 皮肤紧致', en: 'Localized fat · cellulite · skin firming' },
         },
         {
           name: { zh: 'INMODE BodyFX', en: 'INMODE BodyFX' },
-          desc: { zh: 'RF+真空吸引 · 皮肤紧致 · 橘皮组织 · 体线改善', en: 'RF + vacuum · skin tightening · cellulite · body-line improvement' },
+          desc: { zh: '脂肪管理 · 射频紧致 · 橘皮改善', en: 'Fat management · RF firming · cellulite improvement' },
         },
         {
           name: { zh: 'SHURINK UNIVERSE BODY', en: 'SHURINK UNIVERSE BODY' },
-          desc: { zh: 'HIFU聚焦超声 · 腹部·大腿紧致 · 皮肤紧致', en: 'HIFU · abdomen & thigh firming · skin tightening' },
+          desc: { zh: '深层紧致 · 改善松弛 · 塑造身体线条', en: 'Deep firming · laxity improvement · body-line shaping' },
         },
       ],
       caution: {
@@ -590,6 +644,16 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         en: 'Available devices vary by clinic — please confirm which specific equipment is offered during your consultation.',
       },
     },
+    referenceIllustration: [
+      {
+        title: { zh: '身体紧致塑形常用设备', en: 'Commonly Used Body Firming Devices' },
+        body: {
+          zh: '身体紧致设备种类较多，作用深度和改善方向有所不同，具体方案需由医生根据体态及皮肤状态评估决定。',
+          en: 'Various body firming devices are available, each working at a different depth and focus. The specific plan should be evaluated and decided by a doctor based on body condition and skin state.',
+        },
+        image: '/effect-illustration/body-skin-care.png',
+      },
+    ],
     docKeys: ['skinTreatmentAfter', 'scarCareGuide'],
   },
 ]
