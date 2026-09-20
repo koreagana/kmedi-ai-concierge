@@ -356,35 +356,20 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
     },
     productGroups: [
       {
-        label: { zh: 'PN · PDRN系列', en: '' },
+        label: { zh: 'REJURAN 丽珠兰系列（韩国）', en: 'REJURAN Series (Korea)' },
         items: [
-          { zh: 'REJURAN 丽珠兰（韩国）', en: '' },
-          { zh: 'PLINEST 普丽斯特（意大利）', en: '' },
-          { zh: 'Placentex 胎盘素 · PDRN（意大利）', en: '' },
+          { zh: '黑盒 REJURAN Healer — 经典基础款，全脸紧致提拉、改善皱纹、补水保湿', en: 'Black Box · REJURAN Healer — classic full-face formula for firming, wrinkle improvement, and hydration' },
+          { zh: '红盒 REJURAN HB — 二合一升级款，添加透明质酸+利多卡因，痛感更低，适合干皮及初老人群', en: 'Red Box · REJURAN HB — 2-in-1 upgrade with added hyaluronic acid + lidocaine, less discomfort, suited to dry or early-aging skin' },
+          { zh: '蓝盒 REJURAN S — 高浓度强化款，专攻痘印、痘坑等凹陷问题', en: 'Blue Box · REJURAN S — higher-concentration intensive formula for acne marks and pitted scars' },
+          { zh: '白盒 REJURAN I — 眼部专用，淡化黑眼圈、眼袋、泪沟', en: 'White Box · REJURAN I — eye-area specific, for dark circles, under-eye bags, and tear troughs' },
         ],
       },
       {
-        label: { zh: '胶原再生系列', en: '' },
+        label: { zh: '其他代表性产品', en: 'Other Representative Products' },
         items: [
-          { zh: 'JUVELOOK 珠维露 · PDLLA + HA（韩国）', en: '' },
-          { zh: 'JUVELOOK Volume / LENISNA 珠维露容积 · 蕾妮丝娜（韩国）', en: '' },
-        ],
-      },
-      {
-        label: { zh: '透明质酸 · 补水水光针系列', en: '' },
-        items: [
-          { zh: 'Restylane Skinboosters 瑞蓝水光针（瑞典）', en: '' },
-          { zh: 'TEOSYAL Redensity 1 缇奥希 红密度1（瑞士）', en: '' },
-          { zh: 'SKINVIVE by JUVÉDERM 乔雅登·肤活（美国）', en: '' },
-          { zh: 'PROFHILO 菲洛（瑞士IBSA）', en: '' },
-        ],
-      },
-      {
-        label: { zh: '复合 · 生物复活疗法系列', en: '' },
-        items: [
-          { zh: 'NCTF 135 HA（法国）', en: '' },
-          { zh: 'JALUPRO / JALUPRO HMW / Super Hydro（瑞士）', en: '' },
-          { zh: 'SUNEKOS 索妮蔻（意大利）', en: '' },
+          { zh: 'JUVELOOK 珠维露 · PDLLA + HA（韩国）', en: 'JUVELOOK — PDLLA + HA (Korea)' },
+          { zh: 'Re2O（韩国）', en: 'Re2O (Korea)' },
+          { zh: '塑妍萃® SCULPTRA · PLLA 胶原再生型（详见下方对比表）', en: 'Sculptra® — PLLA collagen regeneration type (see comparison table below)' },
         ],
       },
     ],
