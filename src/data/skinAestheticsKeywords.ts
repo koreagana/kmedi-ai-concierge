@@ -145,6 +145,9 @@ export interface SkinAestheticsKeyword {
       painScore: 1 | 2 | 3
       painLabel: LocalizedText
       recovery: LocalizedText
+      /** Optional extra row — used when a product's effect timeline needs its own callout
+          (e.g. collagen stimulators that build up gradually, unlike an instant filler). */
+      effectNote?: LocalizedText
     }[]
   }
   /** "真实案例" block — an actual before/after patient photo (not an illustration), tied to the
@@ -264,7 +267,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
           zh: '皮肤提升可选择的能量设备较多，不同设备作用的皮肤层次和适合部位有所不同，具体选择需由医生根据皮肤状态评估决定。',
           en: 'Various energy-based devices are available for skin lifting, each targeting a different skin layer or area. The right choice should be evaluated and decided by a doctor based on skin condition.',
         },
-        image: '/effect-illustration/skin-lifting.png',
+        image: '/effect-illustration/skin-lifting.webp',
       },
     ],
     docKeys: ['skinTreatmentAfter', 'deviceLiftingAfter'],
@@ -321,7 +324,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
           zh: '毛孔及肤质问题可选择的激光与能量设备较多，不同设备的作用深度和改善方向有所不同，需由医生根据肤质及问题类型评估选择。',
           en: 'A range of lasers and energy-based devices can address pore and texture concerns, each working at a different depth and improvement focus. The choice should be evaluated by a doctor based on skin type and concern.',
         },
-        image: '/effect-illustration/pores-texture.png',
+        image: '/effect-illustration/pores-texture.webp',
       },
     ],
     docKeys: ['skinTreatmentAfter', 'skinBoosterAfter'],
@@ -400,7 +403,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
           zh: '水光针及皮肤再生类注射产品种类较多，成分及作用机制各有差异，具体产品选择需由医生根据皮肤状态及改善目标确认。',
           en: 'There are many types of skin booster and skin regeneration injectables, each with different ingredients and mechanisms. The specific product should be confirmed with a doctor based on skin condition and treatment goals.',
         },
-        image: '/effect-illustration/skin-boosters-rejuran.png',
+        image: '/effect-illustration/skin-boosters-rejuran.webp',
       },
     ],
     comparisonTable: {
@@ -431,14 +434,15 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
           recovery: { zh: '几乎没有（轻微）', en: 'Minimal to none' },
         },
         {
-          type: { zh: '舒缓型', en: 'Soothing Type' },
-          product: { zh: '外泌体 EXOSOME', en: 'Exosome' },
+          type: { zh: '胶原再生型', en: 'Collagen Regeneration Type' },
+          product: { zh: '塑妍萃® SCULPTRA', en: 'Sculptra' },
           accent: 'purple',
-          ingredient: { zh: '外泌体（干细胞培养液来源成分）', en: 'Exosomes (derived from stem-cell culture medium)' },
-          concerns: { zh: '痘痘舒缓、泛红改善、炎症肌修护、增强肌肤状态', en: 'Acne calming, redness improvement, inflammatory skin recovery' },
+          ingredient: { zh: 'PLLA（聚左旋乳酸）', en: 'PLLA (Poly-L-Lactic Acid)' },
+          concerns: { zh: '面部容量流失、轮廓松弛、胶原减少', en: 'Facial volume loss, contour laxity, collagen loss' },
           painScore: 2,
           painLabel: { zh: '中等', en: 'Moderate' },
-          recovery: { zh: '1~2天', en: '1–2 days' },
+          recovery: { zh: '1～3天', en: '1–3 days' },
+          effectNote: { zh: '胶原逐渐生成，效果通常在数周至数月内逐步显现', en: 'Collagen builds up gradually — results typically develop over weeks to months' },
         },
         {
           type: { zh: '补水型', en: 'Hydration Type' },
@@ -530,7 +534,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
           zh: '肉毒素与玻尿酸可应用于不同部位，改善方向及产品选择需根据个人面部状态及期望效果，由医生评估决定。',
           en: 'Botulinum toxin and hyaluronic acid fillers can be applied to different facial areas. The treatment focus and product choice should be evaluated and decided by a doctor based on individual facial condition and desired outcome.',
         },
-        image: '/effect-illustration/botox-fillers.png',
+        image: '/effect-illustration/botox-fillers.webp',
       },
     ],
     docKeys: ['botoxGuide', 'fillerGuide', 'fillerBotoxGuide'],
@@ -732,7 +736,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
           zh: '身体紧致设备种类较多，作用深度和改善方向有所不同，具体方案需由医生根据体态及皮肤状态评估决定。',
           en: 'Various body firming devices are available, each working at a different depth and focus. The specific plan should be evaluated and decided by a doctor based on body condition and skin state.',
         },
-        image: '/effect-illustration/body-skin-care.png',
+        image: '/effect-illustration/body-skin-care.webp',
       },
     ],
     docKeys: ['skinTreatmentAfter', 'scarCareGuide'],

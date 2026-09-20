@@ -260,7 +260,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '眼部整形种类较多，不同术式针对的部位和改善方向各不相同，具体适合的方式需由医生根据眼部条件面诊判断。',
           en: 'There are many types of eye surgery, each targeting a different area and improvement goal. The suitable approach should be determined by a doctor through an in-person evaluation of eye condition.',
         },
-        image: '/effect-illustration/eye-surgery.png',
+        image: '/effect-illustration/eye-surgery.webp',
       },
     ],
     note: {
@@ -297,7 +297,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '鼻部整形种类较多，不同术式针对的部位和改善方向各不相同，具体适合的方式需由医生根据鼻部条件面诊判断。',
           en: 'There are many types of nose surgery, each targeting a different area and improvement goal. The suitable approach should be determined by a doctor through an in-person evaluation of nasal condition.',
         },
-        image: '/effect-illustration/nose-surgery.png',
+        image: '/effect-illustration/nose-surgery.webp',
       },
     ],
     note: {
@@ -333,7 +333,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '面部提升手术种类较多，不同术式针对的部位和提升范围各不相同，具体适合的方式需由医生根据面部松弛状态面诊判断。',
           en: 'There are many types of facelift surgery, each targeting a different area and lifting range. The suitable approach should be determined by a doctor through an in-person evaluation of facial sagging.',
         },
-        image: '/effect-illustration/facelift-lifting.png',
+        image: '/effect-illustration/facelift-lifting.webp',
       },
     ],
     note: {
@@ -425,7 +425,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '腹部提拉手术会切除松弛皮肤及妊娠纹部位，同时收紧腹部肌肉，改善腹部轮廓。部分术式采用皮内缝合等方式，无需另行拆线，具体切口位置和缝合方式需由医生根据腹部皮肤状态判断。',
           en: 'Abdominoplasty removes loose, stretch-marked skin and tightens the abdominal muscles to improve the abdominal contour. Some techniques use a subcuticular (buried) suture that does not require stitch removal; the exact incision placement and suturing method should be determined by the doctor based on the condition of the abdominal skin.',
         },
-        image: '/effect-illustration/fat-grafting-liposuction1.png',
+        image: '/effect-illustration/fat-grafting-liposuction1.webp',
       },
       {
         title: {
@@ -436,7 +436,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '手臂吸脂主要针对上臂内侧脂肪堆积进行塑形，通过抽吸多余脂肪改善手臂线条。术后通常需穿戴加压袖套帮助消肿定型，具体吸脂范围和效果因个人皮肤弹性及脂肪分布而异。',
           en: 'Arm liposuction targets fat buildup on the inner upper arm to refine its shape by removing excess fat. A compression sleeve is typically worn afterward to help reduce swelling and support the new contour; the treatment area and outcome vary by individual skin elasticity and fat distribution.',
         },
-        image: '/effect-illustration/fat-grafting-liposuction2.png',
+        image: '/effect-illustration/fat-grafting-liposuction2.webp',
       },
       {
         title: {
@@ -447,7 +447,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '大腿内外侧吸脂常与臀部脂肪填充搭配进行——将抽出的自体脂肪经过处理后注入臀部，在改善大腿线条的同时提升臀部饱满度。脂肪存活率存在个人差异，具体方案需由医生评估决定。',
           en: "Inner and outer thigh liposuction is often combined with buttock fat grafting — fat removed from the thighs is processed and re-injected into the buttocks, refining the thigh line while adding buttock volume. Fat graft survival varies by individual, and the specific plan should be determined by the doctor's evaluation.",
         },
-        image: '/effect-illustration/fat-grafting-liposuction3.png',
+        image: '/effect-illustration/fat-grafting-liposuction3.webp',
       },
     ],
     note: {
@@ -528,7 +528,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '隆胸假体可通过乳房下皱襞、腋下或乳晕周围切口植入。不同切口在疤痕位置、手术操作及恢复方面各有特点，具体方式需根据胸部条件、假体类型及医生评估决定。',
           en: 'Breast implants can be placed through an incision in the inframammary fold, the armpit, or around the areola. Each approach differs in scar location, surgical technique, and recovery, and the specific method should be decided based on breast condition, implant type, and the doctor\'s evaluation.',
         },
-        image: '/effect-illustration/breast-surgery.png',
+        image: '/effect-illustration/breast-surgery.webp',
       },
     ],
     note: {

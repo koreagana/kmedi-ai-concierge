@@ -197,6 +197,12 @@ export default function SkinAestheticsKeywords() {
                         </dd>
                         <dt>{lang === 'en' ? 'Recovery' : '恢复期'}</dt>
                         <dd>{pick(row.recovery, lang)}</dd>
+                        {row.effectNote && (
+                          <>
+                            <dt>{lang === 'en' ? 'Effect Timeline' : '效果特点'}</dt>
+                            <dd>{pick(row.effectNote, lang)}</dd>
+                          </>
+                        )}
                       </dl>
                     </div>
                   ))}
