@@ -187,6 +187,12 @@ export interface PlasticSurgeryKeyword {
     body: LocalizedText
     image?: string
   }[]
+  /** "真实案例" block — an actual before/after patient photo (not an illustration), tied to the
+      one tile it genuinely matches, instead of showing on every tile in the category. */
+  realCase?: {
+    photos: { src: string; alt: LocalizedText }[]
+    credit?: LocalizedText
+  }
   note: LocalizedText
   docKeys: PlasticSurgeryDocButtonKey[]
 }
@@ -247,6 +253,16 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '下眼睑手术', en: 'Lower eyelid surgery' },
       { zh: '眼部修复手术', en: 'Revision eye surgery' },
     ],
+    referenceIllustration: [
+      {
+        title: { zh: '眼部整形种类', en: 'Types of Eye Surgery' },
+        body: {
+          zh: '眼部整形种类较多，不同术式针对的部位和改善方向各不相同，具体适合的方式需由医生根据眼部条件面诊判断。',
+          en: 'There are many types of eye surgery, each targeting a different area and improvement goal. The suitable approach should be determined by a doctor through an in-person evaluation of eye condition.',
+        },
+        image: '/effect-illustration/eye-surgery.png',
+      },
+    ],
     note: {
       zh: '',
       en: '',
@@ -274,6 +290,16 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '鼻修复手术咨询', en: 'Revision rhinoplasty consultation' },
       { zh: '功能性鼻部问题确认', en: 'Functional nasal issue assessment' },
     ],
+    referenceIllustration: [
+      {
+        title: { zh: '鼻部整形种类', en: 'Types of Nose Surgery' },
+        body: {
+          zh: '鼻部整形种类较多，不同术式针对的部位和改善方向各不相同，具体适合的方式需由医生根据鼻部条件面诊判断。',
+          en: 'There are many types of nose surgery, each targeting a different area and improvement goal. The suitable approach should be determined by a doctor through an in-person evaluation of nasal condition.',
+        },
+        image: '/effect-illustration/nose-surgery.png',
+      },
+    ],
     note: {
       zh: '',
       en: '',
@@ -299,6 +325,16 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '中下面部提升咨询', en: 'Mid-to-lower face lifting consultation' },
       { zh: '术后恢复计划', en: 'Postoperative recovery planning' },
       { zh: '疤痕管理咨询', en: 'Scar care consultation' },
+    ],
+    referenceIllustration: [
+      {
+        title: { zh: '面部提升手术种类', en: 'Types of Facelift Surgery' },
+        body: {
+          zh: '面部提升手术种类较多，不同术式针对的部位和提升范围各不相同，具体适合的方式需由医生根据面部松弛状态面诊判断。',
+          en: 'There are many types of facelift surgery, each targeting a different area and lifting range. The suitable approach should be determined by a doctor through an in-person evaluation of facial sagging.',
+        },
+        image: '/effect-illustration/facelift-lifting.png',
+      },
     ],
     note: {
       zh: '',
@@ -340,6 +376,17 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '是否需要住院或保护人陪同', en: 'Whether hospitalization or a guardian is required' },
       { zh: '回国前是否需要复诊确认', en: 'Whether a follow-up check before returning home is needed' },
     ],
+    realCase: {
+      photos: [
+        { src: '/case-photos/contour-before-after-1.png', alt: { zh: '轮廓手术前后对比1', en: 'Facial contour surgery before/after 1' } },
+        { src: '/case-photos/contour-before-after-2.png', alt: { zh: '轮廓手术前后对比2', en: 'Facial contour surgery before/after 2' } },
+        { src: '/case-photos/contour-before-after-3.png', alt: { zh: '轮廓手术前后对比3', en: 'Facial contour surgery before/after 3' } },
+      ],
+      credit: {
+        zh: '图片提供：双·轮·突口腔颌面外科（YangYoonDol Oral & Maxillofacial Surgery）',
+        en: 'Photos provided by: YangYoonDol Oral & Maxillofacial Surgery',
+      },
+    },
     note: {
       zh: '',
       en: '',

@@ -7,6 +7,7 @@ import {
   PLASTIC_SURGERY_SECTION,
 } from '../data/plasticSurgeryKeywords'
 import type { LangCode } from '../data/translations'
+import CasePhoto from './CasePhoto'
 import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
@@ -136,6 +137,20 @@ export default function PlasticSurgeryKeywords() {
                 </p>
               </div>
             ))}
+
+            {active.realCase && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{lang === 'en' ? 'Real Case' : '真实案例'}</p>
+                <div className="real-case-list" style={{ marginTop: 10 }}>
+                  {active.realCase.photos.map((p) => (
+                    <CasePhoto key={p.src} src={p.src} alt={pick(p.alt, lang)} />
+                  ))}
+                </div>
+                {active.realCase.credit && (
+                  <p className="real-case-credit">{pick(active.realCase.credit, lang)}</p>
+                )}
+              </div>
+            )}
 
             {pick(active.note, lang) && (
               <div className="bh-note" style={{ marginTop: 14 }}>

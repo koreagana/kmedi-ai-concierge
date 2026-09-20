@@ -8,6 +8,7 @@ import {
   SKIN_AESTHETICS_SECTION,
 } from '../data/skinAestheticsKeywords'
 import type { LangCode } from '../data/translations'
+import CasePhoto from './CasePhoto'
 import TtsButton from './TtsButton'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
@@ -164,6 +165,68 @@ export default function SkinAestheticsKeywords() {
                 </p>
               </div>
             ))}
+
+            {active.comparisonTable && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.comparisonTable.title, lang)}</p>
+                {active.comparisonTable.subCopy && (
+                  <p className="bh-card-text" style={{ marginTop: 4, marginBottom: 12 }}>
+                    {pick(active.comparisonTable.subCopy, lang)}
+                  </p>
+                )}
+                <div className="compare-table">
+                  {active.comparisonTable.rows.map((row, i) => (
+                    <div className={`compare-row compare-row--${row.accent}`} key={i}>
+                      <div className="compare-row-head">
+                        <span className="compare-row-type">{pick(row.type, lang)}</span>
+                        <span className="compare-row-product">{pick(row.product, lang)}</span>
+                      </div>
+                      <dl className="compare-row-grid">
+                        <dt>{lang === 'en' ? 'Ingredient' : '主要成分'}</dt>
+                        <dd>{pick(row.ingredient, lang)}</dd>
+                        <dt>{lang === 'en' ? 'Suitable For' : '适合改善'}</dt>
+                        <dd>{pick(row.concerns, lang)}</dd>
+                        <dt>{lang === 'en' ? 'Discomfort' : '疼痛感'}</dt>
+                        <dd>
+                          <span className="compare-pain-dots" aria-hidden="true">
+                            {[1, 2, 3].map((n) => (
+                              <span key={n} className={n <= row.painScore ? 'compare-pain-dot compare-pain-dot--on' : 'compare-pain-dot'} />
+                            ))}
+                          </span>
+                          {pick(row.painLabel, lang)}
+                        </dd>
+                        <dt>{lang === 'en' ? 'Recovery' : '恢复期'}</dt>
+                        <dd>{pick(row.recovery, lang)}</dd>
+                      </dl>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {active.realCase && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{lang === 'en' ? 'Real Case' : '真实案例'}</p>
+                <div className="real-case-list" style={{ marginTop: 10 }}>
+                  {active.realCase.photos.map((p) => (
+                    <CasePhoto key={p.src} src={p.src} alt={pick(p.alt, lang)} />
+                  ))}
+                </div>
+                {active.realCase.credit && (
+                  <p className="real-case-credit">{pick(active.realCase.credit, lang)}</p>
+                )}
+                <div className="info-box" style={{ marginTop: 14 }}>
+                  <p className="info-box-title">{pick(active.realCase.planTitle, lang)}</p>
+                  <p className="info-tag-row">{pick(active.realCase.planTag, lang)}</p>
+                  {active.realCase.planNotes.map((n, i) => (
+                    <p key={i} className="info-note">{pick(n, lang)}</p>
+                  ))}
+                  <p className="info-note" style={{ fontWeight: 700, color: 'var(--brand-dark)' }}>
+                    {pick(active.realCase.planHighlight, lang)}
+                  </p>
+                </div>
+              </div>
+            )}
 
             {active.note && (
               <div className={active.noteStyle === 'warning' ? 'bh-disclaimer' : 'bh-note'} style={{ marginTop: 14 }}>

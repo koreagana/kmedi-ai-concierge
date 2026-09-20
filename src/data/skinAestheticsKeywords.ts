@@ -132,6 +132,31 @@ export interface SkinAestheticsKeyword {
     body: LocalizedText
     image?: string
   }[]
+  /** Coded comparison table (not an image) — one card per row, stacked for mobile readability. */
+  comparisonTable?: {
+    title: LocalizedText
+    subCopy?: LocalizedText
+    rows: {
+      type: LocalizedText
+      product: LocalizedText
+      accent: 'teal' | 'blue' | 'purple' | 'coral'
+      ingredient: LocalizedText
+      concerns: LocalizedText
+      painScore: 1 | 2 | 3
+      painLabel: LocalizedText
+      recovery: LocalizedText
+    }[]
+  }
+  /** "真实案例" block — an actual before/after patient photo (not an illustration), tied to the
+      one tile it genuinely matches, instead of showing on every tile in the category. */
+  realCase?: {
+    photos: { src: string; alt: LocalizedText }[]
+    credit?: LocalizedText
+    planTitle: LocalizedText
+    planTag: LocalizedText
+    planNotes: LocalizedText[]
+    planHighlight: LocalizedText
+  }
   note?: LocalizedText
   /** 'warning' renders the note in the urgent/orange style instead of the neutral info style. */
   noteStyle?: 'info' | 'warning'
@@ -377,15 +402,56 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         },
         image: '/effect-illustration/skin-boosters-rejuran.png',
       },
-      {
-        title: { zh: '常见水光针类型对比', en: 'Common Skin Booster Type Comparison' },
-        body: {
-          zh: '不同类型水光针在主要成分、适合改善的肌肤问题、疼痛感及恢复期上有所差异，实际感受因人而异，具体选择需经医生面诊确认。',
-          en: 'Different skin booster types vary in main ingredients, suitable skin concerns, discomfort level, and recovery time. Individual experience varies, and the specific choice should be confirmed through an in-person doctor consultation.',
-        },
-        image: '/effect-illustration/skin-boosters-rejuran2.png',
-      },
     ],
+    comparisonTable: {
+      title: { zh: '常见水光针类型对比', en: 'Common Skin Booster Type Comparison' },
+      subCopy: {
+        zh: '不同成分 · 不同功效 · 实际感受因人而异，具体选择需经医生面诊确认。',
+        en: 'Different ingredients, different effects — individual experience varies, and the specific choice should be confirmed through an in-person doctor consultation.',
+      },
+      rows: [
+        {
+          type: { zh: '再生型', en: 'Regeneration Type' },
+          product: { zh: '丽珠兰 REJURAN', en: 'Rejuran' },
+          accent: 'teal',
+          ingredient: { zh: 'PN（多聚核苷酸）', en: 'PN (Polynucleotide)' },
+          concerns: { zh: '皮肤内干、屏障受损、细纹、弹力下降', en: 'Internal dryness, weakened barrier, fine lines, reduced elasticity' },
+          painScore: 3,
+          painLabel: { zh: '较高', en: 'Higher' },
+          recovery: { zh: '2~3天', en: '2–3 days' },
+        },
+        {
+          type: { zh: '胶原型', en: 'Collagen Type' },
+          product: { zh: '乔雅露 JUVELOOK', en: 'Juvelook' },
+          accent: 'blue',
+          ingredient: { zh: 'PDLLA + 透明质酸', en: 'PDLLA + Hyaluronic Acid' },
+          concerns: { zh: '毛孔粗大、痘坑凹陷、肤质粗糙、自然饱满感', en: 'Enlarged pores, acne scars, rough texture, natural fullness' },
+          painScore: 2,
+          painLabel: { zh: '中等', en: 'Moderate' },
+          recovery: { zh: '几乎没有（轻微）', en: 'Minimal to none' },
+        },
+        {
+          type: { zh: '舒缓型', en: 'Soothing Type' },
+          product: { zh: '外泌体 EXOSOME', en: 'Exosome' },
+          accent: 'purple',
+          ingredient: { zh: '外泌体（干细胞培养液来源成分）', en: 'Exosomes (derived from stem-cell culture medium)' },
+          concerns: { zh: '痘痘舒缓、泛红改善、炎症肌修护、增强肌肤状态', en: 'Acne calming, redness improvement, inflammatory skin recovery' },
+          painScore: 2,
+          painLabel: { zh: '中等', en: 'Moderate' },
+          recovery: { zh: '1~2天', en: '1–2 days' },
+        },
+        {
+          type: { zh: '补水型', en: 'Hydration Type' },
+          product: { zh: '水光针', en: 'Water-Glow Injection' },
+          accent: 'coral',
+          ingredient: { zh: 'HA 复合维生素矿物质', en: 'HA + vitamin & mineral complex' },
+          concerns: { zh: '改善干燥、暗沉、即时水润光泽', en: 'Dryness, dullness, instant hydration & glow' },
+          painScore: 1,
+          painLabel: { zh: '较低', en: 'Lower' },
+          recovery: { zh: '约1天', en: 'About 1 day' },
+        },
+      ],
+    },
     docKeys: ['skinBoosterAfter', 'skinTreatmentAfter'],
   },
   {
@@ -576,6 +642,21 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         ],
       },
     ],
+    realCase: {
+      photos: [
+        {
+          src: '/case-photos/skin-before-after-1.png',
+          alt: { zh: '痤疮治疗前后对比', en: 'Acne treatment before/after' },
+        },
+      ],
+      planTitle: { zh: '治疗参考方案', en: 'Reference Treatment Plan' },
+      planTag: { zh: '炎症性痤疮控制 + 色素沉着及痘印改善', en: 'Inflammatory acne control + pigmentation & acne-mark improvement' },
+      planNotes: [
+        { zh: '初期可根据皮肤状态，每2周左右进行1次治疗，之后逐渐调整治疗间隔。', en: 'Initially, treatment may be scheduled roughly every 2 weeks depending on skin condition, with the interval adjusted gradually afterward.' },
+        { zh: '若炎症反复或色素沉着较明显，整体改善过程可能需要 6～12个月，甚至更长时间。', en: 'If inflammation recurs or pigmentation is more pronounced, overall improvement may take 6–12 months or longer.' },
+      ],
+      planHighlight: { zh: '具体治疗方案需由医生面诊后决定。', en: 'The specific treatment plan must be determined by a doctor through an in-person consultation.' },
+    },
     note: {
       zh: '关于各激光设备的功效详情，请点击橙色咨询按钮进行咨询。',
       en: 'For details on the efficacy of each laser device, please click the orange consultation button to ask.',
