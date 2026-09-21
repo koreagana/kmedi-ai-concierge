@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 import { translations, type LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
@@ -428,7 +427,7 @@ function ConciergeSection() {
    3. CONCERN SELECTION
    ═══════════════════════════════════════════════════════════════════ */
 export function ConcernSection() {
-  const { lang, goToCategory } = useApp()
+  const { lang, goToCategory, goToPackage } = useApp()
   const t = translations[lang]
 
   const concerns: { id: string; icon: JSX.Element; title: string; sub: string; target: CategoryId }[] = [
@@ -464,7 +463,7 @@ export function ConcernSection() {
             {...fadeUp}
             transition={{ delay: i * 0.07, duration: 0.4 }}
             className="concern-card"
-            onClick={() => goToCategory(c.target, c.id)}
+            onClick={() => (c.target === 'medical-tourism' ? goToPackage() : goToCategory(c.target, c.id))}
           >
             <span className="concern-icon">{c.icon}</span>
             <div>
@@ -919,16 +918,6 @@ export function FooterSection() {
         >
           <img src="/icons/xiaochengxu.jpg" alt={lang === 'zh' ? '微信小程序' : 'WeChat Mini Program'} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </button>
-        <a
-          href="mailto:2gana@naver.com"
-          title="Email"
-          style={{
-            width: 34, height: 34, borderRadius: '50%', background: 'white',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}
-        >
-          <Mail size={17} color="#1f4e79" strokeWidth={2} />
-        </a>
       </div>
 
       <AnimatePresence>

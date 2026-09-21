@@ -319,7 +319,8 @@ Diagnosis and treatment must follow the judgment of a medical institution and ph
     zh: '汉江春天 3晚4天方案',
     en: 'Premium Medical Tourism',
     emoji: '✈️',
-    heroImage: '/category-hero/medical-tourism.png',
+    // 이 카테고리는 자체 상세 페이지가 없고 항상 패키지 페이지(goToPackage)로 연결된다 —
+    // heroImage를 넣지 않는다(CategoryPage가 실제로 렌더되는 경로가 없어 쓰일 일이 없음).
     tagZh: '仁川机场接送 · 预约翻译 · 车辆陪同 · 3晚4天行程',
     tagEn: 'Booking/Interpretation · Vehicle Escort · 3N4D Itinerary',
     scriptFullZh: `您好，欢迎了解汉江春天医疗旅游精品服务。

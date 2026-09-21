@@ -167,7 +167,7 @@ export interface SkinAestheticsKeyword {
 }
 
 const DIRECTIONS_LABEL: LocalizedText = {
-  zh: '可能相关治疗方向',
+  zh: '推荐治疗方案',
   en: 'Possible Related Treatment Directions',
 }
 
@@ -294,7 +294,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       { zh: '舒缓 · 修复管理', en: 'Soothing & Recovery Care' },
     ],
     popularDevices: {
-      title: { zh: '相关激光及能量设备', en: 'Related Laser & Energy-Based Devices' },
+      title: { zh: '激光及能量设备', en: 'Related Laser & Energy-Based Devices' },
       items: [
         { name: { zh: 'POTENZA 黄金射频微针', en: 'POTENZA RF Microneedling' }, desc: { zh: '', en: '' } },
         { name: { zh: 'SYLFIRM X 黄金微针', en: 'SYLFIRM X RF Microneedling' }, desc: { zh: '', en: '' } },
@@ -588,7 +588,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
       },
     ],
     productGroupsLabel: {
-      zh: '相关激光 · 能量及再生设备',
+      zh: '激光 · 能量及再生设备',
       en: 'Related Laser, Energy & Regenerative Devices',
     },
     productGroups: [
