@@ -164,9 +164,14 @@
     .item{page-break-inside:avoid;}
     .closing{margin-top:30px; page-break-inside:avoid;}
   }
+
+  .kmedi-pdf-btn{position:fixed;top:14px;right:14px;z-index:999;font-family:inherit;font-size:13px;font-weight:700;color:#fff;background:#0077b6;border:none;border-radius:8px;padding:10px 16px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.18);}
+  .kmedi-pdf-btn:hover{background:#1f4e79;}
+  @media print{.kmedi-pdf-btn{display:none!important;}}
 </style>
 </head>
 <body>
+<button type="button" class="kmedi-pdf-btn" onclick="window.print()">PDF 저장 / 인쇄</button>
 <div class="wrap">
 
   <!-- 병원명 입력 패널 : 발송 링크 만들 때만 사용, 인쇄·병원 열람 시 자동 숨김 -->

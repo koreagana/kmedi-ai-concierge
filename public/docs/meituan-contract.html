@@ -336,9 +336,14 @@
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .page { margin: 0; padding: 14mm 18mm; width: 100%; }
   }
+
+  .kmedi-pdf-btn{position:fixed;top:14px;right:14px;z-index:999;font-family:inherit;font-size:13px;font-weight:700;color:#fff;background:#0077b6;border:none;border-radius:8px;padding:10px 16px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.18);}
+  .kmedi-pdf-btn:hover{background:#1f4e79;}
+  @media print{.kmedi-pdf-btn{display:none!important;}}
 </style>
 </head>
 <body>
+<button type="button" class="kmedi-pdf-btn" onclick="window.print()">PDF 저장 / 인쇄</button>
 <div class="page">
 
   <!-- HEADER -->
