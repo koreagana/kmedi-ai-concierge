@@ -1495,14 +1495,28 @@ body {
 .bh-tiles .bh-tile:nth-child(6n+5) { background: linear-gradient(150deg,#8ba7c9,#3a5f85); }
 .bh-tiles .bh-tile:nth-child(6n+6) { background: linear-gradient(150deg,#5b9bd0,#274d75); }
 
-/* Stem-cell palette — calm brand-blue tones (matches the hero image), one fixed
-   shade per tile in DOM order rather than a cycling pattern, since the list is
-   a fixed 5 items. */
-.bh-tiles--stemcell .bh-tile:nth-child(1) { background: linear-gradient(150deg,#155E75,#0F3F56); }
-.bh-tiles--stemcell .bh-tile:nth-child(2) { background: linear-gradient(150deg,#3B82A0,#245B78); }
-.bh-tiles--stemcell .bh-tile:nth-child(3) { background: linear-gradient(150deg,#4169A1,#263F73); }
-.bh-tiles--stemcell .bh-tile:nth-child(4) { background: linear-gradient(150deg,#278A96,#17616D); }
-.bh-tiles--stemcell .bh-tile:nth-child(5) { background: linear-gradient(150deg,#356D91,#21475F); }
+/* Stem-cell palette — bright "clinic light" look instead of a saturated fill:
+   near-white ice-blue gradients with a soft neon-blue glow ring, closer to the
+   brand's hero photo (glowing light booth) than a solid color block. Photo-tile
+   darkening overlay (.bh-tile::before) is switched off since there's no photo
+   to protect legibility for, and the label switches to dark text accordingly. */
+.bh-tiles--stemcell .bh-tile::before { background: none; }
+.bh-tiles--stemcell .bh-tile {
+  box-shadow: 0 0 0 1px rgba(120,200,255,0.55), 0 0 18px rgba(120,200,255,0.28), 0 4px 14px rgba(10,30,55,0.06);
+}
+.bh-tiles--stemcell .bh-tile-label {
+  color: #0F3F56;
+  text-shadow: none;
+}
+.bh-tiles--stemcell .bh-tile-sublabel {
+  color: rgba(15,63,86,0.7);
+  text-shadow: none;
+}
+.bh-tiles--stemcell .bh-tile:nth-child(1) { background: linear-gradient(150deg,#EAF6FF,#CFEAFF); }
+.bh-tiles--stemcell .bh-tile:nth-child(2) { background: linear-gradient(150deg,#EDF7FF,#D3EBFF); }
+.bh-tiles--stemcell .bh-tile:nth-child(3) { background: linear-gradient(150deg,#E7F3FF,#C7E4FF); }
+.bh-tiles--stemcell .bh-tile:nth-child(4) { background: linear-gradient(150deg,#E9FAFA,#CBEEF1); }
+.bh-tiles--stemcell .bh-tile:nth-child(5) { background: linear-gradient(150deg,#EAF2FF,#CFE0FF); }
 
 /* Explicit per-tile gradient tones (stem-cell palette), used when a specific
    tile in the grid needs a fixed color regardless of its position — e.g. so a
