@@ -64,7 +64,6 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     image: '/category-tiles/stem-cell/Immuncelllc.png',
     secondaryMedia: { type: 'video', src: '/category-tiles/stem-cell/nkcell.mp4' },
     imageCaption: { zh: 'Immuncell-LC® 注射剂 — 由您自身血液培养14天制成的专属治疗药', en: 'Immuncell-LC® Injection — Made From Your Own Blood After 14 Days of Culture' },
-    credit: '图片来源：GC Cell（绿十字细胞）',
     footerLine: { zh: '采血 → 体外培养14天 → 回输体内', en: 'Blood draw → 14-day culture → Infusion' },
     list: [
       { zh: '2007年8月获韩国食品药品安全处（MFDS）正式药品许可', en: 'Approved by Korea\'s MFDS in August 2007' },

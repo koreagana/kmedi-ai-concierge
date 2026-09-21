@@ -73,6 +73,7 @@ export default function StemCellKeywords() {
                               )}
                             </div>
                           </div>
+                          {kw.footerLine && <p className="bh-card-process-line">{pick(kw.footerLine, lang)}</p>}
                           {kw.credit && <p className="real-case-credit">{kw.credit}</p>}
                         </div>
                       )}
@@ -103,7 +104,7 @@ export default function StemCellKeywords() {
                         </div>
                       ))}
 
-                      {kw.footerLine && <p className="bh-card-text" style={{ marginTop: 10 }}>{pick(kw.footerLine, lang)}</p>}
+                      {kw.footerLine && !(kw.image && kw.secondaryMedia) && <p className="bh-card-text" style={{ marginTop: 10 }}>{pick(kw.footerLine, lang)}</p>}
 
                       {kw.list && (
                         <ul className="bh-list" style={{ marginTop: 12 }}>

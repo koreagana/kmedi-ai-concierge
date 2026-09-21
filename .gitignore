@@ -16,6 +16,7 @@ concierge_image/
 !public/category-hero/skin-beauty.mp4
 !public/category-tiles/surgery/eye-surgery.mp4
 !public/category-tiles/Petit/botox-fillers.mp4
+!public/category-tiles/stem-cell/nkcell.mp4
 *.xlsx
 # Local Netlify folder
 .netlify

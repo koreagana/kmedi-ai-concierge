@@ -771,6 +771,17 @@ export function MedicalNetworkSection() {
               lineHeight: 1.4,
             }}>
               {card.title}
+              {card.badge && (card.badgeType === 'reg' || card.badgeType === 'reg-expand') && (
+                <span style={{
+                  marginLeft: 6,
+                  fontSize: 9,
+                  fontWeight: 400,
+                  color: 'var(--text-muted)',
+                  letterSpacing: '0.01em',
+                }}>
+                  {card.badge}
+                </span>
+              )}
             </p>
             <p style={{
               fontSize: 11,
@@ -780,22 +791,6 @@ export function MedicalNetworkSection() {
             }}>
               {card.desc}
             </p>
-            {card.badge && (card.badgeType === 'reg' || card.badgeType === 'reg-expand') && (
-              <span style={{
-                fontSize: 9,
-                color: '#0077b6',
-                background: 'rgba(0,119,182,0.06)',
-                border: '1px solid rgba(0,119,182,0.18)',
-                borderRadius: 6,
-                padding: '3px 7px',
-                letterSpacing: '0.03em',
-                lineHeight: 1.4,
-                display: 'inline-block',
-                wordBreak: 'break-all' as const,
-              }}>
-                {card.badge}
-              </span>
-            )}
             {card.badgeType === 'reg-expand' && (
               <span className="badge-pulse-purple" style={{
                 fontSize: 10,
@@ -896,7 +891,6 @@ export function MedicalNetworkSection() {
                   </div>
                 ))}
               </div>
-              <p className="network-service-reg">{t.networkCard1RegNote}</p>
             </div>
           </motion.div>
         )}

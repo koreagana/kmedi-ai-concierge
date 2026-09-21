@@ -765,6 +765,14 @@ body {
   text-align: center;
 }
 
+.bh-card-process-line {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brand-dark, #003d6b);
+  text-align: center;
+}
+
 .case-photo-card {
   width: 100%;
   height: 220px;
