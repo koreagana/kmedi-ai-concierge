@@ -88,7 +88,9 @@ function Card({
         >
           {d.category}
         </span>
-        <span className="phr-mou" title="협력 인증">MOU</span>
+        {d.status !== "pending" && (
+          <span className="phr-mou" title="협력 인증">MOU</span>
+        )}
       </div>
 
       <p className="phr-name-ko">{d.name.ko}</p>

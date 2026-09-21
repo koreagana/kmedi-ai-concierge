@@ -27,7 +27,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -120,7 +120,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -151,7 +151,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -182,7 +182,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -275,7 +275,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -306,7 +306,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -368,7 +368,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -399,7 +399,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -461,7 +461,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -492,7 +492,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -554,7 +554,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
@@ -585,38 +585,7 @@
     },
     "intro_page_url": null,
     "logo_url": null,
-    "status": "active",
-    "mou_date": null
-  },
-  {
-    "id": "PH-023",
-    "category": "피부과·의원",
-    "name": {
-      "ko": "벤스의원 강남",
-      "zh": "VandS诊所 江南",
-      "en": "VandS Clinic Gangnam"
-    },
-    "address": {
-      "ko": "서울특별시 서초구 강남대로 411 DS타워 12~13층 (강남역 10번 출구)",
-      "zh": "首尔特别市瑞草区江南大路411号DS大厦12-13层(江南站10号出口)",
-      "en": "411, Gangnam-daero, Seocho-gu, Seoul (DS Tower 12-13F)"
-    },
-    "phone": null,
-    "note": "피부과",
-    "contact": {
-      "manager": null,
-      "email": null,
-      "phone_direct": null
-    },
-    "website": null,
-    "description": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "intro_page_url": null,
-    "logo_url": null,
-    "status": "active",
+    "status": "pending",
     "mou_date": null
   },
   {
