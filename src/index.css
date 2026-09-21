@@ -789,6 +789,39 @@ body {
   .case-photo-card { height: 180px; }
 }
 
+/* 제품 패키지 사진처럼 세로로 자르면 안 되는 이미지 옆에 영상을 나란히 붙일 때
+   (예: 免疫细胞 제품 사진 + NK세포 작용 영상). object-fit:contain이라 잘리지
+   않고 전체가 보인다 — CasePhoto(cover, 실제 전후사진용)와는 용도가 다르다. */
+.case-photo-split {
+  display: flex;
+  gap: 10px;
+}
+.case-photo-half {
+  flex: 1;
+  min-width: 0;
+  height: 220px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.case-photo-half img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.case-photo-half video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 420px) {
+  .case-photo-half { height: 180px; }
+}
+
 /* 效果参考 — method/technique illustration (diagram, not a real patient photo).
    No max-height/object-fit clamp: width fills the card edge-to-edge and height
    follows the image's own aspect ratio, so nothing gets cropped or pillarboxed. */
@@ -1470,6 +1503,7 @@ body {
 .bh-tile--grad-pink { background: linear-gradient(150deg,#eea6c4,#9c3f72) !important; }
 .bh-tile--grad-purple { background: linear-gradient(150deg,#af8ee0,#5c3aa0) !important; }
 .bh-tile--grad-mint { background: linear-gradient(150deg,#5fcdd9,#166b7a) !important; }
+.bh-tile--grad-yellow { background: linear-gradient(150deg,#f2c94c,#95610a) !important; }
 
 .bh-tiles--rose .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#e0a3b0,#95425a); }
 .bh-tiles--rose .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#d9a98f,#8a5738); }
@@ -2017,6 +2051,63 @@ body {
   font-weight: 600;
   color: var(--text-muted);
   letter-spacing: 0.01em;
+}
+
+/* ══════════════════════════════════════════
+   外籍患者引进机构资质 확장 패널 (전체 서비스 소개)
+   ══════════════════════════════════════════ */
+.network-service-panel {
+  text-align: left;
+}
+.network-service-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-dark, #003d6b);
+  margin-bottom: 6px;
+}
+.network-service-intro {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.network-service-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.network-service-item {
+  display: flex;
+  gap: 10px;
+}
+.network-service-item-dot {
+  flex-shrink: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+  margin-top: 7px;
+}
+.network-service-item-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+  line-height: 1.5;
+}
+.network-service-item-desc {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.network-service-reg {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(0,119,182,0.18);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-align: center;
 }
 
 /* ══════════════════════════════════════════════════════════════════

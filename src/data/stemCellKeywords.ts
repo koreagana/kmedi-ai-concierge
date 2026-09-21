@@ -15,6 +15,11 @@ export interface StemCellKeyword {
   body: LocalizedText
   /** Optional real case photo shown inside the expanded card (public/ path). */
   image?: string
+  /** Optional second media item shown side-by-side with `image` (public/ path) —
+      splits the photo slot into two equal panels instead of one. Both panels use
+      object-fit: contain so product/packaging shots don't get cropped top-bottom
+      the way a portrait-cropped real-case photo (CasePhoto, object-fit: cover) does. */
+  secondaryMedia?: { type: 'image' | 'video'; src: string }
   /** Short caption shown above the photo describing what it is. */
   imageCaption?: LocalizedText
   /** Source credit shown under the photo, e.g. hospital name. Not localized (usually a proper noun). */
@@ -49,6 +54,25 @@ export const STEM_CELL_INTRO = {
 
 export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
   {
+    id: 'immuncell-lc',
+    title: { zh: '免疫细胞治疗 · Immuncell-LC', en: 'Immune Cell Therapy · Immuncell-LC' },
+    tileSubtitle: { zh: '自体NK/T细胞 · 肝癌辅助免疫治疗', en: 'Autologous NK/T Cells · Liver Cancer Adjuvant Therapy' },
+    body: {
+      zh: '与干细胞治疗不同，Immuncell-LC（이뮨셀엘씨주）是绿十字细胞（GC Cell）研发的自体免疫细胞治疗剂：抽取患者自身血液，在体外培养扩增其中的NK细胞与T细胞后，再回输体内，用于原发性肝细胞癌（肝癌）的术后辅助免疫治疗。',
+      en: 'Unlike stem cell therapy, Immuncell-LC is an autologous immune cell therapy developed by GC Cell: the patient\'s own blood is drawn, the NK and T cells within it are cultured and expanded outside the body, then infused back in — used as adjuvant immunotherapy after treatment for hepatocellular carcinoma (liver cancer).',
+    },
+    image: '/category-tiles/stem-cell/Immuncelllc.png',
+    secondaryMedia: { type: 'video', src: '/category-tiles/stem-cell/nkcell.mp4' },
+    imageCaption: { zh: 'Immuncell-LC® 注射剂 — 由您自身血液培养14天制成的专属治疗药', en: 'Immuncell-LC® Injection — Made From Your Own Blood After 14 Days of Culture' },
+    credit: '图片来源：GC Cell（绿十字细胞）',
+    footerLine: { zh: '采血 → 体外培养14天 → 回输体内', en: 'Blood draw → 14-day culture → Infusion' },
+    list: [
+      { zh: '2007年8月获韩国食品药品安全处（MFDS）正式药品许可', en: 'Approved by Korea\'s MFDS in August 2007' },
+      { zh: '2021年8月依《先进再生医学及先进生物医药品法》再许可为先进生物医药品', en: 'Re-approved as an advanced biopharmaceutical under Korea\'s Advanced Regenerative Bio Act in August 2021' },
+      { zh: '适应症 →肝癌（原发性肝细胞癌）术后辅助免疫治疗', en: 'Indication → Adjuvant immunotherapy after hepatocellular carcinoma' },
+    ],
+  },
+  {
     id: 'skin-regeneration',
     title: { zh: '皮肤再生', en: 'Skin Regeneration' },
     tileSubtitle: { zh: '肤质 · 弹性 · 组织修复', en: 'Texture · Elasticity · Tissue Repair' },
@@ -72,6 +96,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nBy comparison, traditional artificial joint replacement can typically only be performed once in a lifetime due to the limited lifespan of the implant — cartilage regeneration therapy is often used to slow disease progression and preserve the natural joint for as long as possible before replacement becomes necessary.\nThis treatment has also been chosen by a number of celebrities and VIP patients.',
     },
     image: '/category-tiles/stem-cell/joint-cartilage.png',
+    secondaryMedia: { type: 'image', src: '/category-tiles/stem-cell/cartistem.png' },
     imageCaption: { zh: '韩国膝关节软骨再生治疗案例 · 医疗团队实景', en: 'Korea Knee Cartilage Regeneration Case · Real Medical Team' },
     credit: '图片提供：JS医院',
     list: [
@@ -124,24 +149,6 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       { name: 'Cartistem', desc: { zh: '适应症 →膝关节软骨损伤', en: 'Indication → Knee cartilage damage' } },
       { name: 'Cupistem', desc: { zh: '适应症 →克罗恩病瘘管', en: "Indication → Crohn's disease fistulas" } },
       { name: 'Neuronata-R Inj.', desc: { zh: '适应症 →肌萎缩侧索硬化症（ALS）', en: 'Indication → ALS (Lou Gehrig\'s disease)' } },
-    ],
-  },
-  {
-    id: 'immuncell-lc',
-    title: { zh: '免疫细胞治疗 · Immuncell-LC', en: 'Immune Cell Therapy · Immuncell-LC' },
-    tileSubtitle: { zh: '自体NK/T细胞 · 肝癌辅助免疫治疗', en: 'Autologous NK/T Cells · Liver Cancer Adjuvant Therapy' },
-    body: {
-      zh: '与前述干细胞治疗不同，Immuncell-LC（이뮨셀엘씨주）是绿十字细胞（GC Cell）研发的自体免疫细胞治疗剂：抽取患者自身血液，在体外培养扩增其中的NK细胞与T细胞后，再回输体内，用于原发性肝细胞癌（肝癌）的术后辅助免疫治疗。',
-      en: 'Unlike the stem cell therapies above, Immuncell-LC is an autologous immune cell therapy developed by GC Cell: the patient\'s own blood is drawn, the NK and T cells within it are cultured and expanded outside the body, then infused back in — used as adjuvant immunotherapy after treatment for hepatocellular carcinoma (liver cancer).',
-    },
-    image: '/category-tiles/stem-cell/Immuncelllc.png',
-    imageCaption: { zh: 'Immuncell-LC® 注射剂 — 由您自身血液培养14天制成的专属治疗药', en: 'Immuncell-LC® Injection — Made From Your Own Blood After 14 Days of Culture' },
-    credit: '图片来源：GC Cell（绿十字细胞）',
-    footerLine: { zh: '采血 → 体外培养14天 → 回输体内', en: 'Blood draw → 14-day culture → Infusion' },
-    list: [
-      { zh: '2007年8月获韩国食品药品安全处（MFDS）正式药品许可', en: 'Approved by Korea\'s MFDS in August 2007' },
-      { zh: '2021年8月依《先进再生医学及先进生物医药品法》再许可为先进生物医药品', en: 'Re-approved as an advanced biopharmaceutical under Korea\'s Advanced Regenerative Bio Act in August 2021' },
-      { zh: '适应症 →肝癌（原发性肝细胞癌）术后辅助免疫治疗', en: 'Indication → Adjuvant immunotherapy after hepatocellular carcinoma' },
     ],
   },
 ]

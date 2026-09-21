@@ -11,7 +11,7 @@ const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
 export default function StemCellKeywords() {
   const { lang } = useApp()
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [activeIndex, setActiveIndex] = useState<number | null>(0)
 
   return (
     <div className="bh-section">
@@ -28,7 +28,7 @@ export default function StemCellKeywords() {
               <button
                 type="button"
                 aria-expanded={isActive}
-                className={`bh-tile bh-tile--banner${isActive ? ' bh-tile-active' : ''}`}
+                className={`bh-tile bh-tile--banner${kw.id === 'immuncell-lc' ? ' bh-tile--grad-yellow' : ''}${isActive ? ' bh-tile-active' : ''}`}
                 onClick={() => setActiveIndex(isActive ? null : i)}
               >
                 <span className="bh-tile-label">
@@ -56,7 +56,28 @@ export default function StemCellKeywords() {
                         <p key={li} className="bh-card-text">{line}</p>
                       ))}
 
-                      {kw.image && (
+                      {kw.image && kw.secondaryMedia && (
+                        <div style={{ marginTop: 12 }}>
+                          {kw.imageCaption && (
+                            <p className="bh-card-label" style={{ marginBottom: 8 }}>{pick(kw.imageCaption, lang)}</p>
+                          )}
+                          <div className="case-photo-split">
+                            <div className="case-photo-half">
+                              <img src={kw.image} alt={kw.imageCaption ? pick(kw.imageCaption, lang) : pick(kw.title, lang)} draggable={false} />
+                            </div>
+                            <div className="case-photo-half">
+                              {kw.secondaryMedia.type === 'video' ? (
+                                <video src={kw.secondaryMedia.src} autoPlay muted loop playsInline />
+                              ) : (
+                                <img src={kw.secondaryMedia.src} alt={pick(kw.title, lang)} draggable={false} />
+                              )}
+                            </div>
+                          </div>
+                          {kw.credit && <p className="real-case-credit">{kw.credit}</p>}
+                        </div>
+                      )}
+
+                      {kw.image && !kw.secondaryMedia && (
                         <div style={{ marginTop: 12 }}>
                           {kw.imageCaption && (
                             <p className="bh-card-label" style={{ marginBottom: 8 }}>{pick(kw.imageCaption, lang)}</p>

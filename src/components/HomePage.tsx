@@ -651,6 +651,7 @@ export function MedicalNetworkSection() {
   const { lang, goToPackage } = useApp()
   const t = translations[lang]
   const [networkExpanded, setNetworkExpanded] = useState(false)
+  const [card1Expanded, setCard1Expanded] = useState(false)
 
   useEffect(() => {
     const style = document.createElement('style')
@@ -668,6 +669,12 @@ export function MedicalNetworkSection() {
         100% { box-shadow: 0 0 0 0  rgba(255, 122, 26, 0); background: rgba(255,122,26,0.08); border-color: rgba(255,122,26,0.25); }
       }
       .badge-pulse-orange { animation: badge-pulse-orange 2s ease-out infinite; }
+      @keyframes badge-pulse-purple {
+        0%   { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.9); background: rgba(124,58,237,0.18); border-color: rgba(124,58,237,0.7); }
+        60%  { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); background: rgba(124,58,237,0.06); border-color: rgba(124,58,237,0.25); }
+        100% { box-shadow: 0 0 0 0  rgba(124, 58, 237, 0); background: rgba(124,58,237,0.08); border-color: rgba(124,58,237,0.25); }
+      }
+      .badge-pulse-purple { animation: badge-pulse-purple 2s ease-out infinite; }
     `
     if (!document.getElementById('badge-pulse-style')) {
       document.head.appendChild(style)
@@ -688,7 +695,8 @@ export function MedicalNetworkSection() {
       title: t.networkCard1Title,
       desc: t.networkCard1Desc,
       badge: t.networkCard1Reg,
-      badgeType: 'reg' as const,
+      badgeType: 'reg-expand' as const,
+      onClick: () => setCard1Expanded(v => !v),
     },
     {
       icon: (
@@ -772,7 +780,7 @@ export function MedicalNetworkSection() {
             }}>
               {card.desc}
             </p>
-            {card.badge && card.badgeType === 'reg' && (
+            {card.badge && (card.badgeType === 'reg' || card.badgeType === 'reg-expand') && (
               <span style={{
                 fontSize: 9,
                 color: '#0077b6',
@@ -786,6 +794,24 @@ export function MedicalNetworkSection() {
                 wordBreak: 'break-all' as const,
               }}>
                 {card.badge}
+              </span>
+            )}
+            {card.badgeType === 'reg-expand' && (
+              <span className="badge-pulse-purple" style={{
+                fontSize: 10,
+                color: '#6d28d9',
+                background: 'rgba(124,58,237,0.08)',
+                border: '1px solid rgba(124,58,237,0.25)',
+                borderRadius: 6,
+                padding: '3px 9px',
+                letterSpacing: '0.04em',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 4,
+                alignSelf: 'flex-start',
+              }}>
+                {t.networkCard1ExpandBadge}
+                <span style={{ display: 'inline-block', transition: 'transform 0.25s ease', transform: card1Expanded ? 'rotate(180deg)' : 'none' }}>▾</span>
               </span>
             )}
             {card.badgeType === 'link' && (
@@ -839,6 +865,38 @@ export function MedicalNetworkSection() {
               <p className="network-map-title">{t.networkCard4ExpandTitle}</p>
               <NetworkCityMap lang={lang} />
               <p className="network-map-caption">{t.networkCard4Caption}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence initial={false}>
+        {card1Expanded && (
+          <motion.div
+            key="network-service-panel"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div className="network-map-panel network-service-panel">
+              <p className="network-service-title">{t.networkCard1ExpandTitle}</p>
+              {t.networkCard1ExpandIntro.split('\n').map((line, li) => (
+                <p key={li} className="network-service-intro" style={{ marginBottom: li === t.networkCard1ExpandIntro.split('\n').length - 1 ? 16 : 2 }}>{line}</p>
+              ))}
+              <div className="network-service-list">
+                {t.networkCard1Items.map((item, ii) => (
+                  <div key={ii} className="network-service-item">
+                    <span className="network-service-item-dot" />
+                    <div>
+                      <p className="network-service-item-title">{item.title}</p>
+                      <p className="network-service-item-desc">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="network-service-reg">{t.networkCard1RegNote}</p>
             </div>
           </motion.div>
         )}
