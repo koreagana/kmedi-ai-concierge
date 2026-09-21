@@ -183,8 +183,7 @@ Final testing direction and medical judgment remain with licensed medical instit
     gridNameZh: '干细胞治疗',
     gridNameEn: 'Stem Cell Therapy',
     emoji: '🧬',
-    heroImage: '/category-hero/zaishengyiliao.jpg',
-    heroVideo: '/category-hero/zaishengyiliao.mp4',
+    heroImage: '/category-hero/stemcell.jpg',
     tagZh: '从皮肤年轻化，到关节修复与细胞治疗',
     tagEn: 'From skin rejuvenation to joint repair and cell therapy',
     scriptFullZh: `您好，这里是干细胞与再生医学相关咨询入口。

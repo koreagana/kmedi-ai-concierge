@@ -763,7 +763,21 @@ export function MedicalNetworkSection() {
               cursor: 'onClick' in card ? 'pointer' : 'default',
             }}
           >
-            <div style={{ flexShrink: 0 }}>{card.icon}</div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
+              <div style={{ flexShrink: 0 }}>{card.icon}</div>
+              {card.badge && (card.badgeType === 'reg' || card.badgeType === 'reg-expand') && (
+                <span style={{
+                  fontSize: 8.5,
+                  fontWeight: 400,
+                  color: 'var(--text-muted)',
+                  letterSpacing: '0.01em',
+                  textAlign: 'right',
+                  lineHeight: 1.4,
+                }}>
+                  {card.badge}
+                </span>
+              )}
+            </div>
             <p style={{
               fontSize: 12,
               fontWeight: 700,
@@ -771,17 +785,6 @@ export function MedicalNetworkSection() {
               lineHeight: 1.4,
             }}>
               {card.title}
-              {card.badge && (card.badgeType === 'reg' || card.badgeType === 'reg-expand') && (
-                <span style={{
-                  marginLeft: 6,
-                  fontSize: 9,
-                  fontWeight: 400,
-                  color: 'var(--text-muted)',
-                  letterSpacing: '0.01em',
-                }}>
-                  {card.badge}
-                </span>
-              )}
             </p>
             <p style={{
               fontSize: 11,

@@ -767,9 +767,9 @@ body {
 
 .bh-card-process-line {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
-  color: var(--brand-dark, #003d6b);
+  color: var(--text-dark);
   text-align: center;
 }
 
