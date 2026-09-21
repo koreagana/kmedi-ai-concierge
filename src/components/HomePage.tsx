@@ -482,7 +482,7 @@ export function ConcernSection() {
    4. CATEGORY GRID
    ═══════════════════════════════════════════════════════════════════ */
 export function CategoryGridSection() {
-  const { lang, goToCategory, goToPackage } = useApp()
+  const { lang, page, categoryId, concernId, goToCategory, goToPackage } = useApp()
   const t = translations[lang]
   const hotScrollRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef({ dragging: false, startX: 0, startScrollLeft: 0, moved: false })
@@ -578,7 +578,17 @@ export function CategoryGridSection() {
             {...fadeUp}
             transition={{ delay: i * 0.06, duration: 0.4 }}
             className="category-card"
-            onClick={() => (cat.id === 'medical-tourism' ? goToPackage() : goToCategory(cat.id))}
+            onClick={() => {
+              if (cat.id === 'medical-tourism') { goToPackage(); return }
+              // 이미 보고 있는 카테고리를 다시 누른 경우 — URL이 안 바뀌므로 페이지
+              // 전환 시 쓰는 스크롤 로직(AppContext의 location 기반 useEffect)이
+              // 발동하지 않는다. 이 경우엔 그냥 직접 맨 위로 스크롤한다.
+              if (page === 'category' && categoryId === cat.id && !concernId) {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+                return
+              }
+              goToCategory(cat.id)
+            }}
           >
             <span className="category-arrow">›</span>
             <p className={`category-name${cat.id === 'skin-beauty' || cat.id === 'plastic-surgery' ? ' category-name--highlight' : ''}`}>

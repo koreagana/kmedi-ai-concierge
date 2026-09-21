@@ -120,11 +120,28 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       en: 'Korea already has cell therapy products formally approved for specific diseases — some of which were among the first stem cell therapies in the world to receive regulatory approval.',
     },
     products: [
-      { name: 'Hearticellgram-AMI', desc: { zh: '急性心肌梗死相关治疗（韩国食品药品安全处MFDS批准的全球首个干细胞治疗药物）', en: "For acute myocardial infarction (the world's first stem cell therapy drug approved by Korea's MFDS)" } },
-      { name: 'Cartistem', desc: { zh: '膝关节软骨损伤相关治疗', en: 'For knee cartilage damage' } },
-      { name: 'Cupistem', desc: { zh: '克罗恩病瘘管相关治疗', en: "For Crohn's disease fistulas" } },
-      { name: 'Neuronata-R Inj.', desc: { zh: '肌萎缩侧索硬化症（ALS）相关治疗', en: 'For ALS (Lou Gehrig\'s disease)' } },
+      { name: 'Hearticellgram-AMI', desc: { zh: '适应症 →急性心肌梗死', en: "Indication → Acute myocardial infarction" } },
+      { name: 'Cartistem', desc: { zh: '适应症 →膝关节软骨损伤', en: 'Indication → Knee cartilage damage' } },
+      { name: 'Cupistem', desc: { zh: '适应症 →克罗恩病瘘管', en: "Indication → Crohn's disease fistulas" } },
+      { name: 'Neuronata-R Inj.', desc: { zh: '适应症 →肌萎缩侧索硬化症（ALS）', en: 'Indication → ALS (Lou Gehrig\'s disease)' } },
     ],
-    hint: { zh: '查看适应症 →', en: 'See indications →' },
+  },
+  {
+    id: 'immuncell-lc',
+    title: { zh: '免疫细胞治疗 · Immuncell-LC', en: 'Immune Cell Therapy · Immuncell-LC' },
+    tileSubtitle: { zh: '自体NK/T细胞 · 肝癌辅助免疫治疗', en: 'Autologous NK/T Cells · Liver Cancer Adjuvant Therapy' },
+    body: {
+      zh: '与前述干细胞治疗不同，Immuncell-LC（이뮨셀엘씨주）是绿十字细胞（GC Cell）研发的自体免疫细胞治疗剂：抽取患者自身血液，在体外培养扩增其中的NK细胞与T细胞后，再回输体内，用于原发性肝细胞癌（肝癌）的术后辅助免疫治疗。',
+      en: 'Unlike the stem cell therapies above, Immuncell-LC is an autologous immune cell therapy developed by GC Cell: the patient\'s own blood is drawn, the NK and T cells within it are cultured and expanded outside the body, then infused back in — used as adjuvant immunotherapy after treatment for hepatocellular carcinoma (liver cancer).',
+    },
+    image: '/category-tiles/stem-cell/Immuncelllc.png',
+    imageCaption: { zh: 'Immuncell-LC® 注射剂 — 由您自身血液培养14天制成的专属治疗药', en: 'Immuncell-LC® Injection — Made From Your Own Blood After 14 Days of Culture' },
+    credit: '图片来源：GC Cell（绿十字细胞）',
+    footerLine: { zh: '采血 → 体外培养14天 → 回输体内', en: 'Blood draw → 14-day culture → Infusion' },
+    list: [
+      { zh: '2007年8月获韩国食品药品安全处（MFDS）正式药品许可', en: 'Approved by Korea\'s MFDS in August 2007' },
+      { zh: '2021年8月依《先进再生医学及先进生物医药品法》再许可为先进生物医药品', en: 'Re-approved as an advanced biopharmaceutical under Korea\'s Advanced Regenerative Bio Act in August 2021' },
+      { zh: '适应症 →肝癌（原发性肝细胞癌）术后辅助免疫治疗', en: 'Indication → Adjuvant immunotherapy after hepatocellular carcinoma' },
+    ],
   },
 ]
