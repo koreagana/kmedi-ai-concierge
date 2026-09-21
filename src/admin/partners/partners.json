@@ -620,6 +620,37 @@
     "mou_date": null
   },
   {
+    "id": "PH-042",
+    "category": "피부과·의원",
+    "name": {
+      "ko": "리베리의원 명동",
+      "zh": "Reberry诊所 明洞",
+      "en": "Reberry Clinic Myeongdong"
+    },
+    "address": {
+      "ko": "서울특별시 중구 명동10길 58, 2층 201호, 3층 301호 (충무로2가)",
+      "zh": "首尔特别市中区明洞10街58号 2楼201号、3楼301号(忠武路2街)",
+      "en": "58, Myeongdong 10-gil, Jung-gu, Seoul (2F #201, 3F #301)"
+    },
+    "phone": null,
+    "note": "피부과",
+    "contact": {
+      "manager": null,
+      "email": null,
+      "phone_direct": null
+    },
+    "website": null,
+    "description": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "intro_page_url": null,
+    "logo_url": null,
+    "status": "active",
+    "mou_date": null
+  },
+  {
     "id": "PH-025",
     "category": "피부과·의원",
     "name": {
