@@ -28,7 +28,7 @@ export default function StemCellKeywords() {
               <button
                 type="button"
                 aria-expanded={isActive}
-                className={`bh-tile bh-tile--banner${kw.id === 'immuncell-lc' ? ' bh-tile--grad-yellow' : ''}${isActive ? ' bh-tile-active' : ''}`}
+                className={`bh-tile bh-tile--banner${isActive ? ' bh-tile-active' : ''}`}
                 onClick={() => setActiveIndex(isActive ? null : i)}
               >
                 <span className="bh-tile-label">

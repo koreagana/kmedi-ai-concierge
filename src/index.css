@@ -1495,12 +1495,14 @@ body {
 .bh-tiles .bh-tile:nth-child(6n+5) { background: linear-gradient(150deg,#8ba7c9,#3a5f85); }
 .bh-tiles .bh-tile:nth-child(6n+6) { background: linear-gradient(150deg,#5b9bd0,#274d75); }
 
-/* Stem-cell palette — echoes the hero's pink cell photo, shading into deeper
-   violet/indigo/teal glows for a "biotech mystery" feel rather than flat corporate blue. */
-.bh-tiles--stemcell .bh-tile:nth-child(4n+1) { background: linear-gradient(150deg,#eea6c4,#9c3f72); }
-.bh-tiles--stemcell .bh-tile:nth-child(4n+2) { background: linear-gradient(150deg,#af8ee0,#5c3aa0); }
-.bh-tiles--stemcell .bh-tile:nth-child(4n+3) { background: linear-gradient(150deg,#6f93e0,#2d3a8f); }
-.bh-tiles--stemcell .bh-tile:nth-child(4n+4) { background: linear-gradient(150deg,#5fcdd9,#166b7a); }
+/* Stem-cell palette — calm brand-blue tones (matches the hero image), one fixed
+   shade per tile in DOM order rather than a cycling pattern, since the list is
+   a fixed 5 items. */
+.bh-tiles--stemcell .bh-tile:nth-child(1) { background: linear-gradient(150deg,#155E75,#0F3F56); }
+.bh-tiles--stemcell .bh-tile:nth-child(2) { background: linear-gradient(150deg,#3B82A0,#245B78); }
+.bh-tiles--stemcell .bh-tile:nth-child(3) { background: linear-gradient(150deg,#4169A1,#263F73); }
+.bh-tiles--stemcell .bh-tile:nth-child(4) { background: linear-gradient(150deg,#278A96,#17616D); }
+.bh-tiles--stemcell .bh-tile:nth-child(5) { background: linear-gradient(150deg,#356D91,#21475F); }
 
 /* Explicit per-tile gradient tones (stem-cell palette), used when a specific
    tile in the grid needs a fixed color regardless of its position — e.g. so a
@@ -1511,7 +1513,6 @@ body {
 .bh-tile--grad-pink { background: linear-gradient(150deg,#eea6c4,#9c3f72) !important; }
 .bh-tile--grad-purple { background: linear-gradient(150deg,#af8ee0,#5c3aa0) !important; }
 .bh-tile--grad-mint { background: linear-gradient(150deg,#5fcdd9,#166b7a) !important; }
-.bh-tile--grad-yellow { background: linear-gradient(150deg,#f2c94c,#95610a) !important; }
 
 .bh-tiles--rose .bh-tile:nth-child(6n+1) { background: linear-gradient(150deg,#e0a3b0,#95425a); }
 .bh-tiles--rose .bh-tile:nth-child(6n+2) { background: linear-gradient(150deg,#d9a98f,#8a5738); }
