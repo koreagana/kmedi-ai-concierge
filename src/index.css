@@ -1495,28 +1495,36 @@ body {
 .bh-tiles .bh-tile:nth-child(6n+5) { background: linear-gradient(150deg,#8ba7c9,#3a5f85); }
 .bh-tiles .bh-tile:nth-child(6n+6) { background: linear-gradient(150deg,#5b9bd0,#274d75); }
 
-/* Stem-cell palette — bright "clinic light" look instead of a saturated fill:
-   near-white ice-blue gradients with a soft neon-blue glow ring, closer to the
-   brand's hero photo (glowing light booth) than a solid color block. Photo-tile
-   darkening overlay (.bh-tile::before) is switched off since there's no photo
-   to protect legibility for, and the label switches to dark text accordingly. */
-.bh-tiles--stemcell .bh-tile::before { background: none; }
-.bh-tiles--stemcell .bh-tile {
-  box-shadow: 0 0 0 1px rgba(120,200,255,0.55), 0 0 18px rgba(120,200,255,0.28), 0 4px 14px rgba(10,30,55,0.06);
+/* Stem-cell palette — a "steel" gradient ombre down the stack: tile 1 starts
+   at Tiffany blue and each tile shifts a step further toward the brand's own
+   deep blue (#1F4E79) by tile 5. Each tile's own background is a 3-stop
+   light→anchor→dark diagonal (the metal-sheen depth), and the photo-tile
+   darkening overlay (.bh-tile::before) is repurposed into a fixed diagonal
+   highlight band for the same brushed-steel effect. Text stays white
+   (with the original dark shadow) since these fills are mid-to-dark again. */
+.bh-tiles--stemcell .bh-tile::before {
+  background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,0.4) 48%, transparent 66%);
 }
-.bh-tiles--stemcell .bh-tile-label {
-  color: #0F3F56;
-  text-shadow: none;
+.bh-tiles--stemcell .bh-tile:nth-child(1) {
+  background: linear-gradient(135deg,#60D2CF 0%,#0ABAB5 55%,#089B96 100%);
+  box-shadow: 0 4px 16px rgba(6,90,90,0.28);
 }
-.bh-tiles--stemcell .bh-tile-sublabel {
-  color: rgba(15,63,86,0.7);
-  text-shadow: none;
+.bh-tiles--stemcell .bh-tile:nth-child(2) {
+  background: linear-gradient(135deg,#63C0C5 0%,#0F9FA6 55%,#0C8188 100%);
+  box-shadow: 0 4px 16px rgba(6,70,90,0.28);
 }
-.bh-tiles--stemcell .bh-tile:nth-child(1) { background: linear-gradient(150deg,#EAF6FF,#CFEAFF); }
-.bh-tiles--stemcell .bh-tile:nth-child(2) { background: linear-gradient(150deg,#EDF7FF,#D3EBFF); }
-.bh-tiles--stemcell .bh-tile:nth-child(3) { background: linear-gradient(150deg,#E7F3FF,#C7E4FF); }
-.bh-tiles--stemcell .bh-tile:nth-child(4) { background: linear-gradient(150deg,#E9FAFA,#CBEEF1); }
-.bh-tiles--stemcell .bh-tile:nth-child(5) { background: linear-gradient(150deg,#EAF2FF,#CFE0FF); }
+.bh-tiles--stemcell .bh-tile:nth-child(3) {
+  background: linear-gradient(135deg,#67AFBC 0%,#158497 55%,#106A79 100%);
+  box-shadow: 0 4px 16px rgba(6,55,90,0.3);
+}
+.bh-tiles--stemcell .bh-tile:nth-child(4) {
+  background: linear-gradient(135deg,#6A9DB2 0%,#1A6988 55%,#14526B 100%);
+  box-shadow: 0 4px 16px rgba(6,40,80,0.32);
+}
+.bh-tiles--stemcell .bh-tile:nth-child(5) {
+  background: linear-gradient(135deg,#6D8CA8 0%,#1F4E79 55%,#163A5A 100%);
+  box-shadow: 0 4px 16px rgba(6,30,65,0.34);
+}
 
 /* Explicit per-tile gradient tones (stem-cell palette), used when a specific
    tile in the grid needs a fixed color regardless of its position — e.g. so a
