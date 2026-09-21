@@ -207,7 +207,7 @@ export const translations: Record<LangCode, Translations> = {
     blockAfterConsult: '咨询后您会更清楚',
     floatingChatTooltip: '点击企业微信咨询',
     antennaLeft: '点击',
-    antennaRight: '秒回',
+    antennaRight: '咨询',
   },
   en: {
     brandName: 'K-MediSpring',
@@ -302,6 +302,6 @@ export const translations: Record<LangCode, Translations> = {
     blockAfterConsult: 'What You\'ll Know After',
     floatingChatTooltip: 'Chat with us on WeChat',
     antennaLeft: 'Tap',
-    antennaRight: 'Reply',
+    antennaRight: 'Consult',
   },
 }
