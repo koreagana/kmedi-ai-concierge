@@ -434,37 +434,6 @@
     "mou_date": null
   },
   {
-    "id": "PH-015",
-    "category": "성형외과",
-    "name": {
-      "ko": "아이콘성형외과",
-      "zh": "ICON整形外科",
-      "en": "ICON Plastic Surgery"
-    },
-    "address": {
-      "ko": "서울특별시 강남구 압구정로 (압구정역 인근)",
-      "zh": "首尔特别市江南区狎鸥亭路(狎鸥亭站附近)",
-      "en": "Apgujeong-ro, Gangnam-gu, Seoul (near Apgujeong Stn)"
-    },
-    "phone": null,
-    "note": "압구정 위치",
-    "contact": {
-      "manager": null,
-      "email": null,
-      "phone_direct": null
-    },
-    "website": null,
-    "description": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "intro_page_url": null,
-    "logo_url": null,
-    "status": "active",
-    "mou_date": null
-  },
-  {
     "id": "PH-016",
     "category": "성형외과",
     "name": {
@@ -496,37 +465,6 @@
     "mou_date": null
   },
   {
-    "id": "PH-017",
-    "category": "성형외과",
-    "name": {
-      "ko": "드립성형외과",
-      "zh": "Drip整形外科",
-      "en": "Drip Plastic Surgery"
-    },
-    "address": {
-      "ko": "서울특별시 강남구 (강남 위치)",
-      "zh": "首尔特别市江南区",
-      "en": "Gangnam-gu, Seoul"
-    },
-    "phone": null,
-    "note": "확인 필요",
-    "contact": {
-      "manager": null,
-      "email": null,
-      "phone_direct": null
-    },
-    "website": null,
-    "description": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "intro_page_url": null,
-    "logo_url": null,
-    "status": "active",
-    "mou_date": null
-  },
-  {
     "id": "PH-018",
     "category": "성형외과",
     "name": {
@@ -541,37 +479,6 @@
     },
     "phone": null,
     "note": "확인 필요",
-    "contact": {
-      "manager": null,
-      "email": null,
-      "phone_direct": null
-    },
-    "website": null,
-    "description": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "intro_page_url": null,
-    "logo_url": null,
-    "status": "active",
-    "mou_date": null
-  },
-  {
-    "id": "PH-019",
-    "category": "성형외과",
-    "name": {
-      "ko": "맹경룡성형외과",
-      "zh": "孟庆龙整形外科",
-      "en": "Maeng Gyeong-ryong Plastic Surgery"
-    },
-    "address": {
-      "ko": "서울특별시 강남구 (강남 위치)",
-      "zh": "首尔特别市江南区",
-      "en": "Gangnam-gu, Seoul"
-    },
-    "phone": null,
-    "note": "중국 파트너",
     "contact": {
       "manager": null,
       "email": null,
@@ -868,37 +775,6 @@
     "mou_date": null
   },
   {
-    "id": "PH-029",
-    "category": "피부과·의원",
-    "name": {
-      "ko": "운선미원장",
-      "zh": "云善美院长诊所",
-      "en": "Dr. Wunsunmi Clinic"
-    },
-    "address": {
-      "ko": "서울특별시 강남구 (강남 위치)",
-      "zh": "首尔特别市江南区",
-      "en": "Gangnam-gu, Seoul"
-    },
-    "phone": null,
-    "note": "확인 필요",
-    "contact": {
-      "manager": null,
-      "email": null,
-      "phone_direct": null
-    },
-    "website": null,
-    "description": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "intro_page_url": null,
-    "logo_url": null,
-    "status": "active",
-    "mou_date": null
-  },
-  {
     "id": "PH-030",
     "category": "성형외과",
     "name": {
@@ -1085,82 +961,20 @@
     "mou_date": null
   },
   {
-    "id": "PH-037",
-    "category": "성형외과",
-    "name": {
-      "ko": "신상성형외과",
-      "zh": null,
-      "en": null
-    },
-    "address": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "phone": null,
-    "note": null,
-    "contact": {
-      "manager": null,
-      "email": null,
-      "phone_direct": null
-    },
-    "website": null,
-    "description": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "intro_page_url": null,
-    "logo_url": null,
-    "status": "active",
-    "mou_date": null
-  },
-  {
     "id": "PH-038",
-    "category": "성형외과",
+    "category": "치과·구강악안면외과",
     "name": {
-      "ko": "양윤돌성형외과",
-      "zh": null,
-      "en": null
+      "ko": "양윤돌 구강악안면외과 치과의원",
+      "zh": "双·轮·突口腔颌面外科",
+      "en": "YangYoonDol Oral & Maxillofacial Surgery"
     },
     "address": {
-      "ko": null,
-      "zh": null,
-      "en": null
+      "ko": "서울특별시 강남구 도산대로 134 (논현동 5번지) 페이토빌딩 B1",
+      "zh": "首尔特别市江南区岛山大路134号(论岘洞5号)Payto大厦地下1层",
+      "en": "B1, Payto Bldg., 134 Dosan-daero, Gangnam-gu, Seoul (5, Nonhyeon-dong)"
     },
-    "phone": null,
-    "note": null,
-    "contact": {
-      "manager": null,
-      "email": null,
-      "phone_direct": null
-    },
-    "website": null,
-    "description": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "intro_page_url": null,
-    "logo_url": null,
-    "status": "active",
-    "mou_date": null
-  },
-  {
-    "id": "PH-039",
-    "category": "성형외과",
-    "name": {
-      "ko": "쥬얼리성형외과",
-      "zh": null,
-      "en": null
-    },
-    "address": {
-      "ko": null,
-      "zh": null,
-      "en": null
-    },
-    "phone": null,
-    "note": null,
+    "phone": "02-511-5773",
+    "note": "대표자: 강명근 | 사업자등록번호: 562-27-00903",
     "contact": {
       "manager": null,
       "email": null,
