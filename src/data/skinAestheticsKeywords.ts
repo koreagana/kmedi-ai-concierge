@@ -132,6 +132,16 @@ export interface SkinAestheticsKeyword {
     body: LocalizedText
     image?: string
   }[]
+  /** Step-by-step how-to/aftercare guide: one wide image with N visual panels side by side, paired
+      with N numbered captions rendered below in a matching grid (2x2 on mobile so text doesn't
+      shrink too small). No text is overlaid on the image itself — captions live in HTML below it. */
+  stepGuide?: {
+    title: LocalizedText
+    image: string
+    imageAlt: LocalizedText
+    steps: { title: LocalizedText; body: LocalizedText }[]
+    footnote?: LocalizedText
+  }
   /** Coded comparison table (not an image) — one card per row, stacked for mobile readability. */
   comparisonTable?: {
     title: LocalizedText
@@ -631,6 +641,55 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         ],
       },
     ],
+    referenceIllustration: [
+      {
+        title: { zh: 'REEPOT 色素治疗原理', en: 'REEPOT Pigment Treatment — Reference Illustration' },
+        body: {
+          zh: '特定波长的激光能量作用于表皮至真皮层的色素颗粒，使其破碎后经代谢逐步排出，从而改善色斑与色素沉着。具体波长与治疗参数需由医生根据色素深度评估决定。',
+          en: "Laser energy at a specific wavelength targets pigment particles from the epidermis down to the dermis, breaking them apart so they can be gradually cleared through the body's natural metabolism, improving dark spots and pigmentation. The wavelength and treatment parameters should be evaluated and decided by a doctor based on the pigment's depth.",
+        },
+        image: '/effect-illustration/acne-scars-repot-mechanism.webp',
+      },
+    ],
+    stepGuide: {
+      title: { zh: '治疗后水胶体敷料护理', en: 'Hydrocolloid Dressing Care After Treatment' },
+      image: '/effect-illustration/acne-scars-dressing-care.webp',
+      imageAlt: { zh: '水胶体敷料护理四个步骤', en: 'Four steps of hydrocolloid dressing care' },
+      steps: [
+        {
+          title: { zh: '① 贴好敷料', en: '① Keep the dressing in place' },
+          body: {
+            zh: '治疗后，用水胶体敷料覆盖治疗部位。',
+            en: 'Cover the treated area with a hydrocolloid dressing after treatment.',
+          },
+        },
+        {
+          title: { zh: '② 不要自行揭除', en: '② Do not remove it unnecessarily' },
+          body: {
+            zh: '约3周内尽量保持敷料覆盖，不要自行撕下。如果边缘开始翘起，也不要把原来的敷料揭掉。',
+            en: 'Keep the area covered for approximately 3 weeks. If the edges begin to lift, do not peel off the original dressing.',
+          },
+        },
+        {
+          title: { zh: '③ 翘起时直接加贴', en: '③ Cover with a larger dressing' },
+          body: {
+            zh: '在原有敷料上覆盖一张面积更大的水胶体敷料，完整覆盖并固定原来的敷料。',
+            en: 'Apply a larger hydrocolloid dressing directly over the existing one to keep the treated area fully covered and protected.',
+          },
+        },
+        {
+          title: { zh: '④ 取下后的皮肤', en: '④ After removing the dressing' },
+          body: {
+            zh: '约3周后按照医生指导取下敷料。新生皮肤可能暂时呈淡粉色，之后会逐渐接近周围正常肤色。',
+            en: 'After approximately 3 weeks, remove the dressing as instructed by your doctor. The newly healed skin may initially appear slightly pink and will gradually blend with the surrounding skin tone.',
+          },
+        },
+      ],
+      footnote: {
+        zh: '※ 实际护理时间及敷料更换方式请遵照医生指导。',
+        en: "※ Follow your doctor's instructions regarding dressing duration and replacement.",
+      },
+    },
     realCase: {
       photos: [
         {

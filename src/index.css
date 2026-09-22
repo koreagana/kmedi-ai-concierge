@@ -842,6 +842,43 @@ body {
   border: 1px solid var(--border);
 }
 
+/* Step-by-step how-to guide — captions below a single wide multi-panel image,
+   one caption per panel. 4 columns on desktop so each caption lines up under
+   its panel; collapses to 2x2 on narrow screens so text doesn't shrink too small. */
+.step-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+@media (max-width: 560px) {
+  .step-guide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.step-guide-item {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.step-guide-item-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand-dark);
+  margin-bottom: 4px;
+}
+.step-guide-item-body {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.step-guide-footnote {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
 /* Coded comparison table — one card per row (not a wide <table>), so it stays
    readable at mobile width instead of shrinking into an unreadable image. */
 .compare-table {

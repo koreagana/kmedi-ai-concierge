@@ -166,6 +166,29 @@ export default function SkinAestheticsKeywords() {
               </div>
             ))}
 
+            {active.stepGuide && (
+              <div className="bh-card-section">
+                <p className="bh-card-label">{pick(active.stepGuide.title, lang)}</p>
+                <img
+                  src={active.stepGuide.image}
+                  alt={pick(active.stepGuide.imageAlt, lang)}
+                  className="ref-illustration-img"
+                  style={{ marginTop: 10 }}
+                />
+                <div className="step-guide-grid">
+                  {active.stepGuide.steps.map((step, i) => (
+                    <div className="step-guide-item" key={i}>
+                      <p className="step-guide-item-title">{pick(step.title, lang)}</p>
+                      <p className="step-guide-item-body">{pick(step.body, lang)}</p>
+                    </div>
+                  ))}
+                </div>
+                {active.stepGuide.footnote && (
+                  <p className="step-guide-footnote">{pick(active.stepGuide.footnote, lang)}</p>
+                )}
+              </div>
+            )}
+
             {active.comparisonTable && (
               <div className="bh-card-section">
                 <p className="bh-card-label">{pick(active.comparisonTable.title, lang)}</p>
