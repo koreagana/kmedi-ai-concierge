@@ -690,21 +690,6 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
         en: "※ Follow your doctor's instructions regarding dressing duration and replacement.",
       },
     },
-    realCase: {
-      photos: [
-        {
-          src: '/case-photos/skin-before-after-1.png',
-          alt: { zh: '痤疮治疗前后对比', en: 'Acne treatment before/after' },
-        },
-      ],
-      planTitle: { zh: '治疗参考方案', en: 'Reference Treatment Plan' },
-      planTag: { zh: '炎症性痤疮控制 + 色素沉着及痘印改善', en: 'Inflammatory acne control + pigmentation & acne-mark improvement' },
-      planNotes: [
-        { zh: '初期可根据皮肤状态，每2周左右进行1次治疗，之后逐渐调整治疗间隔。', en: 'Initially, treatment may be scheduled roughly every 2 weeks depending on skin condition, with the interval adjusted gradually afterward.' },
-        { zh: '若炎症反复或色素沉着较明显，整体改善过程可能需要 6～12个月，甚至更长时间。', en: 'If inflammation recurs or pigmentation is more pronounced, overall improvement may take 6–12 months or longer.' },
-      ],
-      planHighlight: { zh: '具体治疗方案需由医生面诊后决定。', en: 'The specific treatment plan must be determined by a doctor through an in-person consultation.' },
-    },
     note: {
       zh: '关于各激光设备的功效详情，请点击橙色咨询按钮进行咨询。',
       en: 'For details on the efficacy of each laser device, please click the orange consultation button to ask.',
