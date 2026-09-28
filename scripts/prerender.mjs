@@ -14,21 +14,30 @@ import { execFileSync, spawn } from 'node:child_process'
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { categories } from '../src/data/categories.ts'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = resolve(__dirname, '..')
 const distDir = resolve(root, 'dist')
 const port = 4174
-const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price']
 
-// 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price는
-// 마운트 시 page==='home'으로 시작했다가 pathname을 보고 'surgery'로 전환된다
-// (AnimatePresence mode="wait"로 홈→성형수가표 전환 애니메이션까지 거침).
+// medical-tourism은 CategoryPage가 없고 항상 패키지 페이지로 리다이렉트되는
+// 항목이라 고유 경로가 없다(main.tsx/AppContext와 일관).
+const categoryIds = categories.filter((c) => c.id !== 'medical-tourism').map((c) => c.id)
+const categoryRoutes = categoryIds.flatMap((id) => [`/zh/${id}`, `/en/${id}`])
+
+const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', ...categoryRoutes]
+
+// 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price·카테고리
+// 페이지는 마운트 시 page==='home'으로 시작했다가 pathname을 보고 전환된다
+// (AnimatePresence mode="wait"로 홈→해당 페이지 전환 애니메이션까지 거침).
 // 그래서 범용 "h1" 셀렉터로만 기다리면 홈의 h1(.hero-seo-headline)이 이미
 // 존재한다는 이유로 전환이 끝나기 전에 캡처해버려 홈 내용이 찍힐 수 있다.
 // 페이지마다 고유한 셀렉터로 "그 페이지가 진짜 마운트됐는지"를 확인한다.
 function waitSelectorFor(route) {
-  return route.endsWith('/surgery-price') ? '.sg-title' : '.hero-seo-headline'
+  if (route.endsWith('/surgery-price')) return '.sg-title'
+  if (categoryIds.some((id) => route.endsWith(`/${id}`))) return '.cat-hero-name'
+  return '.hero-seo-headline'
 }
 
 // Netlify 등 CI 빌드 컨테이너가 root로 실행되는 경우 --no-sandbox 없이는

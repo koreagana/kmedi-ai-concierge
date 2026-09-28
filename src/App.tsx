@@ -45,7 +45,7 @@ function updateMeta({
   if (twDesc) twDesc.content = description
 }
 
-/** 고유 URL이 없는 페이지(package/quote/category)용 — canonical은 언어 루트를 가리키고,
+/** 고유 URL이 없는 페이지(package/quote)용 — canonical은 언어 루트를 가리키고,
     title은 브랜드 접미사를 붙이고 description은 aboutDesc를 150자로 잘라 씀. */
 function updateMetaGeneric(title: string, lang: LangCode) {
   const brand = `${translations[lang].brandName} · AI Medical Concierge`
@@ -80,8 +80,17 @@ function PageRouter() {
     if (page === 'category' && categoryId) {
       const cat = categories.find((c) => c.id === categoryId)
       if (cat) {
-        const name = (cat as unknown as Record<string, string>)[lang] ?? cat.zh
-        updateMetaGeneric(name, lang)
+        const catRecord = cat as unknown as Record<string, string>
+        const name = catRecord[lang] ?? cat.zh
+        const summary = (lang === 'en' ? cat.scriptSummaryEn : cat.scriptSummaryZh).replace(/\n/g, ' ').slice(0, 150)
+        const brand = `${translations[lang].brandName} · AI Medical Concierge`
+        updateMeta({
+          lang,
+          zhPath: `/zh/${cat.id}`,
+          enPath: `/en/${cat.id}`,
+          title: `${name} · ${brand}`,
+          description: summary,
+        })
       }
     }
   }, [page, lang, categoryId])

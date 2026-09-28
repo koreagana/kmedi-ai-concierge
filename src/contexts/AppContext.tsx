@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import type { LangCode } from '../data/translations'
-import type { CategoryId } from '../data/categories'
+import { categories, type CategoryId } from '../data/categories'
 
 export type PageView = 'home' | 'category' | 'package' | 'quote' | 'surgery'
 
@@ -57,9 +57,16 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     const concern = searchParams.get('concern')
     const pageParam = searchParams.get('page')
 
+    // /zh/plastic-surgery 같은 카테고리 고유 경로로 직접 진입한 경우
+    const pathCategoryId = categories.find((c) => location.pathname === `/${lang}/${c.id}`)?.id ?? null
+
     // /zh/surgery-price, /en/surgery-price — 고유 경로로 직접 진입한 경우
     if (location.pathname.endsWith('/surgery-price')) {
       setPage('surgery')
+    } else if (pathCategoryId) {
+      setCategoryId(pathCategoryId)
+      setConcernId(concern)
+      setPage('category')
     } else if (cat === 'medical-tourism') {
       // medical-tourism은 카테고리 상세 페이지가 없는 항목 — 항상 패키지 페이지로 보낸다
       // (goToCategory와의 일관성은 HomePage의 카드/타일 클릭 핸들러에서도 지킴).
@@ -92,15 +99,17 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [location.pathname, location.search])
 
-  // surgery-price는 고유 경로를 쓰므로, 거기서 다른 페이지로 옮길 때 경로도
-  // 항상 /zh 또는 /en으로 되돌려야 URL과 실제 내용이 어긋나지 않는다.
+  // 카테고리는 /zh/<id> 같은 고유 경로를 쓴다 — 외부 공유(협력병원 등)를 위해
+  // 각 카테고리 페이지가 자기 주소를 갖도록 surgery-price와 동일한 방식으로 옮김.
+  // (구 ?cat= 링크는 AppContext 마운트 이펙트에서 계속 인식해 하위호환 유지)
   const goToCategory = (id: CategoryId, cId?: string | null) => {
     setCategoryId(id)
     setConcernId(cId ?? null)
     setPage('category')
-    const params = new URLSearchParams({ cat: id })
+    const params = new URLSearchParams()
     if (cId) params.set('concern', cId)
-    navigate(`/${lang}?${params.toString()}`)
+    const qs = params.toString()
+    navigate(`/${lang}/${id}${qs ? `?${qs}` : ''}`)
   }
 
   const goToPackage = () => {
