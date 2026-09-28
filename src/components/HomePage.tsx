@@ -251,7 +251,6 @@ export function HeroSection() {
             <span className="btn-quote-title">{t.surgeryBtnTitle}</span>
           </button>
 
-          {/* 투명 버튼 자리 — 스타일은 유지하되 목적지는 아직 미정, 추후 결정 후 연결 예정 */}
         </motion.div>
       </div>
     </section>

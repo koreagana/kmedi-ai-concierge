@@ -21,6 +21,8 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/en/privacy" element={<PrivacyPage lang="en" />} />
         <Route path="/zh/surgery-price" element={<App key="zh-surgery" initialLang="zh" />} />
         <Route path="/en/surgery-price" element={<App key="en-surgery" initialLang="en" />} />
+        <Route path="/zh/quote" element={<App key="zh-quote" initialLang="zh" />} />
+        <Route path="/en/quote" element={<App key="en-quote" initialLang="en" />} />
         {categoryRoutes.map((c) => (
           <Route key={`zh-${c.id}`} path={`/zh/${c.id}`} element={<App key={`zh-${c.id}`} initialLang="zh" />} />
         ))}

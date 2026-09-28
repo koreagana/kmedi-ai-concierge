@@ -63,6 +63,11 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     // /zh/surgery-price, /en/surgery-price — 고유 경로로 직접 진입한 경우
     if (location.pathname.endsWith('/surgery-price')) {
       setPage('surgery')
+    } else if (location.pathname.endsWith('/quote')) {
+      // /zh/quote, /en/quote — 고유 경로로 직접 진입한 경우
+      setPage('quote')
+      setQuoteCategoryHint(searchParams.get('qcat'))
+      setQuoteProcedureHint(searchParams.get('qproc'))
     } else if (pathCategoryId) {
       setCategoryId(pathCategoryId)
       setConcernId(concern)
@@ -121,10 +126,11 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     setPage('quote')
     setQuoteCategoryHint(categoryId ?? null)
     setQuoteProcedureHint(procedureId ?? null)
-    const params = new URLSearchParams({ page: 'quote' })
+    const params = new URLSearchParams()
     if (categoryId) params.set('qcat', categoryId)
     if (procedureId) params.set('qproc', procedureId)
-    navigate(`/${lang}?${params.toString()}`)
+    const qs = params.toString()
+    navigate(`/${lang}/quote${qs ? `?${qs}` : ''}`)
   }
 
   const goToSurgery = () => {

@@ -26,7 +26,7 @@ const port = 4174
 const categoryIds = categories.filter((c) => c.id !== 'medical-tourism').map((c) => c.id)
 const categoryRoutes = categoryIds.flatMap((id) => [`/zh/${id}`, `/en/${id}`])
 
-const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', ...categoryRoutes]
+const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes]
 
 // 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price·카테고리
 // 페이지는 마운트 시 page==='home'으로 시작했다가 pathname을 보고 전환된다
@@ -36,6 +36,7 @@ const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', ...categ
 // 페이지마다 고유한 셀렉터로 "그 페이지가 진짜 마운트됐는지"를 확인한다.
 function waitSelectorFor(route) {
   if (route.endsWith('/surgery-price')) return '.sg-title'
+  if (route.endsWith('/quote')) return '.quote-hero-title'
   if (categoryIds.some((id) => route.endsWith(`/${id}`))) return '.cat-hero-name'
   return '.hero-seo-headline'
 }
