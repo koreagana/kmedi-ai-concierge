@@ -9,8 +9,6 @@ export interface PlasticSurgeryDocButton {
 
 // NOTE: all /prep/* targets below were verified against the real page files under
 // public/prep/ before adding — do not rename without checking the actual folder exists.
-// "麻醉前确认问诊表 / 마취 전 확인 문진표" is still status: 'draft' in prepDocuments.ts
-// (no real page yet), so it is intentionally left out of every item's docKeys below.
 export const PLASTIC_SURGERY_DOC_BUTTONS = {
   photoGuide: {
     label: {
@@ -391,8 +389,6 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       zh: '',
       en: '',
     },
-    // TODO: once the admin prep-documents page publishes "麻醉前确认问诊表 / 마취 전 확인 문진표"
-    // (currently status: 'draft' at /prep/anesthesia-check in prepDocuments.ts), add its key here.
     docKeys: ['facialContouringAfter', 'surgeryBefore', 'anesthesiaAfterCare'],
   },
   {

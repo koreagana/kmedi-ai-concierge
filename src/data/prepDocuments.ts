@@ -339,15 +339,6 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     status: 'available',
   },
   {
-    titleKo: '마취 전 확인 문진표',
-    titleZh: '麻醉前确认问诊表',
-    type: 'intake',
-    category: 'plastic_before',
-    field: '성형외과 / 마취',
-    link: '/prep/anesthesia-check',
-    status: 'draft',
-  },
-  {
     titleKo: '복용약·알레르기 확인표',
     titleZh: '用药与过敏确认表',
     type: 'common_checklist',
