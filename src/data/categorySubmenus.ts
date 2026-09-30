@@ -14,10 +14,14 @@ import { MENS_HEALTH_KEYWORDS } from './mensHealthKeywords'
 export interface SubmenuItem {
   id: string
   title: LocalizedText
+  /** 사이트 검색(src/data/siteSearch.ts)용 설명문 — 줄기세포만 필드명이 body */
+  description?: LocalizedText
 }
 
-const pick = (list: { id: string; title: LocalizedText }[]): SubmenuItem[] =>
-  list.map(({ id, title }) => ({ id, title }))
+type KeywordSource = { id: string; title: LocalizedText; description?: LocalizedText; body?: LocalizedText }
+
+const pick = (list: KeywordSource[]): SubmenuItem[] =>
+  list.map(({ id, title, description, body }) => ({ id, title, description: description ?? body }))
 
 export const CATEGORY_SUBMENUS: Partial<Record<CategoryId, SubmenuItem[]>> = {
   'skin-beauty': pick(SKIN_AESTHETICS_KEYWORDS),

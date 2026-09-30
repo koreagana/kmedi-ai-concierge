@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../contexts/AppContext'
 import { translations } from '../../data/translations'
 import { categories, type CategoryId } from '../../data/categories'
 import { WECHAT_BIZ_URL, getWhatsappUrl, EMAIL_GENERAL } from '../../data/contacts'
 import { CATEGORY_SUBMENUS, type SubmenuItem } from '../../data/categorySubmenus'
+import { searchSite, type SearchTarget } from '../../data/siteSearch'
 import './editorial.scoped.css'
 import './editorial-shell.css'
 
@@ -18,6 +19,8 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   const isZh = lang === 'zh'
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [query, setQuery] = useState('')
+  const results = useMemo(() => searchSite(query, lang), [query, lang])
 
   // 고정 파란 바의 삼선·언어 버튼을 본문(헤더) 좌우 선에 맞추기 위해 헤더 위치를 CSS 변수로 넘긴다.
   // 옛 CSS는 화면 폭마다 본문 폭이 1000/1008/1152px로 제각각이라 calc보다 실측이 정확하다.
@@ -61,6 +64,31 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
     e.preventDefault()
     setMenuOpen(false)
     go()
+  }
+
+  /** 검색 결과 → 실제 이동. 견적은 goToQuote로 가야 같은 페이지 안에서도 시술 하이라이트가 갱신된다. */
+  const targetHref = (t: SearchTarget) => {
+    switch (t.type) {
+      case 'category': return `/${lang}/${t.id}${t.kw ? `?kw=${t.kw}` : ''}`
+      case 'package': return `/${lang}?page=package`
+      case 'quote': {
+        const p = new URLSearchParams()
+        if (t.cat) p.set('qcat', t.cat)
+        if (t.proc) p.set('qproc', t.proc)
+        const qs = p.toString()
+        return `/${lang}/quote${qs ? `?${qs}` : ''}`
+      }
+      case 'surgery': return `/${lang}/surgery-price`
+    }
+  }
+  const goTarget = (t: SearchTarget) => () => {
+    setQuery('')
+    switch (t.type) {
+      case 'category': return t.kw ? navigate(targetHref(t)) : goToCategory(t.id)
+      case 'package': return goToPackage()
+      case 'quote': return goToQuote(t.cat, t.proc)
+      case 'surgery': return goToSurgery()
+    }
   }
 
   const menuItems: { key: string; label: string; href: string; go: () => void; current: boolean; sub?: SubmenuItem[] }[] = [
@@ -146,7 +174,43 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
 
         <div id="sidebar">
           <div className="inner">
-            <section id="sidebar-brand" className="sidebar-spacer" />
+            {/* 검색 — HTML5 UP Editorial 원본 #search 그대로 (돋보기는 옛 CSS의 form::before) */}
+            <section id="search" className="alt">
+              <form onSubmit={(e) => { e.preventDefault(); if (results[0]) goTarget(results[0].target)(); setMenuOpen(false) }}>
+                <input
+                  type="text"
+                  name="query"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder={isZh ? '搜索项目，如：热玛吉、双眼皮' : 'Search treatments, e.g. Thermage'}
+                  aria-label={isZh ? '搜索' : 'Search'}
+                  autoComplete="off"
+                />
+              </form>
+              {query.trim() && (
+                <div className="ed-search-results" role="listbox">
+                  {results.length > 0 ? (
+                    <ul>
+                      {results.map((r) => (
+                        <li key={r.key}>
+                          <a href={targetHref(r.target)} onClick={nav(goTarget(r.target))}>
+                            <span className="ed-sr-title">{r.title}</span>
+                            <span className="ed-sr-context">{r.context}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="ed-search-empty">
+                      <p>{isZh ? '没有找到相关内容。' : 'No matching results.'}</p>
+                      <a href={WECHAT_BIZ_URL} target="_blank" rel="noopener noreferrer" className="button primary small">
+                        {isZh ? '没找到？直接微信咨询' : 'Ask us on WeChat'}
+                      </a>
+                    </div>
+                  )}
+                </div>
+              )}
+            </section>
 
             <nav id="menu">
               <ul>
