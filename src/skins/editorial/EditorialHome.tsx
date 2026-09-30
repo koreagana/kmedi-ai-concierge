@@ -6,6 +6,7 @@ import { WECHAT_BIZ_URL } from '../../data/contacts'
 import { getHeroTreatmentByChip, type HeroTreatmentInfo } from '../../data/heroTreatments'
 import HeroTreatmentSheet from '../../components/HeroTreatmentSheet'
 import { NetworkCityMap } from '../../components/HomePage'
+import { siteText } from '../../skin'
 
 /** kmedispring.com 메인 — 옛 index.html의 뼈대(#banner → header.major 섹션들 → .posts/.features)에
     ai-kmedi.com 메인의 내용(히어로 영상·견적 버튼, 카테고리 8개, AI 상담사, 서비스 네트워크)을 담는다.
@@ -63,7 +64,7 @@ export default function EditorialHome() {
             <h2 className="ed-banner-sub">{t.heroSeoHeadline}</h2>
           </header>
           <p className="brand-desc">
-            {t.aboutDesc.split('\n').map((line, i) => <span key={i} className="ed-desc-line">{line}</span>)}
+            {siteText(t.aboutDesc).split('\n').map((line, i) => <span key={i} className="ed-desc-line">{line}</span>)}
           </p>
           <ul className="actions">
             <li>

@@ -12,13 +12,13 @@ const fadeUp = {
 }
 
 /* ── types ─────────────────────────────────────────────── */
-type SlotKey = 'meal1' | 'meal2' | 'meal3' | 'meal4' | 'meal5' | 'meal6' | 'sight1' | 'sight2' | 'shop'
-type Selections = Record<SlotKey, string>
+export type SlotKey = 'meal1' | 'meal2' | 'meal3' | 'meal4' | 'meal5' | 'meal6' | 'sight1' | 'sight2' | 'shop'
+export type Selections = Record<SlotKey, string>
 type OptionsKind = 'meal' | 'spot' | 'shop'
 
 interface FixedSlotDef { kind: 'fixed'; time: string; label: string; detail?: string }
-interface SelectSlotDef { kind: 'select'; time: string; label: string; slotKey: SlotKey; optionsKind: OptionsKind }
-type SlotDef = FixedSlotDef | SelectSlotDef
+export interface SelectSlotDef { kind: 'select'; time: string; label: string; slotKey: SlotKey; optionsKind: OptionsKind }
+export type SlotDef = FixedSlotDef | SelectSlotDef
 
 interface DayDef { num: number; title: string; dateLabel: string; slots: SlotDef[] }
 interface GlanceItem { text: string; fixed: boolean }
@@ -26,7 +26,7 @@ interface GlanceDay { title: string; sub: string; items: GlanceItem[] }
 interface PriceItem { title: string; desc: string; tag: string; tagKind: 'apart' | 'free' }
 
 /* ── i18n ──────────────────────────────────────────────── */
-interface PackageLang {
+export interface PackageLang {
   backHome: string
   heroEyebrow: string
   heroTitle: string
@@ -186,6 +186,9 @@ const EN: PackageLang = {
   summaryEmpty: 'No itinerary items selected yet',
   consultBtn: 'Contact a Concierge',
 }
+
+/** kmedispring.com(Editorial 스킨)의 패키지 페이지도 같은 문구·일정을 쓰도록 내보낸다. */
+export const PACKAGE_TEXT: Record<'zh' | 'en', PackageLang> = { zh: ZH, en: EN }
 
 /* ── component ─────────────────────────────────────────────── */
 export default function PackagePage() {

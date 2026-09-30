@@ -11,7 +11,7 @@ interface PrivacySection {
   closingParagraphs?: string[]
 }
 
-interface PrivacyContent {
+export interface PrivacyContent {
   pageTitle: string
   title: string
   intro: string[]
@@ -20,7 +20,8 @@ interface PrivacyContent {
   lastUpdated: string
 }
 
-const CONTENT: Record<LangCode, PrivacyContent> = {
+/** kmedispring.com(Editorial 스킨)의 개인정보처리방침 페이지도 같은 문구를 쓰도록 내보낸다. */
+export const PRIVACY_CONTENT: Record<LangCode, PrivacyContent> = {
   zh: {
     pageTitle: '个人信息处理方针 · 汉江春天',
     title: '个人信息处理方针',
@@ -296,7 +297,7 @@ const CONTENT: Record<LangCode, PrivacyContent> = {
 }
 
 export default function PrivacyPage({ lang }: { lang: LangCode }) {
-  const c = CONTENT[lang]
+  const c = PRIVACY_CONTENT[lang]
 
   return (
     <AppProvider initialLang={lang}>

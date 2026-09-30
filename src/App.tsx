@@ -9,14 +9,14 @@ import FloatingChatButton from './components/FloatingChatButton'
 import { AnimatePresence, motion } from 'framer-motion'
 import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
+import { CATEGORY_SUBMENUS } from './data/categorySubmenus'
 import { seoMeta, surgeryMeta } from './data/seoMeta'
 import { updatePageSeo } from './seo'
 import { lazy, Suspense, useEffect } from 'react'
-import { SKIN } from './skin'
+import { SKIN, siteText } from './skin'
 
 // kmedispring.com(editorial 스킨) 전용 — SKIN이 빌드 타임 상수라 default 빌드에선 이 청크와 CSS가 아예 빠진다.
-const EditorialLayout = SKIN === 'editorial' ? lazy(() => import('./skins/editorial/EditorialLayout')) : null
-const EditorialHome = SKIN === 'editorial' ? lazy(() => import('./skins/editorial/EditorialHome')) : null
+const EditorialPages = SKIN === 'editorial' ? lazy(() => import('./skins/editorial/EditorialPages')) : null
 
 const PACKAGE_TITLE: Record<LangCode, string> = {
   zh: '汉江春天 医疗旅游精品',
@@ -54,12 +54,12 @@ function updateMeta({
     title은 브랜드 접미사를 붙이고 description은 aboutDesc를 150자로 잘라 씀. */
 function updateMetaGeneric(title: string, lang: LangCode) {
   const brand = `${translations[lang].brandName} · AI Medical Concierge`
-  const description = translations[lang].aboutDesc.replace(/\n/g, ' ').slice(0, 150)
+  const description = siteText(translations[lang].aboutDesc).replace(/\n/g, ' ').slice(0, 150)
   updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: `${title} · ${brand}`, description })
 }
 
 function PageRouter() {
-  const { page, lang, categoryId } = useApp()
+  const { page, lang, categoryId, topicId } = useApp()
 
   // 페이지/카테고리/언어 변경 시 title·description meta 업데이트
   useEffect(() => {
@@ -80,7 +80,7 @@ function PageRouter() {
     }
     if (page === 'quote') {
       const brand = `${translations[lang].brandName} · AI Medical Concierge`
-      const description = translations[lang].aboutDesc.replace(/\n/g, ' ').slice(0, 150)
+      const description = siteText(translations[lang].aboutDesc).replace(/\n/g, ' ').slice(0, 150)
       updateMeta({
         lang,
         zhPath: '/zh/quote',
@@ -97,6 +97,18 @@ function PageRouter() {
         const name = catRecord[lang] ?? cat.zh
         const summary = (lang === 'en' ? cat.scriptSummaryEn : cat.scriptSummaryZh).replace(/\n/g, ' ').slice(0, 150)
         const brand = `${translations[lang].brandName} · AI Medical Concierge`
+        // 세부 항목 페이지(/zh/skin-beauty/skin-lifting) — 항목 이름·설명과 자기 경로를 canonical로
+        const topic = topicId ? CATEGORY_SUBMENUS[cat.id]?.find((t) => t.id === topicId) : undefined
+        if (topic) {
+          updateMeta({
+            lang,
+            zhPath: `/zh/${cat.id}/${topic.id}`,
+            enPath: `/en/${cat.id}/${topic.id}`,
+            title: `${topic.title[lang]} · ${name} · ${brand}`,
+            description: (topic.description?.[lang] ?? summary).replace(/\s+/g, ' ').slice(0, 150),
+          })
+          return
+        }
         updateMeta({
           lang,
           zhPath: `/zh/${cat.id}`,
@@ -106,15 +118,12 @@ function PageRouter() {
         })
       }
     }
-  }, [page, lang, categoryId])
+  }, [page, lang, categoryId, topicId])
 
-  // TODO(editorial 2단계): 카테고리·견적·성형수가표 페이지도 Editorial 프레임에 넣기. 지금은 홈만.
-  if (EditorialLayout && EditorialHome && page === 'home') {
+  if (EditorialPages) {
     return (
       <Suspense fallback={null}>
-        <EditorialLayout>
-          <EditorialHome />
-        </EditorialLayout>
+        <EditorialPages />
       </Suspense>
     )
   }

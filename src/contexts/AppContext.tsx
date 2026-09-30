@@ -30,6 +30,10 @@ interface AppState {
   quoteProcedureHint: string | null
   // helpers
   goToCategory: (id: CategoryId, concernId?: string | null) => void
+  /** 세부 항목(키워드 타일) 고유 경로 /<lang>/<categoryId>/<topicId> 의 topicId — 없으면 null.
+      kmedispring.com(editorial 스킨)은 이걸 별도 페이지로, ai-kmedi.com은 해당 타일 선택으로 쓴다. */
+  topicId: string | null
+  goToTopic: (categoryId: CategoryId, topicId: string) => void
   goToPackage: () => void
   goToQuote: (categoryId?: string, procedureId?: string) => void
   goToSurgery: () => void
@@ -58,7 +62,9 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     const pageParam = searchParams.get('page')
 
     // /zh/plastic-surgery 같은 카테고리 고유 경로로 직접 진입한 경우
-    const pathCategoryId = categories.find((c) => location.pathname === `/${lang}/${c.id}`)?.id ?? null
+    // /zh/skin-beauty/skin-lifting 같은 세부 항목 경로도 같은 카테고리로 본다(topicId는 아래에서 경로로 계산)
+    const pathCategoryId = categories.find((c) =>
+      location.pathname === `/${lang}/${c.id}` || location.pathname.startsWith(`/${lang}/${c.id}/`))?.id ?? null
 
     // /zh/surgery-price, /en/surgery-price — 고유 경로로 직접 진입한 경우
     if (location.pathname.endsWith('/surgery-price')) {
@@ -117,6 +123,16 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     navigate(`/${lang}/${id}${qs ? `?${qs}` : ''}`)
   }
 
+  const topicMatch = categoryId ? location.pathname.match(new RegExp(`^/${lang}/${categoryId}/([^/]+)/?$`)) : null
+  const topicId = topicMatch ? decodeURIComponent(topicMatch[1]) : null
+
+  const goToTopic = (id: CategoryId, tId: string) => {
+    setCategoryId(id)
+    setConcernId(null)
+    setPage('category')
+    navigate(`/${lang}/${id}/${tId}`)
+  }
+
   const goToPackage = () => {
     setPage('package')
     navigate(`/${lang}?page=package`)
@@ -153,7 +169,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       concernId, setConcernId,
       consultCard, setConsultCard,
       quoteCategoryHint, quoteProcedureHint,
-      goToCategory, goToPackage, goToQuote, goToSurgery, goHome,
+      goToCategory, topicId, goToTopic, goToPackage, goToQuote, goToSurgery, goHome,
     }}>
       {children}
     </AppContext.Provider>

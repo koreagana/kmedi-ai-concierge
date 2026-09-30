@@ -8,13 +8,14 @@ import { CATEGORY_SUBMENUS, type SubmenuItem } from '../../data/categorySubmenus
 import { searchSite, type SearchTarget } from '../../data/siteSearch'
 import './editorial.scoped.css'
 import './editorial-shell.css'
+import './editorial-pages.css'
 
 /** kmedispring.com 전용 프레임 — 옛 사이트(HTML5 UP Editorial 커스텀)의 상단 파란 토글 바,
     헤더(로고 + 위챗/WhatsApp/메일), 왼쪽 오프캔버스 사이드바를 그대로 옮긴 것.
     옛 사이트의 jQuery main.js가 하던 일(body.is-menu-visible 토글, 바깥 클릭·ESC로 닫기)은
     여기서 React state로 대신한다. 클래스는 body 대신 .ed-skin 루트에 붙는다. */
 export default function EditorialLayout({ children }: { children: ReactNode }) {
-  const { lang, page, categoryId, goHome, goToCategory, goToPackage, goToQuote, goToSurgery } = useApp()
+  const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToPackage, goToQuote, goToSurgery } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
   const navigate = useNavigate()
@@ -69,7 +70,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   /** 검색 결과 → 실제 이동. 견적은 goToQuote로 가야 같은 페이지 안에서도 시술 하이라이트가 갱신된다. */
   const targetHref = (t: SearchTarget) => {
     switch (t.type) {
-      case 'category': return `/${lang}/${t.id}${t.kw ? `?kw=${t.kw}` : ''}`
+      case 'category': return `/${lang}/${t.id}${t.kw ? `/${t.kw}` : ''}`
       case 'package': return `/${lang}?page=package`
       case 'quote': {
         const p = new URLSearchParams()
@@ -84,7 +85,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   const goTarget = (t: SearchTarget) => () => {
     setQuery('')
     switch (t.type) {
-      case 'category': return t.kw ? navigate(targetHref(t)) : goToCategory(t.id)
+      case 'category': return t.kw ? goToTopic(t.id, t.kw) : goToCategory(t.id)
       case 'package': return goToPackage()
       case 'quote': return goToQuote(t.cat, t.proc)
       case 'surgery': return goToSurgery()
@@ -249,8 +250,9 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                           {m.sub.map((s) => (
                             <li key={s.id}>
                               <a
-                                href={`${m.href}?kw=${s.id}`}
-                                onClick={nav(() => navigate(`${m.href}?kw=${s.id}`))}
+                                href={`${m.href}/${s.id}`}
+                                onClick={nav(() => goToTopic(m.key as CategoryId, s.id))}
+                                aria-current={m.current && topicId === s.id ? 'page' : undefined}
                               >
                                 {s.title[lang]}
                               </a>

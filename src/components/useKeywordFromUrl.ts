@@ -1,7 +1,8 @@
 import { useEffect, type RefObject } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { useApp } from '../contexts/AppContext'
 
-/** 카테고리 페이지 키워드 타일을 URL의 ?kw=<id>로 미리 선택한다.
+/** 카테고리 페이지 키워드 타일을 URL로 미리 선택한다 — ?kw=<id> 또는 세부 항목 경로 /<lang>/<cat>/<id>.
     kmedispring.com 사이드바 서브메뉴(src/data/categorySubmenus.ts)가 이 링크를 쓴다.
     같은 카테고리 안에서 kw만 바뀌어도(페이지가 다시 마운트되지 않음) 반응하도록 effect로 처리하고,
     선택 후 해당 내용 위치로 스크롤한다. kw가 없으면 아무것도 하지 않는다(ai-kmedi.com 기존 동작 그대로). */
@@ -11,7 +12,8 @@ export function useKeywordFromUrl(
   anchorRef?: RefObject<HTMLElement>,
 ) {
   const [searchParams] = useSearchParams()
-  const kw = searchParams.get('kw')
+  const { topicId } = useApp()
+  const kw = searchParams.get('kw') ?? topicId
 
   useEffect(() => {
     if (!kw) return

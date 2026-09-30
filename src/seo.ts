@@ -1,4 +1,5 @@
 import type { LangCode } from './data/translations'
+import { CANONICAL_ORIGIN } from './skin'
 
 /** 현재 페이지의 zh/en 경로에 맞춰 <link rel="canonical">, og:url, hreflang 3종을 갱신.
     index.html은 모든 언어·페이지 라우트가 공유하는 단일 정적 파일이라 이 값들은
@@ -7,7 +8,7 @@ import type { LangCode } from './data/translations'
     페이지마다 서로 다른 canonical/hreflang 쌍을 가질 수 있게 페이지 쪽에서 넘겨준다. */
 export function updatePageSeo({ lang, zhPath, enPath }: { lang: LangCode; zhPath: string; enPath: string }) {
   const path = lang === 'zh' ? zhPath : enPath
-  const url = `https://ai-kmedi.com${path}`
+  const url = `${CANONICAL_ORIGIN}${path}`
 
   const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
   if (canonical) canonical.href = url
@@ -15,9 +16,9 @@ export function updatePageSeo({ lang, zhPath, enPath }: { lang: LangCode; zhPath
   if (ogUrl) ogUrl.content = url
 
   const hreflangZh = document.querySelector<HTMLLinkElement>('link[rel="alternate"][hreflang="zh-CN"]')
-  if (hreflangZh) hreflangZh.href = `https://ai-kmedi.com${zhPath}`
+  if (hreflangZh) hreflangZh.href = `${CANONICAL_ORIGIN}${zhPath}`
   const hreflangEn = document.querySelector<HTMLLinkElement>('link[rel="alternate"][hreflang="en"]')
-  if (hreflangEn) hreflangEn.href = `https://ai-kmedi.com${enPath}`
+  if (hreflangEn) hreflangEn.href = `${CANONICAL_ORIGIN}${enPath}`
   const hreflangDefault = document.querySelector<HTMLLinkElement>('link[rel="alternate"][hreflang="x-default"]')
-  if (hreflangDefault) hreflangDefault.href = `https://ai-kmedi.com${zhPath}`
+  if (hreflangDefault) hreflangDefault.href = `${CANONICAL_ORIGIN}${zhPath}`
 }

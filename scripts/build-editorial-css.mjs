@@ -7,6 +7,8 @@
  * 서로 새지 않는다.
  *   - html / body / :root  →  .ed-skin  (body.is-menu-visible → .ed-skin.is-menu-visible)
  *   - 그 외                 →  .ed-skin <원래 셀렉터>
+ *   - .ed-island 안(견적·성형 수가표처럼 기존 ai-kmedi 컴포넌트를 그대로 넣는 곳)에는 적용되지 않게
+ *     각 셀렉터 끝에 :where(:not(.ed-island *))를 붙인다 — :where라 우선순위(specificity)는 그대로다.
  *   - @font-face: 옛 사이트에서도 실제로는 로드되지 않던 로컬 폰트(../fonts/*)는 버리고,
  *     Font Awesome 웹폰트 경로만 /editorial/webfonts/ 로 바꾼다.
  *
@@ -32,7 +34,21 @@ function stripOrphanBlock(css) {
   )
 }
 
+const ISLAND_GUARD = ':where(:not(.ed-island *))'
+const PSEUDO_ELEMENT_TAIL = /((?:::?(?:before|after|placeholder|selection|first-line|first-letter|marker|-webkit-[\w-]+|-moz-[\w-]+|-ms-[\w-]+))+)$/i
+
+/** 셀렉터가 가리키는 요소(마지막 compound)에 island 가드를 붙인다. 가상 요소(::before 등)보다 앞에. */
+function guard(sel) {
+  if (sel === SCOPE || /^\.ed-skin(\.[\w-]+)*$/.test(sel)) return sel // 루트 자체
+  const m = sel.match(PSEUDO_ELEMENT_TAIL)
+  return m ? sel.slice(0, -m[1].length) + ISLAND_GUARD + m[1] : sel + ISLAND_GUARD
+}
+
 function scopeSelector(sel) {
+  return guard(scopeOnly(sel))
+}
+
+function scopeOnly(sel) {
   const s = sel.trim()
   if (!s) return s
   // html, body, :root 로 시작하는 셀렉터 → 스코프 루트 자체

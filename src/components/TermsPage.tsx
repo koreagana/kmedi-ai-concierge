@@ -4,14 +4,15 @@ import type { LangCode } from '../data/translations'
 import NavBar from './NavBar'
 import { FooterSection } from './HomePage'
 
-const VALID_LANGS: LangCode[] = ['zh', 'en']
+export const VALID_LANGS: LangCode[] = ['zh', 'en']
 
 interface TermsText {
   title: string
   disclaimer: string
 }
 
-const TEXT: Record<LangCode, TermsText> = {
+/** kmedispring.com(Editorial 스킨)의 이용약관 페이지도 같은 문구를 쓰도록 내보낸다. */
+export const TERMS_TEXT: Record<LangCode, TermsText> = {
   zh: {
     title: '使用条款及免责声明',
     disclaimer: '温馨提示：本网站不提供医疗诊断、治疗建议或紧急医疗服务。所有医疗判断、检查结果解释与治疗方案，均以韩国正规医疗机构及专业医生面诊为准。汉江春天提供的是医疗咨询整理、预约协调、翻译沟通与医疗旅游相关协助服务。',
@@ -26,7 +27,7 @@ export default function TermsPage() {
   const [searchParams] = useSearchParams()
   const langParam = searchParams.get('lang') as LangCode | null
   const lang: LangCode = langParam && VALID_LANGS.includes(langParam) ? langParam : 'zh'
-  const t = TEXT[lang]
+  const t = TERMS_TEXT[lang]
 
   return (
     <AppProvider initialLang={lang}>

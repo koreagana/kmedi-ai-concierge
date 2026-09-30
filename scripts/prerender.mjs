@@ -11,7 +11,7 @@
  * 클라이언트 사이드 meta 갱신)로 정상 배포되므로 사이트 자체는 영향 없다.
  */
 import { execFileSync, spawn } from 'node:child_process'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { categories } from '../src/data/categories.ts'
@@ -26,7 +26,25 @@ const port = 4174
 const categoryIds = categories.filter((c) => c.id !== 'medical-tourism').map((c) => c.id)
 const categoryRoutes = categoryIds.flatMap((id) => [`/zh/${id}`, `/en/${id}`])
 
-const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes]
+// kmedispring.com(VITE_SKIN=editorial) 빌드는 세부 항목마다 고유 페이지(/zh/skin-beauty/skin-lifting)가
+// 있어서 그것도 미리 렌더링한다. 키워드 데이터 파일은 확장자 없는 import가 섞여 있어 Node로 직접
+// 불러올 수 없으므로, 각 파일의 키워드 id(4칸 들여쓴 `id: '...'`)만 정규식으로 뽑는다.
+const isEditorial = process.env.VITE_SKIN === 'editorial'
+const KEYWORD_FILES = {
+  'skin-beauty': 'skinAestheticsKeywords.ts',
+  'plastic-surgery': 'plasticSurgeryKeywords.ts',
+  'big-health': 'bigHealthKeywords.ts',
+  'stem-cell': 'stemCellKeywords.ts',
+  'womens-care': 'womensHealthKeywords.ts',
+  'mens-health': 'mensHealthKeywords.ts',
+}
+const topicRoutes = !isEditorial ? [] : Object.entries(KEYWORD_FILES).flatMap(([catId, file]) => {
+  const src = readFileSync(resolve(root, 'src/data', file), 'utf-8')
+  const ids = [...src.matchAll(/^ {4}id: '([^']+)'/gm)].map((m) => m[1])
+  return ids.flatMap((id) => [`/zh/${catId}/${id}`, `/en/${catId}/${id}`])
+})
+
+const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes, ...topicRoutes]
 
 // 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price·카테고리
 // 페이지는 마운트 시 page==='home'으로 시작했다가 pathname을 보고 전환된다
@@ -37,6 +55,11 @@ const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quo
 function waitSelectorFor(route) {
   if (route.endsWith('/surgery-price')) return '.sg-title'
   if (route.endsWith('/quote')) return '.quote-hero-title'
+  if (isEditorial) {
+    if (topicRoutes.includes(route)) return '.ed-topic header.main h1'
+    if (categoryIds.some((id) => route.endsWith(`/${id}`))) return '.ed-page header.main h1'
+    return '#banner h1'
+  }
   if (categoryIds.some((id) => route.endsWith(`/${id}`))) return '.cat-hero-name'
   return '.hero-seo-headline'
 }
@@ -78,7 +101,31 @@ async function waitForServer(url, timeoutMs = 20000) {
   throw new Error(`preview server did not respond within ${timeoutMs}ms`)
 }
 
+/** kmedispring.com 빌드 전용: public/의 ai-kmedi.com용 sitemap.xml·robots.txt 대신 이 도메인의
+    전체 페이지(세부 항목 포함)를 담은 것으로 덮어쓴다. 브라우저 없이 되는 작업이라 prerender 실패와 무관. */
+function writeEditorialSitemap() {
+  const origin = process.env.VITE_CANONICAL_ORIGIN || 'https://kmedispring.com'
+  const zhRoutes = routes.filter((r) => r === '/zh' || r.startsWith('/zh/'))
+  const entry = (zh) => {
+    const en = zh.replace(/^\/zh/, '/en')
+    const alt = `    <xhtml:link rel="alternate" hreflang="zh-CN" href="${origin}${zh}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${origin}${en}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${origin}${zh}" />`
+    return [zh, en].map((loc) => `  <url>\n    <loc>${origin}${loc}</loc>\n${alt}\n  </url>`).join('\n')
+  }
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${zhRoutes.map(entry).join('\n')}
+</urlset>
+`
+  writeFileSync(resolve(distDir, 'sitemap.xml'), xml, 'utf-8')
+  writeFileSync(resolve(distDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`, 'utf-8')
+  console.log(`[prerender] wrote dist/sitemap.xml (${zhRoutes.length * 2} urls) + robots.txt for ${origin}`)
+}
+
 async function main() {
+  if (isEditorial) writeEditorialSitemap()
   const viteBin = resolve(root, 'node_modules/vite/bin/vite.js')
   const server = spawn(process.execPath, [viteBin, 'preview', '--port', String(port), '--strictPort'], {
     cwd: root,

@@ -1,0 +1,35 @@
+/* ══════════════════════════════════════════════════════════════
+   .ed-island — 견적(QuotePage)·성형 수가표(SurgeryPricePage)처럼 계산·선택 기능이 복잡한
+   ai-kmedi 컴포넌트를 그대로 넣는 자리. Editorial 원본 CSS는 여기 안에 적용되지 않게
+   막아두었고(scripts/build-editorial-css.mjs의 island 가드), 여기서는 톤만 맞춘다:
+   파란 그라데이션 히어로 → Editorial식 흰 바탕 + 큰 명조 제목, 배경 → 흰색, 폰트 → 옛 사이트와 동일.
+   ══════════════════════════════════════════════════════════════ */
+.ed-skin .ed-island { padding-top: 1.4em; font-family: var(--ui-sans); }
+.ed-skin .ed-island .quote-widget,
+.ed-skin .ed-island .sg-widget { background: #fff; min-height: 0; }
+
+/* 히어로 */
+.ed-skin .ed-island .quote-hero,
+.ed-skin .ed-island .sg-hero {
+  background: none; color: #222; text-align: left; padding: 1em 0 1.6em; overflow: visible;
+  border-bottom: 1px solid rgba(210,215,217,.75); margin-bottom: 1em;
+}
+.ed-skin .ed-island .quote-hero::after { display: none; }
+.ed-skin .ed-island .quote-hero-topbar,
+.ed-skin .ed-island .sg-back { display: none; } /* 돌아가기는 위의 경로(首页 / …)로 */
+.ed-skin .ed-island .quote-hero-title,
+.ed-skin .ed-island .sg-title {
+  font-family: var(--brand-serif); font-weight: 600; color: #222;
+  font-size: clamp(2em, 5vw, 3.2em); line-height: 1.25; letter-spacing: .02em;
+  max-width: none; margin: 0 0 .35em;
+}
+.ed-skin .ed-island .quote-hero-sub,
+.ed-skin .ed-island .sg-sub { color: #0077B6; font-size: .95em; max-width: none; margin: 0 0 .8em; }
+.ed-skin .ed-island .sg-basis { color: #555; background: #f4f6f8; border-color: rgba(0,0,0,.08); font-size: .8em; }
+
+/* 좌우 여백 — 원래 폰 폭(680px) 카드 여백을 Editorial 본문 폭에 맞춰 없앤다 */
+.ed-skin .ed-island .sg-tabs { padding-left: 0; padding-right: 0; }
+
+/* 경로 표시 */
+.ed-skin #main .ed-island-crumb { font-size: .82em !important; color: #888 !important; margin: 2.2em 0 0; }
+.ed-skin #main .ed-island-crumb a { color: #0077B6 !important; border-bottom: 0; text-decoration: none; }

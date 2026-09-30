@@ -9,7 +9,7 @@ import { MENS_HEALTH_KEYWORDS } from './mensHealthKeywords'
 
 /** 카테고리별 세부 항목(카테고리 페이지의 키워드 타일) — kmedispring.com 사이드바 서브메뉴용.
     각 카테고리 키워드 데이터에서 그대로 뽑으므로 타일을 추가·삭제하면 메뉴도 자동으로 따라간다.
-    링크는 /<lang>/<categoryId>?kw=<id> — 카테고리 페이지가 kw를 읽어 해당 타일을 선택한다
+    링크는 /<lang>/<categoryId>/<id> — kmedispring.com은 세부 항목 페이지, ai-kmedi.com은 해당 타일 선택
     (src/components/useKeywordFromUrl.ts). */
 export interface SubmenuItem {
   id: string
