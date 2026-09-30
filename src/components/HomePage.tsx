@@ -610,7 +610,7 @@ export function CategoryGridSection() {
 const MAP_IMG_W = 400
 const MAP_IMG_H = 714
 
-function NetworkCityMap({ lang }: { lang: LangCode }) {
+export function NetworkCityMap({ lang }: { lang: LangCode }) {
   return (
     <div className="network-map-wrap">
       <img src="/korea_map.png" alt="" className="network-map-img" />

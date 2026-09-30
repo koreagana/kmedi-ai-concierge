@@ -9,6 +9,7 @@ import {
 } from '../data/bigHealthKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
+import { useKeywordFromUrl } from './useKeywordFromUrl'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -16,6 +17,7 @@ export default function BigHealthKeywords() {
   const { lang } = useApp()
   const [activeIndex, setActiveIndex] = useState(0)
   const cardAnchorRef = useRef<HTMLDivElement>(null)
+  useKeywordFromUrl(BIG_HEALTH_KEYWORDS, setActiveIndex, cardAnchorRef)
   const active = BIG_HEALTH_KEYWORDS[activeIndex]
 
   return (

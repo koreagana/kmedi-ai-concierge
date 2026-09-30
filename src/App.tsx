@@ -11,7 +11,12 @@ import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
 import { seoMeta, surgeryMeta } from './data/seoMeta'
 import { updatePageSeo } from './seo'
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
+import { SKIN } from './skin'
+
+// kmedispring.com(editorial 스킨) 전용 — SKIN이 빌드 타임 상수라 default 빌드에선 이 청크와 CSS가 아예 빠진다.
+const EditorialLayout = SKIN === 'editorial' ? lazy(() => import('./skins/editorial/EditorialLayout')) : null
+const EditorialHome = SKIN === 'editorial' ? lazy(() => import('./skins/editorial/EditorialHome')) : null
 
 const PACKAGE_TITLE: Record<LangCode, string> = {
   zh: '汉江春天 医疗旅游精品',
@@ -102,6 +107,17 @@ function PageRouter() {
       }
     }
   }, [page, lang, categoryId])
+
+  // TODO(editorial 2단계): 카테고리·견적·성형수가표 페이지도 Editorial 프레임에 넣기. 지금은 홈만.
+  if (EditorialLayout && EditorialHome && page === 'home') {
+    return (
+      <Suspense fallback={null}>
+        <EditorialLayout>
+          <EditorialHome />
+        </EditorialLayout>
+      </Suspense>
+    )
+  }
 
   return (
     <div className="page-container" dir="ltr">

@@ -10,6 +10,7 @@ import {
 import type { LangCode } from '../data/translations'
 import CasePhoto from './CasePhoto'
 import TtsButton from './TtsButton'
+import { useKeywordFromUrl } from './useKeywordFromUrl'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -17,6 +18,7 @@ export default function SkinAestheticsKeywords() {
   const { lang } = useApp()
   const [activeIndex, setActiveIndex] = useState(0)
   const cardAnchorRef = useRef<HTMLDivElement>(null)
+  useKeywordFromUrl(SKIN_AESTHETICS_KEYWORDS, setActiveIndex, cardAnchorRef)
   const active = SKIN_AESTHETICS_KEYWORDS[activeIndex]
 
   return (

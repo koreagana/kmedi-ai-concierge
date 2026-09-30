@@ -5,6 +5,7 @@ import type { LocalizedText } from '../data/bigHealthKeywords'
 import { STEM_CELL_KEYWORDS, STEM_CELL_INTRO } from '../data/stemCellKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
+import { useKeywordFromUrl } from './useKeywordFromUrl'
 import CasePhoto from './CasePhoto'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
@@ -12,6 +13,7 @@ const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 export default function StemCellKeywords() {
   const { lang } = useApp()
   const [activeIndex, setActiveIndex] = useState<number | null>(0)
+  useKeywordFromUrl(STEM_CELL_KEYWORDS, setActiveIndex)
 
   return (
     <div className="bh-section">
@@ -26,6 +28,7 @@ export default function StemCellKeywords() {
           return (
             <Fragment key={kw.id}>
               <button
+                id={`kw-${kw.id}`}
                 type="button"
                 aria-expanded={isActive}
                 className={`bh-tile bh-tile--banner${isActive ? ' bh-tile-active' : ''}`}

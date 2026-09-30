@@ -9,6 +9,7 @@ import {
 import type { LangCode } from '../data/translations'
 import CasePhoto from './CasePhoto'
 import TtsButton from './TtsButton'
+import { useKeywordFromUrl } from './useKeywordFromUrl'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -16,6 +17,7 @@ export default function PlasticSurgeryKeywords() {
   const { lang } = useApp()
   const [activeIndex, setActiveIndex] = useState(0)
   const cardAnchorRef = useRef<HTMLDivElement>(null)
+  useKeywordFromUrl(PLASTIC_SURGERY_KEYWORDS, setActiveIndex, cardAnchorRef)
   const active = PLASTIC_SURGERY_KEYWORDS[activeIndex]
 
   return (

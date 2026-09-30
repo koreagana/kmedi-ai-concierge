@@ -8,6 +8,7 @@ import {
 } from '../data/mensHealthKeywords'
 import type { LangCode } from '../data/translations'
 import TtsButton from './TtsButton'
+import { useKeywordFromUrl } from './useKeywordFromUrl'
 
 const pick = (text: LocalizedText, lang: LangCode) => text[lang]
 
@@ -15,6 +16,7 @@ export default function MensHealthKeywords() {
   const { lang } = useApp()
   const [activeIndex, setActiveIndex] = useState(0)
   const cardAnchorRef = useRef<HTMLDivElement>(null)
+  useKeywordFromUrl(MENS_HEALTH_KEYWORDS, setActiveIndex, cardAnchorRef)
   const active = MENS_HEALTH_KEYWORDS[activeIndex]
 
   return (
