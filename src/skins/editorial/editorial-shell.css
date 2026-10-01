@@ -45,7 +45,7 @@
 
 /* ── 인기 시술 칩 ── */
 .ed-skin .ed-hot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: -0.5em 0 2.5em; }
-.ed-skin .ed-hot-label { font-family: var(--brand-serif); font-weight: 600; color: #222; margin-right: 6px; }
+.ed-skin .ed-hot-label { font-family: var(--brand-serif); font-weight: 600; color: #1F4E79; margin-right: 6px; }
 .ed-skin .ed-chip {
   height: auto !important; line-height: 1.4 !important;
   padding: 6px 14px !important; border-radius: 999px !important;
