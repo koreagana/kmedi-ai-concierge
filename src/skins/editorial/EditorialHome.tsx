@@ -23,14 +23,14 @@ const BANNER_INTRO: Record<'zh' | 'en', string[]> = {
     '想来韩国，却不知道从哪儿开始？别担心，把您的想法告诉我们。帮您梳理需求、说明流程、安排预约，全程中文陪诊，都交给我们。',
     '热门项目的费用，我们会提前讲清楚；就诊流程，也会提前说明。预约和中文沟通，一次搞定。',
     '费用方面，我们也会陪您一起比较，让您了解清楚，再安心做决定。',
-    '欢迎来到汉江春天。',
+    '欢迎来到首尔汉江春天。',
   ],
   en: [
     'K-MediSpring offers Korean medical travel consultation and in-person accompaniment for international clients.',
     "Thinking about coming to Korea but not sure where to start? Don't worry — just tell us what you have in mind. We'll help you sort out your needs, explain the process, arrange appointments, and stay by your side with language support the whole way.",
     'We explain the costs of popular treatments upfront and walk you through the visit process in advance. Appointments and communication, all handled in one place.',
     "When it comes to costs, we'll compare the options with you, so you can understand everything clearly and decide with peace of mind.",
-    'Welcome to K-MediSpring.',
+    'Welcome to K-MediSpring in Seoul.',
   ],
 }
 
