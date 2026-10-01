@@ -167,6 +167,17 @@
 .ed-skin a.toggle::before { left: var(--ed-col-left, 16px) !important; }
 .ed-skin .ed-lang-toggle { right: var(--ed-col-right, 16px); }
 
+/* 파란 바 안 흰색 로고 — 삼선(28px) 오른쪽, 같은 세로 중앙 */
+.ed-skin .ed-bar-logo {
+  position: fixed; top: 0; left: calc(var(--ed-col-left, 16px) + 46px); z-index: 10002;
+  height: 46px; display: flex; align-items: center;
+  border: 0 !important; box-shadow: none !important; text-decoration: none;
+}
+.ed-skin .ed-bar-logo img { height: 24px !important; width: auto !important; max-width: none !important; display: block; } /* 옛 CSS의 img{height:auto} 무시 */
+.ed-skin .ed-bar-logo:hover img { opacity: .85; }
+/* 헤더에 로고가 빠졌으니 연락 아이콘 줄 높이를 예전 로고 높이(40px)에 맞춰 둔다 */
+.ed-skin #header { min-height: 40px; }
+
 /* ── PC: 사이드바가 본문 옆에 붙는 모드(Editorial 원본처럼) ──
    사이드바(320px, 옛 CSS의 fixed 오프캔버스 그대로)가 열리면 본문을 그만큼 오른쪽으로 민다.
    덮는 막·스크롤 잠금은 없음(EditorialLayout의 docked 분기). */

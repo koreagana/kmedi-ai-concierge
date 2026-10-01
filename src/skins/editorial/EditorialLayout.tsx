@@ -200,6 +200,10 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       >
         Menu
       </a>
+      {/* 汉江春天 흰색 로고 — 파란 바 안, 삼선 바로 옆 (누르면 첫 화면) */}
+      <a href={`/${lang}`} className="ed-bar-logo" onClick={nav(goHome)} aria-label={t.brandName}>
+        <img src="/editorial/logo_ch_white.png" alt={t.brandName} width={81} height={24} />
+      </a>
       <button
         type="button"
         className="ed-lang-toggle"
@@ -213,9 +217,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
         <div id="main">
           <div className="inner">
             <header id="header">
-              <a href={`/${lang}`} className="logo" onClick={nav(goHome)}>
-                <img src="/editorial/logo_ch.png" alt={t.brandName} className="logo-img" />
-              </a>
+              {/* 로고는 파란 바(삼선 옆)로 옮김 — 헤더엔 연락 아이콘만 */}
               <ul className="icons">
                 <li>
                   <a href={WECHAT_BIZ_URL} target="_blank" rel="noopener noreferrer" className="icon brands fa-weixin" title="WeChat">
