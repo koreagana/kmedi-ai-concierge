@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import type { LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
+import { langPath } from '../skin'
 
 /** 'partners'(全程服务·合作医疗机构)는 kmedispring.com(editorial 스킨) 전용 페이지 — ai-kmedi.com에선 홈으로 보인다 */
 export type PageView = 'home' | 'category' | 'package' | 'quote' | 'surgery' | 'partners'
@@ -66,12 +67,12 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     // /zh/plastic-surgery 같은 카테고리 고유 경로로 직접 진입한 경우
     // /zh/skin-beauty/skin-lifting 같은 세부 항목 경로도 같은 카테고리로 본다(topicId는 아래에서 경로로 계산)
     const pathCategoryId = categories.find((c) =>
-      location.pathname === `/${lang}/${c.id}` || location.pathname.startsWith(`/${lang}/${c.id}/`))?.id ?? null
+      location.pathname === langPath(lang, `/${c.id}`) || location.pathname.startsWith(langPath(lang, `/${c.id}/`)))?.id ?? null
 
     // /zh/surgery-price, /en/surgery-price — 고유 경로로 직접 진입한 경우
     if (location.pathname.endsWith('/surgery-price')) {
       setPage('surgery')
-    } else if (location.pathname === `/${lang}/partners`) {
+    } else if (location.pathname === langPath(lang, '/partners')) {
       setPage('partners')
     } else if (location.pathname.endsWith('/quote')) {
       // /zh/quote, /en/quote — 고유 경로로 직접 진입한 경우
@@ -124,22 +125,22 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     const params = new URLSearchParams()
     if (cId) params.set('concern', cId)
     const qs = params.toString()
-    navigate(`/${lang}/${id}${qs ? `?${qs}` : ''}`)
+    navigate(langPath(lang, `/${id}${qs ? `?${qs}` : ''}`))
   }
 
-  const topicMatch = categoryId ? location.pathname.match(new RegExp(`^/${lang}/${categoryId}/([^/]+)/?$`)) : null
+  const topicMatch = categoryId ? location.pathname.match(new RegExp(`^${langPath(lang, `/${categoryId}`)}/([^/]+)/?$`)) : null
   const topicId = topicMatch ? decodeURIComponent(topicMatch[1]) : null
 
   const goToTopic = (id: CategoryId, tId: string) => {
     setCategoryId(id)
     setConcernId(null)
     setPage('category')
-    navigate(`/${lang}/${id}/${tId}`)
+    navigate(langPath(lang, `/${id}/${tId}`))
   }
 
   const goToPackage = () => {
     setPage('package')
-    navigate(`/${lang}?page=package`)
+    navigate(langPath(lang, '?page=package'))
   }
 
   const goToQuote = (categoryId?: string, procedureId?: string) => {
@@ -150,24 +151,24 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     if (categoryId) params.set('qcat', categoryId)
     if (procedureId) params.set('qproc', procedureId)
     const qs = params.toString()
-    navigate(`/${lang}/quote${qs ? `?${qs}` : ''}`)
+    navigate(langPath(lang, `/quote${qs ? `?${qs}` : ''}`))
   }
 
   const goToSurgery = () => {
     setPage('surgery')
-    navigate(`/${lang}/surgery-price`)
+    navigate(langPath(lang, '/surgery-price'))
   }
 
   const goToPartners = () => {
     setPage('partners')
-    navigate(`/${lang}/partners`)
+    navigate(langPath(lang, '/partners'))
   }
 
   const goHome = () => {
     setPage('home')
     setCategoryId(null)
     setConcernId(null)
-    navigate(`/${lang}`)
+    navigate(langPath(lang))
   }
 
   return (

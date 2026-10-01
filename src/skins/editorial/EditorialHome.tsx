@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { langPath } from '../../skin'
 import { useApp } from '../../contexts/AppContext'
 import { translations } from '../../data/translations'
 import { categories, type Category } from '../../data/categories'
@@ -63,7 +64,7 @@ export default function EditorialHome() {
     fn()
   }
 
-  const catHref = (c: Category) => (c.id === 'medical-tourism' ? `/${lang}?page=package` : `/${lang}/${c.id}`)
+  const catHref = (c: Category) => (c.id === 'medical-tourism' ? langPath(lang, '?page=package') : langPath(lang, `/${c.id}`))
   const catGo = (c: Category) => (c.id === 'medical-tourism' ? goToPackage : () => goToCategory(c.id))
 
   const networkCards = [
@@ -91,10 +92,10 @@ export default function EditorialHome() {
           </p>
           <ul className="actions">
             <li>
-              <a href={`/${lang}/quote`} className="button primary" onClick={go(() => goToQuote())}>{t.quoteBtnTitle}</a>
+              <a href={langPath(lang, `/quote`)} className="button primary" onClick={go(() => goToQuote())}>{t.quoteBtnTitle}</a>
             </li>
             <li>
-              <a href={`/${lang}/surgery-price`} className="button" onClick={go(goToSurgery)}>{t.surgeryBtnTitle}</a>
+              <a href={langPath(lang, `/surgery-price`)} className="button" onClick={go(goToSurgery)}>{t.surgeryBtnTitle}</a>
             </li>
           </ul>
         </div>
@@ -181,7 +182,7 @@ export default function EditorialHome() {
         </div>
         <p className="ed-note">
           {t.conciergePrivacyNotice}{' '}
-          <a href={isZh ? '/zh/privacy' : '/en/privacy'}>{t.conciergePrivacyLink}</a>
+          <a href={langPath(lang, '/privacy')}>{t.conciergePrivacyLink}</a>
         </p>
       </section>
 

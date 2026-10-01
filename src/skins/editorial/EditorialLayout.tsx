@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { langPath } from '../../skin'
 import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../contexts/AppContext'
 import { translations } from '../../data/translations'
@@ -169,17 +170,17 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   /** 검색 결과 → 실제 이동. 견적은 goToQuote로 가야 같은 페이지 안에서도 시술 하이라이트가 갱신된다. */
   const targetHref = (t: SearchTarget) => {
     switch (t.type) {
-      case 'category': return `/${lang}/${t.id}${t.kw ? `/${t.kw}` : ''}`
-      case 'package': return `/${lang}?page=package`
+      case 'category': return langPath(lang, `/${t.id}${t.kw ? `/${t.kw}` : ''}`)
+      case 'package': return langPath(lang, '?page=package')
       case 'quote': {
         const p = new URLSearchParams()
         if (t.cat) p.set('qcat', t.cat)
         if (t.proc) p.set('qproc', t.proc)
         const qs = p.toString()
-        return `/${lang}/quote${qs ? `?${qs}` : ''}`
+        return langPath(lang, `/quote${qs ? `?${qs}` : ''}`)
       }
-      case 'surgery': return `/${lang}/surgery-price`
-      case 'partners': return `/${lang}/partners`
+      case 'surgery': return langPath(lang, `/surgery-price`)
+      case 'partners': return langPath(lang, `/partners`)
     }
   }
   const goTarget = (t: SearchTarget) => () => {
@@ -199,15 +200,15 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       return {
         key: c.id,
         label: isZh ? c.zh : c.en,
-        href: isPackage ? `/${lang}?page=package` : `/${lang}/${c.id}`,
+        href: isPackage ? langPath(lang, '?page=package') : langPath(lang, `/${c.id}`),
         go: isPackage ? goToPackage : () => goToCategory(c.id as CategoryId),
         current: isPackage ? page === 'package' : page === 'category' && categoryId === c.id,
         sub: CATEGORY_SUBMENUS[c.id],
       }
     }),
-    { key: 'partners', label: isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners', href: `/${lang}/partners`, go: goToPartners, current: page === 'partners' },
-    { key: 'quote', label: t.quoteBtnTitle, href: `/${lang}/quote`, go: () => goToQuote(), current: page === 'quote' },
-    { key: 'surgery', label: t.surgeryBtnTitle, href: `/${lang}/surgery-price`, go: goToSurgery, current: page === 'surgery' },
+    { key: 'partners', label: isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners', href: langPath(lang, `/partners`), go: goToPartners, current: page === 'partners' },
+    { key: 'quote', label: t.quoteBtnTitle, href: langPath(lang, `/quote`), go: () => goToQuote(), current: page === 'quote' },
+    { key: 'surgery', label: t.surgeryBtnTitle, href: langPath(lang, `/surgery-price`), go: goToSurgery, current: page === 'surgery' },
   ]
 
   return (
@@ -222,13 +223,13 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
         Menu
       </a>
       {/* 汉江春天 흰색 로고 — 파란 바 안, 삼선 바로 옆 (누르면 첫 화면) */}
-      <a href={`/${lang}`} className="ed-bar-logo" onClick={nav(goHome)} aria-label={t.brandName}>
+      <a href={langPath(lang)} className="ed-bar-logo" onClick={nav(goHome)} aria-label={t.brandName}>
         <img src="/editorial/logo_ch_white.png" alt={t.brandName} width={81} height={24} />
       </a>
       <button
         type="button"
         className="ed-lang-toggle"
-        onClick={() => navigate(isZh ? '/en' : '/zh')}
+        onClick={() => navigate(langPath(isZh ? 'en' : 'zh'))}
         aria-label={isZh ? 'Switch to English' : '切换到中文'}
       >
         {isZh ? 'EN' : '中文'}
@@ -311,7 +312,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
             <nav id="menu">
               <ul>
                 <li className={page === 'home' ? 'active' : undefined}>
-                  <a href={`/${lang}`} className="menu-home" onClick={nav(goHome)}>
+                  <a href={langPath(lang)} className="menu-home" onClick={nav(goHome)}>
                     {isZh ? '首页' : 'Home'}
                   </a>
                 </li>
@@ -375,7 +376,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
               <p className="ed-privacy-note">
                 {isZh ? '汉江春天重视您的个人信息。' : 'K-MediSpring values your privacy.'}
                 <br />
-                <a href={isZh ? '/zh/privacy' : '/en/privacy'}>{t.footerPrivacyLink} ›</a>
+                <a href={langPath(lang, '/privacy')}>{t.footerPrivacyLink} ›</a>
               </p>
             </section>
 

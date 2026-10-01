@@ -1,4 +1,5 @@
 import { useApp } from '../../contexts/AppContext'
+import { langPath } from '../../skin'
 import { WECHAT_BIZ_URL } from '../../data/contacts'
 import partners from '../../data/partnersPublic.generated.json'
 import { edLink } from './edLink'
@@ -82,7 +83,7 @@ export default function EditorialPartners() {
   return (
     <section className="ed-page ed-partners">
       <p className="ed-crumb">
-        <a {...edLink(`/${lang}`, goHome)}>{isZh ? '首页' : 'Home'}</a>
+        <a {...edLink(langPath(lang), goHome)}>{isZh ? '首页' : 'Home'}</a>
         <span aria-hidden="true"> / </span>
         <span>{isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners'}</span>
       </p>

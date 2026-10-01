@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import { langPath } from '../../skin'
 import { useApp } from '../../contexts/AppContext'
 import { getCategoryById } from '../../data/categories'
 import { WECHAT_BIZ_URL } from '../../data/contacts'
@@ -23,15 +24,15 @@ export default function EditorialTopic() {
       <section className="ed-page">
         <header className="main"><h1>{isZh ? '没有找到该页面' : 'Page not found'}</h1></header>
         <ul className="actions">
-          {cat && <li><a {...edLink(`/${lang}/${cat.id}`, () => goToCategory(cat.id))} className="button">{isZh ? cat.zh : cat.en}</a></li>}
-          <li><a {...edLink(`/${lang}`, goHome)} className="button primary">{t.backHome}</a></li>
+          {cat && <li><a {...edLink(langPath(lang, `/${cat.id}`), () => goToCategory(cat.id))} className="button">{isZh ? cat.zh : cat.en}</a></li>}
+          <li><a {...edLink(langPath(lang), goHome)} className="button primary">{t.backHome}</a></li>
         </ul>
       </section>
     )
   }
 
   const catName = isZh ? cat.zh : cat.en
-  const catLink = edLink(`/${lang}/${cat.id}`, () => goToCategory(cat.id))
+  const catLink = edLink(langPath(lang, `/${cat.id}`), () => goToCategory(cat.id))
   const prev = topics[index - 1]
   const next = topics[index + 1]
   const mainImage = topic.image ?? cat.heroImage
@@ -39,7 +40,7 @@ export default function EditorialTopic() {
   return (
     <section className="ed-page ed-topic">
       <p className="ed-crumb">
-        <a {...edLink(`/${lang}`, goHome)}>{isZh ? '首页' : 'Home'}</a>
+        <a {...edLink(langPath(lang), goHome)}>{isZh ? '首页' : 'Home'}</a>
         <span aria-hidden="true"> / </span>
         <a {...catLink}>{catName}</a>
         <span aria-hidden="true"> / </span>
@@ -66,23 +67,23 @@ export default function EditorialTopic() {
       <ul className="actions ed-cta">
         <li><a href={WECHAT_BIZ_URL} target="_blank" rel="noopener noreferrer" className="button primary">{isZh ? '微信咨询这个项目' : 'Ask about this on WeChat'}</a></li>
         {cat.id === 'skin-beauty' && (
-          <li><a {...edLink(`/${lang}/quote`, () => goToQuote())} className="button">{t.quoteBtnTitle}</a></li>
+          <li><a {...edLink(langPath(lang, `/quote`), () => goToQuote())} className="button">{t.quoteBtnTitle}</a></li>
         )}
         {cat.id === 'plastic-surgery' && (
-          <li><a {...edLink(`/${lang}/surgery-price`, goToSurgery)} className="button">{t.surgeryBtnTitle}</a></li>
+          <li><a {...edLink(langPath(lang, `/surgery-price`), goToSurgery)} className="button">{t.surgeryBtnTitle}</a></li>
         )}
       </ul>
 
       {/* 이전 / 다음 항목 — Editorial 원본 pagination 대신 제목이 보이는 두 칸 링크 */}
       <nav className="ed-prevnext" aria-label={isZh ? '其他项目' : 'More topics'}>
         {prev ? (
-          <a {...edLink(`/${lang}/${cat.id}/${prev.id}`, () => goToTopic(cat.id, prev.id))} className="ed-prevnext-item">
+          <a {...edLink(langPath(lang, `/${cat.id}/${prev.id}`), () => goToTopic(cat.id, prev.id))} className="ed-prevnext-item">
             <span className="ed-prevnext-dir">← {isZh ? '上一项' : 'Previous'}</span>
             <span className="ed-prevnext-title">{prev.title}</span>
           </a>
         ) : <span />}
         {next ? (
-          <a {...edLink(`/${lang}/${cat.id}/${next.id}`, () => goToTopic(cat.id, next.id))} className="ed-prevnext-item ed-prevnext-item--next">
+          <a {...edLink(langPath(lang, `/${cat.id}/${next.id}`), () => goToTopic(cat.id, next.id))} className="ed-prevnext-item ed-prevnext-item--next">
             <span className="ed-prevnext-dir">{isZh ? '下一项' : 'Next'} →</span>
             <span className="ed-prevnext-title">{next.title}</span>
           </a>

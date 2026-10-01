@@ -1,4 +1,5 @@
 import { useApp } from '../../contexts/AppContext'
+import { langPath } from '../../skin'
 import { translations } from '../../data/translations'
 import QuotePage from '../../components/QuotePage'
 import SurgeryPricePage from '../../components/SurgeryPricePage'
@@ -22,7 +23,7 @@ export default function EditorialPages() {
   const island = (title: string, content: JSX.Element, kind: string) => (
     <>
       <p className="ed-island-crumb">
-        <a {...edLink(`/${lang}`, goHome)}>{isZh ? '首页' : 'Home'}</a>
+        <a {...edLink(langPath(lang), goHome)}>{isZh ? '首页' : 'Home'}</a>
         <span aria-hidden="true"> / </span>
         <span>{title}</span>
       </p>

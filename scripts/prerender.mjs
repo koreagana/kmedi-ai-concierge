@@ -44,6 +44,9 @@ const topicRoutes = !isEditorial ? [] : Object.entries(KEYWORD_FILES).flatMap(([
   return ids.flatMap((id) => [`/zh/${catId}/${id}`, `/en/${catId}/${id}`])
 })
 
+/** 아래 경로 목록은 "/zh/…" 이름으로 관리하고, 실제 주소로 바꿀 때만 이걸 쓴다 —
+    kmedispring.com은 중국어가 루트(사용자 결정)라 /zh를 뗀다(src/skin.ts의 sitePath와 같은 규칙). */
+const sitePathOf = (r) => (isEditorial ? (r.replace(/^\/zh(?=\/|$)/, '') || '/') : r)
 const partnersRoutes = isEditorial ? ['/zh/partners', '/en/partners'] : [] // kmedispring.com 전용 페이지
 const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes, ...topicRoutes, ...partnersRoutes]
 
@@ -111,12 +114,13 @@ function writeEditorialSitemap() {
   const lastmod = new Date().toISOString().slice(0, 10) // 배포할 때마다 내용이 갱신되므로 빌드 날짜
   // 우선순위: 홈 > 대카테고리·견적·제휴 > 세부 항목
   const priority = (zh) => (zh === '/zh' ? '1.0' : zh.split('/').length > 3 ? '0.6' : '0.8')
-  const entry = (zh) => {
-    const en = zh.replace(/^\/zh/, '/en')
+  const entry = (zhRoute) => {
+    const zh = sitePathOf(zhRoute) // 중국어 메인은 루트(/zh 없음)
+    const en = zhRoute.replace(/^\/zh/, '/en')
     const alt = `    <xhtml:link rel="alternate" hreflang="zh-CN" href="${origin}${zh}" />
     <xhtml:link rel="alternate" hreflang="en" href="${origin}${en}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${origin}${zh}" />`
-    return [zh, en].map((loc) => `  <url>\n    <loc>${origin}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority(zh)}</priority>\n${alt}\n  </url>`).join('\n')
+    return [zh, en].map((loc) => `  <url>\n    <loc>${origin}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority(zhRoute)}</priority>\n${alt}\n  </url>`).join('\n')
   }
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -142,25 +146,33 @@ async function main() {
   server.stderr.on('data', (d) => { serverLog += d.toString() })
 
   try {
-    await waitForServer(`http://localhost:${port}/zh`)
+    await waitForServer(`http://localhost:${port}/en`)
 
     const { browser } = await loadChromiumLauncher()
     try {
+      let rootHtml = null
       for (const route of routes) {
+        const url = sitePathOf(route) // 실제 주소(kmedispring.com은 /zh 없음)
         const page = await browser.newPage()
-        await page.goto(`http://localhost:${port}${route}`, { waitUntil: 'networkidle' })
+        await page.goto(`http://localhost:${port}${url}`, { waitUntil: 'networkidle' })
         await page.locator(waitSelectorFor(route)).first().waitFor({ state: 'attached', timeout: 10000 })
 
         const html = `<!doctype html>\n${await page.content()}`
+        await page.close()
+        // 루트(kmedispring.com 중국어 메인)는 dist/index.html — 다른 페이지를 다 찍은 뒤에 덮어쓴다
+        // (그 전에 바꾸면 미리보기 서버가 나머지 페이지에 이 HTML을 내준다)
+        if (url === '/') { rootHtml = html; continue }
         // "<route>/index.html"이 아니라 "<route>.html"로 저장 — Netlify가 디렉터리
         // index를 서빙할 때 자동으로 붙이는 301(/zh → /zh/) 없이, canonical과
         // 정확히 같은 URL(무슬래시)로 바로 200을 받게 하기 위함.
-        const outFile = resolve(distDir, `${route.replace(/^\//, '')}.html`)
+        const outFile = resolve(distDir, `${url.replace(/^\//, '')}.html`)
         mkdirSync(dirname(outFile), { recursive: true })
         writeFileSync(outFile, html, 'utf-8')
-        console.log(`[prerender] wrote dist${route}.html`)
-
-        await page.close()
+        console.log(`[prerender] wrote dist${url}.html`)
+      }
+      if (rootHtml) {
+        writeFileSync(resolve(distDir, 'index.html'), rootHtml, 'utf-8')
+        console.log('[prerender] wrote dist/index.html (중국어 메인)')
       }
     } finally {
       await browser.close()

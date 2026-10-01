@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { langPath } from '../../skin'
 import { useSearchParams } from 'react-router-dom'
 import { AppProvider, useApp } from '../../contexts/AppContext'
 import type { LangCode } from '../../data/translations'
@@ -14,7 +15,7 @@ function Crumb({ title }: { title: string }) {
   const { lang, goHome } = useApp()
   return (
     <p className="ed-crumb">
-      <a {...edLink(`/${lang}`, goHome)}>{lang === 'zh' ? '首页' : 'Home'}</a>
+      <a {...edLink(langPath(lang), goHome)}>{lang === 'zh' ? '首页' : 'Home'}</a>
       <span aria-hidden="true"> / </span>
       <span>{title}</span>
     </p>

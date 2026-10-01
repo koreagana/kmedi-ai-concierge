@@ -1,4 +1,5 @@
 import { useApp } from '../../contexts/AppContext'
+import { langPath } from '../../skin'
 import { getCategoryById } from '../../data/categories'
 import { WECHAT_BIZ_URL } from '../../data/contacts'
 import { translations } from '../../data/translations'
@@ -18,7 +19,7 @@ export default function EditorialCategory() {
   if (!cat) {
     return (
       <section className="ed-page">
-        <p><a {...edLink(`/${lang}`, goHome)}>{t.backHome}</a></p>
+        <p><a {...edLink(langPath(lang), goHome)}>{t.backHome}</a></p>
       </section>
     )
   }
@@ -32,7 +33,7 @@ export default function EditorialCategory() {
   return (
     <section className="ed-page">
       <p className="ed-crumb">
-        <a {...edLink(`/${lang}`, goHome)}>{isZh ? '首页' : 'Home'}</a>
+        <a {...edLink(langPath(lang), goHome)}>{isZh ? '首页' : 'Home'}</a>
         <span aria-hidden="true"> / </span>
         <span>{name}</span>
       </p>
@@ -64,7 +65,7 @@ export default function EditorialCategory() {
           <h2>{isZh ? '细分项目' : 'Topics'}</h2>
           <div className="posts ed-topic-posts">
             {topics.map((tp) => {
-              const link = edLink(`/${lang}/${cat.id}/${tp.id}`, () => goToTopic(cat.id, tp.id))
+              const link = edLink(langPath(lang, `/${cat.id}/${tp.id}`), () => goToTopic(cat.id, tp.id))
               return (
                 <article key={tp.id}>
                   {tp.image && (
@@ -86,10 +87,10 @@ export default function EditorialCategory() {
       <ul className="actions ed-cta">
         <li><a href={WECHAT_BIZ_URL} target="_blank" rel="noopener noreferrer" className="button primary">{isZh ? '微信咨询' : 'Ask on WeChat'}</a></li>
         {cat.id === 'skin-beauty' && (
-          <li><a {...edLink(`/${lang}/quote`, () => goToQuote())} className="button">{t.quoteBtnTitle}</a></li>
+          <li><a {...edLink(langPath(lang, `/quote`), () => goToQuote())} className="button">{t.quoteBtnTitle}</a></li>
         )}
         {cat.id === 'plastic-surgery' && (
-          <li><a {...edLink(`/${lang}/surgery-price`, goToSurgery)} className="button">{t.surgeryBtnTitle}</a></li>
+          <li><a {...edLink(langPath(lang, `/surgery-price`), goToSurgery)} className="button">{t.surgeryBtnTitle}</a></li>
         )}
       </ul>
 

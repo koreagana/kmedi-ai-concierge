@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { langPath } from '../../skin'
 import { useApp } from '../../contexts/AppContext'
 import { WECHAT_BIZ_URL } from '../../data/contacts'
 import { PACKAGE_TEXT, type Selections, type SelectSlotDef, type SlotKey } from '../../components/PackagePage'
@@ -29,7 +30,7 @@ export default function EditorialPackage() {
   return (
     <section className="ed-page ed-package">
       <p className="ed-crumb">
-        <a {...edLink(`/${lang}`, goHome)}>{isZh ? '首页' : 'Home'}</a>
+        <a {...edLink(langPath(lang), goHome)}>{isZh ? '首页' : 'Home'}</a>
         <span aria-hidden="true"> / </span>
         <span>{p.heroTitle}</span>
       </p>

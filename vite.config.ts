@@ -7,6 +7,8 @@ import react from '@vitejs/plugin-react'
 //  - editorial 빌드(kmedispring.com): 기본 https://kmedispring.com
 //  - default 빌드(ai-kmedi.com): 기본 https://ai-kmedi.com — kmedispring.com이 새 사이트로 연결된 뒤
 //    ai-kmedi.com 네피 사이트에 VITE_CANONICAL_ORIGIN=https://kmedispring.com 환경변수만 넣으면 전환된다.
+// 중국어 메인 주소 — kmedispring.com은 루트(/), ai-kmedi.com은 /zh (index.html의 %VITE_ZH_HOME%)
+process.env.VITE_ZH_HOME ??= process.env.VITE_SKIN === 'editorial' ? '/' : '/zh'
 process.env.VITE_CANONICAL_ORIGIN ??=
   process.env.VITE_SKIN === 'editorial' ? 'https://kmedispring.com' : 'https://ai-kmedi.com'
 
