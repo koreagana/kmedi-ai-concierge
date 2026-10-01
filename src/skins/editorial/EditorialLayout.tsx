@@ -43,6 +43,50 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       return next
     })
   const docked = menuOpen && isWide
+
+  // PC에서 붙어 있는 사이드바엔 자체 스크롤바를 두지 않는다(Editorial 원본처럼). 대신 페이지 스크롤을 따라
+  // 위아래로 움직인다: 아래로 내리면 사이드바도 같이 올라가 연락처까지 보이고 바닥에 닿으면 멈춤,
+  // 위로 올리면 바로 같이 내려와 검색·메뉴가 다시 보임(원본보다 한 단계 친절한 양방향 방식).
+  // 사이드바가 화면보다 짧으면 그냥 고정. 본문이 사이드바보다 짧은 페이지는 --ed-sb-h로 본문 최소 높이를 맞춘다.
+  const sidebarRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const sb = sidebarRef.current
+    const root = rootRef.current
+    if (!sb || !root) return
+    if (!docked) {
+      sb.style.removeProperty('top')
+      root.style.removeProperty('--ed-sb-h')
+      return
+    }
+    const BAR = 46 // 고정 파란 바 높이
+    let offset = 0
+    let lastY = window.scrollY
+    const clampAndApply = () => {
+      const minOffset = Math.min(0, window.innerHeight - BAR - sb.offsetHeight)
+      offset = Math.max(minOffset, Math.min(0, offset))
+      sb.style.setProperty('top', `${BAR + offset}px`, 'important') // 옛 CSS가 top을 !important로 고정해서
+    }
+    const onScroll = () => {
+      const y = window.scrollY
+      offset -= y - lastY
+      lastY = y
+      clampAndApply()
+    }
+    const onResize = () => {
+      root.style.setProperty('--ed-sb-h', `${sb.offsetHeight}px`)
+      clampAndApply()
+    }
+    onResize()
+    const ro = new ResizeObserver(onResize) // 서브메뉴를 펼치고 접으면 사이드바 길이가 바뀐다
+    ro.observe(sb)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
+    }
+  }, [docked])
   const [query, setQuery] = useState('')
   const results = useMemo(() => searchSite(query, lang), [query, lang])
 
@@ -210,7 +254,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
 
         {menuOpen && !docked && <div className="ed-menu-backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />}
 
-        <div id="sidebar">
+        <div id="sidebar" ref={sidebarRef}>
           <div className="inner">
             {/* 검색 — HTML5 UP Editorial 원본 #search 그대로 (돋보기는 옛 CSS의 form::before) */}
             <section id="search" className="alt">

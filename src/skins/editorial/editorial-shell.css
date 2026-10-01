@@ -173,6 +173,13 @@
 .ed-skin #main { transition: padding-left .28s ease; }
 .ed-skin.ed-docked #wrapper #main { padding-left: 320px !important; }
 .ed-skin.ed-docked #sidebar { box-shadow: 1px 0 0 rgba(0,0,0,.06); }
+/* 붙어 있을 땐 자체 스크롤 없이 내용 높이 그대로 — 페이지 스크롤에 맞춰 top을 움직인다(EditorialLayout) */
+.ed-skin.ed-docked #sidebar { height: auto !important; min-height: calc(100vh - 46px); overflow: visible !important; }
+.ed-skin.ed-docked #wrapper #main { min-height: calc(var(--ed-sb-h, 0px) + 46px); }
+
+/* 폰·태블릿의 덮는 메뉴: 안에서 손가락으로 스크롤은 되고, 회색 스크롤 막대만 숨긴다 */
+.ed-skin #sidebar { scrollbar-width: none; -ms-overflow-style: none; }
+.ed-skin #sidebar::-webkit-scrollbar { display: none; }
 
 /* ── 사이드바 联系方式 아이콘 (Editorial 원본 ul.contact: 왼쪽 큰 아이콘 + 줄 사이 구분선) ──
    옛 CSS의 "사이드바 불릿 전부 제거"(#sidebar ul li::before{content:none !important})가
