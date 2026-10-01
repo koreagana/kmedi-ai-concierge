@@ -6,7 +6,6 @@ import { WECHAT_BIZ_URL } from '../../data/contacts'
 import { getHeroTreatmentByChip, type HeroTreatmentInfo } from '../../data/heroTreatments'
 import HeroTreatmentSheet from '../../components/HeroTreatmentSheet'
 import { NetworkCityMap } from '../../components/HomePage'
-import { siteText } from '../../skin'
 
 /** kmedispring.com 메인 — 옛 index.html의 뼈대(#banner → header.major 섹션들 → .posts/.features)에
     ai-kmedi.com 메인의 내용(히어로 영상·견적 버튼, 카테고리 8개, AI 상담사, 서비스 네트워크)을 담는다.
@@ -15,6 +14,25 @@ import { siteText } from '../../skin'
 // medical-tourism(3晚4天方案)은 categories에 heroImage가 없다 — 옛 사이트 tour 사진 중 글자 없는
 // 도심 스카이라인 칸만 잘라 쓴다(나머지 칸은 AI 생성 간판 글자가 깨져 있어서 제외).
 const PACKAGE_IMAGE = '/editorial/seoul-skyline.jpg'
+
+/** kmedispring.com 메인 배너 소개글 — 사용자가 직접 쓴 문구(2026-10-01). ai-kmedi.com의 aboutDesc와는 별개.
+    한 줄 = 한 문단(Editorial 배너의 짧은 줄 리듬). 영어는 브랜드명 K-MediSpring만 쓴다. */
+const BANNER_INTRO: Record<'zh' | 'en', string[]> = {
+  zh: [
+    '汉江春天，专为海外顾客提供韩国医疗旅游咨询与陪诊服务。',
+    '想来韩国，却不知道从哪儿开始？别担心，把您的想法告诉我们。帮您梳理需求、说明流程、安排预约，全程中文陪诊，都交给我们。',
+    '热门项目的费用，我们会提前讲清楚；就诊流程，也会提前说明。预约和中文沟通，一次搞定。',
+    '费用方面，我们也会陪您一起比较，让您了解清楚，再安心做决定。',
+    '欢迎来到汉江春天。',
+  ],
+  en: [
+    'K-MediSpring offers Korean medical travel consultation and in-person accompaniment for international clients.',
+    "Thinking about coming to Korea but not sure where to start? Don't worry — just tell us what you have in mind. We'll help you sort out your needs, explain the process, arrange appointments, and stay by your side with language support the whole way.",
+    'We explain the costs of popular treatments upfront and walk you through the visit process in advance. Appointments and communication, all handled in one place.',
+    "When it comes to costs, we'll compare the options with you, so you can understand everything clearly and decide with peace of mind.",
+    'Welcome to K-MediSpring.',
+  ],
+}
 
 export default function EditorialHome() {
   const { lang, goToCategory, goToPackage, goToQuote, goToSurgery } = useApp()
@@ -60,11 +78,11 @@ export default function EditorialHome() {
       <section id="banner" className="alt">
         <div className="content">
           <header>
-            <h1>{t.brandName}</h1>
+            <h1 className={isZh ? undefined : 'ed-banner-title-en'}>{t.brandName}</h1>
             <h2 className="ed-banner-sub">{t.heroSeoHeadline}</h2>
           </header>
           <p className="brand-desc">
-            {siteText(t.aboutDesc).split('\n').map((line, i) => <span key={i} className="ed-desc-line">{line}</span>)}
+            {BANNER_INTRO[lang].map((line, i) => <span key={i} className="ed-desc-line">{line}</span>)}
           </p>
           <ul className="actions">
             <li>

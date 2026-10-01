@@ -239,17 +239,10 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
 
             {children}
 
+            {/* 회사 정보 푸터는 옛 사이트처럼 회색 사이드바 맨 아래로 옮김. 개인정보처리방침 링크만은
+                "홈페이지에서 쉽게 확인 가능"해야 해서(개인정보보호법) 본문 맨 아래에 작게 남긴다. */}
             <footer className="ed-main-footer">
-              <p>
-                <a href={isZh ? '/zh/privacy' : '/en/privacy'}>{t.footerPrivacyLink}</a>
-              </p>
-              <p>
-                © 2026 {isZh ? '汉江春天' : 'K-MediSpring'}. All rights reserved.<br />
-                상호: 한강애봄 | 대표: 이가나 | 사업자등록번호: 829-21-01856<br />
-                주소: 서울특별시 성북구 삼양로 29, 3층 11호
-              </p>
-              <p className="ed-credit">Design: <span>HTML5 UP</span></p>
-              <p><a href="/admin/prep" className="ed-admin-link">관리자페이지</a></p>
+              <p><a href={isZh ? '/zh/privacy' : '/en/privacy'}>{t.footerPrivacyLink}</a></p>
             </footer>
           </div>
         </div>
@@ -359,6 +352,12 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                   ? '我们相信，美丽与健康，源于真诚的交流。如果你对韩国医疗、健康管理或合作有兴趣，欢迎通过微信或邮件与我们联系。'
                   : 'We believe beauty and health begin with sincere communication. If you are interested in Korean medical care, health management or partnership, feel free to reach us by WeChat or email.'}
               </p>
+              {/* 소개 바로 아래 개인정보 한 줄 + 처리방침 링크 (사용자 제안) */}
+              <p className="ed-privacy-note">
+                {isZh ? '汉江春天重视您的个人信息。' : 'K-MediSpring values your privacy.'}
+                <br />
+                <a href={isZh ? '/zh/privacy' : '/en/privacy'}>{t.footerPrivacyLink} ›</a>
+              </p>
             </section>
 
             <section>
@@ -378,6 +377,19 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                 </li>
               </ul>
             </section>
+
+            {/* 회사 정보 (옛 kmedispring.com처럼 사이드바 맨 아래) */}
+            <footer className="ed-sb-footer">
+              <p>
+                © 2026 {isZh ? '汉江春天' : 'K-MediSpring'}. All rights reserved.<br />
+                상호: 한강애봄 | 대표: 이가나<br />
+                사업자등록번호: 829-21-01856<br />
+                주소: 서울특별시 성북구 삼양로 29, 3층 11호
+              </p>
+              {/* HTML5 UP Editorial 템플릿(CC BY 3.0) 출처 표기 — 라이선스 조건이라 지우면 안 됨 */}
+              <p className="ed-credit">Design: HTML5 UP</p>
+              <p><a href="/admin/prep" className="ed-admin-link">관리자페이지</a></p>
+            </footer>
           </div>
         </div>
       </div>

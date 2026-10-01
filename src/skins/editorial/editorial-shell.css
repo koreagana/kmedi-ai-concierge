@@ -25,7 +25,10 @@
 
 /* ── Banner ── */
 .ed-skin #banner .ed-banner-sub { margin-top: .25em !important; font-size: 2rem !important; font-weight: 400; }
+/* 영어 "K-MediSpring"은 한자 4글자보다 훨씬 길어서 같은 크기면 칸을 넘친다 — 한 줄에 들어가게 줄임 */
+.ed-skin #banner h1.ed-banner-title-en { font-size: clamp(2em, 3.5vw, 3.1em) !important; white-space: nowrap; }
 .ed-skin #banner .ed-desc-line { display: block; }
+.ed-skin #banner .ed-desc-line + .ed-desc-line { margin-top: .55em; } /* 문장마다 살짝 띄워 읽기 편하게 */
 .ed-skin #banner .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .ed-skin #banner .actions li { padding: 0 !important; }
 .ed-skin .ed-hero-media { position: relative; }
@@ -85,10 +88,21 @@
 .ed-skin .ed-map-panel .network-map-wrap { max-width: 360px; margin: 1em auto; }
 
 /* ── 본문 하단 사업자 정보 푸터 ── */
-.ed-skin .ed-main-footer { margin-top: 3em; padding: 2.5em 0 3em; border-top: 1px solid rgba(0,0,0,.1); text-align: center; }
-.ed-skin #main .ed-main-footer p { font-size: .78em !important; color: #888 !important; line-height: 1.9 !important; margin: 0 0 .6em; }
-.ed-skin #main .ed-main-footer a { color: #666 !important; }
-.ed-skin #main .ed-main-footer .ed-admin-link { font-size: 8px; color: rgba(0,0,0,.08) !important; text-decoration: none; border: 0; }
+/* 본문 맨 아래엔 개인정보처리방침 링크 한 줄만 (회사 정보는 사이드바 맨 아래로 이동) */
+.ed-skin .ed-main-footer { margin-top: 3em; padding: 1.6em 0 2.4em; border-top: 1px solid rgba(0,119,182,.15); text-align: center; }
+.ed-skin #main .ed-main-footer p { font-size: .78em !important; color: #888 !important; line-height: 1.9 !important; margin: 0; }
+.ed-skin #main .ed-main-footer a { color: #7a8a96 !important; text-decoration: none; border-bottom: 0; }
+.ed-skin #main .ed-main-footer a:hover { color: var(--brand) !important; }
+
+/* 사이드바 关于我们 아래 개인정보 한 줄 */
+.ed-skin #sidebar p.ed-privacy-note { margin: 1em 0 2.6em; font-size: .88em; line-height: 1.7; color: #555; }
+.ed-skin #sidebar p.ed-privacy-note a { color: var(--brand) !important; text-decoration: none; border-bottom: 1px dotted rgba(0,119,182,.5); }
+
+/* 사이드바 맨 아래 회사 정보 — 작은 회색 글씨, 템플릿 출처는 아주 작게 */
+.ed-skin #sidebar .ed-sb-footer { margin: 2.4em 0 1em; padding-top: 1.4em; border-top: 1px solid rgba(210,215,217,.9); }
+.ed-skin #sidebar .ed-sb-footer p { margin: 0 0 .7em; font-size: .72em; line-height: 1.75; color: #8a9096; font-family: var(--ui-sans); }
+.ed-skin #sidebar .ed-sb-footer p.ed-credit { font-size: 9px; color: #b3b8bc; letter-spacing: .04em; margin: 1em 0 .3em; }
+.ed-skin #sidebar .ed-sb-footer .ed-admin-link { font-size: 8px; color: rgba(0,0,0,.08) !important; text-decoration: none; border: 0; }
 
 @media (max-width: 736px) {
   .ed-skin .ed-avatar { width: 110px; height: 110px; margin: 0 auto 1.5em; }
