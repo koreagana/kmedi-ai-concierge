@@ -177,6 +177,17 @@
 .ed-skin .ed-bar-logo:hover img { opacity: .85; }
 /* 헤더에 로고가 빠졌으니 연락 아이콘 줄 높이를 예전 로고 높이(40px)에 맞춰 둔다 */
 .ed-skin #header { min-height: 40px; }
+/* 헤더 연락 아이콘 — 각 서비스 공식 색(위챗 #07C160, WhatsApp #25D366), 메일은 브랜드 파랑.
+   옛 CSS의 a:hover{color:#4E97D1 !important}가 덮지 않게 hover까지 !important로 고정, 대신 살짝 어둡게. */
+.ed-skin #header .icons a.fa-weixin,
+.ed-skin #header .icons a.fa-weixin:hover { color: #07C160 !important; }
+.ed-skin #header .icons a.fa-whatsapp,
+.ed-skin #header .icons a.fa-whatsapp:hover { color: #25D366 !important; }
+.ed-skin #header .icons a.fa-envelope,
+.ed-skin #header .icons a.fa-envelope:hover { color: #0077B6 !important; }
+.ed-skin #header .icons a { transition: filter .2s ease, transform .2s ease; }
+.ed-skin #header .icons a:hover { filter: brightness(.88); transform: translateY(-1px); }
+
 /* 헤더 아래 실선은 안 보이게 — 선 두께·위아래 여백은 그대로 둬서 시원한 간격 유지(사용자 요청) */
 .ed-skin #header { border-bottom-color: transparent !important; }
 
