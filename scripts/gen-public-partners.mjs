@@ -1,7 +1,6 @@
 /**
  * 관리자용 협력기관 명부(src/admin/partners/partners.json)에서 공개 사이트에 보여줄 것만 뽑는다.
- *   - status === "active"(실제 협약 날인 완료)인 곳만 — "pending"(이메일 협의만)은 공개 금지(사용자 방침)
- *   - 대학병원은 전부, 그 외는 show_on_site: true 인 곳만(아래 공개 기준)
+ *   - 대학병원은 날인(active)한 곳만, 그 외는 show_on_site: true 인 곳만(아래 공개 기준)
  *   - 이름·분류·도시·로고 경로만 — 담당자 연락처·내부 메모가 공개 번들에 섞이지 않게
  * 결과: src/data/partnersPublic.generated.json (커밋함 — 개발 서버에서도 바로 쓰도록)
  * 빌드 때마다 다시 만든다(package.json build). 명부를 고친 뒤 개발 중엔: node scripts/gen-public-partners.mjs
@@ -25,11 +24,13 @@ function cityOf(address) {
 }
 
 // 공개 기준(사용자 결정 2026-10-01):
-//   - 대학병원(상급종합·3차 포함): 협약 날인한 곳 전부
-//   - 성형·피부·의원 등: 협약 날인한 곳 중 평점 좋은 곳만 → 명부에 "show_on_site": true 로 직접 표시한 곳
+//   - 대학병원(상급종합·3차 포함): 협약 날인(active)한 곳 전부
+//   - 성형·피부·의원 등: 명부에 "show_on_site": true 로 직접 표시한 곳 — 날인 전(pending)이라도
+//     이미 실제로 환자를 보내고 있는 곳은 사용자가 노출을 허락함. (status는 실제 날인 여부 그대로 둔다.
+//     그래서 페이지 문구는 "正式签约"이 아니라 "合作医疗机构"로 쓴다.)
 const isHospital = (p) => p.category === '대학병원'
 const out = all
-  .filter((p) => p.status === 'active' && (isHospital(p) || p.show_on_site === true))
+  .filter((p) => (isHospital(p) && p.status === 'active') || p.show_on_site === true)
   .map((p) => ({
     id: p.id,
     category: p.category,
@@ -41,4 +42,4 @@ const out = all
   }))
 
 writeFileSync(resolve(root, 'src/data/partnersPublic.generated.json'), JSON.stringify(out, null, 2) + '\n', 'utf-8')
-console.log(`[partners] ${out.length} active partners → src/data/partnersPublic.generated.json`)
+console.log(`[partners] ${out.length} public partners → src/data/partnersPublic.generated.json`)

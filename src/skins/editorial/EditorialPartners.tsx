@@ -109,7 +109,7 @@ export default function EditorialPartners() {
       <hr className="major" />
       <h2>{isZh ? '合作医疗机构' : 'Partner Medical Institutions'}</h2>
       <p className="ed-page-tag">
-        {isZh ? '以下为已正式签约的合作医疗机构，合作网络持续扩大中。' : 'Officially contracted partners — our network keeps growing.'}
+        {isZh ? '以下为汉江春天的合作医疗机构，合作网络持续扩大中。' : 'Our partner medical institutions — and our network keeps growing.'}
       </p>
 
       {groups.map((g) => (

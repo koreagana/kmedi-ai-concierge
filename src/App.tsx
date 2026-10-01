@@ -69,8 +69,8 @@ function PageRouter() {
         lang, zhPath: '/zh/partners', enPath: '/en/partners',
         title: `${lang === 'zh' ? '全程陪伴您的韩国诊疗 · 合作医疗机构' : 'Full-Journey Care & Partner Hospitals'} · ${brand}`,
         description: lang === 'zh'
-          ? '我们不只是介绍医院。从预约前到诊疗后，为您衔接每一个必要环节，并公开已正式签约的韩国合作医疗机构。'
-          : 'We do more than introduce hospitals — from booking to aftercare we connect every step, alongside our officially contracted partner hospitals in Korea.',
+          ? '我们不只是介绍医院。从预约前到诊疗后，为您衔接每一个必要环节，并介绍汉江春天的韩国合作医疗机构。'
+          : 'We do more than introduce hospitals — from booking to aftercare we connect every step, alongside our partner hospitals in Korea.',
       })
       return
     }

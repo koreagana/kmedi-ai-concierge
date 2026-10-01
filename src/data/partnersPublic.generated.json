@@ -75,6 +75,36 @@
     "logo": null
   },
   {
+    "id": "PH-012",
+    "category": "성형외과",
+    "name": {
+      "zh": "芭诺芭琪整形外科",
+      "en": "Banobagi Plastic Surgery",
+      "ko": "바노바기성형외과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-013",
+    "category": "성형외과",
+    "name": {
+      "zh": "DA整形外科",
+      "en": "DA Plastic Surgery",
+      "ko": "디에이 DA 성형외과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
     "id": "PH-014",
     "category": "성형외과",
     "name": {
@@ -90,12 +120,57 @@
     "logo": null
   },
   {
+    "id": "PH-016",
+    "category": "성형외과",
+    "name": {
+      "zh": "Ruby整形外科",
+      "en": "Ruby Plastic Surgery",
+      "ko": "루비성형외과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
     "id": "PH-020",
     "category": "피부과·의원",
     "name": {
       "zh": "芭诺芭琪皮肤科",
       "en": "Banobagi Skin Clinic",
       "ko": "바노바기피부과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-021",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "美丽国度皮肤科",
+      "en": "Beautiful Country Dermatology",
+      "ko": "아름다운나라피부과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-022",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "Blanc de Vis医院",
+      "en": "Blanc de Vis Clinic",
+      "ko": "블랑드비의원"
     },
     "city": {
       "zh": "首尔",
@@ -303,12 +378,12 @@
     "logo": null
   },
   {
-    "id": "PH-042",
+    "id": "PH-043",
     "category": "대학병원",
     "name": {
-      "zh": "CHA女性医学研究所 盆唐",
-      "en": "CHA Fertility Center Bundang",
-      "ko": "차여성의학연구소 분당"
+      "zh": "盆唐CHA医院",
+      "en": "CHA Bundang Medical Center",
+      "ko": "분당차병원"
     },
     "city": {
       "zh": "城南",

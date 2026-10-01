@@ -370,7 +370,8 @@
     "intro_page_url": null,
     "logo_url": null,
     "status": "pending",
-    "mou_date": null
+    "mou_date": null,
+    "show_on_site": true
   },
   {
     "id": "PH-013",
@@ -401,7 +402,8 @@
     "intro_page_url": null,
     "logo_url": null,
     "status": "pending",
-    "mou_date": null
+    "mou_date": null,
+    "show_on_site": true
   },
   {
     "id": "PH-014",
@@ -464,7 +466,8 @@
     "intro_page_url": null,
     "logo_url": null,
     "status": "pending",
-    "mou_date": null
+    "mou_date": null,
+    "show_on_site": true
   },
   {
     "id": "PH-018",
@@ -480,7 +483,7 @@
       "en": "Gangnam-gu, Seoul"
     },
     "phone": null,
-    "note": "확인 필요",
+    "note": "확인 필요 / 사이트 비노출(중국 후기 부정적, 2026-10-01 사용자 결정)",
     "contact": {
       "manager": null,
       "email": null,
@@ -558,7 +561,8 @@
     "intro_page_url": null,
     "logo_url": null,
     "status": "pending",
-    "mou_date": null
+    "mou_date": null,
+    "show_on_site": true
   },
   {
     "id": "PH-022",
@@ -589,7 +593,8 @@
     "intro_page_url": null,
     "logo_url": null,
     "status": "pending",
-    "mou_date": null
+    "mou_date": null,
+    "show_on_site": true
   },
   {
     "id": "PH-024",
@@ -1075,26 +1080,26 @@
     "show_on_site": true
   },
   {
-    "id": "PH-042",
+    "id": "PH-043",
     "category": "대학병원",
     "name": {
-      "ko": "차여성의학연구소 분당",
-      "zh": "CHA女性医学研究所 盆唐",
-      "en": "CHA Fertility Center Bundang"
+      "ko": "분당차병원",
+      "zh": "盆唐CHA医院",
+      "en": "CHA Bundang Medical Center"
     },
     "address": {
-      "ko": "경기도 성남시 분당구",
-      "zh": "京畿道城南市盆唐区",
-      "en": "Bundang-gu, Seongnam-si, Gyeonggi-do"
+      "ko": "경기도 성남시 분당구 야탑로 59",
+      "zh": "京畿道城南市盆唐区野塔路59",
+      "en": "59, Yatap-ro, Bundang-gu, Seongnam-si, Gyeonggi-do"
     },
-    "phone": null,
-    "note": "여성·난임 전문 (상세 주소·전화 확인 필요)",
+    "phone": "031-780-5353",
+    "note": "상급종합병원 · 국제진료센터(International Healthcare Center) 031-780-5353 (영어 내선 5530, 러시아어 5300) — 2022-11-14 메일 서명 기준",
     "contact": {
       "manager": null,
       "email": null,
       "phone_direct": null
     },
-    "website": null,
+    "website": "http://bundang.chamc.co.kr/en/",
     "description": {
       "ko": null,
       "zh": null,
