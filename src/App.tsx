@@ -63,7 +63,18 @@ function PageRouter() {
 
   // 페이지/카테고리/언어 변경 시 title·description meta 업데이트
   useEffect(() => {
-    if (page === 'home') {
+    if (page === 'partners' && SKIN === 'editorial') {
+      const brand = `${translations[lang].brandName} · AI Medical Concierge`
+      updateMeta({
+        lang, zhPath: '/zh/partners', enPath: '/en/partners',
+        title: `${lang === 'zh' ? '全程陪伴您的韩国诊疗 · 合作医疗机构' : 'Full-Journey Care & Partner Hospitals'} · ${brand}`,
+        description: lang === 'zh'
+          ? '我们不只是介绍医院。从预约前到诊疗后，为您衔接每一个必要环节，并公开已正式签约的韩国合作医疗机构。'
+          : 'We do more than introduce hospitals — from booking to aftercare we connect every step, alongside our officially contracted partner hospitals in Korea.',
+      })
+      return
+    }
+    if (page === 'home' || page === 'partners') {
       updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: seoMeta[lang].title, description: seoMeta[lang].description })
       return
     }
@@ -132,7 +143,8 @@ function PageRouter() {
     <div className="page-container" dir="ltr">
       <NavBar />
       <AnimatePresence mode="wait">
-        {page === 'home' ? (
+        {/* 'partners'는 kmedispring.com 전용 페이지 — ai-kmedi.com에선 홈을 보여준다 */}
+        {page === 'home' || page === 'partners' ? (
           <motion.div
             key="home"
             initial={{ opacity: 0 }}

@@ -7,6 +7,7 @@ import EditorialHome from './EditorialHome'
 import EditorialCategory from './EditorialCategory'
 import EditorialTopic from './EditorialTopic'
 import EditorialPackage from './EditorialPackage'
+import EditorialPartners from './EditorialPartners'
 import { edLink } from './edLink'
 import './editorial-island.css'
 
@@ -36,6 +37,7 @@ export default function EditorialPages() {
       {page === 'package' && <EditorialPackage />}
       {page === 'quote' && island(t.quoteBtnTitle, <QuotePage />, 'quote')}
       {page === 'surgery' && island(t.surgeryBtnTitle, <SurgeryPricePage />, 'surgery')}
+      {page === 'partners' && <EditorialPartners />}
     </EditorialLayout>
   )
 }

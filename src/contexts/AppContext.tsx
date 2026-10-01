@@ -4,7 +4,8 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import type { LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
 
-export type PageView = 'home' | 'category' | 'package' | 'quote' | 'surgery'
+/** 'partners'(全程服务·合作医疗机构)는 kmedispring.com(editorial 스킨) 전용 페이지 — ai-kmedi.com에선 홈으로 보인다 */
+export type PageView = 'home' | 'category' | 'package' | 'quote' | 'surgery' | 'partners'
 
 export interface ConsultCard {
   interests: string[]
@@ -37,6 +38,7 @@ interface AppState {
   goToPackage: () => void
   goToQuote: (categoryId?: string, procedureId?: string) => void
   goToSurgery: () => void
+  goToPartners: () => void
   goHome: () => void
 }
 
@@ -69,6 +71,8 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     // /zh/surgery-price, /en/surgery-price — 고유 경로로 직접 진입한 경우
     if (location.pathname.endsWith('/surgery-price')) {
       setPage('surgery')
+    } else if (location.pathname === `/${lang}/partners`) {
+      setPage('partners')
     } else if (location.pathname.endsWith('/quote')) {
       // /zh/quote, /en/quote — 고유 경로로 직접 진입한 경우
       setPage('quote')
@@ -154,6 +158,11 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     navigate(`/${lang}/surgery-price`)
   }
 
+  const goToPartners = () => {
+    setPage('partners')
+    navigate(`/${lang}/partners`)
+  }
+
   const goHome = () => {
     setPage('home')
     setCategoryId(null)
@@ -169,7 +178,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       concernId, setConcernId,
       consultCard, setConsultCard,
       quoteCategoryHint, quoteProcedureHint,
-      goToCategory, topicId, goToTopic, goToPackage, goToQuote, goToSurgery, goHome,
+      goToCategory, topicId, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners, goHome,
     }}>
       {children}
     </AppContext.Provider>

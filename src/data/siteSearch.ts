@@ -3,6 +3,7 @@ import type { LocalizedText } from './bigHealthKeywords'
 import { CATEGORY_SUBMENUS } from './categorySubmenus'
 import { QUOTE_CATEGORIES } from './quoteProcedures'
 import { SURGERY_GROUPS } from './surgeryPrices'
+import PARTNERS from './partnersPublic.generated.json'
 import type { LangCode } from './translations'
 
 /* ══════════════════════════════════════════════════════════════════
@@ -18,6 +19,7 @@ export type SearchTarget =
   | { type: 'package' }
   | { type: 'quote'; cat?: string; proc?: string }
   | { type: 'surgery' }
+  | { type: 'partners' }
 
 export interface SearchResult {
   key: string
@@ -154,6 +156,26 @@ function buildIndex(): Entry[] {
         names: [item.zh, item.ko, g.zh, g.ko],
         text: [],
       })
+    })
+  }
+
+  // 全程服务·合作医疗机构 페이지(kmedispring.com 전용) — 페이지 자체 + 협력기관 이름
+  entries.push({
+    key: 'page-partners',
+    title: L('全程服务 · 合作医疗机构', 'Our Services & Partners'),
+    context: L('服务与资质', 'Services'),
+    target: { type: 'partners' },
+    names: ['合作医疗机构', '合作医院', '全程服务', '陪诊', '翻译陪同', 'partner', 'partners', 'hospital', '협력병원'],
+    text: [],
+  })
+  for (const p of PARTNERS) {
+    entries.push({
+      key: `partner-${p.id}`,
+      title: L(p.name.zh ?? '', p.name.en ?? ''),
+      context: L('合作医疗机构', 'Partner Institution'),
+      target: { type: 'partners' },
+      names: [p.name.zh ?? '', p.name.en ?? '', p.name.ko ?? ''],
+      text: [],
     })
   }
 

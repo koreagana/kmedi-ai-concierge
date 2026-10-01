@@ -44,7 +44,8 @@ const topicRoutes = !isEditorial ? [] : Object.entries(KEYWORD_FILES).flatMap(([
   return ids.flatMap((id) => [`/zh/${catId}/${id}`, `/en/${catId}/${id}`])
 })
 
-const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes, ...topicRoutes]
+const partnersRoutes = isEditorial ? ['/zh/partners', '/en/partners'] : [] // kmedispring.com 전용 페이지
+const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes, ...topicRoutes, ...partnersRoutes]
 
 // 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price·카테고리
 // 페이지는 마운트 시 page==='home'으로 시작했다가 pathname을 보고 전환된다
@@ -56,6 +57,7 @@ function waitSelectorFor(route) {
   if (route.endsWith('/surgery-price')) return '.sg-title'
   if (route.endsWith('/quote')) return '.quote-hero-title'
   if (isEditorial) {
+    if (partnersRoutes.includes(route)) return '.ed-partners header.main h1'
     if (topicRoutes.includes(route)) return '.ed-topic header.main h1'
     if (categoryIds.some((id) => route.endsWith(`/${id}`))) return '.ed-page header.main h1'
     return '#banner h1'

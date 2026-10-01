@@ -35,7 +35,7 @@ const BANNER_INTRO: Record<'zh' | 'en', string[]> = {
 }
 
 export default function EditorialHome() {
-  const { lang, goToCategory, goToPackage, goToQuote, goToSurgery } = useApp()
+  const { lang, goToCategory, goToPackage, goToQuote, goToSurgery, goToPartners } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
 
@@ -47,7 +47,6 @@ export default function EditorialHome() {
     document.body.classList.toggle('ed-sheet-open', Boolean(activeSheet))
     return () => document.body.classList.remove('ed-sheet-open')
   }, [activeSheet])
-  const [serviceOpen, setServiceOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
 
   const toggleSound = () => {
@@ -69,7 +68,8 @@ export default function EditorialHome() {
 
   const networkCards = [
     { icon: 'fa-shield-alt', title: t.networkCard1Title, desc: t.networkCard1Desc, note: t.networkCard1Reg,
-      action: { label: t.networkCard1ExpandBadge, open: serviceOpen, onClick: () => setServiceOpen((v) => !v) } },
+      // 예전엔 카드 묶음 맨 아래에 펼쳐지는 패널이라 눌러도 안 보였음 → 全程服务·合作医疗机构 페이지로 이동
+      action: { label: t.networkCard1ExpandBadge, onClick: goToPartners } },
     { icon: 'fa-globe-asia', title: t.networkCard2Title, desc: t.networkCard2Desc, note: t.networkCard2Reg },
     { icon: 'fa-calendar-alt', title: t.networkCard3Title, desc: t.networkCard3Desc,
       action: { label: isZh ? '查看详情' : 'View Details', onClick: goToPackage } },
@@ -212,17 +212,6 @@ export default function EditorialHome() {
           ))}
         </div>
 
-        {serviceOpen && (
-          <div className="ed-panel">
-            <h3>{t.networkCard1ExpandTitle}</h3>
-            {t.networkCard1ExpandIntro.split('\n').map((line, i) => <p key={i}>{line}</p>)}
-            <ul className="ed-service-list">
-              {t.networkCard1Items.map((item) => (
-                <li key={item.title}><strong>{item.title}</strong><span>{item.desc}</span></li>
-              ))}
-            </ul>
-          </div>
-        )}
         {mapOpen && (
           <div className="ed-panel ed-map-panel">
             <h3>{t.networkCard4ExpandTitle}</h3>

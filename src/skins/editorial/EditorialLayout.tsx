@@ -21,7 +21,7 @@ const writeMenuPref = (open: boolean) => { try { sessionStorage.setItem(MENU_KEY
     옛 사이트의 jQuery main.js가 하던 일(body.is-menu-visible 토글, 바깥 클릭·ESC로 닫기)은
     여기서 React state로 대신한다. 클래스는 body 대신 .ed-skin 루트에 붙는다. */
 export default function EditorialLayout({ children }: { children: ReactNode }) {
-  const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToPackage, goToQuote, goToSurgery } = useApp()
+  const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
   const navigate = useNavigate()
@@ -179,6 +179,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
         return `/${lang}/quote${qs ? `?${qs}` : ''}`
       }
       case 'surgery': return `/${lang}/surgery-price`
+      case 'partners': return `/${lang}/partners`
     }
   }
   const goTarget = (t: SearchTarget) => () => {
@@ -188,6 +189,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       case 'package': return goToPackage()
       case 'quote': return goToQuote(t.cat, t.proc)
       case 'surgery': return goToSurgery()
+      case 'partners': return goToPartners()
     }
   }
 
@@ -203,6 +205,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
         sub: CATEGORY_SUBMENUS[c.id],
       }
     }),
+    { key: 'partners', label: isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners', href: `/${lang}/partners`, go: goToPartners, current: page === 'partners' },
     { key: 'quote', label: t.quoteBtnTitle, href: `/${lang}/quote`, go: () => goToQuote(), current: page === 'quote' },
     { key: 'surgery', label: t.surgeryBtnTitle, href: `/${lang}/surgery-price`, go: goToSurgery, current: page === 'surgery' },
   ]

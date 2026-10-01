@@ -1,0 +1,320 @@
+[
+  {
+    "id": "PH-002",
+    "category": "대학병원",
+    "name": {
+      "zh": "盆唐首尔大学医院",
+      "en": "Seoul National University Bundang Hospital",
+      "ko": "분당서울대학교병원"
+    },
+    "city": {
+      "zh": "城南",
+      "en": "Seongnam"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-003",
+    "category": "대학병원",
+    "name": {
+      "zh": "三星首尔医院",
+      "en": "Samsung Medical Center",
+      "ko": "삼성서울병원"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-007",
+    "category": "대학병원",
+    "name": {
+      "zh": "首尔CHA医院(江南CHA)",
+      "en": "CHA Gangnam Medical Center",
+      "ko": "차병원 서울 (강남차병원)"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-008",
+    "category": "대학병원",
+    "name": {
+      "zh": "大邱CHA女性医院",
+      "en": "CHA Daegu Women's Hospital",
+      "ko": "대구차여성병원"
+    },
+    "city": {
+      "zh": "大邱",
+      "en": "Daegu"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-011",
+    "category": "성형외과",
+    "name": {
+      "zh": "HERSHE整形外科",
+      "en": "HERSHE Plastic Surgery",
+      "ko": "허쉬성형외과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-014",
+    "category": "성형외과",
+    "name": {
+      "zh": "AB整形外科",
+      "en": "AB Plastic Surgery",
+      "ko": "에이비성형외과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-020",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "芭诺芭琪皮肤科",
+      "en": "Banobagi Skin Clinic",
+      "ko": "바노바기피부과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-024",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "Reberry诊所 江南",
+      "en": "Reberry Clinic Gangnam",
+      "ko": "리베리의원 강남"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-042",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "Reberry诊所 明洞",
+      "en": "Reberry Clinic Myeongdong",
+      "ko": "리베리의원 명동"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-025",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "Barog医院 江南",
+      "en": "Barog Clinic Gangnam",
+      "ko": "바로그의원 강남"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-026",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "Salon de Dr. TUES",
+      "en": "Salon de Dr. TUES",
+      "ko": "살롱드닥터튜즈"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-027",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "新素爱医院",
+      "en": "Sinsoa Clinic",
+      "ko": "신소애의원"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-028",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "Li Clinic",
+      "en": "Li Clinic",
+      "ko": "리클리닉"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-030",
+    "category": "성형외과",
+    "name": {
+      "zh": "Ucan B整形外科",
+      "en": "Youcanbe Plastic Surgery",
+      "ko": "유캔비성형외과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-031",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "济州Wine皮肤科",
+      "en": "Jeju Wine Dermatology",
+      "ko": "제주와인피부과"
+    },
+    "city": {
+      "zh": "济州",
+      "en": "Jeju"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-032",
+    "category": "피부과·의원",
+    "name": {
+      "zh": "The Miin 济州",
+      "en": "The Miin Jeju",
+      "ko": "더미인 제주"
+    },
+    "city": {
+      "zh": "济州",
+      "en": "Jeju"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-034",
+    "category": "복합의원",
+    "name": {
+      "zh": "The Clinic",
+      "en": "The Clinic",
+      "ko": "더클리닉"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": {
+      "zh": "首尔新罗酒店内",
+      "en": "Inside The Shilla Seoul"
+    },
+    "logo": null
+  },
+  {
+    "id": "PH-038",
+    "category": "치과·구강악안면외과",
+    "name": {
+      "zh": "双·轮·突口腔颌面外科",
+      "en": "YangYoonDol Oral & Maxillofacial Surgery",
+      "ko": "양윤돌 구강악안면외과 치과의원"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-040",
+    "category": "복합의원",
+    "name": {
+      "zh": "LIENJANG整形外科皮肤科",
+      "en": "LIENJANG Plastic Surgery & Dermatology",
+      "ko": "리앤장성형외과피부과"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-041",
+    "category": "성형외과",
+    "name": {
+      "zh": "陶瓷医院",
+      "en": "Dojagi Clinic",
+      "ko": "도자기의원"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
+  },
+  {
+    "id": "PH-042",
+    "category": "대학병원",
+    "name": {
+      "zh": "CHA女性医学研究所 盆唐",
+      "en": "CHA Fertility Center Bundang",
+      "ko": "차여성의학연구소 분당"
+    },
+    "city": {
+      "zh": "城南",
+      "en": "Seongnam"
+    },
+    "place": null,
+    "logo": null
+  }
+]
