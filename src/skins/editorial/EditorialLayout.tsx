@@ -88,6 +88,24 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
     }
   }, [docked])
   const [query, setQuery] = useState('')
+  const [emailCopied, setEmailCopied] = useState(false)
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL_GENERAL)
+    } catch {
+      // 오래된 브라우저·위챗 일부 버전: clipboard API가 막혀 있으면 임시 입력칸으로 복사
+      const ta = document.createElement('textarea')
+      ta.value = EMAIL_GENERAL
+      ta.setAttribute('readonly', '')
+      ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0'
+      document.body.appendChild(ta)
+      ta.select()
+      try { document.execCommand('copy') } catch { /* 복사 실패해도 주소는 화면에 보인다 */ }
+      ta.remove()
+    }
+    setEmailCopied(true)
+    window.setTimeout(() => setEmailCopied(false), 1600)
+  }
   const results = useMemo(() => searchSite(query, lang), [query, lang])
 
   // 고정 파란 바의 삼선·언어 버튼을 본문(헤더) 좌우 선에 맞추기 위해 헤더 위치를 CSS 변수로 넘긴다.
@@ -239,11 +257,9 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
 
             {children}
 
-            {/* 회사 정보 푸터는 옛 사이트처럼 회색 사이드바 맨 아래로 옮김. 개인정보처리방침 링크만은
-                "홈페이지에서 쉽게 확인 가능"해야 해서(개인정보보호법) 본문 맨 아래에 작게 남긴다. */}
-            <footer className="ed-main-footer">
-              <p><a href={isZh ? '/zh/privacy' : '/en/privacy'}>{t.footerPrivacyLink}</a></p>
-            </footer>
+            {/* 회사 정보·개인정보처리방침 링크는 옛 사이트처럼 회색 사이드바로 옮김(사용자 결정 2026-10-01) —
+                처리방침은 모든 페이지의 사이드바 关于我们 아래에서 항상 열 수 있다. */}
+            <div className="ed-main-end" aria-hidden="true" />
           </div>
         </div>
 
@@ -366,7 +382,14 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
               </header>
               <ul className="contact">
                 <li className="icon solid fa-envelope">
-                  <a href={`mailto:${EMAIL_GENERAL}`}>{EMAIL_GENERAL}</a>
+                  {/* 누르면 메일 앱 대신 주소 복사 — 위챗 안 브라우저에선 mailto가 잘 안 열려서(사용자 요청) */}
+                  <a
+                    href={`mailto:${EMAIL_GENERAL}`}
+                    onClick={(e) => { e.preventDefault(); copyEmail() }}
+                    title={isZh ? '点击复制' : 'Click to copy'}
+                  >
+                    {emailCopied ? (isZh ? '已复制 ✓' : 'Copied ✓') : EMAIL_GENERAL}
+                  </a>
                 </li>
                 <li className="icon solid fa-phone"><a href="tel:+821049033123">+82-10-4903-3123</a></li>
                 <li className="icon solid fa-phone"><a href="tel:+827088803123">+82-070-8880-3123</a></li>

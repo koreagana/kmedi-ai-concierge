@@ -36,7 +36,12 @@ export default function EditorialPackage() {
 
       <header className="main">
         <h1>{p.heroTitle}</h1>
-        <p className="ed-page-tag">{p.heroEyebrow.replace(/^✦\s*/, '')}</p>
+        {/* ai-kmedi의 "可根据您的喜好定制" 대신, 이 페이지에서 바로 할 일을 알려주는 안내(사용자 문구) */}
+        <p className="ed-page-tag">
+          {isZh
+            ? '点击下方“可选”部分，即可选择旅行目的地和餐食类型。'
+            : 'Tap the "Optional" items below to choose your destinations and meal types.'}
+        </p>
       </header>
 
       <span className="image main ed-main-image"><img src="/editorial/seoul-skyline.jpg" alt={p.heroTitle} /></span>

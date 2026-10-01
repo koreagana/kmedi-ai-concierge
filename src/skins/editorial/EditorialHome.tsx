@@ -1,4 +1,4 @@
-import { useRef, useState, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { useApp } from '../../contexts/AppContext'
 import { translations } from '../../data/translations'
 import { categories, type Category } from '../../data/categories'
@@ -42,6 +42,11 @@ export default function EditorialHome() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [soundOn, setSoundOn] = useState(false)
   const [activeSheet, setActiveSheet] = useState<HeroTreatmentInfo | null>(null)
+  // 시술 팝업이 열려 있는 동안 떠 있는 상담 버튼을 숨긴다(editorial-island.css의 body.ed-sheet-open)
+  useEffect(() => {
+    document.body.classList.toggle('ed-sheet-open', Boolean(activeSheet))
+    return () => document.body.classList.remove('ed-sheet-open')
+  }, [activeSheet])
   const [serviceOpen, setServiceOpen] = useState(false)
   const [mapOpen, setMapOpen] = useState(false)
 
@@ -129,7 +134,10 @@ export default function EditorialHome() {
               : <span key={chip} className="ed-chip ed-chip--static">{chip}</span>
           })}
         </div>
-        <HeroTreatmentSheet info={activeSheet} onClose={() => setActiveSheet(null)} />
+        {/* 시술 팝업은 ai-kmedi 컴포넌트 그대로 — Editorial 본문 CSS가 글씨를 키워 잘리지 않게 island로 감싼다 */}
+        <div className="ed-island ed-sheet-island">
+          <HeroTreatmentSheet info={activeSheet} onClose={() => setActiveSheet(null)} />
+        </div>
 
         <div className="posts">
           {categories.map((c) => (

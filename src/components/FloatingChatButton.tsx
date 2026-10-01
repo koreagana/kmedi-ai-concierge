@@ -336,6 +336,7 @@ export default function FloatingChatButton() {
 
   const content = (
     <div
+      className="fcb-root"
       style={{
         position: 'fixed',
         left: pos.x,

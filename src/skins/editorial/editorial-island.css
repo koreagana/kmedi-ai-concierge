@@ -30,6 +30,13 @@
 /* 좌우 여백 — 원래 폰 폭(680px) 카드 여백을 Editorial 본문 폭에 맞춰 없앤다 */
 .ed-skin .ed-island .sg-tabs { padding-left: 0; padding-right: 0; }
 
+/* 메인 인기 시술 팝업(HeroTreatmentSheet) — 자리만 차지하지 않게, 파란 바(10001)·사이드바(10000)보다 위에 */
+.ed-skin .ed-island.ed-sheet-island { padding: 0; }
+.ed-skin .ed-sheet-island .hts-scrim { z-index: 10003; }
+.ed-skin .ed-sheet-island .hts-sheet { z-index: 10004; max-width: 560px; max-height: 86vh; }
+/* 떠 있는 상담 버튼(z-index 최대값)이 팝업 버튼을 가리지 않게, 팝업이 열린 동안만 숨김 */
+body.ed-sheet-open .fcb-root { opacity: 0 !important; pointer-events: none !important; }
+
 /* 경로 표시 */
 .ed-skin #main .ed-island-crumb { font-size: .82em !important; color: #888 !important; margin: 2.2em 0 0; }
 .ed-skin #main .ed-island-crumb a { color: #0077B6 !important; border-bottom: 0; text-decoration: none; }
