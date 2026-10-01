@@ -128,6 +128,14 @@
    카테고리 이름 = 해당 페이지 링크, 오른쪽 ⌄ = 세부 항목 펼치기/접기. */
 .ed-skin #sidebar nav#menu li.ed-has-sub .ed-sub-row { display: flex; align-items: stretch; border-bottom: 0.7px solid var(--line); }
 .ed-skin #sidebar nav#menu li.ed-has-sub .ed-sub-row > a { flex: 1; border-bottom: 0 !important; }
+/* 옛 CSS의 "현재 페이지" 표시(위아래 1.5rem 여백 + 굵은 밑줄)는 옛 단일 링크 메뉴용 —
+   서브메뉴 줄 안에선 줄 높이가 들쭉날쭉해지므로 색·굵기로만 표시한다. */
+.ed-skin #sidebar nav#menu a[aria-current="page"] {
+  margin: 0 !important; padding-bottom: 18px !important; border-bottom-width: 0.7px !important;
+  border-bottom-color: var(--line) !important; color: var(--brand) !important; font-weight: 700 !important;
+}
+.ed-skin #sidebar nav#menu li.ed-has-sub .ed-sub-row > a[aria-current="page"] { border-bottom: 0 !important; }
+.ed-skin #sidebar nav#menu ul.ed-submenu li a[aria-current="page"] { padding: 9px 20px !important; border-bottom: 0 !important; }
 .ed-skin #sidebar nav#menu .opener {
   flex-shrink: 0; width: 48px; height: auto !important; padding: 0 !important; margin: 0;
   border: 0 !important; background: transparent !important; box-shadow: none !important;
@@ -158,6 +166,33 @@
    (로고 옆에 붙이는 Editorial 원본 방식도 비교했지만, 스크롤하면 메뉴를 못 열어서 이쪽으로 결정) */
 .ed-skin a.toggle::before { left: var(--ed-col-left, 16px) !important; }
 .ed-skin .ed-lang-toggle { right: var(--ed-col-right, 16px); }
+
+/* ── PC: 사이드바가 본문 옆에 붙는 모드(Editorial 원본처럼) ──
+   사이드바(320px, 옛 CSS의 fixed 오프캔버스 그대로)가 열리면 본문을 그만큼 오른쪽으로 민다.
+   덮는 막·스크롤 잠금은 없음(EditorialLayout의 docked 분기). */
+.ed-skin #main { transition: padding-left .28s ease; }
+.ed-skin.ed-docked #wrapper #main { padding-left: 320px !important; }
+.ed-skin.ed-docked #sidebar { box-shadow: 1px 0 0 rgba(0,0,0,.06); }
+
+/* ── 사이드바 联系方式 아이콘 (Editorial 원본 ul.contact: 왼쪽 큰 아이콘 + 줄 사이 구분선) ──
+   옛 CSS의 "사이드바 불릿 전부 제거"(#sidebar ul li::before{content:none !important})가
+   아이콘까지 지우고 있어서, 연락처 목록만 Font Awesome 아이콘을 다시 그린다. 색은 브랜드 파랑. */
+.ed-skin #sidebar ul.contact li.icon {
+  position: relative; padding: 0 0 0 2.6em !important; margin: 0 0 1.4em; line-height: 1.6;
+  border-top: 0; font-size: .95em;
+}
+.ed-skin #sidebar ul.contact li.icon + li.icon { padding-top: 1.4em !important; border-top: 1px solid rgba(210,215,217,.75); }
+.ed-skin #sidebar ul.contact li.icon::before {
+  position: absolute; left: 0; top: .1em; width: 1.4em; text-align: center;
+  font-family: 'Font Awesome 5 Free' !important; font-weight: 900; font-size: 1.35em; line-height: 1.2;
+  color: var(--brand); display: inline-block;
+}
+.ed-skin #sidebar ul.contact li.icon + li.icon::before { top: calc(1.4em / 1.35 + .1em); }
+.ed-skin #sidebar ul.contact li.fa-envelope::before { content: "\f0e0" !important; }
+.ed-skin #sidebar ul.contact li.fa-phone::before { content: "\f095" !important; }
+.ed-skin #sidebar ul.contact li.fa-home::before { content: "\f015" !important; }
+.ed-skin #sidebar ul.contact a { color: #333 !important; border-bottom: 1px dotted rgba(0,0,0,.35); text-decoration: none; }
+.ed-skin #sidebar ul.contact a:hover { color: var(--brand) !important; border-bottom-color: var(--brand); }
 
 /* ── 사이드바 검색 (Editorial 원본: 사이드바 맨 위 회색 띠 + 흰 입력칸 + 오른쪽 돋보기) ── */
 .ed-skin #sidebar #search.alt {

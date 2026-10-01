@@ -10,6 +10,12 @@ import './editorial.scoped.css'
 import './editorial-shell.css'
 import './editorial-pages.css'
 
+/** 이 폭 이상이면 사이드바가 본문 옆에 붙는다(Editorial 원본의 xlarge 구간과 같은 1281px). */
+const DOCK_QUERY = '(min-width: 1281px)'
+const MENU_KEY = 'ed-menu-open'
+const readMenuPref = () => { try { return sessionStorage.getItem(MENU_KEY) === '1' } catch { return false } }
+const writeMenuPref = (open: boolean) => { try { sessionStorage.setItem(MENU_KEY, open ? '1' : '0') } catch { /* 사생활 모드 등 — 기억만 못 할 뿐 */ } }
+
 /** kmedispring.com 전용 프레임 — 옛 사이트(HTML5 UP Editorial 커스텀)의 상단 파란 토글 바,
     헤더(로고 + 위챗/WhatsApp/메일), 왼쪽 오프캔버스 사이드바를 그대로 옮긴 것.
     옛 사이트의 jQuery main.js가 하던 일(body.is-menu-visible 토글, 바깥 클릭·ESC로 닫기)은
@@ -19,13 +25,31 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   const t = translations[lang]
   const isZh = lang === 'zh'
   const navigate = useNavigate()
-  const [menuOpen, setMenuOpen] = useState(false)
+  // 넓은 화면(PC)에선 Editorial 원본처럼 회색 사이드바가 왼쪽에 "붙어서"(docked) 본문을 옆으로 밀고,
+  // 메뉴 링크를 눌러도 닫히지 않는다. 페이지가 바뀌면 App이 새로 마운트되므로 열림 상태는
+  // sessionStorage에 기억해 둔다. 폰·태블릿은 기존처럼 본문을 덮는 오프캔버스 + 링크 누르면 닫힘.
+  const [isWide, setIsWide] = useState(() => window.matchMedia(DOCK_QUERY).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(DOCK_QUERY)
+    const onChange = () => setIsWide(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+  const [menuOpen, setMenuOpenState] = useState(() => window.matchMedia(DOCK_QUERY).matches && readMenuPref())
+  const setMenuOpen = (v: boolean | ((prev: boolean) => boolean)) =>
+    setMenuOpenState((prev) => {
+      const next = typeof v === 'function' ? v(prev) : v
+      writeMenuPref(next)
+      return next
+    })
+  const docked = menuOpen && isWide
   const [query, setQuery] = useState('')
   const results = useMemo(() => searchSite(query, lang), [query, lang])
 
   // 고정 파란 바의 삼선·언어 버튼을 본문(헤더) 좌우 선에 맞추기 위해 헤더 위치를 CSS 변수로 넘긴다.
   // 옛 CSS는 화면 폭마다 본문 폭이 1000/1008/1152px로 제각각이라 calc보다 실측이 정확하다.
   const rootRef = useRef<HTMLDivElement>(null)
+  const alignRef = useRef<() => void>(() => {})
   useEffect(() => {
     const root = rootRef.current
     const header = root?.querySelector<HTMLElement>('#header')
@@ -35,20 +59,31 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       root.style.setProperty('--ed-col-left', `${Math.round(r.left)}px`)
       root.style.setProperty('--ed-col-right', `${Math.round(document.documentElement.clientWidth - r.right)}px`)
     }
+    alignRef.current = update
     update()
     const ro = new ResizeObserver(update)
     ro.observe(header)
     window.addEventListener('resize', update)
     return () => { ro.disconnect(); window.removeEventListener('resize', update) }
   }, [])
+  // 사이드바가 붙었다/떨어지면 본문이 옆으로 미끄러진다(폭은 그대로라 ResizeObserver가 못 잡음) —
+  // 이동 애니메이션(.28s) 동안 삼선·EN 버튼 위치를 따라 맞춘다.
+  useEffect(() => {
+    let raf = 0
+    const until = performance.now() + 350
+    const tick = () => { alignRef.current(); if (performance.now() < until) raf = requestAnimationFrame(tick) }
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [docked])
   // 펼쳐진 서브메뉴(Editorial 원본 템플릿의 accordion "opener") — 지금 보고 있는 카테고리는 처음부터 펼쳐 둔다.
   const [expanded, setExpanded] = useState<string | null>(page === 'category' ? categoryId : null)
   useEffect(() => { if (page === 'category' && categoryId) setExpanded(categoryId) }, [page, categoryId])
 
   // 옛 CSS의 body.is-menu-visible{overflow:hidden}은 이제 .ed-skin에 붙어서 페이지 스크롤을
   // 못 막는다 — 메뉴가 열려 있는 동안만 body 스크롤을 직접 잠근다.
+  // (PC에서 붙어 있는 사이드바는 본문과 나란히 있으므로 잠그지 않는다)
   useEffect(() => {
-    if (!menuOpen) return
+    if (!menuOpen || docked) return
     const prev = document.body.style.overflow
     document.body.style.overflow = 'hidden'
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false) }
@@ -57,13 +92,15 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       document.body.style.overflow = prev
       window.removeEventListener('keydown', onKey)
     }
-  }, [menuOpen])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [menuOpen, docked])
 
-  /** 사이드바 링크: 새 탭 열기·링크 복사가 되도록 진짜 href를 달고, 일반 클릭만 SPA 이동. */
+  /** 사이드바 링크: 새 탭 열기·링크 복사가 되도록 진짜 href를 달고, 일반 클릭만 SPA 이동.
+      PC(붙어 있는 사이드바)에선 열어둔 채로, 폰에선 본문을 가리므로 닫고 이동. */
   const nav = (go: () => void) => (e: MouseEvent) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return
     e.preventDefault()
-    setMenuOpen(false)
+    if (!isWide) setMenuOpen(false)
     go()
   }
 
@@ -109,7 +146,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   ]
 
   return (
-    <div ref={rootRef} className={`ed-skin${menuOpen ? ' is-menu-visible' : ''}`}>
+    <div ref={rootRef} className={`ed-skin${menuOpen ? ' is-menu-visible' : ''}${docked ? ' ed-docked' : ''}`}>
       <a
         href="#sidebar"
         className="toggle"
@@ -171,13 +208,13 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        {menuOpen && <div className="ed-menu-backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />}
+        {menuOpen && !docked && <div className="ed-menu-backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />}
 
         <div id="sidebar">
           <div className="inner">
             {/* 검색 — HTML5 UP Editorial 원본 #search 그대로 (돋보기는 옛 CSS의 form::before) */}
             <section id="search" className="alt">
-              <form onSubmit={(e) => { e.preventDefault(); if (results[0]) goTarget(results[0].target)(); setMenuOpen(false) }}>
+              <form onSubmit={(e) => { e.preventDefault(); if (results[0]) goTarget(results[0].target)(); if (!isWide) setMenuOpen(false) }}>
                 <input
                   type="text"
                   name="query"
@@ -284,10 +321,10 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
               </header>
               <ul className="contact">
                 <li className="icon solid fa-envelope">
-                  <a href={`mailto:${EMAIL_GENERAL}`}>{isZh ? '邮箱：' : 'Email: '}{EMAIL_GENERAL}</a>
+                  <a href={`mailto:${EMAIL_GENERAL}`}>{EMAIL_GENERAL}</a>
                 </li>
-                <li className="icon solid fa-phone">+82-10-4903-3123</li>
-                <li className="icon solid fa-phone">+82-070-8880-3123</li>
+                <li className="icon solid fa-phone"><a href="tel:+821049033123">+82-10-4903-3123</a></li>
+                <li className="icon solid fa-phone"><a href="tel:+827088803123">+82-070-8880-3123</a></li>
                 <li className="icon solid fa-home">
                   {isZh
                     ? '韩国 首尔特别市 城北区 三阳路29号 3层11号 (邮编：02832)'
