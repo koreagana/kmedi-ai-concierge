@@ -188,8 +188,8 @@
 .ed-skin #header .icons a { transition: filter .2s ease, transform .2s ease; }
 .ed-skin #header .icons a:hover { filter: brightness(.88); transform: translateY(-1px); }
 
-/* 헤더 아래 실선은 안 보이게 — 선 두께·위아래 여백은 그대로 둬서 시원한 간격 유지(사용자 요청) */
-.ed-skin #header { border-bottom-color: transparent !important; }
+/* 헤더 아래 실선 — 원래(#0077B6)보다 흐린 파랑. 중국 고객에게 검정·진회색 선은 불길한 인상이라 피함(사용자 요청) */
+.ed-skin #header { border-bottom-color: #80BBDB !important; }
 
 /* ── PC: 사이드바가 본문 옆에 붙는 모드(Editorial 원본처럼) ──
    사이드바(320px, 옛 CSS의 fixed 오프캔버스 그대로)가 열리면 본문을 그만큼 오른쪽으로 민다.
