@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { langPath } from '../../skin'
+import { updatePageSeo } from '../../seo'
 import { useSearchParams } from 'react-router-dom'
 import { AppProvider, useApp } from '../../contexts/AppContext'
 import type { LangCode } from '../../data/translations'
@@ -24,7 +25,10 @@ function Crumb({ title }: { title: string }) {
 
 function PrivacyBody({ lang }: { lang: LangCode }) {
   const c = PRIVACY_CONTENT[lang]
-  useEffect(() => { document.title = c.pageTitle }, [c.pageTitle])
+  useEffect(() => {
+    document.title = c.pageTitle
+    updatePageSeo({ lang, zhPath: '/zh/privacy', enPath: '/en/privacy' }) // 정규 주소가 메인(/)으로 남지 않게
+  }, [c.pageTitle, lang])
   return (
     <section className="ed-page ed-legal">
       <Crumb title={c.title} />
