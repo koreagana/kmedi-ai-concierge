@@ -108,12 +108,15 @@ async function waitForServer(url, timeoutMs = 20000) {
 function writeEditorialSitemap() {
   const origin = process.env.VITE_CANONICAL_ORIGIN || 'https://kmedispring.com'
   const zhRoutes = routes.filter((r) => r === '/zh' || r.startsWith('/zh/'))
+  const lastmod = new Date().toISOString().slice(0, 10) // 배포할 때마다 내용이 갱신되므로 빌드 날짜
+  // 우선순위: 홈 > 대카테고리·견적·제휴 > 세부 항목
+  const priority = (zh) => (zh === '/zh' ? '1.0' : zh.split('/').length > 3 ? '0.6' : '0.8')
   const entry = (zh) => {
     const en = zh.replace(/^\/zh/, '/en')
     const alt = `    <xhtml:link rel="alternate" hreflang="zh-CN" href="${origin}${zh}" />
     <xhtml:link rel="alternate" hreflang="en" href="${origin}${en}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${origin}${zh}" />`
-    return [zh, en].map((loc) => `  <url>\n    <loc>${origin}${loc}</loc>\n${alt}\n  </url>`).join('\n')
+    return [zh, en].map((loc) => `  <url>\n    <loc>${origin}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority(zh)}</priority>\n${alt}\n  </url>`).join('\n')
   }
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"

@@ -11,7 +11,7 @@ import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
 import { CATEGORY_SUBMENUS } from './data/categorySubmenus'
 import { seoMeta, surgeryMeta } from './data/seoMeta'
-import { updatePageSeo } from './seo'
+import { updatePageSeo, updateBreadcrumbLd } from './seo'
 import { lazy, Suspense, useEffect } from 'react'
 import { SKIN, siteText } from './skin'
 
@@ -52,8 +52,18 @@ function updateMeta({
 
 /** 고유 URL이 없는 페이지(package)용 — canonical은 언어 루트를 가리키고,
     title은 브랜드 접미사를 붙이고 description은 aboutDesc를 150자로 잘라 씀. */
+/** 페이지 제목 뒤에 붙는 브랜드 꼬리. kmedispring.com은 손님이 실제로 검색하는 말(韩国医疗旅游)을 넣는다.
+    ai-kmedi.com은 기존 그대로. */
+function brandSuffix(lang: LangCode) {
+  if (SKIN === 'editorial') return lang === 'zh' ? '韩国医疗旅游咨询 | 汉江春天' : 'Korea Medical Travel | K-MediSpring'
+  return `${translations[lang].brandName} · AI Medical Concierge`
+}
+
+/** 경로 구조화 데이터의 첫 칸(홈) */
+const home = (lang: LangCode) => ({ name: lang === 'zh' ? '首页' : 'Home', path: `/${lang}` })
+
 function updateMetaGeneric(title: string, lang: LangCode) {
-  const brand = `${translations[lang].brandName} · AI Medical Concierge`
+  const brand = brandSuffix(lang)
   const description = siteText(translations[lang].aboutDesc).replace(/\n/g, ' ').slice(0, 150)
   updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: `${title} · ${brand}`, description })
 }
@@ -64,7 +74,8 @@ function PageRouter() {
   // 페이지/카테고리/언어 변경 시 title·description meta 업데이트
   useEffect(() => {
     if (page === 'partners' && SKIN === 'editorial') {
-      const brand = `${translations[lang].brandName} · AI Medical Concierge`
+      const brand = brandSuffix(lang)
+      updateBreadcrumbLd([home(lang), { name: lang === 'zh' ? '全程服务 · 合作医疗机构' : 'Our Services & Partners', path: `/${lang}/partners` }])
       updateMeta({
         lang, zhPath: '/zh/partners', enPath: '/en/partners',
         title: `${lang === 'zh' ? '全程陪伴您的韩国诊疗 · 合作医疗机构' : 'Full-Journey Care & Partner Hospitals'} · ${brand}`,
@@ -75,10 +86,12 @@ function PageRouter() {
       return
     }
     if (page === 'home' || page === 'partners') {
+      updateBreadcrumbLd([])
       updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: seoMeta[lang].title, description: seoMeta[lang].description })
       return
     }
     if (page === 'surgery') {
+      updateBreadcrumbLd([home(lang), { name: translations[lang].surgeryBtnTitle, path: `/${lang}/surgery-price` }])
       updateMeta({
         lang, zhPath: '/zh/surgery-price', enPath: '/en/surgery-price',
         title: surgeryMeta[lang].title, description: surgeryMeta[lang].description,
@@ -86,12 +99,14 @@ function PageRouter() {
       return
     }
     if (page === 'package') {
+      updateBreadcrumbLd([])
       updateMetaGeneric(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'], lang)
       return
     }
     if (page === 'quote') {
-      const brand = `${translations[lang].brandName} · AI Medical Concierge`
+      const brand = brandSuffix(lang)
       const description = siteText(translations[lang].aboutDesc).replace(/\n/g, ' ').slice(0, 150)
+      updateBreadcrumbLd([home(lang), { name: QUOTE_TITLE[lang] ?? QUOTE_TITLE['zh'], path: `/${lang}/quote` }])
       updateMeta({
         lang,
         zhPath: '/zh/quote',
@@ -107,10 +122,11 @@ function PageRouter() {
         const catRecord = cat as unknown as Record<string, string>
         const name = catRecord[lang] ?? cat.zh
         const summary = (lang === 'en' ? cat.scriptSummaryEn : cat.scriptSummaryZh).replace(/\n/g, ' ').slice(0, 150)
-        const brand = `${translations[lang].brandName} · AI Medical Concierge`
+        const brand = brandSuffix(lang)
         // 세부 항목 페이지(/zh/skin-beauty/skin-lifting) — 항목 이름·설명과 자기 경로를 canonical로
         const topic = topicId ? CATEGORY_SUBMENUS[cat.id]?.find((t) => t.id === topicId) : undefined
         if (topic) {
+          updateBreadcrumbLd([home(lang), { name, path: `/${lang}/${cat.id}` }, { name: topic.title[lang], path: `/${lang}/${cat.id}/${topic.id}` }])
           updateMeta({
             lang,
             zhPath: `/zh/${cat.id}/${topic.id}`,
@@ -120,6 +136,7 @@ function PageRouter() {
           })
           return
         }
+        updateBreadcrumbLd([home(lang), { name, path: `/${lang}/${cat.id}` }])
         updateMeta({
           lang,
           zhPath: `/zh/${cat.id}`,

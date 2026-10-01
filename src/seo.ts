@@ -10,6 +10,11 @@ export function updatePageSeo({ lang, zhPath, enPath }: { lang: LangCode; zhPath
   const path = lang === 'zh' ? zhPath : enPath
   const url = `${CANONICAL_ORIGIN}${path}`
 
+  // 페이지 언어 — index.html은 lang="zh" 하나뿐이라 영어 페이지도 중국어로 표시되던 것을 바로잡는다
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'
+  const ogLocale = document.querySelector<HTMLMetaElement>('meta[property="og:locale"]')
+  if (ogLocale) ogLocale.content = lang === 'zh' ? 'zh_CN' : 'en_US'
+
   const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
   if (canonical) canonical.href = url
   const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')
@@ -21,4 +26,26 @@ export function updatePageSeo({ lang, zhPath, enPath }: { lang: LangCode; zhPath
   if (hreflangEn) hreflangEn.href = `${CANONICAL_ORIGIN}${enPath}`
   const hreflangDefault = document.querySelector<HTMLLinkElement>('link[rel="alternate"][hreflang="x-default"]')
   if (hreflangDefault) hreflangDefault.href = `${CANONICAL_ORIGIN}${zhPath}`
+}
+
+/** 경로(首页 › 皮肤医美 › 皮肤提升)를 검색엔진용 BreadcrumbList 구조화 데이터로 넣는다.
+    검색 결과에 주소 대신 경로가 보이게 해준다. 빈 배열이면(홈) 지운다. prerender가 결과를 정적 HTML에 담는다. */
+export function updateBreadcrumbLd(items: { name: string; path: string }[]) {
+  const id = 'ld-breadcrumb'
+  document.getElementById(id)?.remove()
+  if (items.length < 2) return
+  const el = document.createElement('script')
+  el.type = 'application/ld+json'
+  el.id = id
+  el.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      item: `${CANONICAL_ORIGIN}${it.path}`,
+    })),
+  })
+  document.head.appendChild(el)
 }
