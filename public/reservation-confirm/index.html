@@ -52,6 +52,32 @@
     font-size:12.5px; font-weight:700; cursor:pointer;
   }
   .resetbtn.done{ background:var(--good); color:#fff; border-color:var(--good); }
+
+  /* ============================================================
+     환자 기록 (이 브라우저에만 저장 — localStorage)
+     PDF로 저장할 때마다 자동 기록, 누르면 다시 불러오기, CSV로 내보내기
+     ============================================================ */
+  .panel.history-panel{ padding:0; overflow:hidden; }
+  .history-panel > summary{
+    list-style:none; cursor:pointer; padding:16px 20px; font-size:13px; font-weight:700;
+    color:var(--sky); letter-spacing:.5px; display:flex; align-items:center;
+  }
+  .history-panel > summary::-webkit-details-marker{ display:none; }
+  .history-panel > summary::after{ content:"▾"; color:var(--muted); margin-left:auto; }
+  .history-panel[open] > summary::after{ content:'▴'; }
+  .history-count{ color:var(--muted); font-weight:600; margin-left:6px; }
+  .history-body{ padding:0 20px 18px; }
+  .history-tools{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px; }
+  .history-tools input{ flex:1; min-width:140px; padding:9px 12px; border:1px solid var(--line); border-radius:9px; font-size:13.5px; font-family:inherit; background:var(--paper); color:var(--navy); }
+  .history-tools button, .history-del{ padding:8px 12px; border-radius:8px; border:1px solid var(--line); background:#fff; color:var(--navy); font-size:12.5px; font-weight:600; cursor:pointer; font-family:inherit; }
+  .history-list{ list-style:none; margin:0; padding:0; max-height:360px; overflow-y:auto; }
+  .history-item{ display:flex; gap:10px; align-items:center; padding:10px 0; border-top:1px solid var(--line); }
+  .history-load{ flex:1; min-width:0; text-align:left; background:none; border:none; padding:0; cursor:pointer; font-family:inherit; color:var(--navy); }
+  .history-load b{ font-size:14px; }
+  .history-load span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .history-del{ color:#B42318; border-color:#F3C2BD; }
+  .history-empty{ font-size:13px; color:var(--muted); padding:8px 0 4px; }
+  .history-note{ font-size:11.5px; color:var(--muted); margin:10px 0 0; line-height:1.6; }
   .layout{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:28px; }
   .panel{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:20px; }
   .panel h2{ font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--sky); margin:0 0 16px; font-weight:700; }
@@ -210,7 +236,7 @@
     /* 브라우저가 인쇄 시 배경색을 기본적으로 빼거나 색을 흐리게(회색조) 바꾸는 것을 막음
        - 이게 없으면 stub-main의 파란 배경이 사라지고 흰 글씨가 회색으로 보임 */
     *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
-    .intro, .form-panel, .resetbtn, .pdfbtn{ display:none !important; }
+    .intro, .form-panel, .resetbtn, .pdfbtn, .history-panel{ display:none !important; }
     body{ background:#fff; padding:0; }
     .layout{ max-width:none; gap:0; }
     .panel.card-panel{ border:none; padding:0; background:transparent; box-shadow:none; }
@@ -250,6 +276,19 @@
     <p class="sub">정보 입력 → 미리보기 자동 갱신 → PDF로 저장해서 전달</p>
     <button class="resetbtn" id="resetbtn">🔄 새 환자 입력 시작하기 (날짜·환자정보 초기화)</button>
   </div>
+
+  <!-- 환자 기록 — PDF로 저장할 때마다 이 브라우저에 자동 기록 (서버 전송 없음) -->
+  <details class="panel history-panel" id="history-panel">
+    <summary>📋 환자 기록 <span class="history-count" id="history-count"></span></summary>
+    <div class="history-body">
+      <div class="history-tools">
+        <input id="history-search" placeholder="이름·병원·여권번호 검색" autocomplete="off">
+        <button type="button" id="history-csv">CSV 내보내기</button>
+      </div>
+      <ul class="history-list" id="history-list"></ul>
+      <p class="history-note">PDF로 저장할 때 자동 기록됩니다. 이 브라우저(이 기기)에만 저장되고 인터넷으로 전송되지 않아요. 브라우저 기록·사이트 데이터를 지우면 함께 지워지니 가끔 CSV로 내보내 보관하세요.</p>
+    </div>
+  </details>
 
   <div class="panel form-panel">
     <h2>医院 / 预约信息</h2>
@@ -513,6 +552,9 @@ if(resetBtn){
     ['f-date','f-time','f-patient','f-dob','f-passport','f-memo'].forEach(id=>{
       document.getElementById(id).value = '';
     });
+    // 병원은 그대로 두므로, 담당 의사가 정해진 병원이면 비고(主刀医生)를 다시 채움
+    const kept = HOSPITALS.find(h => h.ko === document.getElementById('f-hospital-ko').value.trim());
+    if (kept && kept.doctor) document.getElementById('f-memo').value = kept.doctor;
     update();
     const orig = this.textContent;
     this.textContent = '✓ 초기화됨 已重置';
@@ -525,8 +567,110 @@ if(resetBtn){
    서버로 아무것도 전송하지 않으며, 인쇄용 CSS(@media print)가 폼/버튼을 가리고
    카드만 보이게 해줌. */
 document.getElementById('pdfbtn').addEventListener('click', function(){
+  saveHistory();
   window.print();
 });
+
+/* ================================================================
+   환자 기록 (localStorage — 이 브라우저에만, 서버 전송 없음)
+   - PDF로 저장할 때마다 자동 기록. 같은 환자·병원·날짜·시간이면 새로 쌓지 않고 갱신
+   - 목록에서 누르면 입력칸과 카드(주소·전화 포함)에 그대로 다시 불러옴
+   - CSV 내보내기: 엑셀·노션으로 옮길 때 (엑셀에서 한글 안 깨지게 BOM 포함)
+   ================================================================ */
+const HISTORY_KEY = 'kmedi-reservation-history-v1'
+const FORM_IDS = { hospitalKo:'f-hospital-ko', hospitalZh:'f-hospital-zh', date:'f-date', time:'f-time', patient:'f-patient', dob:'f-dob', passport:'f-passport', memo:'f-memo' }
+const CARD_IDS = { addrKo:'c-addr-ko', addrZh:'c-addr-zh', addrEn:'c-addr-en', phone:'c-phone' }
+
+function readHistory(){
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]') } catch(e) { return [] }
+}
+function writeHistory(list){
+  try { localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); return true } catch(e) { return false }
+}
+
+function saveHistory(){
+  const rec = {}
+  Object.entries(FORM_IDS).forEach(([k, id]) => { rec[k] = document.getElementById(id).value.trim() })
+  Object.entries(CARD_IDS).forEach(([k, id]) => { rec[k] = document.getElementById(id).textContent.trim() })
+  if (!rec.patient && !rec.passport) return   // 환자 정보가 없으면 기록하지 않음(병원 안내용 카드 등)
+  rec.savedAt = new Date().toISOString()
+  const key = r => [r.patient, r.hospitalKo, r.date, r.time].join('|')
+  const list = readHistory().filter(r => key(r) !== key(rec))
+  list.unshift(rec)
+  writeHistory(list)
+  renderHistory()
+}
+
+function loadHistory(rec){
+  Object.entries(FORM_IDS).forEach(([k, id]) => { document.getElementById(id).value = rec[k] || '' })
+  Object.entries(CARD_IDS).forEach(([k, id]) => { document.getElementById(id).textContent = rec[k] || '' })
+  document.getElementById('row-phone').classList.toggle('is-empty', !rec.phone)
+  update()
+  document.getElementById('history-panel').open = false
+  window.scrollTo({ top: document.querySelector('.form-panel').offsetTop - 12, behavior: 'smooth' })
+}
+
+function fmtSaved(iso){
+  const d = new Date(iso)
+  return (d.getMonth()+1) + '/' + d.getDate() + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0')
+}
+
+function renderHistory(){
+  const all = readHistory()
+  const q = document.getElementById('history-search').value.trim().toLowerCase()
+  const list = q ? all.filter(r => [r.patient, r.hospitalKo, r.hospitalZh, r.passport, r.memo].join(' ').toLowerCase().includes(q)) : all
+  document.getElementById('history-count').textContent = all.length ? all.length + '명' : ''
+  const ul = document.getElementById('history-list')
+  ul.innerHTML = ''
+  if (!list.length) {
+    const li = document.createElement('li')
+    li.className = 'history-empty'
+    li.textContent = all.length ? '검색 결과가 없습니다' : '아직 기록이 없습니다 — PDF로 저장하면 자동으로 쌓여요'
+    ul.appendChild(li)
+    return
+  }
+  list.forEach(rec => {
+    const li = document.createElement('li')
+    li.className = 'history-item'
+    const btn = document.createElement('button')
+    btn.type = 'button'
+    btn.className = 'history-load'
+    const name = document.createElement('b')
+    name.textContent = rec.patient || '(이름 없음)'
+    const meta = document.createElement('span')
+    meta.textContent = [rec.hospitalKo, [rec.date, rec.time].filter(Boolean).join(' '), rec.dob && ('생 ' + rec.dob), rec.passport && ('여권 ' + rec.passport), '저장 ' + fmtSaved(rec.savedAt)].filter(Boolean).join(' · ')
+    btn.append(name, meta)
+    btn.addEventListener('click', () => loadHistory(rec))
+    const del = document.createElement('button')
+    del.type = 'button'
+    del.className = 'history-del'
+    del.textContent = '삭제'
+    del.addEventListener('click', () => {
+      if (!confirm((rec.patient || '이 기록') + ' 기록을 지울까요?')) return
+      writeHistory(readHistory().filter(r => r.savedAt !== rec.savedAt))
+      renderHistory()
+    })
+    li.append(btn, del)
+    ul.appendChild(li)
+  })
+}
+
+document.getElementById('history-search').addEventListener('input', renderHistory)
+document.getElementById('history-csv').addEventListener('click', function(){
+  const list = readHistory()
+  if (!list.length) { alert('내보낼 기록이 없습니다'); return }
+  const cols = [['patient','환자명'],['dob','생년월일'],['passport','여권번호'],['hospitalKo','병원(한)'],['hospitalZh','병원(中)'],['date','예약일'],['time','예약시간'],['memo','비고'],['phone','병원 전화'],['addrKo','주소(한)'],['savedAt','저장일시']]
+  const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"'
+  const local = iso => { const d = new Date(iso); return isNaN(d) ? '' : d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') }
+  const csv = [cols.map(c => esc(c[1])).join(',')].concat(list.map(r => cols.map(c => esc(c[0] === 'savedAt' ? local(r.savedAt) : r[c[0]])).join(','))).join('\r\n')
+  const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8' })
+  const a = document.createElement('a')
+  a.href = URL.createObjectURL(blob)
+  a.download = '예약환자기록_' + new Date().toISOString().slice(0,10) + '.csv'
+  a.click()
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000)
+})
+renderHistory()
 </script>
 
 </body>
