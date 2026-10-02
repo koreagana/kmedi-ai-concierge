@@ -73,7 +73,9 @@ const CATEGORY: { key: string; label: L }[] = [
 
 type Partner = (typeof partners)[number]
 
-export default function EditorialPartners() {
+/** servicesOnly: 사이드바 메뉴의 全程服务(/services) — 위의 8개 항목만. 협력기관 목록(/partners)은
+    메뉴에 드러내지 않고 了解全程服务 버튼·직접 링크로만 들어오게 한다(사용자 결정 2026-10-02). */
+export default function EditorialPartners({ servicesOnly = false }: { servicesOnly?: boolean }) {
   const { lang, goHome } = useApp()
   const isZh = lang === 'zh'
   const groups = CATEGORY
@@ -85,7 +87,7 @@ export default function EditorialPartners() {
       <p className="ed-crumb">
         <a {...edLink(langPath(lang), goHome)}>{isZh ? '首页' : 'Home'}</a>
         <span aria-hidden="true"> / </span>
-        <span>{isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners'}</span>
+        <span>{servicesOnly ? (isZh ? '全程服务' : 'Our Full Service') : (isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners')}</span>
       </p>
 
       <header className="main">
@@ -107,6 +109,7 @@ export default function EditorialPartners() {
         ))}
       </div>
 
+      {!servicesOnly && <>
       <hr className="major" />
       <h2>{isZh ? '合作医疗机构' : 'Partner Medical Institutions'}</h2>
       <p className="ed-page-tag">
@@ -141,6 +144,7 @@ export default function EditorialPartners() {
       <p className="ed-small">
         {isZh ? '具体就诊医院将根据您的诊疗目的，与医院确认后为您安排。' : 'Your specific hospital is arranged after confirming your treatment goals with the hospital.'}
       </p>
+      </>}
 
       <hr className="major" />
       <ul className="actions ed-cta">

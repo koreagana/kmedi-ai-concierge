@@ -5,8 +5,8 @@ import type { LangCode } from '../data/translations'
 import { categories, type CategoryId } from '../data/categories'
 import { langPath } from '../skin'
 
-/** 'partners'(全程服务·合作医疗机构)는 kmedispring.com(editorial 스킨) 전용 페이지 — ai-kmedi.com에선 홈으로 보인다 */
-export type PageView = 'home' | 'category' | 'package' | 'quote' | 'surgery' | 'partners'
+/** 'partners'(全程服务·合作医疗机构)·'services'(全程服务만)는 kmedispring.com(editorial 스킨) 전용 페이지 — ai-kmedi.com에선 홈으로 보인다 */
+export type PageView = 'home' | 'category' | 'package' | 'quote' | 'surgery' | 'partners' | 'services'
 
 export interface ConsultCard {
   interests: string[]
@@ -40,6 +40,7 @@ interface AppState {
   goToQuote: (categoryId?: string, procedureId?: string) => void
   goToSurgery: () => void
   goToPartners: () => void
+  goToServices: () => void
   goHome: () => void
 }
 
@@ -72,6 +73,8 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     // /zh/surgery-price, /en/surgery-price — 고유 경로로 직접 진입한 경우
     if (location.pathname.endsWith('/surgery-price')) {
       setPage('surgery')
+    } else if (location.pathname === langPath(lang, '/services')) {
+      setPage('services')
     } else if (location.pathname === langPath(lang, '/partners')) {
       setPage('partners')
     } else if (location.pathname.endsWith('/quote')) {
@@ -164,6 +167,11 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     navigate(langPath(lang, '/partners'))
   }
 
+  const goToServices = () => {
+    setPage('services')
+    navigate(langPath(lang, '/services'))
+  }
+
   const goHome = () => {
     setPage('home')
     setCategoryId(null)
@@ -179,7 +187,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       concernId, setConcernId,
       consultCard, setConsultCard,
       quoteCategoryHint, quoteProcedureHint,
-      goToCategory, topicId, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners, goHome,
+      goToCategory, topicId, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners, goToServices, goHome,
     }}>
       {children}
     </AppContext.Provider>

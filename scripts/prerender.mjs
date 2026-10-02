@@ -47,7 +47,7 @@ const topicRoutes = !isEditorial ? [] : Object.entries(KEYWORD_FILES).flatMap(([
 /** 아래 경로 목록은 "/zh/…" 이름으로 관리하고, 실제 주소로 바꿀 때만 이걸 쓴다 —
     kmedispring.com은 중국어가 루트(사용자 결정)라 /zh를 뗀다(src/skin.ts의 sitePath와 같은 규칙). */
 const sitePathOf = (r) => (isEditorial ? (r.replace(/^\/zh(?=\/|$)/, '') || '/') : r)
-const partnersRoutes = isEditorial ? ['/zh/partners', '/en/partners'] : [] // kmedispring.com 전용 페이지
+const partnersRoutes = isEditorial ? ['/zh/partners', '/en/partners', '/zh/services', '/en/services'] : [] // kmedispring.com 전용 페이지
 const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes, ...topicRoutes, ...partnersRoutes]
 
 // 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price·카테고리

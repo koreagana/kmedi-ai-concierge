@@ -14,6 +14,8 @@ import './editorial-pages.css'
 /** 이 폭 이상이면 사이드바가 본문 옆에 붙는다(Editorial 원본의 xlarge 구간과 같은 1281px). */
 const DOCK_QUERY = '(min-width: 1281px)'
 const MENU_KEY = 'ed-menu-open'
+/** 진료 분야 메뉴에서 빼서 外籍患者引进机构资质 묶음으로 보내는 카테고리 */
+const AGENCY_CATEGORY_IDS: string[] = ['medical-tourism', 'custom-plan']
 const readMenuPref = () => { try { return sessionStorage.getItem(MENU_KEY) === '1' } catch { return false } }
 const writeMenuPref = (open: boolean) => { try { sessionStorage.setItem(MENU_KEY, open ? '1' : '0') } catch { /* 사생활 모드 등 — 기억만 못 할 뿐 */ } }
 
@@ -22,7 +24,7 @@ const writeMenuPref = (open: boolean) => { try { sessionStorage.setItem(MENU_KEY
     옛 사이트의 jQuery main.js가 하던 일(body.is-menu-visible 토글, 바깥 클릭·ESC로 닫기)은
     여기서 React state로 대신한다. 클래스는 body 대신 .ed-skin 루트에 붙는다. */
 export default function EditorialLayout({ children }: { children: ReactNode }) {
-  const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners } = useApp()
+  const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners, goToServices } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
   const navigate = useNavigate()
@@ -181,6 +183,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       }
       case 'surgery': return langPath(lang, `/surgery-price`)
       case 'partners': return langPath(lang, `/partners`)
+      case 'services': return langPath(lang, `/services`)
     }
   }
   const goTarget = (t: SearchTarget) => () => {
@@ -191,25 +194,35 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       case 'quote': return goToQuote(t.cat, t.proc)
       case 'surgery': return goToSurgery()
       case 'partners': return goToPartners()
+      case 'services': return goToServices()
     }
   }
 
-  const menuItems: { key: string; label: string; href: string; go: () => void; current: boolean; sub?: SubmenuItem[] }[] = [
-    ...categories.map((c) => {
-      const isPackage = c.id === 'medical-tourism'
-      return {
-        key: c.id,
-        label: isZh ? c.zh : c.en,
-        href: isPackage ? langPath(lang, '?page=package') : langPath(lang, `/${c.id}`),
-        go: isPackage ? goToPackage : () => goToCategory(c.id as CategoryId),
-        current: isPackage ? page === 'package' : page === 'category' && categoryId === c.id,
-        sub: CATEGORY_SUBMENUS[c.id],
-      }
-    }),
-    { key: 'partners', label: isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners', href: langPath(lang, `/partners`), go: goToPartners, current: page === 'partners' },
+  // 위쪽 메뉴는 진료 분야(皮肤~男性健康)만. 여행 방안·서비스·가격 페이지는 关于我们 아래
+  // 外籍患者引进机构资质 묶음으로 내린다(사용자 결정 2026-10-02).
+  const menuItems: { key: string; label: string; href: string; go: () => void; current: boolean; sub?: SubmenuItem[] }[] =
+    categories.filter((c) => !AGENCY_CATEGORY_IDS.includes(c.id)).map((c) => ({
+      key: c.id,
+      label: isZh ? c.zh : c.en,
+      href: langPath(lang, `/${c.id}`),
+      go: () => goToCategory(c.id as CategoryId),
+      current: page === 'category' && categoryId === c.id,
+      sub: CATEGORY_SUBMENUS[c.id],
+    }))
+
+  const pkg = categories.find((c) => c.id === 'medical-tourism')!
+  const custom = categories.find((c) => c.id === 'custom-plan')!
+  const agencyItems: { key: string; label: string; href: string; go: () => void; current: boolean }[] = [
+    { key: 'package', label: isZh ? pkg.zh : pkg.en, href: langPath(lang, '?page=package'), go: goToPackage, current: page === 'package' },
+    { key: 'custom-plan', label: isZh ? custom.zh : custom.en, href: langPath(lang, '/custom-plan'), go: () => goToCategory('custom-plan'), current: page === 'category' && categoryId === 'custom-plan' },
+    // 협력기관 목록(/partners)은 메뉴에 넣지 않는다 — 了解全程服务 버튼·직접 링크로만
+    { key: 'services', label: isZh ? '全程服务' : 'Our Full Service', href: langPath(lang, '/services'), go: goToServices, current: page === 'services' },
     { key: 'quote', label: t.quoteBtnTitle, href: langPath(lang, `/quote`), go: () => goToQuote(), current: page === 'quote' },
     { key: 'surgery', label: t.surgeryBtnTitle, href: langPath(lang, `/surgery-price`), go: goToSurgery, current: page === 'surgery' },
   ]
+  const agencyCurrent = agencyItems.some((a) => a.current) || page === 'partners'
+  const [agencyOpen, setAgencyOpen] = useState(agencyCurrent)
+  useEffect(() => { if (agencyCurrent) setAgencyOpen(true) }, [agencyCurrent])
 
   return (
     <div ref={rootRef} className={`ed-skin${menuOpen ? ' is-menu-visible' : ''}${docked ? ' ed-docked' : ''}`}>
@@ -360,19 +373,53 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                   )
                 })}
               </ul>
+
+              {/* 关于我们 — 철학 글 아래에 外籍患者引进机构资质 묶음(여행 방안·全程服务·가격 페이지).
+                  메뉴 CSS가 전부 nav#menu 기준이라 같은 nav 안에 두어 카테고리와 똑같이 펼쳐지게 한다. */}
+              <div className="ed-menu-about">
+                <div className="section-spacer" />
+                <header className="major">
+                  <h3 className="about-title">{isZh ? '关于我们' : 'About Us'}</h3>
+                </header>
+                <p>
+                  {isZh
+                    ? '我们相信，美丽与健康，源于真诚的交流。如果你对韩国医疗、健康管理或合作有兴趣，欢迎通过微信或邮件与我们联系。'
+                    : 'We believe beauty and health begin with sincere communication. If you are interested in Korean medical care, health management or partnership, feel free to reach us by WeChat or email.'}
+                </p>
+              </div>
+              <ul>
+                <li className="ed-has-sub">
+                  <div className="ed-sub-row">
+                    <a
+                      href={langPath(lang, '/services')}
+                      onClick={(e) => { e.preventDefault(); setAgencyOpen((v) => !v) }}
+                      aria-expanded={agencyOpen}
+                    >
+                      {isZh ? '外籍患者引进机构资质' : 'Licensed Foreign Patient Agency'}
+                    </a>
+                    <button
+                      type="button"
+                      className={`opener${agencyOpen ? ' active' : ''}`}
+                      aria-expanded={agencyOpen}
+                      aria-label={agencyOpen ? (isZh ? '收起' : 'Collapse') : (isZh ? '展开' : 'Expand')}
+                      onClick={() => setAgencyOpen((v) => !v)}
+                    />
+                  </div>
+                  {agencyOpen && (
+                    <ul className="ed-submenu">
+                      {agencyItems.map((a) => (
+                        <li key={a.key}>
+                          <a href={a.href} onClick={nav(a.go)} aria-current={a.current ? 'page' : undefined}>{a.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              </ul>
             </nav>
 
             <section className="menu-extra">
-              <div className="section-spacer" />
-              <header className="major">
-                <h3 className="about-title">{isZh ? '关于我们' : 'About Us'}</h3>
-              </header>
-              <p>
-                {isZh
-                  ? '我们相信，美丽与健康，源于真诚的交流。如果你对韩国医疗、健康管理或合作有兴趣，欢迎通过微信或邮件与我们联系。'
-                  : 'We believe beauty and health begin with sincere communication. If you are interested in Korean medical care, health management or partnership, feel free to reach us by WeChat or email.'}
-              </p>
-              {/* 소개 바로 아래 개인정보 한 줄 + 처리방침 링크 (사용자 제안) */}
+              {/* 개인정보 한 줄 + 처리방침 링크 (사용자 제안) */}
               <p className="ed-privacy-note">
                 {isZh ? '汉江春天重视您的个人信息。' : 'K-MediSpring values your privacy.'}
                 <br />

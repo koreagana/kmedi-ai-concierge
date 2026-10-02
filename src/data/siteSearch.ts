@@ -20,6 +20,7 @@ export type SearchTarget =
   | { type: 'quote'; cat?: string; proc?: string }
   | { type: 'surgery' }
   | { type: 'partners' }
+  | { type: 'services' }
 
 export interface SearchResult {
   key: string
@@ -164,13 +165,21 @@ function buildIndex(): Entry[] {
     })
   }
 
-  // 全程服务·合作医疗机构 페이지(kmedispring.com 전용) — 페이지 자체 + 협력기관 이름
+  // 全程服务 페이지 / 全程服务·合作医疗机构 페이지(kmedispring.com 전용) — 페이지 자체 + 협력기관 이름
+  entries.push({
+    key: 'page-services',
+    title: L('全程服务', 'Our Full Service'),
+    context: L('外籍患者引进机构资质', 'Licensed Foreign Patient Agency'),
+    target: { type: 'services' },
+    names: ['全程服务', '陪诊', '翻译陪同', '翻译', '接送', 'service', 'interpreter'],
+    text: [],
+  })
   entries.push({
     key: 'page-partners',
-    title: L('全程服务 · 合作医疗机构', 'Our Services & Partners'),
-    context: L('服务与资质', 'Services'),
+    title: L('合作医疗机构', 'Partner Institutions'),
+    context: L('外籍患者引进机构资质', 'Licensed Foreign Patient Agency'),
     target: { type: 'partners' },
-    names: ['合作医疗机构', '合作医院', '全程服务', '陪诊', '翻译陪同', 'partner', 'partners', 'hospital', '협력병원'],
+    names: ['合作医疗机构', '合作医院', 'partner', 'partners', 'hospital', '협력병원'],
     text: [],
   })
   for (const p of PARTNERS) {

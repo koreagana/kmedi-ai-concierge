@@ -85,7 +85,19 @@ function PageRouter() {
       })
       return
     }
-    if (page === 'home' || page === 'partners') {
+    if (page === 'services' && SKIN === 'editorial') {
+      const brand = brandSuffix(lang)
+      updateBreadcrumbLd([home(lang), { name: lang === 'zh' ? '全程服务' : 'Our Full Service', path: `/${lang}/services` }])
+      updateMeta({
+        lang, zhPath: '/zh/services', enPath: '/en/services',
+        title: `${lang === 'zh' ? '全程陪伴您的韩国诊疗' : 'With You Through Every Step of Your Care in Korea'} · ${brand}`,
+        description: lang === 'zh'
+          ? '我们不只是介绍医院。从找医院、预约、翻译陪同到诊疗后管理，汉江春天为您衔接每一个必要环节。'
+          : 'We do more than introduce hospitals — from finding a hospital, booking and interpretation to aftercare, we connect every step.',
+      })
+      return
+    }
+    if (page === 'home' || page === 'partners' || page === 'services') {
       updateBreadcrumbLd([])
       updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: seoMeta[lang].title, description: seoMeta[lang].description })
       return
@@ -160,8 +172,8 @@ function PageRouter() {
     <div className="page-container" dir="ltr">
       <NavBar />
       <AnimatePresence mode="wait">
-        {/* 'partners'는 kmedispring.com 전용 페이지 — ai-kmedi.com에선 홈을 보여준다 */}
-        {page === 'home' || page === 'partners' ? (
+        {/* 'partners'·'services'는 kmedispring.com 전용 페이지 — ai-kmedi.com에선 홈을 보여준다 */}
+        {page === 'home' || page === 'partners' || page === 'services' ? (
           <motion.div
             key="home"
             initial={{ opacity: 0 }}

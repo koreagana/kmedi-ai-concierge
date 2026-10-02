@@ -39,6 +39,7 @@ export default function EditorialPages() {
       {page === 'quote' && island(t.quoteBtnTitle, <QuotePage />, 'quote')}
       {page === 'surgery' && island(t.surgeryBtnTitle, <SurgeryPricePage />, 'surgery')}
       {page === 'partners' && <EditorialPartners />}
+      {page === 'services' && <EditorialPartners servicesOnly />}
     </EditorialLayout>
   )
 }
