@@ -172,6 +172,28 @@ function BlockView({ block: b, lang }: { block: Block; lang: 'zh' | 'en' }) {
         </div>
       )
 
+    case 'grid':
+      return (
+        <div>
+          {b.title && <h2>{b.title}</h2>}
+          <div className="table-wrapper">
+            <table className="alt ed-table ed-grid-table">
+              <thead>
+                <tr>{b.head.map((h) => <th key={h}>{h}</th>)}</tr>
+              </thead>
+              <tbody>
+                {b.rows.map((row, i) => (
+                  <tr key={i}>
+                    {row.map((cell, j) => <td key={j} className={j === 0 ? 'ed-table-name' : undefined}>{cell}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {b.caution && <p className="ed-small">{b.caution}</p>}
+        </div>
+      )
+
     case 'figure':
       return (
         <div>

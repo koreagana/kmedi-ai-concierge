@@ -223,3 +223,11 @@
 .ed-skin .ed-hero-split-row img,
 .ed-skin .ed-hero-split-row video { width: 100% !important; height: 100% !important; max-width: none; object-fit: cover; display: block; }
 .ed-skin #main .ed-hero-split figcaption { margin-top: .9em; font-size: .85em; color: #7a7f83; text-align: center; }
+
+/* 승인 치료제 4칸 표 — 날짜·기관은 한 줄, 폰에선 칸 여백·글씨를 줄여 화면 안에 들어오게 */
+.ed-skin .ed-grid-table th { white-space: nowrap; }
+.ed-skin .ed-grid-table td:nth-child(3), .ed-skin .ed-grid-table td:nth-child(4) { white-space: nowrap; }
+@media (max-width: 736px) {
+  .ed-skin #main .ed-grid-table th, .ed-skin #main .ed-grid-table td { padding: .6em .5em !important; font-size: .82em !important; }
+  .ed-skin #main .ed-grid-table td.ed-table-name { word-break: break-word; }
+}

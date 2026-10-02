@@ -4,6 +4,14 @@ export interface StemCellProductItem {
   /** Brand/product name — not localized */
   name: string
   desc: LocalizedText
+  /** 식약처 허가 시기(승인 치료제만) — kmedispring.com 표의 批准时间 칸 */
+  approved?: LocalizedText
+}
+
+/** 승인 치료제 표 아래 각주 — 허가 당시 기관명은 식품의약품안전청(KFDA), 2013년부터 식품의약품안전처(MFDS) */
+export const APPROVAL_BODY_NOTE: LocalizedText = {
+  zh: '批准时机构名称为韩国食品医药品安全厅（KFDA），现为韩国食品医药品安全处（MFDS）。',
+  en: "Approved by the Korea Food and Drug Administration (KFDA), now Korea's Ministry of Food and Drug Safety (MFDS).",
 }
 
 export interface StemCellKeyword {
@@ -148,10 +156,10 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       en: 'Korea already has cell therapy products formally approved for specific diseases — some of which were among the first stem cell therapies in the world to receive regulatory approval.',
     },
     products: [
-      { name: 'Hearticellgram-AMI', desc: { zh: '适应症 →急性心肌梗死', en: "Indication → Acute myocardial infarction" } },
-      { name: 'Cartistem', desc: { zh: '适应症 →膝关节软骨损伤', en: 'Indication → Knee cartilage damage' } },
-      { name: 'Cupistem', desc: { zh: '适应症 →克罗恩病瘘管', en: "Indication → Crohn's disease fistulas" } },
-      { name: 'Neuronata-R Inj.', desc: { zh: '适应症 →肌萎缩侧索硬化症（ALS）', en: 'Indication → ALS (Lou Gehrig\'s disease)' } },
+      { name: 'Hearticellgram-AMI', desc: { zh: '适应症 →急性心肌梗死', en: "Indication → Acute myocardial infarction" }, approved: { zh: '2011年7月', en: 'Jul 2011' } },
+      { name: 'Cartistem', desc: { zh: '适应症 →膝关节软骨损伤', en: 'Indication → Knee cartilage damage' }, approved: { zh: '2012年1月', en: 'Jan 2012' } },
+      { name: 'Cupistem', desc: { zh: '适应症 →克罗恩病瘘管', en: "Indication → Crohn's disease fistulas" }, approved: { zh: '2012年1月', en: 'Jan 2012' } },
+      { name: 'Neuronata-R Inj.', desc: { zh: '适应症 →肌萎缩侧索硬化症（ALS）', en: 'Indication → ALS (Lou Gehrig\'s disease)' }, approved: { zh: '2014年7月', en: 'Jul 2014' } },
     ],
   },
 ]

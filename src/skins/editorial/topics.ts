@@ -3,7 +3,7 @@ import type { LocalizedText } from '../../data/bigHealthKeywords'
 import { BIG_HEALTH_KEYWORDS } from '../../data/bigHealthKeywords'
 import { SKIN_AESTHETICS_KEYWORDS, SKIN_AESTHETICS_SECTION } from '../../data/skinAestheticsKeywords'
 import { PLASTIC_SURGERY_KEYWORDS, PLASTIC_SURGERY_SECTION } from '../../data/plasticSurgeryKeywords'
-import { STEM_CELL_KEYWORDS, STEM_CELL_INTRO } from '../../data/stemCellKeywords'
+import { STEM_CELL_KEYWORDS, STEM_CELL_INTRO, APPROVAL_BODY_NOTE } from '../../data/stemCellKeywords'
 import { WOMENS_HEALTH_KEYWORDS } from '../../data/womensHealthKeywords'
 import { MENS_HEALTH_KEYWORDS } from '../../data/mensHealthKeywords'
 import type { LangCode } from '../../data/translations'
@@ -22,6 +22,7 @@ export type Block =
   | { kind: 'note'; text: string[]; tone: 'info' | 'warning' }
   | { kind: 'list'; title?: string; items: string[]; groups?: { label: string; items: string[] }[] }
   | { kind: 'table'; title?: string; head?: [string, string]; rows: [string, string][]; caution?: string[] }
+  | { kind: 'grid'; title?: string; head: string[]; rows: string[][]; caution?: string }
   | { kind: 'figure'; title: string; image?: string; body: string }
   | { kind: 'steps'; title: string; image: string; alt: string; steps: { title: string; body: string }[]; footnote?: string }
   | { kind: 'compare'; title: string; sub?: string; cols: string[]; rows: { label: string; cells: string[] }[] }
@@ -196,7 +197,21 @@ function stemCellTopics(lang: LangCode): Topic[] {
       tagGroups.length > 0 && { kind: 'tags', groups: tagGroups },
       k.footerLine && !(k.image && k.secondaryMedia) && { kind: 'paras', paras: [L(k.footerLine, lang)] },
       k.list && { kind: 'list', items: k.list.map((i) => L(i, lang)) },
-      k.products && { kind: 'table', rows: k.products.map((p) => [p.name, L(p.desc, lang)] as [string, string]) },
+      // 승인 치료제(허가 시기 있음)는 4칸 표 — 치료제 · 적응증 · 허가 시기 · 허가 기관
+      k.products && k.products.every((p) => p.approved) && {
+        kind: 'grid',
+        head: lang === 'en'
+          ? ['Stem Cell Therapy', 'Indication', 'Approved', 'Approved by']
+          : ['干细胞治疗药物', '适应症', '批准时间', '批准机构'],
+        rows: k.products.map((p) => [
+          p.name,
+          L(p.desc, lang).replace(/^(适应症|Indication)\s*→\s*/, ''),
+          L(p.approved, lang),
+          'MFDS', // 허가 당시 KFDA였다는 건 표 아래 각주로
+        ]),
+        caution: L(APPROVAL_BODY_NOTE, lang),
+      },
+      k.products && !k.products.every((p) => p.approved) && { kind: 'table', rows: k.products.map((p) => [p.name, L(p.desc, lang)] as [string, string]) },
       k.hint && { kind: 'note', text: [L(k.hint, lang)], tone: 'info' },
     ]
     return {
