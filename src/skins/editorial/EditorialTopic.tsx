@@ -52,7 +52,21 @@ export default function EditorialTopic() {
         {topic.subtitle && <p className="ed-page-tag">{topic.subtitle}</p>}
       </header>
 
-      {topic.video ? (
+      {topic.heroSplit ? (
+        <figure className="ed-hero-split">
+          <div className="ed-hero-split-row">
+            <span style={{ flexGrow: topic.heroSplit.ratios[0], aspectRatio: String(topic.heroSplit.ratios[0]) }}>
+              <img src={topic.heroSplit.image} alt={topic.title} draggable={false} />
+            </span>
+            <span style={{ flexGrow: topic.heroSplit.ratios[1], aspectRatio: String(topic.heroSplit.ratios[1]) }}>
+              {topic.heroSplit.media.type === 'video'
+                ? <video src={topic.heroSplit.media.src} autoPlay muted loop playsInline />
+                : <img src={topic.heroSplit.media.src} alt="" draggable={false} />}
+            </span>
+          </div>
+          {topic.heroSplit.caption && <figcaption>{topic.heroSplit.caption}</figcaption>}
+        </figure>
+      ) : topic.video ? (
         <span className="image main ed-main-image">
           <video src={topic.video} poster={mainImage} autoPlay muted loop playsInline aria-label={topic.title} />
         </span>

@@ -20,6 +20,9 @@ export interface StemCellKeyword {
       object-fit: contain so product/packaging shots don't get cropped top-bottom
       the way a portrait-cropped real-case photo (CasePhoto, object-fit: cover) does. */
   secondaryMedia?: { type: 'image' | 'video'; src: string }
+  /** kmedispring.com 세부 페이지에서 image+secondaryMedia 두 칸을 본문 아래가 아니라 페이지 맨 위(히어로)에 둔다.
+      값은 두 매체의 가로/세로 비율 — 두 칸 높이를 똑같이 맞추는 데 쓴다. */
+  heroSplitRatios?: [number, number]
   /** Short caption shown above the photo describing what it is. */
   imageCaption?: LocalizedText
   /** Source credit shown under the photo, e.g. hospital name. Not localized (usually a proper noun). */
@@ -63,6 +66,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     },
     image: '/category-tiles/stem-cell/Immuncelllc.png',
     secondaryMedia: { type: 'video', src: '/category-tiles/stem-cell/nkcell.mp4' },
+    heroSplitRatios: [500 / 398, 640 / 448], // Immuncelllc.png 500×398, nkcell.mp4 640×448
     imageCaption: { zh: 'Immuncell-LC® 注射剂 — 由您自身血液培养14天制成的专属治疗药', en: 'Immuncell-LC® Injection — Made From Your Own Blood After 14 Days of Culture' },
     footerLine: { zh: '采血 → 体外培养14天 → 回输体内', en: 'Blood draw → 14-day culture → Infusion' },
     list: [

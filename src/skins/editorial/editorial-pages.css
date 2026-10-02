@@ -215,3 +215,11 @@
   .ed-skin table.ed-schedule td.ed-choice { grid-column: 1 / -1; text-align: left; width: auto; border-top: 0; }
   .ed-skin .ed-choice select { width: 100%; min-width: 0; }
 }
+
+/* 세부 페이지 히어로 두 칸(Immuncell-LC 사진 + NK세포 영상) — 칸마다 매체 비율대로 폭을 나눠 높이가 똑같고, 테두리·배경 없음 */
+.ed-skin .ed-hero-split { margin: 0 0 2.4em; }
+.ed-skin .ed-hero-split-row { display: flex; gap: 14px; align-items: stretch; }
+.ed-skin .ed-hero-split-row > span { flex-basis: 0; min-width: 0; display: block; border-radius: 10px; overflow: hidden; }
+.ed-skin .ed-hero-split-row img,
+.ed-skin .ed-hero-split-row video { width: 100% !important; height: 100% !important; max-width: none; object-fit: cover; display: block; }
+.ed-skin #main .ed-hero-split figcaption { margin-top: .9em; font-size: .85em; color: #7a7f83; text-align: center; }

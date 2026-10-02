@@ -37,6 +37,8 @@ export interface Topic {
   image?: string
   /** 대표 영상 — 있으면 타일·페이지 상단에서 사진 대신 재생(피부 肉毒素 玻尿酸 입술 영상) */
   video?: string
+  /** 페이지 맨 위에 사진·영상 두 칸을 같은 높이로(줄기세포 Immuncell-LC). 있으면 대표 사진 대신 이걸 쓴다. */
+  heroSplit?: { image: string; media: { type: 'image' | 'video'; src: string }; ratios: [number, number]; caption?: string }
   /** 카테고리 페이지 카드용 한두 줄 요약 */
   summary: string
   blocks: Block[]
@@ -175,9 +177,15 @@ function stemCellTopics(lang: LangCode): Topic[] {
       ...(k.pills ? [k.pills.map((p) => L(p, lang))] : []),
       ...(k.pillGroups ?? []).map((g) => g.map((p) => L(p, lang))),
     ]
+    const heroSplit = k.image && k.secondaryMedia && k.heroSplitRatios
+      ? {
+          image: k.image, media: k.secondaryMedia, ratios: k.heroSplitRatios,
+          caption: [L(k.imageCaption, lang), L(k.footerLine, lang)].filter(Boolean).join(' · ') || undefined,
+        }
+      : undefined
     const blocks: (Block | false | undefined)[] = [
       { kind: 'paras', paras: splitLines(body) },
-      k.image && k.secondaryMedia && {
+      !heroSplit && k.image && k.secondaryMedia && {
         kind: 'split', caption: L(k.imageCaption, lang) || undefined, image: k.image, media: k.secondaryMedia,
         footer: L(k.footerLine, lang) || undefined, credit: k.credit,
       },
@@ -192,7 +200,7 @@ function stemCellTopics(lang: LangCode): Topic[] {
       k.hint && { kind: 'note', text: [L(k.hint, lang)], tone: 'info' },
     ]
     return {
-      id: k.id, title: L(k.title, lang), subtitle: L(k.tileSubtitle, lang) || undefined,
+      id: k.id, title: L(k.title, lang), subtitle: L(k.tileSubtitle, lang) || undefined, heroSplit,
       summary: L(k.tileSubtitle, lang) || summarize(body, lang), blocks: blocks.filter(nonEmpty),
     }
   })
