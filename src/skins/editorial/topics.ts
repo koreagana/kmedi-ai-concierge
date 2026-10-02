@@ -39,6 +39,8 @@ export interface Topic {
   /** 대표 영상 — 있으면 타일·페이지 상단에서 사진 대신 재생(피부 肉毒素 玻尿酸 입술 영상) */
   video?: string
   /** 페이지 맨 위에 사진·영상 두 칸을 같은 높이로(줄기세포 Immuncell-LC). 있으면 대표 사진 대신 이걸 쓴다. */
+  /** 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다 */
+  heroImage?: string
   heroSplit?: { image: string; media: { type: 'image' | 'video'; src: string }; ratios: [number, number]; caption?: string }
   /** 카테고리 페이지 카드용 한두 줄 요약 */
   summary: string
@@ -215,7 +217,7 @@ function stemCellTopics(lang: LangCode): Topic[] {
       k.hint && { kind: 'note', text: [L(k.hint, lang)], tone: 'info' },
     ]
     return {
-      id: k.id, title: L(k.title, lang), subtitle: L(k.tileSubtitle, lang) || undefined, heroSplit,
+      id: k.id, title: L(k.title, lang), subtitle: L(k.tileSubtitle, lang) || undefined, heroSplit, heroImage: k.heroImage,
       summary: L(k.tileSubtitle, lang) || summarize(body, lang), blocks: blocks.filter(nonEmpty),
     }
   })

@@ -31,6 +31,8 @@ export interface StemCellKeyword {
   /** kmedispring.com 세부 페이지에서 image+secondaryMedia 두 칸을 본문 아래가 아니라 페이지 맨 위(히어로)에 둔다.
       값은 두 매체의 가로/세로 비율 — 두 칸 높이를 똑같이 맞추는 데 쓴다. */
   heroSplitRatios?: [number, number]
+  /** kmedispring.com 세부 페이지 맨 위 대표 사진(없으면 카테고리 사진). 잘리지 않게 전체를 보여준다. */
+  heroImage?: string
   /** Short caption shown above the photo describing what it is. */
   imageCaption?: LocalizedText
   /** Source credit shown under the photo, e.g. hospital name. Not localized (usually a proper noun). */
@@ -151,6 +153,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     id: 'approved-cell-therapy',
     title: { zh: '韩国获批细胞治疗剂', en: 'Korea-Approved Cell Therapy Drugs' },
     tileSubtitle: { zh: '针对特定疾病的正规细胞治疗', en: 'Licensed Therapy for Specific Conditions' },
+    heroImage: '/category-tiles/stem-cell/approved-cell-therapy-hero.jpg', // 승인 치료제 4종 제품 사진(1997×788)
     body: {
       zh: '韩国已有针对特定疾病正式获批的细胞治疗药物，其中部分产品是全球范围内最早获得监管批准的干细胞治疗药物。',
       en: 'Korea already has cell therapy products formally approved for specific diseases — some of which were among the first stem cell therapies in the world to receive regulatory approval.',

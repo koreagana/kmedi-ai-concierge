@@ -231,3 +231,6 @@
   .ed-skin #main .ed-grid-table th, .ed-skin #main .ed-grid-table td { padding: .6em .5em !important; font-size: .82em !important; }
   .ed-skin #main .ed-grid-table td.ed-table-name { word-break: break-word; }
 }
+
+/* 세부 페이지 전용 대표 사진(예: 승인 치료제 4종) — 제품이 양옆에 있어 자르지 않고 전체를 보여준다 */
+.ed-skin .ed-main-image--full img { max-height: none !important; height: auto !important; object-fit: contain; }

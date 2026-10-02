@@ -66,6 +66,8 @@ export default function EditorialTopic() {
           </div>
           {topic.heroSplit.caption && <figcaption>{topic.heroSplit.caption}</figcaption>}
         </figure>
+      ) : topic.heroImage ? (
+        <span className="image main ed-main-image ed-main-image--full"><img src={topic.heroImage} alt={topic.title} /></span>
       ) : topic.video ? (
         <span className="image main ed-main-image">
           <video src={topic.video} poster={mainImage} autoPlay muted loop playsInline aria-label={topic.title} />
