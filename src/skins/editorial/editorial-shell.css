@@ -32,7 +32,10 @@
 .ed-skin #banner .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .ed-skin #banner .actions li { padding: 0 !important; }
 .ed-skin .ed-hero-media { position: relative; }
-.ed-skin .ed-hero-media video { object-position: center 30% !important; }
+/* 옛 CSS의 height:auto 때문에 영상이 원래 세로 길이로 늘어나 object-position이 안 먹고
+   항상 맨 위(천장)부터 잘려 보였다(아이패드 세로·폰에서 머리카락만 보임). 박스 높이에 맞춰
+   cover로 자르고, 앉은 장면·일어선 장면 모두 인물이 들어오는 40% 지점을 기준으로 한다. */
+.ed-skin .ed-hero-media video { height: 100% !important; object-position: center 40% !important; }
 .ed-skin .ed-sound-btn {
   position: absolute; right: 16px; top: 16px; z-index: 5;
   width: 44px; height: 44px; padding: 0; border-radius: 50%;
