@@ -89,6 +89,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     id: 'skin-regeneration',
     title: { zh: '皮肤再生', en: 'Skin Regeneration' },
     tileSubtitle: { zh: '肤质 · 弹性 · 组织修复', en: 'Texture · Elasticity · Tissue Repair' },
+    heroImage: '/category-tiles/stem-cell/skin-regeneration-hero.jpg', // 자가혈 분리 → 피부 재생 이미지(1997×788)
     body: {
       zh: '通过专用分离设备，从自身血液中提取生长因子等再生相关活性成分，\n可注射于面部改善肤质，也可静脉输注用于全身抗衰管理。',
       en: 'Using dedicated separation equipment, regenerative components such as growth factors are extracted from your own blood —\nthese can be injected into the face to improve skin texture, or given as an IV infusion for whole-body anti-aging management.',
