@@ -391,5 +391,20 @@
     },
     "place": null,
     "logo": null
+  },
+  {
+    "id": "PH-044",
+    "category": "성형외과",
+    "name": {
+      "zh": "Cellis LAB诊所",
+      "en": "Cellis LAB CLINIC",
+      "ko": "셀이즈랩의원"
+    },
+    "city": {
+      "zh": "首尔",
+      "en": "Seoul"
+    },
+    "place": null,
+    "logo": null
   }
 ]

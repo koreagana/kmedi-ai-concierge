@@ -1109,5 +1109,37 @@
     "logo_url": null,
     "status": "active",
     "mou_date": null
+  },
+  {
+    "id": "PH-044",
+    "category": "성형외과",
+    "name": {
+      "ko": "셀이즈랩의원",
+      "zh": "Cellis LAB诊所",
+      "en": "Cellis LAB CLINIC"
+    },
+    "address": {
+      "ko": "서울특별시 서초구 효령로 244, 셀이즈랩의원 1~7층",
+      "zh": "首尔特别市瑞草区孝宁路244号 Cellis LAB诊所 1-7楼",
+      "en": "1-7F, Cellis LAB CLINIC, 244 Hyoryeong-ro, Seocho-gu, Seoul"
+    },
+    "phone": "02-583-2220",
+    "note": "主刀医生：梁桐俊（양동준 Yang Dongjun） · 대표자 박태혁 · 진료 화수금 10-19 / 목 10-21 / 토 10-17, 일·월 휴진 — 2026-10-02 홈페이지 기준",
+    "contact": {
+      "manager": null,
+      "email": null,
+      "phone_direct": null
+    },
+    "website": "https://www.cellis.co.kr/",
+    "description": {
+      "ko": null,
+      "zh": null,
+      "en": null
+    },
+    "intro_page_url": null,
+    "logo_url": null,
+    "status": "pending",
+    "mou_date": null,
+    "show_on_site": true
   }
 ]
