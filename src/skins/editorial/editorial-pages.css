@@ -83,7 +83,7 @@
 .ed-skin .ed-case-grid--3 { grid-template-columns: repeat(3, 1fr); }
 .ed-skin .ed-case-photo, .ed-skin .ed-split-media { display: block; margin: 0 !important; border-radius: 10px; overflow: hidden; background: #f4f6f8; }
 .ed-skin .ed-case-photo img { width: 100%; display: block; user-select: none; -webkit-touch-callout: none; }
-.ed-skin .ed-split-media img, .ed-skin .ed-split-media video { width: 100%; height: 100%; aspect-ratio: 3 / 4; object-fit: contain; display: block; }
+.ed-skin .ed-split-media img, .ed-skin .ed-split-media video { width: 100%; height: 100%; aspect-ratio: 5 / 4; /* 사진들이 가로형(히딩크·면역세포 5:4) — 예전 3:4는 위아래 빈칸이 컸다 */ object-fit: contain; display: block; }
 
 /* 인용·경고·박스 */
 .ed-skin .ed-page blockquote { border-left: 4px solid rgba(0,119,182,.45); background: #f6fafd; padding: 1em 1.3em; margin: 0 0 1.6em; font-style: normal; }
