@@ -151,7 +151,10 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  /* 영상은 세로(9:16)인데 태블릿·작은 PC 창에선 히어로가 가로로 넓어져 위아래가
+     잘린다. top 기준이면 천장만 남고 아나운서 몸이 잘리므로, 인물(화면 35~55%)
+     쪽을 기준으로 자른다. 폰처럼 세로로 긴 화면에선 잘림이 없어 변화 없음. */
+  object-position: center 40%;
   pointer-events: none;
   z-index: 0;
 }
