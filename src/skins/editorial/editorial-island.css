@@ -33,7 +33,20 @@
 /* 메인 인기 시술 팝업(HeroTreatmentSheet) — 자리만 차지하지 않게, 파란 바(10001)·사이드바(10000)보다 위에 */
 .ed-skin .ed-island.ed-sheet-island { padding: 0; }
 .ed-skin .ed-sheet-island .hts-scrim { z-index: 10003; }
-.ed-skin .ed-sheet-island .hts-sheet { z-index: 10004; max-width: 560px; max-height: 86vh; }
+/* 위쪽에 바깥 공간을 남겨 둔다(바깥 탭으로도 닫히게) */
+.ed-skin .ed-sheet-island .hts-sheet { z-index: 10004; max-width: 600px; max-height: 78vh; max-height: 78dvh; }
+/* 40~70대 고객용 — 폰·패드에서도 편히 읽히게 본문 글씨를 크게 */
+.ed-skin .ed-sheet-island .hts-body { padding-left: 24px; padding-right: 24px; }
+.ed-skin .ed-sheet-island .hts-title { font-size: 24px; padding-right: 40px; margin-bottom: 8px; }
+.ed-skin .ed-sheet-island .hts-definition { font-size: 17px; line-height: 1.7; color: #4a5a6a; }
+.ed-skin .ed-sheet-island .hts-field-label { font-size: 15px; padding: 4px 12px; margin-bottom: 8px; }
+.ed-skin .ed-sheet-island .hts-field-value,
+.ed-skin .ed-sheet-island .hts-device-note,
+.ed-skin .ed-sheet-island .hts-exception-note,
+.ed-skin .ed-sheet-island .hts-noprice-note { font-size: 17px; line-height: 1.75; }
+.ed-skin .ed-sheet-island .hts-fields { gap: 20px; }
+.ed-skin .ed-sheet-island .hts-cta { font-size: 18px; padding: 16px 20px; }
+.ed-skin .ed-sheet-island .hts-footer-note { font-size: 14px; }
 /* 떠 있는 상담 버튼(z-index 최대값)이 팝업 버튼을 가리지 않게, 팝업이 열린 동안만 숨김 */
 body.ed-sheet-open .fcb-root { opacity: 0 !important; pointer-events: none !important; }
 

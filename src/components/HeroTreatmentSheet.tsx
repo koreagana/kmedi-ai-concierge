@@ -65,9 +65,13 @@ export default function HeroTreatmentSheet({ info, onClose }: Props) {
             exit={{ x: '-50%', y: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
           >
-            <button className="hts-handle-btn" onClick={onClose} aria-label="close">
-              <span className="hts-handle" />
-            </button>
+            <div className="hts-top">
+              <button className="hts-handle-btn" onClick={onClose} aria-label="close">
+                <span className="hts-handle" />
+              </button>
+              {/* 바깥을 눌러야 닫힌다는 걸 모르는 분이 많아 눈에 보이는 닫기 버튼을 둔다 */}
+              <button className="hts-close" onClick={onClose} aria-label={isEn ? 'Close' : '关闭'}>×</button>
+            </div>
 
             <div className="hts-body">
               <h3 className="hts-title">{title}</h3>

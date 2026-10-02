@@ -128,12 +128,15 @@ export default function EditorialHome() {
 
         <div className="ed-hot">
           <span className="ed-hot-label">{t.heroHotLabel}</span>
-          {t.heroTreatmentChips.map((chip) => {
-            const info = getHeroTreatmentByChip(chip)
-            return info
-              ? <button key={chip} type="button" className="ed-chip" onClick={() => setActiveSheet(info)}>{chip}</button>
-              : <span key={chip} className="ed-chip ed-chip--static">{chip}</span>
-          })}
+          {/* 칩을 한 칸에 묶어 둘째 줄이 첫 칩 왼쪽 끝에 맞춰 내려가게 */}
+          <div className="ed-hot-chips">
+            {t.heroTreatmentChips.map((chip) => {
+              const info = getHeroTreatmentByChip(chip)
+              return info
+                ? <button key={chip} type="button" className="ed-chip" onClick={() => setActiveSheet(info)}>{chip}</button>
+                : <span key={chip} className="ed-chip ed-chip--static">{chip}</span>
+            })}
+          </div>
         </div>
         {/* 시술 팝업은 ai-kmedi 컴포넌트 그대로 — Editorial 본문 CSS가 글씨를 키워 잘리지 않게 island로 감싼다 */}
         <div className="ed-island ed-sheet-island">

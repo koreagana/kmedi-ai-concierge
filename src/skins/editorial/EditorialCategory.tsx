@@ -43,7 +43,12 @@ export default function EditorialCategory() {
         <p className="ed-page-tag">{tag}</p>
       </header>
 
-      {cat.heroImage && (
+      {/* 皮肤医美만 전후 변화 영상(사용자가 아끼는 영상) — 나머지는 사진. 영상은 포인트로만 쓴다 */}
+      {cat.id === 'skin-beauty' && cat.heroVideo ? (
+        <span className="image main ed-main-image">
+          <video src={cat.heroVideo} poster={cat.heroImage} autoPlay muted loop playsInline aria-label={name} />
+        </span>
+      ) : cat.heroImage && (
         <span className="image main ed-main-image"><img src={cat.heroImage} alt={name} /></span>
       )}
 

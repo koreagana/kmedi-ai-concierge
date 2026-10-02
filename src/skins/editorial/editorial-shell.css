@@ -47,17 +47,23 @@
 .ed-skin .ed-sound-btn .icon::before { color: #fff; }
 
 /* ── 인기 시술 칩 ── */
-.ed-skin .ed-hot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: -0.5em 0 2.5em; }
-.ed-skin .ed-hot-label { font-family: var(--brand-serif); font-weight: 600; color: #1F4E79; margin-right: 6px; }
+/* 라벨(주황 바탕·흰 글씨) 오른쪽 한 칸에 칩을 몰아 넣어, 둘째 줄이 첫 칩 왼쪽 끝에 맞춰지게 한다 */
+.ed-skin .ed-hot { display: flex; align-items: flex-start; gap: 12px; margin: -0.5em 0 2.5em; }
+.ed-skin .ed-hot-chips { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.ed-skin .ed-hot-label {
+  flex: none; padding: 6px 16px; border-radius: 999px; line-height: 1.4;
+  background: #E8650A; color: #fff; border: 1px solid #E8650A;
+  font-family: var(--ui-sans); font-size: 15px; font-weight: 700;
+}
 .ed-skin .ed-chip {
   height: auto !important; line-height: 1.4 !important;
   padding: 6px 14px !important; border-radius: 999px !important;
-  border: 1px solid rgba(0,119,182,.35) !important; background: #fff !important;
-  box-shadow: none !important; color: #0077B6 !important;
-  font-family: var(--ui-sans) !important; font-size: 14px !important; font-weight: 500 !important;
+  border: 1px solid #E8650A !important; background: #fff !important;
+  box-shadow: none !important; color: #D45A06 !important;
+  font-family: var(--ui-sans) !important; font-size: 15px !important; font-weight: 600 !important;
   letter-spacing: 0 !important; text-transform: none !important; cursor: pointer;
 }
-.ed-skin .ed-chip:hover { background: rgba(0,119,182,.07) !important; }
+.ed-skin .ed-chip:hover { background: #E8650A !important; color: #fff !important; }
 .ed-skin .ed-chip--static { cursor: default; }
 
 /* ── 3열 posts의 마지막 줄 채우기 (1681px 이상, Editorial 원본은 항목 수가 3의 배수라고 가정) ──
