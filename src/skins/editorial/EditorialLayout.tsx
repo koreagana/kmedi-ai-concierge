@@ -419,15 +419,6 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
               </ul>
             </nav>
 
-            <section className="menu-extra">
-              {/* 개인정보 한 줄 + 처리방침 링크 (사용자 제안) */}
-              <p className="ed-privacy-note">
-                {isZh ? '汉江春天重视您的个人信息。' : 'K-MediSpring values your privacy.'}
-                <br />
-                <a href={langPath(lang, '/privacy')}>{t.footerPrivacyLink} ›</a>
-              </p>
-            </section>
-
             <section>
               <header className="major">
                 <h3>{isZh ? '联系方式' : 'Contact'}</h3>
@@ -462,6 +453,13 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                 상호: 한강애봄 | 대표: 이가나<br />
                 사업자등록번호: 829-21-01856<br />
                 주소: 서울특별시 성북구 삼양로 29, 3층 11호
+              </p>
+              {/* 개인정보 한 줄 + 처리방침 링크 — 메뉴 끝에 매달려 보여서 회사 정보 아래로 옮김(사용자 결정 2026-10-02).
+                  모든 페이지 사이드바에 있으므로 "언제든 쉽게 확인" 요건은 그대로 */}
+              <p className="ed-privacy-note">
+                {isZh ? '汉江春天重视您的个人信息。' : 'K-MediSpring values your privacy.'}
+                <br />
+                <a href={langPath(lang, '/privacy')}>{t.footerPrivacyLink} ›</a>
               </p>
               {/* HTML5 UP Editorial 템플릿(CC BY 3.0) 출처 표기 — 라이선스 조건이라 지우면 안 됨 */}
               <p className="ed-credit">Design: HTML5 UP</p>
