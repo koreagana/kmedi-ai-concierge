@@ -36,7 +36,7 @@ const BANNER_INTRO: Record<'zh' | 'en', string[]> = {
 }
 
 export default function EditorialHome() {
-  const { lang, goToCategory, goToPackage, goToQuote, goToSurgery, goToPartners } = useApp()
+  const { lang, goToCategory, goToPackage, goToQuote, goToPartners } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
 
@@ -94,9 +94,7 @@ export default function EditorialHome() {
             <li>
               <a href={langPath(lang, `/quote`)} className="button primary" onClick={go(() => goToQuote())}>{t.quoteBtnTitle}</a>
             </li>
-            <li>
-              <a href={langPath(lang, `/surgery-price`)} className="button" onClick={go(goToSurgery)}>{t.surgeryBtnTitle}</a>
-            </li>
+            {/* 整形手术费用参考 버튼은 뺌 — 사이드바 外籍患者引进机构资质 메뉴에 이미 있음(사용자 결정 2026-10-02) */}
           </ul>
         </div>
         <span className="image object hero-media ed-hero-media">
