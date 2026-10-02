@@ -43,8 +43,8 @@ export default function EditorialCategory() {
         <p className="ed-page-tag">{tag}</p>
       </header>
 
-      {/* 皮肤医美만 전후 변화 영상(사용자가 아끼는 영상) — 나머지는 사진. 영상은 포인트로만 쓴다 */}
-      {cat.id === 'skin-beauty' && cat.heroVideo ? (
+      {/* 皮肤医美(전후 변화 영상, 사용자가 아끼는 영상)·整形医美만 영상 — 나머지는 사진. 영상은 포인트로만 쓴다 */}
+      {(cat.id === 'skin-beauty' || cat.id === 'plastic-surgery') && cat.heroVideo ? (
         <span className="image main ed-main-image">
           <video src={cat.heroVideo} poster={cat.heroImage} autoPlay muted loop playsInline aria-label={name} />
         </span>
@@ -73,7 +73,9 @@ export default function EditorialCategory() {
               const link = edLink(langPath(lang, `/${cat.id}/${tp.id}`), () => goToTopic(cat.id, tp.id))
               return (
                 <article key={tp.id}>
-                  {tp.image && (
+                  {tp.video ? (
+                    <a {...link} className="image"><video src={tp.video} poster={tp.image} autoPlay muted loop playsInline aria-label={tp.title} /></a>
+                  ) : tp.image && (
                     <a {...link} className="image"><img src={tp.image} alt={tp.title} loading="lazy" /></a>
                   )}
                   <h3>{tp.title}</h3>

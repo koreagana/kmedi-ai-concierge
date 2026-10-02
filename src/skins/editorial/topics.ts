@@ -35,6 +35,8 @@ export interface Topic {
   subtitle?: string
   /** 페이지 대표 사진 (타일 사진) — 없으면 카테고리 대표 사진을 쓴다 */
   image?: string
+  /** 대표 영상 — 있으면 타일·페이지 상단에서 사진 대신 재생(피부 肉毒素 玻尿酸 입술 영상) */
+  video?: string
   /** 카테고리 페이지 카드용 한두 줄 요약 */
   summary: string
   blocks: Block[]
@@ -111,7 +113,7 @@ function skinTopics(lang: LangCode): Topic[] {
       },
       k.note && { kind: 'note', text: splitParas(L(k.note, lang)), tone: k.noteStyle === 'warning' ? 'warning' : 'info' },
     ]
-    return { id: k.id, title: L(k.title, lang), image: k.image, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
+    return { id: k.id, title: L(k.title, lang), image: k.image, video: k.video, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
   })
 }
 

@@ -93,8 +93,8 @@
 
 /* ── 카테고리 posts ── */
 .ed-skin .posts article .image { border-radius: 10px; overflow: hidden; margin-bottom: 1.6em !important; }
-.ed-skin .posts article .image img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; transition: transform .4s ease; }
-.ed-skin .posts article .image:hover img { transform: scale(1.04); }
+.ed-skin .posts article .image img, .ed-skin .posts article .image video { display: block; height: auto; aspect-ratio: 16 / 10; object-fit: cover; width: 100%; transition: transform .4s ease; }
+.ed-skin .posts article .image:hover img, .ed-skin .posts article .image:hover video { transform: scale(1.04); }
 .ed-skin #main .posts .ed-post-tag { color: #0077B6 !important; font-size: .88em !important; margin-bottom: .6em; }
 
 /* ── AI 상담사: 마름모 아이콘 대신 원형 사진 ── */

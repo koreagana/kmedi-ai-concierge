@@ -52,7 +52,11 @@ export default function EditorialTopic() {
         {topic.subtitle && <p className="ed-page-tag">{topic.subtitle}</p>}
       </header>
 
-      {mainImage && (
+      {topic.video ? (
+        <span className="image main ed-main-image">
+          <video src={topic.video} poster={mainImage} autoPlay muted loop playsInline aria-label={topic.title} />
+        </span>
+      ) : mainImage && (
         <span className="image main ed-main-image"><img src={mainImage} alt={topic.title} /></span>
       )}
 
