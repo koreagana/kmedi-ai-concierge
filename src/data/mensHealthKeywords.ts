@@ -73,12 +73,12 @@ export const MENS_HEALTH_SECTION = {
     en: "Men's Health Center",
   } as LocalizedText,
   subCopy: {
-    zh: '男性激素・活力管理 · 免疫力・抗衰老 · 生育力・精子健康 · 前列腺・泌尿健康',
-    en: 'Hormones & Vitality · Immunity & Anti-Aging · Fertility & Sperm Health · Prostate & Urological Health',
+    zh: '男性激素・活力管理 · 免疫力・抗衰老 · 男性功能・私密 · 前列腺・泌尿健康',
+    en: 'Hormones & Vitality · Immunity & Anti-Aging · Sexual Function & Intimate Care · Prostate & Urological Health',
   } as LocalizedText,
   desc: {
-    zh: '男性健康管理是许多来韩医疗客户在健康检查、皮肤或抗衰老项目之外，可以一并了解的方向。可根据年龄、生活习惯、疲劳程度和检查需求，选择适合的激素、免疫、生育力或泌尿健康咨询方向。',
-    en: "Men's health management is an area many medical tourism clients explore alongside health checkups, skin treatments, or anti-aging programs during their visit to Korea. Depending on age, lifestyle, fatigue level, and testing needs, you can choose a hormone, immunity, fertility, or urological health consultation direction that fits you.",
+    zh: '男性健康管理是许多来韩医疗客户在健康检查、皮肤或抗衰老项目之外，可以一并了解的方向。可根据年龄、生活习惯、疲劳程度和检查需求，选择适合的激素、免疫、男性功能或泌尿健康咨询方向。',
+    en: "Men's health management is an area many medical tourism clients explore alongside health checkups, skin treatments, or anti-aging programs during their visit to Korea. Depending on age, lifestyle, fatigue level, and testing needs, you can choose a hormone, immunity, sexual function, or urological health consultation direction that fits you.",
   } as LocalizedText,
 }
 
@@ -140,26 +140,28 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     docKeys: ['functionalIntake', 'healthCheckupPrep', 'bloodTestPrep'],
   },
   {
-    id: 'male-fertility-sperm-health',
+    // 2026-10-02 男性生育力 칸을 정력 쪽(확대·조루·발기부전)으로 바꿈 — 실제 문의가 들어온 의료관광 포인트.
+    // 의료광고 규정상 효과 단정·과장 표현·병원 고유 상품명은 쓰지 않는다. 생식력은 한 줄로만 남김.
+    id: 'male-function-intimate',
     image: '/category-tiles/man/male-fertility-sperm-health.png',
     title: {
-      zh: '男性生育力',
-      en: 'Male Fertility & Sperm Health',
+      zh: '男性功能·私密',
+      en: "Men's Sexual Function & Intimate Care",
     },
     description: {
-      zh: '男性生育力和精子健康咨询主要用于整理备孕计划、既往精液检查结果、精索静脉曲张相关病史等问题。男性因素也是备孕和不孕咨询中重要的一部分。',
-      en: 'Male fertility and sperm health consultation helps organize pregnancy planning, previous semen analysis results, and varicocele-related history. Male factors are an important part of fertility planning and infertility consultation.',
+      zh: '男性功能与私密咨询，主要针对勃起功能下降、早泄、私密部位外观（增大・增粗）等男性在意却不方便开口的问题。韩国泌尿外科在这一领域有手术与非手术多种方案，可先整理症状和期望，再由专科医生面诊确认适合的方式。',
+      en: 'Sexual function and intimate care consultation covers concerns many men care about but find hard to bring up — weaker erections, premature ejaculation, and the size or girth of the intimate area. Korean urology clinics offer both surgical and non-surgical options in this field; you can organize your symptoms and goals first, then a specialist will confirm the right approach in person.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '精子健康相关检查', en: 'Semen analysis / sperm health testing' },
-      { zh: '男性不孕相关咨询', en: 'Male infertility consultation' },
-      { zh: '精索静脉曲张相关咨询', en: 'Varicocele-related consultation' },
-      { zh: '备孕前男性健康管理', en: "Pre-pregnancy men's health management" },
+      { zh: '男性私密整形咨询（增大・增粗等）', en: 'Male intimate surgery consultation (enlargement, girth, etc.)' },
+      { zh: '早泄相关咨询（手术・非手术方案）', en: 'Premature ejaculation consultation (surgical & non-surgical options)' },
+      { zh: '勃起功能障碍（ED）检查与治疗咨询', en: 'Erectile dysfunction (ED) testing & treatment consultation' },
+      { zh: '男性生育力・精液检查', en: 'Male fertility & semen analysis' },
     ],
     note: {
-      zh: '男性生育力需要与女性因素一起评估。精液检查结果可能受检查条件、禁欲时间和身体状态影响，具体判断需要由泌尿医学或生殖医学专业医生进行。',
-      en: 'Male fertility should be evaluated together with female factors. Semen analysis results can be affected by test conditions, abstinence period, and health status. Detailed interpretation must be done by a urology or reproductive medicine specialist.',
+      zh: '手术方式、效果和恢复期因人而异，是否适合需由泌尿外科专科医生面诊判断。咨询内容全程保密。',
+      en: 'Methods, results, and recovery vary from person to person; a urology specialist decides suitability in person. All consultations are confidential.',
     },
     docKeys: ['functionalIntake', 'healthCheckupPrep'],
   },

@@ -276,8 +276,8 @@ We'll then connect you with a specialized women's medical institution.`,
     emoji: '💪',
     heroImage: '/category-hero/mens-health.jpg',
     heroVideo: '/category-hero/mens-health.mp4',
-    tagZh: '精力体力 · 脱发 · 前列腺代谢',
-    tagEn: 'Energy/Vitality · Hair Loss · Prostate/Metabolism',
+    tagZh: '激素活力 · 免疫抗衰 · 男性功能 · 前列腺',
+    tagEn: 'Vitality · Immunity · Sexual Function · Prostate',
     scriptFullZh: `您好，这里是男性健康中心咨询区。
 
 男性健康不只是某一个单独的症状。
