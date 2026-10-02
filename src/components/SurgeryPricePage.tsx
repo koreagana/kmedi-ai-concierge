@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useApp } from '../contexts/AppContext'
-import { SURGERY_GROUPS, SURGERY_SOURCE, type SurgeryItem } from '../data/surgeryPrices'
+import { SURGERY_GROUPS, type SurgeryItem } from '../data/surgeryPrices'
 import { WECHAT_BIZ_URL, getWhatsappUrl } from '../data/contacts'
 import './SurgeryPricePage.css'
 
-/* 성형 수가는 「만원 · VAT 포함 · 원셀 단독」 기준이라 인기시술 견적과 섞지 않는다.
+/* 성형 수가는 「만원 · 원셀 단독」 기준이라(화면 표기는 2026-10-02부터 「不含增值税」 — 사용자 결정) 인기시술 견적과 섞지 않는다.
    비교 대상이 없으므로 합산기가 아니라 읽는 가격표로 구성했다.
    환율은 인기시술 견적과 동일 기준(2026-09-07)을 쓴다. */
 const KRW_PER_CNY = 204
@@ -29,35 +29,38 @@ const COPY = {
   zh: {
     back: '← 返回首页',
     title: '韩国整形手术价格表',
-    sub: `${SURGERY_SOURCE.hospitalZh} · ${SURGERY_SOURCE.asOfZh}`,
-    basis: SURGERY_SOURCE.basisZh,
+    // 2026-10-02 사용자 요청: 병원명·증치세 문구 삭제, 하단 안내는 사용자가 준 5줄
+    sub: '2026年最新参考价格（参考用）',
+    basis: '单位：万韩元（不含增值税）',
     fx: '参考汇率 2026年9月',
     recovery: '恢复期',
     addOn: '追加项',
     from: '起',
     consult: '免费咨询 · 获取精准报价',
     notes: [
-      '以上为外国患者适用价格，已含10%增值税。',
+      '以上价格仅供参考，各医院的价格会因个人条件、所用设备和药物等多种因素而有所不同。',
       '手术费用会根据个人条件、难度与麻醉方式而有所差异。',
       '最终费用以面诊后的正式报价为准。',
       '实际费用会根据医院、医生、手术难度及个人情况有所不同，以上价格仅供参考。',
+      '详细价格将在咨询时为您说明。',
     ],
   },
   en: {
     back: '← Back to Home',
     title: 'Korea Plastic Surgery Price List',
-    sub: `Onecell Plastic Surgery · 2026 latest reference pricing`,
-    basis: '10% VAT included · rates for international patients',
+    sub: '2026 latest reference pricing (for reference only)',
+    basis: 'Unit: 10,000 KRW (VAT not included)',
     fx: 'Rate as of September 2026',
     recovery: 'Downtime',
     addOn: 'Add-on',
     from: 'from',
     consult: 'Get an exact quote · Free consultation',
     notes: [
-      'These are the rates applied to international patients, with 10% VAT included.',
+      'These prices are for reference only. Prices at every hospital vary with many factors, including your condition and the devices and medications used.',
       'Surgical fees shift with your anatomy, the complexity of the case, and the type of anaesthesia.',
       'Your price is confirmed in the formal quote issued after an in-person consultation.',
       'Actual costs vary by hospital, surgeon, case complexity and individual condition — the prices above are for reference only.',
+      'We will explain the detailed pricing during your consultation.',
     ],
   },
 }
@@ -136,9 +139,11 @@ export default function SurgeryPricePage() {
       })}
 
       <div className="sg-foot">
-        <ul>
-          {c.notes.map((n, i) => <li key={i}>{n}</li>)}
-        </ul>
+        {c.notes.length > 0 && (
+          <ul>
+            {c.notes.map((n, i) => <li key={i}>{n}</li>)}
+          </ul>
+        )}
         <span className="sg-fx">{c.fx}</span>
         <button
           className="sg-consult"
