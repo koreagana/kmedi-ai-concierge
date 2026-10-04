@@ -35,7 +35,8 @@ export const categories: Category[] = [
     zh: '皮肤医美',
     en: 'Skin & Aesthetics',
     emoji: '✨',
-    heroImage: '/category-hero/skin-beauty.jpg',
+    // 포스터는 영상 마지막 '애프터' 프레임 — 첫 프레임(처진 노년 얼굴)이 정지 사진으로 보이지 않게
+    heroImage: '/category-hero/skin-beauty-after.jpg',
     heroVideo: '/category-hero/skin-beauty.mp4',
     tagZh: '皮肤提升 · 毛孔色斑 · 抗衰外观',
     tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',

@@ -133,7 +133,7 @@
 .ed-skin #sidebar .ed-sb-footer { margin: 2.4em 0 1em; padding-top: 1.4em; border-top: 1px solid rgba(210,215,217,.9); }
 .ed-skin #sidebar .ed-sb-footer .ed-sb-logo-k { display: block; height: 26px !important; width: auto !important; max-width: none !important; margin: 0 0 .8em -4px; opacity: .85; }
 .ed-skin #sidebar .ed-sb-footer p { margin: 0 0 .7em; font-size: .72em; line-height: 1.75; color: #8a9096; font-family: var(--ui-sans); }
-.ed-skin #sidebar .ed-sb-footer p.ed-credit { font-size: 9px; color: #b3b8bc; letter-spacing: .04em; margin: 1em 0 .3em; }
+.ed-skin #sidebar .ed-sb-footer p.ed-credit { font-size: 9px; color: #e2e5e8; letter-spacing: .04em; margin: 1em 0 .3em; }
 .ed-skin #sidebar .ed-sb-footer .ed-admin-link { font-size: 8px; color: rgba(0,0,0,.08) !important; text-decoration: none; border: 0; }
 /* 개인정보처리방침 링크 — 회사 정보 아래, 회색 작은 글씨들 사이에서도 눈에 띄게(굵게·브랜드색) */
 .ed-skin #sidebar .ed-sb-footer p.ed-privacy-note { margin: 1em 0 .9em; font-size: .78em; color: #6b7175; }

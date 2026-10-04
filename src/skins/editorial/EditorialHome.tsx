@@ -145,7 +145,10 @@ export default function EditorialHome() {
           {categories.map((c) => (
             <article key={c.id}>
               <a href={catHref(c)} className="image" onClick={go(catGo(c))}>
-                <img src={c.heroImage ?? PACKAGE_IMAGE} alt={isZh ? c.zh : c.en} loading="lazy" />
+                {/* 皮肤医美는 전후 변화 영상이 핵심이라 카드에서도 영상으로 (다른 카드는 사진 유지) */}
+                {c.id === 'skin-beauty' && c.heroVideo
+                  ? <video src={c.heroVideo} poster={c.heroImage} autoPlay muted loop playsInline aria-label={isZh ? c.zh : c.en} />
+                  : <img src={c.heroImage ?? PACKAGE_IMAGE} alt={isZh ? c.zh : c.en} loading="lazy" />}
               </a>
               <h3>{isZh ? c.zh : c.en}</h3>
               <p className="ed-post-tag">{isZh ? c.tagZh : c.tagEn}</p>
