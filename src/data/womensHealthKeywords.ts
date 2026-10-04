@@ -145,6 +145,8 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'womens-intimate-health',
+    // 여성 골반 옆 단면 3D 해부도 — 질 벽 근육층·골반저근(빛나는 부분) 지지 구조 설명, 비노출 일러스트
+    heroImage: '/category-tiles/women/womens-intimate-health-hero.jpg',
     image: '/category-tiles/women/womens-intimate-health.jpg',
     title: {
       zh: '女性私密',
