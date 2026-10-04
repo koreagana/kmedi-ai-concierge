@@ -7,6 +7,13 @@ import { translations } from '../../data/translations'
 import { edLink } from './edLink'
 import { getTopics, type Block } from './topics'
 
+/** 정사각 전신·반신 사진이 PC 가로 틀(최대 440px)에서 눈 위·손이 잘리는 항목 — 틀을 560px로 높이고
+    얼굴이 들어오는 위치를 지정한다(폰은 틀이 거의 정사각이라 영향 없음). */
+const HERO_CROP: Record<string, string> = {
+  'gut-health': 'center 15%',           // 얼굴 ~ 배 위에 얹은 손
+  'metabolic-management': 'center 0%',  // 얼굴 ~ 허리 (체중계가 있는 발밑은 틀에 다 안 들어감)
+}
+
 /** 세부 항목 페이지 (/zh/skin-beauty/skin-lifting) — HTML5 UP Editorial Generic + Elements 스타일.
     제목·사진·짧은 문단 뒤로 목록(ul), 표(table.alt), 그림(image fit), 인용(blockquote),
     박스(box)를 굵은 구분선(hr.major)으로 나눠 읽히게 한다. 맨 아래는 이전/다음 항목. */
@@ -75,7 +82,9 @@ export default function EditorialTopic() {
           <video src={topic.video} poster={mainImage} autoPlay muted loop playsInline aria-label={topic.title} />
         </span>
       ) : mainImage && (
-        <span className="image main ed-main-image"><img src={mainImage} alt={topic.title} /></span>
+        <span className={`image main ed-main-image${HERO_CROP[topic.id] ? ' ed-main-image--tall' : ''}`}>
+          <img src={mainImage} alt={topic.title} style={HERO_CROP[topic.id] ? { objectPosition: HERO_CROP[topic.id] } : undefined} />
+        </span>
       )}
 
       {topic.blocks.map((b, i) => (
