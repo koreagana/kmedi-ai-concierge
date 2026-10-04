@@ -225,7 +225,7 @@ function stemCellTopics(lang: LangCode): Topic[] {
 }
 
 type SimpleKeyword = {
-  id: string; title: LocalizedText; image?: string; description: LocalizedText
+  id: string; title: LocalizedText; image?: string; heroImage?: string; description: LocalizedText
   directionsLabel: LocalizedText; directions: LocalizedText[]; note: LocalizedText; noteStyle?: 'info' | 'warning'
 }
 function simpleTopics(list: SimpleKeyword[], lang: LangCode): Topic[] {
@@ -236,7 +236,7 @@ function simpleTopics(list: SimpleKeyword[], lang: LangCode): Topic[] {
       { kind: 'list', title: L(k.directionsLabel, lang), items: k.directions.map((d) => L(d, lang)) },
       L(k.note, lang) && { kind: 'note', text: splitParas(L(k.note, lang)), tone: k.noteStyle === 'warning' ? 'warning' : 'info' },
     ]
-    return { id: k.id, title: L(k.title, lang), image: k.image, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
+    return { id: k.id, title: L(k.title, lang), image: k.image, heroImage: k.heroImage, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
   })
 }
 

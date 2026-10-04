@@ -53,6 +53,8 @@ export interface MensHealthKeyword {
   title: LocalizedText
   /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
   image?: string
+  /** kmedispring.com 세부 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다. */
+  heroImage?: string
   description: LocalizedText
   directionsLabel: LocalizedText
   directions: BigHealthBullet[]
@@ -143,6 +145,8 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     // 2026-10-02 男性生育力 칸을 정력 쪽(확대·조루·발기부전)으로 바꿈 — 실제 문의가 들어온 의료관광 포인트.
     // 의료광고 규정상 효과 단정·과장 표현·병원 고유 상품명은 쓰지 않는다. 생식력은 한 줄로만 남김.
     id: 'male-function-intimate',
+    // 음경 가로 단면 3D 해부도 — 증대 이식층(금색) 위치 설명, 중국어 설명선 이름 포함(1996×788)
+    heroImage: '/category-tiles/man/male-function-intimate-hero.jpg',
     image: '/category-tiles/man/male-fertility-sperm-health.jpg',
     title: {
       zh: '男性功能·私密',

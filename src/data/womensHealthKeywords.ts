@@ -53,6 +53,8 @@ export interface WomensHealthKeyword {
   title: LocalizedText
   /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
   image?: string
+  /** kmedispring.com 세부 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다. */
+  heroImage?: string
   /** Gradient tone to use when `image` is omitted (stem-cell page palette). Defaults to 'pink'. */
   tileGradient?: 'pink' | 'purple' | 'mint'
   description: LocalizedText
