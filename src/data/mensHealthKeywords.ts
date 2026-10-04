@@ -149,6 +149,10 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     id: 'male-function-intimate',
     // 음경 가로 단면 3D 해부도 — 증대 이식층(금색) 위치 설명, 중국어 설명선 이름 포함(1996×788)
     heroImage: '/category-tiles/man/male-function-intimate-hero.jpg',
+    heroCaption: {
+      zh: '阴茎横截面示意图 · 金色为增粗手术的植入层，位于皮下组织与海绵体外层之间',
+      en: 'Cross-section illustration of the penis · The gold layer shows where girth-enhancement material is placed, between the subcutaneous tissue and the outer layer of the erectile chambers',
+    },
     image: '/category-tiles/man/male-fertility-sperm-health.jpg',
     title: {
       zh: '男性功能·私密',
