@@ -55,6 +55,8 @@ export interface MensHealthKeyword {
   image?: string
   /** kmedispring.com 세부 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다. */
   heroImage?: string
+  /** heroImage 아래 한 줄 설명 */
+  heroCaption?: LocalizedText
   description: LocalizedText
   directionsLabel: LocalizedText
   directions: BigHealthBullet[]

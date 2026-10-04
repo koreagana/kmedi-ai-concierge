@@ -76,7 +76,10 @@ export default function EditorialTopic() {
           {topic.heroSplit.credit && <p className="ed-small ed-hero-split-credit">{topic.heroSplit.credit}</p>}
         </figure>
       ) : topic.heroImage ? (
-        <span className="image main ed-main-image ed-main-image--full"><img src={topic.heroImage} alt={topic.title} /></span>
+        <>
+          <span className={`image main ed-main-image ed-main-image--full${topic.heroCaption ? ' ed-main-image--captioned' : ''}`}><img src={topic.heroImage} alt={topic.heroCaption ?? topic.title} /></span>
+          {topic.heroCaption && <p className="ed-hero-caption">{topic.heroCaption}</p>}
+        </>
       ) : topic.video ? (
         <span className="image main ed-main-image">
           <video src={topic.video} poster={mainImage} autoPlay muted loop playsInline aria-label={topic.title} />

@@ -41,6 +41,8 @@ export interface Topic {
   /** 페이지 맨 위에 사진·영상 두 칸을 같은 높이로(줄기세포 Immuncell-LC). 있으면 대표 사진 대신 이걸 쓴다. */
   /** 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다 */
   heroImage?: string
+  /** heroImage 아래 한 줄 설명 */
+  heroCaption?: string
   heroSplit?: { image: string; media: { type: 'image' | 'video'; src: string }; ratios: [number, number]; caption?: string; credit?: string }
   /** 카테고리 페이지 카드용 한두 줄 요약 */
   summary: string
@@ -225,7 +227,7 @@ function stemCellTopics(lang: LangCode): Topic[] {
 }
 
 type SimpleKeyword = {
-  id: string; title: LocalizedText; image?: string; heroImage?: string; description: LocalizedText
+  id: string; title: LocalizedText; image?: string; heroImage?: string; heroCaption?: LocalizedText; description: LocalizedText
   directionsLabel: LocalizedText; directions: LocalizedText[]; note: LocalizedText; noteStyle?: 'info' | 'warning'
 }
 function simpleTopics(list: SimpleKeyword[], lang: LangCode): Topic[] {
@@ -236,7 +238,7 @@ function simpleTopics(list: SimpleKeyword[], lang: LangCode): Topic[] {
       { kind: 'list', title: L(k.directionsLabel, lang), items: k.directions.map((d) => L(d, lang)) },
       L(k.note, lang) && { kind: 'note', text: splitParas(L(k.note, lang)), tone: k.noteStyle === 'warning' ? 'warning' : 'info' },
     ]
-    return { id: k.id, title: L(k.title, lang), image: k.image, heroImage: k.heroImage, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
+    return { id: k.id, title: L(k.title, lang), image: k.image, heroImage: k.heroImage, heroCaption: L(k.heroCaption, lang) || undefined, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
   })
 }
 

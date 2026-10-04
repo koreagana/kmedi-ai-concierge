@@ -55,6 +55,8 @@ export interface WomensHealthKeyword {
   image?: string
   /** kmedispring.com 세부 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다. */
   heroImage?: string
+  /** heroImage 아래 한 줄 설명 */
+  heroCaption?: LocalizedText
   /** Gradient tone to use when `image` is omitted (stem-cell page palette). Defaults to 'pink'. */
   tileGradient?: 'pink' | 'purple' | 'mint'
   description: LocalizedText
@@ -147,6 +149,10 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
     id: 'womens-intimate-health',
     // 여성 골반 옆 단면 3D 해부도 — 질 벽 근육층·골반저근(빛나는 부분) 지지 구조 설명, 비노출 일러스트
     heroImage: '/category-tiles/women/womens-intimate-health-hero.jpg',
+    heroCaption: {
+      zh: '女性盆腔侧面示意图 · 阴道壁肌层与盆底肌是私密紧致和产后恢复关注的部位',
+      en: 'Side-view illustration of the female pelvis · The vaginal wall muscles and pelvic floor are the focus of intimate tightening and postpartum recovery',
+    },
     image: '/category-tiles/women/womens-intimate-health.jpg',
     title: {
       zh: '女性私密',
