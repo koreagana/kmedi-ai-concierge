@@ -141,6 +141,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     id: 'autologous-blood-iv',
     title: { zh: '自体血液 · 抗衰IV', en: 'Autologous Blood · Anti-Aging IV' },
     tileSubtitle: { zh: 'PRP · PRF · PMF · 生长因子', en: 'PRP · PRF · PMF · Growth Factors' },
+    heroImage: '/category-tiles/stem-cell/autologous-blood-iv-hero.jpg', // 서울 뷰 IV 라운지 · 골드 수액 · 분리 혈액 튜브(1996×788)
     body: {
       zh: '抽取自己的血液，分离并浓缩其中的活性成分。\n韩国对体外培养扩增自体细胞有严格的法律限制，且培养过程本身存在细胞活性受损的风险，因此抗衰老相关的自体血液疗法通常直接使用新鲜分离的生长因子等活性成分，而非体外培养的细胞。',
       en: "Your own blood is drawn, then separated and concentrated for its active components.\nKorea strictly regulates in-vitro culturing and expansion of autologous cells, and the culturing process itself carries a risk of reduced cell viability — so anti-aging autologous blood therapies typically use freshly separated growth factors and active components directly, rather than cultured cells.",
