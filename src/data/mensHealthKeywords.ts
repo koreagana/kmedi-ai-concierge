@@ -90,7 +90,7 @@ const IMMUNITY_DIRECTIONS_LABEL: LocalizedText = {
 export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   {
     id: 'male-hormone-vitality',
-    image: '/category-tiles/man/male-hormone-vitality.png',
+    image: '/category-tiles/man/male-hormone-vitality.jpg',
     title: {
       zh: '激素·活力',
       en: 'Male Hormones & Vitality Management',
@@ -114,7 +114,7 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'immunity-anti-aging',
-    image: '/category-tiles/man/immunity-anti-aging.png',
+    image: '/category-tiles/man/immunity-anti-aging.jpg',
     title: {
       zh: '免疫·抗衰',
       en: 'Immunity & Anti-Aging Management',
@@ -143,7 +143,7 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
     // 2026-10-02 男性生育力 칸을 정력 쪽(확대·조루·발기부전)으로 바꿈 — 실제 문의가 들어온 의료관광 포인트.
     // 의료광고 규정상 효과 단정·과장 표현·병원 고유 상품명은 쓰지 않는다. 생식력은 한 줄로만 남김.
     id: 'male-function-intimate',
-    image: '/category-tiles/man/male-fertility-sperm-health.png',
+    image: '/category-tiles/man/male-fertility-sperm-health.jpg',
     title: {
       zh: '男性功能·私密',
       en: "Men's Sexual Function & Intimate Care",
@@ -167,7 +167,7 @@ export const MENS_HEALTH_KEYWORDS: MensHealthKeyword[] = [
   },
   {
     id: 'prostate-urology-intimate-health',
-    image: '/category-tiles/man/prostate-urology-intimate-health.png',
+    image: '/category-tiles/man/prostate-urology-intimate-health.jpg',
     title: {
       zh: '前列腺·泌尿',
       en: 'Prostate & Urological Intimate Health Management',

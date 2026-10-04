@@ -228,7 +228,7 @@ export const PLASTIC_SURGERY_SECTION = {
 export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   {
     id: 'eye-surgery',
-    image: '/category-tiles/surgery/eye-surgery.png',
+    image: '/category-tiles/surgery/eye-surgery.jpg',
     video: '/category-tiles/surgery/eye-surgery.mp4',
     title: {
       zh: '眼部整形',
@@ -269,7 +269,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'nose-surgery',
-    image: '/category-tiles/surgery/nose-surgery.png',
+    image: '/category-tiles/surgery/nose-surgery.jpg',
     title: {
       zh: '鼻部整形',
       en: 'Nose Surgery',
@@ -306,7 +306,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'facelift-lifting',
-    image: '/category-tiles/surgery/facelift-lifting.png',
+    image: '/category-tiles/surgery/facelift-lifting.jpg',
     title: {
       zh: '面部提升',
       en: 'Facelift & Lifting',
@@ -342,7 +342,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'facial-contour-two-jaw',
-    image: '/category-tiles/surgery/facial-contour-two-jaw.png',
+    image: '/category-tiles/surgery/facial-contour-two-jaw.jpg',
     title: {
       zh: '面部轮廓·双颚',
       en: 'Facial Contour & Two-Jaw Surgery',
@@ -376,9 +376,9 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
     ],
     realCase: {
       photos: [
-        { src: '/case-photos/contour-before-after-1.png', alt: { zh: '轮廓手术前后对比1', en: 'Facial contour surgery before/after 1' } },
-        { src: '/case-photos/contour-before-after-2.png', alt: { zh: '轮廓手术前后对比2', en: 'Facial contour surgery before/after 2' } },
-        { src: '/case-photos/contour-before-after-3.png', alt: { zh: '轮廓手术前后对比3', en: 'Facial contour surgery before/after 3' } },
+        { src: '/case-photos/contour-before-after-1.jpg', alt: { zh: '轮廓手术前后对比1', en: 'Facial contour surgery before/after 1' } },
+        { src: '/case-photos/contour-before-after-2.jpg', alt: { zh: '轮廓手术前后对比2', en: 'Facial contour surgery before/after 2' } },
+        { src: '/case-photos/contour-before-after-3.jpg', alt: { zh: '轮廓手术前后对比3', en: 'Facial contour surgery before/after 3' } },
       ],
       credit: {
         zh: '图片提供：双·轮·突口腔颌面外科（YangYoonDol Oral & Maxillofacial Surgery）',
@@ -393,7 +393,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'fat-grafting-liposuction',
-    image: '/category-tiles/surgery/fat-grafting-liposuction.png',
+    image: '/category-tiles/surgery/fat-grafting-liposuction.jpg',
     title: {
       zh: '吸脂·腹部提拉',
       en: 'Liposuction & Abdominoplasty',
@@ -454,7 +454,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'breast-surgery',
-    image: '/category-tiles/surgery/breast-surgery.png',
+    image: '/category-tiles/surgery/breast-surgery.jpg',
     title: {
       zh: '胸部整形',
       en: 'Breast Surgery',

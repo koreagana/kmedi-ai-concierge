@@ -172,7 +172,7 @@ export function HeroSection() {
         autoPlay
         muted
         playsInline
-        poster="/studio-hero.png"
+        poster="/studio-hero.jpg"
         style={{ transition: 'opacity 0.3s ease', opacity: videoFading ? 0 : 1 }}
       />
 
@@ -314,7 +314,7 @@ function ConciergeSection() {
             style={isZh ? { cursor: 'pointer' } : undefined}
           >
             <img
-              src="/concierge_image/lijing_800.png"
+              src="/concierge_image/lijing_400.webp"
               alt="李静"
               className="concierge-avatar-img"
               style={{ display: liPlaying ? 'none' : 'block' }}
@@ -354,7 +354,7 @@ function ConciergeSection() {
             style={isZh ? { cursor: 'pointer' } : undefined}
           >
             <img
-              src="/concierge_image/kimhyunwoo_800.png"
+              src="/concierge_image/kimhyunwoo_400.webp"
               alt="金贤宇"
               className="concierge-avatar-img"
               style={{ display: kimPlaying ? 'none' : 'block' }}

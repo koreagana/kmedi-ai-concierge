@@ -85,7 +85,7 @@ export const WOMENS_HEALTH_SECTION = {
 export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   {
     id: 'fertility-egg-freezing',
-    image: '/category-tiles/women/fertility-egg-freezing.png',
+    image: '/category-tiles/women/fertility-egg-freezing.jpg',
     title: {
       zh: '生育力·冻卵',
       en: 'Fertility Management & Egg Freezing',
@@ -114,7 +114,7 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'gynecology-hpv-checkup',
-    image: '/category-tiles/women/gynecology-hpv-checkup.png',
+    image: '/category-tiles/women/gynecology-hpv-checkup.jpg',
     title: {
       zh: '妇科·HPV',
       en: 'Gynecological & HPV Checkup',
@@ -143,7 +143,7 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'womens-intimate-health',
-    image: '/category-tiles/women/womens-intimate-health.png',
+    image: '/category-tiles/women/womens-intimate-health.jpg',
     title: {
       zh: '女性私密',
       en: "Women's Intimate Health Management",
@@ -170,7 +170,7 @@ export const WOMENS_HEALTH_KEYWORDS: WomensHealthKeyword[] = [
   },
   {
     id: 'menopause-hormone-care',
-    image: '/category-tiles/women/menopause-hormone-care.png',
+    image: '/category-tiles/women/menopause-hormone-care.jpg',
     title: {
       zh: '更年期·激素',
       en: 'Menopause & Hormone Balance Management',

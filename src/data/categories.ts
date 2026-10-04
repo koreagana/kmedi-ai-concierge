@@ -21,6 +21,8 @@ export interface Category {
   heroImage?: string
   /** heroImage 대신 배경 전체를 커버하는 영상으로 대체. 설정 시 heroImage는 poster로만 사용. */
   heroVideo?: string
+  /** kmedispring.com 메인 카드용 작은 영상(없으면 카드는 heroImage 사진). */
+  cardVideo?: string
   tagZh: string
   tagEn: string
   scriptFullZh: string
@@ -35,9 +37,11 @@ export const categories: Category[] = [
     zh: '皮肤医美',
     en: 'Skin & Aesthetics',
     emoji: '✨',
-    // 포스터는 영상 마지막 '애프터' 프레임 — 첫 프레임(처진 노년 얼굴)이 정지 사진으로 보이지 않게
+    // 원본 skin-beauty.mp4(9MB, '전→후')를 '후' 장면(5.5초)부터 시작하게 이어 붙여 압축한 웹용 —
+    // web 1280px 0.6MB / card 640px 0.14MB. 포스터는 그 첫 프레임. 원본은 보관용으로 그대로 둔다.
     heroImage: '/category-hero/skin-beauty-after.jpg',
-    heroVideo: '/category-hero/skin-beauty.mp4',
+    heroVideo: '/category-hero/skin-beauty-web.mp4',
+    cardVideo: '/category-hero/skin-beauty-card.mp4',
     tagZh: '皮肤提升 · 毛孔色斑 · 抗衰外观',
     tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',
     scriptFullZh: `您好，欢迎进入皮肤医美咨询区。

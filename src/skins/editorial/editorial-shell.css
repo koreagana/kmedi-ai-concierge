@@ -6,6 +6,21 @@
 .app-shell:has(> .ed-skin) { background: #fff; display: block; }
 .ed-skin { width: 100%; min-height: 100vh; background: #fff; }
 
+/* 명조 제목 글꼴을 사이트에 직접 넣는다 — 원래는 방문자 PC에 思源宋体가 깔려 있어야만 보였고,
+   중국 고객 대부분은 宋体/SimSun으로 대체돼 보였다. Noto Serif CJK SC Black(=思源宋体 Heavy, OFL)에서
+   사이트에 쓰인 글자 1,667자만 남긴 파일(467KB). 글자를 새로 추가했는데 그 글자만 다른 글꼴로 보이면
+   이 파일을 다시 만들어야 한다. 라이선스: /fonts/OFL-NotoSerifCJK.txt */
+@font-face {
+  font-family: 'KMS Serif';
+  src: url('/fonts/kms-serif-sc-900.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+.ed-skin.ed-skin {
+  --brand-serif: 'KMS Serif', "Source Han Serif CN", "Source Han Serif SC", "Noto Serif SC", "Noto Serif CJK SC",
+                 "Songti SC", "SimSun", "AppleMyungjo", "Batang", serif;
+}
+
 /* 상단 파란 바 오른쪽 언어 전환 (옛 사이트의 "新网站已上线" 알약 버튼과 같은 모양) */
 .ed-skin .ed-lang-toggle {
   position: fixed; top: 10px; right: 16px; z-index: 10002;

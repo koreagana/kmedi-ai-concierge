@@ -101,7 +101,7 @@ export default function EditorialHome() {
           <video
             ref={videoRef}
             src={isZh ? '/studio.mp4' : '/studio_eng.mp4'}
-            poster="/studio-hero.png"
+            poster="/studio-hero.jpg"
             autoPlay
             muted
             loop
@@ -146,8 +146,8 @@ export default function EditorialHome() {
             <article key={c.id}>
               <a href={catHref(c)} className="image" onClick={go(catGo(c))}>
                 {/* 皮肤医美는 전후 변화 영상이 핵심이라 카드에서도 영상으로 (다른 카드는 사진 유지) */}
-                {c.id === 'skin-beauty' && c.heroVideo
-                  ? <video src={c.heroVideo} poster={c.heroImage} autoPlay muted loop playsInline aria-label={isZh ? c.zh : c.en} />
+                {c.cardVideo
+                  ? <video src={c.cardVideo} poster={c.heroImage} autoPlay muted loop playsInline aria-label={isZh ? c.zh : c.en} />
                   : <img src={c.heroImage ?? PACKAGE_IMAGE} alt={isZh ? c.zh : c.en} loading="lazy" />}
               </a>
               <h3>{isZh ? c.zh : c.en}</h3>
@@ -168,8 +168,8 @@ export default function EditorialHome() {
         </header>
         <div className="features ed-wide ed-concierge">
           {[
-            { name: t.concierge1Name, title: t.concierge1Title, spec: t.concierge1Specialty, btn: t.concierge1Btn, img: '/concierge_image/lijing_800.png' },
-            { name: t.concierge2Name, title: t.concierge2Title, spec: t.concierge2Specialty, btn: t.concierge2Btn, img: '/concierge_image/kimhyunwoo_800.png' },
+            { name: t.concierge1Name, title: t.concierge1Title, spec: t.concierge1Specialty, btn: t.concierge1Btn, img: '/concierge_image/lijing_400.webp' },
+            { name: t.concierge2Name, title: t.concierge2Title, spec: t.concierge2Specialty, btn: t.concierge2Btn, img: '/concierge_image/kimhyunwoo_400.webp' },
           ].map((p) => (
             <article key={p.name}>
               <span className="ed-avatar"><img src={p.img} alt={p.name} loading="lazy" /></span>

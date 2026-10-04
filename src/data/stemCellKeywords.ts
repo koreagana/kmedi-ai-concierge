@@ -74,9 +74,9 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       zh: '与干细胞治疗不同，Immuncell-LC（이뮨셀엘씨주）是绿十字细胞（GC Cell）研发的自体免疫细胞治疗剂：抽取患者自身血液，在体外培养扩增其中的NK细胞与T细胞后，再回输体内，用于原发性肝细胞癌（肝癌）的术后辅助免疫治疗。',
       en: 'Unlike stem cell therapy, Immuncell-LC is an autologous immune cell therapy developed by GC Cell: the patient\'s own blood is drawn, the NK and T cells within it are cultured and expanded outside the body, then infused back in — used as adjuvant immunotherapy after treatment for hepatocellular carcinoma (liver cancer).',
     },
-    image: '/category-tiles/stem-cell/Immuncelllc.png',
+    image: '/category-tiles/stem-cell/Immuncelllc.jpg',
     secondaryMedia: { type: 'video', src: '/category-tiles/stem-cell/nkcell.mp4' },
-    heroSplitRatios: [500 / 398, 640 / 448], // Immuncelllc.png 500×398, nkcell.mp4 640×448
+    heroSplitRatios: [500 / 398, 640 / 448], // Immuncelllc.jpg 500×398, nkcell.mp4 640×448
     imageCaption: { zh: 'Immuncell-LC® 注射剂 — 由您自身血液培养14天制成的专属治疗药', en: 'Immuncell-LC® Injection — Made From Your Own Blood After 14 Days of Culture' },
     footerLine: { zh: '采血 → 体外培养14天 → 回输体内', en: 'Blood draw → 14-day culture → Infusion' },
     list: [
@@ -109,9 +109,9 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
       zh: '针对软骨损伤及退行性膝关节问题的再生治疗。代表性产品为CARTISTEM——韩国美迪波斯特（Medipost）研发的同种异体脐带血间充质干细胞治疗药物，通过关节内微创钻孔，将其植入软骨缺损部位，属于正规细胞治疗药物的临床应用，而非单纯的注射治疗。\n相比之下，传统人工关节置换手术因假体使用寿命有限，一般终生只能进行一次；软骨再生治疗常被用于在真正需要置换之前，尽可能延缓病情进展、保留自身关节。\n该治疗也是不少名人及贵宾（VIP）患者的选择。',
       en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nBy comparison, traditional artificial joint replacement can typically only be performed once in a lifetime due to the limited lifespan of the implant — cartilage regeneration therapy is often used to slow disease progression and preserve the natural joint for as long as possible before replacement becomes necessary.\nThis treatment has also been chosen by a number of celebrities and VIP patients.',
     },
-    image: '/category-tiles/stem-cell/joint-cartilage.png',
-    secondaryMedia: { type: 'image', src: '/category-tiles/stem-cell/cartistem.png' },
-    heroSplitRatios: [805 / 643, 543 / 371], // joint-cartilage.png 805×643, cartistem.png 543×371
+    image: '/category-tiles/stem-cell/joint-cartilage.jpg',
+    secondaryMedia: { type: 'image', src: '/category-tiles/stem-cell/cartistem.jpg' },
+    heroSplitRatios: [805 / 643, 543 / 371], // joint-cartilage.jpg 805×643, cartistem.jpg 543×371
     imageCaption: { zh: '韩国膝关节软骨再生治疗案例 · 医疗团队实景', en: 'Korea Knee Cartilage Regeneration Case · Real Medical Team' },
     credit: '图片提供：JS医院',
     list: [

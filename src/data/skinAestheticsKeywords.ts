@@ -214,7 +214,7 @@ export const SKIN_AESTHETICS_PILLS_PROMPT: LocalizedText = {
 export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   {
     id: 'skin-lifting',
-    image: '/category-tiles/Petit/skin-lifting.png',
+    image: '/category-tiles/Petit/skin-lifting.jpg',
     title: {
       zh: '皮肤提升',
       en: 'Skin Lifting',
@@ -284,7 +284,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'pores-texture',
-    image: '/category-tiles/Petit/pores-texture.png',
+    image: '/category-tiles/Petit/pores-texture.jpg',
     title: {
       zh: '毛孔 · 肤质',
       en: 'Pores & Skin Texture',
@@ -341,7 +341,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'skin-boosters-rejuran',
-    image: '/category-tiles/Petit/skin-boosters-rejuran.png',
+    image: '/category-tiles/Petit/skin-boosters-rejuran.jpg',
     title: {
       zh: '水光针 · 皮肤再生',
       en: 'Skin Boosters & Rejuran',
@@ -455,7 +455,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'botox-fillers',
-    image: '/category-tiles/Petit/botox-fillers.png',
+    image: '/category-tiles/Petit/botox-fillers.jpg',
     video: '/category-tiles/Petit/botox-fillers.mp4',
     title: {
       zh: '肉毒素 玻尿酸',
@@ -536,7 +536,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'acne-scars',
-    image: '/category-tiles/Petit/acne-scars.png',
+    image: '/category-tiles/Petit/acne-scars.jpg',
     title: {
       zh: '色斑·痘疤·泛红',
       en: 'Dark Spots · Acne · Scars · Redness',
@@ -698,7 +698,7 @@ export const SKIN_AESTHETICS_KEYWORDS: SkinAestheticsKeyword[] = [
   },
   {
     id: 'body-skin-care',
-    image: '/category-tiles/Petit/body-skin-care.png',
+    image: '/category-tiles/Petit/body-skin-care.jpg',
     title: {
       zh: '身体紧致塑形',
       en: 'Body Firming & Contouring',
