@@ -111,6 +111,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     },
     image: '/category-tiles/stem-cell/joint-cartilage.png',
     secondaryMedia: { type: 'image', src: '/category-tiles/stem-cell/cartistem.png' },
+    heroSplitRatios: [805 / 643, 543 / 371], // joint-cartilage.png 805×643, cartistem.png 543×371
     imageCaption: { zh: '韩国膝关节软骨再生治疗案例 · 医疗团队实景', en: 'Korea Knee Cartilage Regeneration Case · Real Medical Team' },
     credit: '图片提供：JS医院',
     list: [

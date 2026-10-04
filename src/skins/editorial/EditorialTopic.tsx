@@ -65,6 +65,8 @@ export default function EditorialTopic() {
             </span>
           </div>
           {topic.heroSplit.caption && <figcaption>{topic.heroSplit.caption}</figcaption>}
+          {/* 협력병원 사진 출처(법적 표기) — 본문 split 블록에서 히어로로 옮겨와도 빠지면 안 됨 */}
+          {topic.heroSplit.credit && <p className="ed-small ed-hero-split-credit">{topic.heroSplit.credit}</p>}
         </figure>
       ) : topic.heroImage ? (
         <span className="image main ed-main-image ed-main-image--full"><img src={topic.heroImage} alt={topic.title} /></span>

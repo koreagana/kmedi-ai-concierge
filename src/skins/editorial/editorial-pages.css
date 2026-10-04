@@ -223,6 +223,7 @@
 .ed-skin .ed-hero-split-row img,
 .ed-skin .ed-hero-split-row video { width: 100% !important; height: 100% !important; max-width: none; object-fit: cover; display: block; }
 .ed-skin #main .ed-hero-split figcaption { margin-top: .9em; font-size: .85em; color: #7a7f83; text-align: center; }
+.ed-skin #main .ed-hero-split .ed-hero-split-credit { margin: .3em 0 0; text-align: center; }
 
 /* 승인 치료제 4칸 표 — 날짜·기관은 한 줄, 폰에선 칸 여백·글씨를 줄여 화면 안에 들어오게 */
 .ed-skin .ed-grid-table th { white-space: nowrap; }

@@ -41,7 +41,7 @@ export interface Topic {
   /** 페이지 맨 위에 사진·영상 두 칸을 같은 높이로(줄기세포 Immuncell-LC). 있으면 대표 사진 대신 이걸 쓴다. */
   /** 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다 */
   heroImage?: string
-  heroSplit?: { image: string; media: { type: 'image' | 'video'; src: string }; ratios: [number, number]; caption?: string }
+  heroSplit?: { image: string; media: { type: 'image' | 'video'; src: string }; ratios: [number, number]; caption?: string; credit?: string }
   /** 카테고리 페이지 카드용 한두 줄 요약 */
   summary: string
   blocks: Block[]
@@ -184,6 +184,7 @@ function stemCellTopics(lang: LangCode): Topic[] {
       ? {
           image: k.image, media: k.secondaryMedia, ratios: k.heroSplitRatios,
           caption: [L(k.imageCaption, lang), L(k.footerLine, lang)].filter(Boolean).join(' · ') || undefined,
+          credit: k.credit,
         }
       : undefined
     const blocks: (Block | false | undefined)[] = [
