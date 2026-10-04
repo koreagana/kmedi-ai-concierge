@@ -83,6 +83,8 @@ export interface BigHealthKeyword {
   title: LocalizedText
   /** Optional photo for the selector tile (public/ path). Falls back to a CSS gradient when omitted. */
   image?: string
+  /** kmedispring.com 세부 페이지 맨 위 전용 사진(타일엔 안 씀) — 잘리지 않게 전체를 보여준다. */
+  heroImage?: string
   /** Gradient tone to use when `image` is omitted (stem-cell page palette). Defaults to 'pink'. */
   tileGradient?: 'pink' | 'purple' | 'mint'
   /** Renders the tile as a full-width banner (stem-cell page style) instead of the square photo tile. */
@@ -280,6 +282,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
   },
   {
     id: 'hormone-balance',
+    heroImage: '/category-tiles/antiaging/hormone-balance-hero.jpg', // 서울 뷰 창가 티타임 · 균형 잡힌 아침(1996×788)
     tileGradient: 'mint',
     tileBanner: true,
     tileShine: true,

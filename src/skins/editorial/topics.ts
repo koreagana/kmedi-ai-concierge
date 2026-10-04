@@ -168,7 +168,7 @@ function bigHealthTopics(lang: LangCode): Topic[] {
     ]
     return {
       id: k.id, title: L(k.title, lang), subtitle: L(k.tileSubtitle, lang) || undefined,
-      image: k.image, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty),
+      image: k.image, heroImage: k.heroImage, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty),
     }
   })
 }
