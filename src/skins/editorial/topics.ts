@@ -147,7 +147,7 @@ function plasticTopics(lang: LangCode): Topic[] {
       },
       L(k.note, lang) && { kind: 'note', text: splitParas(L(k.note, lang)), tone: 'info' },
     ]
-    return { id: k.id, title: L(k.title, lang), image: k.image, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
+    return { id: k.id, title: L(k.title, lang), image: k.image, video: k.video, summary: summarize(desc, lang), blocks: blocks.filter(nonEmpty) }
   })
 }
 
