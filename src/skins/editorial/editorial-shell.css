@@ -126,7 +126,7 @@
 .ed-skin .ed-main-end { height: 4em; }
 
 /* 사이드바 关于我们 아래 개인정보 한 줄 */
-.ed-skin #sidebar p.ed-privacy-note { margin: 1em 0 2.6em; font-size: .88em; line-height: 1.7; color: #555; }
+.ed-skin #sidebar p.ed-privacy-note { margin: 1em 0 2.6em; font-size: .88em; line-height: 1.7; color: #555; text-align: center; }
 .ed-skin #sidebar p.ed-privacy-note a { color: var(--brand) !important; text-decoration: none; border-bottom: 1px dotted rgba(0,119,182,.5); }
 
 /* 사이드바 맨 아래 회사 정보 — 작은 회색 글씨, 템플릿 출처는 아주 작게 */
