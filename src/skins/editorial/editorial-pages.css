@@ -21,7 +21,8 @@
 .ed-skin .ed-main-image img, .ed-skin .ed-main-image video { width: 100%; max-height: 440px; object-fit: cover; object-position: center 30%; display: block; }
 @media (min-width: 737px) { .ed-skin .ed-main-image--tall img { max-height: 560px; } }
 .ed-skin .image.main.ed-main-image--captioned { margin-bottom: .8em; }
-.ed-skin #main p.ed-hero-caption { margin: 0 0 2.4em; font-size: .85em; color: #7a7f83; text-align: center; line-height: 1.6; }
+/* 옛 CSS가 #main p 글씨를 1em·#333으로 !important 고정 → 캡션도 !important로 무릎 페이지 figcaption과 같은 크기·색 */
+.ed-skin #main p.ed-hero-caption { margin: 0 0 2.4em; font-size: .85em !important; color: #7a7f83 !important; text-align: center; line-height: 1.6 !important; }
 
 /* 짧은 문단이 연달아 오는 글(대본형 소개) — 원본 p 간격(2em)은 한 줄짜리엔 너무 벌어짐 */
 .ed-skin #main .ed-prose p { margin: 0 0 1em; font-size: 1.02em !important; line-height: 1.95 !important; }
@@ -226,7 +227,7 @@
 .ed-skin .ed-hero-split-row img,
 .ed-skin .ed-hero-split-row video { width: 100% !important; height: 100% !important; max-width: none; object-fit: cover; display: block; }
 .ed-skin #main .ed-hero-split figcaption { margin-top: .9em; font-size: .85em; color: #7a7f83; text-align: center; }
-.ed-skin #main .ed-hero-split .ed-hero-split-credit { margin: .3em 0 0; text-align: center; }
+.ed-skin #main .ed-hero-split .ed-hero-split-credit { margin: .3em 0 0; text-align: center; font-size: .78em !important; color: #8a8f93 !important; line-height: 1.6 !important; }
 
 /* 승인 치료제 4칸 표 — 날짜·기관은 한 줄, 폰에선 칸 여백·글씨를 줄여 화면 안에 들어오게 */
 .ed-skin .ed-grid-table th { white-space: nowrap; }
