@@ -21,7 +21,7 @@ const GROUP_HEADING: Record<string, { zh: string; en: string }> = {
   lift: { zh: '韩国面部提升价格', en: 'Korea Facelift & Thread Lift Price' },
   inject: { zh: '韩国肉毒·填充注射价格', en: 'Korea Botox & Filler Injection Price' },
   booster: { zh: '韩国皮肤管理与疤痕修复价格', en: 'Korea Skin Booster & Scar Treatment Price' },
-  hair: { zh: '韩国植发价格', en: 'Korea Hair Transplant Price' },
+  hair: { zh: '韩国毛发移植（植发）价格', en: 'Korea Hair Transplant Price' },
   etc: { zh: '韩国其他项目与抗衰价格', en: 'Korea Other Treatments & Anti-aging Price' },
 }
 

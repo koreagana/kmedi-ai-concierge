@@ -536,22 +536,32 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   {
     id: 'hair-transplant',
     title: {
-      zh: '植发',
+      zh: '毛发移植',
       en: 'Hair Transplant',
     },
     description: {
-      zh: '植发咨询主要包括切开式植发、非切开植发、发际线调整、额头缩小、眉毛移植和鬓角补充等方向。需要根据脱发范围、后枕部毛囊储备、所需毛囊数量和恢复时间来确定方式。',
+      zh: '毛发移植（植发）咨询主要包括切开式、非切开式、发际线调整、额头缩小、眉毛移植和鬓角补充等方向。需要根据脱发范围、后枕部毛囊储备、所需毛囊数量和恢复时间来确定方式。',
       en: 'Hair transplant consultation may include strip (FUT) transplant, non-incision (FUE) transplant, hairline design, forehead reduction, eyebrow transplant, and temple/sideburn filling. The method depends on the extent of hair loss, donor follicle reserve at the back of the head, the number of grafts needed, and recovery time.',
     },
     directionsLabel: DIRECTIONS_LABEL,
     directions: [
-      { zh: '切开式植发（FUT）', en: 'Strip hair transplant (FUT)' },
-      { zh: '非切开植发（FUE）', en: 'Non-incision hair transplant (FUE)' },
-      { zh: '不剃发 · 长发植发', en: 'No-shave / long-hair transplant' },
+      { zh: '切开式毛发移植（FUT）', en: 'Strip hair transplant (FUT)' },
+      { zh: '非切开毛发移植（FUE）', en: 'Non-incision hair transplant (FUE)' },
+      { zh: '不剃发 · 长发移植', en: 'No-shave / long-hair transplant' },
       { zh: '发际线调整', en: 'Hairline design' },
       { zh: '额头缩小术', en: 'Forehead reduction' },
       { zh: '眉毛移植', en: 'Eyebrow transplant' },
       { zh: '鬓角 · 侧面补充', en: 'Temple / sideburn filling' },
+    ],
+    // 그림은 로니가 제작 중 — 파일이 오면 image: '/effect-illustration/hair-transplant.webp' 추가
+    referenceIllustration: [
+      {
+        title: { zh: '毛发移植种类', en: 'Types of Hair Transplant' },
+        body: {
+          zh: '毛发移植方式较多，不同方式在疤痕、是否剃发和恢复期方面各不相同，具体适合的方式需由医生根据脱发范围和毛囊条件面诊判断。',
+          en: 'There are several hair transplant methods, differing in scarring, whether shaving is needed, and recovery. The suitable approach should be determined by a doctor through an in-person evaluation of hair loss and follicle condition.',
+        },
+      },
     ],
     note: {
       zh: '所需毛囊数量、术式和是否需要剃发，需由医生面诊后确定。',
