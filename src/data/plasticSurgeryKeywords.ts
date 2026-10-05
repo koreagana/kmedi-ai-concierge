@@ -537,6 +537,7 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
   },
   {
     id: 'hair-transplant',
+    image: '/category-tiles/surgery/hair-transplant.jpg',
     title: {
       zh: '毛发移植',
       en: 'Hair Transplant',
@@ -555,11 +556,11 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '眉毛移植', en: 'Eyebrow transplant' },
       { zh: '鬓角 · 侧面补充', en: 'Temple / sideburn filling' },
     ],
-    // 그림은 로니가 제작 중(중·영 두 벌) — 오면 image: '/effect-illustration/hair-transplant.webp',
-    // imageEn: '/effect-illustration/hair-transplant-en.webp' 추가
+    // 영어판 그림이 오면 imageEn: '/effect-illustration/hair-transplant-en.webp' 추가(그 전엔 영어 페이지도 중국어 그림)
     referenceIllustration: [
       {
         title: { zh: '毛发移植种类', en: 'Types of Hair Transplant' },
+        image: '/effect-illustration/hair-transplant.webp',
         body: {
           zh: '毛发移植方式较多，不同方式在疤痕、是否剃发和恢复期方面各不相同，具体适合的方式需由医生根据脱发范围和毛囊条件面诊判断。',
           en: 'There are several hair transplant methods, differing in scarring, whether shaving is needed, and recovery. The suitable approach should be determined by a doctor through an in-person evaluation of hair loss and follicle condition.',
