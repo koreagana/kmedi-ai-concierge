@@ -153,7 +153,7 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     type: 'agreement',
     category: 'admin_contract',
     field: '美团 폴더',
-    link: '/docs/k_meiguan_xinzhengce.png',
+    link: '/docs/k_meituan_xinzhengce.png',
     status: 'available',
     description: '입점비·수수료·계약 요건·준비서류·FAQ 정리 (이미지)',
   },
