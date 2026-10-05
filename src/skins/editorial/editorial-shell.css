@@ -318,6 +318,7 @@
 .ed-skin #sidebar .ed-search-results a:hover { background: rgba(0,119,182,.06); }
 .ed-skin .ed-sr-title { display: block; font-size: 15px; font-weight: 600; }
 .ed-skin .ed-sr-context { display: block; margin-top: 2px; font-size: 12px; color: #0077B6; letter-spacing: .02em; }
+.ed-skin #sidebar .ed-search-hint { margin: 8px 2px 0; font-size: 12.5px; line-height: 1.5; color: #9a9a9a; }
 .ed-skin .ed-search-empty { padding: 14px; text-align: center; }
 .ed-skin #sidebar .ed-search-empty p { margin: 0 0 10px; font-size: 14px; color: #777; }
 .ed-skin #sidebar .ed-search-empty .button { color: #fff !important; font-size: 14px !important; height: 2.6em !important; line-height: 2.6em !important; padding: 0 1.4em !important; }

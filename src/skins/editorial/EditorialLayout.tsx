@@ -298,6 +298,11 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                   autoComplete="off"
                 />
               </form>
+              {!query.trim() && (
+                <p className="ed-search-hint">
+                  {isZh ? '搜索不到的项目，建议点击咨询按钮直接咨询。' : "Can't find it? Tap the consultation button to ask us."}
+                </p>
+              )}
               {query.trim() && (
                 <div className="ed-search-results" role="listbox">
                   {results.length > 0 ? (
