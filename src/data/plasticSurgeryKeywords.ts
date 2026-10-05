@@ -184,8 +184,8 @@ export interface PlasticSurgeryKeyword {
     title: LocalizedText
     body: LocalizedText
     image?: string
-    /** 글자 없는 원형 그림 여러 장 — 라벨은 코드가 언어별로 그린다. 그림이 있는 칸만 보인다. */
-    panels?: { image?: string; label: LocalizedText }[]
+    /** 영어 페이지용 그림(글자가 영어인 버전). 없으면 image를 그대로 쓴다. */
+    imageEn?: string
   }[]
   /** "真实案例" block — an actual before/after patient photo (not an illustration), tied to the
       one tile it genuinely matches, instead of showing on every tile in the category. */
@@ -555,8 +555,8 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
       { zh: '眉毛移植', en: 'Eyebrow transplant' },
       { zh: '鬓角 · 侧面补充', en: 'Temple / sideburn filling' },
     ],
-    // 원형 그림 6장은 로니가 제작 중(글자 없음) — 파일이 오면 각 칸에
-    // image: '/effect-illustration/hair-transplant-<n>.webp' 만 채우면 라벨과 함께 나타난다.
+    // 그림은 로니가 제작 중(중·영 두 벌) — 오면 image: '/effect-illustration/hair-transplant.webp',
+    // imageEn: '/effect-illustration/hair-transplant-en.webp' 추가
     referenceIllustration: [
       {
         title: { zh: '毛发移植种类', en: 'Types of Hair Transplant' },
@@ -564,14 +564,6 @@ export const PLASTIC_SURGERY_KEYWORDS: PlasticSurgeryKeyword[] = [
           zh: '毛发移植方式较多，不同方式在疤痕、是否剃发和恢复期方面各不相同，具体适合的方式需由医生根据脱发范围和毛囊条件面诊判断。',
           en: 'There are several hair transplant methods, differing in scarring, whether shaving is needed, and recovery. The suitable approach should be determined by a doctor through an in-person evaluation of hair loss and follicle condition.',
         },
-        panels: [
-          { label: { zh: '切开式', en: 'FUT Strip' } },
-          { label: { zh: '非切开式', en: 'FUE' } },
-          { label: { zh: '不剃发移植', en: 'No-shave' } },
-          { label: { zh: '发际线调整', en: 'Hairline' } },
-          { label: { zh: '额头缩小', en: 'Forehead' } },
-          { label: { zh: '眉毛移植', en: 'Eyebrow' } },
-        ],
       },
     ],
     note: {

@@ -131,6 +131,8 @@ export interface SkinAestheticsKeyword {
     title: LocalizedText
     body: LocalizedText
     image?: string
+    /** 영어 페이지용 그림(글자가 영어인 버전). 없으면 image를 그대로 쓴다. */
+    imageEn?: string
   }[]
   /** Step-by-step how-to/aftercare guide: one wide image with N visual panels side by side, paired
       with N numbered captions rendered below in a matching grid (2x2 on mobile so text doesn't

@@ -129,22 +129,12 @@ export default function PlasticSurgeryKeywords() {
                 <p className="bh-card-label">{pick(ref.title, lang)}</p>
                 {ref.image && (
                   <img
-                    src={ref.image}
+                    src={(lang === 'en' && ref.imageEn) || ref.image}
                     alt={pick(ref.title, lang)}
                     className="ref-illustration-img"
                   />
                 )}
-                {ref.panels && ref.panels.some((p) => p.image) && (
-                  <div className="ref-panels">
-                    {ref.panels.filter((p) => p.image).map((p) => (
-                      <div className="ref-panel" key={p.image}>
-                        <img src={p.image} alt={pick(p.label, lang)} loading="lazy" />
-                        <span className="ref-panel-label">{pick(p.label, lang)}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                <p className="bh-card-text" style={{ marginTop: ref.image || ref.panels?.some((p) => p.image) ? 10 : 4 }}>
+                <p className="bh-card-text" style={{ marginTop: ref.image ? 10 : 4 }}>
                   {pick(ref.body, lang)}
                 </p>
               </div>

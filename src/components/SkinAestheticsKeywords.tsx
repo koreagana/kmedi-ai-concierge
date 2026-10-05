@@ -157,7 +157,7 @@ export default function SkinAestheticsKeywords() {
                 <p className="bh-card-label">{pick(ref.title, lang)}</p>
                 {ref.image && (
                   <img
-                    src={ref.image}
+                    src={(lang === 'en' && ref.imageEn) || ref.image}
                     alt={pick(ref.title, lang)}
                     className="ref-illustration-img"
                   />
