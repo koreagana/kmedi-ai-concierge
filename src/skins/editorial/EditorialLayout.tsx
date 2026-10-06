@@ -454,7 +454,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
               {/* 한국 법인명 로고(한강愛봄) — 메일 서명 등에서도 같은 주소(/images/logo_k.png)를 쓴다 */}
               <img src="/images/logo_k.png" alt="한강애봄" className="ed-sb-logo-k" width={90} height={32} loading="lazy" />
               <p>
-                © 2026 {isZh ? '汉江春天' : 'K-MediSpring'}. All rights reserved.<br />
+                © 2026 汉江春天 · 한강애봄 · K-MediSpring (kmedispring.com). All rights reserved.<br />
                 상호: 한강애봄 | 대표: 이가나<br />
                 사업자등록번호: 829-21-01856<br />
                 주소: 서울특별시 성북구 삼양로 29, 3층 11호

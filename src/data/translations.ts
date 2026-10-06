@@ -208,7 +208,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard4ExpandTitle: '韩国主要城市医疗资源分布',
     networkCard4Caption: '覆盖首尔・釜山・大邱・济州，医疗资源持续扩展中',
     aboutTitle: '关于汉江春天',
-    aboutDesc: '汉江春天（ai-kmedi.com）是经韩国政府正式登记的外国人患者引进机构，为海外客户提供韩国定制医疗旅游与就医协调服务。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
+    aboutDesc: '汉江春天（한강애봄 · ai-kmedi.com）是经韩国政府正式登记的外国人患者引进机构，为海外客户提供韩国定制医疗旅游与就医协调服务。\n我们不是医院，也不是医生。\n我们是您在韩国医疗体系与个人需求之间的 AI 辅助联络桥梁——整理需求、说明流程、协调预约，并在整个旅程中提供中文支持。',
     companyIntro: '汉江春天是韩国外国患者医疗旅游服务专业提供商。',
     termsLink: '使用条款',
     footerPrivacyLink: '个人信息处理方针',
