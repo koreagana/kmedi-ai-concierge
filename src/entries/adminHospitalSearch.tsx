@@ -1,11 +1,11 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import '../index.css'
-import AdminPinGate from '../components/AdminPinGate'
+import AdminPinGate, { isAdminUnlocked } from '../components/AdminPinGate'
 import HospitalSearch from '../admin/병원찾기/HospitalSearch'
 
 function AdminHospitalSearchPage() {
-  const [unlocked, setUnlocked] = useState(false)
+  const [unlocked, setUnlocked] = useState(isAdminUnlocked)
 
   if (!unlocked) {
     return (
@@ -35,6 +35,8 @@ function AdminHospitalSearchPage() {
         </a>
         <a
           href="/admin/prices/"
+          target="_blank"
+          rel="noopener"
           style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}
         >
           → 병원별 수가 바로가기

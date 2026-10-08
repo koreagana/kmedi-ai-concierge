@@ -1,11 +1,11 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import '../index.css'
-import AdminPinGate from '../components/AdminPinGate'
+import AdminPinGate, { isAdminUnlocked } from '../components/AdminPinGate'
 import HospitalPrices from '../admin/prices/HospitalPrices'
 
 function AdminPricesPage() {
-  const [unlocked, setUnlocked] = useState(false)
+  const [unlocked, setUnlocked] = useState(isAdminUnlocked)
 
   if (!unlocked) {
     return (

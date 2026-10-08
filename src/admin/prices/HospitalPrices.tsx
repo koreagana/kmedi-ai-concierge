@@ -1,17 +1,36 @@
-import { useMemo, useState } from 'react'
-import { HOSPITAL_PRICES, type HospitalPriceSheet, type PriceTier } from './priceSheets'
+import { useMemo, useRef, useState } from 'react'
+import { HOSPITAL_PRICES, type HospitalPriceSheet, type PriceRow, type PriceTier } from './priceSheets'
+import { toCnyText, toZhName, toZhSpec } from './zhNames'
 
 /**
  * 병원별 수가 (관리자 전용)
  * ------------------------------------------------------------
  * · 검색어가 없으면: 병원별 수가표 카드 (분류별로 묶음)
  * · 검색어가 있으면: 모든 병원에서 그 시술만 뽑아 가격 낮은 순으로 한 표에 비교
- * 데이터는 ./priceSheets.ts 한 곳에서만 고친다.
+ * · 중국어 이름·가격은 누르면 바로 복사 → 위챗에 붙여넣기
+ * 데이터는 ./priceSheets.ts, 중국어 표기는 ./zhNames.ts 에서 고친다.
  */
 
 const won = (v: number) => `${v.toLocaleString('ko-KR')}원`
 const man = (v: number) => `${+(v / 10000).toFixed(1)}만`
 const label = (h: HospitalPriceSheet) => (h.branch ? `${h.name} ${h.branch}` : h.name)
+const zhOf = (row: PriceRow) => `${toZhName(row[1])} ${toZhSpec(row[2])}`
+const zhPrice = (won: number) => `₩${won.toLocaleString('en-US')}（${toCnyText(won)}）`
+
+async function copyText(text: string) {
+  try {
+    await navigator.clipboard.writeText(text)
+  } catch {
+    const ta = document.createElement('textarea')
+    ta.value = text
+    ta.style.position = 'fixed'
+    ta.style.opacity = '0'
+    document.body.appendChild(ta)
+    ta.select()
+    document.execCommand('copy')
+    ta.remove()
+  }
+}
 
 const TIER_STYLE: Record<PriceTier, { bg: string; fg: string }> = {
   중가: { bg: 'rgba(15,110,86,0.1)', fg: '#0F6E56' },
@@ -27,6 +46,31 @@ export default function HospitalPrices() {
   const [query, setQuery] = useState('')
   const [tier, setTier] = useState<'전체' | PriceTier>('전체')
   const [hospitalId, setHospitalId] = useState<string>('all')
+  const [copied, setCopied] = useState<string | null>(null)
+  const toastTimer = useRef<number>()
+
+  const copy = (text: string) => {
+    void copyText(text)
+    setCopied(text)
+    window.clearTimeout(toastTimer.current)
+    toastTimer.current = window.setTimeout(() => setCopied(null), 1600)
+  }
+
+  /** 시술명 셀 (한국어 + 누르면 복사되는 중국어) */
+  const nameCell = (row: PriceRow) => (
+    <td>
+      {row[1]}
+      <button type="button" className="hp-zh" onClick={() => copy(zhOf(row))}>{zhOf(row)}</button>
+    </td>
+  )
+  /** 가격 셀 — 누르면 '₩290,000（约¥1,420）' 복사 */
+  const priceCell = (v: number) => (
+    <td className="r">
+      <button type="button" className="hp-price" onClick={() => copy(zhPrice(v))}>
+        <b>{man(v)}</b><span className="hp-won">{won(v)}</span>
+      </button>
+    </td>
+  )
 
   const sheets = useMemo(
     () => HOSPITAL_PRICES.filter(h => (tier === '전체' || h.tier === tier) && (hospitalId === 'all' || h.id === hospitalId)),
@@ -38,7 +82,7 @@ export default function HospitalPrices() {
     if (!q) return []
     return sheets
       .flatMap(h => h.items.map(row => ({ h, row })))
-      .filter(({ row }) => `${row[0]}${row[1]}${row[2]}${row[4] ?? ''}`.toLowerCase().replace(/\s+/g, '').includes(q))
+      .filter(({ row }) => `${row[0]}${row[1]}${row[2]}${row[4] ?? ''}${zhOf(row)}`.toLowerCase().replace(/\s+/g, '').includes(q))
       .sort((a, b) => a.row[1].localeCompare(b.row[1], 'ko') || a.row[2].localeCompare(b.row[2], 'ko') || a.row[3] - b.row[3])
   }, [q, sheets])
 
@@ -51,6 +95,7 @@ export default function HospitalPrices() {
         <p className="hp-desc">
           중가 = 원셀 · 리베리 · 클림 &nbsp;/&nbsp; 고가 = 리앤장 · 셀온 · 살롱드닥터 · 바노바기
           <br />별도 표기 없으면 VAT 별도 · 고객용 견적은 이 표를 보고 분기마다 맞춥니다.
+          <br /><b className="hp-hint">파란 중국어 이름과 가격은 누르면 바로 복사됩니다 → 위챗에 붙여넣기</b>
         </p>
       </header>
 
@@ -62,7 +107,7 @@ export default function HospitalPrices() {
           <input
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="시술명 검색 — 예: 리쥬란, 써마지, 제오민"
+            placeholder="시술명 검색 (한국어·중국어) — 예: 리쥬란, 热玛吉, 黑盒"
           />
           {query && <button className="hp-clear" onClick={() => setQuery('')}>지우기</button>}
         </label>
@@ -91,10 +136,10 @@ export default function HospitalPrices() {
               <tbody>
                 {matches.map(({ h, row }, i) => (
                   <tr key={h.id + i}>
-                    <td>{row[1]}</td>
+                    {nameCell(row)}
                     <td className="hp-muted">{row[2]}</td>
                     <td><TierBadge tier={h.tier} /> {label(h)}</td>
-                    <td className="r"><b>{man(row[3])}</b><span className="hp-won">{won(row[3])}</span></td>
+                    {priceCell(row[3])}
                     <td className="hp-muted">{row[4] ?? ''}</td>
                   </tr>
                 ))}
@@ -123,9 +168,9 @@ export default function HospitalPrices() {
                     <tbody>
                       {rows.map((row, i) => (
                         <tr key={i}>
-                          <td>{row[1]}</td>
+                          {nameCell(row)}
                           <td className="hp-muted">{row[2]}</td>
-                          <td className="r"><b>{man(row[3])}</b><span className="hp-won">{won(row[3])}</span></td>
+                          {priceCell(row[3])}
                           <td className="hp-muted">{row[4] ?? ''}</td>
                         </tr>
                       ))}
@@ -137,6 +182,7 @@ export default function HospitalPrices() {
           )
         })
       )}
+      {copied && <div className="hp-toast">복사됨 · 已复制<span>{copied}</span></div>}
     </div>
   )
 }
@@ -169,6 +215,12 @@ const CSS = `
 .hp-table .r { text-align: right; white-space: nowrap; }
 .hp-won { display: block; font-size: 10.5px; color: #9AA5B1; font-weight: 400; }
 .hp-muted { color: #7C8B9C; font-size: 12.5px; }
+.hp-zh { display: block; margin-top: 3px; padding: 3px 7px; border: 0; border-radius: 6px; background: rgba(28,63,102,0.07); color: #1C5FA0; font: 500 13px 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.hp-zh:active, .hp-price:active { background: rgba(28,63,102,0.18); }
+.hp-price { border: 0; background: none; padding: 2px 4px; border-radius: 6px; text-align: right; cursor: pointer; font: inherit; color: inherit; }
+.hp-hint { color: #1C5FA0; font-weight: 600; }
+.hp-toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: #1E2A36; color: #fff; font-size: 13px; padding: 10px 16px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 10; max-width: calc(100vw - 32px); text-align: center; }
+.hp-toast span { display: block; margin-top: 3px; font-size: 12px; opacity: 0.8; word-break: break-all; }
 .hp-empty { font-size: 13px; color: #7C8B9C; padding: 8px 0 12px; }
 @media (max-width: 560px) {
   .hp-table td:last-child, .hp-table th:last-child { display: none; }

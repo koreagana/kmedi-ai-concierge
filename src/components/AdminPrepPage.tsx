@@ -7,7 +7,7 @@ import {
   type PrepDocument,
   type PrepCategoryId,
 } from '../data/prepDocuments'
-import AdminPinGate from './AdminPinGate'
+import AdminPinGate, { isAdminUnlocked } from './AdminPinGate'
 import './AdminPrepPage.css'
 
 function PrepDocCard({ doc }: { doc: PrepDocument }) {
@@ -184,13 +184,13 @@ function PrepDocList() {
             <br />
             이 페이지에는 환자 개인정보를 저장하지 않습니다.
           </p>
-          <a className="admin-prep-subnav-link" href="/admin/partners/">
+          <a className="admin-prep-subnav-link" href="/admin/partners/" target="_blank" rel="noopener">
             → 협력의료기관 대장 바로가기
           </a>
-          <a className="admin-prep-subnav-link" href="/admin/병원찾기/">
+          <a className="admin-prep-subnav-link" href="/admin/병원찾기/" target="_blank" rel="noopener">
             → 병원찾기 바로가기
           </a>
-          <a className="admin-prep-subnav-link" href="/admin/prices/">
+          <a className="admin-prep-subnav-link" href="/admin/prices/" target="_blank" rel="noopener">
             → 병원별 수가 바로가기
           </a>
         </header>
@@ -206,7 +206,7 @@ function PrepDocList() {
 }
 
 export default function AdminPrepPage() {
-  const [unlocked, setUnlocked] = useState(false)
+  const [unlocked, setUnlocked] = useState(isAdminUnlocked)
 
   if (!unlocked) {
     return <AdminPinGate onSuccess={() => setUnlocked(true)} />
