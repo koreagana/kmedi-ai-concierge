@@ -12,8 +12,8 @@ const fadeUp = {
 }
 
 type QuoteLang = 'zh' | 'en'
-type TierKey = 'economy' | 'standard' | 'premium'
-const TIER_KEYS: TierKey[] = ['economy', 'standard', 'premium']
+type TierKey = 'standard' | 'premium'
+const TIER_KEYS: TierKey[] = ['standard', 'premium']
 
 interface Copy {
   backHome: string
@@ -86,7 +86,7 @@ const COPY: Record<QuoteLang, Copy> = {
     nextBtn: '查看预估费用',
     nextBtnEmpty: '请先选择项目',
     resultTitle: '您的预估费用区间',
-    resultSub: '按经济型 / 标准型 / 高端型三档比较，均为VAT别外加收',
+    resultSub: '按标准型 / 高端型两档比较，均为VAT别外加收',
     itemsTitle: '已选项目明细',
     changeSelectionBtn: '← 重新选择',
     disclaimerTitle: '重要说明',
@@ -94,7 +94,7 @@ const COPY: Record<QuoteLang, Copy> = {
     disclaimer2: '各医院每月促销方案不同，实际费用会根据个人皮肤状态、施术范围与用量而有所差异。',
     disclaimer3: '最终费用以面诊后的正式报价为准。',
     consultBtn: '免费咨询 · 获取精准报价',
-    tierName: { economy: '经济型', standard: '标准型', premium: '高端型' },
+    tierName: { standard: '标准型', premium: '高端型' },
     tierRecommended: '推荐',
     formatRange: (low, high) => money('¥', low, high, toCny),
     formatKrw: (low, high) => money('₩', low, high, v => v),
@@ -114,7 +114,7 @@ const COPY: Record<QuoteLang, Copy> = {
     nextBtn: 'See my estimate',
     nextBtnEmpty: 'Select a treatment first',
     resultTitle: 'Your estimated cost',
-    resultSub: 'Compared across Value / Standard / Premium tiers, all before VAT',
+    resultSub: 'Compared across Standard / Premium tiers, all before VAT',
     itemsTitle: 'Your selection',
     changeSelectionBtn: '← Edit selection',
     disclaimerTitle: 'Please note',
@@ -122,7 +122,7 @@ const COPY: Record<QuoteLang, Copy> = {
     disclaimer2: 'Clinics run different promotions each month, and the final cost shifts with your skin condition, the area treated, and the amount used.',
     disclaimer3: 'Your price is confirmed in the formal quote issued after an in-person consultation.',
     consultBtn: 'Get an exact quote · Free consultation',
-    tierName: { economy: 'Value', standard: 'Standard', premium: 'Premium' },
+    tierName: { standard: 'Standard', premium: 'Premium' },
     tierRecommended: 'Recommended',
     formatRange: (low, high) => money('$', low, high, toUsd),
     formatKrw: (low, high) => money('₩', low, high, v => v),
@@ -133,7 +133,7 @@ const COPY: Record<QuoteLang, Copy> = {
   },
 }
 
-/** 옵션의 economy/standard/premium 중 값이 있는 것만 모아 대략적인 표시 범위를 만든다 (선택 화면용) */
+/** 옵션의 standard/premium 중 값이 있는 것만 모아 대략적인 표시 범위를 만든다 (선택 화면용) */
 function overallRange(opt: QuoteOption): TierRange | null {
   const tiers = TIER_KEYS.map(k => opt[k]).filter((t): t is TierRange => !!t)
   if (tiers.length === 0) return null
@@ -178,7 +178,7 @@ export default function QuotePage() {
   }
 
   const totals = useMemo(() => {
-    const t: Record<TierKey, TierTotal> = { economy: emptyTotal(), standard: emptyTotal(), premium: emptyTotal() }
+    const t: Record<TierKey, TierTotal> = { standard: emptyTotal(), premium: emptyTotal() }
     for (const sel of selectedList) {
       const opt = resolveOption(sel)
       if (!opt) continue
@@ -192,7 +192,7 @@ export default function QuotePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected])
 
-  /** 상단 sticky bar용 — 3단 값 중 존재하는 것들을 모두 아울러 대략적인 범위만 보여줌 */
+  /** 상단 sticky bar용 — 2단 값 중 존재하는 것들을 모두 아울러 대략적인 범위만 보여줌 */
   const stickyRange = useMemo(() => {
     const known = TIER_KEYS.map(k => totals[k]).filter(t => t.low > 0 || t.high > 0)
     if (known.length === 0) return null
@@ -361,7 +361,7 @@ export default function QuotePage() {
             <p className="quote-result-title">{c.resultTitle}</p>
             <p className="quote-result-sub">{c.resultSub}</p>
 
-            {/* ── 3단 합계 비교 ── */}
+            {/* ── 2단 합계 비교 ── */}
             <div className="quote-tier-totals">
               {TIER_KEYS.map(key => {
                 const t = totals[key]

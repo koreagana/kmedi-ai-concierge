@@ -32,8 +32,8 @@ export const HERO_TREATMENTS: HeroTreatmentInfo[] = [
   {
     chip: '丽珠兰',
     chipEn: 'Rejuran',
-    definition: '以三文鱼DNA核心成分（PN）为基础的皮肤再生注射疗法',
-    definitionEn: 'A skin regeneration injectable built on polynucleotide (PN), a DNA fraction derived from salmon.',
+    definition: '以三文鱼DNA核心成分（PN）为基础的皮肤再生注射疗法。按盒子颜色区分：黑盒（Healer 经典款，全面修复）· 白盒（Eye 眼周专用）· 红盒（HB 舒缓修复，含利多卡因）· 蓝盒（S 痘疤修复）',
+    definitionEn: 'A skin regeneration injectable built on polynucleotide (PN), a DNA fraction derived from salmon. In China the lines are known by box colour: Black (Healer, classic all-round repair) · White (Eye, for the eye area) · Red (HB, soothing, with lidocaine) · Blue (S, acne scars).',
     recommend: '肤色暗沉、面部细纹明显，或需要全面改善肤质再生能力时',
     recommendEn: 'When skin looks dull, fine lines are becoming visible, or you want to rebuild overall skin quality and resilience.',
     difference: '与乔雅露相比，丽珠兰更侧重于深层的皮肤再生与高效补水',

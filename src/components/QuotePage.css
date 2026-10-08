@@ -289,7 +289,7 @@
   margin-bottom: 14px;
 }
 
-/* ── 3단(经济型/标准型/高端型) 합계 비교 ─────────────────────────── */
+/* ── 2단(标准型/高端型) 합계 비교 ─────────────────────────── */
 .quote-tier-totals {
   display: flex;
   gap: 8px;
@@ -389,7 +389,7 @@
 }
 .quote-item-tiers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 6px;
 }
 .quote-item-tier {
