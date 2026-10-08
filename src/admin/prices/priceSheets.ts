@@ -21,6 +21,8 @@ export interface HospitalPriceSheet {
   vat: string
   source: string
   note?: string
+  /** 고객을 보낼 수 없는 병원 — 수가 비교용으로만 싣는다 */
+  referenceOnly?: string
   items: PriceRow[]
 }
 
@@ -32,7 +34,7 @@ export const HOSPITAL_PRICES: HospitalPriceSheet[] = [
     asOf: '2026-09',
     vat: 'VAT 미확인 (포함이면 ÷1.1 필요)',
     source: '기존 견적 데이터 (public/docs/pricing.html)',
-    note: '고객 우선 배정 병원',
+    referenceOnly: '송객 불가 — 중국 에이전시와 독점계약. 수가 참고용으로만 사용. 양동준 원장은 셀이즈랩의원으로 이동 → 성형(유륜흉터 등) 환자는 셀이즈랩으로',
     items: [
       ['리프팅', '울쎄라피 프라임', '100샷', 460000],
       ['리프팅', '울쎄라피 프라임', '300샷', 1250000],

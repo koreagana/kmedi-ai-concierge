@@ -93,7 +93,7 @@ export default function HospitalPrices() {
         <p className="hp-eyebrow">HANGANG AEBOM · INTERNAL</p>
         <h1 className="hp-title">병원별 수가</h1>
         <p className="hp-desc">
-          중가 = 원셀 · 리베리 · 클림 &nbsp;/&nbsp; 고가 = 리앤장 · 셀온 · 살롱드닥터 · 바노바기
+          중가 = 원셀(참고용) · 리베리 · 클림 &nbsp;/&nbsp; 고가 = 리앤장 · 셀온 · 살롱드닥터 · 바노바기
           <br />별도 표기 없으면 VAT 별도 · 고객용 견적은 이 표를 보고 분기마다 맞춥니다.
           <br /><b className="hp-hint">파란 중국어 이름과 가격은 누르면 바로 복사됩니다 → 위챗에 붙여넣기</b>
         </p>
@@ -138,7 +138,7 @@ export default function HospitalPrices() {
                   <tr key={h.id + i}>
                     {nameCell(row)}
                     <td className="hp-muted">{row[2]}</td>
-                    <td><TierBadge tier={h.tier} /> {label(h)}</td>
+                    <td><TierBadge tier={h.tier} /> {label(h)}{h.referenceOnly && <span className="hp-ref">참고용</span>}</td>
                     {priceCell(row[3])}
                     <td className="hp-muted">{row[4] ?? ''}</td>
                   </tr>
@@ -156,7 +156,8 @@ export default function HospitalPrices() {
           return (
             <section className="hp-card" key={h.id}>
               <div className="hp-card-head">
-                <p className="hp-card-title"><TierBadge tier={h.tier} /> {label(h)}</p>
+                <p className="hp-card-title"><TierBadge tier={h.tier} /> {label(h)}{h.referenceOnly && <span className="hp-ref">참고용 · 송객 불가</span>}</p>
+                {h.referenceOnly && <p className="hp-ref-note">{h.referenceOnly}</p>}
                 <p className="hp-meta">기준 {h.asOf} · {h.vat}</p>
                 {h.note && <p className="hp-meta">{h.note}</p>}
                 <p className="hp-src">원본: {h.source}</p>
@@ -221,6 +222,8 @@ const CSS = `
 .hp-hint { color: #1C5FA0; font-weight: 600; }
 .hp-toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); background: #1E2A36; color: #fff; font-size: 13px; padding: 10px 16px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); z-index: 10; max-width: calc(100vw - 32px); text-align: center; }
 .hp-toast span { display: block; margin-top: 3px; font-size: 12px; opacity: 0.8; word-break: break-all; }
+.hp-ref { font-size: 11px; font-weight: 700; color: #B23A2E; background: rgba(178,58,46,0.09); border-radius: 6px; padding: 2px 7px; margin-left: 6px; white-space: nowrap; }
+.hp-ref-note { font-size: 12.5px; color: #B23A2E; background: rgba(178,58,46,0.06); border-radius: 8px; padding: 8px 10px; margin: 6px 0 4px; line-height: 1.6; }
 .hp-empty { font-size: 13px; color: #7C8B9C; padding: 8px 0 12px; }
 @media (max-width: 560px) {
   .hp-table td:last-child, .hp-table th:last-child { display: none; }
