@@ -33,6 +33,12 @@ function AdminHospitalSearchPage() {
         >
           → 협력의료기관 대장 바로가기
         </a>
+        <a
+          href="/admin/prices/"
+          style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}
+        >
+          → 병원별 수가 바로가기
+        </a>
       </div>
     </div>
   )

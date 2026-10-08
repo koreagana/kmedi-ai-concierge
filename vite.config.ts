@@ -27,6 +27,7 @@ export default defineConfig({
         adminPrep: resolve(__dirname, 'admin/prep/index.html'),
         adminPartners: resolve(__dirname, 'admin/partners/index.html'),
         adminHospitalSearch: resolve(__dirname, 'admin/병원찾기/index.html'),
+        adminPrices: resolve(__dirname, 'admin/prices/index.html'),
       },
     },
   },

@@ -190,6 +190,9 @@ function PrepDocList() {
           <a className="admin-prep-subnav-link" href="/admin/병원찾기/">
             → 병원찾기 바로가기
           </a>
+          <a className="admin-prep-subnav-link" href="/admin/prices/">
+            → 병원별 수가 바로가기
+          </a>
         </header>
 
         <CategoryNav />
