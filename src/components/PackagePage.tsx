@@ -118,7 +118,7 @@ const ZH: PackageLang = {
   priceMainNote: '3人以上加车辆升级，费用另行报价，敬请咨询顾问',
   priceItems: [
     { title: '医疗项目费用', desc: '由您选择的具体医疗项目将单独核算，套餐费用不含医疗费', tag: '另行报价', tagKind: 'apart' },
-    { title: '住宿', desc: '不含在套餐内，由您自行预订。如需要，可为您免费推荐合作酒店并协助预订（不收取任何手续费）', tag: '免费协助', tagKind: 'free' },
+    { title: '住宿', desc: '不含在套餐内，请您自行预订。', tag: '自行预订', tagKind: 'apart' },
   ],
   priceFx: '价格按实时汇率计算。具体项目及时间由顾问确认后调整。',
   summaryEmpty: '尚未选择行程项目',
@@ -180,7 +180,7 @@ const EN: PackageLang = {
   priceMainNote: 'For 3+ people the vehicle is upgraded and pricing is quoted separately — please contact a concierge.',
   priceItems: [
     { title: 'Medical Treatment Fees', desc: 'The specific medical treatments you choose are calculated separately; medical costs are not included in the package fee.', tag: 'Quoted separately', tagKind: 'apart' },
-    { title: 'Accommodation', desc: 'Not included in the package — you may book it yourself. If needed, we can recommend and help book a partner hotel free of charge (no service fee).', tag: 'Free assistance', tagKind: 'free' },
+    { title: 'Accommodation', desc: 'Not included in the package — please book your own accommodation.', tag: 'Self-booked', tagKind: 'apart' },
   ],
   priceFx: 'Prices are converted at the current exchange rate. Specific treatments and timing will be confirmed with your concierge.',
   summaryEmpty: 'No itinerary items selected yet',
