@@ -47,8 +47,8 @@ const SERVICES: { icon: string; title: L; body: L }[] = [
   },
   {
     icon: 'fa-suitcase-rolling',
-    title: { zh: '在韩期间的必要协助', en: 'Help During Your Stay in Korea' },
-    body: { zh: '提供住宿、交通、生活基本信息、紧急联系方式等必要协助。', en: 'Accommodation, transport, everyday essentials and emergency contacts — we help with what you need.' },
+    title: { zh: '在韩期间的信息协助', en: 'Practical Information While in Korea' },
+    body: { zh: '提供医院位置、交通路线、紧急联系方式等必要信息。机场往返、住宿与交通由客户自行安排（3晚4天方案已包含接送机）。', en: 'We share hospital locations, directions and emergency contacts. Airport transfers, accommodation and local transport are arranged by clients themselves (airport transfers are included in the 3N4D Package).' },
   },
   {
     icon: 'fa-hands-helping',

@@ -367,8 +367,8 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
     emoji: '🗺️',
     heroImage: '/category-hero/custom-plan.jpg',
     heroVideo: '/category-hero/custom-plan.mp4',
-    tagZh: '定制组合疗程 · 预算行程 · 全程协调 · 机场接送',
-    tagEn: 'Multi-Service Plan · Budget/Itinerary · Full Coordination',
+    tagZh: '定制组合疗程 · 预算方向 · 全程协调',
+    tagEn: 'Multi-Service Plan · Budget Direction · Full Coordination',
     scriptFullZh: `您好，这里是定制医疗旅游方案入口。
 
 如果您还不确定该选哪个项目，可以从这里开始。
@@ -377,7 +377,7 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
 
 有的客户想为父母安排体检，同时安排自己的皮肤咨询。
 
-也有的客户想把整形咨询和恢复期的旅行安排放在一起考虑。
+也有的客户想把整形咨询和术后皮肤管理放在一起考虑。
 
 汉江春天会先帮您整理目的、年龄、同行人数、停留天数和预算方向。
 
@@ -392,7 +392,7 @@ Some clients want a health checkup and skin care combined.
 
 Some plan a checkup for their parents alongside their own skin care.
 
-Others need to consider plastic surgery consultation together with a recovery-period travel schedule.
+Others want to plan a plastic surgery consultation together with post-op skin care.
 
 We'll first organize your purpose, age, companions, length of stay, budget direction, and recovery period.
 
