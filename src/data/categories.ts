@@ -331,13 +331,13 @@ Diagnosis and treatment must follow the judgment of a medical institution and ph
 
 来韩国进行医疗咨询，并不只是预约一家医院就结束了。
 
-预约、翻译、车辆接送、到院陪同、住宿安排、恢复期动线，都需要提前准备好。
+预约、翻译、车辆接送、到院陪同、恢复期动线，都需要提前准备好。
 
 对很多海外客户来说，比起医院本身，整个流程更让人不安。
 
 汉江春天会先帮您整理目的、行程、人数、关注方向，以及是否需要翻译陪同。
 
-之后，我们会协助安排预约、翻译、车辆、到院陪同与住宿沟通。
+之后，我们会协助安排预约、翻译、车辆与到院陪同。住宿不含在方案内，请您自行预订。
 
 医疗判断由医院和专业医生负责，汉江春天负责把整个医疗旅行过程安排得安心、清楚。
 
@@ -346,13 +346,13 @@ Diagnosis and treatment must follow the judgment of a medical institution and ph
 
 Receiving medical consultation in Korea doesn't end with booking a single hospital.
 
-Appointments, interpretation, transportation, hospital escort, accommodation guidance, and recovery-period logistics all need to be prepared together.
+Appointments, interpretation, transportation, hospital escort, and recovery-period logistics all need to be prepared together.
 
 For overseas clients, the entire process can feel more uncertain than the hospital visit itself.
 
 We'll first organize your purpose of visit, schedule, number of companions, areas of interest, and interpretation needs.
 
-We'll then help with appointments, interpretation, vehicles, hospital escort, and accommodation guidance.
+We'll then help with appointments, interpretation, vehicles, and hospital escort. Accommodation is not included — please book your own.
 
 Medical decisions are made by the hospital and physicians, while K-Medi Spring's role is to organize the medical travel process safely and clearly.
 

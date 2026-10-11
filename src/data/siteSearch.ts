@@ -171,7 +171,7 @@ function buildIndex(): Entry[] {
     title: L('全程服务', 'Our Full Service'),
     context: L('外籍患者引进机构资质', 'Licensed Foreign Patient Agency'),
     target: { type: 'services' },
-    names: ['全程服务', '陪诊', '翻译陪同', '翻译', '接送', 'service', 'interpreter'],
+    names: ['全程服务', '陪诊', '翻译陪同', '翻译', 'service', 'interpreter'],
     text: [],
   })
   entries.push({
