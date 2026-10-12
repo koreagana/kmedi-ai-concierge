@@ -6,7 +6,7 @@
 
    ※ 인기시술 견적(quoteProcedures.ts)과 기준이 다르다
       · 단위: 만원  (인기시술은 원)
-      · VAT : 포함  (인기시술은 별도)
+      · VAT : 별도  (2026-10-12 사용자 확인 — 인기시술과 같음)
       · 병원: 원셀 단독 (인기시술은 3곳 비교)
       그래서 합산·비교를 섞지 않고 별도 페이지로 둔다.
 
@@ -19,7 +19,7 @@
 export interface SurgeryItem {
   ko: string
   zh: string
-  /** 만원 단위 · VAT 포함. 범위면 [최저, 최고] */
+  /** 만원 단위 · VAT 별도. 범위면 [최저, 최고] */
   krw: number | [number, number]
   /** 「~부터」처럼 상한이 없는 경우 */
   from?: boolean
@@ -43,8 +43,8 @@ export interface SurgeryGroup {
 export const SURGERY_SOURCE = {
   hospitalKo: '원셀성형외과',
   hospitalZh: '元细胞整形外科',
-  basisKo: 'VAT 포함 · 해외 환자 적용가 · 단위 만원',
-  basisZh: '含增值税 · 外国患者适用价 · 单位：万韩元',
+  basisKo: 'VAT 별도 · 해외 환자 적용가 · 단위 만원',
+  basisZh: '不含增值税 · 外国患者适用价 · 单位：万韩元',
   asOfKo: '2026년 최신 기준가',
   asOfZh: '2026年最新参考价格',
 }
