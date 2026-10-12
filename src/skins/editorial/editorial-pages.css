@@ -57,6 +57,12 @@
 .ed-skin table.ed-table td, .ed-skin table.ed-schedule td { padding: .75em 1em; vertical-align: top; border: 1px solid rgba(210,215,217,.75); }
 .ed-skin table.ed-table tbody tr:nth-child(2n + 1), .ed-skin table.ed-schedule tbody tr:nth-child(2n + 1) { background: rgba(230,235,237,.35); }
 .ed-skin #main .ed-table td, .ed-skin #main .ed-schedule td, .ed-skin #main .ed-compare td { font-size: .95em !important; line-height: 1.65 !important; }
+/* 성형 세부 페이지 가격표 — 왼쪽 시술명, 오른쪽 위안(크게)·원화·회복기 */
+.ed-skin .ed-price-table td.ed-price-cell { text-align: right; white-space: nowrap; width: 1%; }
+.ed-skin .ed-price-table strong { color: #1F4E79; }
+.ed-skin .ed-price-table .ed-price-cell strong { color: #0077B6; font-size: 1.05em; }
+.ed-skin .ed-price-ko { font-size: .82em; color: #8a9096; }
+.ed-skin .ed-price-note, .ed-skin .ed-price-krw { display: block; font-size: .8em; color: #8a9096; line-height: 1.5; }
 .ed-skin .ed-table-name { font-weight: 600; color: #222; white-space: nowrap; width: 1%; }
 .ed-skin table.ed-compare th {
   text-align: left; padding: .7em 1em; font-size: .85em; font-weight: 600; color: #fff;

@@ -49,6 +49,18 @@ export const SURGERY_SOURCE = {
   asOfZh: '2026年最新参考价格',
 }
 
+/** 성형 세부 페이지 → 성형 수가표 묶음. 「韩国隆鼻价格」처럼 시술+가격으로 검색해 들어온 사람이
+    그 페이지에서 바로 가격을 보게(2026-10-12 SEO). 수가는 원셀 기준 참고가 — 병원명은 노출하지 않는다. */
+export const TOPIC_PRICE_GROUP: Record<string, string> = {
+  'eye-surgery': 'eye',
+  'nose-surgery': 'nose',
+  'facelift-lifting': 'lift',
+  'facial-contour-two-jaw': 'contour',
+  'fat-grafting-liposuction': 'lipo',
+  'breast-surgery': 'breast',
+  'hair-transplant': 'hair',
+}
+
 export const SURGERY_GROUPS: SurgeryGroup[] = [
   {
     id: 'eye', ko: '눈', zh: '眼部',

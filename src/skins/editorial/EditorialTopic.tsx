@@ -6,6 +6,50 @@ import { WECHAT_BIZ_URL } from '../../data/contacts'
 import { translations } from '../../data/translations'
 import { edLink } from './edLink'
 import { getTopics, type Block } from './topics'
+import { SURGERY_GROUPS, TOPIC_PRICE_GROUP } from '../../data/surgeryPrices'
+import { priceLabels } from '../../components/SurgeryPricePage'
+
+function TopicPrice({ groupId, title, isZh }: { groupId: string; title: string; isZh: boolean }) {
+  const group = SURGERY_GROUPS.find((g) => g.id === groupId)
+  if (!group) return null
+  return (
+    <>
+      <hr className="major" />
+      <h2>{isZh ? `${title}价格参考` : `${title}: Reference Prices`}</h2>
+      <p className="ed-page-tag">{isZh ? '2026年最新参考价格（参考用，不含增值税）' : '2026 latest reference pricing (for reference only, VAT not included)'}</p>
+      <div className="table-wrapper">
+        <table className="ed-table ed-price-table">
+          <tbody>
+            {group.items.map((it, i) => {
+              const p = priceLabels(it.krw)
+              const note = isZh ? it.noteZh : it.noteKo
+              const rec = isZh ? it.recoveryZh : it.recoveryKo
+              return (
+                <tr key={i}>
+                  <td>
+                    <strong>{isZh ? it.zh : it.ko}</strong>
+                    {isZh && <span className="ed-price-ko"> {it.ko}</span>}
+                    {note && <span className="ed-price-note">{note}</span>}
+                  </td>
+                  <td className="ed-price-cell">
+                    <strong>{it.addOn ? '+' : ''}{p.main}{it.from ? (isZh ? '起' : '+') : ''}</strong>
+                    <span className="ed-price-krw">{p.sub}</span>
+                    {rec && <span className="ed-price-note">{isZh ? '恢复期' : 'Downtime'} {rec}</span>}
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p className="ed-small">
+        {isZh
+          ? '以上价格仅供参考，实际费用因医院、医生、手术难度及个人情况而不同，最终以面诊后的正式报价为准。'
+          : 'Prices are for reference only and vary by hospital, surgeon, complexity and individual condition. Your final price is confirmed after an in-person consultation.'}
+      </p>
+    </>
+  )
+}
 
 /** 정사각 전신·반신 사진이 PC 가로 틀(최대 440px)에서 눈 위·손이 잘리는 항목 — 틀을 560px로 높이고
     얼굴이 들어오는 위치를 지정한다(폰은 틀이 거의 정사각이라 영향 없음). */
@@ -96,6 +140,10 @@ export default function EditorialTopic() {
           <BlockView block={b} lang={lang} />
         </Fragment>
       ))}
+
+      {cat.id === 'plastic-surgery' && TOPIC_PRICE_GROUP[topic.id] && (
+        <TopicPrice groupId={TOPIC_PRICE_GROUP[topic.id]} title={topic.title} isZh={isZh} />
+      )}
 
       <hr className="major" />
       <ul className="actions ed-cta">

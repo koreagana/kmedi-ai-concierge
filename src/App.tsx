@@ -10,6 +10,7 @@ import { translations, type LangCode } from './data/translations'
 import { categories } from './data/categories'
 import { CATEGORY_SUBMENUS } from './data/categorySubmenus'
 import { seoMeta, surgeryMeta } from './data/seoMeta'
+import { TOPIC_PRICE_GROUP } from './data/surgeryPrices'
 import { updatePageSeo, updateBreadcrumbLd } from './seo'
 import { lazy, Suspense, useEffect } from 'react'
 import { SKIN, siteText } from './skin'
@@ -132,7 +133,10 @@ function PageRouter() {
             lang,
             zhPath: `/zh/${cat.id}/${topic.id}`,
             enPath: `/en/${cat.id}/${topic.id}`,
-            title: `${topic.title[lang]} · ${name} · ${brand}`,
+            // 가격표가 붙은 성형 세부 페이지는 제목에 "价格"를 넣는다 — 「韩国隆鼻价格」 같은 검색어용
+            title: cat.id === 'plastic-surgery' && TOPIC_PRICE_GROUP[topic.id]
+              ? `${topic.title[lang]}${lang === 'zh' ? '价格参考 2026' : ' Prices 2026'} · ${name} · ${brand}`
+              : `${topic.title[lang]} · ${name} · ${brand}`,
             description: (topic.description?.[lang] ?? summary).replace(/\s+/g, ' ').slice(0, 150),
           })
           return

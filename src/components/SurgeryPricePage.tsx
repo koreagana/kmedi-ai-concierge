@@ -69,7 +69,7 @@ function roundCny(v: number) {
   const step = v < 1000 ? 10 : 50
   return Math.max(step, Math.round(v / step) * step)
 }
-function priceLabels(krw: SurgeryItem['krw']) {
+export function priceLabels(krw: SurgeryItem['krw']) {
   const [lo, hi] = Array.isArray(krw) ? krw : [krw, krw]
   const won = (v: number) => `₩${Math.round(v * MANWON).toLocaleString('en-US')}`
   const cny = (v: number) => `¥${roundCny((v * MANWON) / KRW_PER_CNY).toLocaleString('en-US')}`
