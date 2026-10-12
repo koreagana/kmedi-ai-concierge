@@ -14,8 +14,6 @@ import './editorial-pages.css'
 /** 이 폭 이상이면 사이드바가 본문 옆에 붙는다(Editorial 원본의 xlarge 구간과 같은 1281px). */
 const DOCK_QUERY = '(min-width: 1281px)'
 const MENU_KEY = 'ed-menu-open'
-/** 진료 분야 메뉴에서 빼서 外籍患者引进机构资质 묶음으로 보내는 카테고리 */
-const AGENCY_CATEGORY_IDS: string[] = ['medical-tourism', 'custom-plan']
 const readMenuPref = () => { try { return sessionStorage.getItem(MENU_KEY) === '1' } catch { return false } }
 const writeMenuPref = (open: boolean) => { try { sessionStorage.setItem(MENU_KEY, open ? '1' : '0') } catch { /* 사생활 모드 등 — 기억만 못 할 뿐 */ } }
 
@@ -24,7 +22,7 @@ const writeMenuPref = (open: boolean) => { try { sessionStorage.setItem(MENU_KEY
     옛 사이트의 jQuery main.js가 하던 일(body.is-menu-visible 토글, 바깥 클릭·ESC로 닫기)은
     여기서 React state로 대신한다. 클래스는 body 대신 .ed-skin 루트에 붙는다. */
 export default function EditorialLayout({ children }: { children: ReactNode }) {
-  const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners, goToServices } = useApp()
+  const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToQuote, goToSurgery, goToPartners, goToServices } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
   const navigate = useNavigate()
@@ -173,7 +171,6 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   const targetHref = (t: SearchTarget) => {
     switch (t.type) {
       case 'category': return langPath(lang, `/${t.id}${t.kw ? `/${t.kw}` : ''}`)
-      case 'package': return langPath(lang, '?page=package')
       case 'quote': {
         const p = new URLSearchParams()
         if (t.cat) p.set('qcat', t.cat)
@@ -190,7 +187,6 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
     setQuery('')
     switch (t.type) {
       case 'category': return t.kw ? goToTopic(t.id, t.kw) : goToCategory(t.id)
-      case 'package': return goToPackage()
       case 'quote': return goToQuote(t.cat, t.proc)
       case 'surgery': return goToSurgery()
       case 'partners': return goToPartners()
@@ -198,10 +194,9 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
     }
   }
 
-  // 위쪽 메뉴는 진료 분야(皮肤~男性健康)만. 여행 방안·서비스·가격 페이지는 关于我们 아래
-  // 外籍患者引进机构资质 묶음으로 내린다(사용자 결정 2026-10-02).
+  // 위쪽 메뉴: 진료 분야(皮肤~男性健康) + 맨 끝에 关于汉江春天 묶음(서비스·가격 페이지).
   const menuItems: { key: string; label: string; href: string; go: () => void; current: boolean; sub?: SubmenuItem[] }[] =
-    categories.filter((c) => !AGENCY_CATEGORY_IDS.includes(c.id)).map((c) => ({
+    categories.map((c) => ({
       key: c.id,
       label: isZh ? c.zh : c.en,
       href: langPath(lang, `/${c.id}`),
@@ -210,14 +205,9 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       sub: CATEGORY_SUBMENUS[c.id],
     }))
 
-  const pkg = categories.find((c) => c.id === 'medical-tourism')!
-  const custom = categories.find((c) => c.id === 'custom-plan')!
-  // 순서: 기관이 하는 일(全程服务)이 먼저 와야 外籍患者引进机构资质 제목과 이어진다(사용자 결정 2026-10-02)
   const agencyItems: { key: string; label: string; href: string; go: () => void; current: boolean }[] = [
     // 협력기관 목록(/partners)은 메뉴에 넣지 않는다 — 了解全程服务 버튼·직접 링크로만
     { key: 'services', label: isZh ? '就医协调服务' : 'Medical Coordination', href: langPath(lang, '/services'), go: goToServices, current: page === 'services' },
-    { key: 'custom-plan', label: isZh ? custom.zh : custom.en, href: langPath(lang, '/custom-plan'), go: () => goToCategory('custom-plan'), current: page === 'category' && categoryId === 'custom-plan' },
-    { key: 'package', label: isZh ? pkg.zh : pkg.en, href: langPath(lang, '?page=package'), go: goToPackage, current: page === 'package' },
     { key: 'quote', label: t.quoteBtnTitle, href: langPath(lang, `/quote`), go: () => goToQuote(), current: page === 'quote' },
     { key: 'surgery', label: t.surgeryBtnTitle, href: langPath(lang, `/surgery-price`), go: goToSurgery, current: page === 'surgery' },
   ]
@@ -378,22 +368,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                     </li>
                   )
                 })}
-              </ul>
-
-              {/* 关于我们 — 철학 글 아래에 外籍患者引进机构资质 묶음(여행 방안·全程服务·가격 페이지).
-                  메뉴 CSS가 전부 nav#menu 기준이라 같은 nav 안에 두어 카테고리와 똑같이 펼쳐지게 한다. */}
-              <div className="ed-menu-about">
-                <div className="section-spacer" />
-                <header className="major">
-                  <h3 className="about-title">{isZh ? '关于我们' : 'About Us'}</h3>
-                </header>
-                <p>
-                  {isZh
-                    ? '我们相信，美丽与健康，源于真诚的交流。如果你对韩国医疗、健康管理或合作有兴趣，欢迎通过微信或邮件与我们联系。'
-                    : 'We believe beauty and health begin with sincere communication. If you are interested in Korean medical care, health management or partnership, feel free to reach us by WeChat or email.'}
-                </p>
-              </div>
-              <ul>
+                {/* 关于汉江春天 — 진료 분야 맨 끝(男性健康) 바로 아래(사용자 결정 2026-10-12) */}
                 <li className="ed-has-sub">
                   <div className="ed-sub-row">
                     <a
@@ -401,7 +376,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                       onClick={(e) => { e.preventDefault(); setAgencyOpen((v) => !v) }}
                       aria-expanded={agencyOpen}
                     >
-                      {isZh ? '外籍患者引进机构资质' : 'Licensed Foreign Patient Agency'}
+                      {isZh ? '关于汉江春天' : 'About K-MediSpring'}
                     </a>
                     <button
                       type="button"
@@ -422,6 +397,19 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
                   )}
                 </li>
               </ul>
+
+              {/* 关于我们 — 철학 글. 서비스·가격 묶음(关于汉江春天)은 위 진료 분야 목록 끝으로 옮김(2026-10-12). */}
+              <div className="ed-menu-about">
+                <div className="section-spacer" />
+                <header className="major">
+                  <h3 className="about-title">{isZh ? '关于我们' : 'About Us'}</h3>
+                </header>
+                <p>
+                  {isZh
+                    ? '我们相信，美丽与健康，源于真诚的交流。如果你对韩国医疗、健康管理或合作有兴趣，欢迎通过微信或邮件与我们联系。'
+                    : 'We believe beauty and health begin with sincere communication. If you are interested in Korean medical care, health management or partnership, feel free to reach us by WeChat or email.'}
+                </p>
+              </div>
             </nav>
 
             <section>

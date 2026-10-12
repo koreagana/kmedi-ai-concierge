@@ -5,8 +5,6 @@ export type CategoryId =
   | 'plastic-surgery'
   | 'womens-care'
   | 'mens-health'
-  | 'medical-tourism'
-  | 'custom-plan'
 
 export interface Category {
   id: CategoryId
@@ -317,90 +315,6 @@ We'll then connect you with checkup, urology, hair loss, or functional medicine 
 Diagnosis and treatment must follow the judgment of a medical institution and physician.`,
     scriptSummaryZh: `男性健康中心适合关注体力、睡眠、代谢、脱发、泌尿健康、前列腺与男性抗衰管理的人群。汉江春天可协助进行咨询整理与韩国医疗服务对接。`,
     scriptSummaryEn: `The Men's Health Center suits those interested in energy, sleep, metabolism, hair loss, urinary health, prostate, and male function management. K-Medi Spring organizes your consultation and connects you to Korean medical services.`,
-  },
-  {
-    id: 'medical-tourism',
-    zh: '汉江春天 3晚4天方案',
-    en: 'Premium Medical Tourism',
-    emoji: '✈️',
-    // 이 카테고리는 자체 상세 페이지가 없고 항상 패키지 페이지(goToPackage)로 연결된다 —
-    // heroImage를 넣지 않는다(CategoryPage가 실제로 렌더되는 경로가 없어 쓰일 일이 없음).
-    tagZh: '仁川机场接送 · 预约翻译 · 车辆陪同 · 3晚4天行程',
-    tagEn: 'Booking/Interpretation · Vehicle Escort · 3N4D Itinerary',
-    scriptFullZh: `您好，欢迎了解汉江春天医疗旅游精品服务。
-
-来韩国进行医疗咨询，并不只是预约一家医院就结束了。
-
-预约、翻译、车辆接送、到院陪同、恢复期动线，都需要提前准备好。
-
-对很多海外客户来说，比起医院本身，整个流程更让人不安。
-
-汉江春天会先帮您整理目的、行程、人数、关注方向，以及是否需要翻译陪同。
-
-之后，我们会协助安排预约、翻译、车辆与到院陪同。住宿不含在方案内，请您自行预订。
-
-医疗判断由医院和专业医生负责，汉江春天负责把整个医疗旅行过程安排得安心、清楚。
-
-3晚4天为参考行程，具体安排会根据咨询内容调整。`,
-    scriptFullEn: `Hello, welcome to K-Medi Spring's Premium Medical Tourism service.
-
-Receiving medical consultation in Korea doesn't end with booking a single hospital.
-
-Appointments, interpretation, transportation, hospital escort, and recovery-period logistics all need to be prepared together.
-
-For overseas clients, the entire process can feel more uncertain than the hospital visit itself.
-
-We'll first organize your purpose of visit, schedule, number of companions, areas of interest, and interpretation needs.
-
-We'll then help with appointments, interpretation, vehicles, and hospital escort. Accommodation is not included — please book your own.
-
-Medical decisions are made by the hospital and physicians, while K-Medi Spring's role is to organize the medical travel process safely and clearly.
-
-The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adjusted based on your consultation.`,
-    scriptSummaryZh: `医疗旅游精品服务适合计划来韩国进行医疗咨询、皮肤医美、整形、健康管理或抗衰服务的人群。汉江春天可协助预约、翻译、行程、车辆与到院沟通。`,
-    scriptSummaryEn: `The Premium Medical Tourism service suits those planning medical consultation, skin aesthetics, plastic surgery, health management, or anti-aging services in Korea. K-Medi Spring helps with appointments, interpretation, itinerary, transportation, and hospital escort.`,
-  },
-  {
-    id: 'custom-plan',
-    zh: '定制医疗旅游方案',
-    en: 'Custom Medical Travel Plan',
-    emoji: '🗺️',
-    heroImage: '/category-hero/custom-plan.jpg',
-    heroVideo: '/category-hero/custom-plan.mp4',
-    tagZh: '定制组合疗程 · 预算方向 · 诊疗协调',
-    tagEn: 'Multi-Service Plan · Budget Direction · Care Coordination',
-    scriptFullZh: `您好，这里是定制医疗旅游方案入口。
-
-如果您还不确定该选哪个项目，可以从这里开始。
-
-有的客户想同时安排健康检查和皮肤管理。
-
-有的客户想为父母安排体检，同时安排自己的皮肤咨询。
-
-也有的客户想把整形咨询和术后皮肤管理放在一起考虑。
-
-汉江春天会先帮您整理目的、年龄、同行人数、停留天数和预算方向。
-
-之后，我们会把多个方向组合起来，设计韩国医疗旅游的咨询路径。
-
-最终的医疗判断和治疗可行性，仍以医疗机构和专业医生的判断为准。`,
-    scriptFullEn: `Hello, welcome to the Custom Medical Travel Plan.
-
-If you're not yet sure which category to choose, you can start here.
-
-Some clients want a health checkup and skin care combined.
-
-Some plan a checkup for their parents alongside their own skin care.
-
-Others want to plan a plastic surgery consultation together with post-op skin care.
-
-We'll first organize your purpose, age, companions, length of stay, budget direction, and recovery period.
-
-We'll then combine multiple areas to design your Korean medical tourism consultation direction.
-
-Final medical decisions and treatment feasibility remain with medical institutions and physicians.`,
-    scriptSummaryZh: `如果您还不确定选择哪个项目，可以先提交定制需求。汉江春天会根据您的目的、时间、预算与停留计划，为您整理韩国医疗旅游咨询方向。`,
-    scriptSummaryEn: `If you're not sure which category to choose, you can start with a custom plan. K-Medi Spring organizes your Korean medical tourism consultation direction based on your purpose, schedule, budget, and stay plan.`,
   },
 ]
 

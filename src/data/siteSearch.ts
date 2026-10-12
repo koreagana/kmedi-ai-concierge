@@ -16,7 +16,6 @@ import type { LangCode } from './translations'
 
 export type SearchTarget =
   | { type: 'category'; id: CategoryId; kw?: string }
-  | { type: 'package' }
   | { type: 'quote'; cat?: string; proc?: string }
   | { type: 'surgery' }
   | { type: 'partners' }
@@ -87,8 +86,6 @@ const SYNONYMS: Record<string, string[]> = {
   价格: ['费用'],
   多少钱: ['费用'],
   报价: ['费用'],
-  旅游: ['3晚4天', '旅游'],
-  行程: ['3晚4天', '定制'],
   lifting: ['提升'],
   botox: ['肉毒素'],
   filler: ['玻尿酸'],
@@ -102,7 +99,7 @@ function buildIndex(): Entry[] {
   const entries: Entry[] = []
 
   for (const c of categories) {
-    const target: SearchTarget = c.id === 'medical-tourism' ? { type: 'package' } : { type: 'category', id: c.id }
+    const target: SearchTarget = { type: 'category', id: c.id }
     entries.push({
       key: `cat-${c.id}`,
       title: L(c.zh, c.en),

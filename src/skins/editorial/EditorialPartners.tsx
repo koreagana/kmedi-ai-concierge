@@ -1,6 +1,7 @@
 import { useApp } from '../../contexts/AppContext'
 import { langPath } from '../../skin'
 import { WECHAT_BIZ_URL } from '../../data/contacts'
+import { JOURNEY_ACTS, JOURNEY_HEADING, JOURNEY_SUBHEADING, JOURNEY_TRUST } from '../../data/customPlanContent'
 import partners from '../../data/partnersPublic.generated.json'
 import { edLink } from './edLink'
 
@@ -43,8 +44,8 @@ const SERVICES: { icon: string; title: L; body: L }[] = [
 ]
 
 const NOTE: L = {
-  zh: '交通与住宿由客户自行安排，费用自理（含翻译陪同期间的交通费）。3晚4天方案已包含接送机。',
-  en: 'Transport and accommodation are arranged and paid for by clients, including transport during interpreter escort. Airport transfers are included in the 3N4D Package.',
+  zh: '交通与住宿由客户自行安排，费用自理（含翻译陪同期间的交通费）。',
+  en: 'Transport and accommodation are arranged and paid for by clients, including transport during interpreter escort.',
 }
 const FINE: L = {
   zh: '服务问题由我们直接确认；健康信息与照片仅在您同意后，于必要范围内使用。',
@@ -121,6 +122,33 @@ export default function EditorialPartners({ servicesOnly = false }: { servicesOn
       <p className="ed-svc-note">{NOTE[lang]}</p>
       <p className="ed-svc-fine">{FINE[lang]}</p>
 
+      {/* 就医流程 — 예전 定制医疗旅游方案 페이지 본문(2026-10-12 이 페이지로 합침) */}
+      <hr className="major" />
+      <h2>{JOURNEY_HEADING[lang]}</h2>
+      <p className="ed-page-tag">{JOURNEY_SUBHEADING[lang]}</p>
+      <div className="ed-journey">
+        {JOURNEY_ACTS.map((act, ai) => {
+          const start = JOURNEY_ACTS.slice(0, ai).reduce((sum, a) => sum + a.steps.length, 0)
+          return (
+            <div key={act.tone} className={`ed-journey-act ed-journey-act--${act.tone}`}>
+              <h3>{act.label[lang]}</h3>
+              <ol className="ed-steps">
+                {act.steps.map((s, si) => (
+                  <li key={si}>
+                    <span className="ed-step-num">{start + si + 1}</span>
+                    <strong>{s.title[lang]}</strong>
+                    <span className="ed-step-body">{s.desc[lang]}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )
+        })}
+      </div>
+      <ul className="ed-checks">
+        {JOURNEY_TRUST.map((line, i) => <li key={i}>{line[lang]}</li>)}
+      </ul>
+
       {!servicesOnly && <>
       <hr className="major" />
       <h2>{isZh ? '合作医疗机构' : 'Partner Medical Institutions'}</h2>
@@ -164,6 +192,7 @@ export default function EditorialPartners({ servicesOnly = false }: { servicesOn
       </>}
 
       <hr className="major" />
+      <p className="ed-cta-lead">{isZh ? '还不确定选择哪个项目？告诉我们您的需求，我们帮您一起理清方向。' : "Not sure which treatment to choose? Tell us what you need and we'll help you sort it out."}</p>
       <ul className="actions ed-cta">
         <li><a href={WECHAT_BIZ_URL} target="_blank" rel="noopener noreferrer" className="button primary">{isZh ? '微信咨询' : 'Ask on WeChat'}</a></li>
       </ul>

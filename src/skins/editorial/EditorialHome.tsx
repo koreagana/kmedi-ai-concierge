@@ -12,9 +12,6 @@ import { NetworkCityMap } from '../../components/HomePage'
     ai-kmedi.com 메인의 내용(히어로 영상·견적 버튼, 카테고리 8개, AI 상담사, 서비스 네트워크)을 담는다.
     문구는 전부 translations/categories에서 가져와서 ai-kmedi.com과 항상 같은 내용을 보여준다. */
 
-// medical-tourism(3晚4天方案)은 categories에 heroImage가 없다 — 옛 사이트 tour 사진 중 글자 없는
-// 도심 스카이라인 칸만 잘라 쓴다(나머지 칸은 AI 생성 간판 글자가 깨져 있어서 제외).
-const PACKAGE_IMAGE = '/editorial/seoul-skyline.jpg'
 
 /** kmedispring.com 메인 배너 소개글 — 사용자가 직접 쓴 문구(2026-10-01). ai-kmedi.com의 aboutDesc와는 별개.
     한 줄 = 한 문단(Editorial 배너의 짧은 줄 리듬). 영어는 브랜드명 K-MediSpring만 쓴다. */
@@ -36,7 +33,7 @@ const BANNER_INTRO: Record<'zh' | 'en', string[]> = {
 }
 
 export default function EditorialHome() {
-  const { lang, goToCategory, goToPackage, goToQuote, goToPartners } = useApp()
+  const { lang, goToCategory, goToQuote, goToPartners } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
 
@@ -64,16 +61,14 @@ export default function EditorialHome() {
     fn()
   }
 
-  const catHref = (c: Category) => (c.id === 'medical-tourism' ? langPath(lang, '?page=package') : langPath(lang, `/${c.id}`))
-  const catGo = (c: Category) => (c.id === 'medical-tourism' ? goToPackage : () => goToCategory(c.id))
+  const catHref = (c: Category) => langPath(lang, `/${c.id}`)
+  const catGo = (c: Category) => () => goToCategory(c.id)
 
   const networkCards = [
     { icon: 'fa-shield-alt', title: t.networkCard1Title, desc: t.networkCard1Desc, note: t.networkCard1Reg,
       // 예전엔 카드 묶음 맨 아래에 펼쳐지는 패널이라 눌러도 안 보였음 → 全程服务·合作医疗机构 페이지로 이동
       action: { label: t.networkCard1ExpandBadge, onClick: goToPartners } },
     { icon: 'fa-globe-asia', title: t.networkCard2Title, desc: t.networkCard2Desc, note: t.networkCard2Reg },
-    { icon: 'fa-calendar-alt', title: t.networkCard3Title, desc: t.networkCard3Desc,
-      action: { label: isZh ? '查看详情' : 'View Details', onClick: goToPackage } },
     { icon: 'fa-project-diagram', title: t.networkCard4Title, desc: t.networkCard4Desc,
       action: { label: isZh ? '医疗网络' : 'Medical Network', open: mapOpen, onClick: () => setMapOpen((v) => !v) } },
   ]
@@ -148,7 +143,7 @@ export default function EditorialHome() {
                 {/* 皮肤医美는 전후 변화 영상이 핵심이라 카드에서도 영상으로 (다른 카드는 사진 유지) */}
                 {c.cardVideo
                   ? <video src={c.cardVideo} poster={c.heroImage} autoPlay muted loop playsInline aria-label={isZh ? c.zh : c.en} />
-                  : <img src={c.heroImage ?? PACKAGE_IMAGE} alt={isZh ? c.zh : c.en} loading="lazy" />}
+                  : <img src={c.heroImage} alt={isZh ? c.zh : c.en} loading="lazy" />}
               </a>
               <h3>{isZh ? c.zh : c.en}</h3>
               <p className="ed-post-tag">{isZh ? c.tagZh : c.tagEn}</p>

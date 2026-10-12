@@ -426,7 +426,7 @@ function ConciergeSection() {
    3. CONCERN SELECTION
    ═══════════════════════════════════════════════════════════════════ */
 export function ConcernSection() {
-  const { lang, goToCategory, goToPackage } = useApp()
+  const { lang, goToCategory } = useApp()
   const t = translations[lang]
 
   const concerns: { id: string; icon: JSX.Element; title: string; sub: string; target: CategoryId }[] = [
@@ -436,7 +436,6 @@ export function ConcernSection() {
     { id: 'face-contour',    target: 'skin-beauty',      title: t.concern4, sub: t.concern4Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 21v-1a6 6 0 0112 0v1"/></svg> },
     { id: 'surgery-interest',target: 'plastic-surgery',  title: t.concern5, sub: t.concern5Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg> },
     { id: 'fatigue-look',    target: 'skin-beauty',      title: t.concern6, sub: t.concern6Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
-    { id: 'korea-trip-worry',target: 'medical-tourism',  title: t.concern7, sub: t.concern7Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> },
     { id: 'health-checkup',  target: 'big-health',       title: t.concern8, sub: t.concern8Sub, icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg> },
   ]
 
@@ -462,7 +461,7 @@ export function ConcernSection() {
             {...fadeUp}
             transition={{ delay: i * 0.07, duration: 0.4 }}
             className="concern-card"
-            onClick={() => (c.target === 'medical-tourism' ? goToPackage() : goToCategory(c.target, c.id))}
+            onClick={() => goToCategory(c.target, c.id)}
           >
             <span className="concern-icon">{c.icon}</span>
             <div>
@@ -481,7 +480,7 @@ export function ConcernSection() {
    4. CATEGORY GRID
    ═══════════════════════════════════════════════════════════════════ */
 export function CategoryGridSection() {
-  const { lang, page, categoryId, concernId, goToCategory, goToPackage } = useApp()
+  const { lang, page, categoryId, concernId, goToCategory } = useApp()
   const t = translations[lang]
   const hotScrollRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef({ dragging: false, startX: 0, startScrollLeft: 0, moved: false })
@@ -578,7 +577,6 @@ export function CategoryGridSection() {
             transition={{ delay: i * 0.06, duration: 0.4 }}
             className="category-card"
             onClick={() => {
-              if (cat.id === 'medical-tourism') { goToPackage(); return }
               // 이미 보고 있는 카테고리를 다시 누른 경우 — URL이 안 바뀌므로 페이지
               // 전환 시 쓰는 스크롤 로직(AppContext의 location 기반 useEffect)이
               // 발동하지 않는다. 이 경우엔 그냥 직접 맨 위로 스크롤한다.
@@ -647,7 +645,7 @@ export function NetworkCityMap({ lang }: { lang: LangCode }) {
    7. MEDICAL NETWORK
    ═══════════════════════════════════════════════════════════════════ */
 export function MedicalNetworkSection() {
-  const { lang, goToPackage } = useApp()
+  const { lang } = useApp()
   const t = translations[lang]
   const [networkExpanded, setNetworkExpanded] = useState(false)
   const [card1Expanded, setCard1Expanded] = useState(false)
@@ -708,21 +706,6 @@ export function MedicalNetworkSection() {
       desc: t.networkCard2Desc,
       badge: t.networkCard2Reg,
       badgeType: 'reg' as const,
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-        </svg>
-      ),
-      title: t.networkCard3Title,
-      desc: t.networkCard3Desc,
-      badge: null,
-      badgeType: 'link' as const,
-      onClick: goToPackage,
     },
     {
       icon: (
@@ -809,21 +792,6 @@ export function MedicalNetworkSection() {
               }}>
                 {t.networkCard1ExpandBadge}
                 <span style={{ display: 'inline-block', transition: 'transform 0.25s ease', transform: card1Expanded ? 'rotate(180deg)' : 'none' }}>▾</span>
-              </span>
-            )}
-            {card.badgeType === 'link' && (
-              <span className="badge-pulse" style={{
-                fontSize: 10,
-                color: 'var(--brand)',
-                background: 'rgba(0,119,182,0.07)',
-                border: '1px solid rgba(0,119,182,0.22)',
-                borderRadius: 6,
-                padding: '3px 9px',
-                letterSpacing: '0.04em',
-                display: 'inline-block',
-                alignSelf: 'flex-start',
-              }}>
-                {lang === 'en' ? 'View Details ›' : '查看详情 ›'}
               </span>
             )}
             {card.badgeType === 'expand' && (

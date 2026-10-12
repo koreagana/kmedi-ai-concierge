@@ -2,7 +2,6 @@ import { AppProvider, useApp } from './contexts/AppContext'
 import NavBar from './components/NavBar'
 import HomePage from './components/HomePage'
 import CategoryPage from './components/CategoryPage'
-import PackagePage from './components/PackagePage'
 import QuotePage from './components/QuotePage'
 import SurgeryPricePage from './components/SurgeryPricePage'
 import FloatingChatButton from './components/FloatingChatButton'
@@ -17,11 +16,6 @@ import { SKIN, siteText } from './skin'
 
 // kmedispring.com(editorial 스킨) 전용 — SKIN이 빌드 타임 상수라 default 빌드에선 이 청크와 CSS가 아예 빠진다.
 const EditorialPages = SKIN === 'editorial' ? lazy(() => import('./skins/editorial/EditorialPages')) : null
-
-const PACKAGE_TITLE: Record<LangCode, string> = {
-  zh: '汉江春天 医疗旅游精品',
-  en: 'Premium Medical Tourism',
-}
 
 const QUOTE_TITLE: Record<LangCode, string> = {
   zh: '热门轻医美项目费用预估',
@@ -110,11 +104,6 @@ function PageRouter() {
       })
       return
     }
-    if (page === 'package') {
-      updateBreadcrumbLd([])
-      updateMetaGeneric(PACKAGE_TITLE[lang] ?? PACKAGE_TITLE['zh'], lang)
-      return
-    }
     if (page === 'quote') {
       const brand = brandSuffix(lang)
       const description = siteText(translations[lang].aboutDesc).replace(/\n/g, ' ').slice(0, 150)
@@ -182,16 +171,6 @@ function PageRouter() {
             transition={{ duration: 0.3 }}
           >
             <HomePage />
-          </motion.div>
-        ) : page === 'package' ? (
-          <motion.div
-            key="package"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-          >
-            <PackagePage />
           </motion.div>
         ) : page === 'surgery' ? (
           <motion.div

@@ -21,9 +21,7 @@ const root = resolve(__dirname, '..')
 const distDir = resolve(root, 'dist')
 const port = 4174
 
-// medical-tourism은 CategoryPage가 없고 항상 패키지 페이지로 리다이렉트되는
-// 항목이라 고유 경로가 없다(main.tsx/AppContext와 일관).
-const categoryIds = categories.filter((c) => c.id !== 'medical-tourism').map((c) => c.id)
+const categoryIds = categories.map((c) => c.id)
 const categoryRoutes = categoryIds.flatMap((id) => [`/zh/${id}`, `/en/${id}`])
 
 // kmedispring.com(VITE_SKIN=editorial) 빌드는 세부 항목마다 고유 페이지(/zh/skin-beauty/skin-lifting)가

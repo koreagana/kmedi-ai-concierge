@@ -7,4 +7,8 @@ https://kmedispring.com/zh/*  https://kmedispring.com/:splat  301!
 /reservation/confirm  /reservation-confirm/  301
 /meituan  /docs/한강애봄_메이투안_따중디엔핑_플랫폼소개.html  200
 /meituan-form  /docs/메이투안_입점자료요청서_웹템플릿.html  200
+# 定制医疗旅游方案은 就医协调服务 페이지로 합침(2026-10-12). 3박4일 패키지(?page=package)는 앱에서 services로 보냄.
+/custom-plan  /services  301
+/zh/custom-plan  /zh/services  301
+/en/custom-plan  /en/services  301
 /* /index.html 200

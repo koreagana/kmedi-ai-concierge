@@ -5,7 +5,6 @@ import { WECHAT_BIZ_URL } from '../../data/contacts'
 import { translations } from '../../data/translations'
 import { edLink } from './edLink'
 import { getCategoryExtras, getTopics } from './topics'
-import EditorialCustomPlan from './EditorialCustomPlan'
 
 /** 대카테고리 페이지 — HTML5 UP Editorial "Generic" 페이지 구성:
     큰 제목 → 대표 사진 → 짧은 소개 문단 → 굵은 구분선 → 세부 항목 카드 → 상담·견적 버튼.
@@ -62,7 +61,6 @@ export default function EditorialCategory() {
         {intro.map((p, i) => <p key={i}>{p}</p>)}
       </div>
 
-      {cat.id === 'custom-plan' && <EditorialCustomPlan />}
 
       {topics.length > 0 && (
         <>

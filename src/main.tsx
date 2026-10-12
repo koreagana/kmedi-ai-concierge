@@ -20,9 +20,7 @@ const privacyElement = (lang: 'zh' | 'en') =>
   EditorialPrivacy ? <Suspense fallback={null}><EditorialPrivacy lang={lang} /></Suspense> : <PrivacyPage lang={lang} />
 const termsElement = EditorialTerms ? <Suspense fallback={null}><EditorialTerms /></Suspense> : <TermsPage />
 
-// medical-tourism은 CategoryPage가 없고 항상 패키지 페이지로 리다이렉트되는 항목이라
-// 고유 경로를 만들지 않는다(AppContext의 medical-tourism 처리와 일관).
-const categoryRoutes = categories.filter((c) => c.id !== 'medical-tourism')
+const categoryRoutes = categories
 
 /** 중국어 경로 앞부분 — kmedispring.com은 중국어가 메인이라 루트(/skin-beauty …), ai-kmedi.com은 /zh/… */
 const ZH = ZH_AT_ROOT ? '' : '/zh'

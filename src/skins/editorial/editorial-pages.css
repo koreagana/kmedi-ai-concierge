@@ -250,3 +250,4 @@
 
 /* 세부 페이지 전용 대표 사진(예: 승인 치료제 4종) — 제품이 양옆에 있어 자르지 않고 전체를 보여준다 */
 .ed-skin .ed-main-image--full img { max-height: none !important; height: auto !important; object-fit: contain; }
+.ed-skin #main p.ed-cta-lead { margin: 0 0 1em !important; font-weight: 600; color: #1F4E79 !important; }

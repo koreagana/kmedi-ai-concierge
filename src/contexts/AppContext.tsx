@@ -6,7 +6,7 @@ import { categories, type CategoryId } from '../data/categories'
 import { langPath } from '../skin'
 
 /** 'partners'(全程服务·合作医疗机构)·'services'(全程服务만)는 kmedispring.com(editorial 스킨) 전용 페이지 — ai-kmedi.com에선 홈으로 보인다 */
-export type PageView = 'home' | 'category' | 'package' | 'quote' | 'surgery' | 'partners' | 'services'
+export type PageView = 'home' | 'category' | 'quote' | 'surgery' | 'partners' | 'services'
 
 export interface ConsultCard {
   interests: string[]
@@ -36,7 +36,6 @@ interface AppState {
       kmedispring.com(editorial 스킨)은 이걸 별도 페이지로, ai-kmedi.com은 해당 타일 선택으로 쓴다. */
   topicId: string | null
   goToTopic: (categoryId: CategoryId, topicId: string) => void
-  goToPackage: () => void
   goToQuote: (categoryId?: string, procedureId?: string) => void
   goToSurgery: () => void
   goToPartners: () => void
@@ -61,7 +60,9 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
 
   // URL 파라미터로 초기 상태 복원 (링크 공유, 뒤로가기 지원)
   useEffect(() => {
-    const cat = searchParams.get('cat') as CategoryId | null
+    const catRaw = searchParams.get('cat')
+    // 없어진 카테고리(?cat=medical-tourism 등)는 cat으로 받지 않는다 — 아래에서 따로 처리
+    const cat = categories.some((c) => c.id === catRaw) ? (catRaw as CategoryId) : null
     const concern = searchParams.get('concern')
     const pageParam = searchParams.get('page')
 
@@ -86,16 +87,13 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       setCategoryId(pathCategoryId)
       setConcernId(concern)
       setPage('category')
-    } else if (cat === 'medical-tourism') {
-      // medical-tourism은 카테고리 상세 페이지가 없는 항목 — 항상 패키지 페이지로 보낸다
-      // (goToCategory와의 일관성은 HomePage의 카드/타일 클릭 핸들러에서도 지킴).
-      setPage('package')
+    } else if (catRaw === 'medical-tourism' || catRaw === 'custom-plan' || pageParam === 'package' || location.pathname.endsWith('/custom-plan')) {
+      // 3박4일 패키지·定制方案은 2026-10-12에 내림 — 예전 공유 링크는 就医协调服务로
+      setPage('services')
     } else if (cat) {
       setCategoryId(cat)
       setConcernId(concern)
       setPage('category')
-    } else if (pageParam === 'package') {
-      setPage('package')
     } else if (pageParam === 'surgery') {
       // 구 방식(?page=surgery) 공유 링크 하위호환
       setPage('surgery')
@@ -141,11 +139,6 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
     navigate(langPath(lang, `/${id}/${tId}`))
   }
 
-  const goToPackage = () => {
-    setPage('package')
-    navigate(langPath(lang, '?page=package'))
-  }
-
   const goToQuote = (categoryId?: string, procedureId?: string) => {
     setPage('quote')
     setQuoteCategoryHint(categoryId ?? null)
@@ -187,7 +180,7 @@ export function AppProvider({ children, initialLang = 'zh' }: { children: ReactN
       concernId, setConcernId,
       consultCard, setConsultCard,
       quoteCategoryHint, quoteProcedureHint,
-      goToCategory, topicId, goToTopic, goToPackage, goToQuote, goToSurgery, goToPartners, goToServices, goHome,
+      goToCategory, topicId, goToTopic, goToQuote, goToSurgery, goToPartners, goToServices, goHome,
     }}>
       {children}
     </AppContext.Provider>

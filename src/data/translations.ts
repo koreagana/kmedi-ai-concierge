@@ -32,7 +32,6 @@ interface Translations {
   concern4: string; concern4Sub: string
   concern5: string; concern5Sub: string
   concern6: string; concern6Sub: string
-  concern7: string; concern7Sub: string
   concern8: string; concern8Sub: string
   // category section
   categoryTitle: string
@@ -77,9 +76,6 @@ interface Translations {
   networkCard2Title: string
   networkCard2Desc: string
   networkCard2Reg: string
-  networkCard3Title: string
-  networkCard3Desc: string
-  networkCard3Status: string
   networkCard4Title: string
   networkCard4Desc: string
   networkCard4ExpandTitle: string
@@ -140,7 +136,6 @@ export const translations: Record<LangCode, Translations> = {
     concern4: '想改善脸部线条、下颌线和整体气质', concern4Sub: '下颌线 · 轮廓 · 提升 · 容量支撑',
     concern5: '我对整形感兴趣，需要专业指导', concern5Sub: '眼部 · 鼻部 · 轮廓 · 年轻化整形 · 恢复计划',
     concern6: '想改善疲惫感、暗沉和没精神的状态', concern6Sub: '眼周 · 黑眼圈 · 肤色暗沉 · 体力状态',
-    concern7: '担心医院、预约和翻译沟通', concern7Sub: '预约 · 翻译 · 陪同支持',
     concern8: '韩国体检和中国体检，主要有什么不同？', concern8Sub: '精密体检 · 功能医学 · 专科咨询 · 结果说明',
     categoryTitle: '请选择您想了解的韩国医疗服务',
     homeCardSectionTitle: '先生成一张您的韩国医疗咨询卡',
@@ -180,14 +175,11 @@ export const translations: Record<LangCode, Translations> = {
       { title: '准确沟通', desc: '诊前确认所需材料，就诊时提供中文翻译与陪同。' },
       { title: '诊后跟进', desc: '处方、复诊与术后疑问，回国后也可以随时问我们。' },
     ],
-    networkCard1Note: '交通与住宿由客户自行安排，费用自理（含翻译陪同期间的交通费）。3晚4天方案已包含接送机。',
+    networkCard1Note: '交通与住宿由客户自行安排，费用自理（含翻译陪同期间的交通费）。',
     networkCard1RegNote: '外籍患者引进机构登记号 A-2023-01-02-4752',
     networkCard2Title: '韩国综合旅行服务',
-    networkCard2Desc: '具备韩国综合旅行业登记资质，提供3晚4天医疗旅游方案',
+    networkCard2Desc: '具备韩国综合旅行业登记资质的正规机构',
     networkCard2Reg: '登记号：城北区 第26004-2024-007号',
-    networkCard3Title: '汉江春天 3晚4天方案',
-    networkCard3Desc: '医疗咨询 · 翻译陪同 · 接送机 · 专属用车',
-    networkCard3Status: '即将开放',
     networkCard4Title: '韩国全国医疗资源网络',
     networkCard4Desc: '根据客户需求，对接韩国不同地区、不同级别及不同专科方向的医疗资源',
     networkCard4ExpandTitle: '韩国主要城市医疗资源分布',
@@ -240,7 +232,6 @@ export const translations: Record<LangCode, Translations> = {
     concern4: 'I want to improve my facial line, jawline, and overall impression', concern4Sub: 'Jawline · Contour · Lifting · Volume Support',
     concern5: 'I am interested in plastic surgery and need professional guidance', concern5Sub: 'Eyes · Nose · Contour · Youthful Surgery · Recovery Plan',
     concern6: 'I want to improve my tired, dull, and low-energy appearance', concern6Sub: 'Eye Area · Dark Circles · Dull Tone · Energy Level',
-    concern7: 'I am worried about hospitals, appointments, and interpretation', concern7Sub: 'Appointment · Interpreter · Escort',
     concern8: 'What are the main differences between Korean and Chinese health checkups?', concern8Sub: 'Precision Checkup · Functional Medicine · Specialist · Results',
     categoryTitle: 'Browse Medical Services',
     homeCardSectionTitle: 'Start with Your Korea Medical Consultation Profile',
@@ -280,14 +271,11 @@ export const translations: Record<LangCode, Translations> = {
       { title: 'Clear Communication', desc: 'We confirm documents before your visit and interpret for you on the day.' },
       { title: 'Follow-up After Treatment', desc: "Prescriptions, follow-up visits and aftercare questions — ask us anytime, even after you're home." },
     ],
-    networkCard1Note: 'Transport and accommodation are arranged and paid for by clients, including transport during interpreter escort. Airport transfers are included in the 3N4D Package.',
+    networkCard1Note: 'Transport and accommodation are arranged and paid for by clients, including transport during interpreter escort.',
     networkCard1RegNote: 'Foreign Patient Attraction Institution Reg. No. A-2023-01-02-4752',
     networkCard2Title: 'General Travel Services',
-    networkCard2Desc: 'Licensed General Travel Agency — offering our 3N4D Medical Tourism Package',
+    networkCard2Desc: 'Officially registered General Travel Agency in Korea',
     networkCard2Reg: 'Reg. No.: Seongbuk-gu No. 26004-2024-007',
-    networkCard3Title: '3 Nights / 4 Days Package',
-    networkCard3Desc: 'Medical consultation · Interpreter escort · Airport transfers · Private vehicle',
-    networkCard3Status: 'Coming Soon',
     networkCard4Title: 'Nationwide Medical Network',
     networkCard4Desc: 'We connect clients with Korean medical resources across regions, levels, and specialties based on individual needs',
     networkCard4ExpandTitle: "Medical Resources Across Korea's Major Cities",
