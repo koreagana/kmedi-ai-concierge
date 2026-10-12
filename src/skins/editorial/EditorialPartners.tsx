@@ -58,9 +58,13 @@ type Partner = (typeof partners)[number]
 const CATEGORY: { key: string; label: L; note?: L }[] = [
   {
     key: '대학병원',
-    label: { zh: '大学医院 · 上级综合医院', en: 'University & Tertiary Hospitals' },
-    // 三甲은 중국 제도라 한국 병원에 직접 붙이지 않고, 상급종합병원이 그에 해당한다고만 설명한다
-    note: { zh: '上级综合医院为韩国最高等级的医院，相当于国内三甲医院。', en: "Tertiary general hospitals are Korea's highest hospital tier." },
+    // 5곳 모두 대학 부속(서울대·성균관대·차의과학대)이지만 상급종합병원(복지부 지정)은 일부라 제목은 大学附属医院으로.
+    // 三甲은 중국 제도 — 실제 상급종합병원인 곳에만 "相当于三甲"을 붙인다. 지정 현황이 바뀌면 이 문장도 고칠 것.
+    label: { zh: '大学附属医院', en: 'University-Affiliated Hospitals' },
+    note: {
+      zh: '其中盆唐首尔大学医院、三星首尔医院、盆唐CHA医院为韩国上级综合医院，相当于国内三甲医院。',
+      en: "Of these, Seoul National University Bundang Hospital, Samsung Medical Center and CHA Bundang Medical Center are designated tertiary general hospitals — Korea's highest tier.",
+    },
   },
   { key: '성형외과', label: { zh: '整形外科 · 口腔颌面外科', en: 'Plastic & Oral-Maxillofacial Surgery' } },
   { key: '피부과·의원', label: { zh: '皮肤科 · 抗衰老', en: 'Dermatology & Anti-Aging' } },
