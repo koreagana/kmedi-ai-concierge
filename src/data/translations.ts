@@ -7,13 +7,6 @@ interface Translations {
   // hero
   /** 화면에 실제로 보이는 H1 SEO 헤드라인 (핵심 키워드 포함) */
   heroSeoHeadline: string
-  heroPrefTitle: string
-  heroPrefChips: string[]
-  heroRegionChips: string[]
-  heroPrefNote: string
-  heroTrustTitle: string
-  /** \n-separated lines — item count intentionally varies by language (e.g. ko merges two points into one sentence). */
-  heroTrustLines: string
   heroHotLabel: string
   heroTreatmentChips: string[]
   heroCtaLabel: string
@@ -124,12 +117,6 @@ export const translations: Record<LangCode, Translations> = {
     brandName: '汉江春天',
     brandSub: 'AI Concierge Medical Lounge',
     heroSeoHeadline: '韩国医疗旅游 · 医美整形咨询',
-    heroPrefTitle: '请您在推荐医院前告知我们',
-    heroPrefChips: ['价格优先', '私密环境', '高端服务', '从洁面到收尾全程护理'],
-    heroRegionChips: ['江南', '明洞', '弘大', '圣水', '济州', '釜山'],
-    heroPrefNote: '请告诉我们您的需求和希望就诊的地区，汉江春天将为您推荐更适合的医院。',
-    heroTrustTitle: '放心咨询',
-    heroTrustLines: '合法注册的国际医疗旅游服务机构\n合作医院实行韩外统一价格标准\n医疗咨询与预约协调不额外收取服务费\n机场往返、住宿与交通由客户自行安排（3晚4天方案已包含接送机）',
     heroHotLabel: '人气项目',
     heroTreatmentChips: ['丽珠兰', '超声刀', 'ONDA', '水光针', '热玛吉', '瘦脸针', '钛提升', '黄金微针', '乔雅露', '索夫波', 'InMode FX', 'XERF 泽弗'],
     heroCtaLabel: '韩国医疗项目',
@@ -230,12 +217,6 @@ export const translations: Record<LangCode, Translations> = {
     brandName: 'K-MediSpring',
     brandSub: 'AI Concierge Medical Lounge',
     heroSeoHeadline: 'Korea Medical Tourism & Cosmetic Surgery',
-    heroPrefTitle: 'Tell Us Before We Recommend a Hospital',
-    heroPrefChips: ['Price-Focused', 'Private Setting', 'Premium Service', 'Full Care from Cleansing to Finish'],
-    heroRegionChips: ['Gangnam', 'Myeongdong', 'Hongdae', 'Seongsu', 'Jeju', 'Busan'],
-    heroPrefNote: 'Tell us your preferences and preferred area, and K-MediSpring will recommend the hospital that best fits you.',
-    heroTrustTitle: 'Consult with Confidence',
-    heroTrustLines: 'A legally registered international medical tourism service provider\nPartner hospitals apply the same price standard to Korean and international patients\nNo additional service fees for medical consultation or appointment coordination\nAirport transfers, accommodation and local transport are arranged by clients themselves (airport transfers are included in the 3N4D Package)',
     heroHotLabel: 'Trending Now',
     heroTreatmentChips: ['Rejuran', 'Ulthera', 'ONDA', 'Water Glow Injection', 'Thermage', 'V-Line Contour', 'Titanium Lifting', 'Potenza', 'Juvelook', 'Sofwave', 'InMode FX', 'XERF'],
     heroCtaLabel: 'Korean Medical Services',
