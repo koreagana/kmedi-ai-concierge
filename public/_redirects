@@ -1,3 +1,9 @@
+# 2026-10-12 사용자 결정: ai-kmedi.com 화면은 없애고 kmedispring.com 하나로. 도메인은 유지, 모든 주소를 같은 페이지로 301.
+# (kmedispring.com은 중국어가 루트라 /zh는 떼고 /en은 그대로)
+https://ai-kmedi.com/zh  https://kmedispring.com/  301!
+https://ai-kmedi.com/zh/*  https://kmedispring.com/:splat  301!
+https://ai-kmedi.com/*  https://kmedispring.com/:splat  301!
+https://www.ai-kmedi.com/*  https://kmedispring.com/:splat  301!
 # kmedispring.com 사이트의 예전 주소 ai.kmedispring.com → 대표 주소 kmedispring.com (사용자 요청 "ai 빼줘").
 # ai-kmedi.com 사이트에선 이 호스트로 요청이 오지 않으므로 영향 없음.
 https://ai.kmedispring.com/*  https://kmedispring.com/:splat  301!
