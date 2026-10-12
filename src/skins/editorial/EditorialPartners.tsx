@@ -51,25 +51,42 @@ const FINE: L = {
   en: 'We resolve service issues directly; your health information and photos are used only with your consent and only as needed.',
 }
 
-/** 명부의 분류(한국어) → 화면 제목, 보여줄 순서 */
-const CATEGORY: { key: string; label: L }[] = [
-  { key: '대학병원', label: { zh: '大学医院 · 上级综合医院', en: 'University & Tertiary Hospitals' } },
-  { key: '성형외과', label: { zh: '整形外科', en: 'Plastic Surgery' } },
-  { key: '피부과·의원', label: { zh: '皮肤科 · 医美诊所', en: 'Dermatology & Aesthetic Clinics' } },
-  { key: '복합의원', label: { zh: '综合诊所', en: 'Multi-specialty Clinics' } },
-  { key: '치과·구강악안면외과', label: { zh: '口腔颌面外科', en: 'Oral & Maxillofacial Surgery' } },
-]
-
 type Partner = (typeof partners)[number]
+
+/** 화면 묶음 3개, 보여줄 순서. 1~2곳짜리 묶음이 생기면 목록이 듬성해 보여서(2026-10-12) 명부 분류를 합쳐 보여준다:
+    구강악안면외과 → 整形, 복합의원은 아래 GROUP_OF로 개별 지정(없으면 皮肤科). */
+const CATEGORY: { key: string; label: L; note?: L }[] = [
+  {
+    key: '대학병원',
+    label: { zh: '大学医院 · 上级综合医院', en: 'University & Tertiary Hospitals' },
+    // 三甲은 중국 제도라 한국 병원에 직접 붙이지 않고, 상급종합병원이 그에 해당한다고만 설명한다
+    note: { zh: '上级综合医院为韩国最高等级的医院，相当于国内三甲医院。', en: "Tertiary general hospitals are Korea's highest hospital tier." },
+  },
+  { key: '성형외과', label: { zh: '整形外科 · 口腔颌面外科', en: 'Plastic & Oral-Maxillofacial Surgery' } },
+  { key: '피부과·의원', label: { zh: '皮肤科 · 抗衰老', en: 'Dermatology & Anti-Aging' } },
+]
+const GROUP_OF: Record<string, string> = {
+  'PH-040': '성형외과', // LIENJANG整形外科皮肤科
+}
+const groupOf = (p: Partner) =>
+  GROUP_OF[p.id] ?? (p.category === '치과·구강악안면외과' ? '성형외과' : p.category === '복합의원' ? '피부과·의원' : p.category)
+
+const CITY_ORDER = ['首尔', '城南', '大邱', '济州']
 
 /** servicesOnly: 사이드바 메뉴의 就医协调服务(/services) — 위의 4개 항목만. 협력기관 목록(/partners)은
     메뉴에 드러내지 않고 了解全程服务 버튼·직접 링크로만 들어오게 한다(사용자 결정 2026-10-02). */
 export default function EditorialPartners({ servicesOnly = false }: { servicesOnly?: boolean }) {
   const { lang, goHome } = useApp()
   const isZh = lang === 'zh'
+  const all = partners as Partner[]
   const groups = CATEGORY
-    .map((c) => ({ ...c, items: (partners as Partner[]).filter((p) => p.category === c.key) }))
+    .map((c) => ({ ...c, items: all.filter((p) => groupOf(p) === c.key) }))
     .filter((g) => g.items.length > 0)
+  // 도시 표기: 명부 도시 중 실제로 있는 곳만, 정해둔 순서대로
+  const cities = CITY_ORDER.flatMap((zh) => {
+    const c = all.find((p) => p.city.zh === zh)?.city
+    return c ? [isZh ? c.zh : c.en] : []
+  })
 
   return (
     <section className="ed-page ed-partners">
@@ -103,13 +120,16 @@ export default function EditorialPartners({ servicesOnly = false }: { servicesOn
       {!servicesOnly && <>
       <hr className="major" />
       <h2>{isZh ? '合作医疗机构' : 'Partner Medical Institutions'}</h2>
-      <p className="ed-page-tag">
-        {isZh ? '以下为汉江春天的合作医疗机构，合作网络持续扩大中。' : 'Our partner medical institutions — and our network keeps growing.'}
+      <p className="ed-partner-count">
+        <strong>{all.length}</strong>
+        <span>{isZh ? '家合作医疗机构' : 'partner institutions'}</span>
+        <em>{cities.join(' · ')}</em>
       </p>
 
       {groups.map((g) => (
         <div key={g.key} className="ed-partner-group">
           <h3>{g.label[lang]}</h3>
+          {g.note && <p className="ed-partner-note">{g.note[lang]}</p>}
           <ul className="ed-partner-grid">
             {g.items.map((p) => (
               <li key={p.id} className="ed-partner-card">
@@ -133,7 +153,9 @@ export default function EditorialPartners({ servicesOnly = false }: { servicesOn
       ))}
 
       <p className="ed-small">
-        {isZh ? '具体就诊医院将根据您的诊疗目的，与医院确认后为您安排。' : 'Your specific hospital is arranged after confirming your treatment goals with the hospital.'}
+        {isZh
+          ? '名单以外的医院，也可根据您的需求协助咨询与预约。具体就诊医院将根据您的诊疗目的，与医院确认后为您安排。'
+          : 'We can also help with consultations and bookings at hospitals not listed here. Your specific hospital is arranged after confirming your treatment goals with the hospital.'}
       </p>
       </>}
 

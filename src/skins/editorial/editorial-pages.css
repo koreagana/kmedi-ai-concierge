@@ -171,6 +171,11 @@
 }
 .ed-skin #main p.ed-svc-fine { margin: .9em 0 0 !important; font-size: .82em !important; color: #8a9096 !important; }
 
+.ed-skin #main p.ed-partner-count { display: flex; align-items: baseline; flex-wrap: wrap; gap: .35em .5em; margin: .2em 0 1.2em !important; }
+.ed-skin .ed-partner-count strong { font-family: var(--brand-serif); font-size: 2.6em; line-height: 1; color: #0077B6; }
+.ed-skin .ed-partner-count span { font-size: 1.05em; font-weight: 600; color: #1F4E79; }
+.ed-skin .ed-partner-count em { font-style: normal; font-size: .9em; color: #8a9096; margin-left: .4em; }
+.ed-skin #main p.ed-partner-note { margin: -.4em 0 1em !important; font-size: .85em !important; color: #8a9096 !important; }
 .ed-skin .ed-partner-group { margin: 2em 0 0; }
 .ed-skin .ed-partner-group h3 { font-size: 1.05em; color: #0077B6 !important; padding-bottom: .5em; border-bottom: 1px solid rgba(0,119,182,.15); margin-bottom: 1em !important; }
 .ed-skin #main ul.ed-partner-grid {

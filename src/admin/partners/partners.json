@@ -913,7 +913,9 @@
     "intro_page_url": null,
     "logo_url": null,
     "status": "active",
-    "mou_date": null
+    "mou_date": null,
+    "show_on_site": false,
+    "hide_reason": "평점 낮음 — 사이트 비노출 (2026-10-12 사용자 결정)"
   },
   {
     "id": "PH-034",
@@ -981,7 +983,9 @@
     "intro_page_url": null,
     "logo_url": null,
     "status": "active",
-    "mou_date": null
+    "mou_date": null,
+    "show_on_site": false,
+    "hide_reason": "평점 낮음 — 사이트 비노출 (2026-10-12 사용자 결정)"
   },
   {
     "id": "PH-038",
