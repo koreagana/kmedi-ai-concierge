@@ -8,6 +8,53 @@ import { edLink } from './edLink'
 import { getTopics, type Block } from './topics'
 import { SURGERY_GROUPS, TOPIC_PRICE_GROUP } from '../../data/surgeryPrices'
 import { priceLabels } from '../../components/SurgeryPricePage'
+import { QUOTE_CATEGORIES, TOPIC_QUOTE_CATEGORY } from '../../data/quoteProcedures'
+import { cnyRange } from '../../components/QuotePage'
+
+/** 피부 세부 페이지 가격표 — 비용 예상(견적) 데이터의 같은 묶음을 标准型·高端型 두 칸으로 */
+function SkinPrice({ categoryId, title, isZh }: { categoryId: string; title: string; isZh: boolean }) {
+  const qc = QUOTE_CATEGORIES.find((c) => c.id === categoryId)
+  if (!qc) return null
+  const ask = isZh ? '咨询后告知' : 'Ask us'
+  const cell = (r: { low: number; high: number } | null) => (r ? cnyRange(r.low, r.high) : ask)
+  return (
+    <>
+      <hr className="major" />
+      <h2>{isZh ? `${title}价格参考` : `${title}: Reference Prices`}</h2>
+      <p className="ed-page-tag">{isZh ? '2026年最新参考价格（参考用，不含增值税）' : '2026 latest reference pricing (for reference only, VAT not included)'}</p>
+      <div className="table-wrapper">
+        <table className="ed-table ed-price-table">
+          <thead>
+            <tr>
+              <th>{isZh ? '项目' : 'Treatment'}</th>
+              <th className="ed-price-cell">{isZh ? '标准型' : 'Standard'}</th>
+              <th className="ed-price-cell">{isZh ? '高端型' : 'Premium'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {qc.procedures.flatMap((p) =>
+              p.options.map((o, i) => (
+                <tr key={`${p.id}-${i}`}>
+                  <td>
+                    <strong>{isZh ? p.nameZh : p.nameEn}</strong>
+                    <span className="ed-price-note">{isZh ? o.unit : o.unitEn}{(isZh ? o.note : o.noteEn) ? ` · ${isZh ? o.note : o.noteEn}` : ''}</span>
+                  </td>
+                  <td className="ed-price-cell"><strong>{cell(o.standard)}</strong></td>
+                  <td className="ed-price-cell"><strong>{cell(o.premium)}</strong></td>
+                </tr>
+              )),
+            )}
+          </tbody>
+        </table>
+      </div>
+      <p className="ed-small">
+        {isZh
+          ? '标准型、高端型为多家医院的价格区间，仅供参考；实际费用因医院、设备、用量及个人情况而不同，最终以面诊后的报价为准。'
+          : 'Standard and Premium show price ranges across several clinics, for reference only. Actual costs vary by clinic, device, dosage and individual condition; your final price is confirmed after consultation.'}
+      </p>
+    </>
+  )
+}
 
 function TopicPrice({ groupId, title, isZh }: { groupId: string; title: string; isZh: boolean }) {
   const group = SURGERY_GROUPS.find((g) => g.id === groupId)
@@ -143,6 +190,9 @@ export default function EditorialTopic() {
 
       {cat.id === 'plastic-surgery' && TOPIC_PRICE_GROUP[topic.id] && (
         <TopicPrice groupId={TOPIC_PRICE_GROUP[topic.id]} title={topic.title} isZh={isZh} />
+      )}
+      {cat.id === 'skin-beauty' && TOPIC_QUOTE_CATEGORY[topic.id] && (
+        <SkinPrice categoryId={TOPIC_QUOTE_CATEGORY[topic.id]} title={topic.title} isZh={isZh} />
       )}
 
       <hr className="major" />

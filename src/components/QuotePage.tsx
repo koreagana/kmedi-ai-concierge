@@ -65,6 +65,8 @@ function roundNice(value: number, smallStep: number, bigStep: number, threshold:
 }
 const toUsd = (won: number) => roundNice(won / KRW_PER_USD, 5, 10, 100)
 const toCny = (won: number) => roundNice(won / KRW_PER_CNY, 10, 50, 1000)
+/** 위안 범위 표기 — 피부 세부 페이지 가격표(EditorialTopic)도 같은 반올림을 쓴다 */
+export const cnyRange = (low: number, high: number) => money('¥', low, high, toCny)
 
 const money = (symbol: string, low: number, high: number, conv: (v: number) => number) => {
   const l = conv(low)

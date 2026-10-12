@@ -49,6 +49,16 @@ export interface QuoteCategory {
   procedures: QuoteProcedure[]
 }
 
+/** 피부 세부 페이지 → 비용 예상 묶음. 「韩国热玛吉价格」처럼 시술+가격 검색으로 들어온 사람이
+    그 페이지에서 바로 가격을 보게(2026-10-12 SEO). body-skin-care는 맞는 데이터가 없어 뺐다. */
+export const TOPIC_QUOTE_CATEGORY: Record<string, string> = {
+  'skin-lifting': 'lifting',
+  'pores-texture': 'acne-pore',
+  'acne-scars': 'whitening',
+  'skin-boosters-rejuran': 'skinbooster',
+  'botox-fillers': 'filler-botox',
+}
+
 export const QUOTE_CATEGORIES: QuoteCategory[] = [
   {
     id: 'lifting',
