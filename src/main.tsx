@@ -67,7 +67,7 @@ createRoot(document.getElementById('root')!).render(
         {ZH_AT_ROOT ? (
           <>
             <Route path="/zh/*" element={<ZhToRoot />} />
-            {/* 그 밖의 중국어 주소(/partners, /?page=package 등)는 루트 앱이 처리 */}
+            {/* 그 밖의 중국어 주소(/partners, /services 등)는 루트 앱이 처리 */}
             <Route path="*" element={<App key="zh-rest" initialLang="zh" />} />
           </>
         ) : (

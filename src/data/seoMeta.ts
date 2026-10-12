@@ -1,7 +1,7 @@
 import type { LangCode } from './translations'
 
 /** 홈페이지(언어별 진입점 /zh, /en) 전용 title/description.
-    다른 페이지(package/quote/category)는 App.tsx의 브랜드 접미사 방식을 그대로 씀. */
+    다른 페이지(quote/category)는 App.tsx의 브랜드 접미사 방식을 그대로 씀. */
 export const seoMeta: Record<LangCode, { title: string; description: string }> = {
   zh: {
     title: '汉江春天 한강애봄 K-MediSpring｜韩国医美·整形价格与医疗旅游咨询',

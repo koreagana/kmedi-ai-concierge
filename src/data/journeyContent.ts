@@ -1,39 +1,6 @@
-import { WECHAT_BIZ_URL } from './contacts'
 import type { LocalizedText } from './bigHealthKeywords'
 
-export interface CustomPlanDocButton {
-  label: LocalizedText
-  kind: 'route' | 'external'
-  target: string
-}
-
-export const CUSTOM_PLAN_DOC_BUTTONS = {
-  wechatConsult: {
-    label: {
-      zh: '打开企业微信咨询',
-      en: 'Open WeCom Consultation',
-    },
-    kind: 'external',
-    target: WECHAT_BIZ_URL,
-  },
-} satisfies Record<string, CustomPlanDocButton>
-
-export type CustomPlanDocButtonKey = keyof typeof CUSTOM_PLAN_DOC_BUTTONS
-
-export const CUSTOM_PLAN_SECTION = {
-  title: {
-    zh: '定制医疗旅游方案',
-    en: 'Customized Medical Tourism Plan',
-  } as LocalizedText,
-  subCopy: {
-    zh: '韩国医疗 · 医院预约 · 翻译陪同 · 术后恢复',
-    en: 'Korean Medical Care · Hospital Appointments · Interpretation · Recovery Care',
-  } as LocalizedText,
-  desc: {
-    zh: '从医院预约到术后恢复，为外国客户设计更安心的韩国医疗行程。\n\n汉江春天是一家完成韩国保健福祉部外国人患者招徕业登记的医疗旅游公司。我们不仅帮助客户预约医院，也协助整理诊疗资料、安排翻译陪同、复诊提醒和回国前确认。',
-    en: 'From hospital appointments to postoperative recovery, we design a more reassuring Korean medical journey for international clients.\n\nK-MediSpring is a medical tourism company registered for foreign patient attraction under the Korean Ministry of Health and Welfare. We assist not only with hospital appointments but also with medical document organization, interpretation support, follow-up reminders, and pre-departure checks.',
-  } as LocalizedText,
-}
+/** 就医协调服务 페이지(EditorialPartners)의 来韩前·在韩国·回国后 타임라인. 예전 定制医疗旅游方案 페이지에서 옮겨 옴(2026-10-12). */
 
 /* ── 환자 여정 타임라인 ──────────────────────────────────────────────
    고객에게 실제로 일어나는 순서를 그대로 세운 표. 예전의 조직도형

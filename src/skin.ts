@@ -18,7 +18,7 @@ export const SITE_DOMAIN = SKIN === 'editorial' ? 'kmedispring.com' : 'ai-kmedi.
     (사용자 결정 2026-10-01), 영어는 /en/… 그대로. ai-kmedi.com은 기존처럼 /zh/…. */
 export const ZH_AT_ROOT = SKIN === 'editorial'
 
-/** 언어별 사이트 내부 주소. rest는 '' | '/quote' | '/skin-beauty/x' | '?page=package' 형태. */
+/** 언어별 사이트 내부 주소. rest는 '' | '/quote' | '/skin-beauty/x' | '?qcat=…' 형태. */
 export function langPath(lang: 'zh' | 'en', rest = ''): string {
   const base = lang === 'zh' && ZH_AT_ROOT ? '' : `/${lang}`
   if (!rest) return base || '/'

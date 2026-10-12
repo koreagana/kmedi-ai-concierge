@@ -221,41 +221,6 @@ Whichever direction you choose, the specific plan is only finalized after evalua
     },
   },
 
-  /* ── 7. 担心医院、翻译和韩国行程安排 ──────────────────── */
-  {
-    id: 'korea-trip-worry',
-    zh: {
-      title: '担心医院、预约和翻译沟通',
-      catName: '安心韩国医疗旅行咨询',
-      catTag: '预约 · 翻译 · 陪同支持',
-      desc: `准备来韩国接受医疗咨询时，很多人真正担心的并不只是医院本身，而是整个过程是否顺利。
-
-不知道该选择哪类机构、如何预约、是否能中文沟通，都会让人感到不安。
-
-汉江春天会在医疗咨询前，先帮您梳理来韩目的、停留时间、需要的翻译支持和陪同需求。
-
-我们不是简单地推荐一家医院，而是帮助您在来韩国之前，把咨询、预约和翻译先理清楚。
-
-医疗判断由医院和专业医生负责，汉江春天负责协助预约、沟通与陪同安排。`,
-      recommended: '安心赴韩 · 预约协调 · 翻译陪同',
-    },
-    en: {
-      title: 'I am worried about hospitals, appointments, and interpretation',
-      catName: 'Korea Medical Travel Support',
-      catTag: 'Appointment · Interpreter · Escort',
-      desc: `When preparing to come to Korea for medical consultation, many people's real concern isn't just the hospital itself — it's whether the entire process will go smoothly.
-
-Not knowing which type of institution to choose, how to make an appointment, and whether Chinese communication is available all create anxiety.
-
-Before your medical consultation, we help you clarify the purpose of your visit, length of stay, translation support needed, and escort requirements.
-
-We don't simply recommend a hospital — we help you sort out consultation, booking, and interpretation before you arrive in Korea.
-
-Medical decisions are made by the hospital and physicians, while K-MediSpring's role is to help coordinate appointments, communication, and escort arrangements.`,
-      recommended: 'Safe Korea Visit · Appointment Coordination · Interpreter',
-    },
-  },
-
   /* ── 8. 韩国体检和中国体检，主要有什么不同？ ───────────── */
   {
     id: 'health-checkup',

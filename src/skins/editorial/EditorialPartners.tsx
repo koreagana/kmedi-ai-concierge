@@ -1,7 +1,7 @@
 import { useApp } from '../../contexts/AppContext'
 import { langPath } from '../../skin'
 import { WECHAT_BIZ_URL } from '../../data/contacts'
-import { JOURNEY_ACTS, JOURNEY_HEADING, JOURNEY_SUBHEADING, JOURNEY_TRUST } from '../../data/customPlanContent'
+import { JOURNEY_ACTS, JOURNEY_HEADING, JOURNEY_SUBHEADING, JOURNEY_TRUST } from '../../data/journeyContent'
 import partners from '../../data/partnersPublic.generated.json'
 import { edLink } from './edLink'
 

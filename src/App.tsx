@@ -46,8 +46,6 @@ function updateMeta({
   if (twDesc) twDesc.content = description
 }
 
-/** 고유 URL이 없는 페이지(package)용 — canonical은 언어 루트를 가리키고,
-    title은 브랜드 접미사를 붙이고 description은 aboutDesc를 150자로 잘라 씀. */
 /** 페이지 제목 뒤에 붙는 브랜드 꼬리. kmedispring.com은 손님이 실제로 검색하는 말(韩国医疗旅游)을 넣는다.
     ai-kmedi.com은 기존 그대로. */
 function brandSuffix(lang: LangCode) {
@@ -57,12 +55,6 @@ function brandSuffix(lang: LangCode) {
 
 /** 경로 구조화 데이터의 첫 칸(홈) */
 const home = (lang: LangCode) => ({ name: lang === 'zh' ? '首页' : 'Home', path: `/${lang}` })
-
-function updateMetaGeneric(title: string, lang: LangCode) {
-  const brand = brandSuffix(lang)
-  const description = siteText(translations[lang].aboutDesc).replace(/\n/g, ' ').slice(0, 150)
-  updateMeta({ lang, zhPath: '/zh', enPath: '/en', title: `${title} · ${brand}`, description })
-}
 
 function PageRouter() {
   const { page, lang, categoryId, topicId } = useApp()

@@ -196,7 +196,7 @@ export default function FloatingChatButton() {
   /* visibility — hidden right at the top, revealed as soon as the page scrolls past
      the sticky header (.navbar is 52px, see index.css). This used to wait for each
      page's hero section to scroll fully past, but hero height varies a lot page to
-     page (home/#hero vs category/.cat-hero vs package/.pkg-hero), so the reveal point
+     page (home/#hero vs category/.cat-hero), so the reveal point
      felt inconsistent across the site. Anchoring to the header instead makes it the
      same fixed, predictable point everywhere. */
   useEffect(() => {
