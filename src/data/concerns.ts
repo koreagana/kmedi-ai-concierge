@@ -272,7 +272,7 @@ Medical decisions are made by the hospital and physicians, while K-MediSpring's 
 汉江春天不会一开始就建议您做越多越好的检查。
 我们会根据您的年龄、家族史、当前症状、疲劳感、睡眠、体重变化，以及女性或男性健康相关问题，先帮您整理适合进一步了解的体检方向。
 
-检查后，也可以根据需要协助您理解结果说明、追加咨询可能性，以及韩国停留期间的安排。
+检查后，也可以根据需要协助您理解结果说明、追加咨询可能性，以及后续复诊的预约。
 
 具体检查项目与后续诊疗方向，以专业医生面诊判断为准。`,
       recommended: '韩国健康检查 · 功能医学 · 专科咨询',
@@ -290,7 +290,7 @@ For overseas clients, what matters isn't just having the checkup done — it's w
 We don't start by recommending as many tests as possible.
 We first help you identify which checkup directions are worth exploring based on your age, family history, current symptoms, fatigue, sleep patterns, weight changes, and women's or men's health concerns.
 
-After the checkup, we can also help you understand results, explore follow-up consultation options, and arrange your Korea stay schedule.
+After the checkup, we can also help you understand results, explore follow-up consultation options, and book follow-up visits.
 
 The specific tests and follow-up direction are determined by a physician through an in-person consultation.`,
       recommended: 'Korean Health Checkup · Functional Medicine · Specialist',

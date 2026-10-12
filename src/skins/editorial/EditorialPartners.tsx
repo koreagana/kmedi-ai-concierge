@@ -48,7 +48,7 @@ const SERVICES: { icon: string; title: L; body: L }[] = [
   {
     icon: 'fa-suitcase-rolling',
     title: { zh: '在韩期间的信息协助', en: 'Practical Information While in Korea' },
-    body: { zh: '提供医院位置、交通路线、紧急联系方式等必要信息。机场往返、住宿与交通由客户自行安排（3晚4天方案已包含接送机）。', en: 'We share hospital locations, directions and emergency contacts. Airport transfers, accommodation and local transport are arranged by clients themselves (airport transfers are included in the 3N4D Package).' },
+    body: { zh: '提供医院位置、交通路线、紧急联系方式等必要信息。机场往返、住宿与交通由客户自行安排，翻译陪同期间的交通费用由客户承担（3晚4天方案已包含接送机）。', en: 'We share hospital locations, directions and emergency contacts. Airport transfers, accommodation and local transport are arranged by clients themselves, and transport costs during interpreter escort are covered by the client (airport transfers are included in the 3N4D Package).' },
   },
   {
     icon: 'fa-hands-helping',
