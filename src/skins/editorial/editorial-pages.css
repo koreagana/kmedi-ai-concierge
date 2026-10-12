@@ -164,6 +164,12 @@
 .ed-skin .ed-svc-icon::before { color: #0077B6; font-size: 1.05em; }
 .ed-skin .ed-svc-grid h3 { font-size: 1.05em; margin: .25em 0 .35em !important; }
 .ed-skin #main .ed-svc-grid p { margin: 0; font-size: .95em !important; line-height: 1.7 !important; color: #555 !important; }
+.ed-skin #main p.ed-svc-note {
+  margin: 2.2em 0 0 !important; padding: .9em 1.2em; border-radius: 10px;
+  background: rgba(0,119,182,.07); border-left: 4px solid #0077B6;
+  font-weight: 600; color: #1F4E79 !important; line-height: 1.7 !important;
+}
+.ed-skin #main p.ed-svc-fine { margin: .9em 0 0 !important; font-size: .82em !important; color: #8a9096 !important; }
 
 .ed-skin .ed-partner-group { margin: 2em 0 0; }
 .ed-skin .ed-partner-group h3 { font-size: 1.05em; color: #0077B6 !important; padding-bottom: .5em; border-bottom: 1px solid rgba(0,119,182,.15); margin-bottom: 1em !important; }

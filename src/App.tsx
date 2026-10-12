@@ -75,25 +75,25 @@ function PageRouter() {
   useEffect(() => {
     if (page === 'partners' && SKIN === 'editorial') {
       const brand = brandSuffix(lang)
-      updateBreadcrumbLd([home(lang), { name: lang === 'zh' ? '全程服务 · 合作医疗机构' : 'Our Services & Partners', path: `/${lang}/partners` }])
+      updateBreadcrumbLd([home(lang), { name: lang === 'zh' ? '就医协调服务 · 合作医疗机构' : 'Medical Coordination & Partners', path: `/${lang}/partners` }])
       updateMeta({
         lang, zhPath: '/zh/partners', enPath: '/en/partners',
-        title: `${lang === 'zh' ? '全程陪伴您的韩国诊疗 · 合作医疗机构' : 'Full-Journey Care & Partner Hospitals'} · ${brand}`,
+        title: `${lang === 'zh' ? '专注医疗，让韩国就医更顺利 · 合作医疗机构' : 'Medical Coordination & Partner Hospitals'} · ${brand}`,
         description: lang === 'zh'
-          ? '我们不只是介绍医院。从预约前到诊疗后，为您衔接每一个必要环节，并介绍汉江春天的韩国合作医疗机构。'
-          : 'We do more than introduce hospitals — from booking to aftercare we connect every step, alongside our partner hospitals in Korea.',
+          ? '我们只做与诊疗有关的事：找对医院、约好时间、准确沟通、诊后跟进，并介绍汉江春天的韩国合作医疗机构。'
+          : 'We focus only on your medical care — the right hospital, the right time, clear communication and follow-up — alongside our partner hospitals in Korea.',
       })
       return
     }
     if (page === 'services' && SKIN === 'editorial') {
       const brand = brandSuffix(lang)
-      updateBreadcrumbLd([home(lang), { name: lang === 'zh' ? '全程服务' : 'Our Full Service', path: `/${lang}/services` }])
+      updateBreadcrumbLd([home(lang), { name: lang === 'zh' ? '就医协调服务' : 'Medical Coordination', path: `/${lang}/services` }])
       updateMeta({
         lang, zhPath: '/zh/services', enPath: '/en/services',
-        title: `${lang === 'zh' ? '全程陪伴您的韩国诊疗' : 'With You Through Every Step of Your Care in Korea'} · ${brand}`,
+        title: `${lang === 'zh' ? '专注医疗，让韩国就医更顺利' : 'Focused on Your Care in Korea'} · ${brand}`,
         description: lang === 'zh'
-          ? '我们不只是介绍医院。从找医院、预约、翻译陪同到诊疗后管理，汉江春天为您衔接每一个必要环节。'
-          : 'We do more than introduce hospitals — from finding a hospital, booking and interpretation to aftercare, we connect every step.',
+          ? '我们只做与诊疗有关的事：找对医院、约好时间、准确沟通、诊后跟进。'
+          : 'We focus only on your medical care — the right hospital, the right time, clear communication and follow-up.',
       })
       return
     }

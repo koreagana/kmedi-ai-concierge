@@ -367,8 +367,8 @@ The 3-night, 4-day plan is a reference itinerary; the actual schedule may be adj
     emoji: '🗺️',
     heroImage: '/category-hero/custom-plan.jpg',
     heroVideo: '/category-hero/custom-plan.mp4',
-    tagZh: '定制组合疗程 · 预算方向 · 全程协调',
-    tagEn: 'Multi-Service Plan · Budget Direction · Full Coordination',
+    tagZh: '定制组合疗程 · 预算方向 · 诊疗协调',
+    tagEn: 'Multi-Service Plan · Budget Direction · Care Coordination',
     scriptFullZh: `您好，这里是定制医疗旅游方案入口。
 
 如果您还不确定该选哪个项目，可以从这里开始。

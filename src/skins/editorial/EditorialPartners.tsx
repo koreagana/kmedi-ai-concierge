@@ -4,63 +4,52 @@ import { WECHAT_BIZ_URL } from '../../data/contacts'
 import partners from '../../data/partnersPublic.generated.json'
 import { edLink } from './edLink'
 
-/** 全程服务 · 合作医疗机构 (/zh/partners) — kmedispring.com 전용.
-    위: 사용자가 쓴 "全程陪伴您的韩国诊疗" 8개 항목(원래 ai-kmedi 메인의 了解全程服务 접힘 패널 내용).
+/** 就医协调服务 · 合作医疗机构 (/zh/partners) — kmedispring.com 전용.
+    위: 의료 관련 4개 항목 + 비용 안내 박스(2026-10 의료 외 서비스 제외 후 8개→4개로 정리).
     아래: 협약 날인한 협력기관 — 대학병원은 전부, 그 외는 명부에서 show_on_site로 고른 곳만
     (scripts/gen-public-partners.mjs가 걸러서 이름·분류·도시만 넘겨준다). 병원 홈페이지 링크는 걸지 않는다. */
 
 type L = { zh: string; en: string }
 
 const INTRO: { title: L; lead: L[] } = {
-  title: { zh: '全程陪伴您的韩国诊疗', en: 'With You Through Every Step of Your Care in Korea' },
+  title: { zh: '专注医疗，让韩国就医更顺利', en: 'Focused on Your Care in Korea' },
   lead: [
-    { zh: '我们不只是介绍医院。', en: "We don't just introduce hospitals." },
-    { zh: '从预约前到诊疗后，为您衔接每一个必要环节。', en: 'From before your booking to after your treatment, we connect every step you need.' },
+    { zh: '我们只做与诊疗有关的事。', en: 'We only do what relates to your medical care.' },
   ],
 }
 
+/** 의료 외 서비스(차량·숙소)는 하지 않는다(2026-10) — 4칸으로 줄이고 비용 안내는 아래 NOTE 박스로 따로 */
 const SERVICES: { icon: string; title: L; body: L }[] = [
   {
     icon: 'fa-hospital',
-    title: { zh: '为您寻找合适的医院', en: 'Finding the Right Hospital for You' },
-    body: { zh: '了解您的诊疗目的、期望结果和预算，为您推荐合适的医疗机构。', en: 'We learn your goals, the results you hope for and your budget, then recommend suitable medical institutions.' },
+    title: { zh: '找对医院', en: 'The Right Hospital' },
+    body: { zh: '根据您的诊疗目的和预算，推荐合适的医疗机构。', en: 'We recommend suitable medical institutions based on your goals and budget.' },
   },
   {
     icon: 'fa-calendar-check',
-    title: { zh: '从预约到日程协调', en: 'From Booking to Scheduling' },
-    body: { zh: '从预约申请、变更·取消，到最终诊疗日程确认，我们与医院直接协调。', en: 'From booking requests, changes and cancellations to confirming your final schedule, we coordinate directly with the hospital.' },
-  },
-  {
-    icon: 'fa-comments',
-    title: { zh: '与医院准确沟通', en: 'Clear Communication with the Hospital' },
-    body: { zh: '提前确认所需材料和信息，将诊疗前的疑问和患者信息准确传达给医院。', en: 'We confirm the documents and information needed in advance, and pass your questions and details to the hospital accurately.' },
+    title: { zh: '约好时间', en: 'The Right Time' },
+    body: { zh: '预约、改期、取消，由我们直接与医院协调。', en: 'Bookings, changes and cancellations — coordinated directly with the hospital.' },
   },
   {
     icon: 'fa-language',
-    title: { zh: '翻译与诊疗陪同', en: 'Interpretation & Accompaniment' },
-    body: { zh: '从咨询、诊疗到处方和注意事项，必要时提供中文翻译和全程陪同。', en: 'From consultation and treatment to prescriptions and aftercare instructions, we provide interpretation and stay with you when needed.' },
+    title: { zh: '准确沟通', en: 'Clear Communication' },
+    body: { zh: '诊前确认所需材料，就诊时提供中文翻译与陪同。', en: 'We confirm documents before your visit and interpret for you on the day.' },
   },
   {
     icon: 'fa-notes-medical',
-    title: { zh: '诊疗结束后，服务继续', en: 'Support Continues After Treatment' },
-    body: { zh: '协助您与医院沟通处方、术后管理日程，并处理后续疑问和不便事项。', en: 'We help you communicate with the hospital about prescriptions and aftercare schedules, and follow up on any questions or concerns.' },
-  },
-  {
-    icon: 'fa-suitcase-rolling',
-    title: { zh: '在韩期间的信息协助', en: 'Practical Information While in Korea' },
-    body: { zh: '提供医院位置、交通路线、紧急联系方式等必要信息。机场往返、住宿与交通由客户自行安排，翻译陪同期间的交通费用由客户承担（3晚4天方案已包含接送机）。', en: 'We share hospital locations, directions and emergency contacts. Airport transfers, accommodation and local transport are arranged by clients themselves, and transport costs during interpreter escort are covered by the client (airport transfers are included in the 3N4D Package).' },
-  },
-  {
-    icon: 'fa-hands-helping',
-    title: { zh: '出现问题时，我们居中协调', en: 'We Step In When Issues Arise' },
-    body: { zh: '预约、翻译等服务问题由我们直接确认；医疗相关问题则协助医院与患者准确沟通。', en: 'We handle service issues such as bookings or interpretation directly; for medical matters, we help the hospital and you communicate clearly.' },
-  },
-  {
-    icon: 'fa-user-shield',
-    title: { zh: '个人信息也按正规流程管理', en: 'Your Personal Information, Properly Managed' },
-    body: { zh: '健康信息、照片、检查结果等，在获得同意后，仅在必要范围内传递和管理。', en: 'Health information, photos and test results are shared and managed only as far as necessary, and only with your consent.' },
+    title: { zh: '诊后跟进', en: 'Follow-up After Treatment' },
+    body: { zh: '处方、复诊与术后疑问，回国后也可以随时问我们。', en: "Prescriptions, follow-up visits and aftercare questions — ask us anytime, even after you're home." },
   },
 ]
+
+const NOTE: L = {
+  zh: '交通与住宿由客户自行安排，费用自理（含翻译陪同期间的交通费）。3晚4天方案已包含接送机。',
+  en: 'Transport and accommodation are arranged and paid for by clients, including transport during interpreter escort. Airport transfers are included in the 3N4D Package.',
+}
+const FINE: L = {
+  zh: '服务问题由我们直接确认；健康信息与照片仅在您同意后，于必要范围内使用。',
+  en: 'We resolve service issues directly; your health information and photos are used only with your consent and only as needed.',
+}
 
 /** 명부의 분류(한국어) → 화면 제목, 보여줄 순서 */
 const CATEGORY: { key: string; label: L }[] = [
@@ -73,7 +62,7 @@ const CATEGORY: { key: string; label: L }[] = [
 
 type Partner = (typeof partners)[number]
 
-/** servicesOnly: 사이드바 메뉴의 全程服务(/services) — 위의 8개 항목만. 협력기관 목록(/partners)은
+/** servicesOnly: 사이드바 메뉴의 就医协调服务(/services) — 위의 4개 항목만. 협력기관 목록(/partners)은
     메뉴에 드러내지 않고 了解全程服务 버튼·직접 링크로만 들어오게 한다(사용자 결정 2026-10-02). */
 export default function EditorialPartners({ servicesOnly = false }: { servicesOnly?: boolean }) {
   const { lang, goHome } = useApp()
@@ -87,7 +76,7 @@ export default function EditorialPartners({ servicesOnly = false }: { servicesOn
       <p className="ed-crumb">
         <a {...edLink(langPath(lang), goHome)}>{isZh ? '首页' : 'Home'}</a>
         <span aria-hidden="true"> / </span>
-        <span>{servicesOnly ? (isZh ? '全程服务' : 'Our Full Service') : (isZh ? '全程服务 · 合作医疗机构' : 'Our Services & Partners')}</span>
+        <span>{servicesOnly ? (isZh ? '就医协调服务' : 'Medical Coordination') : (isZh ? '就医协调服务 · 合作医疗机构' : 'Medical Coordination & Partners')}</span>
       </p>
 
       <header className="main">
@@ -108,6 +97,8 @@ export default function EditorialPartners({ servicesOnly = false }: { servicesOn
           </article>
         ))}
       </div>
+      <p className="ed-svc-note">{NOTE[lang]}</p>
+      <p className="ed-svc-fine">{FINE[lang]}</p>
 
       {!servicesOnly && <>
       <hr className="major" />

@@ -215,7 +215,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   // 순서: 기관이 하는 일(全程服务)이 먼저 와야 外籍患者引进机构资质 제목과 이어진다(사용자 결정 2026-10-02)
   const agencyItems: { key: string; label: string; href: string; go: () => void; current: boolean }[] = [
     // 협력기관 목록(/partners)은 메뉴에 넣지 않는다 — 了解全程服务 버튼·직접 링크로만
-    { key: 'services', label: isZh ? '全程服务' : 'Our Full Service', href: langPath(lang, '/services'), go: goToServices, current: page === 'services' },
+    { key: 'services', label: isZh ? '就医协调服务' : 'Medical Coordination', href: langPath(lang, '/services'), go: goToServices, current: page === 'services' },
     { key: 'custom-plan', label: isZh ? custom.zh : custom.en, href: langPath(lang, '/custom-plan'), go: () => goToCategory('custom-plan'), current: page === 'category' && categoryId === 'custom-plan' },
     { key: 'package', label: isZh ? pkg.zh : pkg.en, href: langPath(lang, '?page=package'), go: goToPackage, current: page === 'package' },
     { key: 'quote', label: t.quoteBtnTitle, href: langPath(lang, `/quote`), go: () => goToQuote(), current: page === 'quote' },

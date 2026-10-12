@@ -893,6 +893,7 @@ export function MedicalNetworkSection() {
                   </div>
                 ))}
               </div>
+              <p className="network-service-note">{t.networkCard1Note}</p>
             </div>
           </motion.div>
         )}

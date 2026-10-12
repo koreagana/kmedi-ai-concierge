@@ -79,6 +79,7 @@ interface Translations {
   networkCard1ExpandTitle: string
   networkCard1ExpandIntro: string
   networkCard1Items: { title: string; desc: string }[]
+  networkCard1Note: string
   networkCard1RegNote: string
   networkCard2Title: string
   networkCard2Desc: string
@@ -183,19 +184,16 @@ export const translations: Record<LangCode, Translations> = {
     networkCard1Title: '外籍患者引进机构资质',
     networkCard1Desc: '依法登记的韩国外籍患者引进机构',
     networkCard1Reg: '登记号：A-2023-01-02-4752',
-    networkCard1ExpandBadge: '了解全程服务',
-    networkCard1ExpandTitle: '全程陪伴您的韩国诊疗',
-    networkCard1ExpandIntro: '我们不只是介绍医院。\n从预约前到诊疗后，为您衔接每一个必要环节。',
+    networkCard1ExpandBadge: '了解就医协调服务',
+    networkCard1ExpandTitle: '专注医疗，让韩国就医更顺利',
+    networkCard1ExpandIntro: '我们只做与诊疗有关的事。',
     networkCard1Items: [
-      { title: '为您寻找合适的医院', desc: '了解您的诊疗目的、期望结果和预算，为您推荐合适的医疗机构。' },
-      { title: '从预约到日程协调', desc: '从预约申请、变更·取消，到最终诊疗日程确认，我们与医院直接协调。' },
-      { title: '与医院准确沟通', desc: '提前确认所需材料和信息，将诊疗前的疑问和患者信息准确传达给医院。' },
-      { title: '翻译与诊疗陪同', desc: '从咨询、诊疗到处方和注意事项，必要时提供中文翻译和全程陪同。' },
-      { title: '诊疗结束后，服务继续', desc: '协助您与医院沟通处方、术后管理日程，并处理后续疑问和不便事项。' },
-      { title: '在韩期间的信息协助', desc: '提供医院位置、交通路线、紧急联系方式等必要信息。机场往返、住宿与交通由客户自行安排，翻译陪同期间的交通费用由客户承担（3晚4天方案已包含接送机）。' },
-      { title: '出现问题时，我们居中协调', desc: '预约、翻译等服务问题由我们直接确认；医疗相关问题则协助医院与患者准确沟通。' },
-      { title: '个人信息也按正规流程管理', desc: '健康信息、照片、检查结果等，在获得同意后，仅在必要范围内传递和管理。' },
+      { title: '找对医院', desc: '根据您的诊疗目的和预算，推荐合适的医疗机构。' },
+      { title: '约好时间', desc: '预约、改期、取消，由我们直接与医院协调。' },
+      { title: '准确沟通', desc: '诊前确认所需材料，就诊时提供中文翻译与陪同。' },
+      { title: '诊后跟进', desc: '处方、复诊与术后疑问，回国后也可以随时问我们。' },
     ],
+    networkCard1Note: '交通与住宿由客户自行安排，费用自理（含翻译陪同期间的交通费）。3晚4天方案已包含接送机。',
     networkCard1RegNote: '外籍患者引进机构登记号 A-2023-01-02-4752',
     networkCard2Title: '韩国综合旅行服务',
     networkCard2Desc: '具备韩国综合旅行业登记资质，提供3晚4天医疗旅游方案',
@@ -292,19 +290,16 @@ export const translations: Record<LangCode, Translations> = {
     networkCard1Title: 'Foreign Patient Facilitator',
     networkCard1Desc: 'Officially registered Korean foreign patient facilitation institution',
     networkCard1Reg: 'Reg. No.: A-2023-01-02-4752',
-    networkCard1ExpandBadge: 'Our Full Service',
-    networkCard1ExpandTitle: 'By Your Side, Every Step of Your Korea Care',
-    networkCard1ExpandIntro: "We don't just introduce hospitals.\nWe connect every step you need, from before your appointment to after your treatment.",
+    networkCard1ExpandBadge: 'Our Medical Coordination',
+    networkCard1ExpandTitle: 'Focused on Your Care in Korea',
+    networkCard1ExpandIntro: 'We only do what relates to your medical care.',
     networkCard1Items: [
-      { title: 'Finding the Right Hospital', desc: 'We learn your treatment goals, expected outcomes, and budget, then recommend a suitable medical institution.' },
-      { title: 'Appointment & Scheduling', desc: 'From booking requests, changes, and cancellations, to final schedule confirmation — we coordinate directly with the hospital.' },
-      { title: 'Accurate Communication with the Hospital', desc: 'We confirm required documents and information in advance, and relay your questions and patient details to the hospital accurately.' },
-      { title: 'Translation & Visit Accompaniment', desc: 'From consultation to treatment, prescriptions, and precautions — we provide interpretation and accompaniment when needed.' },
-      { title: 'Support Continues After Treatment', desc: 'We help you communicate with the hospital about prescriptions and post-care schedules, and handle any follow-up questions or issues.' },
-      { title: 'Practical Information While in Korea', desc: 'We share hospital locations, directions and emergency contacts. Airport transfers, accommodation and local transport are arranged by clients themselves, and transport costs during interpreter escort are covered by the client (airport transfers are included in the 3N4D Package).' },
-      { title: 'When Issues Arise, We Step In', desc: 'Booking or interpretation issues are resolved directly by us; for medical matters, we help the hospital and patient communicate accurately.' },
-      { title: 'Personal Information, Handled Properly', desc: 'Health information, photos, and test results are shared and managed only within the necessary scope, with your consent.' },
+      { title: 'The Right Hospital', desc: 'We recommend suitable medical institutions based on your goals and budget.' },
+      { title: 'The Right Time', desc: 'Bookings, changes and cancellations — coordinated directly with the hospital.' },
+      { title: 'Clear Communication', desc: 'We confirm documents before your visit and interpret for you on the day.' },
+      { title: 'Follow-up After Treatment', desc: "Prescriptions, follow-up visits and aftercare questions — ask us anytime, even after you're home." },
     ],
+    networkCard1Note: 'Transport and accommodation are arranged and paid for by clients, including transport during interpreter escort. Airport transfers are included in the 3N4D Package.',
     networkCard1RegNote: 'Foreign Patient Attraction Institution Reg. No. A-2023-01-02-4752',
     networkCard2Title: 'General Travel Services',
     networkCard2Desc: 'Licensed General Travel Agency — offering our 3N4D Medical Tourism Package',
