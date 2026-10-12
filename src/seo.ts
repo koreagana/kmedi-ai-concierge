@@ -1,5 +1,5 @@
 import type { LangCode } from './data/translations'
-import { CANONICAL_ORIGIN, sitePath } from './skin'
+import { CANONICAL_ORIGIN, canonicalPath } from './skin'
 
 /** 현재 페이지의 zh/en 경로에 맞춰 <link rel="canonical">, og:url, hreflang 3종을 갱신.
     index.html은 모든 언어·페이지 라우트가 공유하는 단일 정적 파일이라 이 값들은
@@ -7,7 +7,7 @@ import { CANONICAL_ORIGIN, sitePath } from './skin'
     zhPath/enPath는 "/zh", "/zh/surgery-price"처럼 현재 페이지의 언어별 실제 경로 —
     페이지마다 서로 다른 canonical/hreflang 쌍을 가질 수 있게 페이지 쪽에서 넘겨준다. */
 export function updatePageSeo({ lang, zhPath: zhRaw, enPath }: { lang: LangCode; zhPath: string; enPath: string }) {
-  const zhPath = sitePath(zhRaw) // kmedispring.com은 중국어가 루트(/zh 없음)
+  const zhPath = canonicalPath(zhRaw) // 대표 주소 kmedispring.com은 중국어가 루트(/zh 없음)
   const path = lang === 'zh' ? zhPath : enPath
   const url = `${CANONICAL_ORIGIN}${path}`
 
@@ -45,7 +45,7 @@ export function updateBreadcrumbLd(items: { name: string; path: string }[]) {
       '@type': 'ListItem',
       position: i + 1,
       name: it.name,
-      item: `${CANONICAL_ORIGIN}${sitePath(it.path)}`,
+      item: `${CANONICAL_ORIGIN}${canonicalPath(it.path)}`,
     })),
   })
   document.head.appendChild(el)

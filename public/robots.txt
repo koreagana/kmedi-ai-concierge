@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ai-kmedi.com/sitemap.xml
+# ai-kmedi.com은 사이트맵을 내지 않는다 — 모든 페이지 canonical이 kmedispring.com을 가리킴(2026-10-12).
+# kmedispring.com 빌드는 prerender가 이 파일을 자기 사이트맵 주소가 든 것으로 덮어쓴다.

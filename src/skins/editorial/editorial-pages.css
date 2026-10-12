@@ -13,7 +13,8 @@
 .ed-skin #main .ed-crumb { font-size: .82em !important; color: #888 !important; margin: 0 0 1.6em; }
 .ed-skin #main .ed-crumb a { color: #0077B6 !important; border-bottom: 0; text-decoration: none; }
 .ed-skin .ed-page header.main { margin-bottom: 1.4em; }
-.ed-skin .ed-page header.main h1 { margin-bottom: .25em; }
+/* 페이지 제목: 원본 4em 고정이라 긴 중국어 제목(专注医疗，让韩国就医更顺利)이 두 줄로 넘쳤다 → 화면 폭 따라 줄어들게 */
+.ed-skin #main .ed-page header.main h1 { margin-bottom: .25em; font-size: clamp(1.7em, 3.6vw, 3em) !important; line-height: 1.25 !important; }
 .ed-skin #main .ed-page-tag { color: #0077B6 !important; font-size: .92em !important; letter-spacing: .03em; margin: 0; }
 
 /* 대표 사진: 세로로 긴 타일 사진도 한 화면을 넘지 않게 */

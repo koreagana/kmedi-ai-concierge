@@ -104,7 +104,7 @@ async function waitForServer(url, timeoutMs = 20000) {
   throw new Error(`preview server did not respond within ${timeoutMs}ms`)
 }
 
-/** kmedispring.com 빌드 전용: public/의 ai-kmedi.com용 sitemap.xml·robots.txt 대신 이 도메인의
+/** kmedispring.com 빌드 전용: public/robots.txt(사이트맵 없음) 대신 이 도메인의
     전체 페이지(세부 항목 포함)를 담은 것으로 덮어쓴다. 브라우저 없이 되는 작업이라 prerender 실패와 무관. */
 function writeEditorialSitemap() {
   const origin = process.env.VITE_CANONICAL_ORIGIN || 'https://kmedispring.com'

@@ -23,8 +23,8 @@ const INTRO: { title: L; lead: L[] } = {
 const SERVICES: { icon: string; title: L; body: L }[] = [
   {
     icon: 'fa-hospital',
-    title: { zh: '找对医院', en: 'The Right Hospital' },
-    body: { zh: '根据您的诊疗目的和预算，推荐合适的医疗机构。', en: 'We recommend suitable medical institutions based on your goals and budget.' },
+    title: { zh: '医院和医生', en: 'Hospital & Doctor' },
+    body: { zh: '根据您的诊疗目的和预算，推荐合适的医院与医生。', en: 'We recommend the right hospital and doctor based on your goals and budget.' },
   },
   {
     icon: 'fa-calendar-check',

@@ -7,8 +7,9 @@ export type Skin = 'default' | 'editorial'
 
 export const SKIN: Skin = import.meta.env.VITE_SKIN === 'editorial' ? 'editorial' : 'default'
 
-/** 검색엔진 대표 주소 — vite.config.ts에서 스킨별 기본값을 정한다(환경변수 VITE_CANONICAL_ORIGIN으로 덮어쓰기 가능). */
-export const CANONICAL_ORIGIN: string = import.meta.env.VITE_CANONICAL_ORIGIN ?? 'https://ai-kmedi.com'
+/** 검색엔진 대표 주소 — 두 빌드 모두 kmedispring.com(vite.config.ts, 2026-10-12). ai-kmedi.com 페이지의
+    canonical도 여기를 가리켜 검색 점수가 kmedispring.com으로 모인다. */
+export const CANONICAL_ORIGIN: string = import.meta.env.VITE_CANONICAL_ORIGIN ?? 'https://kmedispring.com'
 
 /** 이 사이트 자신의 도메인 — 화면 문구 속 "汉江春天（ai-kmedi.com）" 같은 자기소개에 쓴다. */
 export const SITE_DOMAIN = SKIN === 'editorial' ? 'kmedispring.com' : 'ai-kmedi.com'
@@ -25,8 +26,9 @@ export function langPath(lang: 'zh' | 'en', rest = ''): string {
   return base + rest
 }
 
-/** '/zh…' 형태의 경로(검색엔진용 정규 주소·경로 데이터 등)를 이 사이트의 실제 주소로 — kmedispring.com에선 /zh를 뗀다 */
-export const sitePath = (p: string) => (ZH_AT_ROOT ? (p.replace(/^\/zh(?=\/|\?|$)/, '') || '/') : p)
+/** '/zh…' 형태의 경로를 대표 주소(kmedispring.com)의 경로로 — 중국어가 루트라 어느 빌드에서든 /zh를 뗀다.
+    canonical·hreflang·경로 구조화 데이터 전용. */
+export const canonicalPath = (p: string) => p.replace(/^\/zh(?=\/|\?|$)/, '') || '/'
 
 /** 공용 문구(translations 등)에 박힌 "ai-kmedi.com"을 지금 사이트의 도메인으로 바꿔 보여준다. */
 export const siteText = (s: string) => s.replace(/ai-kmedi\.com/g, SITE_DOMAIN)

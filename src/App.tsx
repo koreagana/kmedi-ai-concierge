@@ -74,7 +74,7 @@ function PageRouter() {
         lang, zhPath: '/zh/partners', enPath: '/en/partners',
         title: `${lang === 'zh' ? '专注医疗，让韩国就医更顺利 · 合作医疗机构' : 'Medical Coordination & Partner Hospitals'} · ${brand}`,
         description: lang === 'zh'
-          ? '我们只做与诊疗有关的事：找对医院、约好时间、准确沟通、诊后跟进，并介绍汉江春天的韩国合作医疗机构。'
+          ? '我们只做与诊疗有关的事：找对医院和医生、约好时间、准确沟通、诊后跟进，并介绍汉江春天的韩国合作医疗机构。'
           : 'We focus only on your medical care — the right hospital, the right time, clear communication and follow-up — alongside our partner hospitals in Korea.',
       })
       return
@@ -86,7 +86,7 @@ function PageRouter() {
         lang, zhPath: '/zh/services', enPath: '/en/services',
         title: `${lang === 'zh' ? '专注医疗，让韩国就医更顺利' : 'Focused on Your Care in Korea'} · ${brand}`,
         description: lang === 'zh'
-          ? '我们只做与诊疗有关的事：找对医院、约好时间、准确沟通、诊后跟进。'
+          ? '我们只做与诊疗有关的事：找对医院和医生、约好时间、准确沟通、诊后跟进。'
           : 'We focus only on your medical care — the right hospital, the right time, clear communication and follow-up.',
       })
       return

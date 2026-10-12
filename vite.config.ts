@@ -3,14 +3,12 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // 검색엔진 대표 주소(canonical·og:url·hreflang·JSON-LD). index.html의 %VITE_CANONICAL_ORIGIN%와
-// src/skin.ts가 같은 값을 쓴다. 사용자 결정(2026-09-30): 대표 주소는 kmedispring.com.
-//  - editorial 빌드(kmedispring.com): 기본 https://kmedispring.com
-//  - default 빌드(ai-kmedi.com): 기본 https://ai-kmedi.com — kmedispring.com이 새 사이트로 연결된 뒤
-//    ai-kmedi.com 네피 사이트에 VITE_CANONICAL_ORIGIN=https://kmedispring.com 환경변수만 넣으면 전환된다.
-// 중국어 메인 주소 — kmedispring.com은 루트(/), ai-kmedi.com은 /zh (index.html의 %VITE_ZH_HOME%)
-process.env.VITE_ZH_HOME ??= process.env.VITE_SKIN === 'editorial' ? '/' : '/zh'
-process.env.VITE_CANONICAL_ORIGIN ??=
-  process.env.VITE_SKIN === 'editorial' ? 'https://kmedispring.com' : 'https://ai-kmedi.com'
+// src/skin.ts가 같은 값을 쓴다. 사용자 결정(2026-10-12): 홍보·SEO는 kmedispring.com 하나로 —
+// ai-kmedi.com은 사이트는 그대로 두되 canonical을 kmedispring.com의 같은 페이지로 걸어 검색 점수를 한곳에 모은다.
+// 그래서 두 빌드 모두 기본값이 https://kmedispring.com (환경변수 VITE_CANONICAL_ORIGIN으로 덮어쓰기 가능).
+// 대표 주소의 중국어 메인은 루트(/) — index.html의 %VITE_ZH_HOME%
+process.env.VITE_ZH_HOME ??= '/'
+process.env.VITE_CANONICAL_ORIGIN ??= 'https://kmedispring.com'
 
 export default defineConfig({
   plugins: [react()],

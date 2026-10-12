@@ -170,7 +170,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard1ExpandTitle: '专注医疗，让韩国就医更顺利',
     networkCard1ExpandIntro: '我们只做与诊疗有关的事。',
     networkCard1Items: [
-      { title: '找对医院', desc: '根据您的诊疗目的和预算，推荐合适的医疗机构。' },
+      { title: '医院和医生', desc: '根据您的诊疗目的和预算，推荐合适的医院与医生。' },
       { title: '约好时间', desc: '预约、改期、取消，由我们直接与医院协调。' },
       { title: '准确沟通', desc: '诊前确认所需材料，就诊时提供中文翻译与陪同。' },
       { title: '诊后跟进', desc: '处方、复诊与术后疑问，回国后也可以随时问我们。' },
@@ -266,7 +266,7 @@ export const translations: Record<LangCode, Translations> = {
     networkCard1ExpandTitle: 'Focused on Your Care in Korea',
     networkCard1ExpandIntro: 'We only do what relates to your medical care.',
     networkCard1Items: [
-      { title: 'The Right Hospital', desc: 'We recommend suitable medical institutions based on your goals and budget.' },
+      { title: 'Hospital & Doctor', desc: 'We recommend the right hospital and doctor based on your goals and budget.' },
       { title: 'The Right Time', desc: 'Bookings, changes and cancellations — coordinated directly with the hospital.' },
       { title: 'Clear Communication', desc: 'We confirm documents before your visit and interpret for you on the day.' },
       { title: 'Follow-up After Treatment', desc: "Prescriptions, follow-up visits and aftercare questions — ask us anytime, even after you're home." },
