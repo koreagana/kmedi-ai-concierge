@@ -30,8 +30,8 @@ const COPY = {
     back: '← 返回首页',
     title: '韩国整形手术价格表',
     // 2026-10-02 사용자 요청: 병원명·증치세 문구 삭제, 하단 안내는 사용자가 준 5줄
-    sub: '2026年最新参考价格（参考用）',
-    basis: '单位：万韩元（不含增值税）',
+    // 2026-10-12: 단위 줄(单位：万韩元…) 삭제, 不含增值税는 부제로 합침
+    sub: '2026年最新参考价格（参考用，不含增值税）',
     fx: '参考汇率 2026年9月',
     recovery: '恢复期',
     addOn: '追加项',
@@ -48,8 +48,7 @@ const COPY = {
   en: {
     back: '← Back to Home',
     title: 'Korea Plastic Surgery Price List',
-    sub: '2026 latest reference pricing (for reference only)',
-    basis: 'Unit: 10,000 KRW (VAT not included)',
+    sub: '2026 latest reference pricing (for reference only, VAT not included)',
     fx: 'Rate as of September 2026',
     recovery: 'Downtime',
     addOn: 'Add-on',
@@ -91,7 +90,6 @@ export default function SurgeryPricePage() {
         <button className="sg-back" onClick={goHome}>{c.back}</button>
         <h1 className="sg-title">{c.title}</h1>
         <p className="sg-sub">{c.sub}</p>
-        <span className="sg-basis">{c.basis}</span>
       </div>
 
       <div className="sg-tabs">
