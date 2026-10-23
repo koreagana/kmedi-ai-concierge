@@ -24,8 +24,8 @@ function AdminPricesPage() {
         <a href="/admin/prep/" style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}>
           ← 준비문서 관리자로 돌아가기
         </a>
-        <a href="/admin/병원찾기/" style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}>
-          → 병원찾기 바로가기
+        <a href="/admin/partners/" style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}>
+          → 협력의료기관
         </a>
       </div>
     </div>

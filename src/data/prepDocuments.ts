@@ -77,6 +77,16 @@ export const PREP_DOC_STATUS_LABEL: Record<PrepDocStatus, string> = {
 
 export const PREP_DOCUMENTS: PrepDocument[] = [
   // ── 1. 사무·계약·예약 ──────────────────────────────────────────
+  // 예약확인증 생성기는 자주 써서 맨 위 (사용자 2026-10-23)
+  {
+    titleKo: '예약확인증 생성기',
+    titleZh: '预约确认书生成器',
+    type: 'reservation',
+    category: 'admin_contract',
+    field: '예약 관리 / 공통',
+    link: '/reservation-confirm/',
+    status: 'available',
+  },
   {
     titleKo: '외국인환자 유치 업무협약서',
     titleZh: 'Agreement for Foreign Patient Attraction Services',
@@ -166,15 +176,6 @@ export const PREP_DOCUMENTS: PrepDocument[] = [
     link: '/docs/c_meituan_xinzhengce.jpg',
     status: 'available',
     description: '메이투안 공식 배포 중국어 원본 (이미지)',
-  },
-  {
-    titleKo: '예약확인증 생성기',
-    titleZh: '预约确认书生成器',
-    type: 'reservation',
-    category: 'admin_contract',
-    field: '예약 관리 / 공통',
-    link: '/reservation-confirm/',
-    status: 'available',
   },
   {
     titleKo: '환자 사전 파악 체크리스트',

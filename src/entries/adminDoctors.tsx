@@ -22,7 +22,7 @@ function AdminDoctorsPage() {
       <DoctorRoster />
       <div style={{ textAlign: 'center', padding: '0 20px 32px', display: 'flex', justifyContent: 'center', gap: 16, background: '#F5F7FA' }}>
         <a href="/admin/partners/" style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}>
-          ← 협력의료기관 대장
+          ← 협력의료기관
         </a>
         <a href="/admin/prep/" style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}>
           → 준비문서 관리자
