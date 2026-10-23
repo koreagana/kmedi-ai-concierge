@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { langPath } from '../../skin'
-import { useNavigate } from 'react-router-dom'
 import { useApp } from '../../contexts/AppContext'
 import { translations } from '../../data/translations'
 import { categories, type CategoryId } from '../../data/categories'
@@ -25,7 +24,6 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
   const { lang, page, categoryId, topicId, goHome, goToCategory, goToTopic, goToQuote, goToSurgery, goToPartners, goToServices } = useApp()
   const t = translations[lang]
   const isZh = lang === 'zh'
-  const navigate = useNavigate()
   // 넓은 화면(PC)에선 Editorial 원본처럼 회색 사이드바가 왼쪽에 "붙어서"(docked) 본문을 옆으로 밀고,
   // 메뉴 링크를 눌러도 닫히지 않는다. 페이지가 바뀌면 App이 새로 마운트되므로 열림 상태는
   // sessionStorage에 기억해 둔다. 폰·태블릿은 기존처럼 본문을 덮는 오프캔버스 + 링크 누르면 닫힘.
