@@ -406,5 +406,20 @@
     },
     "place": null,
     "logo": null
+  },
+  {
+    "id": "PH-045",
+    "category": "복합의원",
+    "name": {
+      "zh": "Centum Core诊所",
+      "en": "Centum Core Clinic",
+      "ko": "센텀코어의원"
+    },
+    "city": {
+      "zh": "釜山",
+      "en": "Busan"
+    },
+    "place": null,
+    "logo": null
   }
 ]
