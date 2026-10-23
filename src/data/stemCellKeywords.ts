@@ -56,11 +56,11 @@ export interface StemCellKeyword {
     so the tile breakdown below reads as clarification rather than a generic list. */
 export const STEM_CELL_INTRO = {
   line1: {
-    zh: '在韩国，不同"干细胞治疗"并不是一回事。',
+    zh: '在韩国，同样叫"干细胞治疗"，其实并不是一回事。',
     en: 'In Korea, not all "stem cell treatments" are the same thing.',
   } as LocalizedText,
   line2: {
-    zh: '我们帮您区分真正的细胞治疗、获批治疗、再生医学手术与自体血液再生。',
+    zh: '获批的细胞治疗、再生医学手术、自体血液再生……我们帮您分清楚。',
     en: 'We help you tell apart true cell therapy, approved treatments, regenerative medicine procedures, and autologous blood regeneration.',
   } as LocalizedText,
 }

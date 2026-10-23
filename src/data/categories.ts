@@ -42,23 +42,11 @@ export const categories: Category[] = [
     cardVideo: '/category-hero/skin-beauty-card.mp4',
     tagZh: '提升紧致 · 毛孔色斑 · 抗衰',
     tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',
-    scriptFullZh: `您好，欢迎进入皮肤医美咨询区。
+    scriptFullZh: `同样是"想变年轻"，每个人的原因并不一样。有的人是皮肤松了、轮廓下垂，有的人是毛孔、色斑、痘印让肤色显得暗沉。所以我们不会一上来就推荐某个项目。
 
-皮肤医美不是先选一个项目名称，而是先了解皮肤状态。
+先告诉我们您最在意的是哪里：松弛下垂、毛孔、色斑、痘印、泛红，还是整体肤质。再说说您打算在韩国待几天、能接受多长的恢复期、大概的预算，以及需不需要翻译陪同。
 
-松弛、下垂、毛孔、色斑、肤质粗糙、泛红、痘疤、恢复时间，都可能是您在意的方向。
-
-同样是"想变年轻"，每个人的原因并不一样。
-
-有的人需要提升和紧致，有的人更需要肤质和色素管理。
-
-您可以先告诉我们，最在意的是皮肤松弛、毛孔、色斑、痘疤，还是整体肤质和年轻感。
-
-如果您计划来韩国，我们也会一起考虑停留时间、恢复期、预算和是否需要翻译陪同。
-
-汉江春天不会在页面上替您判断具体治疗方案。
-
-具体的治疗方式，需要在了解皮肤状态并与医疗团队咨询后再决定。`,
+我们会把这些整理好，再帮您安排合适的皮肤科咨询。具体做什么、怎么做，要由医生看过您的皮肤状态后决定。`,
     scriptFullEn: `Hello, welcome to the Skin & Aesthetics consultation area.
 
 Skin & Aesthetics isn't about choosing a procedure name first.
@@ -88,23 +76,11 @@ The specific treatment method is decided after assessing your skin condition and
     heroVideo: '/category-hero/plastic-surgery.mp4',
     tagZh: '眼鼻 · 脸型轮廓 · 恢复期',
     tagEn: 'Eyes/Nose/Contour · Facial Balance · Recovery Plan',
-    scriptFullZh: `您好，这里是整形医美咨询区。
+    scriptFullZh: `整形不是拿着一张照片照着做。同样的鼻子、同样的眼睛，放在不同的脸上，效果完全不一样。医生要先看您的脸型、骨骼、皮肤厚度，再结合您想要的感觉来判断。
 
-整形医美不是直接照着一张照片去做。
+所以您不用一开始就想好手术名称。先跟我们说说：想改善眼睛、鼻子、脸型，还是眼袋、下垂？想要自然一点的变化，还是明显一点？能接受多长的恢复期？最看重自然感、安全、医生经验，还是预算？
 
-需要先了解您的面部结构、皮肤厚度、骨骼条件、想要的感觉、恢复期和安全性。
-
-眼部、鼻部、面部轮廓、眼下凹陷、脂肪移植、松弛改善，都可以是关注的方向。
-
-不需要一开始就决定具体的手术名称。
-
-更重要的是先确认，您想要的是自然的变化还是明显的变化，能接受的恢复期有多长。
-
-您也可以告诉我们更重视自然感、恢复期、安全性、医生经验，还是预算控制。
-
-我们会把这些内容整理成咨询卡，方便后续由专业医疗机构进一步评估。
-
-是否能进行手术以及具体方式，必须以医生面诊和正规医疗评估为准。`,
+我们会把这些整理清楚，交给合作医院的医生评估。能不能做、用什么方法，都以医生面诊为准。`,
     scriptFullEn: `Hello, welcome to the Plastic Surgery consultation area.
 
 Plastic surgery isn't about copying a single photo directly.
@@ -134,27 +110,11 @@ Whether surgery is possible and the specific method must be determined through a
     heroVideo: '/category-hero/dajiankang.mp4',
     tagZh: '功能医学 · 慢性疲劳 · 代谢',
     tagEn: 'Functional Medicine · Chronic Fatigue · Metabolic Anti-Aging',
-    scriptFullZh: `您好，欢迎来到汉江春天。
+    scriptFullZh: `大健康不只是做一次体检。总觉得累、睡不好、体重变化大、代谢出问题，或者想知道自己将来容易得什么病，这些都可以从这里开始了解。
 
-大健康并不是单纯的体检。
+在韩国，这类咨询通常会安排到体检中心、功能医学诊所、内科或家庭医学科。方向不同，需要做的检查也不同。
 
-它是从疲劳、睡眠、代谢、免疫、激素和生活习惯等多个方向，提前了解身体状态的健康管理入口。
-
-如果您经常觉得累、睡眠不好、体重变化明显，或者想了解自己的长期健康风险，可以从这里开始。
-
-在韩国，大健康咨询通常会连接健康检查中心、功能医学诊所、内科、家庭医学科或抗衰老门诊。
-
-不同的方向，对应不同的检查和咨询方式。
-
-我们不会在这里替您下诊断，也不会判断您能不能做某项检查。
-
-我们会先帮您整理目前最关心的问题、既往病史、家族病史和服用药物。
-
-您计划来韩国停留几天？是否需要中文沟通或预约协助？
-
-请先选择您最关心的方向，我们会整理成咨询卡，再由顾问为您连接合适的医疗咨询流程。
-
-最终的检查方向和诊疗判断，需以正规医疗机构和专业医生的判断为准。`,
+您可以先告诉我们最困扰的问题、以前得过什么病、家里有没有相关病史、现在在吃什么药，以及打算在韩国待几天。我们帮您理清楚该去哪里、做哪些检查，并安排预约和中文沟通。诊断和检查项目，最终以医院和医生的判断为准。`,
     scriptFullEn: `Hello, and welcome to K-MediSpring.
 
 Anti-aging & Health Management is not simply a physical checkup.
@@ -189,23 +149,11 @@ Final testing direction and medical judgment remain with licensed medical instit
     heroImage: '/category-hero/stemcell.jpg',
     tagZh: '皮肤年轻化 · 关节修复 · 细胞治疗',
     tagEn: 'From skin rejuvenation to joint repair and cell therapy',
-    scriptFullZh: `您好，这里是干细胞与再生医学相关咨询入口。
+    scriptFullZh: `干细胞和再生医学，很多人关心，也很容易被误解。在韩国，并不是所有干细胞相关项目都可以随便做——能不能做，要看具体病症、法律规定和医疗机构的判断。
 
-干细胞和再生医学是很多人关心的领域，但也容易被误解。
+所以这里不会直接告诉您"能做"或"不能做"。您可以先告诉我们关注的方向（关节、组织修复、抗衰老，还是整体恢复），再说说年龄、以前的病史和打算来韩国的时间。
 
-并不是所有干细胞相关项目，在韩国都可以自由进行。
-
-适应症、疾病种类、法律规定和医疗机构的判断，都会影响可咨询的范围。
-
-所以这里不会直接告诉您"可以"或"不可以"。
-
-我们会先帮您整理关注的方向，例如关节恢复、组织修复、抗衰老咨询，还是整体恢复管理。
-
-您也可以告诉我们年龄、主要关注点、既往病史，以及计划来韩国的时间。
-
-之后，我们会区分出韩国目前可以咨询的范围，和需要专业医生进一步判断的部分。
-
-最终是否适合，必须由正规医疗机构和专业医生根据检查与面诊判断。`,
+我们会帮您分清楚：哪些是韩国目前可以正规咨询的，哪些需要医生进一步检查后才能判断。适不适合，最终要由正规医疗机构和医生面诊决定。`,
     scriptFullEn: `Hello, this is the consultation entry point for stem cell and regenerative medicine topics.
 
 Stem cells and regenerative medicine attract a lot of interest, but they're also widely misunderstood.
@@ -235,23 +183,11 @@ Final suitability must be determined by a licensed medical institution and physi
     heroVideo: '/category-hero/woman-care.mp4',
     tagZh: '妇科检查 · 更年期 · 私密护理',
     tagEn: 'Gynecology Checkup · Hormones/Menopause · Private Care',
-    scriptFullZh: `您好，欢迎进入女性护理中心。
+    scriptFullZh: `女性健康的很多困扰，都不太好意思跟别人说。月经和激素变化、更年期、妇科检查、私密护理、产后恢复，都可以放心在这里咨询。
 
-女性健康方面的困扰，常常很难公开说出口。
+不同年龄关心的事情也不一样：二三十岁、刚生完孩子、四十岁以后、更年期前后，各有各的烦恼。您可以先告诉我们最想了解的方向。
 
-生理变化、激素、更年期、妇科检查、私密护理、产后恢复，都可能包含在这里。
-
-不同年龄阶段，需要关注的方向也不一样。
-
-20到30岁、产后阶段、40岁以后、更年期前后，每个阶段的困扰都不相同。
-
-您可以先选择自己关注的方向，例如妇科检查、激素与更年期、私密护理，还是产后恢复。
-
-汉江春天会用安静、私密的方式帮助您整理需求。
-
-这里不会提供诊断，也不会替代医生判断。
-
-后续会根据您的需求，对接女性专科医疗机构进行进一步咨询。`,
+我们会注意保护您的隐私，帮您把需求整理好，再安排女性专科医院进一步咨询。这里不做诊断，具体以医生的判断为准。`,
     scriptFullEn: `Hello, welcome to the Women's Care Center.
 
 Concerns about women's health are often difficult to discuss openly.
@@ -281,23 +217,11 @@ We'll then connect you with a specialized women's medical institution.`,
     heroVideo: '/category-hero/mens-health.mp4',
     tagZh: '精力 · 男性功能 · 前列腺 · 脱发',
     tagEn: 'Vitality · Immunity · Sexual Function · Prostate',
-    scriptFullZh: `您好，这里是男性健康中心咨询区。
+    scriptFullZh: `男性的健康问题，往往不是一个单独的症状。精力、睡眠、代谢、脱发、前列腺、排尿、男性功能，常常是互相有关系的。
 
-男性健康不只是某一个单独的症状。
+很多男性客户不太愿意直接开口，这很正常。您可以先告诉我们大概的方向：是容易累、体力下降，还是掉头发、排尿不顺、前列腺的问题，或者体重和代谢的变化。
 
-体力、活力、睡眠、代谢、脱发、前列腺、泌尿健康、男性功能，都可能互相关联。
-
-很多男性客户对这些问题不太愿意直接开口。
-
-所以我们会先通过简单的分类，帮您整理出真正想咨询的方向。
-
-例如疲劳和体力下降、脱发、排尿问题、前列腺健康，还是体重和代谢变化。
-
-汉江春天会帮助您用咨询卡的方式，把不方便直接说出口的内容整理清楚。
-
-之后，我们会根据需要连接体检、泌尿科、脱发或功能医学相关的咨询方向。
-
-诊断和治疗，仍需以医疗机构和专业医生的判断为准。`,
+我们帮您把不方便说的部分整理清楚，再根据需要安排体检、泌尿科、脱发或功能医学方面的咨询。诊断和治疗以医生的判断为准。`,
     scriptFullEn: `Hello, welcome to the Men's Health Center consultation area.
 
 Men's health isn't about looking at a single symptom.
