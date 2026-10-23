@@ -134,7 +134,7 @@ Whether surgery is possible and the specific method must be determined through a
     heroVideo: '/category-hero/dajiankang.mp4',
     tagZh: '功能医学 · 慢性疲劳 · 代谢抗衰',
     tagEn: 'Functional Medicine · Chronic Fatigue · Metabolic Anti-Aging',
-    scriptFullZh: `您好，欢迎来到汉江春天 AI Concierge Medical Lounge。
+    scriptFullZh: `您好，欢迎来到汉江春天。
 
 大健康并不是单纯的体检。
 
@@ -155,7 +155,7 @@ Whether surgery is possible and the specific method must be determined through a
 请先选择您最关心的方向，我们会整理成咨询卡，再由顾问为您连接合适的医疗咨询流程。
 
 最终的检查方向和诊疗判断，需以正规医疗机构和专业医生的判断为准。`,
-    scriptFullEn: `Hello, and welcome to the K-Medi Spring AI Concierge Medical Lounge.
+    scriptFullEn: `Hello, and welcome to K-MediSpring.
 
 Anti-aging & Health Management is not simply a physical checkup.
 
