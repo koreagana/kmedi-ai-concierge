@@ -18,7 +18,7 @@ function AdminPricesPage() {
   }
 
   return (
-    <div style={{ background: '#F7F5F0' }}>
+    <div style={{ background: '#e8f4ff' }}>
       <HospitalPrices />
       <div style={{ textAlign: 'center', padding: '0 20px 32px', display: 'flex', justifyContent: 'center', gap: 16 }}>
         <a href="/admin/prep/" style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}>

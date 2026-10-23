@@ -41,7 +41,7 @@ const FILTERS: { key: "all" | "live" | Status; label: string }[] = [
 ];
 
 const CSS = `
-.dr { --ink:#1C2733; --sub:#5F6F80; --line:#DCE4EC; --bg:#F5F7FA; --navy:#1C3F66; --accent:#0A6FAE;
+.dr { --ink:#1C2733; --sub:#5F6F80; --line:#D2E3F3; --bg:#e8f4ff; --navy:#1C3F66; --accent:#0A6FAE;
   background:var(--bg); min-height:100vh; color:var(--ink); font-family:"Noto Sans KR",-apple-system,sans-serif; }
 .dr-wrap { max-width:1040px; margin:0 auto; padding:32px max(16px, env(safe-area-inset-right,0px)) 48px max(16px, env(safe-area-inset-left,0px)); }
 .dr-h1 { font-family:"Noto Serif KR",serif; font-size:26px; color:var(--navy); margin:0; }
@@ -71,6 +71,9 @@ const CSS = `
 .dr-empty { text-align:center; color:var(--sub); padding:28px 0; }
 .dr-foot { margin-top:24px; font-size:13px; color:var(--sub); display:grid; gap:4px; line-height:1.7; }
 @media (max-width:720px) {
+  .dr-wrap { padding-top:20px; }
+  .dr-h1 { font-size:22px; }
+  .dr-row { padding:12px; gap:10px; }
   .dr-row { grid-template-columns:30px minmax(0,1fr) auto; }
   .dr-row .dr-hcell, .dr-row .dr-field { grid-column:2 / 4; }
 }

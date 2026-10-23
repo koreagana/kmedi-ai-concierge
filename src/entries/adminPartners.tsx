@@ -20,7 +20,7 @@ function AdminPartnersPage() {
   return (
     <div>
       <PartnerHub />
-      <div style={{ textAlign: 'center', padding: '0 20px 32px', display: 'flex', justifyContent: 'center', gap: 16, background: '#F5F7FA' }}>
+      <div style={{ textAlign: 'center', padding: '0 20px 32px', display: 'flex', justifyContent: 'center', gap: 16, background: '#e8f4ff' }}>
         <a
           href="/admin/prep/"
           style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}

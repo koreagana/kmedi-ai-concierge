@@ -149,7 +149,7 @@ const STATE_FILTERS: { key: "all" | State; label: string }[] = [
 ];
 
 const CSS = `
-.ph { --ink:#1C2733; --sub:#5F6F80; --line:#DCE4EC; --bg:#F5F7FA; --navy:#1C3F66; --accent:#0A6FAE;
+.ph { --ink:#1C2733; --sub:#5F6F80; --line:#D2E3F3; --bg:#e8f4ff; --navy:#1C3F66; --accent:#0A6FAE;
   background:var(--bg); min-height:100vh; color:var(--ink); font-family:"Noto Sans KR",-apple-system,sans-serif; }
 .ph-wrap { max-width:1040px; margin:0 auto; padding:32px max(16px, env(safe-area-inset-right,0px)) 40px max(16px, env(safe-area-inset-left,0px)); }
 .ph-h1 { font-family:"Noto Serif KR",serif; font-size:26px; color:var(--navy); margin:0; }
@@ -171,7 +171,7 @@ const CSS = `
 .ph-badge { font-size:12px; border-radius:999px; padding:3px 10px; white-space:nowrap; }
 .ph-meta { display:flex; flex-wrap:wrap; gap:6px 12px; font-size:13px; color:var(--sub); margin-top:8px; }
 .ph-procs { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
-.ph-proc { font-size:12px; background:#EEF3F8; color:var(--navy); border-radius:6px; padding:2px 8px; }
+.ph-proc { font-size:12px; background:#EAF3FC; color:var(--navy); border-radius:6px; padding:2px 8px; }
 .ph-docs { font-size:13px; margin-top:8px; color:var(--accent); }
 .ph-docs a { color:inherit; }
 .ph-detail { margin-top:12px; padding-top:12px; border-top:1px solid var(--line); display:grid; gap:10px; font-size:14px; cursor:default; }
@@ -187,6 +187,12 @@ const CSS = `
 .ph-btn { font:inherit; font-size:13px; border:1px solid var(--accent); color:var(--accent); background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; text-decoration:none; }
 .ph-btn.solid { background:var(--accent); color:#fff; }
 .ph-empty { text-align:center; color:var(--sub); padding:28px 0; }
+@media (max-width:720px) {
+  .ph-wrap { padding-top:20px; }
+  .ph-h1 { font-size:22px; }
+  .ph-card { padding:12px; }
+  .ph-row { grid-template-columns:56px minmax(0,1fr); }
+}
 `;
 
 function memoText(h: Hub, p?: Procedure) {

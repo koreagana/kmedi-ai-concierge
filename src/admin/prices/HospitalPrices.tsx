@@ -189,30 +189,30 @@ export default function HospitalPrices() {
 }
 
 const CSS = `
-.hp-root { max-width: 920px; margin: 0 auto; padding: 32px 16px 24px; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #1E2A36; background: #F7F5F0; min-height: 100vh; box-sizing: border-box; }
+.hp-root { max-width: 920px; margin: 0 auto; padding: 32px 16px 24px; font-family: 'Noto Sans KR', system-ui, sans-serif; color: #1E2A36; background: #e8f4ff; min-height: 100vh; box-sizing: border-box; }
 .hp-head { margin-bottom: 18px; }
-.hp-eyebrow { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #8A6C33; margin: 0 0 6px; }
+.hp-eyebrow { font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .12em; color: #1C5FA0; margin: 0 0 6px; }
 .hp-title { font: 700 26px 'Noto Serif KR', serif; margin: 0 0 8px; }
 .hp-desc { font-size: 13px; line-height: 1.7; color: #5B6878; margin: 0; }
-.hp-controls { position: sticky; top: 0; z-index: 2; background: #F7F5F0; padding: 10px 0 12px; }
-.hp-search { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #E2DDD2; border-radius: 12px; padding: 10px 12px; color: #7C8B9C; }
+.hp-controls { position: sticky; top: 0; z-index: 2; background: #e8f4ff; padding: 10px 0 12px; }
+.hp-search { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #C9DDF0; border-radius: 12px; padding: 10px 12px; color: #7C8B9C; }
 .hp-search input { flex: 1; border: 0; outline: 0; font-size: 15px; color: #1E2A36; background: transparent; min-width: 0; }
 .hp-clear { border: 0; background: none; color: #7C8B9C; font-size: 12px; cursor: pointer; }
 .hp-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; align-items: center; }
-.hp-chip { border: 1px solid #E2DDD2; background: #fff; color: #3A4756; border-radius: 999px; padding: 5px 11px; font-size: 12.5px; cursor: pointer; }
+.hp-chip { border: 1px solid #C9DDF0; background: #fff; color: #3A4756; border-radius: 999px; padding: 5px 11px; font-size: 12.5px; cursor: pointer; }
 .hp-chip.on { background: #1C3F66; border-color: #1C3F66; color: #fff; }
-.hp-sep { width: 1px; height: 18px; background: #E2DDD2; margin: 0 4px; }
-.hp-card { background: #fff; border: 1px solid #E8E3D8; border-radius: 16px; padding: 18px 18px 8px; margin-bottom: 14px; }
+.hp-sep { width: 1px; height: 18px; background: #C9DDF0; margin: 0 4px; }
+.hp-card { background: #fff; border: 1px solid #D6E6F5; border-radius: 16px; padding: 18px 18px 8px; margin-bottom: 14px; }
 .hp-card-head { margin-bottom: 8px; }
 .hp-card-title { font-size: 17px; font-weight: 700; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .hp-meta { font-size: 12.5px; color: #5B6878; margin: 0 0 2px; }
 .hp-src { font-size: 11px; color: #9AA5B1; margin: 4px 0 0; word-break: break-all; }
 .hp-badge { font-size: 11px; font-weight: 700; border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
 .hp-group { margin-top: 12px; }
-.hp-group-title { font-size: 12px; font-weight: 700; color: #8A6C33; margin: 0 0 4px; }
+.hp-group-title { font-size: 12px; font-weight: 700; color: #1C5FA0; margin: 0 0 4px; }
 .hp-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-.hp-table th { text-align: left; font-size: 11.5px; color: #7C8B9C; font-weight: 600; padding: 6px 6px; border-bottom: 1px solid #E8E3D8; }
-.hp-table td { padding: 7px 6px; border-bottom: 1px solid #F1EDE5; vertical-align: top; }
+.hp-table th { text-align: left; font-size: 11.5px; color: #7C8B9C; font-weight: 600; padding: 6px 6px; border-bottom: 1px solid #D6E6F5; }
+.hp-table td { padding: 7px 6px; border-bottom: 1px solid #EAF1F8; vertical-align: top; }
 .hp-table .r { text-align: right; white-space: nowrap; }
 .hp-won { display: block; font-size: 10.5px; color: #9AA5B1; font-weight: 400; }
 .hp-muted { color: #7C8B9C; font-size: 12.5px; }
@@ -228,5 +228,8 @@ const CSS = `
 @media (max-width: 560px) {
   .hp-table td:last-child, .hp-table th:last-child { display: none; }
   .hp-table { font-size: 12.5px; }
+  .hp-root { padding: 20px 12px 20px; }
+  .hp-title { font-size: 22px; }
+  .hp-card { padding: 14px 12px 6px; border-radius: 14px; }
 }
 `
