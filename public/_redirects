@@ -10,6 +10,9 @@ https://ai.kmedispring.com/*  https://kmedispring.com/:splat  301!
 # kmedispring.com은 중국어가 메인이라 /zh 없이 루트(사용자 결정 2026-10-01) — 예전 /zh 주소는 새 주소로.
 https://kmedispring.com/zh  https://kmedispring.com/  301!
 https://kmedispring.com/zh/*  https://kmedispring.com/:splat  301!
+# 2026-10-24 사용자 결정: 영어 사이트 없앰(타깃은 중국 대륙·해외 화교). 예전 /en 주소는 같은 내용의 중국어 페이지로.
+/en  /  301!
+/en/*  /:splat  301!
 /reservation/confirm  /reservation-confirm/  301
 /meituan  /docs/한강애봄_메이투안_따중디엔핑_플랫폼소개.html  200
 /meituan-form  /docs/메이투안_입점자료요청서_웹템플릿.html  200

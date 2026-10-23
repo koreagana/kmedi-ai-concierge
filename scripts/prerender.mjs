@@ -46,7 +46,9 @@ const topicRoutes = !isEditorial ? [] : Object.entries(KEYWORD_FILES).flatMap(([
     kmedispring.com은 중국어가 루트(사용자 결정)라 /zh를 뗀다(src/skin.ts의 sitePath와 같은 규칙). */
 const sitePathOf = (r) => (isEditorial ? (r.replace(/^\/zh(?=\/|$)/, '') || '/') : r)
 const partnersRoutes = isEditorial ? ['/zh/partners', '/en/partners', '/zh/services', '/en/services'] : [] // kmedispring.com 전용 페이지
-const routes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes, ...topicRoutes, ...partnersRoutes]
+const allRoutes = ['/zh', '/en', '/zh/surgery-price', '/en/surgery-price', '/zh/quote', '/en/quote', ...categoryRoutes, ...topicRoutes, ...partnersRoutes]
+// kmedispring.com은 영어 사이트를 없앰(2026-10-24) — /en은 _redirects가 중국어로 보내므로 미리 렌더링하지 않는다
+const routes = isEditorial ? allRoutes.filter((r) => !r.startsWith('/en')) : allRoutes
 
 // 홈(/zh, /en)은 처음부터 page==='home'으로 렌더링되지만, surgery-price·카테고리
 // 페이지는 마운트 시 page==='home'으로 시작했다가 pathname을 보고 전환된다
@@ -114,11 +116,9 @@ function writeEditorialSitemap() {
   const priority = (zh) => (zh === '/zh' ? '1.0' : zh.split('/').length > 3 ? '0.6' : '0.8')
   const entry = (zhRoute) => {
     const zh = sitePathOf(zhRoute) // 중국어 메인은 루트(/zh 없음)
-    const en = zhRoute.replace(/^\/zh/, '/en')
     const alt = `    <xhtml:link rel="alternate" hreflang="zh-CN" href="${origin}${zh}" />
-    <xhtml:link rel="alternate" hreflang="en" href="${origin}${en}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${origin}${zh}" />`
-    return [zh, en].map((loc) => `  <url>\n    <loc>${origin}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority(zhRoute)}</priority>\n${alt}\n  </url>`).join('\n')
+    return [zh].map((loc) => `  <url>\n    <loc>${origin}${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <priority>${priority(zhRoute)}</priority>\n${alt}\n  </url>`).join('\n')
   }
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -128,7 +128,7 @@ ${zhRoutes.map(entry).join('\n')}
 `
   writeFileSync(resolve(distDir, 'sitemap.xml'), xml, 'utf-8')
   writeFileSync(resolve(distDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`, 'utf-8')
-  console.log(`[prerender] wrote dist/sitemap.xml (${zhRoutes.length * 2} urls) + robots.txt for ${origin}`)
+  console.log(`[prerender] wrote dist/sitemap.xml (${zhRoutes.length} urls) + robots.txt for ${origin}`)
 }
 
 async function main() {

@@ -230,14 +230,7 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
       <a href={langPath(lang)} className="ed-bar-logo" onClick={nav(goHome)} aria-label={t.brandName}>
         <img src="/editorial/logo_ch_white.png" alt={t.brandName} width={81} height={24} />
       </a>
-      <button
-        type="button"
-        className="ed-lang-toggle"
-        onClick={() => navigate(langPath(isZh ? 'en' : 'zh'))}
-        aria-label={isZh ? 'Switch to English' : '切换到中文'}
-      >
-        {isZh ? 'EN' : '中文'}
-      </button>
+      {/* EN/中文 전환 버튼 삭제 — 영어 사이트 없앰(2026-10-24 사용자 결정, /en은 _redirects에서 중국어로 301) */}
 
       <div id="wrapper">
         <div id="main">
