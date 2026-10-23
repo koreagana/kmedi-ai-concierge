@@ -10,12 +10,12 @@ interface Props {
 
 const SHEET_COPY = {
   zh: {
-    recommend: '适用情况',
-    difference: '项目区别',
+    recommend: '适合谁',
+    difference: '和其他项目有什么不同',
     recovery: '恢复期',
-    cta: '查看该项目预估费用',
-    noPrice: '该项目暂无固定报价，具体费用请通过咨询确认',
-    footer: '准确诊断请通过院内咨询确认。',
+    cta: '看看大概多少钱',
+    noPrice: '这个项目没有固定价格，具体费用请咨询我们',
+    footer: '是否适合，以医院面诊为准。',
   },
   en: {
     recommend: "Who it's for",
