@@ -22,12 +22,12 @@ export interface JourneyAct {
 }
 
 export const JOURNEY_HEADING: LocalizedText = {
-  zh: '您在韩国的就医流程',
+  zh: '来韩国看病，是这样一步步来的',
   en: 'Your Care Journey in Korea',
 }
 
 export const JOURNEY_SUBHEADING: LocalizedText = {
-  zh: '从第一次咨询到回国后的恢复跟踪',
+  zh: '从第一次咨询，到回国后的恢复跟进',
   en: 'From your first consultation to recovery follow-up after you fly home',
 }
 
@@ -37,16 +37,16 @@ export const JOURNEY_ACTS: JourneyAct[] = [
     label: { zh: '来韩前', en: 'Before Korea' },
     steps: [
       {
-        title: { zh: '咨询汉江春天', en: 'Talk to K-MediSpring' },
+        title: { zh: '先跟我们聊聊', en: 'Talk to K-MediSpring' },
         desc: {
-          zh: '说明需求与预算，先一起理清方向',
+          zh: '说说您想看什么、预算多少，我们一起把方向理清楚',
           en: "Tell us what you're looking for and your budget — we map the direction together.",
         },
       },
       {
-        title: { zh: '医院推荐与匹配', en: 'Hospital Matching' },
+        title: { zh: '找医院、找医生', en: 'Hospital Matching' },
         desc: {
-          zh: '依据您的情况对接合适的医院与医生',
+          zh: '按您的情况，帮您找合适的医院和医生',
           en: 'We connect you with the hospital and doctor that fit your case.',
         },
       },
@@ -59,28 +59,28 @@ export const JOURNEY_ACTS: JourneyAct[] = [
       {
         title: { zh: '抵达韩国', en: 'Arrival in Korea' },
         desc: {
-          zh: '确认就诊时间与医院位置',
+          zh: '再确认一遍看病时间和医院地址',
           en: 'Confirm your appointment times and hospital locations.',
         },
       },
       {
-        title: { zh: '专家面诊', en: 'Specialist Consultation' },
+        title: { zh: '见医生面诊', en: 'Specialist Consultation' },
         desc: {
-          zh: '翻译陪同，与主诊医生确认方案',
+          zh: '翻译陪着您，跟医生当面确认方案',
           en: 'With an interpreter beside you, confirm the plan with your doctor.',
         },
       },
       {
         title: { zh: '手术 · 治疗', en: 'Procedure or Surgery' },
         desc: {
-          zh: '按面诊确认的方案进行',
+          zh: '按面诊时确认好的方案来做',
           en: 'Carried out exactly as agreed at your consultation.',
         },
       },
       {
         title: { zh: '术后复诊', en: 'Post-op Check-up' },
         desc: {
-          zh: '回院确认恢复状态',
+          zh: '回医院看看恢复得怎么样',
           en: "Back to the clinic to confirm how you're healing.",
         },
       },
@@ -93,21 +93,21 @@ export const JOURNEY_ACTS: JourneyAct[] = [
       {
         title: { zh: '回国', en: 'Flying Home' },
         desc: {
-          zh: '确认术后注意事项与复诊安排',
+          zh: '走之前确认好术后注意事项和复诊安排',
           en: 'Review your aftercare instructions and follow-up plan.',
         },
       },
       {
-        title: { zh: '恢复跟踪', en: 'Recovery Follow-up' },
+        title: { zh: '恢复跟进', en: 'Recovery Follow-up' },
         desc: {
-          zh: '汉江春天持续跟进恢复过程',
+          zh: '回国以后，我们会继续关心您的恢复情况',
           en: 'We stay with you through the recovery period.',
         },
       },
       {
-        title: { zh: '向医院反馈', en: 'Reported Back to Your Doctor' },
+        title: { zh: '告诉医生', en: 'Reported Back to Your Doctor' },
         desc: {
-          zh: '将恢复情况同步给主诊医生',
+          zh: '把您的恢复情况转告给主治医生',
           en: 'Your progress goes back to the doctor who treated you.',
         },
       },
@@ -117,6 +117,6 @@ export const JOURNEY_ACTS: JourneyAct[] = [
 
 /** 타임라인 끝의 신뢰 배지 — 예전 흐름도 하단에 있던 두 줄을 그대로 유지 */
 export const JOURNEY_TRUST: LocalizedText[] = [
-  { zh: '正规登记外患招徕机构', en: 'Officially registered foreign patient facilitator' },
-  { zh: '责任保险体系加入', en: 'Covered by liability insurance' },
+  { zh: '政府正式登记的外国患者服务机构', en: 'Officially registered foreign patient facilitator' },
+  { zh: '已投保医疗服务责任险', en: 'Covered by liability insurance' },
 ]

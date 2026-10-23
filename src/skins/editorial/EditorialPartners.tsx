@@ -13,9 +13,9 @@ import { edLink } from './edLink'
 type L = { zh: string; en: string }
 
 const INTRO: { title: L; lead: L[] } = {
-  title: { zh: '专注医疗，让韩国就医更顺利', en: 'Focused on Your Care in Korea' },
+  title: { zh: '只管看病的事，让您在韩国少走弯路', en: 'Focused on Your Care in Korea' },
   lead: [
-    { zh: '我们只做与诊疗有关的事。', en: 'We only do what relates to your medical care.' },
+    { zh: '我们只负责和看病有关的事情。', en: 'We only do what relates to your medical care.' },
   ],
 }
 
@@ -24,31 +24,31 @@ const SERVICES: { icon: string; title: L; body: L }[] = [
   {
     icon: 'fa-hospital',
     title: { zh: '医院和医生', en: 'Hospital & Doctor' },
-    body: { zh: '根据您的诊疗目的和预算，推荐合适的医院与医生。', en: 'We recommend the right hospital and doctor based on your goals and budget.' },
+    body: { zh: '按您想看的问题和预算，帮您找合适的医院和医生。', en: 'We recommend the right hospital and doctor based on your goals and budget.' },
   },
   {
     icon: 'fa-calendar-check',
     title: { zh: '约好时间', en: 'The Right Time' },
-    body: { zh: '预约、改期、取消，由我们直接与医院协调。', en: 'Bookings, changes and cancellations — coordinated directly with the hospital.' },
+    body: { zh: '预约、改期、取消，都由我们直接跟医院沟通。', en: 'Bookings, changes and cancellations — coordinated directly with the hospital.' },
   },
   {
     icon: 'fa-language',
     title: { zh: '准确沟通', en: 'Clear Communication' },
-    body: { zh: '诊前确认所需材料，就诊时提供中文翻译与陪同。', en: 'We confirm documents before your visit and interpret for you on the day.' },
+    body: { zh: '看病前帮您确认要带的资料，看病时有中文翻译陪着您。', en: 'We confirm documents before your visit and interpret for you on the day.' },
   },
   {
     icon: 'fa-notes-medical',
     title: { zh: '诊后跟进', en: 'Follow-up After Treatment' },
-    body: { zh: '处方、复诊与术后疑问，回国后也可以随时问我们。', en: "Prescriptions, follow-up visits and aftercare questions — ask us anytime, even after you're home." },
+    body: { zh: '处方、复诊、术后有疑问，回国以后也可以随时问我们。', en: "Prescriptions, follow-up visits and aftercare questions — ask us anytime, even after you're home." },
   },
 ]
 
 const NOTE: L = {
-  zh: '交通与住宿由客户自行安排，费用自理（含翻译陪同期间的交通费）。',
+  zh: '交通和住宿需要您自己安排，费用自理（翻译陪同期间的交通费也由您承担）。',
   en: 'Transport and accommodation are arranged and paid for by clients, including transport during interpreter escort.',
 }
 const FINE: L = {
-  zh: '服务问题由我们直接确认；健康信息与照片仅在您同意后，于必要范围内使用。',
+  zh: '服务上的问题由我们直接负责；您的健康信息和照片，只有在您同意后才会用，而且只用在必要的地方。',
   en: 'We resolve service issues directly; your health information and photos are used only with your consent and only as needed.',
 }
 
@@ -63,7 +63,7 @@ const CATEGORY: { key: string; label: L; note?: L }[] = [
     // 三甲은 중국 제도 — 실제 상급종합병원인 곳에만 "相当于三甲"을 붙인다. 지정 현황이 바뀌면 이 문장도 고칠 것.
     label: { zh: '大学附属医院', en: 'University-Affiliated Hospitals' },
     note: {
-      zh: '其中盆唐首尔大学医院、三星首尔医院、盆唐CHA医院为韩国上级综合医院，相当于国内三甲医院。',
+      zh: '其中盆唐首尔大学医院、三星首尔医院、盆唐CHA医院是韩国的上级综合医院，相当于国内的三甲医院。',
       en: "Of these, Seoul National University Bundang Hospital, Samsung Medical Center and CHA Bundang Medical Center are designated tertiary general hospitals — Korea's highest tier.",
     },
   },
@@ -186,13 +186,13 @@ export default function EditorialPartners({ servicesOnly = false }: { servicesOn
 
       <p className="ed-small">
         {isZh
-          ? '名单以外的医院，也可根据您的需求协助咨询与预约。具体就诊医院将根据您的诊疗目的，与医院确认后为您安排。'
+          ? '名单上没有的医院，也可以帮您咨询和预约。具体去哪家医院，我们会按您想看的问题，跟医院确认后再安排。'
           : 'We can also help with consultations and bookings at hospitals not listed here. Your specific hospital is arranged after confirming your treatment goals with the hospital.'}
       </p>
       </>}
 
       <hr className="major" />
-      <p className="ed-cta-lead">{isZh ? '还不确定选择哪个项目？告诉我们您的需求，我们帮您一起理清方向。' : "Not sure which treatment to choose? Tell us what you need and we'll help you sort it out."}</p>
+      <p className="ed-cta-lead">{isZh ? '还不知道选哪个？把您的情况告诉我们，我们帮您一起想。' : "Not sure which treatment to choose? Tell us what you need and we'll help you sort it out."}</p>
       <ul className="actions ed-cta">
         <li><a href={WECHAT_BIZ_URL} target="_blank" rel="noopener noreferrer" className="button primary">{isZh ? '微信咨询' : 'Ask on WeChat'}</a></li>
       </ul>
