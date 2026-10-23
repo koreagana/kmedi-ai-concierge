@@ -156,35 +156,7 @@ export default function EditorialHome() {
         </div>
       </section>
 
-      {/* AI 상담사 — 옛 .features(마름모 아이콘) 자리에 상담사 사진 */}
-      <section>
-        <header className="major">
-          <h2>{t.conciergeTitle}</h2>
-        </header>
-        <div className="features ed-wide ed-concierge">
-          {[
-            { name: t.concierge1Name, title: t.concierge1Title, spec: t.concierge1Specialty, btn: t.concierge1Btn, img: '/concierge_image/lijing_400.webp' },
-            { name: t.concierge2Name, title: t.concierge2Title, spec: t.concierge2Specialty, btn: t.concierge2Btn, img: '/concierge_image/kimhyunwoo_400.webp' },
-          ].map((p) => (
-            <article key={p.name}>
-              <span className="ed-avatar"><img src={p.img} alt={p.name} loading="lazy" /></span>
-              <div className="content">
-                <h3>{p.name}</h3>
-                <p className="ed-concierge-title">{p.title}</p>
-                <p>{p.spec}</p>
-                <ul className="actions">
-                  <li><a href={WECHAT_BIZ_URL} target="_blank" rel="noopener noreferrer" className="button primary small">{p.btn}</a></li>
-                </ul>
-              </div>
-            </article>
-          ))}
-        </div>
-        <p className="ed-note">
-          {t.conciergePrivacyNotice}{' '}
-          <a href={langPath(lang, '/privacy')}>{t.conciergePrivacyLink}</a>
-        </p>
-      </section>
-
+      {/* AI 상담사(李静·金贤宇) 섹션 삭제 — 두 버튼이 같은 고객센터로 가서 실제와 다르고, 'AI 医疗顾问' 표현도 민감 (사용자 2026-10-23). 개인정보 처리방침 링크는 사이드바 하단에 있음 */}
       {/* 서비스 네트워크 — 옛 品牌理念 .features 마름모 아이콘 그대로 */}
       <section>
         <header className="major">
