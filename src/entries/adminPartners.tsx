@@ -33,6 +33,12 @@ function AdminPartnersPage() {
         >
           → 병원찾기 바로가기
         </a>
+        <a
+          href="/admin/doctors/"
+          style={{ fontSize: 12.5, color: '#7C8B9C', textDecoration: 'none' }}
+        >
+          → 百名百医 의사 명단
+        </a>
       </div>
     </div>
   )
