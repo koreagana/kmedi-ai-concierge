@@ -117,7 +117,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     list: [
       { zh: 'CARTISTEM® · 韩国MFDS批准的干细胞治疗药', en: 'CARTISTEM® · MFDS Approved Stem Cell Therapy' },
       { zh: '关节内微创钻孔植入', en: 'Minimally invasive intra-articular drilling & implantation' },
-      { zh: 'JS医院一家就已经做了3,000例以上CARTISTEM软骨修复手术（截至2026年）', en: 'JS Hospital alone has performed 3,000+ CARTISTEM cartilage repair procedures (as of 2026)' },
+      { zh: '韩国一家专科医院就已经做了3,000例以上CARTISTEM软骨修复手术（截至2026年）', en: 'A single specialist hospital in Korea has performed 3,000+ CARTISTEM cartilage repair procedures (as of 2026)' },
       { zh: '骨髓来源治疗', en: 'Bone Marrow-Derived Therapy' },
     ],
     products: [
