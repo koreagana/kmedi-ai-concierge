@@ -40,7 +40,7 @@ export const categories: Category[] = [
     heroImage: '/category-hero/skin-beauty-after.jpg',
     heroVideo: '/category-hero/skin-beauty-web.mp4',
     cardVideo: '/category-hero/skin-beauty-card.mp4',
-    tagZh: '皮肤提升 · 毛孔色斑 · 抗衰外观',
+    tagZh: '提升紧致 · 毛孔色斑 · 抗衰',
     tagEn: 'Skin Lifting · Pores & Pigmentation · Anti-Aging Appearance',
     scriptFullZh: `您好，欢迎进入皮肤医美咨询区。
 
@@ -76,7 +76,7 @@ If you're planning a visit to Korea, we'll also consider your stay duration, rec
 K-Medi Spring does not determine a specific procedure on this page.
 
 The specific treatment method is decided after assessing your skin condition and consulting with the medical team.`,
-    scriptSummaryZh: `皮肤医美适合关注皮肤松弛、提升、肤质、毛孔、色斑、痘疤与抗衰管理的人群。汉江春天可帮助您整理皮肤需求，并连接韩国皮肤医美咨询服务。`,
+    scriptSummaryZh: `皮肤松了、毛孔粗、有斑有痘印，或者就是想看起来年轻一点？先告诉我们您最在意哪里，我们帮您理清楚该咨询什么。`,
     scriptSummaryEn: `Skin & Aesthetics suits those interested in skin firmness, lifting, texture, pores, pigmentation, acne scars, or anti-aging care. K-Medi Spring organizes your skin concerns and connects you to skin and aesthetic consultations in Korea.`,
   },
   {
@@ -86,7 +86,7 @@ The specific treatment method is decided after assessing your skin condition and
     emoji: '🌸',
     heroImage: '/category-hero/plastic-surgery.jpg',
     heroVideo: '/category-hero/plastic-surgery.mp4',
-    tagZh: '眼鼻轮廓 · 面部比例 · 恢复计划',
+    tagZh: '眼鼻 · 脸型轮廓 · 恢复期',
     tagEn: 'Eyes/Nose/Contour · Facial Balance · Recovery Plan',
     scriptFullZh: `您好，这里是整形医美咨询区。
 
@@ -122,7 +122,7 @@ Please also tell us whether you value naturalness, recovery time, safety, the me
 We'll organize this into a consultation card and connect you with a specialized medical institution.
 
 Whether surgery is possible and the specific method must be determined through an in-person consultation with a specialist.`,
-    scriptSummaryZh: `整形医美适合希望改善眼部、鼻部、面部轮廓、下垂、眼袋或整体年轻感的人群。汉江春天可协助整理需求，并连接后续专业整形咨询流程。`,
+    scriptSummaryZh: `想改眼睛、鼻子、脸型，或者改善眼袋和下垂？不用先想好手术名称，先说说您想要什么样的感觉、能接受多长的恢复期。`,
     scriptSummaryEn: `Plastic Surgery suits those interested in improving the eyes, nose, facial contour, sagging, under-eye area, or overall youthful impression. K-Medi Spring organizes your needs and connects you to specialized plastic surgery consultations.`,
   },
   {
@@ -132,7 +132,7 @@ Whether surgery is possible and the specific method must be determined through a
     emoji: '🔬',
     heroImage: '/category-hero/dajiankang.jpg',
     heroVideo: '/category-hero/dajiankang.mp4',
-    tagZh: '功能医学 · 慢性疲劳 · 代谢抗衰',
+    tagZh: '功能医学 · 慢性疲劳 · 代谢',
     tagEn: 'Functional Medicine · Chronic Fatigue · Metabolic Anti-Aging',
     scriptFullZh: `您好，欢迎来到汉江春天。
 
@@ -176,7 +176,7 @@ How many days do you plan to stay in Korea? Do you need Chinese-language support
 Please select the direction you're most concerned about. We'll summarize it into a consultation card, then connect you with the right medical direction.
 
 Final testing direction and medical judgment remain with licensed medical institutions and physicians.`,
-    scriptSummaryZh: `大健康管理适合希望系统了解身体状态、改善疲劳、睡眠、代谢与长期健康风险的人群。汉江春天可协助您整理需求，并对接韩国相关医疗咨询与健康管理服务。`,
+    scriptSummaryZh: `总觉得累、睡不好、体重和代谢出了问题，或者想好好做一次全面检查？我们先帮您把情况理清楚，再安排韩国的检查和健康管理。`,
     scriptSummaryEn: `Anti-aging & Health Management is suited for those who want to systematically understand their body and improve fatigue, sleep, metabolism, and long-term health risks. K-Medi Spring helps organize your needs and connects you to related medical consultations and health management services in Korea.`,
   },
   {
@@ -187,7 +187,7 @@ Final testing direction and medical judgment remain with licensed medical instit
     gridNameEn: 'Stem Cell Therapy',
     emoji: '🧬',
     heroImage: '/category-hero/stemcell.jpg',
-    tagZh: '从皮肤年轻化，到关节修复与细胞治疗',
+    tagZh: '皮肤年轻化 · 关节修复 · 细胞治疗',
     tagEn: 'From skin rejuvenation to joint repair and cell therapy',
     scriptFullZh: `您好，这里是干细胞与再生医学相关咨询入口。
 
@@ -223,7 +223,7 @@ Please also share your age, main concerns, medical history, and planned visit da
 We'll then distinguish between what can currently be consulted on in Korea and what requires further evaluation by a specialist.
 
 Final suitability must be determined by a licensed medical institution and physician through examination and consultation.`,
-    scriptSummaryZh: `干细胞相关咨询适合关注再生医学、关节恢复、组织修复或抗衰老管理的人群。本页面仅提供咨询整理与对接服务，具体适应症和治疗方案需由韩国正规医疗机构判断。`,
+    scriptSummaryZh: `关心再生医学、关节恢复或抗衰？在韩国，什么能做、什么不能做，法律有明确规定。我们先帮您弄清楚能咨询的范围，适不适合由正规医疗机构判断。`,
     scriptSummaryEn: `Stem cell consultation suits those interested in regenerative medicine, joint recovery, tissue repair, or anti-aging management. This page only organizes inquiries and connects you onward — specific indications and treatment plans are determined by licensed medical institutions in Korea.`,
   },
   {
@@ -233,7 +233,7 @@ Final suitability must be determined by a licensed medical institution and physi
     emoji: '🪷',
     heroImage: '/category-hero/woman-care.jpg',
     heroVideo: '/category-hero/woman-care.mp4',
-    tagZh: '妇科检查 · 激素更年期 · 私密护理',
+    tagZh: '妇科检查 · 更年期 · 私密护理',
     tagEn: 'Gynecology Checkup · Hormones/Menopause · Private Care',
     scriptFullZh: `您好，欢迎进入女性护理中心。
 
@@ -269,7 +269,7 @@ K-Medi Spring organizes this information in a quiet, private way.
 We do not provide a diagnosis here and do not replace a physician's judgment.
 
 We'll then connect you with a specialized women's medical institution.`,
-    scriptSummaryZh: `女性护理中心适合关注妇科检查、女性健康、私密护理、产后恢复、更年期管理等需求的人群。汉江春天提供私密、清晰的咨询整理与韩国医疗对接服务。`,
+    scriptSummaryZh: `妇科检查、私密护理、产后恢复、更年期调理……这些不太好开口的事，可以放心跟我们说，我们会注意保护您的隐私，帮您安排合适的咨询。`,
     scriptSummaryEn: `The Women's Care Center suits those interested in gynecological checkups, women's health, private care, postpartum recovery, or menopause management. K-Medi Spring organizes your consultation privately and clearly, then connects you to Korean medical institutions.`,
   },
   {
@@ -279,7 +279,7 @@ We'll then connect you with a specialized women's medical institution.`,
     emoji: '💪',
     heroImage: '/category-hero/mens-health.jpg',
     heroVideo: '/category-hero/mens-health.mp4',
-    tagZh: '激素活力 · 免疫抗衰 · 男性功能 · 前列腺',
+    tagZh: '精力 · 男性功能 · 前列腺 · 脱发',
     tagEn: 'Vitality · Immunity · Sexual Function · Prostate',
     scriptFullZh: `您好，这里是男性健康中心咨询区。
 
@@ -313,7 +313,7 @@ K-Medi Spring helps organize difficult-to-discuss topics into a consultation car
 We'll then connect you with checkup, urology, hair loss, or functional medicine consultation directions.
 
 Diagnosis and treatment must follow the judgment of a medical institution and physician.`,
-    scriptSummaryZh: `男性健康中心适合关注体力、睡眠、代谢、脱发、泌尿健康、前列腺与男性抗衰管理的人群。汉江春天可协助进行咨询整理与韩国医疗服务对接。`,
+    scriptSummaryZh: `精力不如从前、睡眠差、代谢出问题、掉头发，或者前列腺和男性功能方面有顾虑，都可以先跟我们聊聊，我们帮您安排对应的咨询。`,
     scriptSummaryEn: `The Men's Health Center suits those interested in energy, sleep, metabolism, hair loss, urinary health, prostate, and male function management. K-Medi Spring organizes your consultation and connects you to Korean medical services.`,
   },
 ]

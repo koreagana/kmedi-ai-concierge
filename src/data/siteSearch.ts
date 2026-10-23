@@ -166,7 +166,7 @@ function buildIndex(): Entry[] {
   entries.push({
     key: 'page-services',
     title: L('就医协调服务', 'Medical Coordination'),
-    context: L('外籍患者引进机构资质', 'Licensed Foreign Patient Agency'),
+    context: L('外国患者服务机构 · 政府登记', 'Licensed Foreign Patient Agency'),
     target: { type: 'services' },
     names: ['就医协调服务', '全程服务', '陪诊', '翻译陪同', '翻译', 'service', 'interpreter'],
     text: [],
@@ -174,7 +174,7 @@ function buildIndex(): Entry[] {
   entries.push({
     key: 'page-partners',
     title: L('合作医疗机构', 'Partner Institutions'),
-    context: L('外籍患者引进机构资质', 'Licensed Foreign Patient Agency'),
+    context: L('外国患者服务机构 · 政府登记', 'Licensed Foreign Patient Agency'),
     target: { type: 'partners' },
     names: ['合作医疗机构', '合作医院', 'partner', 'partners', 'hospital', '협력병원'],
     text: [],
