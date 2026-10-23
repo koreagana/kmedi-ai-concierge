@@ -1008,18 +1008,9 @@ export function FooterSection() {
       {/* Copyright */}
       <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.75)', textAlign: 'center', marginTop: 10, lineHeight: 1.9 }}>
         © 2026 K-MediSpring. All rights reserved.<br />
-        상호: 한강애봄 | 대표: 이가나 | 사업자등록번호: 829-21-01856<br />
+        {/* 대표 이름을 누르면 관리자페이지(비밀번호) — 사용자 2026-10-23 */}
+        상호: 한강애봄 | 대표: <a href="/admin/prep" style={{ color: 'inherit', textDecoration: 'none' }}>이가나</a> | 사업자등록번호: 829-21-01856<br />
         주소: 서울특별시 성북구 삼양로 29, 3층 11호
-      </p>
-
-      {/* Internal-only admin link, intentionally inconspicuous */}
-      <p style={{ textAlign: 'center', marginTop: 8 }}>
-        <a
-          href="/admin/prep"
-          style={{ fontSize: 8, color: 'rgba(255,255,255,0.12)', textDecoration: 'none' }}
-        >
-          관리자페이지
-        </a>
       </p>
     </section>
   )

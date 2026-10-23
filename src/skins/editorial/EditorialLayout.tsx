@@ -443,7 +443,8 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
               <img src="/images/logo_k.png" alt="한강애봄" className="ed-sb-logo-k" width={90} height={32} loading="lazy" />
               <p>
                 © 2026 汉江春天 · 한강애봄 · K-MediSpring (kmedispring.com). All rights reserved.<br />
-                상호: 한강애봄 | 대표: 이가나<br />
+                {/* 대표 이름을 누르면 관리자페이지(비밀번호) — 휴대폰에서 맨 아래 링크가 안 보여서 옮김(사용자 2026-10-23) */}
+                상호: 한강애봄 | 대표: <a href="/admin/prep" className="ed-owner-link">이가나</a><br />
                 사업자등록번호: 829-21-01856<br />
                 주소: 서울특별시 성북구 삼양로 29, 3층 11호
               </p>
@@ -456,7 +457,6 @@ export default function EditorialLayout({ children }: { children: ReactNode }) {
               </p>
               {/* HTML5 UP Editorial 템플릿(CC BY 3.0) 출처 표기 — 라이선스 조건이라 지우면 안 됨 */}
               <p className="ed-credit">Design: HTML5 UP</p>
-              <p><a href="/admin/prep" className="ed-admin-link">관리자페이지</a></p>
             </footer>
           </div>
         </div>

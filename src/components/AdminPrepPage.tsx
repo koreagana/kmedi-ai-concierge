@@ -193,6 +193,9 @@ function PrepDocList() {
           <a className="admin-prep-subnav-link" href="/admin/prices/" target="_blank" rel="noopener">
             → 병원별 수가 바로가기
           </a>
+          <a className="admin-prep-subnav-link" href="/admin/doctors/" target="_blank" rel="noopener">
+            → 百名百医 의사 명단 바로가기
+          </a>
         </header>
 
         <CategoryNav />
