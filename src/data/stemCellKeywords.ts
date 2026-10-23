@@ -91,7 +91,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     tileSubtitle: { zh: '肤质 · 弹性 · 组织修复', en: 'Texture · Elasticity · Tissue Repair' },
     heroImage: '/category-tiles/stem-cell/skin-regeneration-hero.jpg', // 자가혈 분리 → 피부 재생 이미지(1997×788)
     body: {
-      zh: '用专门的分离设备，从您自己的血液里提取生长因子等和再生有关的成分，\\n可以打在脸上改善肤质，也可以静脉输注做全身抗衰。',
+      zh: '用专门的分离设备，从您自己的血液里提取生长因子等和再生有关的成分，\n可以打在脸上改善肤质，也可以静脉输注做全身抗衰。',
       en: 'Using dedicated separation equipment, regenerative components such as growth factors are extracted from your own blood —\nthese can be injected into the face to improve skin texture, or given as an IV infusion for whole-body anti-aging management.',
     },
     pills: [
@@ -106,8 +106,8 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     title: { zh: '膝关节 · 软骨修复', en: 'Knee & Cartilage Repair' },
     tileSubtitle: { zh: '膝关节软骨再生 · CARTISTEM®', en: 'Knee Cartilage Regeneration · CARTISTEM®' },
     body: {
-      zh: '针对软骨损伤和膝关节退化的再生治疗。代表产品是CARTISTEM——韩国Medipost（美迪波斯特）研发的同种异体脐带血间充质干细胞药物，通过关节内微创钻孔，植入软骨缺损的位置。这是正式获批的细胞治疗药，不是普通的打针。\\n人工关节的假体有使用年限，一般一辈子只能换一次；软骨再生治疗常用来在真正需要换关节之前，尽量延缓病情、保住自己的关节。\\n不少知名人士和VIP客户也选择了这种治疗。',
-      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nBy comparison, traditional artificial joint replacement can typically only be performed once in a lifetime due to the limited lifespan of the implant — cartilage regeneration therapy is often used to slow disease progression and preserve the natural joint for as long as possible before replacement becomes necessary.\nThis treatment has also been chosen by a number of celebrities and VIP patients.',
+      zh: '针对软骨损伤和膝关节退化的再生治疗。代表产品是CARTISTEM——韩国Medipost（美迪波斯特）研发的同种异体脐带血间充质干细胞药物，通过关节内微创钻孔，植入软骨缺损的位置。这是正式获批的细胞治疗药，不是普通的打针。\n人工关节的假体有使用年限，一般一辈子只能换一次；软骨再生治疗常用来在真正需要换关节之前，尽量延缓病情、保住自己的关节。',
+      en: 'Regenerative treatment for cartilage damage and degenerative knee conditions. The representative product is CARTISTEM — an allogeneic umbilical cord blood-derived mesenchymal stem cell therapy developed by Medipost (Korea), implanted into the cartilage defect through a minimally invasive drilling procedure inside the joint, as a clinical application of a licensed cell therapy rather than a simple injection.\nBy comparison, traditional artificial joint replacement can typically only be performed once in a lifetime due to the limited lifespan of the implant — cartilage regeneration therapy is often used to slow disease progression and preserve the natural joint for as long as possible before replacement becomes necessary.',
     },
     image: '/category-tiles/stem-cell/joint-cartilage.jpg',
     secondaryMedia: { type: 'image', src: '/category-tiles/stem-cell/cartistem.jpg' },
@@ -143,7 +143,7 @@ export const STEM_CELL_KEYWORDS: StemCellKeyword[] = [
     tileSubtitle: { zh: 'PRP · PRF · PMF · 生长因子', en: 'PRP · PRF · PMF · Growth Factors' },
     heroImage: '/category-tiles/stem-cell/autologous-blood-iv-hero.jpg', // 서울 뷰 IV 라운지 · 골드 수액 · 분리 혈액 튜브(1996×788)
     body: {
-      zh: '抽您自己的血，把里面有用的成分分离、浓缩出来。\\n韩国法律严格限制在体外培养扩增自体细胞，而且培养过程本身也可能让细胞活性变差。所以和抗衰有关的自体血液疗法，一般直接用新鲜分离出来的生长因子等成分，而不是体外培养的细胞。',
+      zh: '抽您自己的血，把里面有用的成分分离、浓缩出来。\n韩国法律严格限制在体外培养扩增自体细胞，而且培养过程本身也可能让细胞活性变差。所以和抗衰有关的自体血液疗法，一般直接用新鲜分离出来的生长因子等成分，而不是体外培养的细胞。',
       en: "Your own blood is drawn, then separated and concentrated for its active components.\nKorea strictly regulates in-vitro culturing and expansion of autologous cells, and the culturing process itself carries a risk of reduced cell viability — so anti-aging autologous blood therapies typically use freshly separated growth factors and active components directly, rather than cultured cells.",
     },
     pillGroups: [
