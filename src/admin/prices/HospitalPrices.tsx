@@ -93,7 +93,7 @@ export default function HospitalPrices() {
         <p className="hp-eyebrow">HANGANG AEBOM · INTERNAL</p>
         <h1 className="hp-title">병원별 수가</h1>
         <p className="hp-desc">
-          중가 = 셀이즈랩 · 리베리 · 클림 &nbsp;/&nbsp; 고가 = 리앤장 · 셀온 · 살롱드닥터 · 바노바기
+          중가 = 셀이즈랩 · 리베리 · 클림 · 신소애(여성의원) &nbsp;/&nbsp; 고가 = 리앤장 · 셀온 · 살롱드닥터 · 바노바기
           <br />별도 표기 없으면 VAT 별도 · 고객용 견적은 이 표를 보고 분기마다 맞춥니다.
           <br /><b className="hp-hint">파란 중국어 이름과 가격은 누르면 바로 복사됩니다 → 위챗에 붙여넣기</b>
         </p>
