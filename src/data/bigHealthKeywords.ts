@@ -109,22 +109,22 @@ export interface BigHealthKeyword {
 }
 
 const TESTS_LABEL: LocalizedText = {
-  zh: '可能相关检查',
+  zh: '可能要做的检查',
   en: 'Possible Related Tests',
 }
 
 const DIRECTION_LABEL: LocalizedText = {
-  zh: '可能咨询方向',
+  zh: '可以咨询什么',
   en: 'Possible Consultation Directions',
 }
 
 export const BIG_HEALTH_DOC_SECTION_LABEL: LocalizedText = {
-  zh: '相关准备文档',
+  zh: '检查前要看的资料',
   en: 'Related Preparation Documents',
 }
 
 export const BIG_HEALTH_PILLS_PROMPT: LocalizedText = {
-  zh: '请选择您关心的方向',
+  zh: '您最关心哪一块？',
   en: 'Please select the topic you are most interested in',
 }
 
@@ -134,7 +134,7 @@ export const BIG_HEALTH_SECTION = {
     en: 'Anti-Aging & Health Management',
   } as LocalizedText,
   desc: {
-    zh: '不是单一项目，而是从疲劳、睡眠、肠道、代谢、激素和再生医学咨询等方向，了解身体状态并整理适合的韩国医疗咨询路径。',
+    zh: '大健康不是某一个项目，而是从疲劳、睡眠、肠胃、代谢、激素、再生医学这些方面，看清楚自己身体的状况，再找到适合您的韩国医院和检查。',
     en: 'Not a single procedure, but a way to understand your body through fatigue, sleep, gut health, metabolism, hormones, and regenerative medicine consultation — and map out the right path for medical consultation in Korea.',
   } as LocalizedText,
 }
@@ -148,7 +148,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       en: 'Chronic Fatigue',
     },
     description: {
-      zh: '长期疲劳、精力下降、恢复慢、注意力下降、睡醒后仍然疲惫等问题，可能与睡眠、营养状态、贫血、甲状腺、血糖、肝肾功能、慢性炎症或压力状态等多种因素有关。',
+      zh: '总是很累、没精神、恢复慢、注意力不集中、睡醒了还是累……原因可能有很多：睡眠、营养、贫血、甲状腺、血糖、肝肾功能、慢性炎症，或者压力太大。',
       en: 'Long-term fatigue, low energy, slow recovery, poor concentration, or waking up tired can be related to sleep, nutritional status, anemia, thyroid function, blood sugar, liver and kidney function, chronic inflammation, or stress.',
     },
     testsLabel: TESTS_LABEL,
@@ -163,7 +163,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
     ],
     directionLabel: DIRECTION_LABEL,
     direction: [
-      { zh: '疲劳原因评估', en: 'Fatigue cause assessment' },
+      { zh: '找出疲劳的原因', en: 'Fatigue cause assessment' },
       { zh: '甲状腺功能相关咨询', en: 'Thyroid function consultation' },
       { zh: '维生素D缺乏相关咨询', en: 'Vitamin D deficiency consultation' },
       { zh: '铁代谢与隐性缺铁咨询', en: 'Iron metabolism and hidden iron deficiency consultation' },
@@ -182,7 +182,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       en: 'Sleep Issues',
     },
     description: {
-      zh: '入睡困难、浅眠、多梦、早醒、睡醒后仍疲劳、白天困倦等情况，可能与压力、自律神经、激素变化、血糖波动、生活节奏、咖啡因摄入或身体代谢状态有关。',
+      zh: '睡不着、睡得浅、老做梦、醒得太早、睡醒还是累、白天犯困……可能和压力、自主神经、激素变化、血糖波动、作息、喝咖啡太多，或者身体代谢有关。',
       en: 'Difficulty falling asleep, light sleep, frequent dreaming, early waking, waking up tired, or daytime drowsiness can be related to stress, the autonomic nervous system, hormonal changes, blood sugar fluctuations, daily rhythm, caffeine intake, or metabolic status.',
     },
     testsLabel: TESTS_LABEL,
@@ -193,16 +193,16 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       { zh: '维生素D检查', en: 'Vitamin D test' },
       { zh: '铁蛋白与贫血相关检查', en: 'Ferritin and anemia-related test' },
       { zh: '激素相关检查', en: 'Hormone-related test' },
-      { zh: '压力状态相关评估', en: 'Stress status evaluation' },
-      { zh: '自律神经相关评估，如医院可提供', en: 'Autonomic nervous system evaluation, where available' },
-      { zh: '睡眠习惯与生活方式问诊', en: 'Sleep habits and lifestyle intake interview' },
+      { zh: '压力状态评估', en: 'Stress status evaluation' },
+      { zh: '自主神经检查（视医院而定）', en: 'Autonomic nervous system evaluation, where available' },
+      { zh: '睡眠和生活习惯问诊', en: 'Sleep habits and lifestyle intake interview' },
     ],
     directionLabel: DIRECTION_LABEL,
     direction: [
-      { zh: '睡眠模式整理', en: 'Organizing sleep patterns' },
-      { zh: '压力与自律神经状态咨询', en: 'Stress and autonomic nervous system consultation' },
-      { zh: '咖啡因、饮酒、作息习惯评估', en: 'Caffeine, alcohol, and routine habit evaluation' },
-      { zh: '营养缺乏因素确认', en: 'Confirming nutritional deficiencies' },
+      { zh: '梳理睡眠习惯', en: 'Organizing sleep patterns' },
+      { zh: '压力和自主神经状态咨询', en: 'Stress and autonomic nervous system consultation' },
+      { zh: '咖啡、饮酒和作息习惯评估', en: 'Caffeine, alcohol, and routine habit evaluation' },
+      { zh: '看看是不是缺什么营养', en: 'Confirming nutritional deficiencies' },
       { zh: '激素与代谢状态咨询', en: 'Hormone and metabolic status consultation' },
       { zh: '功能医学检查咨询', en: 'Functional medicine testing consultation' },
     ],
@@ -216,7 +216,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       en: 'Gut Health',
     },
     description: {
-      zh: '腹胀、消化不良、便秘、腹泻、胃肠不适、饭后疲劳、排便习惯变化等问题，可能需要结合饮食习惯、肠道状态、炎症反应、营养吸收和必要的内镜检查一起评估。',
+      zh: '肚子胀、消化不好、便秘、拉肚子、肠胃不舒服、吃完饭就犯困、排便习惯变了……这些要结合饮食习惯、肠道状况、炎症、营养吸收一起看，必要时还要做胃镜或肠镜。',
       en: 'Bloating, indigestion, constipation, diarrhea, stomach discomfort, post-meal fatigue, or changes in bowel habits may need to be evaluated together with dietary habits, gut condition, inflammatory response, nutrient absorption, and, if necessary, an endoscopic examination.',
     },
     testsLabel: TESTS_LABEL,
@@ -226,19 +226,19 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       { zh: '肝功能与胰腺相关指标', en: 'Liver function and pancreas-related markers' },
       { zh: '营养状态评估', en: 'Nutritional status evaluation' },
       { zh: '贫血与铁蛋白检查', en: 'Anemia and ferritin test' },
-      { zh: '维生素D与维生素B群相关评估', en: 'Vitamin D and vitamin B group evaluation' },
-      { zh: '大便相关检查，如医院可提供', en: 'Stool test, where available' },
-      { zh: '幽门螺杆菌相关检查，如有需要', en: 'H. pylori test, if needed' },
-      { zh: '胃镜或肠镜相关咨询', en: 'Gastroscopy or colonoscopy consultation' },
+      { zh: '维生素D和B族维生素评估', en: 'Vitamin D and vitamin B group evaluation' },
+      { zh: '大便检查（视医院而定）', en: 'Stool test, where available' },
+      { zh: '幽门螺杆菌检查（需要时）', en: 'H. pylori test, if needed' },
+      { zh: '胃镜、肠镜咨询', en: 'Gastroscopy or colonoscopy consultation' },
     ],
     directionLabel: DIRECTION_LABEL,
     direction: [
-      { zh: '消化不良与腹胀原因整理', en: 'Organizing the causes of indigestion and bloating' },
-      { zh: '便秘或腹泻状态评估', en: 'Evaluating constipation or diarrhea status' },
-      { zh: '饮食习惯与肠道反应整理', en: 'Reviewing dietary habits and gut response' },
-      { zh: '内镜检查准备咨询', en: 'Endoscopy preparation consultation' },
-      { zh: '功能医学肠道健康评估咨询', en: 'Functional medicine gut health evaluation consultation' },
-      { zh: '营养吸收与生活方式管理咨询', en: 'Nutrient absorption and lifestyle management consultation' },
+      { zh: '找出消化不良和肚子胀的原因', en: 'Organizing the causes of indigestion and bloating' },
+      { zh: '评估便秘或腹泻情况', en: 'Evaluating constipation or diarrhea status' },
+      { zh: '梳理饮食习惯和肠胃反应', en: 'Reviewing dietary habits and gut response' },
+      { zh: '内镜检查前准备咨询', en: 'Endoscopy preparation consultation' },
+      { zh: '功能医学肠道健康咨询', en: 'Functional medicine gut health evaluation consultation' },
+      { zh: '营养吸收和生活方式管理咨询', en: 'Nutrient absorption and lifestyle management consultation' },
     ],
     docKeys: ['functionalIntake', 'healthCheckupPrep', 'colonoscopyPrep'],
   },
@@ -250,7 +250,7 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       en: 'Metabolic Management',
     },
     description: {
-      zh: '血糖、血脂、脂肪肝、体重变化、腹部脂肪、胰岛素抵抗、糖尿病前期等问题，适合通过血液检查、生活方式评估和必要的医学咨询来了解身体代谢状态。',
+      zh: '血糖、血脂、脂肪肝、体重变化、肚子上的脂肪、胰岛素抵抗、糖尿病前期……这些可以通过抽血、生活方式评估和医生咨询，了解自己的代谢状况。',
       en: 'Blood sugar, cholesterol, fatty liver, weight changes, abdominal fat, insulin resistance, or prediabetes can be better understood through blood tests, lifestyle evaluation, and medical consultation as needed.',
     },
     testsLabel: TESTS_LABEL,
@@ -266,17 +266,17 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       { zh: '脂肪肝相关评估', en: 'Fatty liver evaluation' },
       { zh: '肾功能检查', en: 'Kidney function test' },
       { zh: '尿酸检查', en: 'Uric acid test' },
-      { zh: '体成分检查，如医院可提供', en: 'Body composition test, where available' },
-      { zh: '血压与心血管风险评估', en: 'Blood pressure and cardiovascular risk evaluation' },
+      { zh: '体成分检查（视医院而定）', en: 'Body composition test, where available' },
+      { zh: '血压和心血管风险评估', en: 'Blood pressure and cardiovascular risk evaluation' },
     ],
     directionLabel: DIRECTION_LABEL,
     direction: [
-      { zh: '血糖与血脂状态整理', en: 'Organizing blood sugar and lipid status' },
-      { zh: '脂肪肝与肝功能咨询', en: 'Fatty liver and liver function consultation' },
-      { zh: '体重变化原因评估', en: 'Evaluating causes of weight change' },
+      { zh: '梳理血糖和血脂情况', en: 'Organizing blood sugar and lipid status' },
+      { zh: '脂肪肝和肝功能咨询', en: 'Fatty liver and liver function consultation' },
+      { zh: '找出体重变化的原因', en: 'Evaluating causes of weight change' },
       { zh: '胰岛素抵抗相关咨询', en: 'Insulin resistance consultation' },
-      { zh: '饮食、运动与生活方式管理', en: 'Diet, exercise, and lifestyle management' },
-      { zh: '功能医学与抗衰老管理咨询', en: 'Functional medicine and anti-aging management consultation' },
+      { zh: '饮食、运动和生活方式管理', en: 'Diet, exercise, and lifestyle management' },
+      { zh: '功能医学和抗衰老管理咨询', en: 'Functional medicine and anti-aging management consultation' },
     ],
     docKeys: ['functionalIntake', 'bloodTestPrep'],
   },
@@ -295,20 +295,20 @@ export const BIG_HEALTH_KEYWORDS: BigHealthKeyword[] = [
       en: 'Hormone Balance',
     },
     description: {
-      zh: '疲劳、睡眠问题、体重变化、情绪波动、月经变化、更年期症状、脱发、皮肤状态变化等，可能与甲状腺、女性激素、男性激素、压力激素或代谢状态有关。',
+      zh: '容易累、睡不好、体重变化、情绪起伏、月经变化、更年期症状、掉头发、皮肤变差……可能和甲状腺、女性激素、男性激素、压力激素或代谢状态有关。',
       en: 'Fatigue, sleep issues, weight changes, mood swings, menstrual changes, menopausal symptoms, hair loss, or changes in skin condition may be related to the thyroid, female hormones, male hormones, stress hormones, or metabolic status.',
     },
     testsLabel: TESTS_LABEL,
     tests: [
       { zh: '甲状腺功能检查', en: 'Thyroid function test' },
-      { zh: '女性激素相关检查', en: 'Female hormone-related test' },
-      { zh: '男性激素相关检查', en: 'Male hormone-related test' },
-      { zh: '更年期相关评估', en: 'Menopause-related evaluation' },
+      { zh: '女性激素检查', en: 'Female hormone-related test' },
+      { zh: '男性激素检查', en: 'Male hormone-related test' },
+      { zh: '更年期评估', en: 'Menopause-related evaluation' },
       { zh: '维生素D检查', en: 'Vitamin D test' },
-      { zh: '血糖与胰岛素相关检查', en: 'Blood sugar and insulin-related test' },
+      { zh: '血糖和胰岛素检查', en: 'Blood sugar and insulin-related test' },
       { zh: '肝肾功能检查', en: 'Liver and kidney function test' },
       { zh: '贫血与铁蛋白检查', en: 'Anemia and ferritin test' },
-      { zh: '压力状态相关评估', en: 'Stress status evaluation' },
+      { zh: '压力状态评估', en: 'Stress status evaluation' },
     ],
     directionLabel: DIRECTION_LABEL,
     direction: [
