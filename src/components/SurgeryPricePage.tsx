@@ -4,7 +4,7 @@ import { SURGERY_GROUPS, type SurgeryItem } from '../data/surgeryPrices'
 import { WECHAT_BIZ_URL, getWhatsappUrl } from '../data/contacts'
 import './SurgeryPricePage.css'
 
-/* 성형 수가는 「만원 · 원셀 단독」 기준이라(화면 표기는 2026-10-02부터 「不含增值税」 — 사용자 결정) 인기시술 견적과 섞지 않는다.
+/* 성형 수가는 「만원 · 셀이즈랩 단독」 기준이라(화면 표기는 2026-10-02부터 「不含增值税」 — 사용자 결정) 인기시술 견적과 섞지 않는다.
    비교 대상이 없으므로 합산기가 아니라 읽는 가격표로 구성했다.
    환율은 인기시술 견적과 동일 기준(2026-09-07)을 쓴다. */
 const KRW_PER_CNY = 204

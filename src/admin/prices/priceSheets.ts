@@ -28,13 +28,14 @@ export interface HospitalPriceSheet {
 
 export const HOSPITAL_PRICES: HospitalPriceSheet[] = [
   {
-    id: 'oncell',
-    name: '원셀의원',
+    // 원셀의원 수가표 그대로 — 양동준 원장이 셀이즈랩의원으로 옮겨 이름만 바꿈(내용·수가 동일, 사용자 확인 2026-10-23)
+    id: 'cellislab',
+    name: '셀이즈랩의원',
     tier: '중가',
     asOf: '2026-09',
     vat: 'VAT 미확인 (포함이면 ÷1.1 필요)',
     source: '기존 견적 데이터 (public/docs/pricing.html)',
-    referenceOnly: '송객 불가 — 중국 에이전시와 독점계약. 수가 참고용으로만 사용. 양동준 원장은 셀이즈랩의원으로 이동 → 성형(유륜흉터 등) 환자는 셀이즈랩으로',
+    note: '양동준 원장(梁桐准). 원셀의원 수가표와 동일 — 원장 이동으로 셀이즈랩의원 이름으로 사용',
     items: [
       ['리프팅', '울쎄라피 프라임', '100샷', 460000],
       ['리프팅', '울쎄라피 프라임', '300샷', 1250000],
