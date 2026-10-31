@@ -888,6 +888,42 @@
       "title": "교수",
       "status": "wait",
       "note": "2026-10-31 사장님 요청. 한자 추정"
+    },
+    {
+      "id": "68",
+      "zh": "权顺亿",
+      "en": "Kwon Sun-uck",
+      "zhDept": "神经内科",
+      "ko": "권순억",
+      "hospital": "서울아산병원",
+      "field": "뇌졸중·뇌혈관 협착",
+      "title": "교수",
+      "status": "wait",
+      "note": "2026-10-31 뇌졸중. 한자 추정"
+    },
+    {
+      "id": "69",
+      "zh": "李承勋",
+      "en": "Lee Seung-hoon",
+      "zhDept": "神经内科",
+      "ko": "이승훈",
+      "hospital": "서울대병원",
+      "field": "뇌졸중·모야모야·CADASIL",
+      "title": "교수",
+      "status": "wait",
+      "note": "2026-10-31 뇌졸중. 한자 추정"
+    },
+    {
+      "id": "70",
+      "zh": "方五荣",
+      "en": "Bang Oh-young",
+      "zhDept": "神经内科",
+      "ko": "방오영",
+      "hospital": "삼성서울병원",
+      "field": "뇌경색·경동맥협착·모야모야",
+      "title": "교수",
+      "status": "wait",
+      "note": "2026-10-31 뇌졸중. 한자 추정"
     }
   ]
 }
