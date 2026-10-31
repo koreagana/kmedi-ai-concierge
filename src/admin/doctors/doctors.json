@@ -1020,6 +1020,30 @@
       "title": "교수",
       "status": "wait",
       "note": "2026-10-31 유방암. 한자 추정"
+    },
+    {
+      "id": "79",
+      "zh": "李昌勋",
+      "en": "Lee Chang-hoon",
+      "zhDept": "呼吸内科",
+      "ko": "이창훈",
+      "hospital": "서울대병원",
+      "field": "COPD·천식",
+      "title": "교수",
+      "status": "wait",
+      "note": "2026-10-31 호흡기. 한자 공식"
+    },
+    {
+      "id": "80",
+      "zh": "朴惠允",
+      "en": "Park Hye-yun",
+      "zhDept": "呼吸内科",
+      "ko": "박혜윤",
+      "hospital": "삼성서울병원",
+      "field": "COPD·만성기도질환",
+      "title": "교수",
+      "status": "wait",
+      "note": "2026-10-31 호흡기. 한자 추정"
     }
   ]
 }
