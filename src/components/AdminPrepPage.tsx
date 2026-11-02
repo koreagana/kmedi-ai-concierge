@@ -193,6 +193,9 @@ function PrepDocList() {
           <a className="admin-prep-subnav-link" href="/admin/doctors/" target="_blank" rel="noopener">
             → 百名百医 의사 명단 바로가기
           </a>
+          <a className="admin-prep-subnav-link" href="/admin/coupons/" target="_blank" rel="noopener">
+            → 打卡 쿠폰 확인·사용 처리
+          </a>
         </header>
 
         <CategoryNav />
