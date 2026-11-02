@@ -42,6 +42,13 @@
   .sub-field.show { display:block; }
   .warn-banner { background:#fff2f2; border:1px solid #f08080; border-radius:8px; padding:10px 12px; margin-top:8px; font-size:12px; color:#c0392b; display:none; }
   .warn-banner.show { display:flex; gap:8px; align-items:flex-start; }
+  /* 켈로이드 체질 확인 질문 — 고객에게 그대로 읽어 주는 중국어는 크게, 한국어는 작게 (2026-11-02 사장님) */
+  .kq-box { margin-top:10px; padding:12px; border-radius:10px; background:#f7f9fd; border:1px dashed #c8d8f0; }
+  .kq-lead { font-size:12px; color:#4a6a9a; margin-bottom:10px; line-height:1.5; }
+  .kq { padding:10px 0; border-top:1px solid #e3eaf5; }
+  .kq:first-of-type { border-top:none; padding-top:0; }
+  .kq-zh { font-size:15px; color:#1a2a4a; line-height:1.5; font-weight:600; }
+  .kq-ko { font-size:11px; color:#7a8aa6; margin:2px 0 6px; line-height:1.4; }
   .divider { border:none; border-top:1px solid #eef2f8; margin:14px 0; }
   .memo-section { background:white; margin:10px 14px 0; border-radius:12px; padding:16px; border:2px solid #2255a4; box-shadow:0 2px 8px rgba(34,85,164,0.1); }
   .memo-section h2 { font-size:14px; font-weight:700; color:#2255a4; margin-bottom:12px; }
@@ -142,6 +149,53 @@
         <div class="chip" onclick="toggleChip(this,'keloid','no')">없음</div>
         <div class="chip warn" onclick="toggleChip(this,'keloid','yes')">있음</div>
         <div class="chip" onclick="toggleChip(this,'keloid','unknown')">모름</div>
+      </div>
+      <!-- 고객 대부분이 자기 체질을 모름 → 「모름」이어도 아래 5가지로 짐작 (2026-11-02 사장님) -->
+      <div class="kq-box" id="kq-box">
+        <div class="kq-lead">고객이 「모름」이라고 하면 아래를 하나씩 물어보세요. 중국어를 그대로 읽어 주면 됩니다.</div>
+        <div class="kq" data-k="귀 뚫은 자리">
+          <div class="kq-zh">打耳洞的地方有没有鼓起来，或者长过肉疙瘩？</div>
+          <div class="kq-ko">귀 뚫은 자리가 부풀거나 덩어리가 생긴 적 있나요?</div>
+          <div class="chip-group">
+            <div class="chip" onclick="toggleKq(this,false)">没有 · 아니오</div>
+            <div class="chip warn" onclick="toggleKq(this,true)">有 · 예</div>
+          </div>
+        </div>
+        <div class="kq" data-k="예방주사·수술 흉터">
+          <div class="kq-zh">打疫苗、做手术或剖腹产留下的疤，有没有变红、鼓起来？</div>
+          <div class="kq-ko">예방주사·수술·제왕절개 흉터가 빨갛게 부풀었나요?</div>
+          <div class="chip-group">
+            <div class="chip" onclick="toggleKq(this,false)">没有 · 아니오</div>
+            <div class="chip warn" onclick="toggleKq(this,true)">有 · 예</div>
+          </div>
+        </div>
+        <div class="kq" data-k="여드름·상처 자국">
+          <div class="kq-zh">痘痘或小伤口留下的疤，有没有越长越大？</div>
+          <div class="kq-ko">여드름·작은 상처 자국이 점점 커진 적 있나요?</div>
+          <div class="chip-group">
+            <div class="chip" onclick="toggleKq(this,false)">没有 · 아니오</div>
+            <div class="chip warn" onclick="toggleKq(this,true)">有 · 예</div>
+          </div>
+        </div>
+        <div class="kq" data-k="가족력">
+          <div class="kq-zh">家里人有没有长过瘢痕疙瘩的？</div>
+          <div class="kq-ko">가족 중에 켈로이드가 있는 분이 있나요?</div>
+          <div class="chip-group">
+            <div class="chip" onclick="toggleKq(this,false)">没有 · 아니오</div>
+            <div class="chip warn" onclick="toggleKq(this,true)">有 · 예</div>
+          </div>
+        </div>
+        <div class="kq" data-k="흉터 가려움·통증">
+          <div class="kq-zh">疤痕会不会痒或者疼？</div>
+          <div class="kq-ko">흉터가 가렵거나 아픈 적 있나요?</div>
+          <div class="chip-group">
+            <div class="chip" onclick="toggleKq(this,false)">没有 · 아니오</div>
+            <div class="chip warn" onclick="toggleKq(this,true)">有 · 예</div>
+          </div>
+        </div>
+      </div>
+      <div class="warn-banner" id="warn-keloid">
+        ⚠️ 켈로이드 체질 의심. 수술 전에 병원(의사)에게 반드시 전달할 것. 귀 주변을 째는 거상수술은 특히 주의.
       </div>
     </div>
   </div>
@@ -377,6 +431,16 @@ function checkStay() {
   }
 }
 
+// 켈로이드 체질 질문: 예/아니오 중 하나만, 「예」가 하나라도 있으면 경고
+function toggleKq(el) {
+  el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('warn-keloid').classList.toggle('show', keloidSigns().length > 0);
+}
+function keloidSigns() {
+  return [...document.querySelectorAll('#kq-box .kq')].filter(q => q.querySelector('.chip.warn.on')).map(q => q.dataset.k);
+}
+
 function getCheckedTexts(container) {
   if (!container) return [];
   return [...container.querySelectorAll('.chip.on')].map(c => c.textContent.trim());
@@ -407,6 +471,8 @@ function generateMemo() {
   const otherSurg = document.getElementById('other-surgery').value;
   const keloidEl = document.querySelector('[onclick*="keloid"]')?.parentElement;
   const keloid = getCheckedTexts(keloidEl).join('') || '미확인';
+  const signs = keloidSigns();
+  const keloidLine = signs.length ? `\n⚠️ 켈로이드 체질 의심: ${signs.join(', ')}` : '';
 
   // 건강
   const medDetail = document.getElementById('med-detail').value;
@@ -447,7 +513,7 @@ function generateMemo() {
 
 【수술 이력】
 구분: ${surgTypeChecked}${revDetail}${otherSurg?'\n타 부위 이력: '+otherSurg:''}
-흉터 체질: ${keloid}
+흉터 체질: ${keloid}${keloidLine}
 
 【건강 상태】
 복용약: ${sectionChips(1).replace('없음','없음')}${medDetail?' ('+medDetail+')':''}
