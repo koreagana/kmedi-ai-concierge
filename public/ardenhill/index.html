@@ -6,14 +6,6 @@
 <meta name="robots" content="noindex, nofollow" />
 <title>社区专属医疗健康管家 · 汉江春天</title>
 <meta name="description" content="Arden Hill 住户专属会员服务：就医咨询、预约挂号、就医陪同、中文医疗翻译、健康管理。" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://kmedispring.com/ardenhill/" />
-<meta property="og:title" content="社区专属医疗健康管家 · 汉江春天" />
-<meta property="og:description" content="Arden Hill 住户专属 · 在韩国看病，有人陪您一起。" />
-<meta property="og:image" content="https://kmedispring.com/ardenhill/og-cover.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
 <!-- 초안 2026-11-24: Aden Hill 입주민 전용 디지털 브로슈어. 검색 비노출(noindex). 사이트 메뉴에 링크 걸지 말 것. 차량·接送 문구 넣지 않음(진료 동행만). -->
@@ -27,6 +19,8 @@
     --text: #1F2733;
     --muted: #5E6672;
     --gold: #A8874E;
+    --band: #F2ECDF;
+    --tint: rgba(168, 135, 78, .09);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -38,7 +32,8 @@
     line-height: 1.75;
   }
   .book { max-width: 480px; margin: 0 auto; background: var(--paper); }
-  section { padding: 56px 24px; border-bottom: 1px solid var(--line); }
+  section { padding: 56px 24px; }
+  section:nth-of-type(odd):not(.cover) { background: var(--band); }
   .no { font-family: "Noto Serif SC", serif; color: var(--gold); font-size: 15px; letter-spacing: .2em; }
   h2 {
     font-family: "Noto Serif SC", serif; color: var(--blue);
@@ -47,10 +42,10 @@
   .lead { color: var(--muted); margin-bottom: 24px; }
   ul.items { list-style: none; }
   ul.items li {
-    padding: 18px 0; border-top: 1px solid var(--line);
+    padding: 18px 0;
     display: flex; gap: 14px; align-items: flex-start;
   }
-  ul.items li:last-child { border-bottom: 1px solid var(--line); }
+  ul.items li + li { border-top: 1px solid var(--line); }
   ul.items li::before {
     content: ""; flex: 0 0 8px; height: 8px; margin-top: 12px;
     background: var(--blue); border-radius: 50%;
@@ -74,12 +69,12 @@
   /* 07 요금 */
   .fees { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 28px; }
   .fee { display: flex; justify-content: space-between; align-items: baseline; padding: 20px; border-top: 1px solid var(--line); }
-  .fee:first-child { border-top: 0; background: var(--ivory); }
+  .fee:first-child { border-top: 0; background: var(--tint); }
   .fee .k { font-size: 18px; }
   .fee .k small { display: block; color: var(--muted); font-size: 14px; }
   .fee .v { font-family: "Noto Serif SC", serif; color: var(--blue); font-size: 26px; font-weight: 700; white-space: nowrap; }
   .fee .v small { font-size: 15px; font-weight: 500; }
-  .note { background: var(--ivory); border-left: 3px solid var(--gold); padding: 18px 18px; margin-top: 20px; font-size: 17px; }
+  .note { background: var(--tint); border-left: 3px solid var(--gold); padding: 18px 18px; margin-top: 20px; font-size: 17px; }
   .rules li { margin: 0 0 10px 1.2em; color: var(--text); }
 
   /* 08 가입 */
@@ -90,7 +85,7 @@
     background: var(--blue); color: #fff; font-weight: 700;
     display: flex; align-items: center; justify-content: center; font-size: 17px;
   }
-  .qrs { display: grid; grid-template-columns: 1fr; width: 62%; margin: 0 auto; }
+  .qrs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .qr {
     width: 100%; aspect-ratio: 1; max-width: 100%; margin-bottom: 10px; border: 1px dashed var(--gold);
     display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 15px; border-radius: 12px;
@@ -98,7 +93,7 @@
   }
   #kfqr, .qr-img { border-style: solid; border-color: var(--line); }
   .qr-img img { width: 100%; height: auto; display: block; }
-  #kfqr { padding: 8%; }
+  #kfqr { padding: 16%; }
   #kfqr img, #kfqr canvas { width: 100% !important; height: auto !important; }
   .qr-cap { text-align: center; color: var(--text); font-size: 16px; font-weight: 500; }
   .qr-tip { text-align: center; color: var(--muted); font-size: 15px; margin-top: 16px; }
@@ -211,6 +206,7 @@
       <li>确认家庭成员，开通会员</li>
     </ol>
     <div class="qrs">
+      <div><div class="qr qr-img"><img src="miniprogram-qr.png" alt="汉江春天小程序码" /></div><div class="qr-cap">小程序「汉江春天」</div></div>
       <div><div class="qr" id="kfqr"></div><div class="qr-cap">企业微信客服</div></div>
     </div>
     <p class="qr-tip">在微信中长按二维码即可识别</p>
