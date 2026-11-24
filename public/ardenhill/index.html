@@ -81,7 +81,7 @@
     background: var(--blue); color: #fff; font-weight: 700;
     display: flex; align-items: center; justify-content: center; font-size: 17px;
   }
-  .qrs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .qrs { display: grid; grid-template-columns: 1fr; width: 62%; margin: 0 auto; }
   .qr {
     width: 100%; aspect-ratio: 1; max-width: 100%; margin-bottom: 10px; border: 1px dashed var(--gold);
     display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 15px; border-radius: 12px;
@@ -89,7 +89,7 @@
   }
   #kfqr, .qr-img { border-style: solid; border-color: var(--line); }
   .qr-img img { width: 100%; height: auto; display: block; }
-  #kfqr { padding: 16%; }
+  #kfqr { padding: 8%; }
   #kfqr img, #kfqr canvas { width: 100% !important; height: auto !important; }
   .qr-cap { text-align: center; color: var(--text); font-size: 16px; font-weight: 500; }
   .qr-tip { text-align: center; color: var(--muted); font-size: 15px; margin-top: 16px; }
@@ -197,12 +197,11 @@
     <div class="no">07</div>
     <h2>会员申请与联系方式</h2>
     <ol class="steps">
-      <li>长按下方二维码，进入「汉江春天」小程序</li>
-      <li>点击客服，说明您是 Arden Hill 住户</li>
+      <li>长按下方二维码，联系汉江春天客服</li>
+      <li>说明您是 Arden Hill 住户</li>
       <li>确认家庭成员，开通会员</li>
     </ol>
     <div class="qrs">
-      <div><div class="qr qr-img"><img src="miniprogram-qr.png" alt="汉江春天小程序码" /></div><div class="qr-cap">小程序「汉江春天」</div></div>
       <div><div class="qr" id="kfqr"></div><div class="qr-cap">企业微信客服</div></div>
     </div>
     <p class="qr-tip">在微信中长按二维码即可识别</p>
@@ -213,7 +212,6 @@
     <div class="sub">韩国首尔正规注册的国际医疗旅游服务机构</div>
     <dl>
       <dt>官方网站</dt><dd><a href="https://kmedispring.com">kmedispring.com</a></dd>
-      <dt>微信小程序</dt><dd>汉江春天</dd>
       <dt>企业微信</dt><dd>汉江春天客服</dd>
       <dt>邮箱</dt><dd><a href="mailto:care@kmedispring.com">care@kmedispring.com</a></dd>
     </dl>
