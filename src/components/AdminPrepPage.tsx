@@ -196,6 +196,10 @@ function PrepDocList() {
           <a className="admin-prep-subnav-link" href="/admin/coupons/" target="_blank" rel="noopener">
             → 打卡 쿠폰 확인·사용 처리
           </a>
+          {/* 재생의료 병원·시술 승인 확인 (내부 전용, 같은 비밀번호로 로그인). 가비아 CNAME 연결 후에는 check.kmedispring.com으로 자동 이동 */}
+          <a className="admin-prep-subnav-link" href="https://kmedicheck.netlify.app/" target="_blank" rel="noopener noreferrer">
+            → K-Medi Check (병원·시술 승인 확인)
+          </a>
         </header>
 
         <CategoryNav />
