@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
  * 미니프로그램에서 연속 30·60일 출석하면 위챗 클라우드가 쿠폰을 발급한다(cloudfunctions/checkin).
  * 고객이 보여 준 쿠폰 번호를 넣으면 진짜인지·쓸 수 있는지 보여 주고, 픽업·샌딩을 해 준 뒤 「사용 완료」를 누른다.
  * 서버: netlify/functions/coupon-admin.mjs → 위챗 클라우드 함수 couponAdmin
- * 관리 키(COUPON_ADMIN_KEY)는 이 기기에만 저장된다. 관리 페이지 비밀번호(0707)와 다르다.
+ * 관리 키(COUPON_ADMIN_KEY)는 이 기기에만 저장된다. 관리 페이지 비밀번호(ADMIN_PIN)와 다르다.
  */
 
 interface Coupon {

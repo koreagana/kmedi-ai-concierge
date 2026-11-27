@@ -1,7 +1,7 @@
 // 打卡 보상 쿠폰 확인·사용 처리 (관리 페이지 /admin/coupons/ 전용, 2026-11-02 사장님)
 // 관리 페이지 → 이 함수 → 위챗 서버 API(tcb/invokecloudfunction) → 미니프로그램 클라우드 함수 couponAdmin
 // 비밀값은 코드에 두지 않고 Netlify 환경변수로만:
-//   COUPON_ADMIN_KEY  관리 화면에서 입력하는 관리 키 (관리 페이지 비밀번호 0707과 다른 긴 값)
+//   COUPON_ADMIN_KEY  관리 화면에서 입력하는 관리 키 (관리 페이지 비밀번호 ADMIN_PIN과 다른 긴 값)
 //   WX_APPID / WX_APPSECRET  미니프로그램 AppID·AppSecret (公众平台 → 开发管理 → 开发设置)
 // 환경변수가 없으면 아무것도 하지 않는다.
 import { timingSafeEqual } from 'node:crypto'

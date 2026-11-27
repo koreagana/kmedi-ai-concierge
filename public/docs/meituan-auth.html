@@ -286,16 +286,30 @@
 </div>
 <script>
 (function(){
-  var PIN = '0707';
+  // PIN은 서버(netlify/functions/admin-pin.mjs)에서 확인한다. 페이지 소스에 PIN을 두지 않는다.
   var input = document.getElementById('pinInput');
   var err = document.getElementById('pinError');
+  var busy = false;
+  function showErr(msg){ err.textContent = msg; err.hidden = false; }
   function tryUnlock(){
-    if(input.value === PIN){
-      document.body.classList.remove('locked');
-      document.getElementById('pinGate').hidden = true;
-    } else {
-      err.hidden = false;
-    }
+    if(busy) return;
+    busy = true;
+    fetch('/.netlify/functions/admin-pin', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({pin: input.value})
+    }).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(d){
+        if(r.ok && d.ok){
+          document.body.classList.remove('locked');
+          document.getElementById('pinGate').hidden = true;
+        } else {
+          showErr(d.message || '비밀번호가 올바르지 않습니다.');
+        }
+      });
+    }).catch(function(){
+      showErr('서버에 연결하지 못했습니다. 잠시 후 다시 시도해주세요.');
+    }).then(function(){ busy = false; });
   }
   document.getElementById('pinBtn').addEventListener('click', tryUnlock);
   input.addEventListener('input', function(){

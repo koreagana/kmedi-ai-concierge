@@ -3,7 +3,21 @@ import './AdminPinGate.css'
 
 // Lightweight access gate to keep internal admin lists off casual visitors.
 // Not a real security boundary — no patient data lives here (협력병원 수가는 내부 참고용).
-const ADMIN_PIN = '0707'
+// PIN은 서버(netlify/functions/admin-pin.mjs, 환경변수 ADMIN_PIN)에서 확인한다.
+// 이 저장소는 공개라서 PIN을 코드에 두지 않는다. 5번 틀리면 15분 잠금.
+async function checkPin(pin: string): Promise<{ ok: boolean; message?: string }> {
+  try {
+    const r = await fetch('/.netlify/functions/admin-pin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pin }),
+    })
+    const d = (await r.json().catch(() => ({}))) as { ok?: boolean; message?: string }
+    return { ok: r.ok && !!d.ok, message: d.message }
+  } catch {
+    return { ok: false, message: '서버에 연결하지 못했습니다. 잠시 후 다시 시도해주세요.' }
+  }
+}
 
 /* 한 번 입력하면 이 기기에서 12시간 동안 모든 관리자 페이지(준비문서·협력기관·병원찾기·수가)가
    다시 묻지 않는다. 저장이 막힌 브라우저(시크릿 모드 등)에서는 매번 묻는 기존 동작으로 돌아간다. */
@@ -36,15 +50,20 @@ export default function AdminPinGate({
   onSuccess: () => void
 }) {
   const [pin, setPin] = useState('')
-  const [error, setError] = useState(false)
+  const [error, setError] = useState<string | false>(false)
+  const [busy, setBusy] = useState(false)
 
-  const handleSubmit = () => {
-    if (pin === ADMIN_PIN) {
+  const handleSubmit = async () => {
+    if (busy) return
+    setBusy(true)
+    const r = await checkPin(pin)
+    setBusy(false)
+    if (r.ok) {
       setError(false)
       rememberUnlock()
       onSuccess()
     } else {
-      setError(true)
+      setError(r.message || '비밀번호가 올바르지 않습니다.')
     }
   }
 
@@ -69,9 +88,9 @@ export default function AdminPinGate({
             if (e.key === 'Enter') handleSubmit()
           }}
         />
-        {error && <p className="admin-pin-error">비밀번호가 올바르지 않습니다.</p>}
-        <button type="button" className="admin-pin-btn" onClick={handleSubmit}>
-          확인
+        {error && <p className="admin-pin-error">{error}</p>}
+        <button type="button" className="admin-pin-btn" onClick={handleSubmit} disabled={busy}>
+          {busy ? '확인 중…' : '확인'}
         </button>
       </div>
     </div>
